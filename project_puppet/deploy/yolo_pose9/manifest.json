@@ -1,0 +1,283 @@
+{
+  "release": "yolov8n-pose9-relu-v1-b4096-integrated",
+  "status": "offline-verified; board acceptance pending",
+  "source_manifest": "incoming/manifest.json",
+  "files": {
+    "model/calibration_images.json": {
+      "bytes": 4354,
+      "sha256": "692cbc2b568d08b3fd267ecb9d8c046591ee9decaa9e9733609d1c1945c40b20"
+    },
+    "model/compiler_meta.json": {
+      "bytes": 221,
+      "sha256": "580c1ae52e38c177a336a76caa722c9513a511b6b638ea4e51c14bb3c2e34514"
+    },
+    "model/fp32_equivalence.json": {
+      "bytes": 728,
+      "sha256": "a8521f3baac41fafe67deaa6e983294eee0b1c0af30fd81fccb7976ca60ccccf"
+    },
+    "model/graph_audit.json": {
+      "bytes": 8196,
+      "sha256": "86f76ffec8998c3cb4e431ad05d784dec47a8f98ca8b93c2225b0d60bc97693e"
+    },
+    "model/quant_info.json": {
+      "bytes": 14130,
+      "sha256": "5bd34eeccc8ad1259b45433c7294a896d8841c7d7a8dccf87964a1c68913f97c"
+    },
+    "model/raw_architecture.json": {
+      "bytes": 94307,
+      "sha256": "7ade6d1c1d7ec231d2ae852647cd34b110134a924a74a48676360500195a694a"
+    },
+    "model/raw_weights.npz": {
+      "bytes": 12723302,
+      "sha256": "25d180a74c6e49d35739afb2f487d1841fae0b9e393bae0bee50e431a2de1b4c"
+    },
+    "model/yolo_pose9_b4096.xmodel": {
+      "bytes": 4021041,
+      "sha256": "f01805e51f118ebb371f83de3a5c335a2fbf4fe81c4593a3fde14d565ffcb8e6"
+    },
+    "training/best.pt": {
+      "bytes": 6511837,
+      "sha256": "3f3f492913b6e35e380dded2109dea4edbb8171552e84f7a26cbbe848b67498d"
+    },
+    "training/data_audit.json": {
+      "bytes": 1621,
+      "sha256": "d07211992c97bb01bac40d4fa27fb556c1ba9b75d2819b4c633bd8c697c9799a"
+    },
+    "training/environment.json": {
+      "bytes": 305,
+      "sha256": "70d231cfef558328f0f09132c8cd9ec5ffbda55cfcc2900808ada932c13832ca"
+    },
+    "runtime/graph_contract.py": {
+      "bytes": 2512,
+      "sha256": "e1ef83921ed4bc246d47db3e8c254fec5e94064adb6c1d63a4d8e9f8eb31f767"
+    },
+    "runtime/postprocess.py": {
+      "bytes": 2900,
+      "sha256": "cc17cc5ffaa58305e9963aa44656e0cb943454432951c3f25e4943974cc22ece"
+    },
+    "runtime/requirements-target.txt": {
+      "bytes": 89,
+      "sha256": "105d6998ad168823fd7660b85be3880df7b7528800b5891fd7a3fbb57ffec8e5"
+    },
+    "runtime/runtime.py": {
+      "bytes": 9350,
+      "sha256": "660e3f9aa7195f19b9763e4507147da684d8ed1d98e77c7b02f12a4fbc5d838b"
+    },
+    "evaluation/fp32_test.json": {
+      "bytes": 723,
+      "sha256": "e4cf6b8a2bf5df77a87789b1163a1e9c925791a13bda43057e74375346c394e4"
+    },
+    "evaluation/fp32_val.json": {
+      "bytes": 798,
+      "sha256": "c3eb3199ef0ee0c2a3c699b3aa22f54897c09bf26be490b8f192a1ad4e3a5e6c"
+    },
+    "evaluation/int8_test.json": {
+      "bytes": 705,
+      "sha256": "afce1cd5ebf50ac5e427e10a6839ae4c5edc3111d4fec8d7cb49d03f748b9259"
+    },
+    "evaluation/int8_val.json": {
+      "bytes": 752,
+      "sha256": "7d1dfa490c5c784dfe69cf09ca94dc7f324f218649094665347d78ddda498016"
+    },
+    "evaluation/legacy_test.json": {
+      "bytes": 809,
+      "sha256": "12461e4ca283f2a44e2804e6feb25aef59a8816f8325b5d561b30bc60f1c5e52"
+    },
+    "evaluation/legacy_val.json": {
+      "bytes": 832,
+      "sha256": "7ea6847d1a33c2f023ef551f078c4bf8e3434bb4826e6b90819a33400f638332"
+    },
+    "integration/assemble_rootfs.py": {
+      "bytes": 2721,
+      "sha256": "7585977cc39ba59df92f6f195ea70ca81101948c538146d23d03f14e22756d73"
+    },
+    "integration/audit_graph.py": {
+      "bytes": 1115,
+      "sha256": "556ff44091c2eb8352c2689e5e6d69eeb1b24364f11297098c9c79120a9ecd31"
+    },
+    "integration/build_sd_image.sh": {
+      "bytes": 2303,
+      "sha256": "9e302995b8b31408660aa43ae91dc46e0d92dafecf03add5751c6411a6b48c49"
+    },
+    "integration/count_compute.py": {
+      "bytes": 1085,
+      "sha256": "613e974abbab72c5850a4fa73804491757271a4c1ed3af09aee33a1b61b9925b"
+    },
+    "integration/DEPLOYMENT.md": {
+      "bytes": 3984,
+      "sha256": "755f79506177ccf6520fd7ace0face77d2395c68ffc8be352a211781f2ce01e1"
+    },
+    "integration/evidence/compute_384.json": {
+      "bytes": 775,
+      "sha256": "adf02e38ff9e6fdc0c22cf1b7048e4c0b69aef94c750d798a1ba21c05f43cb69"
+    },
+    "integration/evidence/fit_image.txt": {
+      "bytes": 1501,
+      "sha256": "e5618c24f6a5cfb9518ef115519a2135cce14a6dc84d87de8df709ae8fc9cac6"
+    },
+    "integration/evidence/graph_contract.json": {
+      "bytes": 7041,
+      "sha256": "8cf52b0ed26d26fa69d1e7a8e18bbba81bcc85e0fef1762daad1c921437fd75b"
+    },
+    "integration/evidence/hardware_arch.json": {
+      "bytes": 36,
+      "sha256": "6feb79ba36f1f030f7827d94cdd8b43ff03faec72dad8e4a4e4d72704ed8490e"
+    },
+    "integration/evidence/hardware_timing.rpt": {
+      "bytes": 2035699,
+      "sha256": "c98435a21672cb33cb1ec27991c1dbe2ced808597d122d6af573a6b2d4c60fd7"
+    },
+    "integration/evidence/rootfs_changes.json": {
+      "bytes": 748,
+      "sha256": "c1234ac17633a003f63c3a2128c1508d9599f6a0906de88ef99938d271f01777"
+    },
+    "integration/evidence/summary.json": {
+      "bytes": 977,
+      "sha256": "5f709b3cee311727f8746c8405a3698f5f02ccee2a7a77dd8a7a963cae36f260"
+    },
+    "integration/evidence/tests.txt": {
+      "bytes": 177,
+      "sha256": "2075531133b0fecbb08dcaf8ebfa05412c7f722b4322269708121c3c36462b16"
+    },
+    "integration/finalize_manifest.py": {
+      "bytes": 1448,
+      "sha256": "9298f56b1df685d14af8b89563a75923d5f10cc83eaa77b84e5c94ef33a80342"
+    },
+    "integration/image.its": {
+      "bytes": 1162,
+      "sha256": "7a87fc7e5b734a006c13eb1b495de5b08e3b90ca06444f3d77c2fdad1a3ad6b6"
+    },
+    "integration/package_boot.ps1": {
+      "bytes": 1033,
+      "sha256": "def64fad11d53a1dc7909f6d63d5a5ee8647dbc89d31e6cb9e64df3ceb4cad33"
+    },
+    "integration/rebuild_verified_image.sh": {
+      "bytes": 1705,
+      "sha256": "7fb19462db5ad813452f97915fb93f6bfe3fb3e5dc273a7d2654c08db4d94ad1"
+    },
+    "integration/rollback-arm-chain.sh": {
+      "bytes": 223,
+      "sha256": "2d30357c1af074984561378e4476bb3ef4f5f3b3623d802a259826b646b4c8f4"
+    },
+    "integration/run_audit.sh": {
+      "bytes": 422,
+      "sha256": "d6a9106ccdf92edaedc4d6a10731ed78dfc1a9aee18cddc604e9308c9d953247"
+    },
+    "integration/shadow-yolo-pose": {
+      "bytes": 229,
+      "sha256": "b4516f5c2e3e14245a5f6a3b26016bd5e7ef876c5104dd985caf7ef086a6cf5c"
+    },
+    "integration/shadow-yolo-pose.service": {
+      "bytes": 387,
+      "sha256": "eb59e7e202008a23365df450b79d1d6ef42c569fa2a468042a7754a246436437"
+    },
+    "integration/source/arch.json": {
+      "bytes": 36,
+      "sha256": "6feb79ba36f1f030f7827d94cdd8b43ff03faec72dad8e4a4e4d72704ed8490e"
+    },
+    "integration/source/environment.json": {
+      "bytes": 305,
+      "sha256": "70d231cfef558328f0f09132c8cd9ec5ffbda55cfcc2900808ada932c13832ca"
+    },
+    "integration/source/evaluate.py": {
+      "bytes": 5652,
+      "sha256": "1dc21667af85ab18342952993b9063ea5a46de259982faed26b39b894ad776ec"
+    },
+    "integration/source/evaluate_quantized.py": {
+      "bytes": 2347,
+      "sha256": "b32277c76fe0ecb4088adca94ec4897734d6bcb3b608c3820b23b2b18a51bc38"
+    },
+    "integration/source/export_raw.py": {
+      "bytes": 3135,
+      "sha256": "2bb113780c2531042d6d6971c5e52531bf2c0b2d92184564bbc52e9b716fbc91"
+    },
+    "integration/source/inspect_xmodel.py": {
+      "bytes": 1238,
+      "sha256": "26109745f369381d64be33370d0e8d4e6740b34241e4220939d80f8b3a4ce201"
+    },
+    "integration/source/ov5640_init.c": {
+      "bytes": 13399,
+      "sha256": "f329d5a9eb31ea854cbfcb6fc72567131abab4bb5063bf4833fc63c10a1607bf"
+    },
+    "integration/source/package_release.py": {
+      "bytes": 2055,
+      "sha256": "a36c71e85a3be220a358a2d8c2ae91943b06146babcf78336eb7ee92bd140c80"
+    },
+    "integration/source/postprocess.py": {
+      "bytes": 2900,
+      "sha256": "cc17cc5ffaa58305e9963aa44656e0cb943454432951c3f25e4943974cc22ece"
+    },
+    "integration/source/prepare_data.py": {
+      "bytes": 5780,
+      "sha256": "d498b783c541335fb1c6accd94535944797f7f87020d23fcbd89aa6da1bb2ead"
+    },
+    "integration/source/quantize.py": {
+      "bytes": 2158,
+      "sha256": "a1aa640da4ecea7e641476f2bafcc31675ee1bd781d3c2ec042466456293d6d0"
+    },
+    "integration/source/raw_model.py": {
+      "bytes": 4266,
+      "sha256": "830f72adf3e6946ff670ad1befb8b7ca37534bb17d661871aa75054056a0b61c"
+    },
+    "integration/source/run_compatibility.sh": {
+      "bytes": 706,
+      "sha256": "d6d4ea364bc6fb0883c65c90276871adde02b898d928329cdd7880a1f9c02c68"
+    },
+    "integration/source/run_vitis.sh": {
+      "bytes": 1120,
+      "sha256": "7e0703dd07c96c386161b8ebbed7b903d988c6b71524a4c3e4b4a46fa114a77a"
+    },
+    "integration/source/runtime.py": {
+      "bytes": 7864,
+      "sha256": "99f9cc78efb91b992cf58d22ed35ed3e0dfaca5119faefeeceab676a8188457e"
+    },
+    "integration/source/shadow_hw_init.c": {
+      "bytes": 12762,
+      "sha256": "7809777ce76963bf07a7de8b3f86f191222a6fa2246acc7b625e3f65c7e15149"
+    },
+    "integration/source/shadow_hw_init.h": {
+      "bytes": 515,
+      "sha256": "2202524d0720f36968b2122ad7ba6feae43dcf47ddb4053d6e0cc39c498a78c2"
+    },
+    "integration/source/train.py": {
+      "bytes": 2370,
+      "sha256": "91580bbaf316bf2d207306e3b2892be4b9965284988845374e1ac58a286d50c5"
+    },
+    "integration/source/webcam_test.py": {
+      "bytes": 4620,
+      "sha256": "f51f9c2a6eb132289963bf9c92bc39b0986060d27f557eb18ba14489a6c33cd6"
+    },
+    "integration/test_runtime.py": {
+      "bytes": 3299,
+      "sha256": "9d2a0e5a11bff9bc51ba213af041b840228462643d65e0e675c0ea5eef097442"
+    },
+    "rollback/arm_chain_reset_image.ub": {
+      "bytes": 129098012,
+      "sha256": "e558d92862fabc91fcb9a9c705a76d6161bd34835264812b9e1e8c9fbde1ad97"
+    },
+    "rollback/BOOT.BIN": {
+      "bytes": 9522192,
+      "sha256": "05a219df3cbd07f310bc345a1587b317e28f2b7f602c3e0de51296e4bddb49bf"
+    },
+    "rollback/boot.scr": {
+      "bytes": 2777,
+      "sha256": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1"
+    },
+    "sd_candidate/BOOT.BIN": {
+      "bytes": 9522192,
+      "sha256": "05a219df3cbd07f310bc345a1587b317e28f2b7f602c3e0de51296e4bddb49bf"
+    },
+    "sd_candidate/boot.scr": {
+      "bytes": 2777,
+      "sha256": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1"
+    },
+    "sd_candidate/image.ub": {
+      "bytes": 131368120,
+      "sha256": "a3d935db943f9db98ed0b105c0dc52dda04e2e924a27b5849e08e6cad021811e"
+    },
+    "sd_candidate/system.bit": {
+      "bytes": 7797810,
+      "sha256": "157d8bbbafa5fd7c13afed9afce27f54824b5e7ed94fde589d066d834dfbaecd"
+    }
+  }
+}

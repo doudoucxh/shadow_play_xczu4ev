@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.21)
+project(sony_liveview LANGUAGES CXX)
+set(SDK "${CMAKE_CURRENT_SOURCE_DIR}/vendor/sdk/simple")
+add_executable(sony_liveview sony_liveview.cpp "${SDK}/app/CrDebugString.cpp")
+target_compile_features(sony_liveview PRIVATE cxx_std_17)
+target_compile_definitions(sony_liveview PRIVATE UNICODE _UNICODE NOMINMAX WIN32_LEAN_AND_MEAN)
+target_compile_options(sony_liveview PRIVATE /W4 /EHsc /utf-8)
+target_include_directories(sony_liveview PRIVATE "${SDK}/app/CRSDK" "${SDK}/app")
+target_link_libraries(sony_liveview PRIVATE "${SDK}/external/crsdk/Cr_Core.lib")
+add_custom_command(TARGET sony_liveview POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${SDK}/external/crsdk" "$<TARGET_FILE_DIR:sony_liveview>")

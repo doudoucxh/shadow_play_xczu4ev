@@ -1,0 +1,20 @@
+{
+  "frames": 27,
+  "metric_definition": "PCK12 on full-frame coordinates scaled to 256x144; differs from old GT-crop PCK12.",
+  "detected_frames": 27,
+  "keypoint_confidence_threshold": 0.25,
+  "all_pck12": 0.41841004184100417,
+  "valid_keypoint_coverage": 1.0,
+  "elbow_pck12": 0.42592592592592593,
+  "elbow_mean_error_detected_256x144_px": 36.538667938665576,
+  "wrist_pck12": 0.18,
+  "wrist_mean_error_detected_256x144_px": 57.18715078113632,
+  "all_mean_error_detected_256x144_px": 39.708660147632266,
+  "arm_chain_pck12": 0.18,
+  "both_arms_pck12": 0.043478260869565216,
+  "pck_at_0_2_shoulder_span": 0.3389121338912134,
+  "split": "test",
+  "model": "legacy_dual_v2",
+  "temporal_smoothing": false,
+  "legacy_confidence_policy": "always-output geometry (legacy deployment default)"
+}

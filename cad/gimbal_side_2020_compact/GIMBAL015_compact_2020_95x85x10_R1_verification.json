@@ -1,0 +1,216 @@
+{
+  "step_valid": true,
+  "solid_count": 1,
+  "bbox_mm": [
+    -47.5,
+    -58.0,
+    0.0,
+    47.5,
+    27.0,
+    10.0
+  ],
+  "through_holes_and_slot_depths_verified": true,
+  "parameters_mm": {
+    "width": 95,
+    "length": 85,
+    "thickness": 10,
+    "x_bounds": [
+      -47.5,
+      47.5
+    ],
+    "y_bounds": [
+      -58,
+      27
+    ],
+    "corner_radius": 2,
+    "notch_width": 22,
+    "notch_depth": 26,
+    "notch_front_y": -32,
+    "notch_inner_r": 2,
+    "post_center": [
+      0,
+      -43
+    ],
+    "gimbal_base_size": [
+      90,
+      44
+    ],
+    "gimbal_hole_diameter": 3.4,
+    "gimbal_holes": [
+      [
+        -34.75,
+        17.82
+      ],
+      [
+        34.75,
+        17.82
+      ],
+      [
+        34.75,
+        3.82
+      ],
+      [
+        -34.75,
+        3.82
+      ]
+    ],
+    "slots": [
+      [
+        -26.0,
+        -43.0,
+        "X"
+      ],
+      [
+        26.0,
+        -43.0,
+        "X"
+      ]
+    ],
+    "through_slot_width": 6,
+    "through_slot_total_length": 18,
+    "upper_counterbore_slot_width": 10,
+    "upper_counterbore_slot_length": 22,
+    "upper_counterbore_depth": 5.5,
+    "slot_end_center_distance": 12,
+    "bracket_count": 2,
+    "occupied_profile_faces": [
+      "-X",
+      "+X"
+    ]
+  },
+  "source_modification": {
+    "source": "D:\\Desktop\\张大头\\015 简易二维云台图纸\\三维STEP通用格式\\简易云台.STEP",
+    "retained_source_solid_indices": [
+      0,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60
+    ],
+    "removed_source_solid_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "removed_parts": "one empty U-base plus eight joining bolts and eight nuts",
+    "remaining_source_solids": 44,
+    "base_footprint_before_mm": [
+      90,
+      88
+    ],
+    "base_footprint_after_mm": [
+      90,
+      44
+    ],
+    "mounting_hole_pitch_mm": [
+      69.5,
+      14.0
+    ],
+    "source_hole_y_mm": [
+      3.8166,
+      17.8166
+    ],
+    "drawing_hole_y_mm": [
+      3.82,
+      17.82
+    ],
+    "max_nominal_hole_rounding_error_mm": 0.0034,
+    "retained_base_bbox_mm": [
+      -45.000000000000014,
+      -22.0,
+      9.999999999999996,
+      44.999999999999986,
+      22.00000000000001,
+      39.00000000000001
+    ],
+    "original_to_new_transform": "Xnew=-Zold+106.5; Ynew=Yold-27.205849; Znew=Xold+63.137934",
+    "cutting_required": false,
+    "retained_servo_support_and_servo_fasteners_unchanged": true
+  },
+  "assembly_solid_count": 48,
+  "volume_mm3": 71563.25675763884,
+  "aluminium_plate_mass_g": 193.2207932456249,
+  "old_plate_mass_g": 308.5291438163092,
+  "plate_mass_reduction_percent": 37.373568391106716,
+  "bounding_rectangle_area_reduction_percent": 35.4,
+  "assembly_current_pose_collision_volumes_mm3": {
+    "PLATE_95x85x10_NO_TAPPED_HOLES__GIMBAL_KEEP_SERVO_SUPPORTING_HALF": 0.0,
+    "PLATE_95x85x10_NO_TAPPED_HOLES__2020_POST_ENVELOPE_ONLY": 0.0,
+    "PLATE_95x85x10_NO_TAPPED_HOLES__BRACKET_LEFT_PHOTO_ENVELOPE_ASSUMED_HOLES": 0.0,
+    "PLATE_95x85x10_NO_TAPPED_HOLES__BRACKET_RIGHT_PHOTO_ENVELOPE_ASSUMED_HOLES": 0.0,
+    "GIMBAL_KEEP_SERVO_SUPPORTING_HALF__2020_POST_ENVELOPE_ONLY": 0.0,
+    "GIMBAL_KEEP_SERVO_SUPPORTING_HALF__BRACKET_LEFT_PHOTO_ENVELOPE_ASSUMED_HOLES": 0.0,
+    "GIMBAL_KEEP_SERVO_SUPPORTING_HALF__BRACKET_RIGHT_PHOTO_ENVELOPE_ASSUMED_HOLES": 0.0,
+    "2020_POST_ENVELOPE_ONLY__BRACKET_LEFT_PHOTO_ENVELOPE_ASSUMED_HOLES": 0.0,
+    "2020_POST_ENVELOPE_ONLY__BRACKET_RIGHT_PHOTO_ENVELOPE_ASSUMED_HOLES": 0.0,
+    "BRACKET_LEFT_PHOTO_ENVELOPE_ASSUMED_HOLES__BRACKET_RIGHT_PHOTO_ENVELOPE_ASSUMED_HOLES": 0.0
+  },
+  "gimbal_to_post_minimum_gap_current_pose_mm": 3.8165999999988784,
+  "retained_base_unchanged": true,
+  "full_motion_and_dynamic_load_validation": false,
+  "bracket_hole_centres_are_photo_assumptions": true,
+  "engineering_pdf": {
+    "path": "D:\\Desktop\\张大头\\output\\pdf\\GIMBAL015_compact_2020_95x85x10_R1_engineering_A3.pdf",
+    "pages": 1,
+    "paper_mm": [
+      420,
+      297
+    ],
+    "dimension_text_verified": true,
+    "rendered_at_dpi": 150,
+    "visual_review_passed": true
+  }
+}

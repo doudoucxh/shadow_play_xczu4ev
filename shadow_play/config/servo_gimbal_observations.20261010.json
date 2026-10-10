@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "recorded_date": "2026-10-10",
+  "source": "user_report",
+  "test_stage": "gimbal_brackets_installed_rods_disconnected",
+  "angle_unit": "nominal_servo_degrees_in_manual_gui",
+  "nominal_center_degrees": 135,
+  "nominal_center_pulse_us": 1500,
+  "all_angles_interpretation": "0..270 degrees: current manual tool nominal electrical range, not continuous rotation",
+  "rods_connected_during_test": false,
+  "paired_axis_combinations_verified": false,
+  "rod_attached_limits_verified": false,
+  "runtime_enforces_this_file": false,
+  "windows_button_mode_uses_inset_limits": true,
+  "windows_button_mode_margin_degrees": 10,
+  "enforcement_note": "Only the Windows button mode consumes these observations with inward margins. The board driver and original numeric mode do not enforce this file. This is not a validated rod-attached operating range.",
+  "approved_rod_attached_operating_limits": null,
+  "user_constraint": "Actual tests must stay away from these boundaries; measurements concern only gimbal self-collision without wooden rods.",
+  "channels": [
+    {"number": 1, "pin": "D14", "group": "wusong_left", "reported_range_degrees": [0, 270], "reported_lowest_position_degrees": null},
+    {"number": 2, "pin": "D15", "group": "wusong_left", "reported_range_degrees": [85, 270], "reported_lowest_position_degrees": 80, "note": "85 is the reported usable lower boundary; the separately reported lowest position 80 is outside that range and is not an operating target."},
+    {"number": 3, "pin": "F13", "group": "wusong_neck", "reported_range_degrees": [0, 270], "reported_lowest_position_degrees": null},
+    {"number": 4, "pin": "G13", "group": "wusong_neck", "reported_range_degrees": [40, 180], "reported_lowest_position_degrees": 180},
+    {"number": 5, "pin": "G14", "group": "wusong_right", "reported_range_degrees": [60, 270], "reported_lowest_position_degrees": null},
+    {"number": 6, "pin": "G15", "group": "wusong_right", "reported_range_degrees": [40, 180], "reported_lowest_position_degrees": 180},
+    {"number": 7, "pin": "J14", "group": "tiger_head", "reported_range_degrees": [40, 200], "reported_lowest_position_degrees": null},
+    {"number": 8, "pin": "E13", "group": "tiger_head", "reported_range_degrees": [90, 200], "reported_lowest_position_degrees": 90},
+    {"number": 9, "pin": "E14", "group": "tiger_leg", "reported_range_degrees": [60, 210], "reported_lowest_position_degrees": null},
+    {"number": 10, "pin": "E15", "group": "tiger_leg", "reported_range_degrees": [40, 180], "reported_lowest_position_degrees": 180}
+  ]
+}

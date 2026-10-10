@@ -1,0 +1,17 @@
+{
+  "status": "offline-integration-verified; no board run",
+  "upstream_files_verified": 22,
+  "host_tests_passed": 9,
+  "graph_validation": "real XIR graph; nine direct fix2float boundaries, matching signed INT8 scales",
+  "model_and_generated_hardware_fingerprint": "0x101000056010407",
+  "actual_board_fingerprint_read_this_turn": false,
+  "input": "full 1280x720 BGR -> 384x216 RGB plus 84px top/bottom padding -> NHWC INT8",
+  "conv_macs_384": 1539450144,
+  "conv_gflops_2_per_mac": 3.078900288,
+  "boot_sha256": "05a219df3cbd07f310bc345a1587b317e28f2b7f602c3e0de51296e4bddb49bf",
+  "image_sha256": "a3d935db943f9db98ed0b105c0dc52dda04e2e924a27b5849e08e6cad021811e",
+  "fit_readback_verified": ["kernel", "device tree", "rootfs", "xmodel", "runtime.py", "graph_contract.py", "postprocess.py"],
+  "board_fps": null,
+  "sensor_to_display_latency_ms": null,
+  "board_acceptance": "pending camera, colors, DPU, HDMI, repeated initialization, actions and multi-person tests"
+}

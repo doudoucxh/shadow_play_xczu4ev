@@ -1,0 +1,41 @@
+FIT description: Shadow DPU camera reset fix
+Created:         Tue Sep 22 01:34:48 2026
+ Image 0 (kernel-1)
+  Description:  Linux kernel
+  Created:      Tue Sep 22 01:34:48 2026
+  Type:         Kernel Image
+  Compression:  gzip compressed
+  Data Size:    9275077 Bytes = 9057.69 KiB = 8.85 MiB
+  Architecture: AArch64
+  OS:           Linux
+  Load Address: 0x00200000
+  Entry Point:  0x00200000
+  Hash algo:    sha256
+  Hash value:   29bbb9db5228855b3657f63cae0d17a641b4963c9f9f5c1e8f6b6119986813fa
+ Image 1 (fdt-system-top.dtb)
+  Description:  Flattened Device Tree blob
+  Created:      Tue Sep 22 01:34:48 2026
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    39780 Bytes = 38.85 KiB = 0.04 MiB
+  Architecture: AArch64
+  Hash algo:    sha256
+  Hash value:   f380f2125ed3fd8ab2416ca0f22844074c32bb6532dd2d1b42406c1a49ec6e8b
+ Image 2 (ramdisk-1)
+  Description:  petalinux-image-minimal
+  Created:      Tue Sep 22 01:34:48 2026
+  Type:         RAMDisk Image
+  Compression:  uncompressed
+  Data Size:    122051210 Bytes = 119190.63 KiB = 116.40 MiB
+  Architecture: AArch64
+  OS:           Linux
+  Load Address: unavailable
+  Entry Point:  unavailable
+  Hash algo:    sha256
+  Hash value:   2547a131a8be5f212d5b1c8f8a8989c40bd2bf89ec1b8c1c2e2ef523529c79a4
+ Default Configuration: 'conf-system-top.dtb'
+ Configuration 0 (conf-system-top.dtb)
+  Description:  1 Linux kernel, FDT blob, ramdisk
+  Kernel:       kernel-1
+  Init Ramdisk: ramdisk-1
+  FDT:          fdt-system-top.dtb

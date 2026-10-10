@@ -1,0 +1,3 @@
+# MPSoC-P4 SD1 has no hardware write-protect pin. Keep the original FIT intact.
+# Removing this file restores the original boot.scr/image.ub boot path.
+uenvcmd=if fatload mmc 0:1 0x10000000 image.ub && bootm start 0x10000000 && bootm loados && bootm ramdisk && bootm prep && fdt set /axi/mmc@ff170000 disable-wp; then echo Piying SD disable-wp applied to working FDT; bootm go; fi; echo Piying override returned, continuing original boot

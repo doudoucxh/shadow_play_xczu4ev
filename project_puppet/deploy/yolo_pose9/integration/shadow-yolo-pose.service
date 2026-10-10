@@ -1,0 +1,17 @@
+[Unit]
+Description=Shadow YOLO9 B4096 camera and HDMI runtime
+After=local-fs.target systemd-udev-settle.service
+Conflicts=shadow-arm-chain.service
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+Type=simple
+Environment=PYTHONUNBUFFERED=1
+ExecStartPre=/usr/bin/shadow-hw-init
+ExecStart=/usr/bin/shadow-yolo-pose
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,57 @@
+{
+  "samples": 10010,
+  "modes": [
+    "camera",
+    "stopped"
+  ],
+  "input_states": [
+    "no_input",
+    "returning_to_neutral",
+    "tracking_or_holding"
+  ],
+  "angle_ranges_deg": {
+    "wusong_neck_pan": [
+      90.0,
+      90.0
+    ],
+    "wusong_neck_tilt": [
+      90.0,
+      90.0
+    ],
+    "wusong_left_pan": [
+      90.0,
+      106.875
+    ],
+    "wusong_left_tilt": [
+      84.641106,
+      101.19452
+    ],
+    "wusong_right_pan": [
+      90.0,
+      106.875
+    ],
+    "wusong_right_tilt": [
+      76.30548,
+      92.858895
+    ],
+    "tiger_head_pan": [
+      90.0,
+      90.0
+    ],
+    "tiger_head_tilt": [
+      90.0,
+      90.0
+    ],
+    "tiger_tail_pan": [
+      90.0,
+      90.0
+    ],
+    "tiger_tail_tilt": [
+      90.0,
+      90.0
+    ]
+  },
+  "scope": "synthetic input, actual Zynq controller, CSV-only",
+  "accepted_frames": 90,
+  "status": "passed"
+}

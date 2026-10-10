@@ -1,0 +1,77 @@
+{
+  "snapshot_date": "2026-10-10",
+  "repository": "https://github.com/doudoucxh/shadow_play_xczu4ev",
+  "scope": "Source, configuration, documentation, CAD, selected models and firmware; not a disk/SD/system-image backup.",
+  "critical_tracked_artifacts": [
+    {
+      "path": "shadow_play/hardware/servo_pwm/release/servo10_vision.bit.bin",
+      "bytes": 7797692,
+      "sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f"
+    },
+    {
+      "path": "shadow_play/hardware/servo_pwm/release/servo10.manifest.json",
+      "bytes": 1089,
+      "sha256": "546c1da7984bd85e08530336a09627bd32c859ea0bc8900f034e3457f83b0dd2"
+    },
+    {
+      "path": "shadow_play/integrations/calibration/libservo_mmio32.so",
+      "bytes": 5864,
+      "sha256": "2f017fb4b6187609df80a860039d1bb958ca09d683b1ccb700d8e1c921c1e8c0"
+    },
+    {
+      "path": "handoff_visual_follow_20260922/model/yolo_pose9_b4096.xmodel",
+      "bytes": 4021041,
+      "sha256": "f01805e51f118ebb371f83de3a5c335a2fbf4fe81c4593a3fde14d565ffcb8e6"
+    }
+  ],
+  "important_local_only_artifacts": [
+    {
+      "path": "handoff_visual_follow_20260922/sd_baseline/image.ub",
+      "bytes": 131383848,
+      "sha256": "9e1f4135fca3879a6847f5b95f9a9ed2c87b72803199d8b8250994685ebb99ac"
+    },
+    {
+      "path": "camera_liveview/vendor/CrSDK_v2.02.00_20260610a_Win64.zip",
+      "bytes": 213268163,
+      "sha256": "4d4cc0bee7fdd60e1e947bfa7a524cbfb5550465ceccc8647eb7b7cdc383ef77"
+    },
+    {
+      "path": ".review_work/servo_pin4_g13_20261010/fpga/servo10_g13_verified.dcp",
+      "bytes": 115889033,
+      "sha256": "8be59be9c0b7577d7c8ebfa9a356a06861b3fe1491c2d6b9f96f65a3d273489d"
+    }
+  ],
+  "local_only_categories": [
+    "SSH credentials and local access state",
+    "Python virtual environment and installed libraries",
+    "Raw training data under project_puppet/Photo427_2",
+    "Sony SDK vendor download and runtime files",
+    "Private camera frames and preview",
+    "Vivado/Vitis/HLS build caches and checkpoints",
+    "Linux image.ub/rootfs archives",
+    "Temporary experiments and raw hardware logs"
+  ],
+  "third_party_checkout": {
+    "path": "project_puppet/ultral_xczu4ev/vitis_ai_2_5",
+    "origin": "https://github.com/Xilinx/Vitis-AI.git",
+    "commit": "2057c588c241c3902353bc618afc8ab214d7aeed",
+    "working_tree_clean_when_recorded": true,
+    "included_in_parent_git": false
+  },
+  "development_toolchain": {
+    "vivado_vitis": "2022.2",
+    "board": "XCZU4EV-sfvc784-2-i",
+    "linux": "PetaLinux 2022.2",
+    "vm": "Ubuntu 20.04"
+  },
+  "commissioning_state": {
+    "servo4_pin": "G13",
+    "button_step_us": 8,
+    "button_step_degrees": 1.08,
+    "button_interval_after_ack_ms": 200,
+    "button_inset_degrees": 10,
+    "rod_attached_limits_verified": false,
+    "hardware_motion_during_backup": false
+  },
+  "backup_policy": "Commit every completed logical change locally after review and validation. Push when requested. Never force-push or include credentials."
+}

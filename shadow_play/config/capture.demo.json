@@ -1,0 +1,875 @@
+{
+  "version": 1,
+  "simulation_only": true,
+  "stage": {
+    "width_mm": 800,
+    "height_mm": 500
+  },
+  "reference_view": "rear",
+  "reference_points_mm": [
+    [
+      0,
+      0
+    ],
+    [
+      800,
+      0
+    ],
+    [
+      800,
+      500
+    ],
+    [
+      0,
+      500
+    ]
+  ],
+  "axes": [
+    {
+      "id": "wusong_neck_x",
+      "rod": "wusong_neck",
+      "unit": "demo",
+      "min": -1,
+      "max": 1,
+      "initial": 0,
+      "jog_step": 0.05,
+      "max_step": 0.5
+    },
+    {
+      "id": "wusong_neck_y",
+      "rod": "wusong_neck",
+      "unit": "demo",
+      "min": -1,
+      "max": 1,
+      "initial": 0,
+      "jog_step": 0.05,
+      "max_step": 0.5
+    },
+    {
+      "id": "wusong_left_x",
+      "rod": "wusong_left",
+      "unit": "demo",
+      "min": -1,
+      "max": 1,
+      "initial": 0,
+      "jog_step": 0.05,
+      "max_step": 0.5
+    },
+    {
+      "id": "wusong_left_y",
+      "rod": "wusong_left",
+      "unit": "demo",
+      "min": -1,
+      "max": 1,
+      "initial": 0,
+      "jog_step": 0.05,
+      "max_step": 0.5
+    },
+    {
+      "id": "wusong_right_x",
+      "rod": "wusong_right",
+      "unit": "demo",
+      "min": -1,
+      "max": 1,
+      "initial": 0,
+      "jog_step": 0.05,
+      "max_step": 0.5
+    },
+    {
+      "id": "wusong_right_y",
+      "rod": "wusong_right",
+      "unit": "demo",
+      "min": -1,
+      "max": 1,
+      "initial": 0,
+      "jog_step": 0.05,
+      "max_step": 0.5
+    },
+    {
+      "id": "tiger_head_x",
+      "rod": "tiger_head",
+      "unit": "demo",
+      "min": -1,
+      "max": 1,
+      "initial": 0,
+      "jog_step": 0.05,
+      "max_step": 0.5
+    },
+    {
+      "id": "tiger_head_y",
+      "rod": "tiger_head",
+      "unit": "demo",
+      "min": -1,
+      "max": 1,
+      "initial": 0,
+      "jog_step": 0.05,
+      "max_step": 0.5
+    },
+    {
+      "id": "tiger_tail_x",
+      "rod": "tiger_tail",
+      "unit": "demo",
+      "min": -1,
+      "max": 1,
+      "initial": 0,
+      "jog_step": 0.05,
+      "max_step": 0.5
+    },
+    {
+      "id": "tiger_tail_y",
+      "rod": "tiger_tail",
+      "unit": "demo",
+      "min": -1,
+      "max": 1,
+      "initial": 0,
+      "jog_step": 0.05,
+      "max_step": 0.5
+    }
+  ],
+  "slides": [
+    {
+      "id": "wusong_slide",
+      "unit": "demo",
+      "value": 0,
+      "state_kind": "commanded",
+      "controllable": true,
+      "min": -1,
+      "max": 1,
+      "jog_step": 0.05,
+      "max_step": 0.5
+    },
+    {
+      "id": "tiger_slide",
+      "unit": "demo",
+      "value": 0,
+      "state_kind": "commanded",
+      "controllable": true,
+      "min": -1,
+      "max": 1,
+      "jog_step": 0.05,
+      "max_step": 0.5
+    }
+  ],
+  "points": [
+    {
+      "id": "wusong_neck_01",
+      "rod": "wusong_neck",
+      "axes": {
+        "wusong_neck_x": -0.25,
+        "wusong_neck_y": -0.25,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_neck_02",
+      "rod": "wusong_neck",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": -0.25,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_neck_03",
+      "rod": "wusong_neck",
+      "axes": {
+        "wusong_neck_x": 0.25,
+        "wusong_neck_y": -0.25,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_neck_04",
+      "rod": "wusong_neck",
+      "axes": {
+        "wusong_neck_x": 0.25,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_neck_05",
+      "rod": "wusong_neck",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_neck_06",
+      "rod": "wusong_neck",
+      "axes": {
+        "wusong_neck_x": -0.25,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_neck_07",
+      "rod": "wusong_neck",
+      "axes": {
+        "wusong_neck_x": -0.25,
+        "wusong_neck_y": 0.25,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_neck_08",
+      "rod": "wusong_neck",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0.25,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_neck_09",
+      "rod": "wusong_neck",
+      "axes": {
+        "wusong_neck_x": 0.25,
+        "wusong_neck_y": 0.25,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_left_01",
+      "rod": "wusong_left",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": -0.25,
+        "wusong_left_y": -0.25,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_left_02",
+      "rod": "wusong_left",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": -0.25,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_left_03",
+      "rod": "wusong_left",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0.25,
+        "wusong_left_y": -0.25,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_left_04",
+      "rod": "wusong_left",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0.25,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_left_05",
+      "rod": "wusong_left",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_left_06",
+      "rod": "wusong_left",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": -0.25,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_left_07",
+      "rod": "wusong_left",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": -0.25,
+        "wusong_left_y": 0.25,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_left_08",
+      "rod": "wusong_left",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0.25,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_left_09",
+      "rod": "wusong_left",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0.25,
+        "wusong_left_y": 0.25,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_right_01",
+      "rod": "wusong_right",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": -0.25,
+        "wusong_right_y": -0.25,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_right_02",
+      "rod": "wusong_right",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": -0.25,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_right_03",
+      "rod": "wusong_right",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0.25,
+        "wusong_right_y": -0.25,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_right_04",
+      "rod": "wusong_right",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0.25,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_right_05",
+      "rod": "wusong_right",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_right_06",
+      "rod": "wusong_right",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": -0.25,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_right_07",
+      "rod": "wusong_right",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": -0.25,
+        "wusong_right_y": 0.25,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_right_08",
+      "rod": "wusong_right",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0.25,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "wusong_right_09",
+      "rod": "wusong_right",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0.25,
+        "wusong_right_y": 0.25,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "tiger_head_01",
+      "rod": "tiger_head",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": -0.25,
+        "tiger_head_y": -0.25,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "tiger_head_02",
+      "rod": "tiger_head",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": -0.25,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "tiger_head_03",
+      "rod": "tiger_head",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0.25,
+        "tiger_head_y": -0.25,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "tiger_head_04",
+      "rod": "tiger_head",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0.25,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "tiger_head_05",
+      "rod": "tiger_head",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "tiger_head_06",
+      "rod": "tiger_head",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": -0.25,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "tiger_head_07",
+      "rod": "tiger_head",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": -0.25,
+        "tiger_head_y": 0.25,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "tiger_head_08",
+      "rod": "tiger_head",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0.25,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "tiger_head_09",
+      "rod": "tiger_head",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0.25,
+        "tiger_head_y": 0.25,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "tiger_tail_01",
+      "rod": "tiger_tail",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": -0.25,
+        "tiger_tail_y": -0.25
+      }
+    },
+    {
+      "id": "tiger_tail_02",
+      "rod": "tiger_tail",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": -0.25
+      }
+    },
+    {
+      "id": "tiger_tail_03",
+      "rod": "tiger_tail",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0.25,
+        "tiger_tail_y": -0.25
+      }
+    },
+    {
+      "id": "tiger_tail_04",
+      "rod": "tiger_tail",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0.25,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "tiger_tail_05",
+      "rod": "tiger_tail",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "tiger_tail_06",
+      "rod": "tiger_tail",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": -0.25,
+        "tiger_tail_y": 0
+      }
+    },
+    {
+      "id": "tiger_tail_07",
+      "rod": "tiger_tail",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": -0.25,
+        "tiger_tail_y": 0.25
+      }
+    },
+    {
+      "id": "tiger_tail_08",
+      "rod": "tiger_tail",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0,
+        "tiger_tail_y": 0.25
+      }
+    },
+    {
+      "id": "tiger_tail_09",
+      "rod": "tiger_tail",
+      "axes": {
+        "wusong_neck_x": 0,
+        "wusong_neck_y": 0,
+        "wusong_left_x": 0,
+        "wusong_left_y": 0,
+        "wusong_right_x": 0,
+        "wusong_right_y": 0,
+        "tiger_head_x": 0,
+        "tiger_head_y": 0,
+        "tiger_tail_x": 0.25,
+        "tiger_tail_y": 0.25
+      }
+    }
+  ]
+}

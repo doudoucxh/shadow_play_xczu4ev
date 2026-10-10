@@ -1,0 +1,64 @@
+{
+  "revision": "R1",
+  "date": "2026-09-27",
+  "parameters_mm": {
+    "width": 60.0,
+    "length": 60.0,
+    "thickness": 10.0,
+    "corner_radius": 2.0,
+    "clearance_diameter": 4.5,
+    "counterbore_diameter": 8.0,
+    "counterbore_depth": 4.5,
+    "tap_drill_diameter": 4.2,
+    "thread": "M5x0.8-6H THRU"
+  },
+  "valid_step_readback": true,
+  "solid_count": 1,
+  "bbox_mm": [
+    60.0000002,
+    60.0000002,
+    10.000000199999999
+  ],
+  "volume_mm3": 34156.813196022966,
+  "estimated_mass_g_at_2_70": 92.22339562926201,
+  "hole_centres_and_radii_match_R0": true,
+  "verified_counterbore_floor_z_mm": 5.5,
+  "slide_hole_centres_mm": [
+    [
+      -15.0,
+      -15.0
+    ],
+    [
+      15.0,
+      -15.0
+    ],
+    [
+      15.0,
+      15.0
+    ],
+    [
+      -15.0,
+      15.0
+    ]
+  ],
+  "M5_tapped_hole_centres_mm": [
+    [
+      0.0,
+      20.0
+    ],
+    [
+      20.0,
+      0.0
+    ],
+    [
+      0.0,
+      -20.0
+    ],
+    [
+      -20.0,
+      0.0
+    ]
+  ],
+  "thread_representation": "4.2 mm tap-drill geometry, tap M5x0.8-6H THRU after drilling",
+  "assembly_limitations": "Slide M4 threads and usable hole depth remain unconfirmed. No dynamic load rating assigned."
+}

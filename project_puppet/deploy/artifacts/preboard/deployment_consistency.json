@@ -1,0 +1,74 @@
+{
+  "title": "部署一致性验证",
+  "not_ground_truth_pck": true,
+  "checkpoint_sha256": "01c852378a963ddec52b457d88bc4af2e03aef57847533afd5213d4a6855eb1c",
+  "calibration_kind": "provisional_images",
+  "calibration_count": 200,
+  "validation_count": 50,
+  "calibration_validation_overlap": 0,
+  "fp32_to_fixed_int8": {
+    "acceptance": {
+      "mean_px_lte": 2.0,
+      "fraction_le_8px_gte": 0.98
+    },
+    "aggregate": {
+      "mean_px": 1.819085496716263,
+      "p95_px": 5.656854249492381,
+      "max_px": 140.22838514366484,
+      "fraction_le_8px": 0.9822222222222222
+    },
+    "per_keypoint": {
+      "head": {
+        "mean_px": 0.3531370849898476,
+        "p95_px": 4.0,
+        "max_px": 5.656854249492381
+      },
+      "left_shoulder": {
+        "mean_px": 1.0314337781593736,
+        "p95_px": 5.656854249492381,
+        "max_px": 8.94427190999916
+      },
+      "right_shoulder": {
+        "mean_px": 0.6594112549695427,
+        "p95_px": 4.911269837220805,
+        "max_px": 5.656854249492381
+      },
+      "left_elbow": {
+        "mean_px": 1.1862741699796953,
+        "p95_px": 4.911269837220805,
+        "max_px": 8.0
+      },
+      "right_elbow": {
+        "mean_px": 1.5251596081796785,
+        "p95_px": 5.656854249492381,
+        "max_px": 8.94427190999916
+      },
+      "left_wrist": {
+        "mean_px": 6.309719001248218,
+        "p95_px": 17.938944064240445,
+        "max_px": 140.22838514366484
+      },
+      "right_wrist": {
+        "mean_px": 3.074674977991078,
+        "p95_px": 4.911269837220805,
+        "max_px": 104.0768946500615
+      },
+      "left_hip": {
+        "mean_px": 0.6262741699796952,
+        "p95_px": 4.0,
+        "max_px": 5.656854249492381
+      },
+      "right_hip": {
+        "mean_px": 1.605685424949238,
+        "p95_px": 5.656854249492381,
+        "max_px": 8.0
+      }
+    },
+    "pass": true
+  },
+  "fixed_int8_to_fpga": {
+    "samples": 0,
+    "pass": null,
+    "rows": []
+  }
+}

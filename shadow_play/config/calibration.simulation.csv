@@ -1,0 +1,14 @@
+# SIMULATION ONLY. Not measured on any real servo, gimbal, linkage or puppet.
+# Ten axes below only demonstrate two configurable axes per rod.
+# The library supports any nonzero number of axes; actual axis count is unknown.
+axis_id,rod,neutral_deg,min_deg,max_deg,gain_x_deg,gain_y_deg,max_speed_deg_s,smoothing_tau_s
+wusong_neck_pan,wusong_neck,90,60,120,30,0,60,0.08
+wusong_neck_tilt,wusong_neck,90,70,110,0,20,45,0.08
+wusong_left_pan,wusong_left,90,45,135,45,0,90,0.06
+wusong_left_tilt,wusong_left,90,60,120,0,30,90,0.06
+wusong_right_pan,wusong_right,90,45,135,-45,0,90,0.06
+wusong_right_tilt,wusong_right,90,60,120,0,30,90,0.06
+tiger_head_pan,tiger_head,90,60,120,30,0,75,0.08
+tiger_head_tilt,tiger_head,90,70,110,0,20,60,0.08
+tiger_tail_pan,tiger_tail,90,45,135,45,0,90,0.08
+tiger_tail_tilt,tiger_tail,90,70,110,0,20,60,0.08

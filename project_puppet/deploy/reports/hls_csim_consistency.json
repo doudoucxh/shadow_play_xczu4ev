@@ -1,0 +1,11 @@
+{
+  "title": "Python 定点 INT8 与 Vitis HLS C-sim 一致性",
+  "expected_bytes": 36864,
+  "python_bytes": 36864,
+  "hls_bytes": 36864,
+  "python_sha256": "0732a41676848a47ad343d83db9dad55477ff1efb908091bf0760958aa63fb4e",
+  "hls_sha256": "0732a41676848a47ad343d83db9dad55477ff1efb908091bf0760958aa63fb4e",
+  "mismatch_bytes": 0,
+  "pass": true,
+  "scope": "HLS C-sim only; physical FPGA validation is still required"
+}

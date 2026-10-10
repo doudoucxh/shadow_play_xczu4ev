@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+exec python3 /opt/shadow/yolo_pose9/runtime/runtime.py \
+  --xmodel /opt/shadow/yolo_pose9/model/yolo_pose9_b4096.xmodel \
+  --camera vdma --size 384 --hdmi \
+  --confidence 0.25 --keypoint-confidence 0.25 "$@"

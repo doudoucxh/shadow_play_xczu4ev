@@ -1,0 +1,62 @@
+{
+  "splits": {
+    "test": {
+      "count": 27,
+      "point_reviewed": 243,
+      "point_total": 243,
+      "sources": {
+        "frames": 27
+      }
+    },
+    "val": {
+      "count": 371,
+      "point_reviewed": 3339,
+      "point_total": 3339,
+      "sources": {
+        "Photo104_2": 10,
+        "Photo427_1": 26,
+        "Photo427_2": 335
+      }
+    },
+    "train": {
+      "count": 1824,
+      "point_reviewed": 14607,
+      "point_total": 16416,
+      "sources": {
+        "SHADOW": 201,
+        "Photo104_2": 42,
+        "Photo427_1": 103,
+        "Photo427_2": 1338,
+        "frames": 140
+      }
+    }
+  },
+  "policy": "Preserve supplied splits; video03 is test only.",
+  "keypoints": [
+    "head",
+    "left_shoulder",
+    "right_shoulder",
+    "left_elbow",
+    "right_elbow",
+    "left_wrist",
+    "right_wrist",
+    "left_hip",
+    "right_hip"
+  ],
+  "preprocessing": "Full image; RGB; no ground-truth crop.",
+  "annotations": {
+    "test": {
+      "path": "D:\\pytorch_work\\Data_005_video_review\\Data_005_video03_validation.json",
+      "sha256": "0a89a9ad6306ea42acd13f47884de755871bb0a2c480580227cd482f19cf50ec"
+    },
+    "val": {
+      "path": "D:\\pytorch_work\\Data_005_video_review\\Data_004_validation_remapped.json",
+      "sha256": "f4cdc4d431a9e90c55142a7c10d809dab242165adea63eb7dc5c7d73249a6b63"
+    },
+    "train": {
+      "path": "D:\\pytorch_work\\Data_005_video_review\\Data_005_combined_train.json",
+      "sha256": "ab64ec8df7657e890a3d523ac4112aeb9f0f01d9ff0268b4e1c4e3c99d9f3d59"
+    }
+  },
+  "duplicates_removed": []
+}

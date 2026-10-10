@@ -1,0 +1,20 @@
+{
+  "frames": 27,
+  "metric_definition": "PCK12 on full-frame coordinates scaled to 256x144; differs from old GT-crop PCK12.",
+  "detected_frames": 27,
+  "keypoint_confidence_threshold": 0.25,
+  "all_pck12": 1.0,
+  "valid_keypoint_coverage": 1.0,
+  "elbow_pck12": 1.0,
+  "elbow_mean_error_detected_256x144_px": 2.4466172203816625,
+  "wrist_pck12": 1.0,
+  "wrist_mean_error_detected_256x144_px": 2.7670791925551748,
+  "all_mean_error_detected_256x144_px": 2.4176112300001593,
+  "arm_chain_pck12": 1.0,
+  "both_arms_pck12": 1.0,
+  "pck_at_0_2_shoulder_span": 0.9916317991631799,
+  "split": "test",
+  "model": "yolo_pose_v1\\release\\raw",
+  "temporal_smoothing": false,
+  "legacy_confidence_policy": null
+}

@@ -1,0 +1,39 @@
+{
+  "image_kind": "servo10_vision",
+  "design_checks": "SERVO_IMAGE_DESIGN_CHECKS_PASS",
+  "bus_skew_check": "SERVO_BUS_SKEW_CHECK_PASS",
+  "register_base": 2684551168,
+  "pins": [
+    "D14",
+    "D15",
+    "F13",
+    "G13",
+    "G14",
+    "G15",
+    "J14",
+    "E13",
+    "E14",
+    "E15"
+  ],
+  "sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+  "wns_ns": 1.033,
+  "whs_ns": 0.008,
+  "wpws_ns": 0.151,
+  "part": "xczu4ev-sfvc784-2-i",
+  "clock_hz": 100000000,
+  "period_us": 20000,
+  "channels": 10,
+  "reset_outputs": "disabled",
+  "video_mmcm": {
+    "DIVCLK_DIVIDE": 1,
+    "CLKOUT0_DIVIDE_F": 15,
+    "CLKOUT1_DIVIDE": 6,
+    "CLKFBOUT_MULT_F": 11.25,
+    "CLKOUT2_DIVIDE": 3
+  },
+  "built_at": "2026-10-10T15:32:16.354825+08:00",
+  "scope": "volatile commissioning image; no boot-file changes",
+  "pin_revision": "servo4_G13_20261010",
+  "previous_sha256": "26b553c4705984a748a138f24fe735ab0ba5343621fabd73c966db27b8e81f81",
+  "change": "Only servo_pwm[3] package pin H13 -> G13; other top-level pins preserved"
+}

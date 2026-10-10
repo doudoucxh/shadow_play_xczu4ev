@@ -1,0 +1,106 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x0",
+      "device": "xczu4ev-sfvc784-2-i",
+      "gen_directory": "../../../../dpu_matrix.gen/sources_1/bd/dpu_matrix_bd",
+      "name": "dpu_matrix_bd",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2022.2"
+    },
+    "design_tree": {
+      "dpu_0": ""
+    },
+    "components": {
+      "dpu_0": {
+        "vlnv": "xilinx.com:ip:dpuczdx8g:4.1",
+        "xci_name": "dpu_matrix_bd_dpu_0_0",
+        "xci_path": "ip\\dpu_matrix_bd_dpu_0_0\\dpu_matrix_bd_dpu_0_0.xci",
+        "inst_hier_path": "dpu_0",
+        "parameters": {
+          "ARCH": {
+            "value": "4096"
+          },
+          "ARCH_IMG_BKGRP": {
+            "value": "2"
+          },
+          "CONV_DSP_ACCU_ENA": {
+            "value": "0"
+          },
+          "TIME_DAY": {
+            "value": "13"
+          },
+          "TIME_HOUR": {
+            "value": "18"
+          },
+          "TIME_MONTH": {
+            "value": "9"
+          },
+          "TIME_QUARTER": {
+            "value": "3"
+          },
+          "TIME_YEAR": {
+            "value": "26"
+          },
+          "URAM_N_USER": {
+            "value": "48"
+          }
+        },
+        "interface_ports": {
+          "DPU0_M_AXI_DATA0": {
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "mode": "Master",
+            "address_space_ref": "DPU0_M_AXI_DATA0",
+            "base_address": {
+              "minimum": "0x00000000",
+              "maximum": "0x00FFFFFFFFFF",
+              "width": "40"
+            }
+          },
+          "DPU0_M_AXI_DATA1": {
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "mode": "Master",
+            "address_space_ref": "DPU0_M_AXI_DATA1",
+            "base_address": {
+              "minimum": "0x00000000",
+              "maximum": "0x00FFFFFFFFFF",
+              "width": "40"
+            }
+          },
+          "DPU0_M_AXI_INSTR": {
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "mode": "Master",
+            "address_space_ref": "DPU0_M_AXI_INSTR",
+            "base_address": {
+              "minimum": "0x00000000",
+              "maximum": "0x00FFFFFFFFFF",
+              "width": "40"
+            }
+          },
+          "S_AXI": {
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "mode": "Slave",
+            "memory_map_ref": "S_AXI"
+          }
+        },
+        "addressing": {
+          "address_spaces": {
+            "DPU0_M_AXI_DATA0": {
+              "range": "1T",
+              "width": "40"
+            },
+            "DPU0_M_AXI_DATA1": {
+              "range": "1T",
+              "width": "40"
+            },
+            "DPU0_M_AXI_INSTR": {
+              "range": "1T",
+              "width": "40"
+            }
+          }
+        }
+      }
+    }
+  }
+}

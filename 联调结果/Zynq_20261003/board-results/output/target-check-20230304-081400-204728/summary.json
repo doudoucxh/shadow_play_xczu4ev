@@ -1,0 +1,330 @@
+{
+  "status": "passed",
+  "platform": "Linux-5.15.36-xilinx-v2022.2-aarch64-with-glibc2.34",
+  "architecture": "aarch64",
+  "root": "/tmp/shadow-board-20261003",
+  "output": "/tmp/shadow-board-20261003/output/target-check-20230304-081400-204728",
+  "scope": "software tests, exported motor commands only",
+  "tests": [
+    {
+      "name": "mapper_tests",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.02
+    },
+    {
+      "name": "script_audio_tests",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.02
+    },
+    {
+      "name": "input_tests",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.036
+    },
+    {
+      "name": "controller_tests",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.02
+    },
+    {
+      "name": "motor_protocol_tests",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.02
+    },
+    {
+      "name": "follow_sender",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.47
+    },
+    {
+      "name": "follow_chain",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 1.623
+    },
+    {
+      "name": "live_udp",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 1.421
+    },
+    {
+      "name": "rehearsal90",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.77
+    },
+    {
+      "name": "preview_rehearsal90",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 2.274
+    },
+    {
+      "name": "touch",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.069
+    },
+    {
+      "name": "preview_touch",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.119
+    },
+    {
+      "name": "camera",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.069
+    },
+    {
+      "name": "preview_camera",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.119
+    },
+    {
+      "name": "three_modes",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.169
+    },
+    {
+      "name": "preview_three_modes",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.319
+    },
+    {
+      "name": "recorded_replay",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 0.169
+    }
+  ],
+  "traces": {
+    "rehearsal90": {
+      "samples": 46010,
+      "modes": [
+        "script",
+        "stopped"
+      ],
+      "input_states": [
+        "no_input",
+        "tracking_or_holding"
+      ],
+      "angle_ranges_deg": {
+        "wusong_neck_pan": [
+          81.066488,
+          95.958748
+        ],
+        "wusong_neck_tilt": [
+          86.06115,
+          92.0
+        ],
+        "wusong_left_pan": [
+          69.833451,
+          90.0
+        ],
+        "wusong_left_tilt": [
+          90.0,
+          101.928232
+        ],
+        "wusong_right_pan": [
+          67.528437,
+          90.0
+        ],
+        "wusong_right_tilt": [
+          88.598091,
+          104.881218
+        ],
+        "tiger_head_pan": [
+          76.591724,
+          98.896173
+        ],
+        "tiger_head_tilt": [
+          82.021824,
+          96.982396
+        ],
+        "tiger_tail_pan": [
+          79.052477,
+          100.988657
+        ],
+        "tiger_tail_tilt": [
+          86.0,
+          94.95334
+        ]
+      }
+    },
+    "touch": {
+      "samples": 2010,
+      "modes": [
+        "touch"
+      ],
+      "input_states": [
+        "returning_to_neutral",
+        "tracking_or_holding"
+      ],
+      "angle_ranges_deg": {
+        "wusong_neck_pan": [
+          86.438809,
+          93.556572
+        ],
+        "wusong_neck_tilt": [
+          90.0,
+          90.0
+        ],
+        "wusong_left_pan": [
+          90.0,
+          114.725128
+        ],
+        "wusong_left_tilt": [
+          69.855199,
+          102.653585
+        ],
+        "wusong_right_pan": [
+          90.0,
+          114.725128
+        ],
+        "wusong_right_tilt": [
+          72.829606,
+          99.661646
+        ],
+        "tiger_head_pan": [
+          90.0,
+          90.0
+        ],
+        "tiger_head_tilt": [
+          90.0,
+          90.0
+        ],
+        "tiger_tail_pan": [
+          90.0,
+          90.0
+        ],
+        "tiger_tail_tilt": [
+          90.0,
+          90.0
+        ]
+      }
+    },
+    "camera": {
+      "samples": 2010,
+      "modes": [
+        "camera"
+      ],
+      "input_states": [
+        "returning_to_neutral",
+        "tracking_or_holding"
+      ],
+      "angle_ranges_deg": {
+        "wusong_neck_pan": [
+          86.873647,
+          93.556572
+        ],
+        "wusong_neck_tilt": [
+          90.0,
+          90.0
+        ],
+        "wusong_left_pan": [
+          90.0,
+          114.725128
+        ],
+        "wusong_left_tilt": [
+          71.786397,
+          102.653585
+        ],
+        "wusong_right_pan": [
+          90.0,
+          114.725128
+        ],
+        "wusong_right_tilt": [
+          72.829606,
+          98.113176
+        ],
+        "tiger_head_pan": [
+          90.0,
+          90.0
+        ],
+        "tiger_head_tilt": [
+          90.0,
+          90.0
+        ],
+        "tiger_tail_pan": [
+          90.0,
+          90.0
+        ],
+        "tiger_tail_tilt": [
+          90.0,
+          90.0
+        ]
+      }
+    },
+    "three_modes": {
+      "samples": 6010,
+      "modes": [
+        "camera",
+        "paused",
+        "script",
+        "stopped",
+        "touch"
+      ],
+      "input_states": [
+        "command_held",
+        "no_input",
+        "returning_to_neutral",
+        "tracking_or_holding"
+      ],
+      "angle_ranges_deg": {
+        "wusong_neck_pan": [
+          85.48203,
+          93.556571
+        ],
+        "wusong_neck_tilt": [
+          90.0,
+          91.204792
+        ],
+        "wusong_left_pan": [
+          83.167185,
+          114.725153
+        ],
+        "wusong_left_tilt": [
+          69.855199,
+          102.653585
+        ],
+        "wusong_right_pan": [
+          85.900311,
+          114.725153
+        ],
+        "wusong_right_tilt": [
+          72.829605,
+          99.661646
+        ],
+        "tiger_head_pan": [
+          90.0,
+          90.0
+        ],
+        "tiger_head_tilt": [
+          90.0,
+          90.0
+        ],
+        "tiger_tail_pan": [
+          90.0,
+          90.0
+        ],
+        "tiger_tail_tilt": [
+          90.0,
+          90.0
+        ]
+      }
+    }
+  },
+  "replay_sha256": "0114d2c76440b27b15dfd44857ad7d87a7e02261393d49e72b84e5536c876775"
+}

@@ -1,0 +1,73 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+| Date         : Sun Sep 20 13:19:54 2026
+| Host         : WZHComputer running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -hierarchical_depth 3 -file D:/xilinx_project/ZYNQ_project/project_puppet/project_puppet/ultral_xczu4ev/dpu/reports/post_place_utilization.rpt
+| Design       : system_wrapper
+| Device       : xczu4ev-sfvc784-2-i
+| Speed File   : -2
+| Design State : Physopt postPlace
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++--------------------------+-------------------------------------------------------------------+------------+------------+---------+------+--------+--------+--------+------+------------+
+|         Instance         |                               Module                              | Total LUTs | Logic LUTs | LUTRAMs | SRLs |   FFs  | RAMB36 | RAMB18 | URAM | DSP Blocks |
++--------------------------+-------------------------------------------------------------------+------------+------------+---------+------+--------+--------+--------+------+------------+
+| system_wrapper           |                                                             (top) |      64590 |      56489 |    3578 | 4523 | 120319 |    108 |     19 |   40 |        582 |
+|   (system_wrapper)       |                                                             (top) |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|   system_i               |                                                            system |      64590 |      56489 |    3578 | 4523 | 120319 |    108 |     19 |   40 |        582 |
+|     (system_i)           |                                                            system |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|     axi_control          |                                              system_axi_control_0 |        593 |        592 |       0 |    1 |    758 |      0 |      0 |    0 |          0 |
+|       inst               |                                      system_axi_control_0_bd_b17d |        593 |        592 |       0 |    1 |    758 |      0 |      0 |    0 |          0 |
+|     axi_vdma_0           |                                               system_axi_vdma_0_0 |       2667 |       2480 |       8 |  179 |   4143 |      6 |      4 |    0 |          0 |
+|       (axi_vdma_0)       |                                               system_axi_vdma_0_0 |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|       U0                 |                                      system_axi_vdma_0_0_axi_vdma |       2667 |       2480 |       8 |  179 |   4143 |      6 |      4 |    0 |          0 |
+|     axi_vdma_pose        |                                            system_axi_vdma_pose_0 |       1595 |       1480 |       8 |  107 |   2463 |      2 |      1 |    0 |          0 |
+|       (axi_vdma_pose)    |                                            system_axi_vdma_pose_0 |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|       U0                 |                                   system_axi_vdma_pose_0_axi_vdma |       1595 |       1480 |       8 |  107 |   2463 |      2 |      1 |    0 |          0 |
+|     axi_video_memory     |                                         system_axi_video_memory_0 |       2975 |       2154 |     770 |   51 |   4657 |      0 |      0 |    0 |          0 |
+|       (axi_video_memory) |                                         system_axi_video_memory_0 |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|       inst               |                                 system_axi_video_memory_0_bd_a1ab |       2975 |       2154 |     770 |   51 |   4657 |      0 |      0 |    0 |          0 |
+|     clk_wiz_system       |                                           system_clk_wiz_system_0 |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|       inst               |                                   system_clk_wiz_system_0_clk_wiz |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|     clk_wiz_video        |                                            system_clk_wiz_video_0 |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|       inst               |                                    system_clk_wiz_video_0_clk_wiz |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|     dpu_0                |                                                    system_dpu_0_0 |      55068 |      48137 |    2752 | 4179 | 104702 |     98 |     14 |   40 |        582 |
+|       (dpu_0)            |                                                    system_dpu_0_0 |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|       inst               |                                   system_dpu_0_0_DPUCZDX8G_v4_1_0 |      55068 |      48137 |    2752 | 4179 | 104702 |     98 |     14 |   40 |        582 |
+|     dpu_irq_concat       |                                           system_dpu_irq_concat_0 |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|     dvi_tx               |                                                   system_dvi_tx_0 |        277 |        237 |      40 |    0 |    195 |      0 |      0 |    0 |          0 |
+|       inst               |                               system_dvi_tx_0_dvi_transmitter_top |        277 |        237 |      40 |    0 |    195 |      0 |      0 |    0 |          0 |
+|     emio_sccb_bridge     |                                         system_emio_sccb_bridge_0 |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|       (emio_sccb_bridge) |                                         system_emio_sccb_bridge_0 |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|       inst               |                        system_emio_sccb_bridge_0_emio_sccb_bridge |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|     ov5640_capture       |                                           system_ov5640_capture_0 |         26 |         26 |       0 |    0 |     39 |      0 |      0 |    0 |          0 |
+|       (ov5640_capture)   |                                           system_ov5640_capture_0 |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|       inst               |                       system_ov5640_capture_0_ov5640_capture_data |         26 |         26 |       0 |    0 |     39 |      0 |      0 |    0 |          0 |
+|     pose_preprocess      |                                          system_pose_preprocess_0 |         79 |         79 |       0 |    0 |     69 |      0 |      0 |    0 |          0 |
+|       inst               |                     system_pose_preprocess_0_pose_preprocess_axis |         79 |         79 |       0 |    0 |     69 |      0 |      0 |    0 |          0 |
+|     rst_ps_100M          |                                              system_rst_ps_100M_0 |         15 |         14 |       0 |    1 |     34 |      0 |      0 |    0 |          0 |
+|       U0                 |                               system_rst_ps_100M_0_proc_sys_reset |         15 |         14 |       0 |    1 |     34 |      0 |      0 |    0 |          0 |
+|     v_tc_0               |                                                   system_v_tc_0_0 |        963 |        958 |       0 |    5 |   2594 |      0 |      0 |    0 |          0 |
+|       U0                 |                                              system_v_tc_0_0_v_tc |        963 |        958 |       0 |    5 |   2594 |      0 |      0 |    0 |          0 |
+|     video_broadcast      |                                          system_video_broadcast_0 |          3 |          3 |       0 |    0 |      2 |      0 |      0 |    0 |          0 |
+|       inst               |             system_video_broadcast_0_top_system_video_broadcast_0 |          3 |          3 |       0 |    0 |      2 |      0 |      0 |    0 |          0 |
+|     video_in             |                                                 system_video_in_0 |        112 |        112 |       0 |    0 |    256 |      1 |      0 |    0 |          0 |
+|       inst               |                           system_video_in_0_v_vid_in_axi4s_v5_0_2 |        112 |        112 |       0 |    0 |    256 |      1 |      0 |    0 |          0 |
+|     video_out            |                                                system_video_out_0 |        219 |        219 |       0 |    0 |    407 |      1 |      0 |    0 |          0 |
+|       inst               |                        system_video_out_0_v_axi4s_vid_out_v4_0_15 |        219 |        219 |       0 |    0 |    407 |      1 |      0 |    0 |          0 |
+|     zynq_ultra_ps_e_0    |                                        system_zynq_ultra_ps_e_0_0 |          2 |          2 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|       inst               | system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_4_1_zynq_ultra_ps_e |          2 |          2 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
++--------------------------+-------------------------------------------------------------------+------------+------------+---------+------+--------+--------+--------+------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

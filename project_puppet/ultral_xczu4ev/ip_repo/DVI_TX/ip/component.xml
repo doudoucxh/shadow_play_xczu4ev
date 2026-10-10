@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <spirit:vendor>openedv.com</spirit:vendor>
+  <spirit:library>user</spirit:library>
+  <spirit:name>DVI_Transmitter</spirit:name>
+  <spirit:version>1.0</spirit:version>
+  <spirit:busInterfaces>
+    <spirit:busInterface>
+      <spirit:name>reset_n</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>RST</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>reset_n</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>POLARITY</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.RESET_N.POLARITY">ACTIVE_LOW</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>pclk</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>pclk</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>FREQ_HZ</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.PCLK.FREQ_HZ"/>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>pclk_x5</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>pixel_clk_5x</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>NUM_READ_OUTSTANDING</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.PCLK_X5.NUM_READ_OUTSTANDING"/>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>NUM_WRITE_OUTSTANDING</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.PCLK_X5.NUM_WRITE_OUTSTANDING"/>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>pclk_x2_5</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>pixel_clk_2_5x</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>FREQ_HZ</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.PCLK_X2_5.FREQ_HZ"/>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>Video_In</spirit:name>
+      <spirit:description>RGB888 Video</spirit:description>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="vid_io" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="vid_io_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>ACTIVE_VIDEO</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>video_de</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>VSYNC</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>video_vsync</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>video_din</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>HSYNC</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>video_hsync</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>TMDS</spirit:name>
+      <spirit:busType spirit:vendor="openedv.com" spirit:library="user" spirit:name="TMDS" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="openedv.com" spirit:library="user" spirit:name="TMDS_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>tmds_data_p</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>tmds_data_p</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>tmds_clk_p</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>tmds_clk_p</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>tmds_data_n</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>tmds_data_n</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>tmds_clk_n</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>tmds_clk_n</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+  </spirit:busInterfaces>
+  <spirit:model>
+    <spirit:views>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
+        <spirit:displayName>Synthesis</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
+        <spirit:language>Verilog</spirit:language>
+        <spirit:modelName>dvi_transmitter_top</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagesynthesis_xilinx_com_ip_blk_mem_gen_8_4__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>62f283f2</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagebehavioralsimulation</spirit:name>
+        <spirit:displayName>Simulation</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
+        <spirit:language>Verilog</spirit:language>
+        <spirit:modelName>dvi_transmitter_top</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagebehavioralsimulation_xilinx_com_ip_blk_mem_gen_8_4__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>62f283f2</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_xpgui</spirit:name>
+        <spirit:displayName>UI Layout</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:xgui.ui</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_xpgui_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>f64a5dae</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+    </spirit:views>
+    <spirit:ports>
+      <spirit:port>
+        <spirit:name>pclk</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>pixel_clk_5x</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>pixel_clk_2_5x</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>reset_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>video_din</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">23</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>video_hsync</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>video_vsync</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>video_de</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>tmds_clk_p</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>tmds_clk_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>tmds_data_p</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">2</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>tmds_data_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">2</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>tmds_oen</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+    </spirit:ports>
+  </spirit:model>
+  <spirit:fileSets>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>src/asyn_rst_syn.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/dvi_encoder.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/serializer_10_to_1.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/dvi_transmitter_top.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>CHECKSUM_fe88f0b3</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagesynthesis_xilinx_com_ip_blk_mem_gen_8_4__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xsi:type="xilinx:componentRefType" xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="blk_mem_gen" xilinx:version="8.4">
+            <xilinx:mode xilinx:name="create_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>src/asyn_rst_syn.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/dvi_encoder.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/serializer_10_to_1.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/dvi_transmitter_top.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagebehavioralsimulation_xilinx_com_ip_blk_mem_gen_8_4__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="blk_mem_gen" xilinx:version="8.4">
+            <xilinx:mode xilinx:name="create_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>xgui/DVI_Transmitter_v1_0.tcl</spirit:name>
+        <spirit:fileType>tclSource</spirit:fileType>
+        <spirit:userFileType>CHECKSUM_f64a5dae</spirit:userFileType>
+        <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+  </spirit:fileSets>
+  <spirit:description>RGB888 to DVI</spirit:description>
+  <spirit:parameters>
+    <spirit:parameter>
+      <spirit:name>Component_Name</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">serializer_10_to_1_v1_0</spirit:value>
+    </spirit:parameter>
+  </spirit:parameters>
+  <spirit:vendorExtensions>
+    <xilinx:coreExtensions>
+      <xilinx:supportedFamilies>
+        <xilinx:family xilinx:lifeCycle="Production">zynquplus</xilinx:family>
+      </xilinx:supportedFamilies>
+      <xilinx:taxonomies>
+        <xilinx:taxonomy>/UserIP</xilinx:taxonomy>
+      </xilinx:taxonomies>
+      <xilinx:displayName>DVI_Transmitter</xilinx:displayName>
+      <xilinx:definitionSource>package_project</xilinx:definitionSource>
+      <xilinx:coreRevision>4</xilinx:coreRevision>
+      <xilinx:upgrades>
+        <xilinx:canUpgradeFrom>xilinx.com:user:serializer_10_to_1:1.0</xilinx:canUpgradeFrom>
+        <xilinx:canUpgradeFrom>openedv.com:user:serializer_10_to_1:1.0</xilinx:canUpgradeFrom>
+      </xilinx:upgrades>
+      <xilinx:coreCreationDateTime>2021-11-13T03:11:02Z</xilinx:coreCreationDateTime>
+      <xilinx:tags>
+        <xilinx:tag xilinx:name="nopcore"/>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@34d39d95_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5635a0b1_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d358a26_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@79eaba4e_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@54c6f217_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4dd9baff_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b98e91_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@24edc68c_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@c3fcd77_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@12a3d21e_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@16181f71_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3fde9547_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@64bbf3ff_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@603329f9_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@187a516a_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6fd2b56b_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2fdfc1df_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1b3a3c98_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@78d952a2_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2cdd1fe3_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@72a17a95_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75c0ded9_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@57855202_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@37dd2b1_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@243c967b_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e56fb69_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5405de76_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@24b4e1e4_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5eb511f1_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6c656791_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@50f84520_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@270b2d6a_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ab019fa_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@553729c_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ad3a72c_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@622370c_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@436ca508_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@137f5876_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d0912a5_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4104b4_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1334a5b9_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@70acc83c_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5962e8b3_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6786c6ac_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6811404e_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ec64d89_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@9398029_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4544a8f8_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@21ba1a9f_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d78c3c1_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@17e98a61_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3b0b5e9c_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@65642844_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@19978ef9_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@53e83d59_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@dbb02c4_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e2d1e15_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3dad2307_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4d948c31_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7a4b0ea4_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@26afde70_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@41c74fd5_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48a09ef7_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ee9bfcc_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ea56d55_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@41ef644b_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@667ba341_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1572f268_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f1449b_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c494085_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@320a262d_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@281e7e00_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f0c738_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6e25deda_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f606034_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@45d792e8_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@77a97b57_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3b42bec5_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@311a8338_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5953f329_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@110be79d_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7a73986_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@44c7946d_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1009373f_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@540f516b_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@47240a79_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@652dbdaa_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@d1a0390_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3fd63bf9_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4859894d_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@79479439_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6c227f27_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@296e1a41_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@252f2beb_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4cc5f4ee_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@271c215a_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@c37e8f1_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@e44de4a_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@8e8af81_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@40dd983c_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@43ed09bc_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@286888e6_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4418cf54_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@76ad7e6_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4a5d55a4_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/sd_bpm_hdmi/ip_repo/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5c15833_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/sd_bpm_hdmi/ip_repo/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2be8f9b3_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/sd_bpm_hdmi/ip_repo/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@196fe2b8_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/sd_bpm_hdmi/ip_repo/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c70dfa0_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/sd_bpm_hdmi/ip_repo/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e3b10b6_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/sd_bpm_hdmi/ip_repo/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@35d31479_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/sd_bpm_hdmi/ip_repo/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@51de72e0_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/sd_bpm_hdmi/ip_repo/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c94b7ed_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/sd_bpm_hdmi/ip_repo/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3076c10e_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/sd_bpm_hdmi/ip_repo/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@42e45b71_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/sd_bpm_hdmi/ip_repo/DVI_TX/ip</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@118aad60_ARCHIVE_LOCATION">f:/ZYNQ/Embedded_System/sd_bpm_hdmi/ip_repo/DVI_TX/ip</xilinx:tag>
+      </xilinx:tags>
+    </xilinx:coreExtensions>
+    <xilinx:packagingInfo>
+      <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="51e32840"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="271a7a8f"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="8a9b766d"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="a6d805dd"/>
+    </xilinx:packagingInfo>
+  </spirit:vendorExtensions>
+</spirit:component>

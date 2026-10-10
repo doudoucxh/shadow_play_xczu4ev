@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "simulation_only": false,
+  "reference_view": "front",
+  "stage": {
+    "width_mm": 800,
+    "height_mm": 500
+  },
+  "axes": [
+    {
+      "id": "servo_01_D14",
+      "rod": "wusong_left",
+      "unit": "us",
+      "min": null,
+      "max": null,
+      "initial": null,
+      "jog_step": 5,
+      "max_step": 10
+    },
+    {
+      "id": "servo_02_D15",
+      "rod": "wusong_left",
+      "unit": "us",
+      "min": null,
+      "max": null,
+      "initial": null,
+      "jog_step": 5,
+      "max_step": 10
+    },
+    {
+      "id": "servo_03_F13",
+      "rod": "wusong_neck",
+      "unit": "us",
+      "min": null,
+      "max": null,
+      "initial": null,
+      "jog_step": 5,
+      "max_step": 10
+    },
+    {
+      "id": "servo_04_G13",
+      "rod": "wusong_neck",
+      "unit": "us",
+      "min": null,
+      "max": null,
+      "initial": null,
+      "jog_step": 5,
+      "max_step": 10
+    },
+    {
+      "id": "servo_05_G14",
+      "rod": "wusong_right",
+      "unit": "us",
+      "min": null,
+      "max": null,
+      "initial": null,
+      "jog_step": 5,
+      "max_step": 10
+    },
+    {
+      "id": "servo_06_G15",
+      "rod": "wusong_right",
+      "unit": "us",
+      "min": null,
+      "max": null,
+      "initial": null,
+      "jog_step": 5,
+      "max_step": 10
+    },
+    {
+      "id": "servo_07_J14",
+      "rod": "tiger_head",
+      "unit": "us",
+      "min": null,
+      "max": null,
+      "initial": null,
+      "jog_step": 5,
+      "max_step": 10
+    },
+    {
+      "id": "servo_08_E13",
+      "rod": "tiger_head",
+      "unit": "us",
+      "min": null,
+      "max": null,
+      "initial": null,
+      "jog_step": 5,
+      "max_step": 10
+    },
+    {
+      "id": "servo_09_E14",
+      "rod": "tiger_leg",
+      "unit": "us",
+      "min": null,
+      "max": null,
+      "initial": null,
+      "jog_step": 5,
+      "max_step": 10
+    },
+    {
+      "id": "servo_10_E15",
+      "rod": "tiger_leg",
+      "unit": "us",
+      "min": null,
+      "max": null,
+      "initial": null,
+      "jog_step": 5,
+      "max_step": 10
+    }
+  ],
+  "slides": [
+    {
+      "id": "wusong_slide",
+      "unit": "fixture",
+      "value": 0,
+      "state_kind": "fixed_assumption",
+      "assumption": "Fixed for this session at an arbitrary unhomed position; 0 is a fixture label, not millimetres.",
+      "controllable": false
+    },
+    {
+      "id": "tiger_slide",
+      "unit": "fixture",
+      "value": 0,
+      "state_kind": "fixed_assumption",
+      "assumption": "Fixed for this session at an arbitrary unhomed position; 0 is a fixture label, not millimetres.",
+      "controllable": false
+    }
+  ],
+  "points": []
+}

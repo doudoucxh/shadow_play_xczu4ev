@@ -1,0 +1,222 @@
+{
+  "pose_stem": {
+    "weight": [
+      24,
+      3,
+      3,
+      3
+    ],
+    "bias": [
+      24
+    ]
+  },
+  "pose_high_dw": {
+    "weight": [
+      24,
+      3,
+      3
+    ],
+    "bias": [
+      24
+    ]
+  },
+  "pose_high_pw": {
+    "weight": [
+      32,
+      24
+    ],
+    "bias": [
+      32
+    ]
+  },
+  "pose_highref0_dw": {
+    "weight": [
+      32,
+      3,
+      3
+    ],
+    "bias": [
+      32
+    ]
+  },
+  "pose_highref0_pw": {
+    "weight": [
+      32,
+      32
+    ],
+    "bias": [
+      32
+    ]
+  },
+  "pose_highref1_dw": {
+    "weight": [
+      32,
+      3,
+      3
+    ],
+    "bias": [
+      32
+    ]
+  },
+  "pose_highref1_pw": {
+    "weight": [
+      32,
+      32
+    ],
+    "bias": [
+      32
+    ]
+  },
+  "pose_low0_dw": {
+    "weight": [
+      32,
+      3,
+      3
+    ],
+    "bias": [
+      32
+    ]
+  },
+  "pose_low0_pw": {
+    "weight": [
+      48,
+      32
+    ],
+    "bias": [
+      48
+    ]
+  },
+  "pose_low1_dw": {
+    "weight": [
+      48,
+      3,
+      3
+    ],
+    "bias": [
+      48
+    ]
+  },
+  "pose_low1_pw": {
+    "weight": [
+      48,
+      48
+    ],
+    "bias": [
+      48
+    ]
+  },
+  "pose_low2_dw": {
+    "weight": [
+      48,
+      3,
+      3
+    ],
+    "bias": [
+      48
+    ]
+  },
+  "pose_low2_pw": {
+    "weight": [
+      48,
+      48
+    ],
+    "bias": [
+      48
+    ]
+  },
+  "pose_low3_dw": {
+    "weight": [
+      48,
+      3,
+      3
+    ],
+    "bias": [
+      48
+    ]
+  },
+  "pose_low3_pw": {
+    "weight": [
+      48,
+      48
+    ],
+    "bias": [
+      48
+    ]
+  },
+  "pose_context": {
+    "weight": [
+      32,
+      48
+    ],
+    "bias": [
+      32
+    ]
+  },
+  "pose_ref0_dw": {
+    "weight": [
+      32,
+      3,
+      3
+    ],
+    "bias": [
+      32
+    ]
+  },
+  "pose_ref0_pw": {
+    "weight": [
+      32,
+      32
+    ],
+    "bias": [
+      32
+    ]
+  },
+  "pose_ref1_dw": {
+    "weight": [
+      32,
+      3,
+      3
+    ],
+    "bias": [
+      32
+    ]
+  },
+  "pose_ref1_pw": {
+    "weight": [
+      32,
+      32
+    ],
+    "bias": [
+      32
+    ]
+  },
+  "pose_ref2_dw": {
+    "weight": [
+      32,
+      3,
+      3
+    ],
+    "bias": [
+      32
+    ]
+  },
+  "pose_ref2_pw": {
+    "weight": [
+      32,
+      32
+    ],
+    "bias": [
+      32
+    ]
+  },
+  "pose_head": {
+    "weight": [
+      9,
+      32
+    ],
+    "bias": [
+      9
+    ]
+  },
+  "architecture": "v2"
+}

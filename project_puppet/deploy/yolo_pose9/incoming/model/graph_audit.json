@@ -1,0 +1,366 @@
+{
+  "subgraphs": [
+    {
+      "name": "subgraph_RawPose__input_0",
+      "device": "USER",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "RawPose__input_0_fix",
+          "shape": [
+            1,
+            384,
+            384,
+            3
+          ]
+        }
+      ],
+      "fingerprint": null
+    },
+    {
+      "name": "subgraph_RawPose__RawPose_Block_model__ModuleList_0__Conv2d_conv__input_3",
+      "device": "DPU",
+      "inputs": [
+        {
+          "name": "RawPose__input_0_fix",
+          "shape": [
+            1,
+            384,
+            384,
+            3
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv3__ModuleList_0__Conv2d_2__11547_fix",
+          "shape": [
+            1,
+            48,
+            48,
+            1
+          ]
+        },
+        {
+          "name": "RawPose__RawPose_Sequential_cv4__ModuleList_2__Conv2d_2__12044_fix",
+          "shape": [
+            1,
+            12,
+            12,
+            27
+          ]
+        },
+        {
+          "name": "RawPose__RawPose_Sequential_cv2__ModuleList_0__Conv2d_2__11476_fix",
+          "shape": [
+            1,
+            48,
+            48,
+            64
+          ]
+        },
+        {
+          "name": "RawPose__RawPose_Sequential_cv3__ModuleList_1__Conv2d_2__11760_fix",
+          "shape": [
+            1,
+            24,
+            24,
+            1
+          ]
+        },
+        {
+          "name": "RawPose__RawPose_Sequential_cv4__ModuleList_1__Conv2d_2__11831_fix",
+          "shape": [
+            1,
+            24,
+            24,
+            27
+          ]
+        },
+        {
+          "name": "RawPose__RawPose_Sequential_cv4__ModuleList_0__Conv2d_2__11618_fix",
+          "shape": [
+            1,
+            48,
+            48,
+            27
+          ]
+        },
+        {
+          "name": "RawPose__RawPose_Sequential_cv2__ModuleList_1__Conv2d_2__11689_fix",
+          "shape": [
+            1,
+            24,
+            24,
+            64
+          ]
+        },
+        {
+          "name": "RawPose__RawPose_Sequential_cv2__ModuleList_2__Conv2d_2__11902_fix",
+          "shape": [
+            1,
+            12,
+            12,
+            64
+          ]
+        },
+        {
+          "name": "RawPose__RawPose_Sequential_cv3__ModuleList_2__Conv2d_2__11973_fix",
+          "shape": [
+            1,
+            12,
+            12,
+            1
+          ]
+        }
+      ],
+      "fingerprint": "72339070457545735"
+    },
+    {
+      "name": "subgraph_RawPose__RawPose_Sequential_cv4__ModuleList_2__Conv2d_2__12044_fix_",
+      "device": "CPU",
+      "inputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv4__ModuleList_2__Conv2d_2__12044_fix",
+          "shape": [
+            1,
+            12,
+            12,
+            27
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv4__ModuleList_2__Conv2d_2__12044_fix_",
+          "shape": [
+            1,
+            12,
+            12,
+            27
+          ]
+        }
+      ],
+      "fingerprint": null
+    },
+    {
+      "name": "subgraph_RawPose__RawPose_Sequential_cv4__ModuleList_1__Conv2d_2__11831_fix_",
+      "device": "CPU",
+      "inputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv4__ModuleList_1__Conv2d_2__11831_fix",
+          "shape": [
+            1,
+            24,
+            24,
+            27
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv4__ModuleList_1__Conv2d_2__11831_fix_",
+          "shape": [
+            1,
+            24,
+            24,
+            27
+          ]
+        }
+      ],
+      "fingerprint": null
+    },
+    {
+      "name": "subgraph_RawPose__RawPose_Sequential_cv4__ModuleList_0__Conv2d_2__11618_fix_",
+      "device": "CPU",
+      "inputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv4__ModuleList_0__Conv2d_2__11618_fix",
+          "shape": [
+            1,
+            48,
+            48,
+            27
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv4__ModuleList_0__Conv2d_2__11618_fix_",
+          "shape": [
+            1,
+            48,
+            48,
+            27
+          ]
+        }
+      ],
+      "fingerprint": null
+    },
+    {
+      "name": "subgraph_RawPose__RawPose_Sequential_cv3__ModuleList_2__Conv2d_2__11973_fix_",
+      "device": "CPU",
+      "inputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv3__ModuleList_2__Conv2d_2__11973_fix",
+          "shape": [
+            1,
+            12,
+            12,
+            1
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv3__ModuleList_2__Conv2d_2__11973_fix_",
+          "shape": [
+            1,
+            12,
+            12,
+            1
+          ]
+        }
+      ],
+      "fingerprint": null
+    },
+    {
+      "name": "subgraph_RawPose__RawPose_Sequential_cv3__ModuleList_1__Conv2d_2__11760_fix_",
+      "device": "CPU",
+      "inputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv3__ModuleList_1__Conv2d_2__11760_fix",
+          "shape": [
+            1,
+            24,
+            24,
+            1
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv3__ModuleList_1__Conv2d_2__11760_fix_",
+          "shape": [
+            1,
+            24,
+            24,
+            1
+          ]
+        }
+      ],
+      "fingerprint": null
+    },
+    {
+      "name": "subgraph_RawPose__RawPose_Sequential_cv3__ModuleList_0__Conv2d_2__11547_fix_",
+      "device": "CPU",
+      "inputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv3__ModuleList_0__Conv2d_2__11547_fix",
+          "shape": [
+            1,
+            48,
+            48,
+            1
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv3__ModuleList_0__Conv2d_2__11547_fix_",
+          "shape": [
+            1,
+            48,
+            48,
+            1
+          ]
+        }
+      ],
+      "fingerprint": null
+    },
+    {
+      "name": "subgraph_RawPose__RawPose_Sequential_cv2__ModuleList_2__Conv2d_2__11902_fix_",
+      "device": "CPU",
+      "inputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv2__ModuleList_2__Conv2d_2__11902_fix",
+          "shape": [
+            1,
+            12,
+            12,
+            64
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv2__ModuleList_2__Conv2d_2__11902_fix_",
+          "shape": [
+            1,
+            12,
+            12,
+            64
+          ]
+        }
+      ],
+      "fingerprint": null
+    },
+    {
+      "name": "subgraph_RawPose__RawPose_Sequential_cv2__ModuleList_1__Conv2d_2__11689_fix_",
+      "device": "CPU",
+      "inputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv2__ModuleList_1__Conv2d_2__11689_fix",
+          "shape": [
+            1,
+            24,
+            24,
+            64
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv2__ModuleList_1__Conv2d_2__11689_fix_",
+          "shape": [
+            1,
+            24,
+            24,
+            64
+          ]
+        }
+      ],
+      "fingerprint": null
+    },
+    {
+      "name": "subgraph_RawPose__RawPose_Sequential_cv2__ModuleList_0__Conv2d_2__11476_fix_",
+      "device": "CPU",
+      "inputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv2__ModuleList_0__Conv2d_2__11476_fix",
+          "shape": [
+            1,
+            48,
+            48,
+            64
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "RawPose__RawPose_Sequential_cv2__ModuleList_0__Conv2d_2__11476_fix_",
+          "shape": [
+            1,
+            48,
+            48,
+            64
+          ]
+        }
+      ],
+      "fingerprint": null
+    }
+  ],
+  "dpu_count": 1,
+  "cpu_boundary_count": 9,
+  "cpu_boundaries_are_shape_preserving": true
+}

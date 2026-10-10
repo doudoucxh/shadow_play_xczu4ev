@@ -1,0 +1,86 @@
+{
+  "parameters_mm": {
+    "width": 60.0,
+    "length": 60.0,
+    "thickness": 8.0,
+    "corner_radius": 2.0,
+    "mounting_pitch": 30.0,
+    "clearance_diameter": 4.5,
+    "counterbore_diameter": 8.0,
+    "counterbore_depth": 4.5,
+    "bracket_pitch": 40.0,
+    "bracket_thread": "M5x0.8-6H",
+    "tap_drill": 4.2
+  },
+  "slide_holes": [
+    [
+      -15.0,
+      -15.0
+    ],
+    [
+      15.0,
+      -15.0
+    ],
+    [
+      15.0,
+      15.0
+    ],
+    [
+      -15.0,
+      15.0
+    ]
+  ],
+  "bracket_holes": [
+    [
+      0.0,
+      20.0
+    ],
+    [
+      20.0,
+      0.0
+    ],
+    [
+      0.0,
+      -20.0
+    ],
+    [
+      -20.0,
+      0.0
+    ]
+  ],
+  "dxf": [
+    {
+      "file": "SGX_2020_adapter_60x60x8_R0_plate_1to1.dxf",
+      "units": 4,
+      "audit_errors": 0,
+      "circles": 12,
+      "physical_holes": 8,
+      "closed_outline": true
+    },
+    {
+      "file": "SGX_2020_adapter_60x60x8_R0_drawing.dxf",
+      "units": 4,
+      "audit_errors": 0
+    }
+  ],
+  "step": {
+    "available": true,
+    "valid": true,
+    "solids": 1,
+    "bbox_mm": [
+      60.0000002,
+      60.0000002,
+      8.000000199999999
+    ],
+    "volume_mm3": 27201.75034608327,
+    "mass_g_at_2_70": 73.44472593442484,
+    "thread_model": "B holes are 4.2 mm tap-drill cylinders; tap M5x0.8 per drawing."
+  },
+  "estimated_mass_g": 73.44472593442477,
+  "min_hole_edge_gap_mm": 9.311388300841896,
+  "assumptions": [
+    "Physical slide: 4 x M4 on 30x30 pitch, adequate depth.",
+    "2020 profile; four flat-bottom brackets with bottom hole 10 mm from profile contact face.",
+    "Payload and acceleration unconfirmed; no load rating assigned."
+  ]
+}

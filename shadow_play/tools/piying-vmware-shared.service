@@ -1,0 +1,10 @@
+[Unit]
+Description=Mount VMware shared folders for the piying development user
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/bash %h/piying/shadow_play/tools/mount_vmware_share.sh
+
+[Install]
+WantedBy=default.target

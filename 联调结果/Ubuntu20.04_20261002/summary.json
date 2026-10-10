@@ -1,0 +1,514 @@
+{
+  "scope": "Ubuntu PC simulation only",
+  "status": "passed",
+  "source": "/home/xianhaochen/piying/shadow_play",
+  "build": "/home/xianhaochen/piying/shadow_play/build-vm",
+  "result_dir": "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857",
+  "started": "2026-10-02T20:19:15.638081+08:00",
+  "checks": [
+    {
+      "name": "01-configure",
+      "command": [
+        "cmake",
+        "-S",
+        "/home/xianhaochen/piying/shadow_play",
+        "-B",
+        "/home/xianhaochen/piying/shadow_play/build-vm",
+        "-G",
+        "Ninja",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DSHADOW_REQUIRE_ALSA=ON",
+        "-DBUILD_TESTING=ON"
+      ],
+      "status": "passed",
+      "seconds": 0.517,
+      "exit_code": 0
+    },
+    {
+      "name": "02-build",
+      "command": [
+        "cmake",
+        "--build",
+        "/home/xianhaochen/piying/shadow_play/build-vm",
+        "--parallel",
+        "2"
+      ],
+      "status": "passed",
+      "seconds": 11.775,
+      "exit_code": 0
+    },
+    {
+      "name": "03-ctest",
+      "command": [
+        "cmake",
+        "-E",
+        "chdir",
+        "/home/xianhaochen/piying/shadow_play/build-vm",
+        "ctest",
+        "--output-on-failure"
+      ],
+      "status": "passed",
+      "seconds": 3.031,
+      "exit_code": 0
+    },
+    {
+      "name": "04-rehearsal90",
+      "command": [
+        "/home/xianhaochen/piying/shadow_play/build-vm/shadow_show",
+        "--seconds",
+        "92",
+        "--output",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/rehearsal90.csv"
+      ],
+      "status": "passed",
+      "seconds": 0.066,
+      "exit_code": 0
+    },
+    {
+      "name": "05-preview-rehearsal90",
+      "command": [
+        "/home/xianhaochen/piying/shadow_play/build-vm/trace_preview",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/rehearsal90.csv",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/rehearsal90.svg"
+      ],
+      "status": "passed",
+      "seconds": 0.267,
+      "exit_code": 0
+    },
+    {
+      "name": "04-touch",
+      "command": [
+        "/home/xianhaochen/piying/shadow_play/build-vm/shadow_show",
+        "--mode",
+        "touch",
+        "--seconds",
+        "4",
+        "--replay",
+        "assets/touch_demo.jsonl",
+        "--output",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/touch.csv"
+      ],
+      "status": "passed",
+      "seconds": 0.018,
+      "exit_code": 0
+    },
+    {
+      "name": "05-preview-touch",
+      "command": [
+        "/home/xianhaochen/piying/shadow_play/build-vm/trace_preview",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/touch.csv",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/touch.svg"
+      ],
+      "status": "passed",
+      "seconds": 0.017,
+      "exit_code": 0
+    },
+    {
+      "name": "04-camera",
+      "command": [
+        "/home/xianhaochen/piying/shadow_play/build-vm/shadow_show",
+        "--mode",
+        "camera",
+        "--seconds",
+        "4",
+        "--replay",
+        "assets/camera_demo.jsonl",
+        "--output",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/camera.csv"
+      ],
+      "status": "passed",
+      "seconds": 0.017,
+      "exit_code": 0
+    },
+    {
+      "name": "05-preview-camera",
+      "command": [
+        "/home/xianhaochen/piying/shadow_play/build-vm/trace_preview",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/camera.csv",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/camera.svg"
+      ],
+      "status": "passed",
+      "seconds": 0.017,
+      "exit_code": 0
+    },
+    {
+      "name": "04-three_modes",
+      "command": [
+        "/home/xianhaochen/piying/shadow_play/build-vm/shadow_show",
+        "--seconds",
+        "12",
+        "--commands",
+        "assets/mode_session.csv",
+        "--replay-at",
+        "3500",
+        "assets/touch_demo.jsonl",
+        "--replay-at",
+        "7000",
+        "assets/camera_demo.jsonl",
+        "--record-input",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/mode_inputs.jsonl",
+        "--record-commands",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/mode_commands.csv",
+        "--output",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/three_modes.csv"
+      ],
+      "status": "passed",
+      "seconds": 0.033,
+      "exit_code": 0
+    },
+    {
+      "name": "05-preview-three_modes",
+      "command": [
+        "/home/xianhaochen/piying/shadow_play/build-vm/trace_preview",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/three_modes.csv",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/three_modes.svg"
+      ],
+      "status": "passed",
+      "seconds": 0.065,
+      "exit_code": 0
+    },
+    {
+      "name": "06-replay",
+      "command": [
+        "/home/xianhaochen/piying/shadow_play/build-vm/shadow_show",
+        "--seconds",
+        "12",
+        "--commands",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/mode_commands.csv",
+        "--replay",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/mode_inputs.jsonl",
+        "--output",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/three_modes_replayed.csv"
+      ],
+      "status": "passed",
+      "seconds": 0.033,
+      "exit_code": 0
+    },
+    {
+      "name": "07-synthetic-input",
+      "command": [
+        "/usr/bin/python3",
+        "/home/xianhaochen/piying/shadow_play/integrations/follow/pose_sender.py",
+        "--seconds",
+        "3",
+        "--jsonl"
+      ],
+      "status": "passed",
+      "seconds": 0.033,
+      "exit_code": 0
+    },
+    {
+      "name": "08-grouped-targets",
+      "command": [
+        "/home/xianhaochen/piying/shadow_play/build-vm/shadow_show",
+        "--mode",
+        "camera",
+        "--seconds",
+        "4",
+        "--replay",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/synthetic_pose9.jsonl",
+        "--motor-format",
+        "jsonl",
+        "--output",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/motor_targets.jsonl"
+      ],
+      "status": "passed",
+      "seconds": 0.065,
+      "exit_code": 0
+    },
+    {
+      "name": "09-live-udp-and-loss",
+      "status": "passed"
+    },
+    {
+      "name": "10-cue-wav",
+      "command": [
+        "/home/xianhaochen/piying/shadow_play/build-vm/make_cue_wav",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/cue90.wav",
+        "90"
+      ],
+      "status": "passed",
+      "seconds": 0.066,
+      "exit_code": 0
+    },
+    {
+      "name": "11-install",
+      "command": [
+        "cmake",
+        "--install",
+        "/home/xianhaochen/piying/shadow_play/build-vm",
+        "--prefix",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/install-stage"
+      ],
+      "status": "passed",
+      "seconds": 0.033,
+      "exit_code": 0
+    },
+    {
+      "name": "12-installed-app",
+      "command": [
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/install-stage/bin/shadow_show",
+        "--seconds",
+        "1",
+        "--script",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/install-stage/share/shadow-play/assets/rehearsal90.json",
+        "--calibration",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/install-stage/share/shadow-play/config/calibration.simulation.csv",
+        "--retarget",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/install-stage/share/shadow-play/config/retarget.simulation.json",
+        "--output",
+        "/home/xianhaochen/piying/shadow_play/output/pc-check-20261002-201915-637857/installed_app.csv"
+      ],
+      "status": "passed",
+      "seconds": 0.005,
+      "exit_code": 0
+    }
+  ],
+  "environment": {
+    "platform": "Linux-5.4.0-216-generic-x86_64-with-glibc2.29",
+    "architecture": "x86_64",
+    "python": "3.8.10 (default, Mar 18 2025, 20:04:55) \n[GCC 9.4.0]",
+    "os_release": "NAME=\"Ubuntu\"\nVERSION=\"20.04 LTS (Focal Fossa)\"\nID=ubuntu\nID_LIKE=debian\nPRETTY_NAME=\"Ubuntu 20.04 LTS\"\nVERSION_ID=\"20.04\"\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nVERSION_CODENAME=focal\nUBUNTU_CODENAME=focal\n",
+    "g++": "g++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0",
+    "cmake": "cmake version 3.16.3",
+    "ctest": "ctest version 3.16.3",
+    "ninja": "1.10.0",
+    "pkg-config": "0.29.1",
+    "alsa": "1.2.2"
+  },
+  "traces": {
+    "rehearsal90": {
+      "samples": 46010,
+      "modes": [
+        "script",
+        "stopped"
+      ],
+      "input_states": [
+        "no_input",
+        "tracking_or_holding"
+      ],
+      "angle_ranges_deg": {
+        "wusong_neck_pan": [
+          81.066488,
+          95.958748
+        ],
+        "wusong_neck_tilt": [
+          86.06115,
+          92.0
+        ],
+        "wusong_left_pan": [
+          69.833451,
+          90.0
+        ],
+        "wusong_left_tilt": [
+          90.0,
+          101.928232
+        ],
+        "wusong_right_pan": [
+          67.528437,
+          90.0
+        ],
+        "wusong_right_tilt": [
+          88.598091,
+          104.881218
+        ],
+        "tiger_head_pan": [
+          76.591724,
+          98.896173
+        ],
+        "tiger_head_tilt": [
+          82.021824,
+          96.982396
+        ],
+        "tiger_tail_pan": [
+          79.052477,
+          100.988657
+        ],
+        "tiger_tail_tilt": [
+          86.0,
+          94.95334
+        ]
+      }
+    },
+    "touch": {
+      "samples": 2010,
+      "modes": [
+        "touch"
+      ],
+      "input_states": [
+        "returning_to_neutral",
+        "tracking_or_holding"
+      ],
+      "angle_ranges_deg": {
+        "wusong_neck_pan": [
+          86.438809,
+          93.556572
+        ],
+        "wusong_neck_tilt": [
+          90.0,
+          90.0
+        ],
+        "wusong_left_pan": [
+          90.0,
+          114.725128
+        ],
+        "wusong_left_tilt": [
+          69.855199,
+          102.653585
+        ],
+        "wusong_right_pan": [
+          90.0,
+          114.725128
+        ],
+        "wusong_right_tilt": [
+          72.829606,
+          99.661646
+        ],
+        "tiger_head_pan": [
+          90.0,
+          90.0
+        ],
+        "tiger_head_tilt": [
+          90.0,
+          90.0
+        ],
+        "tiger_tail_pan": [
+          90.0,
+          90.0
+        ],
+        "tiger_tail_tilt": [
+          90.0,
+          90.0
+        ]
+      }
+    },
+    "camera": {
+      "samples": 2010,
+      "modes": [
+        "camera"
+      ],
+      "input_states": [
+        "returning_to_neutral",
+        "tracking_or_holding"
+      ],
+      "angle_ranges_deg": {
+        "wusong_neck_pan": [
+          86.873647,
+          93.556572
+        ],
+        "wusong_neck_tilt": [
+          90.0,
+          90.0
+        ],
+        "wusong_left_pan": [
+          90.0,
+          114.725128
+        ],
+        "wusong_left_tilt": [
+          71.786397,
+          102.653585
+        ],
+        "wusong_right_pan": [
+          90.0,
+          114.725128
+        ],
+        "wusong_right_tilt": [
+          72.829606,
+          98.113176
+        ],
+        "tiger_head_pan": [
+          90.0,
+          90.0
+        ],
+        "tiger_head_tilt": [
+          90.0,
+          90.0
+        ],
+        "tiger_tail_pan": [
+          90.0,
+          90.0
+        ],
+        "tiger_tail_tilt": [
+          90.0,
+          90.0
+        ]
+      }
+    },
+    "three_modes": {
+      "samples": 6010,
+      "modes": [
+        "camera",
+        "paused",
+        "script",
+        "stopped",
+        "touch"
+      ],
+      "input_states": [
+        "command_held",
+        "no_input",
+        "returning_to_neutral",
+        "tracking_or_holding"
+      ],
+      "angle_ranges_deg": {
+        "wusong_neck_pan": [
+          85.48203,
+          93.556571
+        ],
+        "wusong_neck_tilt": [
+          90.0,
+          91.204792
+        ],
+        "wusong_left_pan": [
+          83.167185,
+          114.725153
+        ],
+        "wusong_left_tilt": [
+          69.855199,
+          102.653585
+        ],
+        "wusong_right_pan": [
+          85.900311,
+          114.725153
+        ],
+        "wusong_right_tilt": [
+          72.829605,
+          99.661646
+        ],
+        "tiger_head_pan": [
+          90.0,
+          90.0
+        ],
+        "tiger_head_tilt": [
+          90.0,
+          90.0
+        ],
+        "tiger_tail_pan": [
+          90.0,
+          90.0
+        ],
+        "tiger_tail_tilt": [
+          90.0,
+          90.0
+        ]
+      }
+    }
+  },
+  "ctest_count": 9,
+  "replay_sha256": "0114d2c76440b27b15dfd44857ad7d87a7e02261393d49e72b84e5536c876775",
+  "grouped_target_frames": 201,
+  "live_sender": {
+    "attempted": 60,
+    "sent": 60,
+    "dropped": 0,
+    "invalid_frames": 0,
+    "send_errors": 0
+  },
+  "cue_wav": {
+    "duration_s": 90,
+    "sample_rate": 48000,
+    "channels": 1,
+    "sample_bits": 16
+  },
+  "wav_install_verified": true,
+  "finished": "2026-10-02T20:19:34.893370+08:00"
+}

@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "device": "cuda",
+  "validation_images": 371,
+  "evaluated_visible_arm_sides": 716,
+  "actual": {
+    "elbow_pck_12px": 0.9078211784362793,
+    "wrist_pck_12px": 0.8128491640090942,
+    "full_chain_pck_12px": 0.7709497213363647,
+    "mean_elbow_error_px": 6.707149028778076,
+    "mean_wrist_error_px": 9.062942504882812
+  },
+  "checkpoint_expected": {
+    "elbow_pck_12px": 0.9078211784362793,
+    "wrist_pck_12px": 0.8128491640090942,
+    "full_chain_pck_12px": 0.7709497213363647,
+    "mean_elbow_error_px": 6.707149028778076,
+    "mean_wrist_error_px": 9.062942504882812
+  },
+  "difference": {
+    "elbow_pck_12px": 0.0,
+    "wrist_pck_12px": 0.0,
+    "full_chain_pck_12px": 0.0,
+    "mean_elbow_error_px": 0.0,
+    "mean_wrist_error_px": 0.0
+  },
+  "note": "This reproduces checkpoint ranking metrics before temporal/DOWN video priors."
+}

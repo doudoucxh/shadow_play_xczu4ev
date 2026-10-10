@@ -1,0 +1,18 @@
+{
+  "added": [
+    "opt/shadow/yolo_pose9",
+    "opt/shadow/yolo_pose9/runtime",
+    "opt/shadow/yolo_pose9/model",
+    "opt/shadow/yolo_pose9/runtime/runtime.py",
+    "opt/shadow/yolo_pose9/runtime/postprocess.py",
+    "opt/shadow/yolo_pose9/runtime/graph_contract.py",
+    "opt/shadow/yolo_pose9/model/yolo_pose9_b4096.xmodel",
+    "usr/bin/shadow-yolo-pose",
+    "usr/bin/shadow-rollback-arm-chain",
+    "lib/systemd/system/shadow-yolo-pose.service",
+    "etc/systemd/system/multi-user.target.wants/shadow-yolo-pose.service"
+  ],
+  "disabled_autostart": "etc/systemd/system/multi-user.target.wants/shadow-arm-chain.service",
+  "old_runtime_retained": true,
+  "rootfs_sha256": "2547a131a8be5f212d5b1c8f8a8989c40bd2bf89ec1b8c1c2e2ef523529c79a4"
+}

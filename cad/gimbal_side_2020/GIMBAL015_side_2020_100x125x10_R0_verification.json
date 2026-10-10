@@ -1,0 +1,149 @@
+{
+  "parameters_mm": {
+    "width": 100,
+    "length": 125,
+    "thickness": 10,
+    "corner_radius": 2,
+    "x_bounds": [
+      -50,
+      50
+    ],
+    "y_bounds": [
+      -75,
+      50
+    ],
+    "notch_width": 22,
+    "notch_depth": 26,
+    "notch_front_y": -49,
+    "notch_inner_r": 2,
+    "post_center": [
+      0,
+      -60
+    ],
+    "post_envelope": [
+      20,
+      20
+    ],
+    "gimbal_hole_diameter": 3.4,
+    "gimbal_holes": [
+      [
+        -25.82,
+        34.75
+      ],
+      [
+        25.82,
+        34.75
+      ],
+      [
+        25.82,
+        -34.75
+      ],
+      [
+        -25.82,
+        -34.75
+      ]
+    ],
+    "slots": [
+      [
+        0.0,
+        -34.0,
+        "Y"
+      ],
+      [
+        -26.0,
+        -60.0,
+        "X"
+      ],
+      [
+        26.0,
+        -60.0,
+        "X"
+      ]
+    ],
+    "through_slot_width": 6,
+    "through_slot_total_length": 18,
+    "upper_counterbore_slot_width": 10,
+    "upper_counterbore_slot_length": 22,
+    "upper_counterbore_depth": 5.5,
+    "slot_end_center_distance": 12
+  },
+  "plate_step_valid": true,
+  "plate_solid_count": 1,
+  "plate_bbox_mm": [
+    -50.0,
+    -75.0,
+    0.0,
+    50.0,
+    50.0,
+    10.0
+  ],
+  "volume_mm3": 114270.0532652997,
+  "aluminium_mass_g": 308.5291438163092,
+  "source_mounting_interface": {
+    "source": "D:\\Desktop\\张大头\\015 简易二维云台图纸\\三维STEP通用格式\\简易云台.STEP",
+    "base_footprint_mm": [
+      88,
+      90
+    ],
+    "source_vertical_axis": "+X",
+    "transformed_vertical_axis": "+Z",
+    "bottom_flange_thickness_mm": 2,
+    "selected_source_holes": [
+      [
+        -25.8166,
+        34.75
+      ],
+      [
+        25.8166,
+        34.75
+      ],
+      [
+        25.8166,
+        -34.75
+      ],
+      [
+        -25.8166,
+        -34.75
+      ]
+    ],
+    "rounded_plate_hole_centres": [
+      [
+        -25.82,
+        34.75
+      ],
+      [
+        25.82,
+        34.75
+      ],
+      [
+        25.82,
+        -34.75
+      ],
+      [
+        -25.82,
+        -34.75
+      ]
+    ],
+    "max_hole_rounding_offset_mm": 0.0034,
+    "source_base_origin": [
+      -53.137933689264266,
+      5.20584935875678,
+      106.50000000000028
+    ]
+  },
+  "collision_volumes_mm3": {
+    "plate__GIMBAL015_REFERENCE": 0.0,
+    "plate__2020_POST_ENVELOPE_ONLY": 0.0,
+    "plate__2020_BRACKET_FRONT_PHOTO_ENVELOPE_ASSUMED_HOLES": 0.0,
+    "plate__2020_BRACKET_LEFT_PHOTO_ENVELOPE_ASSUMED_HOLES": 0.0,
+    "plate__2020_BRACKET_RIGHT_PHOTO_ENVELOPE_ASSUMED_HOLES": 0.0,
+    "gimbal__post_current_pose": 0.0
+  },
+  "limitations": [
+    "Bracket hole centres and rib shape are approximate from photo.",
+    "Post is 20x20 envelope only; actual slot and T-nut not modelled.",
+    "No full-range servo motion or dynamic load validation."
+  ],
+  "exported_assembly_solid_count": 66,
+  "exported_plate_holes_slots_and_pocket_depth_point_checked": true
+}

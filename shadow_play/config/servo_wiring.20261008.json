@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "confirmed_by": "user 2026-10-08",
+  "pin_revision": "servo4_G13_20261010",
+  "pin_correction_note": "User 2026-10-10 corrected servo 4 from H13 to G13 after oscilloscope troubleshooting.",
+  "channels": [
+    {
+      "servo_number": 1,
+      "axis_id": "servo_01_D14",
+      "package_pin": "D14",
+      "rod": "wusong_left",
+      "label": "武松左手",
+      "axis_orientation": "yaw_about_vertical",
+      "axis_orientation_evidence": "User 2026-10-10: physical servo 1 rotates the entire upper gimbal about the vertical axis; positive direction unverified"
+    },
+    {
+      "servo_number": 2,
+      "axis_id": "servo_02_D15",
+      "package_pin": "D15",
+      "rod": "wusong_left",
+      "label": "武松左手",
+      "axis_orientation": "pitch_about_horizontal",
+      "axis_orientation_evidence": "Inferred from the paired two-axis CAD mechanism and user-confirmed servo 1 yaw; servo 2 has not been actuated, positive direction unverified"
+    },
+    {
+      "servo_number": 3,
+      "axis_id": "servo_03_F13",
+      "package_pin": "F13",
+      "rod": "wusong_neck",
+      "label": "武松头部",
+      "axis_orientation": "unverified"
+    },
+    {
+      "servo_number": 4,
+      "axis_id": "servo_04_G13",
+      "package_pin": "G13",
+      "rod": "wusong_neck",
+      "label": "武松头部",
+      "axis_orientation": "unverified"
+    },
+    {
+      "servo_number": 5,
+      "axis_id": "servo_05_G14",
+      "package_pin": "G14",
+      "rod": "wusong_right",
+      "label": "武松右手",
+      "axis_orientation": "unverified"
+    },
+    {
+      "servo_number": 6,
+      "axis_id": "servo_06_G15",
+      "package_pin": "G15",
+      "rod": "wusong_right",
+      "label": "武松右手",
+      "axis_orientation": "unverified"
+    },
+    {
+      "servo_number": 7,
+      "axis_id": "servo_07_J14",
+      "package_pin": "J14",
+      "rod": "tiger_head",
+      "label": "老虎头",
+      "axis_orientation": "unverified"
+    },
+    {
+      "servo_number": 8,
+      "axis_id": "servo_08_E13",
+      "package_pin": "E13",
+      "rod": "tiger_head",
+      "label": "老虎头",
+      "axis_orientation": "unverified"
+    },
+    {
+      "servo_number": 9,
+      "axis_id": "servo_09_E14",
+      "package_pin": "E14",
+      "rod": "tiger_leg",
+      "label": "老虎脚",
+      "axis_orientation": "unverified"
+    },
+    {
+      "servo_number": 10,
+      "axis_id": "servo_10_E15",
+      "package_pin": "E15",
+      "rod": "tiger_leg",
+      "label": "老虎脚",
+      "axis_orientation": "unverified"
+    }
+  ],
+  "servo_model": "TBS-K15 / TBD-K15 family (15 kg.cm), per supplied manual",
+  "period_us": 20000,
+  "manufacturer_pulse_range_us": [
+    500,
+    2500
+  ],
+  "nominal_center_us": 1500,
+  "nominal_center_degrees": 135,
+  "position_feedback": false,
+  "centered_before_linkage_installation": false,
+  "starting_reference_status": "user confirmed none were centered before assembly; unload before establishing reference",
+  "mechanical_limits_verified": false,
+  "slides_controlled": false,
+  "pwm_register_base": "0xA0030000",
+  "requires_bitstream": "servo10_vision (new build; must verify ID SP10 before register use)",
+  "stage_mm": {
+    "width": 800,
+    "height": 500
+  },
+  "servo_supply_voltage_v": 8,
+  "common_ground_confirmed": true,
+  "servos_power_off_confirmed": true
+}

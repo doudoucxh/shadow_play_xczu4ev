@@ -1,0 +1,238 @@
+{
+  "valid": true,
+  "solid_count": 1,
+  "bbox_mm": [
+    -40.0,
+    -99.0,
+    0.0,
+    40.0,
+    16.0,
+    10.0
+  ],
+  "hole_and_slot_and_notch_checks": true,
+  "parameters_mm": {
+    "width": 80,
+    "length": 115,
+    "thickness": 10,
+    "x_bounds": [
+      -40,
+      40
+    ],
+    "y_bounds": [
+      -99,
+      16
+    ],
+    "outer_vertices_before_filleting": [
+      [
+        -40,
+        -99
+      ],
+      [
+        40,
+        -99
+      ],
+      [
+        40,
+        -74
+      ],
+      [
+        22,
+        -45
+      ],
+      [
+        22,
+        16
+      ],
+      [
+        -22,
+        16
+      ],
+      [
+        -22,
+        -45
+      ],
+      [
+        -40,
+        -74
+      ]
+    ],
+    "all_outline_corner_radii": 2,
+    "front_width": 44,
+    "rear_straight_length": 25,
+    "taper_y_bounds": [
+      -74,
+      -45
+    ],
+    "notch_width": 26,
+    "notch_depth": 38,
+    "notch_front_y": -61,
+    "notch_inner_radius": 2,
+    "post_center": [
+      0,
+      -84
+    ],
+    "post_to_gimbal_hole_pattern_centre": 84,
+    "gimbal_holes": [
+      [
+        0.0,
+        -7.0
+      ],
+      [
+        7.0,
+        0.0
+      ],
+      [
+        0.0,
+        7.0
+      ],
+      [
+        -7.0,
+        0.0
+      ]
+    ],
+    "gimbal_hole_diameter": 3.4,
+    "slots": [
+      [
+        -26.0,
+        -84.0,
+        "X"
+      ],
+      [
+        26.0,
+        -84.0,
+        "X"
+      ]
+    ],
+    "slot_through": [
+      6,
+      18
+    ],
+    "slot_top_pocket": [
+      10,
+      22,
+      5.5
+    ],
+    "plate_quantity": 3,
+    "brackets_per_plate": 2,
+    "column_example_length": 200,
+    "top_datum_z": 0,
+    "installation_region_z": [
+      -100,
+      0
+    ],
+    "plate_top_offsets_below_column_top": [
+      62,
+      31,
+      0
+    ],
+    "layer_pitch": 31,
+    "layers": [
+      {
+        "label": "LEFT_LOW",
+        "cn": "左 / 低",
+        "angle": -90,
+        "z": -72,
+        "color": [
+          0.31,
+          0.57,
+          0.76
+        ]
+      },
+      {
+        "label": "CENTRE_MID",
+        "cn": "中 / 中",
+        "angle": 0,
+        "z": -41,
+        "color": [
+          0.49,
+          0.68,
+          0.54
+        ]
+      },
+      {
+        "label": "RIGHT_HIGH",
+        "cn": "右 / 高",
+        "angle": 90,
+        "z": -10,
+        "color": [
+          0.76,
+          0.58,
+          0.37
+        ]
+      }
+    ],
+    "layout_basis": "front view from +Y toward origin; screen right is -X; centre platform extends +Y"
+  },
+  "source": "D:\\Desktop\\张大头\\015 简易二维云台图纸\\三维STEP通用格式\\简易云台.STEP",
+  "plate_mass_g": 138.97779324562495,
+  "total_plate_mass_g": 416.9333797368748,
+  "assembly_solids": 151,
+  "assembly_bbox_mm": [
+    -103.59884148610003,
+    -40.0,
+    -200.0,
+    103.59884148611003,
+    103.59884148611003,
+    118.36830000001025
+  ],
+  "checked_actual_shape_pairs": 55,
+  "maximum_collision_volume_mm3": 0,
+  "inter_layer_minimum_distances_mm": {
+    "LEFT_LOW__CENTRE_MID": 2.1213203435596424,
+    "LEFT_LOW__RIGHT_HIGH": 24.0,
+    "CENTRE_MID__RIGHT_HIGH": 2.1213203435596424
+  },
+  "M5_envelopes": "diameter 10; side-head outward 7; lower fitting reaches 12 below plate",
+  "installation_regions": [
+    {
+      "layer": "LEFT_LOW",
+      "z_extent": [
+        -100.0,
+        -62.0
+      ],
+      "plate_top_z": -62,
+      "side_fastener_axis_z": -88
+    },
+    {
+      "layer": "CENTRE_MID",
+      "z_extent": [
+        -69.0,
+        -31.0
+      ],
+      "plate_top_z": -31,
+      "side_fastener_axis_z": -57
+    },
+    {
+      "layer": "RIGHT_HIGH",
+      "z_extent": [
+        -38.0,
+        0.0
+      ],
+      "plate_top_z": 0,
+      "side_fastener_axis_z": -26
+    }
+  ],
+  "plate_upper_faces_measured_from_post_top_mm": [
+    -62,
+    -31,
+    0
+  ],
+  "top_zone_fulfilled": true,
+  "column_is_envelope_only": true,
+  "brackets_are_photo_approximations": true,
+  "full_motion_dynamic_load_and_cables_verified": false,
+  "M5_external_envelope_boolean_checks": 0,
+  "M5_external_envelope_pairs_tested": 384,
+  "M5_external_envelope_result": "All 384 pairs excluded by non-overlapping bounding boxes; no boolean intersection required.",
+  "engineering_pdf": {
+    "path": "D:\\Desktop\\张大头\\output\\pdf\\GIMBAL015_three_top100_80x115x10_R3_engineering_A3.pdf",
+    "pages": 2,
+    "paper_mm": [
+      420,
+      297
+    ],
+    "dimension_text_verified": true,
+    "rendered_at_dpi": 150,
+    "visual_review_passed": true
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "release": "data004-dual-v2-arm-chain",
+  "created_by": "tools/export_dpu_arm_chain.py",
+  "immutable_sources": {
+    "baseline_weight": {
+      "path": "D:\\pytorch_work\\pose_model\\runs\\Data_004_baseline_40\\best.pt",
+      "size": 355091,
+      "sha256": "01c852378a963ddec52b457d88bc4af2e03aef57847533afd5213d4a6855eb1c"
+    },
+    "wrist_weight": {
+      "path": "D:\\pytorch_work\\pose_model\\runs\\Data_004_wrist_repair\\candidate_best.pt",
+      "size": 356371,
+      "sha256": "e46bd293732aed382d7166fb3328ccbf1633a5913fbe511ed89530817c261a9f"
+    },
+    "arm_decoder_weight": {
+      "path": "D:\\pytorch_work\\pose_model\\runs\\Data_004_arm_chain_decoder\\best.pt",
+      "size": 20145,
+      "sha256": "1c29c55606eeef5d494c018b7c34a8314c65b3de574bd552d5423f2ead06760a"
+    },
+    "webcam_test": {
+      "path": "D:\\pytorch_work\\pose_model\\webcam_test.py",
+      "size": 20422,
+      "sha256": "c272973440e09b0be0347d3eef1cef5590bf886fecd8af7ba1856ce530c91614"
+    },
+    "arm_decoder_source": {
+      "path": "D:\\pytorch_work\\pose_model\\arm_decoder.py",
+      "size": 8740,
+      "sha256": "ee4ac8f8bc9bea892d87d31a1ddb65cb20294e76896a7e6c70a1b59898e12a81"
+    },
+    "wrist_decoder_source": {
+      "path": "D:\\pytorch_work\\pose_model\\wrist_decoder.py",
+      "size": 7934,
+      "sha256": "7011e6a456c8a00c11ad5d5d6cadee2b5a386cf9fa4b8bdded1400534bbe941b"
+    },
+    "model_source": {
+      "path": "D:\\pytorch_work\\pose_model\\model.py",
+      "size": 5349,
+      "sha256": "b6110a31b0609e4548b92e409395f070c0a7a5207c640c4af824d7f9e32aebdf"
+    }
+  },
+  "artifacts": {
+    "models/fp32/pose_baseline_v2.onnx": {
+      "size": 95946,
+      "sha256": "366145efc6edd8707c043da9efe3bd8b97da8243777a109b9e8992771dc92aa3"
+    },
+    "models/fp32/pose_wrist_v2.onnx": {
+      "size": 95946,
+      "sha256": "be91a3f3e5dc5e15759ae42a367ac5b62e52b396f214a8639421cd52f248eb92"
+    },
+    "decoder/arm_chain_ranker.npz": {
+      "size": 18398,
+      "sha256": "989524e71f2d664a864f6db5b5dd7d32eec86bf1f0a9cf6d376e143b712fcda8"
+    },
+    "numpy_decoder_equivalence.json": {
+      "size": 298,
+      "sha256": "3473bb953a880b414050e6c3763340b9ef3ed00e2c429099b86798d7471668f9"
+    },
+    "README.md": {
+      "size": 3068,
+      "sha256": "0fe3eb37a8523ad3fcd370c500c3a2d846169d9c9d465383be411681d1b238d5"
+    },
+    "reference_validation.json": {
+      "size": 891,
+      "sha256": "042147ad4ac0faf7727d558a732c55b4d36f3f38260989848cd1ab173b0b4048"
+    },
+    "requirements-target.txt": {
+      "size": 20,
+      "sha256": "3dce4151fb6e825170459fb0ff5f2bd4db1a33c5f47882befa29ed25cc17c779"
+    },
+    "hardware/arch_b4096.json": {
+      "size": 36,
+      "sha256": "6feb79ba36f1f030f7827d94cdd8b43ff03faec72dad8e4a4e4d72704ed8490e"
+    },
+    "hardware/post_route_drc.rpt": {
+      "size": 302848,
+      "sha256": "bb7f8a1d3043d38c70bd1e4a575064013a65154f52bb08c71cd8d23667fd997c"
+    },
+    "hardware/post_route_status.rpt": {
+      "size": 651,
+      "sha256": "7e891157288fd4eb6533021ffa53062f213755fe7e75835cdef738293d851526"
+    },
+    "hardware/post_route_timing.rpt": {
+      "size": 2829206,
+      "sha256": "0062dc8a2e2bf989aaee6e5a0713f5a21cda723c9ef640ba7c8552ba9f8c6c29"
+    },
+    "hardware/Shadow_ultra_dpu_b4096.xsa": {
+      "size": 3707718,
+      "sha256": "66da19f6b767f24ea52ec7d7bd34cb12513971ac4779db5c0d272f5c691b06d3"
+    },
+    "hardware/system_wrapper_dpu_b4096.bit": {
+      "size": 7797810,
+      "sha256": "8ca43d07032e3bcab79657f9f6487de106808eca24bb60ad292cf9f9eb306b62"
+    },
+    "reference_source/arm_decoder.py": {
+      "size": 8740,
+      "sha256": "ee4ac8f8bc9bea892d87d31a1ddb65cb20294e76896a7e6c70a1b59898e12a81"
+    },
+    "reference_source/model.py": {
+      "size": 5349,
+      "sha256": "b6110a31b0609e4548b92e409395f070c0a7a5207c640c4af824d7f9e32aebdf"
+    },
+    "reference_source/webcam_test.py": {
+      "size": 20422,
+      "sha256": "c272973440e09b0be0347d3eef1cef5590bf886fecd8af7ba1856ce530c91614"
+    },
+    "reference_source/wrist_decoder.py": {
+      "size": 7934,
+      "sha256": "7011e6a456c8a00c11ad5d5d6cadee2b5a386cf9fa4b8bdded1400534bbe941b"
+    },
+    "runtime/arm_chain_dpu.py": {
+      "size": 15506,
+      "sha256": "aa73055539ba27cbad5e41590fd2be22b6d41315523f711207c99280aae8c382"
+    },
+    "vitis_ai/compile_xmodels.sh": {
+      "size": 722,
+      "sha256": "22c7221013313e507878dc7952fd33d931ecf942123f59effa1c1572313bf777"
+    },
+    "vitis_ai/quantize_models.py": {
+      "size": 3143,
+      "sha256": "07c1f51ba3b8f405e34e1ee806a027f7c17d4efd7102470993bd8e4b7debc00e"
+    },
+    "vitis_ai/run_vitis_ai_3.md": {
+      "size": 923,
+      "sha256": "602d9227a3bee582ce7c0ec117ab14a5f36dedf1f0450cf93d2ceae7808b5810"
+    },
+    "hardware/aie_primitive.json": {
+      "size": 306,
+      "sha256": "ced1a1288e39ec6f5bcb25802520ba033e730b9ccd24191687074f12d383a35f"
+    },
+    "hardware/psu_init.c": {
+      "size": 651198,
+      "sha256": "25bd230c93acb91c150d1858e44695d50e65040468e9867ba15fd508bec031ad"
+    },
+    "hardware/psu_init.h": {
+      "size": 1257704,
+      "sha256": "ff82b055f22818af5dfa74af7fa5f9702ddb3d492ebb97d861a015866b2912f0"
+    },
+    "hardware/psu_init.html": {
+      "size": 50050,
+      "sha256": "a2eb4401e24094e5834aac20622eeefe0416828ef000421ad3eaef84ce63acf0"
+    },
+    "hardware/psu_init.tcl": {
+      "size": 631808,
+      "sha256": "047893b1c7e27a604d01568f02a747dd1d58e311973d8862056506b92616766f"
+    },
+    "hardware/psu_init_gpl.c": {
+      "size": 651589,
+      "sha256": "ac3b904c1a6dd132e7e4e8f8321c7daf5b6b2deef095ea62c198382d79d46734"
+    },
+    "hardware/psu_init_gpl.h": {
+      "size": 1258322,
+      "sha256": "dec00d00b0fdabab79610c3ae4fcd9500506512378f4eeacfc0b6343c79679a1"
+    },
+    "hardware/Shadow_ultra_dpu_b4096.bit": {
+      "size": 7797810,
+      "sha256": "1a7ff187c3cd848234c7c6344a69003a6de43b33afa584be06559a983af871a7"
+    }
+  },
+  "model": {
+    "architectures": [
+      "v2",
+      "v2"
+    ],
+    "input": {
+      "shape": [
+        1,
+        3,
+        144,
+        256
+      ],
+      "layout": "NCHW",
+      "range": [
+        -1.0,
+        1.0
+      ]
+    },
+    "output": {
+      "shape": [
+        1,
+        9,
+        36,
+        64
+      ],
+      "layout": "NCHW"
+    },
+    "keypoints": [
+      "head",
+      "left_shoulder",
+      "right_shoulder",
+      "left_elbow",
+      "right_elbow",
+      "left_wrist",
+      "right_wrist",
+      "left_hip",
+      "right_hip"
+    ]
+  },
+  "decoder": {
+    "feature_count": 32,
+    "layers": [
+      32,
+      64,
+      32,
+      1
+    ],
+    "metrics": {
+      "elbow_pck_12px": 0.9078211784362793,
+      "wrist_pck_12px": 0.8128491640090942,
+      "full_chain_pck_12px": 0.7709497213363647,
+      "mean_elbow_error_px": 6.707149028778076,
+      "mean_wrist_error_px": 9.062942504882812
+    },
+    "npz_keys": [
+      "0.bias",
+      "0.weight",
+      "2.bias",
+      "2.weight",
+      "4.bias",
+      "4.weight"
+    ],
+    "peaks_per_channel": 3,
+    "chains_per_side": 72,
+    "joint_pair_search": true,
+    "same_elbow_penalty": {
+      "minimum_normalized_separation": 0.18,
+      "weight": 10.0
+    },
+    "temporal_weight": 0.35,
+    "min_forearm_ratio": 0.45,
+    "down_pose_weight": 0.5,
+    "velocity_clip_shoulder_span": 0.35
+  },
+  "onnx_equivalence": {
+    "baseline": {
+      "max_abs_error": 5.155801773071289e-06,
+      "mean_abs_error": 7.634346843587991e-07
+    },
+    "wrist": {
+      "max_abs_error": 7.271766662597656e-06,
+      "mean_abs_error": 7.657307605768437e-07
+    }
+  },
+  "hardware": {
+    "tool": "Vivado 2022.2",
+    "dpu": "DPUCZDX8G v4.1 B4096",
+    "post_route_wns_ns": 0.786,
+    "drc_errors": 0,
+    "bitstream_includes_dpu": true,
+    "xmodel_status": "pending_vitis_ai_3_linux_quantize_compile",
+    "target_runtime_status": "pending_linux_vart_and_ov5640_frame_source",
+    "existing_vitis_domain": "standalone_domain"
+  },
+  "packaged_at_utc": "2026-09-20T10:24:24.428380+00:00"
+}
