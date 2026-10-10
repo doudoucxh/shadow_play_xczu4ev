@@ -1,0 +1,7 @@
+/dts-v1/;
+/plugin/;
+
+/* Only after the prepare overlay, valid clocks and USB0 reset release. */
+&dwc3_0 {
+    status = "okay";
+};

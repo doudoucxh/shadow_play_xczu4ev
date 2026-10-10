@@ -1,0 +1,47 @@
+/dts-v1/;
+/plugin/;
+
+/* MPSoC-P4 USB0: USB3320 ULPI -> GL3523 -> four host sockets.
+ * Apply before releasing USB0 resets and enabling the DWC3 child.
+ * No PL, SD, DDR, UART, USB1 or SerDes changes.
+ */
+&pinctrl0 {
+    status = "okay";
+    piying_usb0_default: piying-usb0-default {
+        mux { groups = "usb0_0_grp"; function = "usb0"; };
+        conf { groups = "usb0_0_grp"; power-source = <1>; };
+        conf-rx {
+            pins = "MIO52", "MIO53", "MIO55";
+            bias-high-impedance;
+            drive-strength = <12>;
+            slew-rate = <0>;
+        };
+        conf-tx {
+            pins = "MIO54", "MIO56", "MIO57", "MIO58", "MIO59",
+                   "MIO60", "MIO61", "MIO62", "MIO63";
+            bias-disable;
+            drive-strength = <4>;
+            slew-rate = <1>;
+        };
+        mux-reset { groups = "gpio0_24_grp"; function = "gpio0"; };
+        conf-reset { pins = "MIO24"; bias-disable; };
+    };
+};
+
+&usb0 {
+    status = "okay";
+    pinctrl-names = "default";
+    pinctrl-0 = <&piying_usb0_default>;
+    /* Override the unrelated reference-board expander reset. */
+    /* Match the vendor FSBL: MIO24 releases/resets the hub. The USB3320
+     * PHY's MIO25 line retains its board pull-up, as in the reference BD. */
+    reset-gpios = <&gpio 24 1>;
+    assigned-clock-rates = <250000000 20000000>;
+    dr_mode = "host";
+};
+
+&dwc3_0 {
+    status = "disabled";
+    dr_mode = "host";
+    maximum-speed = "high-speed";
+};

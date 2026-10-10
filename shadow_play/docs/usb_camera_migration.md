@@ -13,7 +13,11 @@
 - 当前 DPU 工程导出的 `system.hwh` 也显示 USB0、USB1、USB3_0、USB3_1 均未启用。
 - 使用现有 G13 版 `servo10_vision` 镜像，独立 USB HDMI 输出完成 13 帧灰度测试图切换，MM2S 状态 `0x11000`。这是显示通路测试，**不是摄像头画面或人体识别验收**。
 
-因此，仅修改 Python 的 `/dev/video0` 不能让这块板子出图。后续还需根据实际板版本启用 USB0 的引脚、时钟、电源域、PHY/Hub 复位和 Linux 设备树。当前没有改动 BOOT.BIN、image.ub、uEnv.txt，也没有在线卸载/重绑驱动或切换 FPGA。
+因此，仅修改 Python 的 `/dev/video0` 不能让这块板子出图。根据用户补充的官方资料，已继续完成 USB0 的启动修复候选，详见 [USB 启动修复说明](../hardware/usb/README.md)。当前活动 BOOT.BIN、image.ub、uEnv.txt 保持原样，候选尚未启用。
+
+本轮进一步实测：USB0 的内部复位 1059/1061/1063 均为 1，MIO52–63 为 GPIO。Linux 临时设备树加载后，PMU 固件对 USB0 的引脚、时钟和电源域返回 `-13`，驱动未绑定；已撤回临时覆盖并验证原禁用状态恢复。故需要更新 FSBL 的 PS 初始化和 PMU 配置对象，单改设备树仍不够。
+
+候选已在板端构建并回读校验：`32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f`。它只替换 FSBL，原 PMUFW、视觉 PL、BL31、DTB 和 U-Boot 的字节保持一致。Windows 与板端各 8 项启动包/预检测试通过，旧 FSBL 被启用工具正确拒绝。**尚未重启试用候选，也尚未取得 USB 摄像头实拍画面。**
 
 ## 新软件的行为
 
@@ -65,7 +69,7 @@ sh tools/run_usb_follow.sh --usb-device /dev/video0 --usb-format YUYV \
 
 已核对本机官方资料盘中的 `MPSoC_P4_2CG_4EV_1V7.pdf` 第 5、25、26 页：USB0 ULPI 使用 MIO52–63；MIO24 为 `HUB_RESET_IO`，MIO25 为 `USB_RESET_N`；USB3320 接 USB Hub，再分到外部接口。
 
-同时，官方 `4_SourceCode/3_Embedded_Linux/vivado_prj/4ev/base_vcu` 的参考 BD 把 USB0 reset 设为 MIO24。它与 V1.7 原理图对 PHY/Hub 两条复位线的区分不能简单等同。**待用户确认实际板版本、摄像头型号和插入接口后再确定初始化方案**，不要凭旧 BD 在运行中的板子写引脚寄存器。
+官方 `4_SourceCode/3_Embedded_Linux/vivado_prj/4ev/base_vcu` 的参考 BD 把 USB0 reset 设为 MIO24，实际控制 Hub；USB3320 的 MIO25 复位线由板上拉电路释放。修复候选遵循这一参考配置：USB0 ULPI/MIO52–63、共享 MIO24 复位、USB2 high-speed；保留 MIO25，不启用 USB3 SerDes。用户补充的《MPSoC-P4之嵌入式Linux开发指南 V2.0》第 1102–1104、1112–1114 页已核对，普通 USB 摄像头的具体型号与格式待成功枚举后直接读取。
 
 系统侧配置依据：[AMD DWC3 Xilinx Linux USB driver](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841729)、[匹配 2022.2 的 Xilinx DWC3 驱动源码](https://github.com/Xilinx/linux-xlnx/blob/xlnx_rebase_v5.15_LTS_2022.2/drivers/usb/dwc3/dwc3-xilinx.c)。
 
