@@ -1,7 +1,7 @@
 """FOLLOW entry with the shadow_play camera v2 sender integrated.
 
 Source: handoff_visual_follow_20260922/follow/board_follow.py.
-This review copy preserves the vision/display logic; additions connect PoseSender.
+Adds PoseSender and a separate UVC input/HDMI path; legacy VDMA remains available.
 Original handoff file and archives are unchanged. Requires the original board runtime.
 
 Reversible on-board YOLO test with independent CPU-owned HDMI buffers.
@@ -22,6 +22,7 @@ import time
 import cv2
 import numpy as np
 sys.path.insert(0, '/opt/shadow/yolo_pose9/runtime')
+sys.path.append('/opt/shadow/yolo_pose9/follow')
 from runtime import DpuModel, VdmaFullFrame, check_hardware_fingerprint, EDGES
 from postprocess import preprocess, decode
 from orientation import orient_frame
@@ -30,6 +31,7 @@ from pipeline_input import QuantizedInput, LatestCamera
 from display_queue import DisplayQueue
 from pose_responsive import PoseStabilizer
 from pose_sender import PoseSender
+from usb_camera import add_usb_arguments, open_usb
 
 class Display:
     N = 1280 * 720 * 3
@@ -120,12 +122,17 @@ class Display:
         self.out.close()
         os.close(self.fd)
 
-def main():
+def main(default_camera='vdma'):
     parser=argparse.ArgumentParser()
     parser.add_argument('--frames',type=int,default=0)
     parser.add_argument('--pose-port',type=int,default=56000,help='shadow_play loopback UDP input port')
+    parser.add_argument('--camera',choices=('vdma','usb'),default=default_camera)
+    parser.add_argument('--display',choices=('hdmi','none'),default='hdmi')
+    parser.add_argument('--no-send',action='store_true',help='test vision without publishing control input')
+    add_usb_arguments(parser)
     args=parser.parse_args()
     if not 1 <= args.pose_port <= 65535:parser.error('--pose-port must be in [1, 65535]')
+    if args.frames < 0:parser.error('--frames must be nonnegative')
     lock=open('/tmp/shadow-yolo-board-test.lock','w')
     fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     stopping=False
@@ -135,27 +142,32 @@ def main():
     signal.signal(signal.SIGTERM,stop)
     signal.signal(signal.SIGINT,stop)
     cv2.setNumThreads(1)
-    check_hardware_fingerprint()
-    model=DpuModel('/opt/shadow/yolo_pose9/model/yolo_pose9_b4096.xmodel')
-    fixes=[model.outs[j].get_attr('fix_point') for j in model.order]
-    camera=VdmaFullFrame(False)
-    pose_fd=os.open('/dev/mem',os.O_RDONLY|os.O_SYNC)
-    pose_regs=mmap.mmap(pose_fd,65536,prot=mmap.PROT_READ,offset=0xA0010000)
-    display=None
-    renderer=None
-    producer=LatestCamera(camera)
-    prepare=QuantizedInput(model.input_fix)
+    camera=pose_fd=pose_regs=display=renderer=producer=None
     reference_verified=False
     stabilizer=PoseStabilizer()
     count=0; report=time.monotonic(); last_count=0; last_presented=0; fps=0.
     sender=None
     try:
-        # Construction inside try keeps the original cleanup active on failure.
-        sender=PoseSender(port=args.pose_port)
+        if args.camera=='usb':
+            producer=open_usb(args)
+            # Validate the camera before initializing DPU or touching HDMI.
+            producer.read()  # Discard this validation frame; DPU startup may take time.
+            print('USB_CAMERA_READY '+json.dumps(producer.metadata),flush=True)
+            check_hardware_fingerprint()
+        else:
+            check_hardware_fingerprint()
+            camera=VdmaFullFrame(False)
+            pose_fd=os.open('/dev/mem',os.O_RDONLY|os.O_SYNC)
+            pose_regs=mmap.mmap(pose_fd,65536,prot=mmap.PROT_READ,offset=0xA0010000)
+            producer=LatestCamera(camera)
+        model=DpuModel('/opt/shadow/yolo_pose9/model/yolo_pose9_b4096.xmodel')
+        fixes=[model.outs[j].get_attr('fix_point') for j in model.order]
+        prepare=QuantizedInput(model.input_fix)
+        if not args.no_send:sender=PoseSender(port=args.pose_port)
         while not stopping and (not args.frames or count<args.frames):
             start=time.monotonic()
             if renderer is not None:renderer.check()
-            if struct.unpack_from('<I',pose_regs,0x34)[0]&0x8ff1:raise RuntimeError('Pose drain DMA error')
+            if pose_regs is not None and struct.unpack_from('<I',pose_regs,0x34)[0]&0x8ff1:raise RuntimeError('Pose drain DMA error')
             frame,sequence,captured=producer.read()
             value,transform=prepare(frame)
             t=time.monotonic()
@@ -177,7 +189,8 @@ def main():
             pose=stabilizer.update(boxes,scores,points,captured)
             stability_ms=(time.monotonic()-t_stable)*1000
             # Final tracked pose, including None; do not reuse old coordinates.
-            sender.publish(pose,sequence,captured,stabilizer.track_id)
+            if time.monotonic()-captured>.25:raise RuntimeError('Refusing stale inference result')
+            if sender is not None:sender.publish(pose,sequence,captured,stabilizer.track_id)
             if pose is not None:
                 for a,b in EDGES:
                     if min(pose[a,2],pose[b,2])>=.25:
@@ -186,41 +199,58 @@ def main():
                     if c>=.25:
                         pos=(round(float(px)),round(float(py)))
                         cv2.circle(frame,pos,5,(0,255,255),-1)
-            cv2.putText(frame,f'YOLOv8n Pose9 | FOLLOW | ROT180 | {fps:.1f} FPS',(14,30),cv2.FONT_HERSHEY_SIMPLEX,.72,(0,255,0),2)
+            label=f'USB ROT{args.usb_rotation}' if args.camera=='usb' else 'VDMA ROT180'
+            cv2.putText(frame,f'YOLOv8n Pose9 | FOLLOW | {label} | {fps:.1f} FPS',(14,30),cv2.FONT_HERSHEY_SIMPLEX,.72,(0,255,0),2)
             if pose is None:cv2.putText(frame,'NO TRACK',(14,60),cv2.FONT_HERSHEY_SIMPLEX,.7,(0,200,255),2)
-            if display is None:
-                display=Display(camera.regs)
+            if args.display=='hdmi' and display is None:
+                if args.camera=='usb':
+                    from usb_hdmi import UsbHdmiDisplay
+                    display=UsbHdmiDisplay()
+                else:display=Display(camera.regs)
                 display.start(frame)
                 renderer=DisplayQueue(display)
-                print('YOLO_HDMI_READY input_rotation=180 display=upright buffers=0x71000000',flush=True)
-            else:
+                print(f'YOLO_HDMI_READY camera={args.camera} buffers=0x71000000',flush=True)
+            elif renderer is not None:
                 renderer.submit(frame,sequence,captured)
             count+=1
             now=time.monotonic()
             if now-report>=2 or count==1:
                 inference_fps=(count-last_count)/(now-report)
-                fps=(renderer.presented-last_presented)/(now-report)
-                last_presented=renderer.presented
-                print('YOLO_STATUS '+json.dumps(dict(frames=count,displayed=renderer.presented,fps=fps,inference_fps=inference_fps,dpu_ms=dpu_ms,
-                    display_drops=renderer.dropped,display_frame_age_ms=renderer.frame_age_ms,
-                    display_interval_p95_ms=float(np.percentile(renderer.intervals,95)) if renderer.intervals else None,
-                    display_interval_max_ms=max(renderer.intervals) if renderer.intervals else None,
+                presented=renderer.presented if renderer is not None else 0
+                fps=(presented-last_presented)/(now-report) if renderer is not None else inference_fps
+                last_presented=presented
+                print('YOLO_STATUS '+json.dumps(dict(frames=count,camera=args.camera,display=args.display,
+                    sending=sender is not None,displayed=presented,fps=fps,inference_fps=inference_fps,dpu_ms=dpu_ms,
+                    display_drops=renderer.dropped if renderer else 0,display_frame_age_ms=renderer.frame_age_ms if renderer else None,
+                    display_interval_p95_ms=float(np.percentile(renderer.intervals,95)) if renderer and renderer.intervals else None,
+                    display_interval_max_ms=max(renderer.intervals) if renderer and renderer.intervals else None,
                     loop_ms=(now-start)*1000,frame_age_ms=(now-captured)*1000,
                     track_id=stabilizer.track_id,selected_person=stabilizer.selected,stability_ms=stability_ms,
                     sequence=sequence,producer_frames=producer.published,dropped=producer.dropped,rejected=producer.rejected,people=len(scores),confidence=float(scores[stabilizer.selected]) if stabilizer.selected is not None else 0,
-                    video_status=[hex(display.rd(o)) for o in (4,0x34)],
-                    pose_status=hex(struct.unpack_from('<I',pose_regs,0x34)[0]))),flush=True)
+                    video_status=[hex(display.rd(o)) for o in ((4,) if args.camera=='usb' else (4,0x34))] if display else [],
+                    pose_status=hex(struct.unpack_from('<I',pose_regs,0x34)[0]) if pose_regs is not None else None)),flush=True)
                 report=now;last_count=count
     finally:
         try:
             if sender is not None:sender.close()
         finally:
+            renderer_stopped=renderer is None
             try:
-                if renderer is not None:renderer.close()
+                if renderer is not None:
+                    renderer.close()
+                    renderer_stopped=True
                 if display is not None:display.restore()
             finally:
-                if display is not None:display.close()
-                producer.close()
-                pose_regs.close();os.close(pose_fd);camera.release();lock.close()
+                try:
+                    # Never unmap buffers still owned by a failed display worker.
+                    if display is not None and renderer_stopped:display.close()
+                finally:
+                    try:
+                        if producer is not None:producer.close()
+                    finally:
+                        if pose_regs is not None:pose_regs.close()
+                        if pose_fd is not None:os.close(pose_fd)
+                        if camera is not None:camera.release()
+                        lock.close()
 
 if __name__=='__main__':main()
