@@ -16,7 +16,10 @@
 | HDMI | G13 `servo10_vision` 上 120 帧实拍推理显示通过，随后持续预览；MM2S `0x11000`，日志无显示错误 |
 | 重启 | U-Boot 输出 `Piying USB2 and SD disable-wp applied`；Linux 自行枚举相机，不依赖手动 configfs overlay；SD `ro=0` |
 | 电机 | 整轮保持独立电源关闭；PWM `armed=false`、`enabled_mask=0`；实际预览使用 `--no-send` |
-| 待现场验收 | 当前测试画面日志为 `people=0`。需要用户进入镜头确认骨架、左右对应及方向，不能据此宣布真人跟随或电机联动完成 |
+| 真人显示验收 | 用户于 2026-10-10 现场确认“画面实时且骨架正常”；USB 摄像头到 HDMI 的真人骨架显示通过 |
+| 待联调 | 左右手与机构轴的对应、camera-v2 到总控的实际人体输入、真实电机跟随尚未验收 |
+
+现场确认来自用户观察。此前无人进入镜头时的测试日志为 `people=0`，保留为当时状态；本次反馈不代表已经验证电机动作，也不改变预览的 `--no-send` 设置。
 
 Linux `5.15.36-xilinx-v2022.2` 已内置 UVC、DWC3、xHCI，OpenCV 4.5.2 支持 V4L2。原故障是 FSBL 未初始化/授权 USB0，且设备树禁用控制器。新 BOOT 只更换 FSBL，原 PMUFW、视觉 PL、BL31、DTB、U-Boot 不变；新增 USB 设备树覆盖由 `uEnv.txt` 在启动时加载。原 `image.ub`、`boot.scr` 保留，启动文件有备份，详见 [USB 启动修复说明](../hardware/usb/README.md)。
 
@@ -95,7 +98,7 @@ systemctl stop shadow-usb-preview.service
 
 系统侧配置依据：[AMD DWC3 Xilinx Linux USB driver](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841729)、[匹配 2022.2 的 Xilinx DWC3 驱动源码](https://github.com/Xilinx/linux-xlnx/blob/xlnx_rebase_v5.15_LTS_2022.2/drivers/usb/dwc3/dwc3-xilinx.c)。
 
-尚需现场实测真人骨架、camera-v2 到总控的实际人体输入、最终机构跟随。之后再将已确认的 USB 入口集成进正式根文件系统，完成整机自启及断电启动验收；本次仅验证了正常软件重启。
+真人骨架显示已由用户现场确认。尚需实测 camera-v2 到总控的实际人体输入、左右手与机构轴对应、最终机构跟随。后续还需将已确认的 USB 入口集成进正式根文件系统，完成整机自启及断电启动验收；本次启动测试仅验证了正常软件重启。
 
 ## 验证与复现
 

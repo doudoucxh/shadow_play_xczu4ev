@@ -1,6 +1,6 @@
 # MPSoC-P4 / XCZU4EV USB2 启动修复
 
-2026-10-10：**新 FSBL 与持久 USB 覆盖已启用，正常软件重启验证通过。**系统自动识别 icSpring `32e6:9211` 摄像头，`/dev/video0` 实拍通过；USB+DPU+HDMI 约 15 fps。真人骨架与机构跟随尚待现场验收，详见 [迁移记录](../../docs/usb_camera_migration.md)。
+2026-10-10：**新 FSBL 与持久 USB 覆盖已启用，正常软件重启验证通过。**系统自动识别 icSpring `32e6:9211` 摄像头，`/dev/video0` 实拍通过；USB+DPU+HDMI 约 15 fps。用户已现场确认“画面实时且骨架正常”；机构映射及真实电机跟随尚待联调，详见 [迁移记录](../../docs/usb_camera_migration.md)。
 
 ## 为什么应用程序之外还要改启动程序
 
