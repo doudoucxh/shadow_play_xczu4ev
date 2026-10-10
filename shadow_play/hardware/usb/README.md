@@ -1,6 +1,6 @@
-# MPSoC-P4 / XCZU4EV USB2 启动修复候选
+# MPSoC-P4 / XCZU4EV USB2 启动修复
 
-2026-10-10：候选已编译、封装并在板端构建/回读验证，**尚未启用启动验证**。不得把这里的构建成功当作 USB 枚举或人体识别成功。
+2026-10-10：**新 FSBL 与持久 USB 覆盖已启用，正常软件重启验证通过。**系统自动识别 icSpring `32e6:9211` 摄像头，`/dev/video0` 实拍通过；USB+DPU+HDMI 约 15 fps。真人骨架与机构跟随尚待现场验收，详见 [迁移记录](../../docs/usb_camera_migration.md)。
 
 ## 为什么应用程序之外还要改启动程序
 
@@ -15,7 +15,9 @@
 - 新 BSP 中 SD 控制器仍是 `0xFF170000`、4 bit、无 WP；PM 配置对象已包含 `NODE_USB_0` 的 A53 授权。
 - `build_usb_fsbl.tcl` 使用 Vitis 2022.2 的 FSBL BSP，启用串口 DEBUG_INFO。原 PMUFW 沿用，不使用新平台自动生成的 PMUFW。
 - 原板 BOOT 与本地已验证引导组件逐分区比对。`usb_boot_candidate.py` 只替换 FSBL，保留板上原始 PMUFW、视觉 bitstream、BL31、DTB、U-Boot，包括与本地其他版本不同的那份 PL 数据。
-- 八项测试覆盖源文件变化拒绝、模板损坏拒绝、PMU 不变、分区搬移、分区校验和、保留槽校验、旧固件与未初始化 ULPI 引脚拒绝。Windows/板端均通过；板端候选再次重建结果与保存文件逐字节一致。
+- 启动包及预检现为十项测试，覆盖源文件变化拒绝、模板损坏拒绝、PMU 不变、分区搬移、分区校验和、保留槽校验、旧固件与错误 ULPI 功能拒绝，以及 USB 空闲/上电状态区别。原八项在 Windows/板端通过，新增两项在 Windows 通过；板端候选重建结果与保存文件逐字节一致。
+- 新 FSBL 初始化后，闲置 USB0 核心复位 1059 可能仍为 1；Linux wrapper 获取电源域时，PMU 正常释放它。预检仅在 wrapper 绑定后要求三路复位全为 0，不手工写 MMIO 释放复位。
+- FSBL 已设置 USB bus 约 250 MHz、ref 20 MHz；设备树不再重复设置 `assigned-clock-rates`，避免在获取电源域之前设置时钟导致 `-13`。
 
 ## 已保存的板端文件
 
@@ -25,29 +27,53 @@
 | --- | --- |
 | `BOOT-original.BIN` | `50aad4a809b345d2491380e6d7ca85a21b4cbf7e6b816616bfa7435f2204ce96` |
 | `BOOT-usb-candidate.BIN` | `32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f` |
-| `prepare.dtbo` | `8ace44533632ecfd166b2b840e173662ee0d8659891c1e5f5c40623f1ebe483c` |
+| 首次实测 `prepare.dtbo` | `8ace44533632ecfd166b2b840e173662ee0d8659891c1e5f5c40623f1ebe483c`；归档，最终版本见下表 |
 | `start.dtbo` | `ffe61864ef835512d897bc3e2718a7bdfbde6dcb82660e011ae8978288d1db3d` |
 
-活动 `/run/media/mmcblk0p1/BOOT.BIN` 仍为原版；`uEnv.txt` 仍为原 SD `disable-wp` 修复版本。两个 BOOT 都是 9,522,192 字节。Git 保存了紧凑模板 `boot_patch_20261010/`，可用原板 BOOT 重建同一候选；生成工具默认拒绝覆盖任何已有输出，也不会自动激活启动。
+活动 `/run/media/mmcblk0p1/BOOT.BIN` 已为 `32dd1cd3…` USB 版本，两个 BOOT 都是 9,522,192 字节。第一分区另有原版 `BOOT-before-usb-20261010.BIN`。Git 保存紧凑模板 `boot_patch_20261010/`，可用原板 BOOT 重建相同文件；生成工具不会自动激活启动。
 
-## 下一步实测顺序
+最终覆盖与安装器保存于板端 `piying/usb-boot-finish-v2/`，本地对应 `release/`、`uEnv.usb.txt` 及 `../../tools/install_usb_boot_overlay.py`：
 
-1. 确认舵机独立电源关闭，保持板子、USB 摄像头、PS 串口连接。
-2. 将原 BOOT 另备份到 FAT 启动分区，再将已校验的候选通过临时文件替换活动 BOOT，同步完成后重启。`image.ub`、`boot.scr`、`uEnv.txt` 保持原样。若启动失败，断开板子电源，用读卡器恢复原 BOOT；不要删除备份。
-3. 登录 Linux 后先检查新 FSBL 对 USB0 的初始化。下面的工具会拒绝旧固件；不直接写 MMIO、不加载 FPGA、不启动舵机。
+| 文件 | SHA-256 |
+| --- | --- |
+| 最终 `prepare.dtbo` | `37dd213519389c0fa69a51e20e938260b70535960265da7674a2dbecfb4a77af` |
+| `start.dtbo` | `ffe61864ef835512d897bc3e2718a7bdfbde6dcb82660e011ae8978288d1db3d` |
+| `boot.dtbo`，启动分区命名 `piying-usb2-20261010.dtbo` | `80ffef7773fc79e1f46e98457de94e867bf99c406aadc9a0c531f430d1ec6b79` |
+| 活动 `uEnv.txt` | `c7c1db61b2dfac2bb6dad137a7d2f041345ff98eb76b4d594a1431918e800770` |
+| 原 SD 修复 `uEnv-before-usb-20261010.txt` | `93e89d104c9f930009afab056bbca244bb80864ef1972868a283dc540bcef466` |
+
+原 `image.ub` SHA 为 `0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc`，原 `boot.scr` 为 `9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1`，均未替换。
+
+## 启动方式与验证
+
+`uEnv.txt` 在原 FIT 完成 `bootm prep` 后应用 USB 覆盖，保留 U-Boot 的 chosen/initrd 修正及既有 SD `disable-wp`。仅改 USB0/pinctrl，不更换完整 FDT、不增长 FDT 到相邻 initrd。UBoot 覆盖失败时重新加载原 FIT，并尝试仅应用 SD 修复。
+
+原厂 `boot.scr` 使用未加引号的 `test -n $uenvcmd`。首个较长入口触发参数限制，USB 与 SD 修复均未执行；已用 U-Boot 内存启动恢复可写，最终改为短 `uenvcmd=run piying_usb_boot; run piying_sd_boot`。修订后完整自动重启出现 `Piying USB2 and SD disable-wp applied`，Linux 自动枚举摄像头且 `ro=0`。失败草稿作为 `uEnv-long-entry-20261010.txt` 留存，不参与启动。
+
+安装器严格校验当前 BOOT、image.ub、原 uEnv、覆盖及新环境哈希，先备份再原子替换。七项回归覆盖预检不写盘、备份与幂等、源文件变化拒绝、载荷变化拒绝、备份冲突、安装不完整以及短入口回归；Windows 与板端均通过。
+
+已经安装的实物板不需再应用运行时覆盖。只读复查可执行：
 
 ```sh
-cd /run/media/mmcblk0p2/piying/usb-boot-20261010
-python3 enable_p4_usb_host.py --overlay-dir .
-python3 enable_p4_usb_host.py --overlay-dir . --apply
+cd /run/media/mmcblk0p2/piying/usb-boot-finish-v2
+python3 tools/install_usb_boot_overlay.py \
+  --overlay hardware/usb/release/boot.dtbo --env hardware/usb/uEnv.usb.txt
+ls -l /dev/video*
+cat /sys/block/mmcblk0/ro
 ```
 
-4. 工具先加载 prepare，仅启用 USB wrapper；确认驱动绑定、复位释放、ULPI 配置后才启用 DWC3 子节点。出现错误时停止，不重复叠加覆盖，不操作 SD 驱动。
-5. 用已部署的 `shadow-usb-camera-20261010` 做设备枚举、格式查询、60 帧实拍、USB+DPU `--display none --no-send`，最后再做 HDMI。重启恢复的是原视觉 PL，只有重新验证并加载 G13 镜像后，才能使用带该镜像白名单的 HDMI 路径。
-6. 实拍通过后再做持久 USB 设备树和启动入口集成。当前覆盖仅本次运行有效，尚未设置自启。
+`enable_p4_usb_host.py` 与 prepare/start 覆盖保留用于“新 FSBL + 原禁用设备树”的分阶段调试；USB 已开机启用时不要再次 `--apply`。任何错误都应先查看状态，不重复叠加、不在线操作 SD 驱动。
+
+本次原根文件系统仍在 RAM，USB 视觉入口存于 SD，未改为整机开机自动预览。USB 驱动可随系统自动初始化；每次重启后 HDMI 使用 G13 运行镜像仍需关闭舵机电源并按迁移说明加载。
+
+## 回退
+
+只回退 USB 设备树：把第一分区 `uEnv-before-usb-20261010.txt` 复制回 `uEnv.txt`，保留原 SD 修复。完整恢复旧启动还需把 `BOOT-before-usb-20261010.BIN` 复制回 `BOOT.BIN`。操作前核对上述备份哈希，保持舵机断电，保存后 `sync` 再重启。Linux 不能启动或 SD 只读时，断开板子电源，用读卡器复制这两份已保存备份；不格式化、不删除备份。
 
 ## 重建
 
-在 Windows 的 Vivado/Vitis 2022.2 命令环境中，依次执行 `create_usb_ps.tcl`、`build_usb_fsbl.tcl`。输出位于项目 `.review_work/usb_camera_20261010/`。如修改了 XSA，必须使用新的 Vitis 输出目录重建，不能复用旧 BSP。两个 DTS 使用 `dtc -@` 编译；对从实际板子导出的 FDT 运行 `fdtoverlay` 验证，已检查差异只涉及 USB0/pinctrl。
+在 Windows 的 Vivado/Vitis 2022.2 命令环境中，依次执行 `create_usb_ps.tcl`、`build_usb_fsbl.tcl`。输出位于项目 `.review_work/usb_camera_20261010/`。如修改了 XSA，必须使用新的 Vitis 输出目录重建，不能复用旧 BSP。FSBL 编译时间可能改变二进制，重新构建后需重新校验哈希。
+
+在 Ubuntu 执行 `sh build_overlays.sh 原板导出的.dtb 新输出目录`，使用 `dtc -@` 与 `fdtoverlay` 编译、离线应用。已验证能重建与 `release/` 完全相同的三个 DTBO；差异仅为 USB0/pinctrl。不要将 Linux 导出的完整 FDT 直接替换启动 FDT，其中有本次启动的动态 initrd 信息。
 
 封装时使用原有 PMUFW、BL31、DTB、U-Boot 和任意同尺寸的原版 PL 作为 bootgen 模板；最终板端重建始终复制原板 PL，并核对全部保留分区。`package_boot_patch.py` 将 bootgen 模板与实际源 BOOT 的校验清单生成紧凑补丁。模板或工具改变后需重新验证，不能沿用本文候选哈希。

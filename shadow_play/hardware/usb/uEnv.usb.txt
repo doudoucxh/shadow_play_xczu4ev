@@ -1,0 +1,9 @@
+# MPSoC-P4 USB2 + existing SD1 disable-wp fix. Original FIT stays intact.
+# bootm prep keeps its chosen/initrd fixups; the overlay only changes USB0/pinctrl.
+# The reviewed U-Boot allocates enough FDT padding. Never grow into its adjacent initrd.
+# On overlay failure, reload the untouched FIT and retain the SD-only boot path.
+# Vendor boot.scr uses unquoted test -n $uenvcmd; keep its expansion short.
+piying_load= fatload mmc 0:1 0x10000000 image.ub && bootm start 0x10000000 && bootm loados && bootm ramdisk && bootm prep
+piying_usb_boot=if fatload mmc 0:1 0x0f000000 piying-usb2-20261010.dtbo && run piying_load && fdt apply 0x0f000000 && fdt set /axi/mmc@ff170000 disable-wp; then echo Piying USB2 and SD disable-wp applied; bootm go; fi; echo Piying USB override returned
+piying_sd_boot=if run piying_load && fdt set /axi/mmc@ff170000 disable-wp; then echo Piying SD-only fallback; bootm go; fi; echo Piying override returned, continuing original boot
+uenvcmd=run piying_usb_boot; run piying_sd_boot

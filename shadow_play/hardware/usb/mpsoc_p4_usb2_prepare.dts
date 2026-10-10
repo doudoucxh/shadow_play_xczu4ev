@@ -36,7 +36,8 @@
     /* Match the vendor FSBL: MIO24 releases/resets the hub. The USB3320
      * PHY's MIO25 line retains its board pull-up, as in the reference BD. */
     reset-gpios = <&gpio 24 1>;
-    assigned-clock-rates = <250000000 20000000>;
+    /* FSBL initializes 250 MHz bus / 20 MHz ref. Do not set rates before
+     * the wrapper has acquired the PMU power domain. */
     dr_mode = "host";
 };
 

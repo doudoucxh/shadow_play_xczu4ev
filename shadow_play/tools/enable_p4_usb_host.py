@@ -10,7 +10,7 @@ import platform
 import time
 
 HASHES = {
-    'prepare.dtbo': '8ace44533632ecfd166b2b840e173662ee0d8659891c1e5f5c40623f1ebe483c',
+    'prepare.dtbo': '37dd213519389c0fa69a51e20e938260b70535960265da7674a2dbecfb4a77af',
     'start.dtbo': 'ffe61864ef835512d897bc3e2718a7bdfbde6dcb82660e011ae8978288d1db3d',
 }
 DT = Path('/proc/device-tree')
@@ -26,15 +26,18 @@ def query(command):
     return PM.read_text().strip()
 
 
-def check_fsbl():
+def check_fsbl(wrapper_ready=False):
     if platform.release() != '5.15.36-xilinx-v2022.2':
         raise RuntimeError('Kernel has not been reviewed for this overlay')
-    for reset in (1059, 1061, 1063):
+    # PMU may assert core reset while the unused USB power domain is idle.
+    # Binding the wrapper requests the domain; PMU then pulses/releases it.
+    # APB + hibernation resets and ULPI must already be initialized by FSBL.
+    for reset in ((1059, 1061, 1063) if wrapper_ready else (1061, 1063)):
         if query('pm_reset_get_status %d' % reset) != 'Reset status: 0':
             raise RuntimeError('USB0 is still in reset; boot the USB FSBL first')
     gpio = query('pm_pinctrl_get_function 24')
     functions = {query('pm_pinctrl_get_function %d' % pin) for pin in range(52, 64)}
-    if len(functions) != 1 or gpio in functions:
+    if functions != {'Current set function for the pin: 43'} or gpio in functions:
         raise RuntimeError('USB0 ULPI pins are not initialized by the FSBL')
 
 
@@ -72,7 +75,7 @@ def main():
     apply(args.overlay_dir, 'prepare.dtbo', 'piying-usb2-prepare')
     if not Path('/sys/bus/platform/devices/ff9d0000.usb0/driver').is_symlink():
         raise RuntimeError('USB wrapper driver did not bind; inspect dmesg, do not start DWC3')
-    check_fsbl()
+    check_fsbl(wrapper_ready=True)
     apply(args.overlay_dir, 'start.dtbo', 'piying-usb2-start')
     deadline = time.monotonic()+10
     while time.monotonic() < deadline:

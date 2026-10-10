@@ -89,6 +89,30 @@ class CandidateTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, 'ULPI pins'):
                 usb.check_fsbl()
 
+    def test_idle_core_reset_allowed_before_wrapper_but_not_after(self):
+        import enable_p4_usb_host as usb
+        from unittest.mock import patch
+        def query(command):
+            if 'reset' in command:
+                return 'Reset status: 1' if command.endswith('1059') else 'Reset status: 0'
+            return 'Current set function for the pin: '+('7' if command.endswith(' 24') else '43')
+        with patch.object(usb.platform, 'release', return_value='5.15.36-xilinx-v2022.2'), \
+                patch.object(usb, 'query', side_effect=query):
+            usb.check_fsbl()
+            with self.assertRaisesRegex(RuntimeError, 'still in reset'):
+                usb.check_fsbl(wrapper_ready=True)
+
+    def test_wrong_non_gpio_pin_function_is_refused(self):
+        import enable_p4_usb_host as usb
+        from unittest.mock import patch
+        def query(command):
+            if 'reset' in command: return 'Reset status: 0'
+            return 'Current set function for the pin: '+('7' if command.endswith(' 24') else '42')
+        with patch.object(usb.platform, 'release', return_value='5.15.36-xilinx-v2022.2'), \
+                patch.object(usb, 'query', side_effect=query):
+            with self.assertRaisesRegex(RuntimeError, 'ULPI pins'):
+                usb.check_fsbl()
+
 
 if __name__ == '__main__':
     unittest.main()

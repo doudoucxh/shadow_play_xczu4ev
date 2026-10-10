@@ -1,0 +1,6 @@
+/include/ "mpsoc_p4_usb2_prepare.dts"
+
+/* For U-Boot before Linux probes the parent and child normally. */
+&dwc3_0 {
+    status = "okay";
+};
