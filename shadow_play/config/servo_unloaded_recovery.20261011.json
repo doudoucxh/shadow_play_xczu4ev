@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "date": "2026-10-11",
+  "type": "attended_disconnected_linkage_recovery",
+  "scope": "Unloaded recovery commands; not a loaded calibration or automatic replay source",
+  "attempts": [
+    {
+      "channel": 1,
+      "pin": "D14",
+      "pulse_us": 1500,
+      "nominal_command_angle_deg": 135,
+      "hold_seconds": 3,
+      "operator_authorization": "可以回中1号",
+      "mechanical_release": "Operator separated the two-piece rod splice at gimbal 1/2; a shorter rod remains attached to the gimbal",
+      "confirmed_before_attempt": [
+        "two rod sections fully separated",
+        "remaining short-rod sweep clear",
+        "servo power on and observer at cutoff"
+      ],
+      "pre_sequence": 296,
+      "events": [
+        {
+          "event": "center_started",
+          "channel": 1,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 1,
+            "armed": true,
+            "faults": 0,
+            "sequence": 297,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "hold_seconds": 3.0,
+          "actual_position_verified": false
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 297,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "incident_locks_removed": false
+        }
+      ],
+      "operator_result": "没注意，但是没什么异常",
+      "physical_motion_observed_by_operator": null,
+      "physical_angle_feedback": null,
+      "visual_review": {
+        "result": "No resolvable displacement in inspected top-view patches; physical centering is not independently verified",
+        "correction": "Initial visual impression of displacement was withdrawn after numeric comparison",
+        "checked_top_frame_indices": [
+          0,
+          8,
+          20,
+          40,
+          69
+        ],
+        "short_rod_patch_integer_shift_px": [
+          0,
+          0
+        ],
+        "method": "19x19 grayscale patch near short-rod tip, NCC search +/-20 px; several other rod/bracket patches also checked",
+        "limit": "Image match is not a shaft-angle measurement and cannot distinguish already-centered from no mechanical response"
+      },
+      "camera_verification": {
+        "front": {
+          "samples": 70,
+          "unique_frame_ids": 70,
+          "max_age_ms": 203,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "front",
+            "file": "front_1791722772511439000.jpg",
+            "host_unix_ns": 1791722772511439000,
+            "frame_id": "session-20261011-170627-65559",
+            "age_ms": "102",
+            "image_size": [
+              640,
+              360
+            ],
+            "sha256": "5888c4250afb270206db39a2a0901f4b96828de24a7d6eee7c0e39e9ce032b4d",
+            "captured_at": "2026-10-11T20:46:12.511439+08:00"
+          }
+        },
+        "top": {
+          "samples": 70,
+          "unique_frame_ids": 68,
+          "max_age_ms": 219,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "top",
+            "file": "top_1791722772506912700.jpg",
+            "host_unix_ns": 1791722772506912700,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-114572",
+            "age_ms": "188",
+            "image_size": [
+              960,
+              540
+            ],
+            "sha256": "8aac358a351ae4cd06a59f7dc778d0f9499a1191ccb23014c79b2548f7ef5928",
+            "captured_at": "2026-10-11T20:46:12.506913+08:00"
+          }
+        }
+      },
+      "outputs_off_independently_rechecked": true,
+      "ordinary_motion_still_inhibited": true,
+      "ready_for_loaded_motion": false,
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery1_authorized_readonly_r.log",
+          "sha256": "6ed606cbbafc3a4bfca3854c7a7618e6badd283d74ca6408571c0a50fb6ef057"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery1_approved_r.json",
+          "sha256": "a5090d573cfcba6385ddc38d455947abf59f03f67f0e2d51312345758ab35596"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery1_action_r.board.log",
+          "sha256": "c7fbfe049d0f276017e4feb2291a0f16d270eff2e8c4eb404384bbf964e79578"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery1_postcheck_r.log",
+          "sha256": "10e992bef5f4e72b4243ac69b9384e45aa15bf035edbbeb2e358d4f49cf7bb25"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery1_action_r/frames.jsonl",
+          "sha256": "f3930eb3cb7423d0b7211e1e342e6048b771c58bf7cabf5d7181f6affe141d36"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery1_action_r/tip_checks.json",
+          "sha256": "908135b44a49640d7980085c85c97a6d5dcad07df53b78b6af1342febf379917"
+        }
+      ]
+    }
+  ],
+  "automatic_replay_allowed": false
+}
