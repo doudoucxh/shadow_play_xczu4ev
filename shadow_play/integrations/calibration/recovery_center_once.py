@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Explicit, attended, unloaded centering exception after an incident.
+"""Explicit, attended centering exception after an incident.
 
 Normal host/board incident locks remain present. This separate entry point can
 make exactly one fixed 1500-us commit on one approved channel, then turns OFF.
-It cannot jog, resume a loaded pose, or clear a lock. Physical release and sweep
-clearance must be checked before an operator authorizes this specific attempt.
+It cannot jog, resume a multiply constrained pose, or clear a lock. Physical
+release and sweep clearance must be reviewed. Axes 5/6 additionally accept an
+explicitly reviewed single free puppet connection, without claiming rod removal.
 """
 import argparse
 import hashlib
@@ -15,20 +16,30 @@ import time
 from servo_pwm_device import PwmDevice, Registers
 
 APPROVAL = 'single-unloaded-center-with-incident-locks-retained'
+FREE_APPROVAL = 'single-free-connection-center-with-incident-locks-retained'
 HOLD_SECONDS = 3.0
 
 
 def validate_plan(plan):
     fields = {'approval', 'channel', 'expected_sequence', 'expected_pulses_us',
               'linkage_disconnected', 'remaining_bracket_and_rod_clear', 'observer_ready'}
-    if not isinstance(plan, dict) or set(plan) != fields:
+    free_fields = fields | {'free_single_connection', 'puppet_other_rods_disconnected'}
+    if not isinstance(plan, dict) or set(plan) not in (fields, free_fields):
         raise ValueError('Exact unloaded-recovery plan fields required')
-    if plan['approval'] != APPROVAL:
+    free_connection = set(plan) == free_fields
+    if plan['approval'] != (FREE_APPROVAL if free_connection else APPROVAL):
         raise ValueError('Specific operator approval required; ordinary continuation is insufficient')
     if type(plan['channel']) is not int or not 1 <= plan['channel'] <= 10:
         raise ValueError('One channel required')
+    if free_connection:
+        if (plan['channel'] not in (5, 6) or plan['linkage_disconnected'] is not False
+                or plan['free_single_connection'] is not True
+                or plan['puppet_other_rods_disconnected'] is not True):
+            raise ValueError('Only reviewed axes 5/6 with one free puppet connection are eligible')
+    elif plan['linkage_disconnected'] is not True:
+        raise ValueError('Disconnected load must be confirmed')
     if any(plan[key] is not True for key in
-           ('linkage_disconnected', 'remaining_bracket_and_rod_clear', 'observer_ready')):
+           ('remaining_bracket_and_rod_clear', 'observer_ready')):
         raise ValueError('Disconnected load, clear sweep and observer must be confirmed')
     if type(plan['expected_sequence']) is not int or not 0 <= plan['expected_sequence'] < 2**32:
         raise ValueError('Inspected sequence required')

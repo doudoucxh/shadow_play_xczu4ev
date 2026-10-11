@@ -132,5 +132,19 @@ class RecoveryTests(unittest.TestCase):
                 patch.object(recovery,'Registers') as registers:
             recovery.main();registers.assert_not_called()
 
+    def test_free_single_connection_requires_separate_scope_and_evidence(self):
+        self.plan.update(approval=recovery.FREE_APPROVAL, channel=5,
+                         linkage_disconnected=False, free_single_connection=True,
+                         puppet_other_rods_disconnected=True)
+        recovery.validate_plan(self.plan)
+        d=self.device();self.run_once(d)
+        self.assertEqual(self.events[0]['state']['enabled_mask'],16)
+        self.assertFalse(self.events[-1]['state']['armed'])
+        for key,value in [('channel',7),('approval',recovery.APPROVAL),
+                          ('free_single_connection',False),('puppet_other_rods_disconnected',False),
+                          ('linkage_disconnected',True)]:
+            plan=copy.deepcopy(self.plan);plan[key]=value
+            with self.assertRaises(ValueError):recovery.validate_plan(plan)
+
 
 if __name__=='__main__': unittest.main()
