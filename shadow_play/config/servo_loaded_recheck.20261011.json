@@ -1,0 +1,845 @@
+{
+  "schema_version": 1,
+  "recorded_date": "2026-10-11",
+  "purpose": "Supervised reversal checks, not deployment calibration",
+  "deployment_ready": false,
+  "actual_position_feedback": null,
+  "front_image_homography": null,
+  "approved_loaded_limits": null,
+  "executed_plan_sha256": "74a3cdc621bda401d0b562dcfe15324d210b37cb9f0bb8ab050b4465892da496",
+  "updated_host_lease_plan_sha256": "57e3ebe6e5cd654a777dfb68d3027d53681a2d67203867724741da22f49882b4",
+  "updated_host_lease_plan_exercised_on_real_motors": false,
+  "trials": [
+    {
+      "name": "reverse4",
+      "plan": {
+        "observer_present": true,
+        "estimated_start_authorized": true,
+        "expected_sequence": 14,
+        "expected_pulses_us": [
+          1537,
+          1241,
+          1537,
+          1574,
+          1537,
+          1648,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "local_bounds_us": {
+          "4": [
+            1574,
+            1611
+          ]
+        },
+        "steps": [
+          {
+            "label": "4_145_start",
+            "channel": 4,
+            "pulse_us": 1574,
+            "hold_seconds": 3
+          },
+          {
+            "label": "4_150",
+            "channel": 4,
+            "pulse_us": 1611,
+            "hold_seconds": 3
+          },
+          {
+            "label": "4_145_return",
+            "channel": 4,
+            "pulse_us": 1574,
+            "hold_seconds": 3
+          }
+        ]
+      },
+      "events": [
+        {
+          "event": "sample_begin",
+          "label": "4_145_start",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 8,
+            "armed": true,
+            "faults": 0,
+            "sequence": 15,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "actual_position_verified": false,
+          "host_received_at": "2026-10-11T07:39:51.949270+00:00",
+          "host_unix_ns": 1791704391949270600
+        },
+        {
+          "event": "sample_end",
+          "label": "4_145_start",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 8,
+            "armed": true,
+            "faults": 0,
+            "sequence": 15,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T07:39:54.975476+00:00",
+          "host_unix_ns": 1791704394975476500
+        },
+        {
+          "event": "sample_begin",
+          "label": "4_150",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 8,
+            "armed": true,
+            "faults": 0,
+            "sequence": 25,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1611,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "actual_position_verified": false,
+          "host_received_at": "2026-10-11T07:39:55.970327+00:00",
+          "host_unix_ns": 1791704395970327400
+        },
+        {
+          "event": "sample_end",
+          "label": "4_150",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 8,
+            "armed": true,
+            "faults": 0,
+            "sequence": 25,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1611,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T07:39:58.995882+00:00",
+          "host_unix_ns": 1791704398995882500
+        },
+        {
+          "event": "sample_begin",
+          "label": "4_145_return",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 8,
+            "armed": true,
+            "faults": 0,
+            "sequence": 35,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "actual_position_verified": false,
+          "host_received_at": "2026-10-11T07:39:59.990989+00:00",
+          "host_unix_ns": 1791704399990989400
+        },
+        {
+          "event": "sample_end",
+          "label": "4_145_return",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 8,
+            "armed": true,
+            "faults": 0,
+            "sequence": 35,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T07:40:03.016891+00:00",
+          "host_unix_ns": 1791704403016891500
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 35,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T07:40:03.042912+00:00",
+          "host_unix_ns": 1791704403042912900
+        }
+      ],
+      "capture_result": {
+        "completed": true,
+        "outputs_off_confirmed": true,
+        "camera_guard_error": null
+      },
+      "evidence_events_sha256": "03365ca2995decde6ef203612c2fb0a15325059b82a51945e0a79f3d26327c9b"
+    },
+    {
+      "name": "reverse2",
+      "plan": {
+        "observer_present": true,
+        "estimated_start_authorized": true,
+        "expected_sequence": 35,
+        "expected_pulses_us": [
+          1537,
+          1241,
+          1537,
+          1574,
+          1537,
+          1648,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "local_bounds_us": {
+          "2": [
+            1241,
+            1278
+          ]
+        },
+        "steps": [
+          {
+            "label": "2_100_start",
+            "channel": 2,
+            "pulse_us": 1241,
+            "hold_seconds": 3
+          },
+          {
+            "label": "2_105",
+            "channel": 2,
+            "pulse_us": 1278,
+            "hold_seconds": 3
+          },
+          {
+            "label": "2_100_return",
+            "channel": 2,
+            "pulse_us": 1241,
+            "hold_seconds": 3
+          }
+        ]
+      },
+      "events": [
+        {
+          "event": "sample_begin",
+          "label": "2_100_start",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 2,
+            "armed": true,
+            "faults": 0,
+            "sequence": 36,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "actual_position_verified": false,
+          "host_received_at": "2026-10-11T07:41:32.658618+00:00",
+          "host_unix_ns": 1791704492658618300
+        },
+        {
+          "event": "sample_end",
+          "label": "2_100_start",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 2,
+            "armed": true,
+            "faults": 0,
+            "sequence": 36,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T07:41:35.685386+00:00",
+          "host_unix_ns": 1791704495685386800
+        },
+        {
+          "event": "sample_begin",
+          "label": "2_105",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 2,
+            "armed": true,
+            "faults": 0,
+            "sequence": 46,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1278,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "actual_position_verified": false,
+          "host_received_at": "2026-10-11T07:41:36.677521+00:00",
+          "host_unix_ns": 1791704496677521000
+        },
+        {
+          "event": "sample_end",
+          "label": "2_105",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 2,
+            "armed": true,
+            "faults": 0,
+            "sequence": 46,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1278,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T07:41:39.704367+00:00",
+          "host_unix_ns": 1791704499704367400
+        },
+        {
+          "event": "sample_begin",
+          "label": "2_100_return",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 2,
+            "armed": true,
+            "faults": 0,
+            "sequence": 56,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "actual_position_verified": false,
+          "host_received_at": "2026-10-11T07:41:40.699946+00:00",
+          "host_unix_ns": 1791704500699946100
+        },
+        {
+          "event": "sample_end",
+          "label": "2_100_return",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 2,
+            "armed": true,
+            "faults": 0,
+            "sequence": 56,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T07:41:43.726349+00:00",
+          "host_unix_ns": 1791704503726349100
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 56,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T07:41:43.751938+00:00",
+          "host_unix_ns": 1791704503751938000
+        }
+      ],
+      "capture_result": {
+        "completed": true,
+        "outputs_off_confirmed": true,
+        "camera_guard_error": null
+      },
+      "evidence_events_sha256": "4f7f34cc7c70309627839eb58af45e6b324662ded0a6299beb04670773e1ba66"
+    }
+  ],
+  "image_analysis": {
+    "method": "Local grayscale zero-mean normalized cross-correlation, integer displacement, +-18px search",
+    "meaning": "Image patch displacement only, not shaft angle or millimetre calibration",
+    "limitations": [
+      "ROI contains articulated puppet parts; deformation/occlusion can bias matching.",
+      "No millimetre coordinates inferred. Zero patch displacement alone does not identify the fault."
+    ],
+    "trials": [
+      {
+        "trial": "reverse4",
+        "reference_roi_xyxy": [
+          255,
+          105,
+          287,
+          143
+        ],
+        "results": [
+          {
+            "label": "4_145_start",
+            "displacement_px": [
+              0,
+              0
+            ],
+            "ncc": 1.0,
+            "frame_sha256": "7bcd8eec4c4d322436fe074e9b0a810c2eabbab4ff0c618643d967b90c43b203",
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 8,
+              "armed": true,
+              "faults": 0,
+              "sequence": 15,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1241,
+                1537,
+                1574,
+                1537,
+                1648,
+                1500,
+                1500,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            }
+          },
+          {
+            "label": "4_150",
+            "displacement_px": [
+              0,
+              1
+            ],
+            "ncc": 0.9778,
+            "frame_sha256": "8d39e7a8b9a8b62d95af0438fc7ae0eaefb91b2bfa495b64bf69c26e9ee832b5",
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 8,
+              "armed": true,
+              "faults": 0,
+              "sequence": 25,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1241,
+                1537,
+                1611,
+                1537,
+                1648,
+                1500,
+                1500,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            }
+          },
+          {
+            "label": "4_145_return",
+            "displacement_px": [
+              0,
+              0
+            ],
+            "ncc": 0.97513,
+            "frame_sha256": "6417aea1e43e0b3d6899009ec2694dabd2a62182bb9d976dc339eaa213c36f87",
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 8,
+              "armed": true,
+              "faults": 0,
+              "sequence": 35,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1241,
+                1537,
+                1574,
+                1537,
+                1648,
+                1500,
+                1500,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            }
+          }
+        ]
+      },
+      {
+        "trial": "reverse2",
+        "reference_roi_xyxy": [
+          236,
+          111,
+          256,
+          143
+        ],
+        "results": [
+          {
+            "label": "2_100_start",
+            "displacement_px": [
+              0,
+              0
+            ],
+            "ncc": 1.0,
+            "frame_sha256": "c6b37a60408cce6552045ce58a76744fb6f7b08ac74f988c88378a59a4003b9b",
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 2,
+              "armed": true,
+              "faults": 0,
+              "sequence": 36,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1241,
+                1537,
+                1574,
+                1537,
+                1648,
+                1500,
+                1500,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            }
+          },
+          {
+            "label": "2_105",
+            "displacement_px": [
+              0,
+              -7
+            ],
+            "ncc": 0.94064,
+            "frame_sha256": "ffc122543d234368d7c59a96af752fda213c2748572862375183589ded4e6b49",
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 2,
+              "armed": true,
+              "faults": 0,
+              "sequence": 46,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1278,
+                1537,
+                1574,
+                1537,
+                1648,
+                1500,
+                1500,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            }
+          },
+          {
+            "label": "2_100_return",
+            "displacement_px": [
+              0,
+              0
+            ],
+            "ncc": 0.98195,
+            "frame_sha256": "9cd9cba5ec07790058f7e460ce221b3ddf6fae70f9871690b8a764e638bf3521",
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 2,
+              "armed": true,
+              "faults": 0,
+              "sequence": 56,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1241,
+                1537,
+                1574,
+                1537,
+                1648,
+                1500,
+                1500,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "final_board_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 56,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1241,
+      1537,
+      1574,
+      1537,
+      1648,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "head_pair_plan": {
+    "executed": false,
+    "reason": "Front-camera freshness check failed before opening serial for motion",
+    "plan": {
+      "observer_present": true,
+      "estimated_start_authorized": true,
+      "expected_sequence": 56,
+      "expected_pulses_us": [
+        1537,
+        1241,
+        1537,
+        1574,
+        1537,
+        1648,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "local_bounds_us": {
+        "3": [
+          1537,
+          1537
+        ],
+        "4": [
+          1574,
+          1611
+        ]
+      },
+      "steps": [
+        {
+          "label": "yaw3_hold",
+          "channel": 3,
+          "pulse_us": 1537,
+          "hold_seconds": 2
+        },
+        {
+          "label": "head_145_start",
+          "channel": 4,
+          "pulse_us": 1574,
+          "hold_seconds": 3
+        },
+        {
+          "label": "head_150",
+          "channel": 4,
+          "pulse_us": 1611,
+          "hold_seconds": 3
+        },
+        {
+          "label": "head_145_return",
+          "channel": 4,
+          "pulse_us": 1574,
+          "hold_seconds": 3
+        }
+      ]
+    }
+  },
+  "next_step": "Restore Sony live view, then inspect response of servo 4 while servo 3 is held. No loaded workspace fit yet.",
+  "validation": {
+    "windows_unit_tests_passed": 13,
+    "ubuntu_unit_tests_passed": 13,
+    "windows_host_syntax_passed": true,
+    "board_linux_pipe_lease_expiry_passed": true,
+    "head_pair_plan_dry_run_passed": true,
+    "new_host_lease_real_motion_tested": false
+  }
+}

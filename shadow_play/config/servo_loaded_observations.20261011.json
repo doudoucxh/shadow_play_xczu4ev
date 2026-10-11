@@ -133,7 +133,7 @@
     "alternative_requested": "Support puppet with servo power off, cut and replace cable ties for this group if feasible",
     "outcome": "Detachment was not performed; user explicitly authorized attended trials from visual estimates instead"
   },
-  "next_step": "Check reverse repeatability of channels 2 and 4, then establish a simultaneous holding pose and calibrate the 740 x 500 mm curtain before local workspace sampling",
+  "next_step": "Restore Sony live view, check servo 4 while servo 3 is held, then establish simultaneous pose and sample local 2D workspace. Calibration remains incomplete.",
   "completed_supervised_trials": {
     "record": "servo_loaded_trials.20261011.json",
     "count": 14,
@@ -148,5 +148,16 @@
     "all_outputs_off_at_end": true,
     "final_sequence": 14,
     "loaded_workspace_calibrated": false
+  },
+  "subsequent_recheck": {
+    "record": "servo_loaded_recheck.20261011.json",
+    "single_axis_reversal_plans_completed": 2,
+    "sampled_poses": 6,
+    "final_sequence": 56,
+    "all_outputs_off_at_end": true,
+    "servo_2_return_visually_observed": true,
+    "servo_4_response_resolved": false,
+    "head_pair_plan_executed": false,
+    "blocking_condition": "Sony front live view disconnected; waiting for camera wake/network restoration"
   }
 }
