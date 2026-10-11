@@ -1,0 +1,584 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-11",
+  "scope": "Unloaded recovery of person gimbals 1/2 and 3/4 after failed demo; not calibration or replay data",
+  "operator_request": "已经拆开负载了",
+  "operator_clearance_and_power_confirmation": "不会，电源已经打开",
+  "confirmed_conditions": [
+    "First two person rod splices separated",
+    "Remaining sweep clear according to onsite operator",
+    "8V supply on according to operator",
+    "Operator attending immediate cutoff"
+  ],
+  "program_sha256": "d778838db3278422cd16ba6875619b91d2a0fae09fba2008b16033b0be2150d2",
+  "driver_sha256": "ee917182d4a7b38f97556fa5e663f2c5f1d787ebdb5337462b0fb8f9794fa408",
+  "offline_recovery_tests_passed": 12,
+  "attempts": [
+    {
+      "channel": 1,
+      "pin": "D14",
+      "command_pulse_us": 1500,
+      "nominal_reference_angle_deg": 135,
+      "events": [
+        {
+          "event": "center_started",
+          "channel": 1,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 1,
+            "armed": true,
+            "faults": 0,
+            "sequence": 958,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1332,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "hold_seconds": 3.0,
+          "actual_position_verified": false
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 959,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1332,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "normal_frame_stop": true,
+          "incident_locks_removed": false
+        }
+      ],
+      "visual_review": "No clear axis motion resolved; gimbal body is outside the lower camera edge. Cannot distinguish already centered from no response.",
+      "physical_center_independently_verified": false,
+      "camera_verification": {
+        "front": {
+          "samples": 47,
+          "successes": 46,
+          "errors": [
+            {
+              "camera": "front",
+              "error": "HTTP Error 503: Sony frame changed while reading; retry on the next poll",
+              "host_unix_ns": 1791731179914800800
+            }
+          ],
+          "max_success_gap_ms": 425.3394,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 46,
+          "first": {
+            "camera": "front",
+            "file": "front_1791731170974418800.jpg",
+            "host_unix_ns": 1791731170974418800,
+            "frame_id": "session-20261011-170627-107331",
+            "age_ms": "109"
+          },
+          "last": {
+            "camera": "front",
+            "file": "front_1791731180764058200.jpg",
+            "host_unix_ns": 1791731180764058200,
+            "frame_id": "session-20261011-170627-107380",
+            "age_ms": "45"
+          }
+        },
+        "top": {
+          "samples": 47,
+          "successes": 47,
+          "errors": [],
+          "max_success_gap_ms": 228.3149,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 47,
+          "first": {
+            "camera": "top",
+            "file": "top_1791731170971583200.jpg",
+            "host_unix_ns": 1791731170971583200,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-156565",
+            "age_ms": "31"
+          },
+          "last": {
+            "camera": "top",
+            "file": "top_1791731180761533400.jpg",
+            "host_unix_ns": 1791731180761533400,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-156614",
+            "age_ms": "16"
+          }
+        }
+      },
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery1_afterdemo_aa.board.log",
+          "sha256": "b0c60b395be4d7a7fa7494c2de23d0517b5eab4203a60bd1a6e4b41bb5c1b980"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery1_afterdemo_aa.json",
+          "sha256": "f5b5a07be9f61092ced0982de209e279524c92ba23edc3136e0978e9ac31cc90"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery1_afterdemo_aa_views/frames.jsonl",
+          "sha256": "474280c0cf7e7ea5a73f290377cb89890920e247306872715a0bef2d735b2143"
+        }
+      ]
+    },
+    {
+      "channel": 2,
+      "pin": "D15",
+      "command_pulse_us": 1500,
+      "nominal_reference_angle_deg": 135,
+      "events": [
+        {
+          "event": "center_started",
+          "channel": 2,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 2,
+            "armed": true,
+            "faults": 0,
+            "sequence": 960,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "hold_seconds": 3.0,
+          "actual_position_verified": false
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 961,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "normal_frame_stop": true,
+          "incident_locks_removed": false
+        }
+      ],
+      "visual_review": "Visible short-rod position change; not an independently measured shaft angle.",
+      "physical_center_independently_verified": false,
+      "camera_verification": {
+        "front": {
+          "samples": 42,
+          "successes": 41,
+          "errors": [
+            {
+              "camera": "front",
+              "error": "HTTP Error 503: Sony frame changed while reading; retry on the next poll",
+              "host_unix_ns": 1791731228574771400
+            }
+          ],
+          "max_success_gap_ms": 419.1648,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 41,
+          "first": {
+            "camera": "front",
+            "file": "front_1791731221352254100.jpg",
+            "host_unix_ns": 1791731221352254100,
+            "frame_id": "session-20261011-170627-107582",
+            "age_ms": "12"
+          },
+          "last": {
+            "camera": "front",
+            "file": "front_1791731230053156900.jpg",
+            "host_unix_ns": 1791731230053156900,
+            "frame_id": "session-20261011-170627-107625",
+            "age_ms": "70"
+          }
+        },
+        "top": {
+          "samples": 42,
+          "successes": 42,
+          "errors": [],
+          "max_success_gap_ms": 227.3157,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 42,
+          "first": {
+            "camera": "top",
+            "file": "top_1791731221348896100.jpg",
+            "host_unix_ns": 1791731221348896100,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-156816",
+            "age_ms": "203"
+          },
+          "last": {
+            "camera": "top",
+            "file": "top_1791731230050631500.jpg",
+            "host_unix_ns": 1791731230050631500,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-156860",
+            "age_ms": "109"
+          }
+        }
+      },
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery2_afterdemo_aa.board.log",
+          "sha256": "60707a2fd13bc38543d78352647d5ce60659f12b8f58ffdf59d8319fce6ad13e"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery2_afterdemo_aa.json",
+          "sha256": "38c9edf6764db01d5220d3709196929c6185d0e465f205202a2ab601d4b384d9"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery2_afterdemo_aa_views/frames.jsonl",
+          "sha256": "ee101acc277a4530272980251f41c038c07307a03ac58e44e8fa66177a4c06f4"
+        }
+      ]
+    },
+    {
+      "channel": 3,
+      "pin": "F13",
+      "command_pulse_us": 1500,
+      "nominal_reference_angle_deg": 135,
+      "events": [
+        {
+          "event": "center_started",
+          "channel": 3,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 4,
+            "armed": true,
+            "faults": 0,
+            "sequence": 962,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "hold_seconds": 3.0,
+          "actual_position_verified": false
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 963,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "normal_frame_stop": true,
+          "incident_locks_removed": false
+        }
+      ],
+      "visual_review": "No clear axis motion resolved during sampled timeline; no shaft-angle verification.",
+      "physical_center_independently_verified": false,
+      "camera_verification": {
+        "front": {
+          "samples": 42,
+          "successes": 42,
+          "errors": [],
+          "max_success_gap_ms": 225.2957,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 42,
+          "first": {
+            "camera": "front",
+            "file": "front_1791731281370542100.jpg",
+            "host_unix_ns": 1791731281370542100,
+            "frame_id": "session-20261011-170627-107880",
+            "age_ms": "116"
+          },
+          "last": {
+            "camera": "front",
+            "file": "front_1791731290085827000.jpg",
+            "host_unix_ns": 1791731290085827000,
+            "frame_id": "session-20261011-170627-107923",
+            "age_ms": "189"
+          }
+        },
+        "top": {
+          "samples": 42,
+          "successes": 42,
+          "errors": [],
+          "max_success_gap_ms": 227.4004,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 42,
+          "first": {
+            "camera": "top",
+            "file": "top_1791731281362518600.jpg",
+            "host_unix_ns": 1791731281362518600,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-157117",
+            "age_ms": "15"
+          },
+          "last": {
+            "camera": "top",
+            "file": "top_1791731290081806200.jpg",
+            "host_unix_ns": 1791731290081806200,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-157160",
+            "age_ms": "141"
+          }
+        }
+      },
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery3_afterdemo_aa.board.log",
+          "sha256": "95bc09d5b61d7096052a778abb0034f34ba224320f0c4551ad19f6fb7bd868d4"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery3_afterdemo_aa.json",
+          "sha256": "ee192507e16a732ccf2dd2f0fbe9b5eadf91cda40ce3e570d116fabec9f438e2"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery3_afterdemo_aa_views/frames.jsonl",
+          "sha256": "2570d133058376e86739a5e6b7c4d99d796c40fd699b22d165b0f2af889ea6c1"
+        }
+      ]
+    },
+    {
+      "channel": 4,
+      "pin": "G13",
+      "command_pulse_us": 1500,
+      "nominal_reference_angle_deg": 135,
+      "events": [
+        {
+          "event": "center_started",
+          "channel": 4,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 8,
+            "armed": true,
+            "faults": 0,
+            "sequence": 964,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1500,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "hold_seconds": 3.0,
+          "actual_position_verified": false
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 965,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1500,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "normal_frame_stop": true,
+          "incident_locks_removed": false
+        }
+      ],
+      "visual_review": "Clear rod movement in the top-view timeline followed by a stable visible position; no shaft-angle feedback.",
+      "physical_center_independently_verified": false,
+      "camera_verification": {
+        "front": {
+          "samples": 42,
+          "successes": 42,
+          "errors": [],
+          "max_success_gap_ms": 223.8804,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 42,
+          "first": {
+            "camera": "front",
+            "file": "front_1791731330853046000.jpg",
+            "host_unix_ns": 1791731330853046000,
+            "frame_id": "session-20261011-170627-108126",
+            "age_ms": "137"
+          },
+          "last": {
+            "camera": "front",
+            "file": "front_1791731339566068800.jpg",
+            "host_unix_ns": 1791731339566068800,
+            "frame_id": "session-20261011-170627-108169",
+            "age_ms": "203"
+          }
+        },
+        "top": {
+          "samples": 42,
+          "successes": 42,
+          "errors": [],
+          "max_success_gap_ms": 226.8647,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 42,
+          "first": {
+            "camera": "top",
+            "file": "top_1791731330851282400.jpg",
+            "host_unix_ns": 1791731330851282400,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-157364",
+            "age_ms": "109"
+          },
+          "last": {
+            "camera": "top",
+            "file": "top_1791731339572336200.jpg",
+            "host_unix_ns": 1791731339572336200,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-157408",
+            "age_ms": "30"
+          }
+        }
+      },
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery4_afterdemo_aa.board.log",
+          "sha256": "c18363dbb35663c7b63e1f2e489d6bc83197e44516a14a5bc2a6843dfce266e5"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery4_afterdemo_aa.json",
+          "sha256": "4c308160d12b63f88107fd12506a843cf6fe827898f8c71ab7e93efc41dd6ebc"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery4_afterdemo_aa_views/frames.jsonl",
+          "sha256": "3a986050023425c94647b4d817633ae68ea3393e194547c4121cd38e8fa25df2"
+        }
+      ]
+    }
+  ],
+  "final_independent_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 965,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1508,
+      1500,
+      1500,
+      1426,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "postcheck_evidence": {
+    "path": ".review_work/loaded_calibration_20261011/unloaded_recovery_after_demo_postcheck.log",
+    "sha256": "dca63596e986b3bee7dfb423464805398853fad10d987b1405b33b1b2f8e6985"
+  },
+  "incident_locks_retained": true,
+  "demo_quarantine_retained": true,
+  "channels_5_through_10_enabled_during_recovery": false,
+  "position_feedback": null,
+  "operator_post_motion_observation": null,
+  "ready_for_loaded_motion": false,
+  "automatic_replay_allowed": false,
+  "limits": [
+    "Camera captures and board events lack a shared precise event clock; do not infer stop timing from montage rows.",
+    "Gimbal bodies remain partly outside top view; onsite clearance report supported these unloaded operations.",
+    "One transient Sony HTTP503 occurred in each of channel 1 and 2 recordings; next frames recovered, top view remained continuous.",
+    "135-degree reference is not the puppet working pose; prior loaded limits and coupled motion remain unverified."
+  ],
+  "next_steps": [
+    "Keep first two rods separated; do not turn gimbals by hand.",
+    "Reframe Camo to include both person gimbals and short rods; obtain onsite abnormality report.",
+    "Review mechanical posture and select a suitable reconnecting pose before reconnecting rods.",
+    "Do not rerun the quarantined demo or command unchanged loaded axes from saved register values."
+  ]
+}
