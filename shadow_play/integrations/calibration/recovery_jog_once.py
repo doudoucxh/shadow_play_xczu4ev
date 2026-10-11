@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Finite attended jog for detached gimbals 1/2; incident locks stay intact.
+"""Finite attended jog for reviewed person gimbals; incident locks stay intact.
 
 This does not commission loaded motion. The operator must have confirmed rod
 release and clearance, and the observed start pose must match the last command.
@@ -23,13 +23,22 @@ def validate_plan(plan):
     fields = {'approval', 'channel', 'expected_sequence', 'expected_pulses_us',
               'target_us', 'linkage_disconnected', 'sweep_clear', 'observer_ready',
               'start_pose_reviewed'}
-    if not isinstance(plan, dict) or set(plan) != fields:
+    free_fields = fields | {'free_single_connection', 'puppet_other_rods_disconnected'}
+    if not isinstance(plan, dict) or set(plan) not in (fields, free_fields):
         raise ValueError('Exact attended unloaded-jog plan required')
+    free_connection = set(plan) == free_fields
     if plan['approval'] != APPROVAL:
         raise ValueError('Attended jog authorization required')
-    if type(plan['channel']) is not int or plan['channel'] not in (1, 2, 3, 4):
+    allowed = (5, 6) if free_connection else (1, 2, 3, 4)
+    if type(plan['channel']) is not int or plan['channel'] not in allowed:
         raise ValueError('Only the two detached gimbals are eligible')
-    for name in ('linkage_disconnected', 'sweep_clear', 'observer_ready', 'start_pose_reviewed'):
+    if free_connection:
+        if (plan['linkage_disconnected'] is not False or plan['free_single_connection'] is not True
+                or plan['puppet_other_rods_disconnected'] is not True):
+            raise ValueError('Third gimbal requires one free connection with other puppet rods detached')
+    elif plan['linkage_disconnected'] is not True:
+        raise ValueError('Detached gimbals required')
+    for name in ('sweep_clear', 'observer_ready', 'start_pose_reviewed'):
         if plan[name] is not True:
             raise ValueError('Physical conditions must be reviewed: '+name)
     if type(plan['expected_sequence']) is not int or not 0 <= plan['expected_sequence'] < 2**32:

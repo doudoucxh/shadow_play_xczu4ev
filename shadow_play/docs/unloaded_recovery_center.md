@@ -37,3 +37,5 @@ python -m unittest discover -s shadow_play/tests -p test_recovery_center_once.py
 ## 第三组单点自由连接的恢复
 
 用户随后确认人物右手的第三组无需拆开：人物其他两根杆已断开，此时第三组只单独悬挂人物，不会与其他杆相互牵拉，并明确要求直接试调。其物理条件不是“木杆已拆”，计划中必须保留 `linkage_disconnected:false`，使用单独授权 `single-free-connection-center-with-incident-locks-retained`，并确认 `free_single_connection:true`、`puppet_other_rods_disconnected:true` 和扫过空间。此例外只适用于 5、6 号，仍是单路 1500 μs、三秒后关闭，不能推广到多杆相连的人物或老虎。回中程序现有 12 项测试，包括此模式与完全脱杆模式的区分。
+
+5 号回中后人物偏离了幕布工作平面，需要重新选择工作朝向。小步程序也允许上述明确的第三组单点自由连接模式，仍保留 `linkage_disconnected:false`，额外两项必须为真，范围、步长和速度不变；没有这些条件时 5、6 号继续被拒绝。先以 8 μs 的单步探测方向，再依据画面决定后续目标，不把旧脉宽当作实际起点。小步程序现有 11 项测试。
