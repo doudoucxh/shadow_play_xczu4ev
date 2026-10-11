@@ -5,7 +5,7 @@
   "reason": "Operator reported a large tiger motion and puppet pulling; loaded calibration stopped",
   "scope": "All supervised loaded capture plans and current board driver motion commits",
   "operator_power_off_confirmed": false,
-  "last_read_sequence": 302,
+  "last_read_sequence": 957,
   "last_enabled_mask": 0,
   "last_armed": false,
   "actual_position_known": false,
@@ -115,5 +115,20 @@
       2
     ],
     "record": "servo_unloaded_recovery.20261011.json"
+  },
+  "latest_person_demo_incident": {
+    "date": "2026-10-11",
+    "user_report": "是你调错了，现在人物已经离开画面了",
+    "requested_action_after_incident": "复位",
+    "reference_invalidated": true,
+    "automatic_return_or_replay_allowed": false,
+    "outputs_off_confirmed_sequence": 957,
+    "emergency_off_reissued": true,
+    "supply_power_off_confirmed": false,
+    "observation": "Person and rods left the front curtain and moved to the side; operator attributes it to assistant control",
+    "physical_cause_known": false,
+    "record": "config/person_demo_result.20261011.json",
+    "report": "docs/person_demo_once_20261011.md",
+    "decision": "Host demo entry quarantined; no new motion from saved command registers. Need current physical recovery conditions before a reset."
   }
 }

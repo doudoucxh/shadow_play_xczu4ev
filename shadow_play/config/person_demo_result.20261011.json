@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "date": "2026-10-11",
+  "type": "attended_person_demo_result",
+  "completed": false,
+  "planned_commands": 561,
+  "adopted_commands": 510,
+  "start_sequence": 447,
+  "last_step": 509,
+  "last_phrase": "left_lower",
+  "command_elapsed_seconds": 71.25920373100234,
+  "completed_phrases": [
+    "right_sweep",
+    "right_lower",
+    "head_turn",
+    "head_nod",
+    "left_sweep"
+  ],
+  "pending_phrase_tail": "left_lower return to reference was not completed",
+  "max_adjacent_command_delta_us": 1,
+  "tiger_enabled": false,
+  "slides_controlled": false,
+  "incident_locks_removed": false,
+  "board_faults_observed": false,
+  "outputs_off": {
+    "event": "outputs_off",
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 957,
+      "pending": false,
+      "pulse_us": [
+        1537,
+        1332,
+        1537,
+        1574,
+        1508,
+        1500,
+        1500,
+        1426,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "normal_frame_stop": false,
+    "incident_locks_removed": false,
+    "host_unix_ms": 1791729786611
+  },
+  "independent_final_readback": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 957,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1332,
+      1537,
+      1574,
+      1508,
+      1500,
+      1500,
+      1426,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "cause": "Host camera guard failed publishing lease.tmp over lease.json with Windows WinError 5; host interrupted board, which immediately disabled all PWM",
+  "guard_error": "[WinError 5] 拒绝访问。: 'D:\\\\Desktop\\\\piying\\\\.review_work\\\\loaded_calibration_20261011\\\\person_demo_a\\\\lease.tmp' -> 'D:\\\\Desktop\\\\piying\\\\.review_work\\\\loaded_calibration_20261011\\\\person_demo_a\\\\lease.json'",
+  "camera_verification": {
+    "front": {
+      "samples": 436,
+      "successes": 434,
+      "errors": [
+        {
+          "camera": "front",
+          "error": "HTTP Error 503: Sony frame changed while reading; retry on the next poll",
+          "host_unix_ns": 1791729730856117200
+        },
+        {
+          "camera": "front",
+          "error": "HTTP Error 503: Sony frame changed while reading; retry on the next poll",
+          "host_unix_ns": 1791729745535204300
+        }
+      ],
+      "max_success_gap_ms": 333.8052,
+      "all_successful_jpeg_decoded": true,
+      "unique_frame_ids": 359,
+      "first": {
+        "camera": "front",
+        "file": "front_1791729714470641300.jpg",
+        "host_unix_ns": 1791729714470641300,
+        "frame_id": "session-20261011-170627-100087",
+        "age_ms": 80,
+        "sha256": "f60f3e2649827df89068c8069a4cf1b2df537f8574c9e03ee61d4e8e2b8dee10"
+      },
+      "last": {
+        "camera": "front",
+        "file": "front_1791729786517600100.jpg",
+        "host_unix_ns": 1791729786517600100,
+        "frame_id": "session-20261011-170627-100445",
+        "age_ms": 162,
+        "sha256": "c986b41c56b42961f8075f51e89b23958d79b150bf57a82d8f58a17d33895d59"
+      }
+    },
+    "top": {
+      "samples": 436,
+      "successes": 436,
+      "errors": [],
+      "max_success_gap_ms": 186.4382,
+      "all_successful_jpeg_decoded": true,
+      "unique_frame_ids": 361,
+      "first": {
+        "camera": "top",
+        "file": "top_1791729714470641300.jpg",
+        "host_unix_ns": 1791729714470641300,
+        "frame_id": "0c85f055395d4586aff0968d056f733e-149282",
+        "age_ms": 93,
+        "sha256": "0a4d018db4c1e050acddf89f3c1b9d2252159d05bd30c1017df3b67609119fa7"
+      },
+      "last": {
+        "camera": "top",
+        "file": "top_1791729786506020200.jpg",
+        "host_unix_ns": 1791729786506020200,
+        "frame_id": "0c85f055395d4586aff0968d056f733e-149642",
+        "age_ms": 156,
+        "sha256": "afb8a6be0ec5e14d430c8d37834072cdcba1590e118b45cfe5d9fd85ffbb350b"
+      }
+    }
+  },
+  "repair": "Publish unique immutable lease files; 192 concurrent Windows reads passed with fresh dual-camera recording",
+  "restarted": false,
+  "position_feedback": null,
+  "restart_withheld_reason": "Later dual views show the person and rods moved away from the curtain; operator reports the assistant adjustment caused this, not operator repositioning. Demonstration failed; do not reuse the reference or replay.",
+  "operator_report": "是你调错了，现在人物已经离开画面了",
+  "incident": true,
+  "valid_for_calibration": false,
+  "automatic_replay_allowed": false,
+  "private_evidence_hashes": {
+    "board.log": "d6d10499d549e35160a4765c2a17749d4c60c1211e0b7e29e2be3e902c7ee640",
+    "events.jsonl": "608466dafcfea981fe82975bdc4fae45ac3ca5e7616603f43cbddc84fdbff270",
+    "independent_read.log": "c80a1912468e468a5b73a8a05ca012530fa25178c0d5c4f95378cfa33390240f"
+  },
+  "later_changed_scene": {
+    "front_file": "demo_camera_guard_immutable_check/front_1791730014195446900.jpg",
+    "top_file": "demo_camera_guard_immutable_check/top_1791730014203740800.jpg",
+    "front_file_sha256": "fd66f3f76594572983825f106aae4a523ba0215fd5802a86b06cbf288d2a1850",
+    "top_file_sha256": "2717c1254cd5eaac64113ba22abc1837f9266ce4d2f7edd8b747de24b6b39334"
+  }
+}

@@ -37,8 +37,11 @@ def record(folder,base='http://192.168.45.1:8765'):
                     log.write(json.dumps(row)+'\n');log.flush()
                     if time.monotonic()-good[c]>1.2:raise RuntimeError('No fresh decoded '+c+' frame')
                 if len(advancing)==2 and all(time.monotonic()-t<.8 for t in good.values()):
-                    temp=folder/'lease.tmp';temp.write_text(json.dumps({'unix_ms':time.time_ns()//1000000}),encoding='ascii')
-                    temp.replace(folder/'lease.json')
+                    stamp=time.time_ns()
+                    temp=folder/'lease.tmp';temp.write_text(json.dumps({'unix_ms':stamp//1000000}),encoding='ascii')
+                    # Publish an immutable uniquely named lease. Never replace a
+                    # destination that a Windows reader/indexer may have open.
+                    temp.rename(folder/('lease-'+str(stamp)+'.json'))
                 time.sleep(.15)
             if not (folder/'finish.request').exists():raise RuntimeError('Recorder duration expired')
     except BaseException as error:

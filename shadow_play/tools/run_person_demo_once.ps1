@@ -2,6 +2,7 @@ param([Parameter(Mandatory=$true)][string]$OutputDirectory,
       [Parameter(Mandatory=$true)][string]$BoardPlan,
       [string]$PortName='COM3')
 $ErrorActionPreference='Stop'
+throw 'Person demo quarantined after unexpected puppet displacement. Current mechanical position is unknown; do not restart from saved pulses.'
 if ($BoardPlan -notmatch '^/tmp/person_demo_[A-Za-z0-9_]+\.json$') {throw 'Session plan path required'}
 if (Test-Path -LiteralPath $OutputDirectory) {throw 'Use a new private evidence directory'}
 $taskPython=Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
@@ -14,10 +15,16 @@ $taskReason=$null;$taskRaw=$null;$taskEvents=$null
 function Test-DemoViews {
     if ($taskCapture.HasExited -or (Test-Path -LiteralPath (Join-Path $OutputDirectory 'guard.error')) -or
         (Test-Path -LiteralPath (Join-Path $OutputDirectory 'stop.request'))) {return $false}
-    $leasePath=Join-Path $OutputDirectory 'lease.json'
-    if (-not (Test-Path -LiteralPath $leasePath)) {return $false}
+    $leaseFile=Get-ChildItem -LiteralPath $OutputDirectory -Filter 'lease-*.json' -ErrorAction SilentlyContinue | Sort-Object Name | Select-Object -Last 1
+    if (-not $leaseFile) {return $false}
+    $leasePath=$leaseFile.FullName
     try {
-        $value=Get-Content -LiteralPath $leasePath -Raw | ConvertFrom-Json
+        # Leases are immutable after publication; sharing also allows indexing.
+        $leaseStream=[IO.File]::Open($leasePath,[IO.FileMode]::Open,[IO.FileAccess]::Read,([IO.FileShare]::ReadWrite -bor [IO.FileShare]::Delete))
+        try {
+            $leaseReader=[IO.StreamReader]::new($leaseStream)
+            try {$value=$leaseReader.ReadToEnd() | ConvertFrom-Json} finally {$leaseReader.Dispose()}
+        } finally {$leaseStream.Dispose()}
         $age=[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()-[long]$value.unix_ms
         return ($age -ge 0 -and $age -lt 800)
     } catch {return $false}
