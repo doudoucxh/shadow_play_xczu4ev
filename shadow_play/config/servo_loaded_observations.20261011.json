@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "recorded_date": "2026-10-11",
+  "purpose": "Observation record only; not a runtime commissioning configuration",
+  "runtime_enforces_this_file": false,
+  "source": "user measurements and read-only commissioning checks",
+  "stage": {
+    "usable_width_mm": 740,
+    "usable_height_mm": 500,
+    "viewpoint": "audience facing the curtain",
+    "origin": "bottom left of usable curtain rectangle",
+    "x_positive": "right",
+    "y_positive": "up",
+    "front_image_homography": null,
+    "note": "New session dimensions; do not reuse the previous 800 x 500 mm calibration. Camera reference corners still require confirmation."
+  },
+  "slides": {
+    "user_description": "两根滑轨都是抵住最左侧放置的",
+    "motion_authorized_in_this_session": false,
+    "measured_carriage_coordinates_mm": null
+  },
+  "gimbals": [
+    {"number": 1, "servos": [1, 2], "rod": "wusong_left", "base_top_height_mm": 380, "puppet_connected_at_session_start": true},
+    {"number": 2, "servos": [3, 4], "rod": "wusong_neck", "base_top_height_mm": 240, "puppet_connected_at_session_start": true},
+    {"number": 3, "servos": [5, 6], "rod": "wusong_right", "base_top_height_mm": 120, "puppet_connected_at_session_start": true},
+    {"number": 4, "servos": [7, 8], "rod": "tiger_head", "base_top_height_mm": 190, "puppet_connected_at_session_start": false},
+    {"number": 5, "servos": [9, 10], "rod": "tiger_leg", "base_top_height_mm": 120, "puppet_connected_at_session_start": false}
+  ],
+  "height_definition": "curtain bottom to upper surface of gimbal base, not pitch/yaw pivot height",
+  "rod_attachment": "cable ties, rods tilted upward; exact tilt and effective lengths unmeasured",
+  "center_clearance_warning": "User reports gimbals 1 and 2 bring rods near the top at nominal center; no group recenter with rods attached",
+  "current_reference": {
+    "verified": false,
+    "pulse_us": null,
+    "reason": "User changed angles and no longer remembers them; manual displacement since last acknowledged command is unconfirmed",
+    "position_feedback": false,
+    "old_no_rod_limits_are_loaded_limits": false,
+    "approved_loaded_limits": null
+  },
+  "user_visual_estimate_not_command_values": {
+    "servos_1_3_5": "approximately centered",
+    "servo_2": "approximately 30 degrees downward from center",
+    "servos_4_6": "approximately 15 degrees downward from center",
+    "source": "user explicitly confirmed visual estimates only",
+    "usable_for_initialize": false,
+    "exact_command_angles_degrees": null
+  },
+  "initial_board_readback": {
+    "host_local_date": "2026-10-11",
+    "identity": "SP10",
+    "pin_revision": "servo4_G13_20261010",
+    "enabled_mask": 0,
+    "armed": false,
+    "sequence": 0,
+    "faults": 0,
+    "pulse_us": [1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500],
+    "meaning": "Reset/default command registers after image load, not physical angle feedback"
+  },
+  "checks_at_1427_local": {
+    "sony_sdk_front": "live, 640 x 360; whole curtain visible",
+    "camo_top": "live, 960 x 540; near-side gimbals partly outside frame, adjustment requested",
+    "ubuntu_dual_stream": "both source frame IDs and JPEG contents advanced over successive requests",
+    "motor_motion_commands_sent_this_session": 0,
+    "software_preview_backend": "existing Ubuntu capture window is simulation"
+  },
+  "later_camera_check": {
+    "camo": "User adjusted view; all three human rods visible, near-side base area still near frame edge",
+    "sony": "Last inspected front frame occluded by a person; unobstructed view needed before motion"
+  },
+  "mechanical_recovery": {
+    "requested_group": 1,
+    "detached_confirmed": false,
+    "power_off_confirmed_after_initial_check": false,
+    "user_response": "Rod attachment already fixed; currently unable to remove it",
+    "alternative_requested": "Support puppet with servo power off, cut and replace cable ties for this group if feasible"
+  },
+  "next_step": "Wait for a feasible way to recover a safe starting reference; no PWM commands based on visual angle estimates."
+}

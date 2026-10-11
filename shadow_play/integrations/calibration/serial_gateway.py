@@ -6,6 +6,7 @@ capture, commissioning and watchdog heartbeat. A timeout permanently closes the
 link; there is no automatic reconnect, retry, or automatic rearm.
 """
 import argparse
+from datetime import datetime, timezone
 import json
 from pathlib import Path
 import socketserver
@@ -42,7 +43,8 @@ class SerialLink:
             wire = json.dumps(request, allow_nan=False, separators=(',', ':')).encode('utf-8') + b'\n'
             if len(wire) > 4096:
                 raise ValueError('Console frame too large')
-            self.log.write(json.dumps({'sent': request})+'\n'); self.log.flush()
+            self.log.write(json.dumps({'logged_at': datetime.now(timezone.utc).isoformat(),
+                                       'sent': request})+'\n'); self.log.flush()
             try:
                 self.port.write(wire)
                 deadline = time.monotonic()+1.5
@@ -56,7 +58,8 @@ class SerialLink:
                     reply = parse_json(line[start+len(PREFIX):].decode('utf-8'))
                     if reply.get('transport_id') != request['transport_id']:
                         continue
-                    self.log.write(json.dumps({'received': reply})+'\n'); self.log.flush()
+                    self.log.write(json.dumps({'logged_at': datetime.now(timezone.utc).isoformat(),
+                                               'received': reply})+'\n'); self.log.flush()
                     if type(reply.get('ok')) is not bool:
                         raise ValueError('Invalid console response')
                     if not reply['ok']:
