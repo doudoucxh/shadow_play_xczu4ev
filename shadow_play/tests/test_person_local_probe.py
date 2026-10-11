@@ -38,7 +38,7 @@ class PersonProbeTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):PwmDevice(self.reg,motion_inhibit_paths=self.locks).commit([1500]*10,63,True)
 
     def test_scope_and_missing_reference_rejected(self):
-        for key,value in [('channel',7),('target_us',1509),('reference_session',''),
+        for key,value in [('channel',7),('target_us',1525),('reference_session',''),
                           ('views_reviewed',False),('rods_connected_without_moving_axes',False)]:
             p=copy.deepcopy(self.plan);p[key]=value
             with self.assertRaises(ValueError):probe.validate_plan(p)
@@ -67,6 +67,16 @@ class PersonProbeTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):d.commit([1500]*9+[1501],63,True)
         d.commit([1500]*10,63,True)
         with self.assertRaises(RuntimeError):d.commit(d.path[1],63,False)
+
+    def test_larger_probe_ramps_both_ways_without_changing_other_axes(self):
+        self.plan['target_us']=1476
+        self.run_probe(self.device())
+        states=[e['state'] for e in self.events[:-1]]
+        self.assertEqual([s['pulse_us'][5] for s in states],[1500,1492,1484,1476,1484,1492,1500])
+        self.assertTrue(all(s['pulse_us'][:5]+s['pulse_us'][6:]==[1500]*9 for s in states))
+        self.assertTrue(all(s['enabled_mask']==63 for s in states))
+        self.assertAlmostEqual(self.now,7.2)
+        self.assertEqual(self.events[-1]['state']['sequence'],8)
 
 
 if __name__=='__main__':unittest.main()

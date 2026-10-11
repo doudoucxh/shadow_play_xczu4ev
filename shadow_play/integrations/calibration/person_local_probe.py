@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One attended 8-us person-axis probe after rod reattachment at a reviewed pose.
+"""One attended person-axis probe, at most 24 us in steps of at most 8 us.
 
 All six person axes stay enabled together. The selected axis moves once and
 returns; tiger axes never enable. This is not a trajectory player or calibration.
@@ -35,8 +35,8 @@ def validate_plan(p):
     if any(not 1300<=v<=1700 for v in pulses[:6]):
         raise ValueError('Person reference outside recovery window')
     target=p['target_us']; start=pulses[p['channel']-1]
-    if type(target) is not int or not 1300<=target<=1700 or not 0<abs(target-start)<=8:
-        raise ValueError('One probe must change only 1..8 us')
+    if type(target) is not int or not 1300<=target<=1700 or not 0<abs(target-start)<=24:
+        raise ValueError('One probe excursion must be 1..24 us, stepped at most 8 us')
 
 
 class PersonProbeDevice(PwmDevice):
@@ -45,11 +45,15 @@ class PersonProbeDevice(PwmDevice):
         validate_plan(plan)
         super().__init__(registers,motion_inhibit_paths=motion_inhibit_paths)
         self.plan=json.loads(json.dumps(plan)); self.clock=clock
-        self.expires=clock()+12; self.cancel=Path(cancel_path)
+        self.expires=clock()+15; self.cancel=Path(cancel_path)
         self.lock_hashes=self._hashes(); self.index=0; self.failed=False; self.inside=False
-        start=plan['expected_pulses_us'][:]; target=start[:]
-        target[plan['channel']-1]=plan['target_us']
-        self.path=[start,target,start]
+        start=plan['expected_pulses_us'][:]; current=start[:]
+        self.path=[start]
+        axis=plan['channel']-1; target=plan['target_us']
+        while current[axis]!=target:
+            current=current[:];current[axis]+=max(-8,min(8,target-current[axis]))
+            self.path.append(current)
+        self.path+=list(reversed(self.path[:-1]))
         self.last_commit=None
 
     def _hashes(self):
@@ -72,7 +76,7 @@ class PersonProbeDevice(PwmDevice):
 
     def commit(self,pulses,mask,allow_arm=False):
         self.check()
-        if (self.index>=3 or pulses!=self.path[self.index] or mask!=63
+        if (self.index>=len(self.path) or pulses!=self.path[self.index] or mask!=63
                 or allow_arm is not (self.index==0)):
             raise RuntimeError('Only the next fixed probe step is allowed')
         if self.last_commit is not None and self.clock()-self.last_commit<1.-1e-9:
@@ -93,7 +97,7 @@ def run_once(device,emit,*,clock=time.monotonic,sleep=time.sleep):
         for i,pulses in enumerate(device.path):
             s=device.commit(pulses,63,allow_arm=i==0)
             emit({'event':'person_probe_step','step':i,'state':s,'monotonic_seconds':clock()})
-            deadline=clock()+(1.2 if i==2 else 1.)
+            deadline=clock()+(1.2 if i==len(device.path)-1 else 1.)
             while clock()<deadline:
                 device.check(); device.kick(); sleep(min(.04,max(0,deadline-clock())))
         completed=True
