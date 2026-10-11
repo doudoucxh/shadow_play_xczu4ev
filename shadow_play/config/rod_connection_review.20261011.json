@@ -308,7 +308,63 @@
     "movement_commands_sent": 0,
     "motion_locks_modified": false,
     "board_status_read_this_review": false,
-    "next_visual_step": "Validate visibility of one larger opaque attachment marker before changing the other four",
+    "next_visual_step": "Retain existing markers; operator selects the five actual attachment points on a frozen Sony frame; assistant reviews the saved points and current stage reference",
     "evidence_dir": ".review_work/loaded_calibration_20261011/attachment_markers_i"
+  },
+  "point_selection_followup": {
+    "recorded_date": "2026-10-11",
+    "operator_reports_five_points_clear": true,
+    "marker_replacement_required": false,
+    "actual_attachment_centres_confirmed_by_assistant": 0,
+    "point_selection_tool": "camera_liveview/preview_server.py",
+    "camera_verification": {
+      "front": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 174,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "front",
+          "file": "front_1791718970434925600.jpg",
+          "host_unix_ns": 1791718970434925600,
+          "frame_id": "session-20261011-170627-46652",
+          "age_ms": "174",
+          "image_size": [
+            640,
+            360
+          ],
+          "sha256": "dd2dbe12b4921e496ec8245c10f43f234dc5aef83d19aeaeef44317011bead88",
+          "captured_at": "2026-10-11T19:42:50.434926+08:00"
+        }
+      },
+      "top": {
+        "samples": 14,
+        "unique_frame_ids": 13,
+        "max_age_ms": 218,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "top",
+          "file": "top_1791718970431990400.jpg",
+          "host_unix_ns": 1791718970431990400,
+          "frame_id": "0c85f055395d4586aff0968d056f733e-95562",
+          "age_ms": "109",
+          "image_size": [
+            960,
+            540
+          ],
+          "sha256": "5541e8ce75400abd084f725043976cdc8b305117281ac68919cf42cb3acac3e3",
+          "captured_at": "2026-10-11T19:42:50.431990+08:00"
+        }
+      }
+    },
+    "front_image_visually_reviewed": true,
+    "top_image_visually_reviewed": true,
+    "top_scene_valid": false,
+    "top_diagnosis": "All 14 JPEG payloads have the same hash; rendered picture is a grey camera placeholder, not the mechanism",
+    "top_recovery_requested": true,
+    "operator_points_saved": false,
+    "movement_commands_sent": 0,
+    "motion_locks_modified": false,
+    "evidence_dir": ".review_work/loaded_calibration_20261011/attachment_markers_j"
   }
 }
