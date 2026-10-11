@@ -46,4 +46,3 @@ python -m unittest discover -s shadow_play/tests -p test_recovery_center_once.py
 恢复工具正常完成时改为：保持原脉宽、提交零使能掩码，在下一帧边界确认十路关闭，再解除 ARM。这个关闭提交会使序号额外增加一次。异常、取消、外部急停仍立即 OFF，不等待完整脉冲；未知结果不重试、不重新 ARM。普通动作锁保持有效。
 
 验证：48 项 Python 检查通过；100 MHz Vivado 仿真中，在高电平期间排队关闭仍输出完整的 1520 μs 脉冲，此后不再出现下一脉冲。实际连杆标定和完整武打动作尚未完成。
-
