@@ -58,7 +58,11 @@
       ],
       "rod": "tiger_head",
       "base_top_height_mm": 190,
-      "puppet_connected_at_session_start": false
+      "puppet_connected_at_session_start": false,
+      "puppet_connected_later_in_session": true,
+      "connection_update_reported_after_sequence": 123,
+      "connection_update_source": "operator_reported",
+      "loaded_channels_executed_this_session": []
     },
     {
       "number": 5,
@@ -68,7 +72,11 @@
       ],
       "rod": "tiger_leg",
       "base_top_height_mm": 120,
-      "puppet_connected_at_session_start": false
+      "puppet_connected_at_session_start": false,
+      "puppet_connected_later_in_session": true,
+      "connection_update_reported_after_sequence": 123,
+      "connection_update_source": "operator_reported",
+      "loaded_channels_executed_this_session": []
     }
   ],
   "height_definition": "curtain bottom to upper surface of gimbal base, not pitch/yaw pivot height",
@@ -133,7 +141,7 @@
     "alternative_requested": "Support puppet with servo power off, cut and replace cable ties for this group if feasible",
     "outcome": "Detachment was not performed; user explicitly authorized attended trials from visual estimates instead"
   },
-  "next_step": "User confirms servo supply on and channel 4 wired to G13. Await supply-off/probe-ready confirmation for connector waveform measurement.",
+  "next_step": "Defer channel 4 per user request; continue independent hand-pair checks. Newly connected tiger channels 7..10 still require a separately verified starting procedure.",
   "completed_supervised_trials": {
     "record": "servo_loaded_trials.20261011.json",
     "count": 14,
@@ -153,11 +161,23 @@
     "record": "servo_loaded_recheck.20261011.json",
     "single_axis_reversal_plans_completed": 2,
     "sampled_poses": 6,
-    "final_sequence": 78,
+    "final_sequence": 123,
     "all_outputs_off_at_end": true,
     "servo_2_return_visually_observed": true,
     "servo_4_response_resolved": false,
     "head_pair_plan_executed": true,
-    "blocking_condition": "Channel 4 response unresolved; supply and G13 wiring confirmed, oscilloscope available, preparing unpowered signal measurement"
+    "blocking_condition": "Channel 4 powered-retry motion not clearly observed; operator tentatively also saw no motion and requested skipping further channel 4 trials. No fault cause established.",
+    "servo_4_signal_verified_by_operator": true,
+    "servo_4_further_trials_deferred_by_user": true
+  },
+  "tiger_visual_estimate_not_command_values": {
+    "reported_after_sequence": 123,
+    "servos_7_9_10": "approximately centered",
+    "servo_8": "slightly downward from center",
+    "source": "operator visual description after connecting tiger",
+    "exact_command_angles_degrees": null,
+    "position_feedback": false,
+    "usable_for_initialize": false,
+    "loaded_trials_executed": false
   }
 }

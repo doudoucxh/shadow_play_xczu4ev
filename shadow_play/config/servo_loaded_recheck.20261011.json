@@ -760,7 +760,7 @@
     "enabled_mask": 0,
     "armed": false,
     "faults": 0,
-    "sequence": 78,
+    "sequence": 123,
     "pending": false,
     "pulse_us": [
       1537,
@@ -1131,7 +1131,7 @@
       }
     ]
   },
-  "next_step": "Measure channel 4 at the connector with servo supply off; waveform not yet measured. Resume loaded calibration only after diagnosis.",
+  "next_step": "Defer channel 4 per user request and continue independent hand-pair checks. Tiger is now connected, but channels 7..10 remain untested with estimated, unverified starting positions.",
   "validation": {
     "windows_unit_tests_passed": 13,
     "ubuntu_unit_tests_passed": 13,
@@ -1149,15 +1149,15 @@
     "fpga_manager_state": "operating",
     "loaded_log_confirms_success": true,
     "reloaded_during_rechecks": false,
-    "actual_connector_waveform_measured_this_turn": false,
+    "actual_connector_waveform_measured_this_turn": true,
     "actual_wiring_and_supply_confirmation_pending": false,
     "operator_confirmed_signal_pin": "G13",
     "operator_confirmed_servo_supply": "on_before_scope_preparation",
     "oscilloscope_available": true
   },
   "scope_preparation": {
-    "executed": false,
-    "awaiting": "Operator confirmation of servo power off and probe connected",
+    "executed": true,
+    "awaiting": null,
     "channel": 4,
     "pulse_us": 1574,
     "period_us": 20000,
@@ -1165,6 +1165,1141 @@
     "new_motion_commands_sent": 0,
     "last_read_only_sequence": 78,
     "board_program_sha256": "116c72ab10fe8e16ff99c0754640b99c1dd13c474e681669a063cca2d6509087",
-    "unit_tests_passed": 6
+    "unit_tests_passed": 6,
+    "servo_power_off_confirmed": true,
+    "probe_ready_confirmed": true
+  },
+  "scope_measurement": {
+    "channel": 4,
+    "pin": "G13",
+    "evidence_source": "Operator read oscilloscope at servo 4 signal line",
+    "period_ms": 20,
+    "frequency_hz": 50,
+    "high_width_ms": 1.574,
+    "high_voltage_v": 3.3,
+    "pulse_widths_changed": false,
+    "servo_supply_during_measurement": "operator_confirmed_off",
+    "motor_motion_not_tested": true,
+    "load_powered_signal_not_measured": true,
+    "independent_instrument_data_file": null,
+    "events": [
+      {
+        "event": "scope_signal_on",
+        "channel": 4,
+        "seconds": 30,
+        "servo_supply": "operator_confirmed_off",
+        "state": {
+          "identity": "SP10",
+          "period_us": 20000,
+          "clock_hz": 100000000,
+          "enabled_mask": 8,
+          "armed": true,
+          "faults": 0,
+          "sequence": 79,
+          "pending": false,
+          "pulse_us": [
+            1537,
+            1241,
+            1537,
+            1574,
+            1537,
+            1648,
+            1500,
+            1500,
+            1500,
+            1500
+          ],
+          "position_feedback": null
+        }
+      },
+      {
+        "event": "outputs_off",
+        "state": {
+          "identity": "SP10",
+          "period_us": 20000,
+          "clock_hz": 100000000,
+          "enabled_mask": 0,
+          "armed": false,
+          "faults": 0,
+          "sequence": 79,
+          "pending": false,
+          "pulse_us": [
+            1537,
+            1241,
+            1537,
+            1574,
+            1537,
+            1648,
+            1500,
+            1500,
+            1500,
+            1500
+          ],
+          "position_feedback": null
+        }
+      }
+    ],
+    "board_log_sha256": "4661deba547d4b44a20717e92c17054a33f3ba3122ab181529768b960407f99b",
+    "host_log_completed_utc": "2026-10-11T08:15:31.509306+00:00"
+  },
+  "scope_followup_trials": [
+    {
+      "name": "head_pair_scopeverified",
+      "plan": {
+        "observer_present": true,
+        "estimated_start_authorized": true,
+        "expected_sequence": 79,
+        "expected_pulses_us": [
+          1537,
+          1241,
+          1537,
+          1574,
+          1537,
+          1648,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "local_bounds_us": {
+          "3": [
+            1537,
+            1537
+          ],
+          "4": [
+            1574,
+            1611
+          ]
+        },
+        "steps": [
+          {
+            "label": "scopeverified_yaw3",
+            "channel": 3,
+            "pulse_us": 1537,
+            "hold_seconds": 2
+          },
+          {
+            "label": "scopeverified4_145",
+            "channel": 4,
+            "pulse_us": 1574,
+            "hold_seconds": 4
+          },
+          {
+            "label": "scopeverified4_150",
+            "channel": 4,
+            "pulse_us": 1611,
+            "hold_seconds": 5
+          },
+          {
+            "label": "scopeverified4_return",
+            "channel": 4,
+            "pulse_us": 1574,
+            "hold_seconds": 4
+          }
+        ]
+      },
+      "events": [
+        {
+          "event": "sample_begin",
+          "label": "scopeverified_yaw3",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 4,
+            "armed": true,
+            "faults": 0,
+            "sequence": 80,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "actual_position_verified": false,
+          "host_received_at": "2026-10-11T08:17:55.525100+00:00",
+          "host_unix_ns": 1791706675525100500
+        },
+        {
+          "event": "sample_end",
+          "label": "scopeverified_yaw3",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 4,
+            "armed": true,
+            "faults": 0,
+            "sequence": 80,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T08:17:57.541173+00:00",
+          "host_unix_ns": 1791706677541173800
+        },
+        {
+          "event": "sample_begin",
+          "label": "scopeverified4_145",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 12,
+            "armed": true,
+            "faults": 0,
+            "sequence": 81,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "actual_position_verified": false,
+          "host_received_at": "2026-10-11T08:17:57.573286+00:00",
+          "host_unix_ns": 1791706677573286900
+        },
+        {
+          "event": "sample_end",
+          "label": "scopeverified4_145",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 12,
+            "armed": true,
+            "faults": 0,
+            "sequence": 81,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T08:18:01.604541+00:00",
+          "host_unix_ns": 1791706681604541800
+        },
+        {
+          "event": "sample_begin",
+          "label": "scopeverified4_150",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 12,
+            "armed": true,
+            "faults": 0,
+            "sequence": 91,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1611,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "actual_position_verified": false,
+          "host_received_at": "2026-10-11T08:18:02.605963+00:00",
+          "host_unix_ns": 1791706682605963300
+        },
+        {
+          "event": "sample_end",
+          "label": "scopeverified4_150",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 12,
+            "armed": true,
+            "faults": 0,
+            "sequence": 91,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1611,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T08:18:07.613686+00:00",
+          "host_unix_ns": 1791706687613686700
+        },
+        {
+          "event": "sample_begin",
+          "label": "scopeverified4_return",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 12,
+            "armed": true,
+            "faults": 0,
+            "sequence": 101,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "actual_position_verified": false,
+          "host_received_at": "2026-10-11T08:18:08.606723+00:00",
+          "host_unix_ns": 1791706688606723300
+        },
+        {
+          "event": "sample_end",
+          "label": "scopeverified4_return",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 12,
+            "armed": true,
+            "faults": 0,
+            "sequence": 101,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T08:18:12.643988+00:00",
+          "host_unix_ns": 1791706692643988000
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 101,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T08:18:12.668584+00:00",
+          "host_unix_ns": 1791706692668584700
+        }
+      ],
+      "capture_result": {
+        "completed": true,
+        "outputs_off_confirmed": true,
+        "camera_guard_error": null
+      },
+      "mechanical_calibration_valid": false,
+      "evidence_events_sha256": "b494a0d6e8e0cb9ce0b94f98b73d5c66c82a84d2e3aa485e1f65906bd5529f4d",
+      "servo_power_on": false,
+      "exclusion_reason": "Operator corrected earlier power-on confirmation: supply had not been connected",
+      "operator_mechanical_observation": "not attended to; then supply omission reported",
+      "image_analysis": {
+        "method": "Local grayscale zero-mean normalized cross-correlation, integer displacement, +-18px search",
+        "trials": [
+          {
+            "camera": "front",
+            "roi_name": "head",
+            "roi_xyxy": [
+              235,
+              108,
+              272,
+              151
+            ],
+            "results": [
+              {
+                "label": "scopeverified4_145",
+                "sequence": 81,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 1.0,
+                "same_roi_mean_absolute_gray_difference": 0.0,
+                "frame_sha256": "cfd2d42821a9f2d819f5c724dc6145d20bb49b1b46cd96adc825c220814a5de6"
+              },
+              {
+                "label": "scopeverified4_150",
+                "sequence": 91,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.99419,
+                "same_roi_mean_absolute_gray_difference": 0.85041,
+                "frame_sha256": "66f74c622e0b931f5676b561d8276aa4acb9ac8e6f5edf7e220149081dad1d1c"
+              },
+              {
+                "label": "scopeverified4_return",
+                "sequence": 101,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.99574,
+                "same_roi_mean_absolute_gray_difference": 0.76304,
+                "frame_sha256": "7efe09c9e2b16be24616eebdc8f17be0f778a4d37fe4b32b2d29882e05ae4bf3"
+              }
+            ]
+          },
+          {
+            "camera": "top",
+            "roi_name": "head_puppet",
+            "roi_xyxy": [
+              510,
+              246,
+              550,
+              289
+            ],
+            "results": [
+              {
+                "label": "scopeverified4_145",
+                "sequence": 81,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 1.0,
+                "same_roi_mean_absolute_gray_difference": 0.0,
+                "frame_sha256": "6b333d9b679a6e9f3ada53020eafb37da1f4ae45a3117480dccac2eba8794155"
+              },
+              {
+                "label": "scopeverified4_150",
+                "sequence": 91,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.99336,
+                "same_roi_mean_absolute_gray_difference": 3.225,
+                "frame_sha256": "fceaef86ebebaf2818d71ac16a540c2de4a52566e231e890e5d77d35c493155c"
+              },
+              {
+                "label": "scopeverified4_return",
+                "sequence": 101,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.99238,
+                "same_roi_mean_absolute_gray_difference": 3.54826,
+                "frame_sha256": "8e84cd462155e5c53ccc34a66c00d415d112084d5665c2329fabfa433acddfdd"
+              }
+            ]
+          },
+          {
+            "camera": "top",
+            "roi_name": "head_rod",
+            "roi_xyxy": [
+              520,
+              323,
+              547,
+              424
+            ],
+            "results": [
+              {
+                "label": "scopeverified4_145",
+                "sequence": 81,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 1.0,
+                "same_roi_mean_absolute_gray_difference": 0.0,
+                "frame_sha256": "6b333d9b679a6e9f3ada53020eafb37da1f4ae45a3117480dccac2eba8794155"
+              },
+              {
+                "label": "scopeverified4_150",
+                "sequence": 91,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.99674,
+                "same_roi_mean_absolute_gray_difference": 2.44848,
+                "frame_sha256": "fceaef86ebebaf2818d71ac16a540c2de4a52566e231e890e5d77d35c493155c"
+              },
+              {
+                "label": "scopeverified4_return",
+                "sequence": 101,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.99589,
+                "same_roi_mean_absolute_gray_difference": 2.6377,
+                "frame_sha256": "8e84cd462155e5c53ccc34a66c00d415d112084d5665c2329fabfa433acddfdd"
+              }
+            ]
+          },
+          {
+            "camera": "top",
+            "roi_name": "head_gimbal",
+            "roi_xyxy": [
+              510,
+              436,
+              558,
+              486
+            ],
+            "results": [
+              {
+                "label": "scopeverified4_145",
+                "sequence": 81,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 1.0,
+                "same_roi_mean_absolute_gray_difference": 0.0,
+                "frame_sha256": "6b333d9b679a6e9f3ada53020eafb37da1f4ae45a3117480dccac2eba8794155"
+              },
+              {
+                "label": "scopeverified4_150",
+                "sequence": 91,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.99719,
+                "same_roi_mean_absolute_gray_difference": 2.88292,
+                "frame_sha256": "fceaef86ebebaf2818d71ac16a540c2de4a52566e231e890e5d77d35c493155c"
+              },
+              {
+                "label": "scopeverified4_return",
+                "sequence": 101,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.99704,
+                "same_roi_mean_absolute_gray_difference": 3.02958,
+                "frame_sha256": "8e84cd462155e5c53ccc34a66c00d415d112084d5665c2329fabfa433acddfdd"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "Integer translation model does not measure shaft angle and may miss subpixel motion, rotation or deformation.",
+          "Top ROIs visually selected from head-connected rod and its apparent gimbal; no labelled geometric calibration.",
+          "Fixed structure/background in gimbal and rod ROIs can dominate matching.",
+          "Low contrast, blur, compression and lighting changes limit image evidence.",
+          "No millimetre conversion or fault attribution. Await operator mechanical observation."
+        ],
+        "visual_observation": "No clear macroscopic head or head-rod/gimbal displacement is visible in these three selected still frames. Frames show differing background human positions and are not identical full-frame captures."
+      }
+    },
+    {
+      "name": "head_pair_power_retry",
+      "plan": {
+        "observer_present": true,
+        "estimated_start_authorized": true,
+        "expected_sequence": 101,
+        "expected_pulses_us": [
+          1537,
+          1241,
+          1537,
+          1574,
+          1537,
+          1648,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "local_bounds_us": {
+          "3": [
+            1537,
+            1537
+          ],
+          "4": [
+            1574,
+            1611
+          ]
+        },
+        "steps": [
+          {
+            "label": "power_retry_yaw3",
+            "channel": 3,
+            "pulse_us": 1537,
+            "hold_seconds": 2
+          },
+          {
+            "label": "power_retry4_145",
+            "channel": 4,
+            "pulse_us": 1574,
+            "hold_seconds": 4
+          },
+          {
+            "label": "power_retry4_150",
+            "channel": 4,
+            "pulse_us": 1611,
+            "hold_seconds": 5
+          },
+          {
+            "label": "power_retry4_return",
+            "channel": 4,
+            "pulse_us": 1574,
+            "hold_seconds": 4
+          }
+        ]
+      },
+      "events": [
+        {
+          "event": "sample_begin",
+          "label": "power_retry_yaw3",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 4,
+            "armed": true,
+            "faults": 0,
+            "sequence": 102,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "actual_position_verified": false,
+          "host_received_at": "2026-10-11T08:20:11.477513+00:00",
+          "host_unix_ns": 1791706811477513600
+        },
+        {
+          "event": "sample_end",
+          "label": "power_retry_yaw3",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 4,
+            "armed": true,
+            "faults": 0,
+            "sequence": 102,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T08:20:13.495412+00:00",
+          "host_unix_ns": 1791706813495412200
+        },
+        {
+          "event": "sample_begin",
+          "label": "power_retry4_145",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 12,
+            "armed": true,
+            "faults": 0,
+            "sequence": 103,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "actual_position_verified": false,
+          "host_received_at": "2026-10-11T08:20:13.526281+00:00",
+          "host_unix_ns": 1791706813526281500
+        },
+        {
+          "event": "sample_end",
+          "label": "power_retry4_145",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 12,
+            "armed": true,
+            "faults": 0,
+            "sequence": 103,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T08:20:17.514176+00:00",
+          "host_unix_ns": 1791706817514176300
+        },
+        {
+          "event": "sample_begin",
+          "label": "power_retry4_150",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 12,
+            "armed": true,
+            "faults": 0,
+            "sequence": 113,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1611,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "actual_position_verified": false,
+          "host_received_at": "2026-10-11T08:20:18.517379+00:00",
+          "host_unix_ns": 1791706818517379500
+        },
+        {
+          "event": "sample_end",
+          "label": "power_retry4_150",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 12,
+            "armed": true,
+            "faults": 0,
+            "sequence": 113,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1611,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T08:20:23.525332+00:00",
+          "host_unix_ns": 1791706823525332800
+        },
+        {
+          "event": "sample_begin",
+          "label": "power_retry4_return",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 12,
+            "armed": true,
+            "faults": 0,
+            "sequence": 123,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "actual_position_verified": false,
+          "host_received_at": "2026-10-11T08:20:24.518121+00:00",
+          "host_unix_ns": 1791706824518121200
+        },
+        {
+          "event": "sample_end",
+          "label": "power_retry4_return",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 12,
+            "armed": true,
+            "faults": 0,
+            "sequence": 123,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T08:20:28.517030+00:00",
+          "host_unix_ns": 1791706828517030100
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 123,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1241,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "host_received_at": "2026-10-11T08:20:28.540612+00:00",
+          "host_unix_ns": 1791706828540612900
+        }
+      ],
+      "capture_result": {
+        "completed": true,
+        "outputs_off_confirmed": true,
+        "camera_guard_error": null
+      },
+      "mechanical_calibration_valid": false,
+      "evidence_events_sha256": "c169155b54f4f31cdffe865e8daa512f174f5fd47561e8a635a63a2588d824ff",
+      "servo_power_on": "retry requested by operator after reporting omitted power connection",
+      "operator_mechanical_observation": "Operator said it seemed there was indeed no motion (tentative visual report), and requested proceeding with other channels.",
+      "visual_response": "No clear displacement on direct front-frame inspection",
+      "image_analysis": {
+        "method": "Local grayscale zero-mean normalized cross-correlation, integer displacement, +-18px search",
+        "trials": [
+          {
+            "camera": "front",
+            "roi_name": "head",
+            "roi_xyxy": [
+              235,
+              108,
+              272,
+              151
+            ],
+            "results": [
+              {
+                "label": "power_retry4_145",
+                "sequence": 103,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 1.0,
+                "frame_sha256": "f1feed8132fd8a9c70617c5a710bc208aa02fc5ce2669c38dbb02b49d55e4ec3"
+              },
+              {
+                "label": "power_retry4_150",
+                "sequence": 113,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.98201,
+                "frame_sha256": "d9912f1dadc2dde97139434e0ef073ea7ae16dbac01a2e0cb226ae7c651b356a"
+              },
+              {
+                "label": "power_retry4_return",
+                "sequence": 123,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.98715,
+                "frame_sha256": "6f69b032f8216d6288273a765bd6c0580293d59831d3508ee62a30c9185b2a1f"
+              }
+            ]
+          },
+          {
+            "camera": "top",
+            "roi_name": "head_puppet",
+            "roi_xyxy": [
+              510,
+              246,
+              550,
+              289
+            ],
+            "results": [
+              {
+                "label": "power_retry4_145",
+                "sequence": 103,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 1.0,
+                "frame_sha256": "5d1b490e95d8ff4c63c085148b8c8751d1ff7639c87009974082d6d8616a9732"
+              },
+              {
+                "label": "power_retry4_150",
+                "sequence": 113,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.9797,
+                "frame_sha256": "78d934b05fac52bfd0e8cc0abe311be780a6261b246d265923ce8cd82dbea8b7"
+              },
+              {
+                "label": "power_retry4_return",
+                "sequence": 123,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.99364,
+                "frame_sha256": "a68b897aeb4ee1159b3a30d5633653323e23df1c15646f1fd27d03229a1d0080"
+              }
+            ]
+          },
+          {
+            "camera": "top",
+            "roi_name": "head_rod",
+            "roi_xyxy": [
+              520,
+              323,
+              547,
+              424
+            ],
+            "results": [
+              {
+                "label": "power_retry4_145",
+                "sequence": 103,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 1.0,
+                "frame_sha256": "5d1b490e95d8ff4c63c085148b8c8751d1ff7639c87009974082d6d8616a9732"
+              },
+              {
+                "label": "power_retry4_150",
+                "sequence": 113,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.98284,
+                "frame_sha256": "78d934b05fac52bfd0e8cc0abe311be780a6261b246d265923ce8cd82dbea8b7"
+              },
+              {
+                "label": "power_retry4_return",
+                "sequence": 123,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.99727,
+                "frame_sha256": "a68b897aeb4ee1159b3a30d5633653323e23df1c15646f1fd27d03229a1d0080"
+              }
+            ]
+          },
+          {
+            "camera": "top",
+            "roi_name": "head_gimbal",
+            "roi_xyxy": [
+              510,
+              436,
+              558,
+              486
+            ],
+            "results": [
+              {
+                "label": "power_retry4_145",
+                "sequence": 103,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 1.0,
+                "frame_sha256": "5d1b490e95d8ff4c63c085148b8c8751d1ff7639c87009974082d6d8616a9732"
+              },
+              {
+                "label": "power_retry4_150",
+                "sequence": 113,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.98907,
+                "frame_sha256": "78d934b05fac52bfd0e8cc0abe311be780a6261b246d265923ce8cd82dbea8b7"
+              },
+              {
+                "label": "power_retry4_return",
+                "sequence": 123,
+                "displacement_px": [
+                  0,
+                  0
+                ],
+                "ncc": 0.9974,
+                "frame_sha256": "a68b897aeb4ee1159b3a30d5633653323e23df1c15646f1fd27d03229a1d0080"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "Integer translation is not shaft measurement and can miss subpixel or rotational motion.",
+          "Top ROIs visually correspond to head-connected rod and apparent gimbal; fixed structures can dominate matching.",
+          "No calibrated millimetre conversion or fault attribution.",
+          "Prior head_pair_scopeverified trial was later reported unpowered and is excluded from fault/mechanical calibration evidence."
+        ],
+        "visual_observation": "No clear macroscopic displacement in the selected front or top three-point stills."
+      },
+      "operator_mechanical_observation_quote": "好像确实没有，先搞其他的吧",
+      "mechanical_fault_diagnosed": false,
+      "further_channel4_trials_deferred_by_user": true
+    }
+  ],
+  "tiger_connection_update": {
+    "reported_after_sequence": 123,
+    "source": "operator_reported",
+    "puppet_connected": true,
+    "previous_session_start_state": "tiger not connected",
+    "visual_estimates": {
+      "7": "approximately centered",
+      "9": "approximately centered",
+      "10": "approximately centered",
+      "8": "slightly downward from center"
+    },
+    "exact_command_angles_degrees": null,
+    "actual_position_feedback": null,
+    "usable_for_automatic_initialize": false,
+    "channels_executed_this_session": [],
+    "approved_loaded_limits": null,
+    "note": "Newly attached load and visual estimates do not establish measured shaft angles, a validated starting pose, or safe loaded ranges."
   }
 }
