@@ -133,7 +133,7 @@
     "alternative_requested": "Support puppet with servo power off, cut and replace cable ties for this group if feasible",
     "outcome": "Detachment was not performed; user explicitly authorized attended trials from visual estimates instead"
   },
-  "next_step": "Confirm current servo power and servo 4 response; then establish simultaneous pose and sample local 2D workspace. Calibration remains incomplete.",
+  "next_step": "User confirms servo supply on and channel 4 wired to G13. Await supply-off/probe-ready confirmation for connector waveform measurement.",
   "completed_supervised_trials": {
     "record": "servo_loaded_trials.20261011.json",
     "count": 14,
@@ -158,6 +158,6 @@
     "servo_2_return_visually_observed": true,
     "servo_4_response_resolved": false,
     "head_pair_plan_executed": true,
-    "blocking_condition": "Sony restored; checking present servo supply and unresolved channel 4 response"
+    "blocking_condition": "Channel 4 response unresolved; supply and G13 wiring confirmed, oscilloscope available, preparing unpowered signal measurement"
   }
 }

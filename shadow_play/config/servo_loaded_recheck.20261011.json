@@ -1131,7 +1131,7 @@
       }
     ]
   },
-  "next_step": "Confirm current servo supply state. Servo 4 still lacks resolved image displacement with servo 3 held; investigate signal and mechanical response before mapping the head workspace.",
+  "next_step": "Measure channel 4 at the connector with servo supply off; waveform not yet measured. Resume loaded calibration only after diagnosis.",
   "validation": {
     "windows_unit_tests_passed": 13,
     "ubuntu_unit_tests_passed": 13,
@@ -1150,6 +1150,21 @@
     "loaded_log_confirms_success": true,
     "reloaded_during_rechecks": false,
     "actual_connector_waveform_measured_this_turn": false,
-    "actual_wiring_and_supply_confirmation_pending": true
+    "actual_wiring_and_supply_confirmation_pending": false,
+    "operator_confirmed_signal_pin": "G13",
+    "operator_confirmed_servo_supply": "on_before_scope_preparation",
+    "oscilloscope_available": true
+  },
+  "scope_preparation": {
+    "executed": false,
+    "awaiting": "Operator confirmation of servo power off and probe connected",
+    "channel": 4,
+    "pulse_us": 1574,
+    "period_us": 20000,
+    "duration_seconds": 30,
+    "new_motion_commands_sent": 0,
+    "last_read_only_sequence": 78,
+    "board_program_sha256": "116c72ab10fe8e16ff99c0754640b99c1dd13c474e681669a063cca2d6509087",
+    "unit_tests_passed": 6
   }
 }
