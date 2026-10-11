@@ -101,7 +101,8 @@ int main(int argc, char** argv) {
         int seconds = 0, fps = 0;
         if(!probe) {
             seconds = std::stoi(argv[4]); fps = std::stoi(argv[5]);
-            if(seconds < 1 || seconds > 3600 || fps < 1 || fps > 15) throw std::runtime_error("Invalid duration or FPS");
+            if(seconds < 1 || seconds > 86400 || fps < 1 || fps > 15)
+                throw std::runtime_error("Duration must be 1..86400 seconds and FPS must be 1..15");
             output = fs::u8path(argv[3]); fs::create_directories(output);
             status(output, "waiting_for_credentials", frames);
             if(!std::getline(std::cin, user) || !std::getline(std::cin, password) || user.empty() || password.empty())

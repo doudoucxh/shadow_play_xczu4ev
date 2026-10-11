@@ -1,4 +1,4 @@
-param([string]$CameraIP = '192.168.31.250', [ValidateRange(10,3600)][int]$Seconds = 1800,
+param([string]$CameraIP = '192.168.31.250', [ValidateRange(10,86400)][int]$Seconds = 28800,
       [ValidateRange(1,15)][int]$FramesPerSecond = 5)
 $ErrorActionPreference = 'Stop'
 $exe = Join-Path $PSScriptRoot 'build\sony_liveview.exe'
@@ -39,16 +39,30 @@ try {
     $passwordText = $null
     [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($bstr)
     $bstr = [IntPtr]::Zero
-    $pointer = @{directory=$run;pid=$proc.Id;camera_ip=$CameraIP;started=(Get-Date).ToString('o')}
+    $pointer = @{directory=$run;pid=$proc.Id;camera_ip=$CameraIP;started=(Get-Date).ToString('o');duration_seconds=$Seconds;fps=$FramesPerSecond}
     [IO.File]::WriteAllText((Join-Path $PSScriptRoot 'output\current.json'), ($pointer | ConvertTo-Json), [Text.UTF8Encoding]::new($false))
     Write-Host "Live view output: $run"
     Write-Host 'Keep this terminal open. To stop, run stop_liveview.ps1 in another terminal.'
+    Write-Host ('Requested duration: ' + $Seconds + ' seconds; default is 8 hours.')
     $reported = $false
+    $previousFrame = -1L
+    $advancingSamples = 0
     while(-not $proc.WaitForExit(500)) {
         $statusPath = Join-Path $run 'status.json'
         if(-not $reported -and (Test-Path -LiteralPath $statusPath)){
             try { $state = Get-Content -LiteralPath $statusPath -Raw | ConvertFrom-Json } catch { continue }
-            if($state.state -eq 'streaming'){Write-Host 'LIVE VIEW READY';$reported=$true}
+            $ageMs = [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds() - [long]$state.updated_unix_ms
+            if($state.state -eq 'streaming' -and $ageMs -ge -1000 -and $ageMs -le 2000){
+                if([long]$state.frames -gt $previousFrame){$advancingSamples++}
+                elseif([long]$state.frames -lt $previousFrame){$advancingSamples=0}
+            } else {
+                $advancingSamples = 0
+            }
+            $previousFrame = [long]$state.frames
+            if($advancingSamples -ge 3){
+                Write-Host ('LIVE VIEW READY: verified advancing frames, latest age ' + $ageMs + ' ms')
+                $reported=$true
+            }
         }
     }
     $stdoutText = $stdout.GetAwaiter().GetResult()

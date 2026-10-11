@@ -20,10 +20,12 @@
     "latest_read_only_enabled_mask": 0,
     "motion_issued_during_review": false,
     "decision": "Keep locks active. Do not use old register pulses as a restart pose after manual repositioning. Establish a released-load or independently verified starting condition before motion.",
-    "front_camera": "Reconnect failed at SDK fingerprint read; operator wake requested",
-    "top_camera": "Advancing Camo frames received",
+    "front_camera": "Restored in network-authorized execution; 28800-second session started; 19 fresh JPEG frames verified",
+    "top_camera": "19 advancing Camo JPEG frames verified",
+    "camera_connection_diagnosis": "Restricted execution produced socket WinError 10013 and SDK fingerprint failure; network-authorized SDK probe and capture succeeded",
+    "camera_verified_max_age_ms": {"front": 188, "top": 204},
     "board_evidence": ".review_work/loaded_calibration_20261011/resume_readonly_a.log",
-    "camera_evidence": ".review_work/loaded_calibration_20261011/resume_check_b/frames.jsonl"
+    "camera_evidence": ".review_work/loaded_calibration_20261011/resume_check_d/verification.json"
   },
   "automatic_replay_allowed": false,
   "tiger_records_quarantined": true,
