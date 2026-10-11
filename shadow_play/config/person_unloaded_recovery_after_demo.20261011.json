@@ -636,7 +636,14 @@
     "observed_at": "2026-10-11T23:22:24+08:00",
     "front_observation": "Person is back within the curtain beside the tiger.",
     "top_observation": "Three person control rods appear connected; exact splice state awaits operator confirmation.",
-    "axes_manually_turned": null,
+    "axes_manually_turned": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
     "operator_confirmed_splice_state": null,
     "independent_servo_supply_state": null,
     "last_power_message": "我现在先断电",
@@ -707,7 +714,7 @@
     "new_motion_issued": false,
     "previous_command_registers_usable_as_actual_position": false,
     "incident_locks_retained": true,
-    "next_step": "Clarify which gimbals were manually turned and whether the first two splices are reconnected before planning any powered motion.",
+    "next_step": "All six person axes need a new reliable starting condition. Keep PWM disabled and do not re-arm from the former centering/working command registers. For unloaded recovery, separate the person rod splices, support the puppet, and review residual-rod sweep before establishing and holding a reconnecting pose.",
     "evidence": [
       {
         "path": ".review_work/loaded_calibration_20261011/manual_reset_readonly_af.board.log",
@@ -717,6 +724,9 @@
         "path": ".review_work/loaded_calibration_20261011/manual_reset_readonly_af/verification.json",
         "sha256": "678204244beae097a49b293274f483c08de7ee7988404ffd8f4869017c60e3a3"
       }
-    ]
+    ],
+    "operator_axis_clarification": "人物全部都转动了",
+    "person_previous_center_reference_valid_as_restart_pose": false,
+    "tiger_manual_turns_reported_in_this_reset": false
   }
 }
