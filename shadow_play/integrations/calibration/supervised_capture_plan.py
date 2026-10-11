@@ -24,8 +24,8 @@ def validate_plan(plan):
     if type(plan['expected_sequence']) is not int or plan['expected_sequence'] < 0:
         raise ValueError('Expected sequence required')
     bounds = plan['local_bounds_us']
-    if not isinstance(bounds, dict) or not bounds or set(bounds) - set('123456'):
-        raise ValueError('Only attended human channels 1..6 are supported')
+    if not isinstance(bounds, dict) or not bounds or set(bounds) - {str(ch) for ch in range(1, 11)}:
+        raise ValueError('Only canonical channel strings 1..10 are supported')
     for key, limits in bounds.items():
         if (not isinstance(limits, list) or len(limits) != 2 or
                 any(type(p) is not int for p in limits) or

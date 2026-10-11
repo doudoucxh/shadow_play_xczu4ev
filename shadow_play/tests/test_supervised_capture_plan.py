@@ -1,3 +1,4 @@
+import argparse
 import copy
 from pathlib import Path
 import sys
@@ -6,6 +7,8 @@ from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'integrations/calibration'))
 from supervised_capture_plan import HostLease, run_plan, validate_plan
 from test_supervised_servo_trial import FakeDevice
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
+from capture_supervised_plan import DEFAULT_BOARD_SCRIPT, validate_board_script
 
 class Device(FakeDevice):
     def __init__(self):
@@ -49,11 +52,63 @@ class Tests(unittest.TestCase):
         p=plan();p['observer_present']=False;variants.append(p)
         p=plan();p['steps'][0]['pulse_us']=1501;variants.append(p)
         p=plan();p['steps'][2]['pulse_us']=1600;variants.append(p)
-        p=plan();p['local_bounds_us']['7']=[1500,1537];variants.append(p)
+        p=plan();p['local_bounds_us']['0']=[1500,1537];variants.append(p)
         p=plan();p['steps'][1]['label']='first';variants.append(p)
         p=plan();p['steps'][0]['hold_seconds']=float('nan');variants.append(p)
         for p in variants:
             with self.assertRaises(ValueError):validate_plan(p)
+    def test_tiger_pairs_preserve_other_commands_and_use_correct_bits(self):
+        for first,second in [(7,8),(9,10)]:
+            with self.subTest(pair=(first,second)):
+                p=plan()
+                p['local_bounds_us']={str(first):[1500,1537],str(second):[1500,1537]}
+                for step,ch in zip(p['steps'],[first,second,second]):step['channel']=ch
+                d=Device();events=[];self.run_fast(d,p,events.append)
+                self.assertEqual(d.commits[0][1:],(1 << (first-1),True))
+                self.assertEqual(d.commits[1][1:],((1 << (first-1)) | (1 << (second-1)),False))
+                prior=[1500]*10
+                for pulses,mask,arm in d.commits:
+                    changed=[i for i in range(10) if pulses[i]!=prior[i]]
+                    self.assertTrue(all(i==second-1 for i in changed))
+                    self.assertTrue(all(abs(pulses[i]-prior[i])<=4 for i in changed))
+                    self.assertEqual(pulses[:6],[1500]*6)
+                    prior=pulses
+                self.assertEqual(d.off_count,1)
+                self.assertEqual(events[-1]['state']['enabled_mask'],0)
+    def test_reject_out_of_range_or_noncanonical_channel_keys(self):
+        for key in ['0','11','01','1.0',10]:
+            with self.subTest(key=key):
+                p=plan();p['local_bounds_us'][key]=[1500,1537]
+                with self.assertRaises(ValueError):validate_plan(p)
+        for ch in [0,11]:
+            p=plan();p['steps'][0]['channel']=ch
+            with self.assertRaises(ValueError):validate_plan(p)
+    def test_tiger_first_enable_cannot_replace_current_command(self):
+        for ch in [7,8,9,10]:
+            p=plan();p['local_bounds_us']={str(ch):[1496,1537]}
+            p['steps']=[dict(label='estimated_start',channel=ch,pulse_us=1496,hold_seconds=1)]
+            d=Device()
+            with self.assertRaisesRegex(ValueError,'First enable'):self.run_fast(d,p)
+            self.assertEqual(d.commits,[])
+    def test_tiger_existing_motion_bounds_remain_enforced(self):
+        p=plan();p['local_bounds_us']={'10':[1500,1538]}
+        p['steps']=[dict(label='start',channel=10,pulse_us=1500,hold_seconds=1),
+                    dict(label='too_far',channel=10,pulse_us=1538,hold_seconds=1)]
+        with self.assertRaisesRegex(ValueError,'37 us'):validate_plan(p)
+        p['steps'][1]['pulse_us']=1537;p['local_bounds_us']['10']=[1500,1613]
+        with self.assertRaisesRegex(ValueError,'112 us'):validate_plan(p)
+        p['local_bounds_us']['10']=[1500,1537]
+        p['steps']=[dict(label=str(i),channel=10,pulse_us=1500,hold_seconds=5) for i in range(13)]
+        with self.assertRaisesRegex(ValueError,'60-second'):validate_plan(p)
+    def test_board_script_path_validation(self):
+        self.assertEqual(validate_board_script(DEFAULT_BOARD_SCRIPT),DEFAULT_BOARD_SCRIPT)
+        self.assertEqual(validate_board_script('/tmp/supervised_capture_plan_20261011_v3.py'),
+                         '/tmp/supervised_capture_plan_20261011_v3.py')
+        for path in ['/tmp/test.py;reboot','/tmp/test.py\nreboot','/tmp/$(reboot).py',
+                     '/tmp/test.py --execute','/tmp/../test.py','/tmp/sub/test.py',
+                     '/etc/test.py','test.py','/tmp/test.json','/tmp/test.py\r']:
+            with self.subTest(path=path),self.assertRaises(argparse.ArgumentTypeError):
+                validate_board_script(path)
     def test_commit_failure_and_watchdog_never_rearm(self):
         d=Device();d.commit_error=True
         with self.assertRaises(TimeoutError):self.run_fast(d,plan())

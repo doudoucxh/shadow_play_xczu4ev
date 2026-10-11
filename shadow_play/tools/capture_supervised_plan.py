@@ -21,16 +21,26 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'integrations/calibra
 from camera_bridge import check_jpeg
 
 
+DEFAULT_BOARD_SCRIPT = '/tmp/supervised_capture_plan_20261011_v2.py'
+
+
+def validate_board_script(value):
+    if not re.fullmatch(r'/tmp/[A-Za-z0-9_][A-Za-z0-9_.-]*\.py', value):
+        raise argparse.ArgumentTypeError('Simple /tmp Python script path required')
+    return value
+
+
 def main():
-    import serial
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--board-plan',required=True)
+    p.add_argument('--board-script',type=validate_board_script,default=DEFAULT_BOARD_SCRIPT)
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--port',default='COM3')
     p.add_argument('--camera-base',default='http://192.168.45.1:8765')
     args=p.parse_args()
     if not re.fullmatch(r'/tmp/[A-Za-z0-9_.-]+\.json',args.board_plan):
         raise ValueError('Simple /tmp JSON plan required')
+    import serial
     args.output.mkdir(parents=True,exist_ok=False)
     stop=threading.Event(); ready=threading.Event(); finish=threading.Event()
     guard={'reason':None}; label={'value':None}; current_lock=threading.Lock()
@@ -83,7 +93,7 @@ def main():
         port.write(b'stty -echo\r');time.sleep(.15);port.read_all()
         if stop.is_set():raise RuntimeError(guard['reason'])
         command=('PYTHONPATH=/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration '
-                 'python3 -u /tmp/supervised_capture_plan_20261011_v2.py '+args.board_plan+
+                 'python3 -u '+args.board_script+' '+args.board_plan+
                  ' --execute --require-host-lease; echo PLAN_COMPLETE:$?; stty echo\r')
         port.write(command.encode('ascii'));started=True
         deadline=time.monotonic()+70;interrupted=False;last_lease=time.monotonic()

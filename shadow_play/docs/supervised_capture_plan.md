@@ -1,12 +1,14 @@
 # 有人值守的接杆采样工具
 
-`integrations/calibration/supervised_capture_plan.py` 在板端执行一段有限的采样计划，`tools/capture_supervised_plan.py` 在 Windows 经 PS 串口启动它，同时记录 Sony 正面与 Camo 顶视。它用于本次人物 1～6 号标定；不驱动滑轨、7～10 号，不重载 FPGA。
+`integrations/calibration/supervised_capture_plan.py` 在板端执行一段有限的采样计划，`tools/capture_supervised_plan.py` 在 Windows 经 PS 串口启动它，同时记录 Sony 正面与 Camo 顶视。当前源码支持人物 1～6 号及老虎 7～10 号；不驱动滑轨，不重载 FPGA。新增通道支持不代表老虎已完成起点确认或带杆标定。
 
 ## 与前一轮短时试调的区别
 
 同一段计划内保持已启用通道，到一个采样点后保持 1～5 秒，采完整段才停 PWM。每次只增加一个启用通道，或改变一个已启用轴；首次启用必须使用刚核对的寄存器值，随后每个目标与上一目标相差最多 37 μs（约 5°），中间以最多 4 μs、至少 80 ms 的步进过渡。寄存器值不等于实测角度；首次带杆启用仍须现场值守和明确的估计起点授权。
 
 局部边界由每次计划显式给出，跨度不超过 112 μs；这些是此次试验的命令限制，不代表已测得安全行程。每段最多 24 个采样点，计划运动及保持时间不超过 60 秒。每段结束、异常或中断均请求关闭所有 PWM。
+
+`local_bounds_us` 的键必须是字符串 `"1"` 至 `"10"`，步骤内 `channel` 必须是对应整数。老虎也遵守首次启用必须等于刚读取的命令寄存器这一限制；软件不会根据“接近回中”或“低约 10°”自动推算、写入起始脉宽。寄存器为 1500 μs 不证明实物居中，不能仅凭默认寄存器跳过现场起点核对。
 
 ## 运行条件
 
@@ -15,12 +17,14 @@
 3. 两路相机有新帧，人物、杆件及机构间隙可见。程序检测帧更新，不会自动判断人手、碰撞或遮挡。
 4. 计划内 `expected_sequence` 和十路 `expected_pulses_us` 必须与启动时关闭状态一致。状态变化就拒绝，不自动补发或重新启用。
 
-先用 `board_transfer.ps1` 将板端脚本传入 `/tmp/supervised_capture_plan_20261011_v2.py`，将经过审查的 JSON 计划传入新的 `/tmp/*.json` 文件。脚本默认预演，执行必须同时提供 `--execute --require-host-lease`；Windows 采集入口会传入这些参数，因此启动采集入口本身就是执行操作。
+先用 `board_transfer.ps1` 将经过测试的板端脚本传入新的版本文件（例如 `/tmp/supervised_capture_plan_20261011_v3.py`），核对哈希，再将经过审查的 JSON 计划传入新的 `/tmp/*.json` 文件，不覆盖旧板端脚本。Windows 可用 `--board-script` 指定新版本，省略时仍使用旧的 `/tmp/supervised_capture_plan_20261011_v2.py`；使用老虎通道前必须选择已包含十路支持的新版。路径仅接受 `/tmp/` 下简单 ASCII 文件名且以 `.py` 结尾，不允许子目录、空格或 shell 字符。此参数只选择脚本，不上传或校验其内容。
+
+板端脚本默认预演，执行必须同时提供 `--execute --require-host-lease`；Windows 采集入口会传入这些参数，因此启动采集入口本身就是执行操作。
 
 本机使用现有 Python 运行时和 `.review_work/servo_capture_20261008/python-deps` 中的 pyserial，后者需加入 `PYTHONPATH`。Windows 入口参数为：
 
 ```text
-capture_supervised_plan.py --board-plan /tmp/经过审查的计划.json --output 本机新的私有采集目录
+capture_supervised_plan.py --board-script /tmp/supervised_capture_plan_20261011_v3.py --board-plan /tmp/reviewed_plan.json --output 本机新的私有采集目录
 ```
 
 不要把文档中的示例文件名当成实际计划运行。每段使用新输出目录，避免混淆证据。
