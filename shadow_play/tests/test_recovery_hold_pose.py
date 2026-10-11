@@ -32,9 +32,11 @@ class HoldTests(unittest.TestCase):
     def run_hold(self,d,sleep=None):
         hold.run_hold(d,self.events.append,clock=lambda:self.now,sleep=sleep or self.advance)
 
-    def test_static_hold_has_one_commit_and_keeps_locks(self):
+    def test_static_hold_has_one_enable_then_frame_stop_and_keeps_locks(self):
         self.run_hold(self.device())
-        self.assertEqual(sum(a==0x18 for a,_ in self.reg.writes),1)
+        self.assertEqual(sum(a==0x18 for a,_ in self.reg.writes),2)
+        self.assertEqual(self.events[-1]['state']['sequence'],2)
+        self.assertTrue(self.events[-1]['normal_frame_stop'])
         self.assertEqual(self.events[0]['state']['enabled_mask'],15)
         self.assertEqual(self.events[0]['state']['pulse_us'],[1500]*10)
         self.assertFalse(self.events[-1]['state']['armed'])

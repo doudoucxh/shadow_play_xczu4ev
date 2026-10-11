@@ -43,6 +43,7 @@ module tb_servo_pwm_axi;
         end
     endtask
     integer count,j;
+    time pulse_start;
     initial begin
         repeat(5) @(negedge clk);resetn=1;
         read_reg(0,32'h53503130);read_reg(8,0);
@@ -65,6 +66,16 @@ module tb_servo_pwm_axi;
         write_reg(12'h040,1520,0,0);write_reg(12'h018,32'h434f4d54,0,0);
         read_reg(12'h080,1510); // Buffered command cannot shorten an in-progress pulse.
         wait(!dut.pending);read_reg(12'h080,1520);read_reg(12'h020,2);
+        // Normal shutdown queued during HIGH must preserve that full pulse.
+        @(posedge pwm[0]);pulse_start=$time;
+        write_reg(12'h014,0,0,0);write_reg(12'h018,32'h434f4d54,0,0);
+        @(negedge pwm[0]);
+        if($time-pulse_start!=1520*DIVIDER*10) $fatal(1,"Frame stop truncated final pulse");
+        wait(!dut.pending);read_reg(8,0);read_reg(12'h020,3);
+        repeat(20000*DIVIDER) begin @(negedge clk);if(pwm!==0) $fatal(1,"Frame stop emitted another pulse");end
+        write_reg(12'h00c,0,0,0);
+        write_reg(12'h010,32'h41524d31,0,0);
+        write_reg(12'h014,1,0,0);write_reg(12'h018,32'h434f4d54,0,0);wait(!dut.pending);
         write_reg(12'h040,499,0,2);read_reg(12'h00c,1);
         write_reg(12'h018,32'h434f4d54,0,0);read_reg(12'h00c,5);
         write_reg(12'h00c,0,0,0);if(pwm!==0) $fatal(1,"OFF did not gate the outputs");

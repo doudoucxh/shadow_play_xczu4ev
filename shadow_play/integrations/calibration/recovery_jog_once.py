@@ -142,6 +142,7 @@ class RecoveryJogDevice(PwmDevice):
 
 
 def run_once(device, emit, *, clock=time.monotonic, sleep=time.sleep):
+    completed = False
     def hold(seconds):
         deadline = clock()+seconds
         while clock() < deadline:
@@ -158,9 +159,12 @@ def run_once(device, emit, *, clock=time.monotonic, sleep=time.sleep):
             emit({'event': 'jog_step', 'channel': device.plan['channel'], 'step': index,
                   'state': state, 'position_feedback': None})
         hold(HOLD_SECONDS)
+        completed = True
     finally:
         device.finished = True
-        emit({'event': 'outputs_off', 'state': device.off(), 'incident_locks_removed': False})
+        state = device.stop_after_frame() if completed else device.off()
+        emit({'event': 'outputs_off', 'state': state, 'normal_frame_stop': completed,
+              'incident_locks_removed': False})
 
 
 def main():

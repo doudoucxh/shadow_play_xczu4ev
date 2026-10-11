@@ -90,11 +90,52 @@ class PwmDevice:
             raise RuntimeError('PWM motion inhibited by '+str(path)+'; status and OFF remain available')
 
     def off(self):
+        """Immediate emergency stop; may truncate a pulse already high."""
         self.reg.write(0x0c,0)
         state=self.status()
         if state['armed'] or state['enabled_mask'] or state['pending']:
             raise RuntimeError('OFF readback mismatch')
         return state
+
+    def stop_after_frame(self):
+        """Normal stop: adopt mask zero at a frame boundary, then disarm.
+
+        This disable-only path works with incident locks present. It never arms
+        or changes active pulse widths. Any uncertain state falls back to OFF;
+        it must never retry a commit or attempt to recover motion.
+        """
+        try:
+            before = self.status()
+            if before['pending'] or before['faults']:
+                raise RuntimeError('Cannot drain uncertain/faulted PWM state')
+            if not before['armed'] or not before['enabled_mask']:
+                return self.off()
+            pulses = before['pulse_us']
+            if any(type(v) is not int or not 500 <= v <= 2500 for v in pulses):
+                raise RuntimeError('Invalid active pulse readback during stop')
+            # Do not call commit(): recovery subclasses deliberately restrict
+            # it to their motion plan. These writes can only disable outputs.
+            for i, value in enumerate(pulses):
+                self.reg.write(0x40+4*i, value)
+            self.reg.write(0x14, 0)
+            self.reg.write(0x18, 0x434f4d54)
+            expected = (before['sequence']+1) & 0xffffffff
+            deadline = time.monotonic()+.12
+            while time.monotonic() < deadline:
+                after = self.status()
+                if after['faults'] or not after['armed']:
+                    raise RuntimeError('PWM stopped unexpectedly while draining frame')
+                if after['sequence'] == expected and not after['pending']:
+                    if after['enabled_mask'] or after['pulse_us'] != pulses:
+                        raise RuntimeError('Frame stop adopted-state mismatch')
+                    return self.off()
+                if after['sequence'] not in (before['sequence'], expected):
+                    raise RuntimeError('Unexpected sequence while draining frame')
+                time.sleep(.002)
+            raise TimeoutError('Frame stop adoption unknown; falling back to immediate OFF')
+        except BaseException:
+            self.off()
+            raise
 
     def kick(self):
         if self.reg.read(0x10):

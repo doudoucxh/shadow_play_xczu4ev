@@ -110,6 +110,7 @@ def run_once(device, emit, *, clock=time.monotonic, sleep=time.sleep):
     target = plan['expected_pulses_us'][:]
     target[plan['channel']-1] = 1500
     mask = 1 << (plan['channel']-1)
+    completed = False
     try:
         state = device.commit(target, mask, allow_arm=True)
         emit({'event': 'center_started', 'channel': plan['channel'], 'state': state,
@@ -124,8 +125,10 @@ def run_once(device, emit, *, clock=time.monotonic, sleep=time.sleep):
                 raise RuntimeError('Recovery state changed; no retry')
             device.kick()
             sleep(min(.04, max(0.0, deadline-clock())))
+        completed = True
     finally:
-        emit({'event': 'outputs_off', 'state': device.off(),
+        state = device.stop_after_frame() if completed else device.off()
+        emit({'event': 'outputs_off', 'state': state, 'normal_frame_stop': completed,
               'incident_locks_removed': False})
 
 

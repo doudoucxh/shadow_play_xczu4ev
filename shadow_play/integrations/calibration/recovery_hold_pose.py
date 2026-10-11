@@ -95,6 +95,7 @@ class PoseHoldDevice(PwmDevice):
 
 
 def run_hold(device, emit, *, clock=time.monotonic, sleep=time.sleep):
+    completed = False
     try:
         state = device.commit(device.plan['expected_pulses_us'],device.mask,allow_arm=True)
         emit({'event':'hold_started','state':state,'duration_seconds':device.plan['duration_seconds'],
@@ -108,8 +109,11 @@ def run_hold(device, emit, *, clock=time.monotonic, sleep=time.sleep):
                 emit({'event':'hold_alive','state':state,'remaining_seconds':max(0,deadline-clock())})
                 next_report=clock()+1
             sleep(min(.04,max(0,deadline-clock())))
+        completed = True
     finally:
-        emit({'event':'outputs_off','state':device.off(),'incident_locks_removed':False})
+        state = device.stop_after_frame() if completed else device.off()
+        emit({'event':'outputs_off','state':state,'normal_frame_stop':completed,
+              'incident_locks_removed':False})
 
 
 def main():
