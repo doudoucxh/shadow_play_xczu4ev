@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-11",
   "purpose": "Observation record only; not a runtime commissioning configuration",
   "runtime_enforces_this_file": false,
-  "source": "user measurements and read-only commissioning checks",
+  "source": "user measurements, initial read-only checks and subsequent supervised trial results",
   "stage": {
     "usable_width_mm": 740,
     "usable_height_mm": 500,
@@ -20,11 +20,56 @@
     "measured_carriage_coordinates_mm": null
   },
   "gimbals": [
-    {"number": 1, "servos": [1, 2], "rod": "wusong_left", "base_top_height_mm": 380, "puppet_connected_at_session_start": true},
-    {"number": 2, "servos": [3, 4], "rod": "wusong_neck", "base_top_height_mm": 240, "puppet_connected_at_session_start": true},
-    {"number": 3, "servos": [5, 6], "rod": "wusong_right", "base_top_height_mm": 120, "puppet_connected_at_session_start": true},
-    {"number": 4, "servos": [7, 8], "rod": "tiger_head", "base_top_height_mm": 190, "puppet_connected_at_session_start": false},
-    {"number": 5, "servos": [9, 10], "rod": "tiger_leg", "base_top_height_mm": 120, "puppet_connected_at_session_start": false}
+    {
+      "number": 1,
+      "servos": [
+        1,
+        2
+      ],
+      "rod": "wusong_left",
+      "base_top_height_mm": 380,
+      "puppet_connected_at_session_start": true
+    },
+    {
+      "number": 2,
+      "servos": [
+        3,
+        4
+      ],
+      "rod": "wusong_neck",
+      "base_top_height_mm": 240,
+      "puppet_connected_at_session_start": true
+    },
+    {
+      "number": 3,
+      "servos": [
+        5,
+        6
+      ],
+      "rod": "wusong_right",
+      "base_top_height_mm": 120,
+      "puppet_connected_at_session_start": true
+    },
+    {
+      "number": 4,
+      "servos": [
+        7,
+        8
+      ],
+      "rod": "tiger_head",
+      "base_top_height_mm": 190,
+      "puppet_connected_at_session_start": false
+    },
+    {
+      "number": 5,
+      "servos": [
+        9,
+        10
+      ],
+      "rod": "tiger_leg",
+      "base_top_height_mm": 120,
+      "puppet_connected_at_session_start": false
+    }
   ],
   "height_definition": "curtain bottom to upper surface of gimbal base, not pitch/yaw pivot height",
   "rod_attachment": "cable ties, rods tilted upward; exact tilt and effective lengths unmeasured",
@@ -32,7 +77,7 @@
   "current_reference": {
     "verified": false,
     "pulse_us": null,
-    "reason": "User changed angles and no longer remembers them; manual displacement since last acknowledged command is unconfirmed",
+    "reason": "Shaft angle remains unmeasured; subsequent accepted commands are recorded separately, not an automatically replayable reference",
     "position_feedback": false,
     "old_no_rod_limits_are_loaded_limits": false,
     "approved_loaded_limits": null
@@ -43,7 +88,8 @@
     "servos_4_6": "approximately 15 degrees downward from center",
     "source": "user explicitly confirmed visual estimates only",
     "usable_for_initialize": false,
-    "exact_command_angles_degrees": null
+    "exact_command_angles_degrees": null,
+    "later_authorized_trial_record": "servo_loaded_trials.20261011.json"
   },
   "initial_board_readback": {
     "host_local_date": "2026-10-11",
@@ -53,7 +99,18 @@
     "armed": false,
     "sequence": 0,
     "faults": 0,
-    "pulse_us": [1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500],
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
     "meaning": "Reset/default command registers after image load, not physical angle feedback"
   },
   "checks_at_1427_local": {
@@ -65,14 +122,31 @@
   },
   "later_camera_check": {
     "camo": "User adjusted view; all three human rods visible, near-side base area still near frame edge",
-    "sony": "Last inspected front frame occluded by a person; unobstructed view needed before motion"
+    "sony": "Last inspected front frame occluded by a person; unobstructed view needed before motion",
+    "note": "Historical pre-trial check; the view was subsequently cleared and fresh frames inspected for trials"
   },
   "mechanical_recovery": {
     "requested_group": 1,
     "detached_confirmed": false,
     "power_off_confirmed_after_initial_check": false,
     "user_response": "Rod attachment already fixed; currently unable to remove it",
-    "alternative_requested": "Support puppet with servo power off, cut and replace cable ties for this group if feasible"
+    "alternative_requested": "Support puppet with servo power off, cut and replace cable ties for this group if feasible",
+    "outcome": "Detachment was not performed; user explicitly authorized attended trials from visual estimates instead"
   },
-  "next_step": "Wait for a feasible way to recover a safe starting reference; no PWM commands based on visual angle estimates."
+  "next_step": "Check reverse repeatability of channels 2 and 4, then establish a simultaneous holding pose and calibrate the 740 x 500 mm curtain before local workspace sampling",
+  "completed_supervised_trials": {
+    "record": "servo_loaded_trials.20261011.json",
+    "count": 14,
+    "channels_tested": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "all_outputs_off_at_end": true,
+    "final_sequence": 14,
+    "loaded_workspace_calibrated": false
+  }
 }
