@@ -234,8 +234,12 @@
     "motion_locks_modified": false,
     "board_status_read_this_turn": false,
     "verified_restart_pose": false,
-    "operator_clarification_pending": "Whether manual tiger repositioning moved rods/gimbals or only puppet joints",
-    "limitation": "That clarification alone cannot establish measured joint angles or release the existing motion stop"
+    "operator_clarification_pending": false,
+    "operator_clarification_text": "就是把云台掰回去了",
+    "gimbals_manually_turned_after_power_off": true,
+    "individual_tiger_axes_moved": null,
+    "tiger_old_pulses_valid_as_restart_pose": false,
+    "limitation": "Manual turning of tiger gimbals is confirmed. Individual axes and actual angles are unknown; old pulses must not be used to restart. Existing motion stop remains active."
   },
   "validation": {
     "windows_tests_passed": 5,
