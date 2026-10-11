@@ -165,7 +165,714 @@
           "sha256": "908135b44a49640d7980085c85c97a6d5dcad07df53b78b6af1342febf379917"
         }
       ]
+    },
+    {
+      "channel": 2,
+      "pin": "D15",
+      "pulse_us": 1500,
+      "nominal_command_angle_deg": 135,
+      "hold_seconds": 3,
+      "operator_authorization": "我确定了，可以依次回中了",
+      "retry_authorization": null,
+      "mechanical_release": "Operator reports puppet rods disconnected at both gimbals 1/2 and 3/4; residual short rods remain on gimbals",
+      "sweep_clearance_confirmed": true,
+      "observer_at_power_cutoff_confirmed": true,
+      "operator_power_correction": "First attempts at sequences 298/299 were unpowered; repeat authorized after operator reported previous supply omission",
+      "power_connected_for_this_attempt_reported": false,
+      "pre_sequence": 297,
+      "events": [
+        {
+          "event": "center_started",
+          "channel": 2,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 2,
+            "armed": true,
+            "faults": 0,
+            "sequence": 298,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "hold_seconds": 3.0,
+          "actual_position_verified": false
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 298,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1537,
+              1574,
+              1537,
+              1648,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "incident_locks_removed": false
+        }
+      ],
+      "operator_result": "刚刚电源没接上，现在再试试",
+      "physical_motion_observed_by_operator": null,
+      "clear_motion_visible_in_camera": false,
+      "physical_angle_feedback": null,
+      "visual_review": "No clear motion; operator subsequently reported power had not been connected. Not a physical centering result.",
+      "camera_verification": {
+        "front": {
+          "samples": 47,
+          "unique_frame_ids": 47,
+          "max_age_ms": 202,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "front",
+            "file": "front_1791724121535081700.jpg",
+            "host_unix_ns": 1791724121535081700,
+            "frame_id": "session-20261011-170627-72267",
+            "age_ms": "158",
+            "image_size": [
+              640,
+              360
+            ],
+            "sha256": "84f633cb7a82c9c132fe181e0eb8afd97745e300785e631c809cc96f9fa43f68",
+            "captured_at": "2026-10-11T21:08:41.535082+08:00"
+          }
+        },
+        "top": {
+          "samples": 47,
+          "unique_frame_ids": 46,
+          "max_age_ms": 203,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "top",
+            "file": "top_1791724121531234700.jpg",
+            "host_unix_ns": 1791724121531234700,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-121317",
+            "age_ms": "188",
+            "image_size": [
+              960,
+              540
+            ],
+            "sha256": "ce63d453fcf9249423993e542ee66ee44086f7a3e2a54cb7d20c4eedb84bc799",
+            "captured_at": "2026-10-11T21:08:41.531235+08:00"
+          }
+        }
+      },
+      "ready_for_loaded_motion": false,
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery2_approved_t.json",
+          "sha256": "a974266d3dfefaa43374114692d4decfc1386bee8b6aea03b693b26c7eae66d2"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery2_action_t.board.log",
+          "sha256": "ffe0e77250461b7bc78399a4cf3f6fa1d30da8f1577d475ae541bb527a8d5740"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery2_action_t/frames.jsonl",
+          "sha256": "b7ea0fdf8aa5b516c88db3ae9ec198fceeb212c7a8f48df906a0a2d9cfff001c"
+        }
+      ]
+    },
+    {
+      "channel": 3,
+      "pin": "F13",
+      "pulse_us": 1500,
+      "nominal_command_angle_deg": 135,
+      "hold_seconds": 3,
+      "operator_authorization": "我确定了，可以依次回中了",
+      "retry_authorization": null,
+      "mechanical_release": "Operator reports puppet rods disconnected at both gimbals 1/2 and 3/4; residual short rods remain on gimbals",
+      "sweep_clearance_confirmed": true,
+      "observer_at_power_cutoff_confirmed": true,
+      "operator_power_correction": "First attempts at sequences 298/299 were unpowered; repeat authorized after operator reported previous supply omission",
+      "power_connected_for_this_attempt_reported": false,
+      "pre_sequence": 298,
+      "events": [
+        {
+          "event": "center_started",
+          "channel": 3,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 4,
+            "armed": true,
+            "faults": 0,
+            "sequence": 299,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1574,
+              1537,
+              1648,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "hold_seconds": 3.0,
+          "actual_position_verified": false
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 299,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1574,
+              1537,
+              1648,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "incident_locks_removed": false
+        }
+      ],
+      "operator_result": "刚刚电源没接上，现在再试试",
+      "physical_motion_observed_by_operator": null,
+      "clear_motion_visible_in_camera": false,
+      "physical_angle_feedback": null,
+      "visual_review": "No clear motion; operator subsequently reported power had not been connected. Not a physical centering result.",
+      "camera_verification": {
+        "front": {
+          "samples": 47,
+          "unique_frame_ids": 47,
+          "max_age_ms": 194,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "front",
+            "file": "front_1791724192525064500.jpg",
+            "host_unix_ns": 1791724192525064500,
+            "frame_id": "session-20261011-170627-72620",
+            "age_ms": "150",
+            "image_size": [
+              640,
+              360
+            ],
+            "sha256": "ea2b75b9fb7363a6432f40def7dc635bf9d8a301de61dd3894422d1e2e168898",
+            "captured_at": "2026-10-11T21:09:52.525064+08:00"
+          }
+        },
+        "top": {
+          "samples": 47,
+          "unique_frame_ids": 46,
+          "max_age_ms": 219,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "top",
+            "file": "top_1791724192521813000.jpg",
+            "host_unix_ns": 1791724192521813000,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-121672",
+            "age_ms": "171",
+            "image_size": [
+              960,
+              540
+            ],
+            "sha256": "d4870fd54d56a36114a9551b9c264f75798884024842c26136eb54adbe614015",
+            "captured_at": "2026-10-11T21:09:52.521813+08:00"
+          }
+        }
+      },
+      "ready_for_loaded_motion": false,
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery3_approved_t.json",
+          "sha256": "bd2662ee0dded977e3223069e9bf0d42dfd32f62dd7ddaba1f5e07a8867888f5"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery3_action_t.board.log",
+          "sha256": "c9b75359227a20040e0cc595df44e6e93e65e8e784d3d9e0f1e6764f934bca2d"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery3_action_t/frames.jsonl",
+          "sha256": "6e92cc25024b5ce5016020b989e6fe742490d9e7b22c1acaa308fe9c47dd1733"
+        }
+      ]
+    },
+    {
+      "channel": 2,
+      "pin": "D15",
+      "pulse_us": 1500,
+      "nominal_command_angle_deg": 135,
+      "hold_seconds": 3,
+      "operator_authorization": "我确定了，可以依次回中了",
+      "retry_authorization": "刚刚电源没接上，现在再试试",
+      "mechanical_release": "Operator reports puppet rods disconnected at both gimbals 1/2 and 3/4; residual short rods remain on gimbals",
+      "sweep_clearance_confirmed": true,
+      "observer_at_power_cutoff_confirmed": true,
+      "operator_power_correction": "First attempts at sequences 298/299 were unpowered; repeat authorized after operator reported previous supply omission",
+      "power_connected_for_this_attempt_reported": true,
+      "pre_sequence": 299,
+      "events": [
+        {
+          "event": "center_started",
+          "channel": 2,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 2,
+            "armed": true,
+            "faults": 0,
+            "sequence": 300,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1574,
+              1537,
+              1648,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "hold_seconds": 3.0,
+          "actual_position_verified": false
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 300,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1574,
+              1537,
+              1648,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "incident_locks_removed": false
+        }
+      ],
+      "operator_result": "什么问题都没有",
+      "physical_motion_observed_by_operator": null,
+      "clear_motion_visible_in_camera": true,
+      "physical_angle_feedback": null,
+      "visual_review": "Clear detached rod and pitch-frame movement observed; stopped at the commanded reference. No shaft-angle feedback.",
+      "camera_verification": {
+        "front": {
+          "samples": 47,
+          "unique_frame_ids": 47,
+          "max_age_ms": 204,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "front",
+            "file": "front_1791724268333071300.jpg",
+            "host_unix_ns": 1791724268333071300,
+            "frame_id": "session-20261011-170627-72997",
+            "age_ms": "143",
+            "image_size": [
+              640,
+              360
+            ],
+            "sha256": "5fe1c068cdcd7f91d5cfaf1b72df667e97a6f9af4402b5d768b9a7f4cd1089c1",
+            "captured_at": "2026-10-11T21:11:08.333071+08:00"
+          }
+        },
+        "top": {
+          "samples": 47,
+          "unique_frame_ids": 47,
+          "max_age_ms": 203,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "top",
+            "file": "top_1791724268320006900.jpg",
+            "host_unix_ns": 1791724268320006900,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-122051",
+            "age_ms": "171",
+            "image_size": [
+              960,
+              540
+            ],
+            "sha256": "6248b5db3d10764707fb8384da34cc96cce3d6e555873e80e5cdf3c44a92491b",
+            "captured_at": "2026-10-11T21:11:08.320007+08:00"
+          }
+        }
+      },
+      "ready_for_loaded_motion": false,
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery2_approved_u.json",
+          "sha256": "0990bcdfeb3c69f8183edacfbb6bdf5a7bc7973d986dc7911643337516b7b443"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery2_action_u.board.log",
+          "sha256": "ffb20cb8387589957640b4bf4c42286556a840f57e08270972f069ebd1bacdb9"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery2_action_u/frames.jsonl",
+          "sha256": "cdf087931e11e087affcae165416a2a330e3aa00b73011180c633739ed951ada"
+        }
+      ]
+    },
+    {
+      "channel": 3,
+      "pin": "F13",
+      "pulse_us": 1500,
+      "nominal_command_angle_deg": 135,
+      "hold_seconds": 3,
+      "operator_authorization": "我确定了，可以依次回中了",
+      "retry_authorization": "刚刚电源没接上，现在再试试",
+      "mechanical_release": "Operator reports puppet rods disconnected at both gimbals 1/2 and 3/4; residual short rods remain on gimbals",
+      "sweep_clearance_confirmed": true,
+      "observer_at_power_cutoff_confirmed": true,
+      "operator_power_correction": "First attempts at sequences 298/299 were unpowered; repeat authorized after operator reported previous supply omission",
+      "power_connected_for_this_attempt_reported": true,
+      "pre_sequence": 300,
+      "events": [
+        {
+          "event": "center_started",
+          "channel": 3,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 4,
+            "armed": true,
+            "faults": 0,
+            "sequence": 301,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1574,
+              1537,
+              1648,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "hold_seconds": 3.0,
+          "actual_position_verified": false
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 301,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1574,
+              1537,
+              1648,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "incident_locks_removed": false
+        }
+      ],
+      "operator_result": "什么问题都没有",
+      "physical_motion_observed_by_operator": null,
+      "clear_motion_visible_in_camera": false,
+      "physical_angle_feedback": null,
+      "visual_review": "Only pixel-scale bracket changes (about 1 px) resolved; insufficient to independently verify actual shaft angle.",
+      "camera_verification": {
+        "front": {
+          "samples": 47,
+          "unique_frame_ids": 47,
+          "max_age_ms": 198,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "front",
+            "file": "front_1791724387469360700.jpg",
+            "host_unix_ns": 1791724387469360700,
+            "frame_id": "session-20261011-170627-73590",
+            "age_ms": "42",
+            "image_size": [
+              640,
+              360
+            ],
+            "sha256": "55b4ce544791b4fff06b5fc228cccf69ec99691cd59fc2d1c5b26203878d0308",
+            "captured_at": "2026-10-11T21:13:07.469361+08:00"
+          }
+        },
+        "top": {
+          "samples": 47,
+          "unique_frame_ids": 47,
+          "max_age_ms": 203,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "top",
+            "file": "top_1791724387464696100.jpg",
+            "host_unix_ns": 1791724387464696100,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-122647",
+            "age_ms": "110",
+            "image_size": [
+              960,
+              540
+            ],
+            "sha256": "bf18270b10f4448e95597c38d3662dbff835aca9314306c3025eb45b00882b07",
+            "captured_at": "2026-10-11T21:13:07.464696+08:00"
+          }
+        }
+      },
+      "ready_for_loaded_motion": false,
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery3_approved_u.json",
+          "sha256": "1c1bff897e5639a2e1b6568b353e2db15d5015fbe02e4a07f93aab61d9ebab13"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery3_action_u.board.log",
+          "sha256": "78bb897c0bea0d3d4d69bf4799e4ada52d4bc329a73acb7dac27e43e1484c981"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery3_action_u/frames.jsonl",
+          "sha256": "bdc18feb2ed54d88a2608295a28a6df80458f36f4a69e3a7423e16de940cb5cf"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery3_action_u/motion_checks.json",
+          "sha256": "b5071badf4b39c2490c48ecdaf172581f04ee3f4df4c81d48752e22ae023f0f8"
+        }
+      ]
+    },
+    {
+      "channel": 4,
+      "pin": "G13",
+      "pulse_us": 1500,
+      "nominal_command_angle_deg": 135,
+      "hold_seconds": 3,
+      "operator_authorization": "我确定了，可以依次回中了",
+      "retry_authorization": "刚刚电源没接上，现在再试试",
+      "mechanical_release": "Operator reports puppet rods disconnected at both gimbals 1/2 and 3/4; residual short rods remain on gimbals",
+      "sweep_clearance_confirmed": true,
+      "observer_at_power_cutoff_confirmed": true,
+      "operator_power_correction": "First attempts at sequences 298/299 were unpowered; repeat authorized after operator reported previous supply omission",
+      "power_connected_for_this_attempt_reported": true,
+      "pre_sequence": 301,
+      "events": [
+        {
+          "event": "center_started",
+          "channel": 4,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 8,
+            "armed": true,
+            "faults": 0,
+            "sequence": 302,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1500,
+              1537,
+              1648,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "hold_seconds": 3.0,
+          "actual_position_verified": false
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 302,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1500,
+              1537,
+              1648,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "incident_locks_removed": false
+        }
+      ],
+      "operator_result": "什么问题都没有",
+      "physical_motion_observed_by_operator": null,
+      "clear_motion_visible_in_camera": true,
+      "physical_angle_feedback": null,
+      "visual_review": "Clear detached rod and pitch-frame movement observed; stopped at the commanded reference. No shaft-angle feedback.",
+      "camera_verification": {
+        "front": {
+          "samples": 47,
+          "unique_frame_ids": 47,
+          "max_age_ms": 200,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "front",
+            "file": "front_1791724448433893700.jpg",
+            "host_unix_ns": 1791724448433893700,
+            "frame_id": "session-20261011-170627-73893",
+            "age_ms": "86",
+            "image_size": [
+              640,
+              360
+            ],
+            "sha256": "ac03351fc0f4658afce650714d18efe7cdfa0572dffb53518adbf0cc1912f1fd",
+            "captured_at": "2026-10-11T21:14:08.433894+08:00"
+          }
+        },
+        "top": {
+          "samples": 47,
+          "unique_frame_ids": 47,
+          "max_age_ms": 188,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "top",
+            "file": "top_1791724448430953100.jpg",
+            "host_unix_ns": 1791724448430953100,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-122952",
+            "age_ms": "78",
+            "image_size": [
+              960,
+              540
+            ],
+            "sha256": "1702ea98e04f2bc65569c81a2a3ebd84cc4aac6478d92796ace6f02031b19050",
+            "captured_at": "2026-10-11T21:14:08.430953+08:00"
+          }
+        }
+      },
+      "ready_for_loaded_motion": false,
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery4_approved_u.json",
+          "sha256": "a22fa7bee682b565556e782b677956fd36137dcecd53db1c39cb292cd1d3a6ec"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery4_action_u.board.log",
+          "sha256": "03ad9791767fd3ba895d2dda20a2f821513fa6a41aaa819dfe375a0b96358357"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/recovery4_action_u/frames.jsonl",
+          "sha256": "071b718de03f95c6183a28af8956b219f8fe7adbaafd892abb7211c29a046d3f"
+        }
+      ]
     }
   ],
-  "automatic_replay_allowed": false
+  "automatic_replay_allowed": false,
+  "mechanical_changes": [
+    {
+      "date": "2026-10-11",
+      "gimbal": 2,
+      "channels": [
+        3,
+        4
+      ],
+      "operator_report": "上面的舵机和下面的舵机之间的连接断开，重新装上，可能角度变化",
+      "previous_assembly_reference_valid": false,
+      "previous_collision_limits_reusable_without_recheck": false,
+      "exact_detached_interface_identified": false,
+      "operator_mount_check": "第二组现在应该没问题了",
+      "rod_release_confirmed_gimbals": [
+        1,
+        2
+      ],
+      "last_operator_abnormality_report": "什么问题都没有"
+    }
+  ],
+  "latest_independent_check": {
+    "sequence": 302,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "incident_locks_present": true,
+    "ordinary_motion_inhibited": true,
+    "evidence": {
+      "path": ".review_work/loaded_calibration_20261011/recovery234_postcheck_u.log",
+      "sha256": "b8dbce0c03468af9bdac4db46fb1cefaa65ae49a3010006551100006b5414600"
+    }
+  },
+  "next_work": [
+    "Keep rods disconnected; do not treat reference 135 degrees as the final puppet working pose",
+    "Choose a lower working pose for gimbal 1 before reconnecting the long rod; current short rod approaches the upper frame",
+    "Verify yaw-axis physical response and check the remounted gimbal 2 before loaded calibration",
+    "Recheck rod coupling and loaded travel limits before any loaded motion"
+  ]
 }
