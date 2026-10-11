@@ -1,0 +1,248 @@
+{
+  "method": "15x15 grayscale NCC patches, integer translation within +/-10 pixels",
+  "anchors": [
+    {
+      "reference_pixel": [
+        143,
+        323
+      ],
+      "matched_pixel": [
+        143,
+        323
+      ],
+      "shift_px": [
+        0,
+        0
+      ],
+      "distance_px": 0.0,
+      "ncc": 0.9302873784492055,
+      "label": "LL",
+      "within_diagnostic_tolerance": true
+    },
+    {
+      "reference_pixel": [
+        555,
+        320
+      ],
+      "matched_pixel": [
+        555,
+        320
+      ],
+      "shift_px": [
+        0,
+        0
+      ],
+      "distance_px": 0.0,
+      "ncc": 0.8532993495300759,
+      "label": "LR",
+      "within_diagnostic_tolerance": false
+    },
+    {
+      "reference_pixel": [
+        573,
+        39
+      ],
+      "matched_pixel": [
+        573,
+        39
+      ],
+      "shift_px": [
+        0,
+        0
+      ],
+      "distance_px": 0.0,
+      "ncc": 0.7534303640472118,
+      "label": "UR",
+      "within_diagnostic_tolerance": false
+    },
+    {
+      "reference_pixel": [
+        147,
+        34
+      ],
+      "matched_pixel": [
+        147,
+        34
+      ],
+      "shift_px": [
+        0,
+        0
+      ],
+      "distance_px": 0.0,
+      "ncc": 0.9141824449974522,
+      "label": "UL",
+      "within_diagnostic_tolerance": true
+    }
+  ],
+  "thresholds": {
+    "min_ncc": 0.9,
+    "max_shift_px": 2.0
+  },
+  "same_view_candidate": false,
+  "metric_accuracy_verified": false,
+  "actual_servo_position_known": false,
+  "motion_permission": false,
+  "limitations": [
+    "Checks selected image patches only; visual review still required.",
+    "Does not verify camera freshness, physical marker placement, rod position or joint angle.",
+    "Thresholds are diagnostic tolerances, not validated mechanical safety limits."
+  ],
+  "reference_image_sha256": "c5a55bdf0bb03edd7f74a2f90bdcb069563a3d2e53d1102e240f6d80fcbd8b6b",
+  "current_image_sha256": "1d9c8c8fe1b327b25c7630ec1d4cf81cbe4a2d9230d02c7aec7926b0942bd1b5",
+  "recorded_date": "2026-10-11",
+  "purpose": "Stationary camera reference and linkage observability review; no motion",
+  "camera_verification": {
+    "front": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 150,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "front",
+        "file": "front_1791711628134950100.jpg",
+        "host_unix_ns": 1791711628134950100,
+        "frame_id": "session-20261011-170627-10138",
+        "age_ms": "150",
+        "image_size": [
+          640,
+          360
+        ],
+        "sha256": "1d9c8c8fe1b327b25c7630ec1d4cf81cbe4a2d9230d02c7aec7926b0942bd1b5",
+        "captured_at": "2026-10-11T17:40:28.134950+08:00"
+      }
+    },
+    "top": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 203,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "top",
+        "file": "top_1791711628133174900.jpg",
+        "host_unix_ns": 1791711628133174900,
+        "frame_id": "0c85f055395d4586aff0968d056f733e-58851",
+        "age_ms": "0",
+        "image_size": [
+          960,
+          540
+        ],
+        "sha256": "b7bed226e96211a9973d6e41081a8684888747a71390bb8f5fd0766092262ac1",
+        "captured_at": "2026-10-11T17:40:28.133175+08:00"
+      }
+    }
+  },
+  "subsequent_camera_verification": {
+    "front": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 159,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "front",
+        "file": "front_1791712084011064900.jpg",
+        "host_unix_ns": 1791712084011064900,
+        "frame_id": "session-20261011-170627-12405",
+        "age_ms": "159",
+        "image_size": [
+          640,
+          360
+        ],
+        "sha256": "875671a25bf7f891415b91bf2793f6825c5fe3f558ec476dd67a414c9a6035db",
+        "captured_at": "2026-10-11T17:48:04.011065+08:00"
+      }
+    },
+    "top": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 188,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "top",
+        "file": "top_1791712084015103100.jpg",
+        "host_unix_ns": 1791712084015103100,
+        "frame_id": "0c85f055395d4586aff0968d056f733e-61130",
+        "age_ms": "94",
+        "image_size": [
+          960,
+          540
+        ],
+        "sha256": "8ef9086f159879747cb64700aca5d279c9f98d650e605cfaac568b009a4519f2",
+        "captured_at": "2026-10-11T17:48:04.015103+08:00"
+      }
+    }
+  },
+  "manual_visual_review": {
+    "four_crosses_visible": true,
+    "reference_automatically_reused": false,
+    "physical_metric_accuracy_verified": false,
+    "actual_attachment_centres_confirmed": 0,
+    "subsequent_front_view": "Person at left edge; no confirmed new linkage labels visible at 17:48:04",
+    "note": "Zero integer shift at the correlation peak does not prove camera stability, especially when two scores are below threshold"
+  },
+  "pending_attachment_labels": [
+    {
+      "label": 1,
+      "rod": "wusong_left",
+      "servos": [
+        1,
+        2
+      ]
+    },
+    {
+      "label": 2,
+      "rod": "wusong_neck",
+      "servos": [
+        3,
+        4
+      ]
+    },
+    {
+      "label": 3,
+      "rod": "wusong_right",
+      "servos": [
+        5,
+        6
+      ]
+    },
+    {
+      "label": 4,
+      "rod": "tiger_head",
+      "servos": [
+        7,
+        8
+      ]
+    },
+    {
+      "label": 5,
+      "rod": "tiger_leg",
+      "servos": [
+        9,
+        10
+      ]
+    }
+  ],
+  "cad_review": {
+    "file": "cad/servo_reference_20261010/reference_inspection.json",
+    "sha256": "c02428f11eef534d469dc20f1da6bafcc6607ec3b368c2ae11f1de15ee87eaee",
+    "supports": "Relative model axes and sampled component clearances only",
+    "pwm_to_installed_angle_mapping_available": false,
+    "can_recover_actual_joint_angles_from_current_images": false
+  },
+  "recovery": {
+    "independent_supply_last_reported": "off",
+    "movement_commands_sent": 0,
+    "motion_locks_modified": false,
+    "board_status_read_this_turn": false,
+    "verified_restart_pose": false,
+    "operator_clarification_pending": "Whether manual tiger repositioning moved rods/gimbals or only puppet joints",
+    "limitation": "That clarification alone cannot establish measured joint angles or release the existing motion stop"
+  },
+  "validation": {
+    "windows_tests_passed": 5,
+    "ubuntu_tests_passed": 5,
+    "ubuntu_numpy": "1.17.4",
+    "ubuntu_pillow": "7.0.0",
+    "ubuntu_same_saved_images_reproduced_same_diagnostic_result": true
+  },
+  "evidence_dir": ".review_work/loaded_calibration_20261011/connection_review_e"
+}
