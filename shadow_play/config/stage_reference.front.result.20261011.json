@@ -1,0 +1,221 @@
+{
+  "actual_servo_state": null,
+  "coordinate_convention": "origin at curtain lower left; +x audience right; +y up; units mm",
+  "height_mm": 500.0,
+  "image_height": 360,
+  "image_width": 640,
+  "lens_distortion_corrected": false,
+  "limitation": "Numerical roundtrip is not physical accuracy. Projection is for the curtain plane, not 3D rods or joint angles.",
+  "metric_accuracy_verified": false,
+  "motion_calibration_ready": false,
+  "pixel_to_stage": [
+    [
+      1.6656172852307431,
+      0.023053526439179878,
+      -245.62956082785135
+    ],
+    [
+      -0.012431226643601207,
+      -1.7072217923878956,
+      553.2103043513252
+    ],
+    [
+      -6.35636710858244e-05,
+      -0.00011709982833320677,
+      1.0
+    ]
+  ],
+  "points": [
+    {
+      "id": "P1",
+      "interpretation": "Approximate raised-hand silhouette point on person; rod attachment and servo association unverified",
+      "pixel": [
+        219.0,
+        135.0
+      ],
+      "roundtrip_error_px": 2.842170943040401e-14,
+      "stage_mm": [
+        125.99865473354076,
+        329.8180586867366
+      ]
+    },
+    {
+      "id": "P2",
+      "interpretation": "Approximate person head silhouette centre; not a rod attachment",
+      "pixel": [
+        250.0,
+        141.0
+      ],
+      "roundtrip_error_px": 6.355287432313019e-14,
+      "stage_mm": [
+        179.8529002237128,
+        319.7445870150983
+      ]
+    },
+    {
+      "id": "P3",
+      "interpretation": "Approximate lower-hand silhouette point on person; rod attachment and servo association unverified",
+      "pixel": [
+        295.0,
+        183.0
+      ],
+      "roundtrip_error_px": 8.526512829121202e-14,
+      "stage_mm": [
+        260.40974066383194,
+        247.0480306152481
+      ]
+    },
+    {
+      "id": "P4",
+      "interpretation": "Approximate tiger head silhouette centre; not a rod attachment",
+      "pixel": [
+        371.0,
+        193.0
+      ],
+      "roundtrip_error_px": 1.2710574864626038e-13,
+      "stage_mm": [
+        395.00610828286466,
+        229.71321851510177
+      ]
+    },
+    {
+      "id": "P5",
+      "interpretation": "Approximate tiger hind-paw silhouette point; rod attachment and servo association unverified",
+      "pixel": [
+        423.0,
+        266.0
+      ],
+      "roundtrip_error_px": 5.684341886080802e-14,
+      "stage_mm": [
+        493.71184306512174,
+        99.61197819816866
+      ]
+    }
+  ],
+  "preview_height": 601,
+  "preview_width": 889,
+  "purpose": "static image geometry only",
+  "reference_pixels": [
+    [
+      143,
+      323
+    ],
+    [
+      555,
+      320
+    ],
+    [
+      573,
+      39
+    ],
+    [
+      147,
+      34
+    ]
+  ],
+  "reference_points_mm": [
+    [
+      0.0,
+      0.0
+    ],
+    [
+      740.0,
+      0.0
+    ],
+    [
+      740.0,
+      500.0
+    ],
+    [
+      0.0,
+      500.0
+    ]
+  ],
+  "reference_selection": {
+    "corner_markers_verified_visible": true,
+    "corner_order": [
+      "lower_left",
+      "lower_right",
+      "upper_right",
+      "upper_left"
+    ],
+    "method": "Manual pixel selection at cross intersections, not note borders",
+    "operator_statement": "User repositioned the four marked notes near the inner corners and said placement was approximate",
+    "physical_accuracy_mm": null,
+    "physical_corner_placement_exact": false,
+    "physical_extent_confirmed_by_user": true,
+    "physical_extent_description": "Inner edges of four aluminium frame members, viewed from audience",
+    "reference_capture_at": "2026-10-11T17:32:31.473983+08:00",
+    "reference_frame_age_ms": 181,
+    "reference_frame_id": "session-20261011-170627-7767",
+    "reference_frame_sha256": "c5a55bdf0bb03edd7f74a2f90bdcb069563a3d2e53d1102e240f6d80fcbd8b6b",
+    "reference_points_mm_basis": "Assumed to coincide with full stage corners after user repositioning; no measured inset distances supplied",
+    "status": "visible_cross_markers_approximate_physical_placement",
+    "validity": "Approximate curtain-plane coordinate reference only; unchanged camera/frame/markers; not approved motor calibration"
+  },
+  "reference_view": "front",
+  "version": 1,
+  "width_mm": 740.0,
+  "camera_verification": {
+    "front": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 181,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "front",
+        "file": "front_1791711151473982600.jpg",
+        "host_unix_ns": 1791711151473982600,
+        "frame_id": "session-20261011-170627-7767",
+        "age_ms": "181",
+        "image_size": [
+          640,
+          360
+        ],
+        "sha256": "c5a55bdf0bb03edd7f74a2f90bdcb069563a3d2e53d1102e240f6d80fcbd8b6b",
+        "captured_at": "2026-10-11T17:32:31.473983+08:00"
+      }
+    },
+    "top": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 139,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "top",
+        "file": "top_1791711151471472800.jpg",
+        "host_unix_ns": 1791711151471472800,
+        "frame_id": "0c85f055395d4586aff0968d056f733e-56467",
+        "age_ms": "139",
+        "image_size": [
+          960,
+          540
+        ],
+        "sha256": "992696191dbff01c9985da25b727ef020b151db5ac1015789af2bb5a0848357b",
+        "captured_at": "2026-10-11T17:32:31.471473+08:00"
+      }
+    }
+  },
+  "validation": {
+    "environment": "Ubuntu 20.04 / GCC 9.4 / OpenCV 4.2",
+    "ctest_targets_passed": [
+      "capture_geometry",
+      "stage_reference_offline"
+    ],
+    "cli_test_cases": 5,
+    "reference_overlay_visually_reviewed": true,
+    "rectified_preview_visually_reviewed": true,
+    "independent_metric_checkpoints": 0,
+    "operator_corner_placement": "Approximate; repositioned notes; no measured offsets supplied",
+    "motor_commands_sent_this_stage": 0,
+    "fresh_board_status_read_this_stage": false
+  },
+  "evidence": {
+    "input_config": "shadow_play/config/stage_reference.front.20261011.json",
+    "input_config_sha256": "dd1e3b6cbda28e72906a12c57210e798a50ef9657fc4ea921b55541f8f6a8461",
+    "ubuntu_raw_result_sha256": "3d4bf8dbd5ecd46c7136657031d916cabdf1472baca8c4bd2100ca60084ab7e0",
+    "local_private_evidence_dir": ".review_work/loaded_calibration_20261011/static_geometry_markers_d",
+    "ubuntu_session_dir": "/home/xianhaochen/piying/servo_capture_20261008/session_records/20261011-static-geometry",
+    "image_files_in_git": false
+  }
+}
