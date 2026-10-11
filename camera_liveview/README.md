@@ -32,6 +32,10 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "D:\Desktop\piying\camera_li
 
 ## 读取与停止
 
+需要在浏览器中连续观看时，在 SDK 取景已经启动的前提下，使用装有 Pillow 的 Python 运行 `python camera_liveview/preview_server.py`，然后打开 <http://127.0.0.1:8766/>。页面约每秒刷新五次，可以暂停显示或全屏。它只读取已有会话文件，不重复连接相机、不保存额外画面，也不控制舵机；关闭该预览服务不会停止 SDK 取景。服务固定监听本机回环地址，不对局域网开放。
+
+预览沿用网关的 JPEG 解码及 1.5 秒新鲜度检查；浏览器还检查连续帧号，画面过期或请求失败时隐藏旧图并提示。页面放大只便于观看，不能增加 SDK 原图分辨率。按 Ctrl+C 可停止预览服务。
+
 `snapshot_latest.py` 使用 Python 和 Pillow 检查状态、图片新鲜度及 JPEG 解码，再将最新 JPEG 复制到固定的 `output/snapshot.jpg`，供图像读取工具使用；预览超过 5 秒未更新时拒绝把它当成当前画面。已适配 Sony 在 JPEG 结束标志之后附加的缓冲区填充字节。
 
 在另一个 PowerShell 终端执行下列命令停止取景：
