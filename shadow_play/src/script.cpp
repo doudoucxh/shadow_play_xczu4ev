@@ -43,7 +43,7 @@ Script load_script_json(const std::string& path) {
         const auto document = nlohmann::json::parse(input, reject_duplicates);
         if (!document.is_object()) throw std::runtime_error("root must be an object");
         const std::set<std::string> allowed_root{
-            "version", "title", "notes", "duration_ms", "audio_file", "frames"};
+            "version", "title", "notes", "duration_ms", "audio_file", "interpolation", "frames"};
         for (auto item = document.begin(); item != document.end(); ++item) {
             if (allowed_root.count(item.key()) == 0) {
                 throw std::runtime_error("unknown script field: " + item.key());
@@ -59,6 +59,13 @@ Script load_script_json(const std::string& path) {
             throw std::runtime_error("version must be integer 1");
         }
         Script script;
+        if (document.contains("interpolation")) {
+            const auto& mode = document.at("interpolation");
+            if (!mode.is_string() || (mode != "linear" && mode != "quintic")) {
+                throw std::runtime_error("interpolation must be linear or quintic");
+            }
+            if (mode == "quintic") script.interpolation = Script::Interpolation::Quintic;
+        }
         const double duration_ms = finite_number(document.at("duration_ms"), "duration_ms");
         if (duration_ms <= 0.0 || duration_ms > 24.0 * 3600.0 * 1000.0) {
             throw std::runtime_error("duration_ms must be positive and at most 24 hours");
@@ -130,7 +137,10 @@ ShadowPose Script::sample(double time_s) const {
     const auto after = std::upper_bound(frames.begin(), frames.end(), time_s,
         [](double time, const ScriptKeyframe& frame) { return time < frame.time_s; });
     const auto& before = *(after - 1);
-    const double fraction = (time_s - before.time_s) / (after->time_s - before.time_s);
+    double fraction = (time_s - before.time_s) / (after->time_s - before.time_s);
+    if (interpolation == Interpolation::Quintic) {
+        fraction = fraction * fraction * fraction * (10.0 + fraction * (-15.0 + 6.0 * fraction));
+    }
     ShadowPose result;
     for (std::size_t i = 0; i < kRodCount; ++i) {
         const auto& a = before.pose.rods[i];

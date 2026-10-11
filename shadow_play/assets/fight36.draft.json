@@ -1,0 +1,609 @@
+{
+  "version": 1,
+  "title": "武松打虎 36 秒动作草稿",
+  "notes": "SIMULATION / CHOREOGRAPHY DRAFT ONLY. No loaded motion calibration. Targets are normalized rod displacements, not servo angles. Hardware execution remains blocked. tiger_tail is the legacy protocol name for current servos 9/10 (tiger leg control rod). Neck vertical target is held at zero while servo 4 response is unresolved.",
+  "interpolation": "quintic",
+  "duration_ms": 36000,
+  "frames": [
+    {
+      "time_ms": 0,
+      "rods": {
+        "wusong_neck": [
+          0,
+          0
+        ],
+        "wusong_left": [
+          0,
+          0
+        ],
+        "wusong_right": [
+          0,
+          0
+        ],
+        "tiger_head": [
+          0,
+          0
+        ],
+        "tiger_tail": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "time_ms": 1500,
+      "rods": {
+        "wusong_neck": [
+          0,
+          0
+        ],
+        "wusong_left": [
+          0.1,
+          -0.1
+        ],
+        "wusong_right": [
+          -0.05,
+          0.4
+        ],
+        "tiger_head": [
+          0,
+          0
+        ],
+        "tiger_tail": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "time_ms": 3000,
+      "rods": {
+        "wusong_neck": [
+          0,
+          0
+        ],
+        "wusong_left": [
+          0.15,
+          0.1
+        ],
+        "wusong_right": [
+          -0.1,
+          0.5
+        ],
+        "tiger_head": [
+          0.1,
+          0.05
+        ],
+        "tiger_tail": [
+          0.05,
+          0
+        ]
+      }
+    },
+    {
+      "time_ms": 4500,
+      "rods": {
+        "wusong_neck": [
+          0.04,
+          0
+        ],
+        "wusong_left": [
+          0.35,
+          0.05
+        ],
+        "wusong_right": [
+          0.2,
+          0.35
+        ],
+        "tiger_head": [
+          0.1,
+          0.05
+        ],
+        "tiger_tail": [
+          0.05,
+          0
+        ]
+      }
+    },
+    {
+      "time_ms": 6000,
+      "rods": {
+        "wusong_neck": [
+          0,
+          0
+        ],
+        "wusong_left": [
+          0.1,
+          -0.1
+        ],
+        "wusong_right": [
+          -0.05,
+          0.4
+        ],
+        "tiger_head": [
+          0.1,
+          0
+        ],
+        "tiger_tail": [
+          0.05,
+          0
+        ]
+      }
+    },
+    {
+      "time_ms": 7500,
+      "rods": {
+        "wusong_neck": [
+          0,
+          0
+        ],
+        "wusong_left": [
+          0.1,
+          -0.1
+        ],
+        "wusong_right": [
+          -0.05,
+          0.4
+        ],
+        "tiger_head": [
+          0.15,
+          -0.2
+        ],
+        "tiger_tail": [
+          0.1,
+          -0.18
+        ]
+      }
+    },
+    {
+      "time_ms": 9000,
+      "rods": {
+        "wusong_neck": [
+          -0.08,
+          0
+        ],
+        "wusong_left": [
+          0.1,
+          0.25
+        ],
+        "wusong_right": [
+          -0.2,
+          0.5
+        ],
+        "tiger_head": [
+          -0.45,
+          0.35
+        ],
+        "tiger_tail": [
+          -0.3,
+          0.15
+        ]
+      }
+    },
+    {
+      "time_ms": 10500,
+      "rods": {
+        "wusong_neck": [
+          -0.08,
+          0
+        ],
+        "wusong_left": [
+          0.2,
+          0.25
+        ],
+        "wusong_right": [
+          -0.15,
+          0.55
+        ],
+        "tiger_head": [
+          -0.5,
+          0.12
+        ],
+        "tiger_tail": [
+          -0.3,
+          0.12
+        ]
+      }
+    },
+    {
+      "time_ms": 12000,
+      "rods": {
+        "wusong_neck": [
+          -0.12,
+          0
+        ],
+        "wusong_left": [
+          -0.1,
+          -0.15
+        ],
+        "wusong_right": [
+          0.15,
+          0.35
+        ],
+        "tiger_head": [
+          -0.25,
+          0.05
+        ],
+        "tiger_tail": [
+          -0.15,
+          0
+        ]
+      }
+    },
+    {
+      "time_ms": 13500,
+      "rods": {
+        "wusong_neck": [
+          0,
+          0
+        ],
+        "wusong_left": [
+          0.1,
+          -0.1
+        ],
+        "wusong_right": [
+          -0.05,
+          0.4
+        ],
+        "tiger_head": [
+          0.05,
+          0.05
+        ],
+        "tiger_tail": [
+          0.1,
+          0
+        ]
+      }
+    },
+    {
+      "time_ms": 15000,
+      "rods": {
+        "wusong_neck": [
+          0.06,
+          0
+        ],
+        "wusong_left": [
+          0,
+          -0.1
+        ],
+        "wusong_right": [
+          0.45,
+          0.2
+        ],
+        "tiger_head": [
+          0.15,
+          0.05
+        ],
+        "tiger_tail": [
+          0.15,
+          0
+        ]
+      }
+    },
+    {
+      "time_ms": 16500,
+      "rods": {
+        "wusong_neck": [
+          0,
+          0
+        ],
+        "wusong_left": [
+          0.1,
+          -0.1
+        ],
+        "wusong_right": [
+          -0.05,
+          0.4
+        ],
+        "tiger_head": [
+          0.1,
+          0
+        ],
+        "tiger_tail": [
+          0.1,
+          0
+        ]
+      }
+    },
+    {
+      "time_ms": 18000,
+      "rods": {
+        "wusong_neck": [
+          0.04,
+          0
+        ],
+        "wusong_left": [
+          0.35,
+          0.2
+        ],
+        "wusong_right": [
+          0,
+          0.2
+        ],
+        "tiger_head": [
+          0.18,
+          0.08
+        ],
+        "tiger_tail": [
+          0.12,
+          0
+        ]
+      }
+    },
+    {
+      "time_ms": 19500,
+      "rods": {
+        "wusong_neck": [
+          0,
+          0
+        ],
+        "wusong_left": [
+          0.1,
+          -0.1
+        ],
+        "wusong_right": [
+          -0.05,
+          0.4
+        ],
+        "tiger_head": [
+          0.1,
+          0
+        ],
+        "tiger_tail": [
+          0.1,
+          0
+        ]
+      }
+    },
+    {
+      "time_ms": 21000,
+      "rods": {
+        "wusong_neck": [
+          0.06,
+          0
+        ],
+        "wusong_left": [
+          0.45,
+          0.1
+        ],
+        "wusong_right": [
+          0.4,
+          0.35
+        ],
+        "tiger_head": [
+          0.2,
+          0.1
+        ],
+        "tiger_tail": [
+          0.15,
+          0.05
+        ]
+      }
+    },
+    {
+      "time_ms": 22500,
+      "rods": {
+        "wusong_neck": [
+          0,
+          0
+        ],
+        "wusong_left": [
+          0.1,
+          -0.1
+        ],
+        "wusong_right": [
+          -0.05,
+          0.4
+        ],
+        "tiger_head": [
+          0.2,
+          -0.2
+        ],
+        "tiger_tail": [
+          0.12,
+          -0.18
+        ]
+      }
+    },
+    {
+      "time_ms": 24000,
+      "rods": {
+        "wusong_neck": [
+          -0.08,
+          0
+        ],
+        "wusong_left": [
+          0.1,
+          0.25
+        ],
+        "wusong_right": [
+          -0.2,
+          0.5
+        ],
+        "tiger_head": [
+          -0.45,
+          0.35
+        ],
+        "tiger_tail": [
+          -0.3,
+          0.15
+        ]
+      }
+    },
+    {
+      "time_ms": 25500,
+      "rods": {
+        "wusong_neck": [
+          -0.08,
+          0
+        ],
+        "wusong_left": [
+          0.25,
+          0.3
+        ],
+        "wusong_right": [
+          -0.1,
+          0.6
+        ],
+        "tiger_head": [
+          -0.45,
+          0.15
+        ],
+        "tiger_tail": [
+          -0.3,
+          0.12
+        ]
+      }
+    },
+    {
+      "time_ms": 27000,
+      "rods": {
+        "wusong_neck": [
+          0.08,
+          0
+        ],
+        "wusong_left": [
+          0.35,
+          0.15
+        ],
+        "wusong_right": [
+          0.5,
+          0.2
+        ],
+        "tiger_head": [
+          0.05,
+          0.1
+        ],
+        "tiger_tail": [
+          0.05,
+          0.03
+        ]
+      }
+    },
+    {
+      "time_ms": 28500,
+      "rods": {
+        "wusong_neck": [
+          0.02,
+          0
+        ],
+        "wusong_left": [
+          0.15,
+          -0.05
+        ],
+        "wusong_right": [
+          0.2,
+          0.3
+        ],
+        "tiger_head": [
+          0.25,
+          -0.1
+        ],
+        "tiger_tail": [
+          0.2,
+          -0.08
+        ]
+      }
+    },
+    {
+      "time_ms": 30000,
+      "rods": {
+        "wusong_neck": [
+          0,
+          0
+        ],
+        "wusong_left": [
+          0.1,
+          -0.1
+        ],
+        "wusong_right": [
+          -0.05,
+          0.4
+        ],
+        "tiger_head": [
+          0.15,
+          0
+        ],
+        "tiger_tail": [
+          0.1,
+          0
+        ]
+      }
+    },
+    {
+      "time_ms": 32000,
+      "rods": {
+        "wusong_neck": [
+          0,
+          0
+        ],
+        "wusong_left": [
+          0.05,
+          -0.05
+        ],
+        "wusong_right": [
+          0,
+          0.2
+        ],
+        "tiger_head": [
+          0,
+          0
+        ],
+        "tiger_tail": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "time_ms": 34000,
+      "rods": {
+        "wusong_neck": [
+          0,
+          0
+        ],
+        "wusong_left": [
+          0,
+          0
+        ],
+        "wusong_right": [
+          0,
+          0
+        ],
+        "tiger_head": [
+          0,
+          0
+        ],
+        "tiger_tail": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "time_ms": 36000,
+      "rods": {
+        "wusong_neck": [
+          0,
+          0
+        ],
+        "wusong_left": [
+          0,
+          0
+        ],
+        "wusong_right": [
+          0,
+          0
+        ],
+        "tiger_head": [
+          0,
+          0
+        ],
+        "tiger_tail": [
+          0,
+          0
+        ]
+      }
+    }
+  ]
+}

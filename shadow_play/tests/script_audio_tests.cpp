@@ -147,10 +147,35 @@ int main() {
             auto doc = valid_script(); doc.erase("audio_file"); write_json(script_path, doc);
             require(shadow::load_script_json(script_path).audio_file.empty(), "optional audio");
         });
+        test("quintic interpolation preserves endpoints and eases each pose", [&] {
+            auto doc = valid_script(); doc["interpolation"] = "quintic";
+            write_json(script_path, doc);
+            const auto script = shadow::load_script_json(script_path);
+            near(script.sample(0.0).rods[0].x, -1.0, "start unchanged");
+            near(script.sample(1.0).rods[0].x, 1.0, "keyframe unchanged");
+            near(script.sample(2.0).rods[0].x, 0.0, "finish unchanged");
+            near(script.sample(0.25).rods[0].x, -0.79296875, "quintic quarter point");
+            near(script.sample(0.5).rods[0].x, 0.0, "quintic midpoint");
+            const double h = 1e-4;
+            const double left = script.sample(1.0-h).rods[0].x;
+            const double center = script.sample(1.0).rods[0].x;
+            const double right = script.sample(1.0+h).rods[0].x;
+            require(std::abs((center-left)/h) < 1e-5, "left velocity near zero");
+            require(std::abs((right-center)/h) < 1e-5, "right velocity near zero");
+            require(std::abs((right-2*center+left)/(h*h)) < .004, "acceleration near zero");
+            double prior = -1.0;
+            for (int i = 0; i <= 1000; ++i) {
+                const auto x = script.sample(i/1000.0).rods[0].x;
+                require(x >= prior-1e-12 && x <= 1.0+1e-12, "no overshoot");
+                prior = x;
+            }
+        });
         const std::vector<std::pair<std::string, std::function<void(nlohmann::json&)>>> bad_scripts = {
             {"unsupported version", [](auto& d) { d["version"] = 2; }},
             {"floating version", [](auto& d) { d["version"] = 1.0; }},
             {"unknown root field", [](auto& d) { d["duraton_ms"] = 2000; }},
+            {"unknown interpolation", [](auto& d) { d["interpolation"] = "cubic"; }},
+            {"non-string interpolation", [](auto& d) { d["interpolation"] = 1; }},
             {"unknown frame field", [](auto& d) { d["frames"][0]["time"] = 0; }},
             {"zero duration", [](auto& d) { d["duration_ms"] = 0; }},
             {"duplicate frame time", [](auto& d) { d["frames"][1]["time_ms"] = 0; }},

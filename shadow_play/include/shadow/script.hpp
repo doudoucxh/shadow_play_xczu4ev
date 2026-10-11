@@ -13,7 +13,9 @@ struct ScriptKeyframe {
 };
 
 struct Script {
+    enum class Interpolation { Linear, Quintic };
     double duration_s = 0.0;
+    Interpolation interpolation = Interpolation::Linear;
     // Absolute/normalized path resolved against the script's directory, or empty.
     std::string audio_file;
     std::vector<ScriptKeyframe> frames;
@@ -23,7 +25,9 @@ struct Script {
     ShadowPose sample(double time_s) const;
 };
 
-// Schema v1: duration_ms, optional audio_file, frames[{time_ms, rods:{...}}].
+// Schema v1: duration_ms, optional audio_file/interpolation, frames[{time_ms, rods:{...}}].
+// interpolation is "linear" (default) or "quintic" (zero velocity/acceleration
+// at each keyframe). These are target trajectories, not motor feedback.
 // Every frame contains all five named rods as [x,y], both finite in [-1,1].
 // Times strictly increase from 0 to duration_ms. Throws on malformed input.
 Script load_script_json(const std::string& path);
