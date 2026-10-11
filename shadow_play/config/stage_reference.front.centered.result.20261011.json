@@ -1,0 +1,158 @@
+{
+  "actual_servo_state": null,
+  "coordinate_convention": "origin at curtain lower left; +x audience right; +y up; units mm",
+  "height_mm": 500.0,
+  "image_height": 360,
+  "image_width": 640,
+  "lens_distortion_corrected": false,
+  "limitation": "Numerical roundtrip is not physical accuracy. Projection is for the curtain plane, not 3D rods or joint angles.",
+  "metric_accuracy_verified": false,
+  "motion_calibration_ready": false,
+  "pixel_to_stage": [
+    [
+      1.6154785804532756,
+      0.01583802529856157,
+      -157.35078134120877
+    ],
+    [
+      0.021842582645687843,
+      -1.6309128375447028,
+      563.8735518593173
+    ],
+    [
+      2.313713509696796e-05,
+      -9.742902515057408e-05,
+      1.0
+    ]
+  ],
+  "points": [],
+  "preview_height": 601,
+  "preview_width": 889,
+  "purpose": "static image geometry only",
+  "reference_pixels": [
+    [
+      94,
+      347
+    ],
+    [
+      542,
+      353
+    ],
+    [
+      559,
+      44
+    ],
+    [
+      97,
+      41
+    ]
+  ],
+  "reference_points_mm": [
+    [
+      0.0,
+      0.0
+    ],
+    [
+      740.0,
+      0.0
+    ],
+    [
+      740.0,
+      500.0
+    ],
+    [
+      0.0,
+      500.0
+    ]
+  ],
+  "reference_selection": {
+    "attachment_centres_verified": 0,
+    "attachment_marker_description": "White paper with black cross, on the puppet side facing the curtain",
+    "attachment_markers_reported_complete": true,
+    "continuity_checker_applicable": false,
+    "continuity_checker_limitation": "The existing +/-10 px / 15x15 patch checker needs a 17 px edge margin; the two lower crosses do not have this margin",
+    "corner_markers_verified_visible": true,
+    "corner_order": [
+      "lower_left",
+      "lower_right",
+      "upper_right",
+      "upper_left"
+    ],
+    "lower_markers_close_to_image_edge": true,
+    "method": "Manual cross-intersection selection on decoded source and enlarged diagnostic crops",
+    "operator_statement": "User repositioned the four marked notes near the inner corners and said placement was approximate",
+    "physical_accuracy_mm": null,
+    "physical_corner_placement_exact": false,
+    "physical_extent_confirmed_by_user": true,
+    "physical_extent_description": "Inner edges of four aluminium frame members, viewed from audience",
+    "prior_reference_invalid_for_current_view": true,
+    "reference_capture_at": "2026-10-11T19:32:20.266553+08:00",
+    "reference_frame_age_ms": 154,
+    "reference_frame_id": "session-20261011-170627-43518",
+    "reference_frame_sha256": "6f8396b3058505998a8accb2d79ddf502890ccd08d3f7c0a1f7ee7feb541d683",
+    "reference_points_mm_basis": "Assumed to coincide with full stage corners after user repositioning; no measured inset distances supplied",
+    "status": "centered_view_static_candidate_attachment_markers_unresolved",
+    "validity": "Approximate curtain-plane reference for this centered view only; no motor calibration"
+  },
+  "reference_view": "front",
+  "version": 1,
+  "width_mm": 740.0,
+  "camera_verification": {
+    "front": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 154,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "front",
+        "file": "front_1791718340266553100.jpg",
+        "host_unix_ns": 1791718340266553100,
+        "frame_id": "session-20261011-170627-43518",
+        "age_ms": "154",
+        "image_size": [
+          640,
+          360
+        ],
+        "sha256": "6f8396b3058505998a8accb2d79ddf502890ccd08d3f7c0a1f7ee7feb541d683",
+        "captured_at": "2026-10-11T19:32:20.266553+08:00"
+      }
+    },
+    "top": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 203,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "top",
+        "file": "top_1791718340264796200.jpg",
+        "host_unix_ns": 1791718340264796200,
+        "frame_id": "0c85f055395d4586aff0968d056f733e-92411",
+        "age_ms": "139",
+        "image_size": [
+          960,
+          540
+        ],
+        "sha256": "53c4b1c49f0d6d7f9f60d5710586ed13e947e724fb9cc772e69a8adb64113b42",
+        "captured_at": "2026-10-11T19:32:20.264796+08:00"
+      }
+    }
+  },
+  "validation": {
+    "environment": "Ubuntu 20.04 / existing stage_reference executable",
+    "all_four_reference_corner_transforms_checked": true,
+    "reference_frame_sha256_checked": true,
+    "physical_metric_accuracy_verified": false,
+    "actual_attachment_centres_confirmed": 0,
+    "motor_commands_sent_this_stage": 0,
+    "fresh_board_status_read_this_stage": false,
+    "reference_overlay_visually_reviewed": true,
+    "rectified_preview_visually_reviewed": true
+  },
+  "evidence": {
+    "input_config": "shadow_play/config/stage_reference.front.centered.20261011.json",
+    "input_config_sha256": "30bf96c8ff4b3526ea93e8f840fabd747ec62c2d9f4ee8ebf5ca6b713c03a3ad",
+    "ubuntu_raw_result_sha256": "99c4947782309f47ce53ea8145452f225fce1400bb73450b082d2a75d0b21503",
+    "local_private_evidence_dir": ".review_work/loaded_calibration_20261011/attachment_markers_i",
+    "image_files_in_git": false
+  }
+}

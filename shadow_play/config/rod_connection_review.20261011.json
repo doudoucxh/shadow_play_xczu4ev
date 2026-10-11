@@ -248,5 +248,67 @@
     "ubuntu_pillow": "7.0.0",
     "ubuntu_same_saved_images_reproduced_same_diagnostic_result": true
   },
-  "evidence_dir": ".review_work/loaded_calibration_20261011/connection_review_e"
+  "evidence_dir": ".review_work/loaded_calibration_20261011/connection_review_e",
+  "centered_view_review": {
+    "camera_verification": {
+      "front": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 154,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "front",
+          "file": "front_1791718340266553100.jpg",
+          "host_unix_ns": 1791718340266553100,
+          "frame_id": "session-20261011-170627-43518",
+          "age_ms": "154",
+          "image_size": [
+            640,
+            360
+          ],
+          "sha256": "6f8396b3058505998a8accb2d79ddf502890ccd08d3f7c0a1f7ee7feb541d683",
+          "captured_at": "2026-10-11T19:32:20.266553+08:00"
+        }
+      },
+      "top": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 203,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "top",
+          "file": "top_1791718340264796200.jpg",
+          "host_unix_ns": 1791718340264796200,
+          "frame_id": "0c85f055395d4586aff0968d056f733e-92411",
+          "age_ms": "139",
+          "image_size": [
+            960,
+            540
+          ],
+          "sha256": "53c4b1c49f0d6d7f9f60d5710586ed13e947e724fb9cc772e69a8adb64113b42",
+          "captured_at": "2026-10-11T19:32:20.264796+08:00"
+        }
+      }
+    },
+    "operator_camera_statement": "Camera moved to the centre of the picture",
+    "attachment_marker_statement": "White background with black cross; on the puppet side facing the curtain",
+    "five_markers_reported_attached": true,
+    "actual_attachment_centres_confirmed": 0,
+    "front_curtain_centered": true,
+    "four_cross_intersections_visible": true,
+    "lower_crosses_close_to_image_bottom": true,
+    "reference_reuse_from_1732_allowed": false,
+    "new_static_reference": "stage_reference.front.centered.20261011.json",
+    "new_static_result": "stage_reference.front.centered.result.20261011.json",
+    "reference_overlay_visually_reviewed": true,
+    "rectified_preview_visually_reviewed": true,
+    "metric_accuracy_verified": false,
+    "actual_servo_position_known": false,
+    "motion_permission": false,
+    "movement_commands_sent": 0,
+    "motion_locks_modified": false,
+    "board_status_read_this_review": false,
+    "next_visual_step": "Validate visibility of one larger opaque attachment marker before changing the other four",
+    "evidence_dir": ".review_work/loaded_calibration_20261011/attachment_markers_i"
+  }
 }
