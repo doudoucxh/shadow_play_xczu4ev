@@ -78,5 +78,22 @@ class PersonProbeTests(unittest.TestCase):
         self.assertAlmostEqual(self.now,7.2)
         self.assertEqual(self.events[-1]['state']['sequence'],8)
 
+    def test_head_pitch_extended_probe_preserves_steps_scope_and_return(self):
+        self.plan['channel']=4;self.plan['target_us']=1548
+        self.run_probe(self.device())
+        states=[e['state'] for e in self.events[:-1]]
+        self.assertEqual([s['pulse_us'][3] for s in states],
+                         [1500,1508,1516,1524,1532,1540,1548,1540,1532,1524,1516,1508,1500])
+        self.assertTrue(all(s['enabled_mask']==63 for s in states))
+        self.assertTrue(all(s['pulse_us'][:3]+s['pulse_us'][4:]==[1500]*9 for s in states))
+        self.assertEqual(self.events[-1]['state']['sequence'],14)
+        self.assertFalse(self.events[-1]['state']['armed'])
+        self.assertAlmostEqual(self.now,13.2)
+        for axis in (1,2,3,5,6):
+            p=copy.deepcopy(self.plan);p['channel']=axis
+            with self.assertRaises(ValueError):probe.validate_plan(p)
+        p=copy.deepcopy(self.plan);p['target_us']=1549
+        with self.assertRaises(ValueError):probe.validate_plan(p)
+
 
 if __name__=='__main__':unittest.main()

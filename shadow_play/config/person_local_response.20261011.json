@@ -1,0 +1,3363 @@
+{
+  "version": 1,
+  "date": "2026-10-11",
+  "type": "person_loaded_local_response_diagnostic",
+  "operator_reattachment_confirmed": true,
+  "operator_8v_supply_reconfirmed": true,
+  "observer_authorization": "Continuous attended testing with immediate power cutoff available, already granted by operator",
+  "start_reference": "assembly-frame-stop-b; reattached rods without requested axis repositioning; current dual views reviewed",
+  "person_reference_command_us": [
+    1537,
+    1352,
+    1537,
+    1574,
+    1508,
+    1500
+  ],
+  "position_feedback": null,
+  "image_coordinates": "640x360 front image; origin upper left, x right, y down",
+  "feature_points_are_not_verified_joint_centres": true,
+  "motion_calibration_complete": false,
+  "metric_position_calibration_complete": false,
+  "automatic_replay_allowed": false,
+  "tiger_enabled_in_any_trial": false,
+  "incident_locks_removed": false,
+  "observed_response_axes": [
+    1,
+    2,
+    3,
+    5,
+    6
+  ],
+  "weak_response_axes": [
+    4
+  ],
+  "limitations": [
+    "Only a small one-sided neighborhood was sampled on five axes; no full loaded range or simultaneous-axis envelope established",
+    "NCC tracks local image texture, not 3D rod attachments or measured shaft angles",
+    "Motion events and image timestamps do not have a calibrated clock alignment; do not fit a millimeter Jacobian from these summaries",
+    "Channel 5 reached the 12-pixel search window and had low template similarity; its peak displacement is not a precise measurement",
+    "Channel 4 both signs of 24us produced only about one pixel of head-feature change; do not infer a fault cause or a usable head-height mapping",
+    "Previous camera homography is not reused after camera movement",
+    "Returning to the same PWM did not restore every image feature: axis 1 retained about 3 px horizontal shift and axis 3 about 4 px. Mechanical slack, deformation, sliding and tracking error have not been distinguished."
+  ],
+  "trials": [
+    {
+      "name": "person2_probe_a",
+      "plan": {
+        "approval": "attended-person-local-probe",
+        "reference_session": "assembly-frame-stop-b; user reattached both rods; current dual views reviewed",
+        "channel": 2,
+        "target_us": 1344,
+        "expected_sequence": 355,
+        "expected_pulses_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "rods_connected_without_moving_axes": true,
+        "observer_ready": true,
+        "views_reviewed": true
+      },
+      "events": [
+        {
+          "event": "person_probe_step",
+          "step": 0,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 356,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40208.597834583
+        },
+        {
+          "event": "person_probe_step",
+          "step": 1,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 357,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1344,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40209.618731801
+        },
+        {
+          "event": "person_probe_step",
+          "step": 2,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 358,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40210.637140405
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 359,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "normal_frame_stop": true,
+          "incident_locks_removed": false
+        }
+      ],
+      "camera_verification": {
+        "front": {
+          "samples": 42,
+          "successes": 42,
+          "errors": [],
+          "max_success_gap_ms": 225.2495,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 42,
+          "first": {
+            "camera": "front",
+            "file": "front_1791728138124370600.jpg",
+            "host_unix_ns": 1791728138124370600,
+            "frame_id": "session-20261011-170627-92247",
+            "age_ms": "176",
+            "sha256": "92d2a48c00313e129e6ab1c4f2f993cf3bbcdb148b0be54c2939f87a82158ba5"
+          },
+          "last": {
+            "camera": "front",
+            "file": "front_1791728146847033700.jpg",
+            "host_unix_ns": 1791728146847033700,
+            "frame_id": "session-20261011-170627-92291",
+            "age_ms": "53",
+            "sha256": "b1057701978e6b7b1a181e4f333f286d9269bc39e762ef55913b454cc6d00070"
+          }
+        },
+        "top": {
+          "samples": 42,
+          "successes": 42,
+          "errors": [],
+          "max_success_gap_ms": 228.3894,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 42,
+          "first": {
+            "camera": "top",
+            "file": "top_1791728138121590400.jpg",
+            "host_unix_ns": 1791728138121590400,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-141400",
+            "age_ms": "171",
+            "sha256": "cf287843bd447129039a2c1c8a2902dc0c77d12b2bef0c4dbd27469795334005"
+          },
+          "last": {
+            "camera": "top",
+            "file": "top_1791728146843599200.jpg",
+            "host_unix_ns": 1791728146843599200,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-141444",
+            "age_ms": "109",
+            "sha256": "49c9ad3639d6948b572f0bc2a4cec9aaab0c00002ce43976522901c584c9f49d"
+          }
+        }
+      },
+      "image_feature_diagnostics": {
+        "raised_hand": {
+          "pixel": [
+            190,
+            98
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            1
+          ],
+          "min_score": 0.9548,
+          "return_shift_px": [
+            0.0,
+            1.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "head_feature": {
+          "pixel": [
+            215,
+            116
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9408,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "other_hand": {
+          "pixel": [
+            241,
+            146
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            1
+          ],
+          "min_score": 0.9823,
+          "return_shift_px": [
+            0.0,
+            1.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "frame": {
+          "pixel": [
+            132,
+            51
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.982,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        }
+      },
+      "private_serial_log_sha256": "08f4daeb7cf8f9265da1f4f9b9e28910272f421d2d4aec6fc9fa5f4e0b2532e9"
+    },
+    {
+      "name": "person1_probe_a",
+      "plan": {
+        "approval": "attended-person-local-probe",
+        "reference_session": "assembly-frame-stop-b; user reattached both rods; current dual views reviewed",
+        "channel": 1,
+        "target_us": 1545,
+        "expected_sequence": 359,
+        "expected_pulses_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "rods_connected_without_moving_axes": true,
+        "observer_ready": true,
+        "views_reviewed": true
+      },
+      "events": [
+        {
+          "event": "person_probe_step",
+          "step": 0,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 360,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40301.63954018
+        },
+        {
+          "event": "person_probe_step",
+          "step": 1,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 361,
+            "pending": false,
+            "pulse_us": [
+              1545,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40302.657981904
+        },
+        {
+          "event": "person_probe_step",
+          "step": 2,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 362,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40303.678732391
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 363,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "normal_frame_stop": true,
+          "incident_locks_removed": false
+        }
+      ],
+      "camera_verification": {
+        "front": {
+          "samples": 42,
+          "successes": 42,
+          "errors": [],
+          "max_success_gap_ms": 226.0665,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 42,
+          "first": {
+            "camera": "front",
+            "file": "front_1791728231206987700.jpg",
+            "host_unix_ns": 1791728231206987700,
+            "frame_id": "session-20261011-170627-92710",
+            "age_ms": "174",
+            "sha256": "e2009a5cfe19410a1e689aca452d42e95215e44e1b0d6ea553f16f2d13d0030a"
+          },
+          "last": {
+            "camera": "front",
+            "file": "front_1791728239912805000.jpg",
+            "host_unix_ns": 1791728239912805000,
+            "frame_id": "session-20261011-170627-92754",
+            "age_ms": "28",
+            "sha256": "d45f577e02ce932a5ed3defd3890b3cb22966846a0712f840228ae451f9b4d4a"
+          }
+        },
+        "top": {
+          "samples": 42,
+          "successes": 42,
+          "errors": [],
+          "max_success_gap_ms": 228.4087,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 42,
+          "first": {
+            "camera": "top",
+            "file": "top_1791728231202965000.jpg",
+            "host_unix_ns": 1791728231202965000,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-141866",
+            "age_ms": "63",
+            "sha256": "d10a28048900eaccb88e0ab7074ef79fc348e21df425eddbe6c21908b0c7feae"
+          },
+          "last": {
+            "camera": "top",
+            "file": "top_1791728239920317000.jpg",
+            "host_unix_ns": 1791728239920317000,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-141909",
+            "age_ms": "187",
+            "sha256": "af775ae626c7a7f431c38146e82b9a44ebe325adef57c68e6f00be20adf03d55"
+          }
+        }
+      },
+      "image_feature_diagnostics": {
+        "raised_hand": {
+          "pixel": [
+            190,
+            98
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9765,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "head_feature": {
+          "pixel": [
+            215,
+            116
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9906,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "other_hand": {
+          "pixel": [
+            241,
+            146
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9968,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "frame": {
+          "pixel": [
+            132,
+            51
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9875,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        }
+      },
+      "private_serial_log_sha256": "4c1838eb7d63d3ce00bc5b18f8d26e1fa3c59c4f2d581bdfcc5eccecbe1bd945"
+    },
+    {
+      "name": "person2_probe_b",
+      "plan": {
+        "approval": "attended-person-local-probe",
+        "reference_session": "assembly-frame-stop-b; user reattached both rods; current dual views reviewed",
+        "channel": 2,
+        "target_us": 1328,
+        "expected_sequence": 363,
+        "expected_pulses_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "rods_connected_without_moving_axes": true,
+        "observer_ready": true,
+        "views_reviewed": true
+      },
+      "events": [
+        {
+          "event": "person_probe_step",
+          "step": 0,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 364,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40459.079544283
+        },
+        {
+          "event": "person_probe_step",
+          "step": 1,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 365,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1344,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40460.100397071
+        },
+        {
+          "event": "person_probe_step",
+          "step": 2,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 366,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1336,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40461.121192708
+        },
+        {
+          "event": "person_probe_step",
+          "step": 3,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 367,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1328,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40462.139581752
+        },
+        {
+          "event": "person_probe_step",
+          "step": 4,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 368,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1336,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40463.160355069
+        },
+        {
+          "event": "person_probe_step",
+          "step": 5,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 369,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1344,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40464.181145336
+        },
+        {
+          "event": "person_probe_step",
+          "step": 6,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 370,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40465.1995357
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 371,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "normal_frame_stop": true,
+          "incident_locks_removed": false
+        }
+      ],
+      "camera_verification": {
+        "front": {
+          "samples": 61,
+          "successes": 61,
+          "errors": [],
+          "max_success_gap_ms": 225.8486,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 61,
+          "first": {
+            "camera": "front",
+            "file": "front_1791728388676255400.jpg",
+            "host_unix_ns": 1791728388676255400,
+            "frame_id": "session-20261011-170627-93494",
+            "age_ms": "7",
+            "sha256": "df48ef96a897b6346ef23d7da1dbd4c490cc919b196a3520908e4e6337fb8e26"
+          },
+          "last": {
+            "camera": "front",
+            "file": "front_1791728401466708400.jpg",
+            "host_unix_ns": 1791728401466708400,
+            "frame_id": "session-20261011-170627-93557",
+            "age_ms": "127",
+            "sha256": "2a09e0377701b9430a0328f7eaa6c35b18baadd28f8a76473ca3897448b78dd9"
+          }
+        },
+        "top": {
+          "samples": 61,
+          "successes": 61,
+          "errors": [],
+          "max_success_gap_ms": 229.0836,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 61,
+          "first": {
+            "camera": "top",
+            "file": "top_1791728388672811800.jpg",
+            "host_unix_ns": 1791728388672811800,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-142653",
+            "age_ms": "139",
+            "sha256": "2d15b7075439c7c3d4eae5d903618b4157665f9ec27dc506a9e40a8cd0496dd4"
+          },
+          "last": {
+            "camera": "top",
+            "file": "top_1791728401463389500.jpg",
+            "host_unix_ns": 1791728401463389500,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-142717",
+            "age_ms": "110",
+            "sha256": "b8ceecde1ab1ecdf5a38e255494ed2fbfc4d91aeb6669582314cb5cbe839bb9e"
+          }
+        }
+      },
+      "image_feature_diagnostics": {
+        "raised_hand": {
+          "pixel": [
+            190,
+            98
+          ],
+          "range_dx": [
+            0,
+            1
+          ],
+          "range_dy": [
+            0,
+            5
+          ],
+          "min_score": 0.8674,
+          "return_shift_px": [
+            0.0,
+            1.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "head_feature": {
+          "pixel": [
+            215,
+            116
+          ],
+          "range_dx": [
+            0,
+            1
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.8417,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": true
+        },
+        "other_hand": {
+          "pixel": [
+            241,
+            146
+          ],
+          "range_dx": [
+            -5,
+            2
+          ],
+          "range_dy": [
+            -3,
+            10
+          ],
+          "min_score": 0.9503,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "frame": {
+          "pixel": [
+            132,
+            51
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.881,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        }
+      },
+      "private_serial_log_sha256": "5a0c8ff76e254c326a7626d1604076d6ea794ad3b0b4681bf75a77070a049eb1"
+    },
+    {
+      "name": "person1_probe_b",
+      "plan": {
+        "approval": "attended-person-local-probe",
+        "reference_session": "assembly-frame-stop-b; user reattached both rods; current dual views reviewed",
+        "channel": 1,
+        "target_us": 1561,
+        "expected_sequence": 371,
+        "expected_pulses_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "rods_connected_without_moving_axes": true,
+        "observer_ready": true,
+        "views_reviewed": true
+      },
+      "events": [
+        {
+          "event": "person_probe_step",
+          "step": 0,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 372,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40504.081681995
+        },
+        {
+          "event": "person_probe_step",
+          "step": 1,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 373,
+            "pending": false,
+            "pulse_us": [
+              1545,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40505.100090298
+        },
+        {
+          "event": "person_probe_step",
+          "step": 2,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 374,
+            "pending": false,
+            "pulse_us": [
+              1553,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40506.120793775
+        },
+        {
+          "event": "person_probe_step",
+          "step": 3,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 375,
+            "pending": false,
+            "pulse_us": [
+              1561,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40507.141539462
+        },
+        {
+          "event": "person_probe_step",
+          "step": 4,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 376,
+            "pending": false,
+            "pulse_us": [
+              1553,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40508.160194788
+        },
+        {
+          "event": "person_probe_step",
+          "step": 5,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 377,
+            "pending": false,
+            "pulse_us": [
+              1545,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40509.180932525
+        },
+        {
+          "event": "person_probe_step",
+          "step": 6,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 378,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40510.201721412
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 379,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "normal_frame_stop": true,
+          "incident_locks_removed": false
+        }
+      ],
+      "camera_verification": {
+        "front": {
+          "samples": 61,
+          "successes": 61,
+          "errors": [],
+          "max_success_gap_ms": 226.3814,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 61,
+          "first": {
+            "camera": "front",
+            "file": "front_1791728433714687600.jpg",
+            "host_unix_ns": 1791728433714687600,
+            "frame_id": "session-20261011-170627-93718",
+            "age_ms": "7",
+            "sha256": "c143514730278eda1884d20ca87b67ae812f362f97fa0055e4aca68b46cfbdb9"
+          },
+          "last": {
+            "camera": "front",
+            "file": "front_1791728446462570500.jpg",
+            "host_unix_ns": 1791728446462570500,
+            "frame_id": "session-20261011-170627-93781",
+            "age_ms": "90",
+            "sha256": "24a83354e15179064d528d045db3eb36dceaa2041c96e633f99f7d33060d3d93"
+          }
+        },
+        "top": {
+          "samples": 61,
+          "successes": 61,
+          "errors": [],
+          "max_success_gap_ms": 228.4076,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 60,
+          "first": {
+            "camera": "top",
+            "file": "top_1791728433711160500.jpg",
+            "host_unix_ns": 1791728433711160500,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-142878",
+            "age_ms": "156",
+            "sha256": "3c3c2e3a50990b7b425c815f3adc84bedb0ea729599fd8b944c816e67168696d"
+          },
+          "last": {
+            "camera": "top",
+            "file": "top_1791728446460323800.jpg",
+            "host_unix_ns": 1791728446460323800,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-142942",
+            "age_ms": "110",
+            "sha256": "a685fa6806df38563cbb5a519f6d44b1dca6db61ffd82a99e6f3000bc5940830"
+          }
+        }
+      },
+      "image_feature_diagnostics": {
+        "raised_hand": {
+          "pixel": [
+            190,
+            98
+          ],
+          "range_dx": [
+            0,
+            4
+          ],
+          "range_dy": [
+            -1,
+            0
+          ],
+          "min_score": 0.7695,
+          "return_shift_px": [
+            3.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": true
+        },
+        "head_feature": {
+          "pixel": [
+            215,
+            116
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9797,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "other_hand": {
+          "pixel": [
+            241,
+            146
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9959,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "frame": {
+          "pixel": [
+            132,
+            51
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.8583,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        }
+      },
+      "private_serial_log_sha256": "736b71eca5c79bfb781b59e2c9d0b61c51a375508630e0faabb64da329397d68"
+    },
+    {
+      "name": "person3_probe_b",
+      "plan": {
+        "approval": "attended-person-local-probe",
+        "reference_session": "assembly-frame-stop-b; user reattached both rods; current dual views reviewed",
+        "channel": 3,
+        "target_us": 1561,
+        "expected_sequence": 379,
+        "expected_pulses_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "rods_connected_without_moving_axes": true,
+        "observer_ready": true,
+        "views_reviewed": true
+      },
+      "events": [
+        {
+          "event": "person_probe_step",
+          "step": 0,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 380,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40545.740688847
+        },
+        {
+          "event": "person_probe_step",
+          "step": 1,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 381,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1545,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40546.761550785
+        },
+        {
+          "event": "person_probe_step",
+          "step": 2,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 382,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1553,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40547.782301872
+        },
+        {
+          "event": "person_probe_step",
+          "step": 3,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 383,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1561,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40548.800674236
+        },
+        {
+          "event": "person_probe_step",
+          "step": 4,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 384,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1553,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40549.821426763
+        },
+        {
+          "event": "person_probe_step",
+          "step": 5,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 385,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1545,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40550.84223758
+        },
+        {
+          "event": "person_probe_step",
+          "step": 6,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 386,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40551.860595423
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 387,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "normal_frame_stop": true,
+          "incident_locks_removed": false
+        }
+      ],
+      "camera_verification": {
+        "front": {
+          "samples": 61,
+          "successes": 61,
+          "errors": [],
+          "max_success_gap_ms": 226.2033,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 61,
+          "first": {
+            "camera": "front",
+            "file": "front_1791728475417802800.jpg",
+            "host_unix_ns": 1791728475417802800,
+            "frame_id": "session-20261011-170627-93925",
+            "age_ms": "82",
+            "sha256": "93a3b2f983fceb943862946225d171201cb15071a9aa17b8be3767df2b64f09b"
+          },
+          "last": {
+            "camera": "front",
+            "file": "front_1791728488181386600.jpg",
+            "host_unix_ns": 1791728488181386600,
+            "frame_id": "session-20261011-170627-93988",
+            "age_ms": "178",
+            "sha256": "b7b9f9d7ea96a034b744040db34585e9499f78f35b67c265a462e9c42fab7d0d"
+          }
+        },
+        "top": {
+          "samples": 61,
+          "successes": 61,
+          "errors": [],
+          "max_success_gap_ms": 226.9602,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 61,
+          "first": {
+            "camera": "top",
+            "file": "top_1791728475414788300.jpg",
+            "host_unix_ns": 1791728475414788300,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-143087",
+            "age_ms": "63",
+            "sha256": "55dc6e9f9748f466881931ac8a3ec2f4d7652f053a209fc0d828bcdb49506faf"
+          },
+          "last": {
+            "camera": "top",
+            "file": "top_1791728488188916100.jpg",
+            "host_unix_ns": 1791728488188916100,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-143151",
+            "age_ms": "46",
+            "sha256": "e8c3d956942d967f963e21eff0900b3f88d2682fc6b953fc5358944a8cb05b42"
+          }
+        }
+      },
+      "image_feature_diagnostics": {
+        "raised_hand": {
+          "pixel": [
+            190,
+            98
+          ],
+          "range_dx": [
+            0,
+            1
+          ],
+          "range_dy": [
+            -1,
+            0
+          ],
+          "min_score": 0.8182,
+          "return_shift_px": [
+            1.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": true
+        },
+        "head_feature": {
+          "pixel": [
+            215,
+            116
+          ],
+          "range_dx": [
+            0,
+            5
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9327,
+          "return_shift_px": [
+            4.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "other_hand": {
+          "pixel": [
+            241,
+            146
+          ],
+          "range_dx": [
+            0,
+            1
+          ],
+          "range_dy": [
+            -1,
+            1
+          ],
+          "min_score": 0.9641,
+          "return_shift_px": [
+            0.0,
+            1.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "frame": {
+          "pixel": [
+            132,
+            51
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9428,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        }
+      },
+      "private_serial_log_sha256": "4ba1b360eeec47b071c1d6cc1be0f57e1ffd1869e400eb4c5f7fc39612a4ef80"
+    },
+    {
+      "name": "person4_probe_b",
+      "plan": {
+        "approval": "attended-person-local-probe",
+        "reference_session": "assembly-frame-stop-b; user reattached both rods; current dual views reviewed",
+        "channel": 4,
+        "target_us": 1598,
+        "expected_sequence": 387,
+        "expected_pulses_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "rods_connected_without_moving_axes": true,
+        "observer_ready": true,
+        "views_reviewed": true
+      },
+      "events": [
+        {
+          "event": "person_probe_step",
+          "step": 0,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 388,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40583.401193886
+        },
+        {
+          "event": "person_probe_step",
+          "step": 1,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 389,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1582,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40584.422030444
+        },
+        {
+          "event": "person_probe_step",
+          "step": 2,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 390,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1590,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40585.44071985
+        },
+        {
+          "event": "person_probe_step",
+          "step": 3,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 391,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1598,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40586.461393807
+        },
+        {
+          "event": "person_probe_step",
+          "step": 4,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 392,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1590,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40587.482049883
+        },
+        {
+          "event": "person_probe_step",
+          "step": 5,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 393,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1582,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40588.50277205
+        },
+        {
+          "event": "person_probe_step",
+          "step": 6,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 394,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40589.521088852
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 395,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "normal_frame_stop": true,
+          "incident_locks_removed": false
+        }
+      ],
+      "camera_verification": {
+        "front": {
+          "samples": 61,
+          "successes": 61,
+          "errors": [],
+          "max_success_gap_ms": 225.0669,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 61,
+          "first": {
+            "camera": "front",
+            "file": "front_1791728513137921800.jpg",
+            "host_unix_ns": 1791728513137921800,
+            "frame_id": "session-20261011-170627-94113",
+            "age_ms": "7",
+            "sha256": "c59bf7139574e5b956b3664cf8393905cd0bd4904071386dc875903df960ad2c"
+          },
+          "last": {
+            "camera": "front",
+            "file": "front_1791728525858065800.jpg",
+            "host_unix_ns": 1791728525858065800,
+            "frame_id": "session-20261011-170627-94176",
+            "age_ms": "63",
+            "sha256": "35d2a9e3e55f975a755aee3d92fa159cfbd83e2a55cf9b2741424ecad84a71b2"
+          }
+        },
+        "top": {
+          "samples": 61,
+          "successes": 61,
+          "errors": [],
+          "max_success_gap_ms": 227.5886,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 61,
+          "first": {
+            "camera": "top",
+            "file": "top_1791728513134396400.jpg",
+            "host_unix_ns": 1791728513134396400,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-143275",
+            "age_ms": "188",
+            "sha256": "3948c522860bf915ac71f38b5e82eab767ef816a279b514371001182df5e14c1"
+          },
+          "last": {
+            "camera": "top",
+            "file": "top_1791728525864845200.jpg",
+            "host_unix_ns": 1791728525864845200,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-143339",
+            "age_ms": "108",
+            "sha256": "f8cfc23e486961d73f8c142ac2e2f52eb54f6f9a2e15a405e23469d4c2cac444"
+          }
+        }
+      },
+      "image_feature_diagnostics": {
+        "raised_hand": {
+          "pixel": [
+            190,
+            98
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9163,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "head_feature": {
+          "pixel": [
+            215,
+            116
+          ],
+          "range_dx": [
+            -1,
+            0
+          ],
+          "range_dy": [
+            0,
+            1
+          ],
+          "min_score": 0.9448,
+          "return_shift_px": [
+            -1.0,
+            1.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "other_hand": {
+          "pixel": [
+            241,
+            146
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            -1,
+            0
+          ],
+          "min_score": 0.989,
+          "return_shift_px": [
+            0.0,
+            -1.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "frame": {
+          "pixel": [
+            132,
+            51
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9853,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        }
+      },
+      "private_serial_log_sha256": "4debdd6c3b6e647dc3f25aaa7cf5e5be90f969cae6da623239f6f2d5f0eb6cc8"
+    },
+    {
+      "name": "person5_probe_b",
+      "plan": {
+        "approval": "attended-person-local-probe",
+        "reference_session": "assembly-frame-stop-b; user reattached both rods; current dual views reviewed",
+        "channel": 5,
+        "target_us": 1532,
+        "expected_sequence": 395,
+        "expected_pulses_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "rods_connected_without_moving_axes": true,
+        "observer_ready": true,
+        "views_reviewed": true
+      },
+      "events": [
+        {
+          "event": "person_probe_step",
+          "step": 0,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 396,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40636.882740619
+        },
+        {
+          "event": "person_probe_step",
+          "step": 1,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 397,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1516,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40637.901548826
+        },
+        {
+          "event": "person_probe_step",
+          "step": 2,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 398,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1524,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40638.922281973
+        },
+        {
+          "event": "person_probe_step",
+          "step": 3,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 399,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1532,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40639.94301437
+        },
+        {
+          "event": "person_probe_step",
+          "step": 4,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 400,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1524,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40640.961296492
+        },
+        {
+          "event": "person_probe_step",
+          "step": 5,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 401,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1516,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40641.982046589
+        },
+        {
+          "event": "person_probe_step",
+          "step": 6,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 402,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40643.002814327
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 403,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "normal_frame_stop": true,
+          "incident_locks_removed": false
+        }
+      ],
+      "camera_verification": {
+        "front": {
+          "samples": 61,
+          "successes": 61,
+          "errors": [],
+          "max_success_gap_ms": 225.2669,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 61,
+          "first": {
+            "camera": "front",
+            "file": "front_1791728566519269800.jpg",
+            "host_unix_ns": 1791728566519269800,
+            "frame_id": "session-20261011-170627-94378",
+            "age_ms": "104",
+            "sha256": "79eed01aa66cb32fc8dcbd5e690d4725122c8125b4226d62d306280cc461895a"
+          },
+          "last": {
+            "camera": "front",
+            "file": "front_1791728579216212100.jpg",
+            "host_unix_ns": 1791728579216212100,
+            "frame_id": "session-20261011-170627-94441",
+            "age_ms": "136",
+            "sha256": "958be3127c56549d1c68f86744bd0a45cae2f0e0cb882a516e91d2fe34c6f6f7"
+          }
+        },
+        "top": {
+          "samples": 61,
+          "successes": 61,
+          "errors": [],
+          "max_success_gap_ms": 228.9025,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 61,
+          "first": {
+            "camera": "top",
+            "file": "top_1791728566515004700.jpg",
+            "host_unix_ns": 1791728566515004700,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-143542",
+            "age_ms": "171",
+            "sha256": "25d525b956c836bcb1f3a4e843b3c5c15e2c98960ccf44c8465b0feafb4b3cab"
+          },
+          "last": {
+            "camera": "top",
+            "file": "top_1791728579213926500.jpg",
+            "host_unix_ns": 1791728579213926500,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-143606",
+            "age_ms": "63",
+            "sha256": "d957bf33cdd59c46826a4eca492163a6d8cfe7a52ebb4d177015c21cf59aa663"
+          }
+        }
+      },
+      "image_feature_diagnostics": {
+        "raised_hand": {
+          "pixel": [
+            190,
+            98
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9807,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "head_feature": {
+          "pixel": [
+            215,
+            116
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9958,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "other_hand": {
+          "pixel": [
+            241,
+            146
+          ],
+          "range_dx": [
+            0,
+            12
+          ],
+          "range_dy": [
+            -6,
+            0
+          ],
+          "min_score": 0.7048,
+          "return_shift_px": [
+            1.0,
+            -1.0
+          ],
+          "search_boundary_reached": true,
+          "minimum_ncc_below_0_85": true
+        },
+        "frame": {
+          "pixel": [
+            132,
+            51
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9482,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        }
+      },
+      "private_serial_log_sha256": "ecc373717c8d7292756a417aeaf70e8d3ec96138bbe096688acf2b3048ced688"
+    },
+    {
+      "name": "person6_probe_b",
+      "plan": {
+        "approval": "attended-person-local-probe",
+        "reference_session": "assembly-frame-stop-b; user reattached both rods; current dual views reviewed",
+        "channel": 6,
+        "target_us": 1524,
+        "expected_sequence": 403,
+        "expected_pulses_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "rods_connected_without_moving_axes": true,
+        "observer_ready": true,
+        "views_reviewed": true
+      },
+      "events": [
+        {
+          "event": "person_probe_step",
+          "step": 0,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 404,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40678.12364142
+        },
+        {
+          "event": "person_probe_step",
+          "step": 1,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 405,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1508,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40679.142061304
+        },
+        {
+          "event": "person_probe_step",
+          "step": 2,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 406,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1516,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40680.162802461
+        },
+        {
+          "event": "person_probe_step",
+          "step": 3,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 407,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1524,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40681.183583848
+        },
+        {
+          "event": "person_probe_step",
+          "step": 4,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 408,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1516,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40682.201928521
+        },
+        {
+          "event": "person_probe_step",
+          "step": 5,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 409,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1508,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40683.222698178
+        },
+        {
+          "event": "person_probe_step",
+          "step": 6,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 410,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40684.243487456
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 411,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "normal_frame_stop": true,
+          "incident_locks_removed": false
+        }
+      ],
+      "camera_verification": {
+        "front": {
+          "samples": 61,
+          "successes": 61,
+          "errors": [],
+          "max_success_gap_ms": 224.2708,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 61,
+          "first": {
+            "camera": "front",
+            "file": "front_1791728607810327300.jpg",
+            "host_unix_ns": 1791728607810327300,
+            "frame_id": "session-20261011-170627-94583",
+            "age_ms": "183",
+            "sha256": "eefe49668a9ca4c96bc16e9047c83885b3e3c584c50a0f490b0a8ab6b5c476c6"
+          },
+          "last": {
+            "camera": "front",
+            "file": "front_1791728620534832300.jpg",
+            "host_unix_ns": 1791728620534832300,
+            "frame_id": "session-20261011-170627-94647",
+            "age_ms": "40",
+            "sha256": "b7df99973726aa032044fd38dd45eb4845d9646199e6759d59018a716ca16c80"
+          }
+        },
+        "top": {
+          "samples": 61,
+          "successes": 61,
+          "errors": [],
+          "max_success_gap_ms": 228.9046,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 61,
+          "first": {
+            "camera": "top",
+            "file": "top_1791728607806068600.jpg",
+            "host_unix_ns": 1791728607806068600,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-143749",
+            "age_ms": "46",
+            "sha256": "65a6718d7aeebd2cf4a1e2a2423f3cd2b4a6c59cc8f22e3efa3d016fbd09516d"
+          },
+          "last": {
+            "camera": "top",
+            "file": "top_1791728620542370500.jpg",
+            "host_unix_ns": 1791728620542370500,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-143813",
+            "age_ms": "0",
+            "sha256": "107b069d2c4e92c1432d04fd8dd74d8945dc1202a915fe8d8768593f7393e7f1"
+          }
+        }
+      },
+      "image_feature_diagnostics": {
+        "raised_hand": {
+          "pixel": [
+            190,
+            98
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9844,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "head_feature": {
+          "pixel": [
+            215,
+            116
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9953,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "other_hand": {
+          "pixel": [
+            241,
+            146
+          ],
+          "range_dx": [
+            0,
+            2
+          ],
+          "range_dy": [
+            0,
+            7
+          ],
+          "min_score": 0.8839,
+          "return_shift_px": [
+            1.0,
+            1.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "frame": {
+          "pixel": [
+            132,
+            51
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9703,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        }
+      },
+      "private_serial_log_sha256": "6f6afbe121dc38af39d114ffbf20f7ea1c33e9c2069c61a150dd8af2eabf26b6"
+    },
+    {
+      "name": "person4_probe_c",
+      "plan": {
+        "approval": "attended-person-local-probe",
+        "reference_session": "assembly-frame-stop-b; user reattached both rods; current dual views reviewed",
+        "channel": 4,
+        "target_us": 1550,
+        "expected_sequence": 411,
+        "expected_pulses_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "rods_connected_without_moving_axes": true,
+        "observer_ready": true,
+        "views_reviewed": true
+      },
+      "events": [
+        {
+          "event": "person_probe_step",
+          "step": 0,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 412,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40717.842426961
+        },
+        {
+          "event": "person_probe_step",
+          "step": 1,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 413,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1566,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40718.863308849
+        },
+        {
+          "event": "person_probe_step",
+          "step": 2,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 414,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1558,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40719.882063776
+        },
+        {
+          "event": "person_probe_step",
+          "step": 3,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 415,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1550,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40720.902862084
+        },
+        {
+          "event": "person_probe_step",
+          "step": 4,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 416,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1558,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40721.923640291
+        },
+        {
+          "event": "person_probe_step",
+          "step": 5,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 417,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1566,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40722.942338788
+        },
+        {
+          "event": "person_probe_step",
+          "step": 6,
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 63,
+            "armed": true,
+            "faults": 0,
+            "sequence": 418,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "monotonic_seconds": 40723.963162566
+        },
+        {
+          "event": "outputs_off",
+          "state": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 0,
+            "armed": false,
+            "faults": 0,
+            "sequence": 419,
+            "pending": false,
+            "pulse_us": [
+              1537,
+              1352,
+              1537,
+              1574,
+              1508,
+              1500,
+              1500,
+              1426,
+              1500,
+              1500
+            ],
+            "position_feedback": null
+          },
+          "normal_frame_stop": true,
+          "incident_locks_removed": false
+        }
+      ],
+      "camera_verification": {
+        "front": {
+          "samples": 61,
+          "successes": 61,
+          "errors": [],
+          "max_success_gap_ms": 226.1195,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 61,
+          "first": {
+            "camera": "front",
+            "file": "front_1791728647528604900.jpg",
+            "host_unix_ns": 1791728647528604900,
+            "frame_id": "session-20261011-170627-94781",
+            "age_ms": "92",
+            "sha256": "c123f168da418a7e688d7d6638d1845a14c1308efa41406354fbfdac5ee2458b"
+          },
+          "last": {
+            "camera": "front",
+            "file": "front_1791728660319989500.jpg",
+            "host_unix_ns": 1791728660319989500,
+            "frame_id": "session-20261011-170627-94845",
+            "age_ms": "14",
+            "sha256": "6317c38636c62e301cae43b4dfdbcae1cdc5888d5f0f88f814be7765d63772c0"
+          }
+        },
+        "top": {
+          "samples": 61,
+          "successes": 61,
+          "errors": [],
+          "max_success_gap_ms": 228.7439,
+          "all_successful_jpeg_decoded": true,
+          "unique_frame_ids": 61,
+          "first": {
+            "camera": "top",
+            "file": "top_1791728647532354400.jpg",
+            "host_unix_ns": 1791728647532354400,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-143947",
+            "age_ms": "188",
+            "sha256": "e70a998ddd432d669f7bf3fcb54cbafa4b02bb638236f6b59e80e8672c2ba735"
+          },
+          "last": {
+            "camera": "top",
+            "file": "top_1791728660317724000.jpg",
+            "host_unix_ns": 1791728660317724000,
+            "frame_id": "0c85f055395d4586aff0968d056f733e-144011",
+            "age_ms": "171",
+            "sha256": "71bd0caa1f8cf8f942c54471a1899eb62c84b7b2bb23a16b2541d3cc7c515d9d"
+          }
+        }
+      },
+      "image_feature_diagnostics": {
+        "raised_hand": {
+          "pixel": [
+            190,
+            98
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9814,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "head_feature": {
+          "pixel": [
+            215,
+            116
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            -1,
+            0
+          ],
+          "min_score": 0.9707,
+          "return_shift_px": [
+            0.0,
+            -1.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "other_hand": {
+          "pixel": [
+            241,
+            146
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9782,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        },
+        "frame": {
+          "pixel": [
+            132,
+            51
+          ],
+          "range_dx": [
+            0,
+            0
+          ],
+          "range_dy": [
+            0,
+            0
+          ],
+          "min_score": 0.9778,
+          "return_shift_px": [
+            0.0,
+            0.0
+          ],
+          "search_boundary_reached": false,
+          "minimum_ncc_below_0_85": false
+        }
+      },
+      "private_serial_log_sha256": "63db16c92275bcf96f8f3bb131e45ea0e9eaefc37918a154eef26ac6405a09cf"
+    }
+  ],
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 419,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1352,
+      1537,
+      1574,
+      1508,
+      1500,
+      1500,
+      1426,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "independent_final_readback": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 419,
+      "pending": false,
+      "pulse_us": [
+        1537,
+        1352,
+        1537,
+        1574,
+        1508,
+        1500,
+        1500,
+        1426,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "private_log_sha256": "22a2ada5217a10dfa1119417c13bae687b3bddb55edddc9c8cf0df4e239c8bfc"
+  }
+}

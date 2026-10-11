@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""One attended person-axis probe, at most 24 us in steps of at most 8 us.
+"""One attended person-axis probe, in steps of at most 8 us.
 
 All six person axes stay enabled together. The selected axis moves once and
 returns; tiger axes never enable. This is not a trajectory player or calibration.
+Axes 1/2/3/5/6 are limited to 24 us; head pitch (4) permits 48 us after the
+operator requested a larger observable excursion through linkage slack.
 """
 import argparse
 import hashlib
@@ -35,8 +37,9 @@ def validate_plan(p):
     if any(not 1300<=v<=1700 for v in pulses[:6]):
         raise ValueError('Person reference outside recovery window')
     target=p['target_us']; start=pulses[p['channel']-1]
-    if type(target) is not int or not 1300<=target<=1700 or not 0<abs(target-start)<=24:
-        raise ValueError('One probe excursion must be 1..24 us, stepped at most 8 us')
+    limit=48 if p['channel']==4 else 24
+    if type(target) is not int or not 1300<=target<=1700 or not 0<abs(target-start)<=limit:
+        raise ValueError('Probe excursion exceeds its axis limit; steps remain at most 8 us')
 
 
 class PersonProbeDevice(PwmDevice):
@@ -45,7 +48,7 @@ class PersonProbeDevice(PwmDevice):
         validate_plan(plan)
         super().__init__(registers,motion_inhibit_paths=motion_inhibit_paths)
         self.plan=json.loads(json.dumps(plan)); self.clock=clock
-        self.expires=clock()+15; self.cancel=Path(cancel_path)
+        self.expires=clock()+22; self.cancel=Path(cancel_path)
         self.lock_hashes=self._hashes(); self.index=0; self.failed=False; self.inside=False
         start=plan['expected_pulses_us'][:]; current=start[:]
         self.path=[start]
