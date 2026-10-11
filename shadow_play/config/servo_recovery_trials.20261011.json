@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "recorded_at": "2026-10-11T21:57:00+08:00",
+  "recorded_at": "2026-10-11T22:00:30+08:00",
   "scope": "Attended recovery and repeatability checks; never an automatic replay source",
   "operator_authorization": "Continuous attended debugging; third gimbal retained as a single free connection while first two rod splices are detached",
   "mechanical_state": "First two rod splices detached during all listed trials; third rod attached; tiger not enabled",
@@ -2629,5 +2629,36 @@
   "stop_fix_commit": "ef51f27",
   "incident_locks_removed": false,
   "person_coordinate_calibration_complete": false,
-  "tiger_calibration_complete": false
+  "tiger_calibration_complete": false,
+  "final_independent_check": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 355,
+      "pending": false,
+      "pulse_us": [
+        1537,
+        1352,
+        1537,
+        1574,
+        1508,
+        1500,
+        1500,
+        1426,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "private_log_sha256": "063dcce5dbd9353f1d2a712ecede115dc489f3082ee5c44543e0000dadc951a4",
+    "assembly_hold_process_exited": true,
+    "normal_frame_stop_verified": true,
+    "physical_reattachment_confirmed": false,
+    "next_probe_executed": false,
+    "next_probe_tool_commit": "0e4a94e"
+  }
 }
