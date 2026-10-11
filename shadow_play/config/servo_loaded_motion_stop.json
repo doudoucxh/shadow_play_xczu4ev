@@ -102,7 +102,7 @@
     "last_sequence_with_clear_visual_motion": 302,
     "latest_operator_result": "什么问题都没有"
   },
-  "latest_operator_power_report": "本轮用户确认独立8V舵机电源已开启；未独立测量电压。",
+  "latest_operator_power_report": "用户随后表示“我现在先断电”，尚未独立确认8V供电状态；保持不发运动指令。",
   "mechanical_reassembly": {
     "gimbal": 2,
     "channels": [
@@ -149,5 +149,15 @@
     "ready_for_loaded_motion": false,
     "record": "person_unloaded_recovery_after_demo.20261011.json",
     "operator_post_motion_observation": "好了，没有异常"
+  },
+  "latest_manual_reset": {
+    "operator_report": "已经完成手动复位",
+    "observed_at": "2026-10-11T23:22:24+08:00",
+    "axes_manually_turned": null,
+    "operator_confirmed_splice_state": null,
+    "last_read_sequence": 965,
+    "outputs_off": true,
+    "previous_command_registers_usable_as_actual_position": false,
+    "record": "person_unloaded_recovery_after_demo.20261011.json#subsequent_manual_reset"
   }
 }

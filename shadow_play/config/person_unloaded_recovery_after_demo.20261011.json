@@ -630,5 +630,93 @@
     "observation": "New top view reveals more of the near person gimbals and separated rod sections. Highest right-hand gimbal remains near/outside the right image edge. Person remains at the far left of the front curtain; person working pose is not restored.",
     "new_motion_after_reframing": false,
     "physical_center_independently_verified": false
+  },
+  "subsequent_manual_reset": {
+    "operator_report": "已经完成手动复位",
+    "observed_at": "2026-10-11T23:22:24+08:00",
+    "front_observation": "Person is back within the curtain beside the tiger.",
+    "top_observation": "Three person control rods appear connected; exact splice state awaits operator confirmation.",
+    "axes_manually_turned": null,
+    "operator_confirmed_splice_state": null,
+    "independent_servo_supply_state": null,
+    "last_power_message": "我现在先断电",
+    "last_power_message_is_intent_not_verified_supply_measurement": true,
+    "board_state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 965,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1508,
+        1500,
+        1500,
+        1426,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "camera_verification": {
+      "front": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 202,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "front",
+          "file": "front_1791732144455247200.jpg",
+          "host_unix_ns": 1791732144455247200,
+          "frame_id": "session-20261011-170627-112173",
+          "age_ms": "124",
+          "image_size": [
+            640,
+            360
+          ],
+          "sha256": "ab3cc83a055c7b7f925ff1b900c72cf0381b14ad540cce5c28c558be6417882a",
+          "captured_at": "2026-10-11T23:22:24.455247+08:00"
+        }
+      },
+      "top": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 218,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "top",
+          "file": "top_1791732144452247600.jpg",
+          "host_unix_ns": 1791732144452247600,
+          "frame_id": "0c85f055395d4586aff0968d056f733e-161432",
+          "age_ms": "125",
+          "image_size": [
+            960,
+            540
+          ],
+          "sha256": "1df081acb984f047af8c9818510264d9836f12431736b571300e86f590f4c8b4",
+          "captured_at": "2026-10-11T23:22:24.452248+08:00"
+        }
+      }
+    },
+    "new_motion_issued": false,
+    "previous_command_registers_usable_as_actual_position": false,
+    "incident_locks_retained": true,
+    "next_step": "Clarify which gimbals were manually turned and whether the first two splices are reconnected before planning any powered motion.",
+    "evidence": [
+      {
+        "path": ".review_work/loaded_calibration_20261011/manual_reset_readonly_af.board.log",
+        "sha256": "2429fe74b62f7d1a783bed3be520295991acd87f45cf13bcd87f76c5fbf4f2db"
+      },
+      {
+        "path": ".review_work/loaded_calibration_20261011/manual_reset_readonly_af/verification.json",
+        "sha256": "678204244beae097a49b293274f483c08de7ee7988404ffd8f4869017c60e3a3"
+      }
+    ]
   }
 }
