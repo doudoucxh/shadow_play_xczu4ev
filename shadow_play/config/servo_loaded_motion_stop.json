@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "active": true,
+  "recorded_date": "2026-10-11",
+  "reason": "Operator reported a large tiger motion and puppet pulling; loaded calibration stopped",
+  "scope": "All supervised loaded capture plans and current board driver motion commits",
+  "operator_power_off_confirmed": true,
+  "last_read_sequence": 296,
+  "last_enabled_mask": 0,
+  "last_armed": false,
+  "actual_position_known": false,
+  "automatic_replay_allowed": false,
+  "tiger_records_quarantined": true,
+  "board_markers": [
+    "/run/shadow-pwm-motion-inhibit",
+    "/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration/.motion-inhibit"
+  ],
+  "review_before_reenable": [
+    "With servo power disconnected, inspect puppet joints, rod attachments, cable ties and linkage slack",
+    "Establish actual starting posture without a loaded jump; a visual estimate or stale PWM register is insufficient",
+    "Review coordinated rod motion and clearances for the entire puppet, not each gimbal alone",
+    "Only after review, explicitly release host and board locks as a separate attended operation; no automatic unlocking"
+  ],
+  "report": "docs/servo_loaded_pairs_20261011.md",
+  "driver_deployment": {
+    "path": "/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration/servo_pwm_device.py",
+    "sha256": "f9ecee9fbcaa1de198c77c75d01f59dfd64175f28ae2fe3868e37699a3ab9a80",
+    "previous_sha256": "1b9740477ad8f5a19c4e696182d0c0d784c2e61e5b65ea490847822ed9452c25",
+    "previous_copy": "servo_pwm_device.before_inhibit_20261011.py",
+    "read_only_guard_verified": true,
+    "post_install_sequence": 296,
+    "post_install_enabled_mask": 0,
+    "motion_commands_sent_during_repair": 0,
+    "fpga_reload_or_board_reboot": false,
+    "limitation": "Driver-level interlock; not a physical power cut or protection against unrelated raw register programs"
+  },
+  "validation": {
+    "ubuntu_offline_tests_passed": 69,
+    "hardware_tests_after_power_off": 0,
+    "initial_ubuntu_packaging_failure": "Two missing test dependencies copied; complete regression then passed",
+    "windows_optional_gui_tests": "Separate broader test run could not start 12 Tk UI tests because init.tcl was unavailable; UI was not modified",
+    "readback_causality": "Mixed snapshot race reproduced in fake registers; the original failed observed snapshot was not logged. Not established as the cause of puppet pulling."
+  },
+  "evidence": [
+    {
+      "path": ".review_work/loaded_calibration_20261011/install_motion_markers.log",
+      "sha256": "feb48ad9e76b4846783b2cf7fd043204e804e2f727d68f340423f1fef27e1dab"
+    },
+    {
+      "path": ".review_work/loaded_calibration_20261011/install_guarded_driver.log",
+      "sha256": "a0ce7dbe137ef552cc253cdd73a43f617b182d648d523463eacee2bec64240cc"
+    },
+    {
+      "path": ".review_work/loaded_calibration_20261011/verify_guarded_driver_readonly.log",
+      "sha256": "2d91b6414611ac88abb2fbfae57cc5d385746cf7f03f9a338a678713bc5e2cd4"
+    },
+    {
+      "path": ".review_work/loaded_calibration_20261011/ubuntu_motion_inhibit_tests.log",
+      "sha256": "5899680ba51fc5207bad96a5523f32f62b62547a9966ab965ee7cba9c3fe92e5"
+    },
+    {
+      "path": ".review_work/loaded_calibration_20261011/ubuntu_motion_inhibit_tests_complete.log",
+      "sha256": "c1680239ae1bd90685a2aadd3ee0136bc01efbb7f2ec5843f227b56699b8d6f4"
+    }
+  ]
+}

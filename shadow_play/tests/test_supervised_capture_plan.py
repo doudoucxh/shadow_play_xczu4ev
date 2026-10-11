@@ -6,9 +6,33 @@ import unittest
 from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'integrations/calibration'))
 from supervised_capture_plan import HostLease, run_plan, validate_plan
-from test_supervised_servo_trial import FakeDevice
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
 from capture_supervised_plan import DEFAULT_BOARD_SCRIPT, validate_board_script
+
+class FakeDevice:
+    def __init__(self):
+        self.state = dict(identity='SP10', clock_hz=100000000, period_us=20000,
+                          armed=False, enabled_mask=0, pending=False, faults=0,
+                          pulse_us=[1500]*10)
+        self.commits = []; self.off_count = 0; self.kicks = 0
+        self.commit_error = False; self.watchdog = False
+
+    def status(self): return copy.deepcopy(self.state)
+
+    def commit(self, pulses, mask, allow_arm=False):
+        self.commits.append((pulses[:], mask, allow_arm))
+        self.state.update(armed=True, enabled_mask=mask, pulse_us=pulses[:])
+        if self.commit_error: raise TimeoutError('uncertain commit')
+        return self.status()
+
+    def kick(self):
+        self.kicks += 1
+        if self.watchdog: self.state.update(armed=False, enabled_mask=0, faults=2)
+
+    def off(self):
+        self.off_count += 1
+        self.state.update(armed=False, enabled_mask=0, pending=False)
+        return self.status()
 
 class Device(FakeDevice):
     def __init__(self):

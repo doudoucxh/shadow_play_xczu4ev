@@ -1,0 +1,1366 @@
+{
+  "schema_version": 2,
+  "recorded_date": "2026-10-11",
+  "purpose": "Historical diagnostic and incident evidence only; all tiger data quarantined and not replayable",
+  "deployment_ready": false,
+  "runtime_enforces_this_file": false,
+  "actual_position_feedback": null,
+  "front_image_homography": null,
+  "approved_loaded_limits": null,
+  "coordinate_convention": "Image x right and y down; pixel displacement relative to each group own baseline, not curtain millimetres",
+  "time_convention": "Host timestamps expressed in Asia/Shanghai UTC+08:00; receipt/selected-frame times, not exact physical motion onset",
+  "tiger_initial_visual_estimate": {
+    "7_9_10": "approximately centered",
+    "8": "approximately 10 degrees below center",
+    "meaning": "Operator estimate, not shaft measurement or known PWM",
+    "usable_as_start_position": false
+  },
+  "tiger_initial_adoptions": [
+    {
+      "channel": 7,
+      "pulse_us": 1500,
+      "hold_seconds": 2,
+      "enabled_mask": 64,
+      "sequence": 208,
+      "reference_basis": "user_authorized_visual_estimate",
+      "actual_position_verified": false,
+      "outputs_off_confirmed": true,
+      "host_motion_timestamp": null,
+      "timestamp_note": "Raw serial log does not carry host event timestamps; no precise adoption time inferred.",
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_initial7_board.log",
+          "sha256": "d27d0f0947ea1a9e2b9b109fe09857df792d258f65b2935367aaa282bf969235"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_initial_7.sh",
+          "sha256": "a321386e102be6518312e3f164bf7619ffde83b70a72218134104444bebfbc56"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_initial7/frames.jsonl",
+          "sha256": "2be23b9829ba6bf8bfd2dc7de2659e018bdbba65fba0bf3b157bf66e597c6c1e"
+        }
+      ],
+      "status": "quarantined_after_user_reported_excessive_motion",
+      "valid_for_calibration": false,
+      "replayable": false,
+      "usable_as_start_position": false,
+      "superseding_note": "Historical command adoption only. Operator estimates and register values did not verify actual shaft/load position; all initial tiger records are now quarantined."
+    },
+    {
+      "channel": 8,
+      "pulse_us": 1426,
+      "hold_seconds": 2,
+      "enabled_mask": 128,
+      "sequence": 209,
+      "reference_basis": "user_authorized_visual_estimate",
+      "actual_position_verified": false,
+      "outputs_off_confirmed": true,
+      "host_motion_timestamp": null,
+      "timestamp_note": "Raw serial log does not carry host event timestamps; no precise adoption time inferred.",
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_initial8_board.log",
+          "sha256": "dda131a323766ae0b286182f0392746eb06fa635fcfc63ff60f474da39b4aaff"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_initial_8.sh",
+          "sha256": "9fd121052535335498c68e45c596f1e15dea2fe0498faa8dd32d24ca84834594"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_initial8/frames.jsonl",
+          "sha256": "761092b56c6462079ccd236a9ce62818b6fe7e60f0659ad8df753c74779acc33"
+        }
+      ],
+      "status": "quarantined_after_user_reported_excessive_motion",
+      "valid_for_calibration": false,
+      "replayable": false,
+      "usable_as_start_position": false,
+      "superseding_note": "Historical command adoption only. Operator estimates and register values did not verify actual shaft/load position; all initial tiger records are now quarantined."
+    },
+    {
+      "channel": 9,
+      "pulse_us": 1500,
+      "hold_seconds": 2,
+      "enabled_mask": 256,
+      "sequence": 210,
+      "reference_basis": "user_authorized_visual_estimate",
+      "actual_position_verified": false,
+      "outputs_off_confirmed": true,
+      "host_motion_timestamp": null,
+      "timestamp_note": "Raw serial log does not carry host event timestamps; no precise adoption time inferred.",
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_initial9_board.log",
+          "sha256": "25b3e9c6724ee975328bea1e32177e9748735e06e74c8464b1a22c3fa68ab4e4"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_initial_9.sh",
+          "sha256": "3b0431f92a932578b7db133c37e5a07ded818d932107cf734ac7ff997c7fb275"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_initial9/frames.jsonl",
+          "sha256": "9a46387de239dbe3364868964d5210e93d249b42badc69ea6edb4588009fbc08"
+        }
+      ],
+      "status": "quarantined_after_user_reported_excessive_motion",
+      "valid_for_calibration": false,
+      "replayable": false,
+      "usable_as_start_position": false,
+      "superseding_note": "Historical command adoption only. Operator estimates and register values did not verify actual shaft/load position; all initial tiger records are now quarantined."
+    },
+    {
+      "channel": 10,
+      "pulse_us": 1500,
+      "hold_seconds": 2,
+      "enabled_mask": 512,
+      "sequence": 211,
+      "reference_basis": "user_authorized_visual_estimate",
+      "actual_position_verified": false,
+      "outputs_off_confirmed": true,
+      "host_motion_timestamp": null,
+      "timestamp_note": "Raw serial log does not carry host event timestamps; no precise adoption time inferred.",
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_initial10_board.log",
+          "sha256": "32e6becf08ee8bc089e81173a397a3fe8178fac0be37691a517cab30d4e53a02"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_initial_10.sh",
+          "sha256": "46c3f418dc6698833196ded8d7f7f5b8af7e55fca5f0b01ca92a04720934882e"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_initial10/frames.jsonl",
+          "sha256": "ee58169a6e141cf15749362ef65025fc9ec519dccd64ce3038206e089923b5a8"
+        }
+      ],
+      "status": "quarantined_after_user_reported_excessive_motion",
+      "valid_for_calibration": false,
+      "replayable": false,
+      "usable_as_start_position": false,
+      "superseding_note": "Historical command adoption only. Operator estimates and register values did not verify actual shaft/load position; all initial tiger records are now quarantined."
+    }
+  ],
+  "groups": [
+    {
+      "name": "left_pair_v2",
+      "object": "人物左手",
+      "channels": [
+        1,
+        2
+      ],
+      "expected_start_sequence": 123,
+      "sequence_first_enable": 124,
+      "sequence_at_end": 165,
+      "sample_count": 5,
+      "unique_command_points": 3,
+      "initial_single_yaw_hold_excluded": true,
+      "local_command_bounds_us": {
+        "1": [
+          1500,
+          1537
+        ],
+        "2": [
+          1241,
+          1278
+        ]
+      },
+      "selected_front_roi_xyxy": [
+        210,
+        117,
+        222,
+        131
+      ],
+      "selected_front_feature": "hand_patch",
+      "samples": [
+        {
+          "label": "left_base",
+          "command_pulse_us_by_channel": {
+            "1": 1537,
+            "2": 1241
+          },
+          "enabled_mask": 3,
+          "sequence": 125,
+          "host_begin_at": "2026-10-11T16:23:25.821967+08:00",
+          "host_end_at": "2026-10-11T16:23:28.840314+08:00",
+          "selected_front_host_at": "2026-10-11T16:23:28.445860+08:00",
+          "selected_top_host_at": "2026-10-11T16:23:28.445110+08:00",
+          "front_image_displacement_px": [
+            0,
+            0
+          ],
+          "front_ncc": 1.0
+        },
+        {
+          "label": "left_yaw_135",
+          "command_pulse_us_by_channel": {
+            "1": 1500,
+            "2": 1241
+          },
+          "enabled_mask": 3,
+          "sequence": 135,
+          "host_begin_at": "2026-10-11T16:23:29.833038+08:00",
+          "host_end_at": "2026-10-11T16:23:32.861141+08:00",
+          "selected_front_host_at": "2026-10-11T16:23:32.490993+08:00",
+          "selected_top_host_at": "2026-10-11T16:23:32.490993+08:00",
+          "front_image_displacement_px": [
+            -17,
+            -1
+          ],
+          "front_ncc": 0.83261
+        },
+        {
+          "label": "left_yaw_return",
+          "command_pulse_us_by_channel": {
+            "1": 1537,
+            "2": 1241
+          },
+          "enabled_mask": 3,
+          "sequence": 145,
+          "host_begin_at": "2026-10-11T16:23:33.854765+08:00",
+          "host_end_at": "2026-10-11T16:23:36.882855+08:00",
+          "selected_front_host_at": "2026-10-11T16:23:36.531476+08:00",
+          "selected_top_host_at": "2026-10-11T16:23:36.530727+08:00",
+          "front_image_displacement_px": [
+            0,
+            0
+          ],
+          "front_ncc": 0.951525
+        },
+        {
+          "label": "left_pitch_105",
+          "command_pulse_us_by_channel": {
+            "1": 1537,
+            "2": 1278
+          },
+          "enabled_mask": 3,
+          "sequence": 155,
+          "host_begin_at": "2026-10-11T16:23:37.875868+08:00",
+          "host_end_at": "2026-10-11T16:23:40.903714+08:00",
+          "selected_front_host_at": "2026-10-11T16:23:40.619119+08:00",
+          "selected_top_host_at": "2026-10-11T16:23:40.626661+08:00",
+          "front_image_displacement_px": [
+            1,
+            -9
+          ],
+          "front_ncc": 0.790716
+        },
+        {
+          "label": "left_pitch_return",
+          "command_pulse_us_by_channel": {
+            "1": 1537,
+            "2": 1241
+          },
+          "enabled_mask": 3,
+          "sequence": 165,
+          "host_begin_at": "2026-10-11T16:23:41.894939+08:00",
+          "host_end_at": "2026-10-11T16:23:44.922272+08:00",
+          "selected_front_host_at": "2026-10-11T16:23:44.527006+08:00",
+          "selected_top_host_at": "2026-10-11T16:23:44.526258+08:00",
+          "front_image_displacement_px": [
+            1,
+            0
+          ],
+          "front_ncc": 0.954979
+        }
+      ],
+      "capture_result": {
+        "completed": true,
+        "outputs_off_confirmed": true,
+        "camera_guard_error": null
+      },
+      "analysis_summary": {
+        "preferred_roi_xyxy": [
+          210,
+          117,
+          222,
+          131
+        ],
+        "yaw_command_change_us": -37,
+        "pitch_command_change_us": 37,
+        "yaw_image_displacement_px": [
+          -17,
+          -1
+        ],
+        "yaw_return_error_px": [
+          0,
+          0
+        ],
+        "pitch_image_displacement_px": [
+          1,
+          -9
+        ],
+        "pitch_return_error_px": [
+          1,
+          0
+        ],
+        "roi_sensitivity": "Yaw displacement ranges dx=-17..-22 and dy=-1..-2 across three ROIs because the puppet hand/forearm deforms. Pitch displacement dx=1, dy=-8..-9. Use direction and approximate magnitude only.",
+        "usable_for": "Coarse local response direction and return check; not a validated inverse model."
+      },
+      "top_view_static_inspection": "Selected steady top-view frames show no obvious gross collision or detached rod; static imagery cannot prove clearances throughout motion or exclude small cable-tie slip, and some bases are cropped.",
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/left_pair_v2.json",
+          "sha256": "ad635140c21896444109fb4accd1eee5adbccb3044c4debded44057c00bc6f60"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/left_pair_v2/events.jsonl",
+          "sha256": "113005057c136eb11f7c883024878f229b82483d8c26efb6b8eb5597d970c084"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/left_pair_v2/capture_result.json",
+          "sha256": "4437f4591009fce4d504c20c32ab389fae11343ef3d5cf42fd7eb58d731e93a8"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/left_pair_v2/selected_frames.json",
+          "sha256": "b866df6e18da9f5d430ec9886699dee651d76a67fd6ded71aa6b88625c927ca3"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/left_pair_v2/hand_patch_analysis.json",
+          "sha256": "4da65e507fa14b52fd7421ea56e8b74c23bd1b1693dba14e0d5d1431b77720a9"
+        }
+      ]
+    },
+    {
+      "name": "right_pair",
+      "object": "人物右手",
+      "channels": [
+        5,
+        6
+      ],
+      "expected_start_sequence": 165,
+      "sequence_first_enable": 166,
+      "sequence_at_end": 207,
+      "sample_count": 5,
+      "unique_command_points": 3,
+      "initial_single_yaw_hold_excluded": true,
+      "local_command_bounds_us": {
+        "5": [
+          1500,
+          1537
+        ],
+        "6": [
+          1611,
+          1648
+        ]
+      },
+      "selected_front_roi_xyxy": [
+        293,
+        182,
+        308,
+        195
+      ],
+      "selected_front_feature": "hand_patch",
+      "samples": [
+        {
+          "label": "right_base",
+          "command_pulse_us_by_channel": {
+            "5": 1537,
+            "6": 1648
+          },
+          "enabled_mask": 48,
+          "sequence": 167,
+          "host_begin_at": "2026-10-11T16:24:54.030847+08:00",
+          "host_end_at": "2026-10-11T16:24:57.050827+08:00",
+          "selected_front_host_at": "2026-10-11T16:24:56.756646+08:00",
+          "selected_top_host_at": "2026-10-11T16:24:56.753646+08:00",
+          "front_image_displacement_px": [
+            0,
+            0
+          ],
+          "front_ncc": 1.0
+        },
+        {
+          "label": "right_yaw_135",
+          "command_pulse_us_by_channel": {
+            "5": 1500,
+            "6": 1648
+          },
+          "enabled_mask": 48,
+          "sequence": 177,
+          "host_begin_at": "2026-10-11T16:24:58.041146+08:00",
+          "host_end_at": "2026-10-11T16:25:01.071436+08:00",
+          "selected_front_host_at": "2026-10-11T16:25:00.691885+08:00",
+          "selected_top_host_at": "2026-10-11T16:25:00.690377+08:00",
+          "front_image_displacement_px": [
+            -23,
+            1
+          ],
+          "front_ncc": 0.883295
+        },
+        {
+          "label": "right_yaw_return",
+          "command_pulse_us_by_channel": {
+            "5": 1537,
+            "6": 1648
+          },
+          "enabled_mask": 48,
+          "sequence": 187,
+          "host_begin_at": "2026-10-11T16:25:02.063038+08:00",
+          "host_end_at": "2026-10-11T16:25:05.091574+08:00",
+          "selected_front_host_at": "2026-10-11T16:25:04.777330+08:00",
+          "selected_top_host_at": "2026-10-11T16:25:04.774332+08:00",
+          "front_image_displacement_px": [
+            -4,
+            0
+          ],
+          "front_ncc": 0.946764
+        },
+        {
+          "label": "right_pitch_150",
+          "command_pulse_us_by_channel": {
+            "5": 1537,
+            "6": 1611
+          },
+          "enabled_mask": 48,
+          "sequence": 197,
+          "host_begin_at": "2026-10-11T16:25:06.082607+08:00",
+          "host_end_at": "2026-10-11T16:25:09.111507+08:00",
+          "selected_front_host_at": "2026-10-11T16:25:08.704019+08:00",
+          "selected_top_host_at": "2026-10-11T16:25:08.701813+08:00",
+          "front_image_displacement_px": [
+            -6,
+            -15
+          ],
+          "front_ncc": 0.87654
+        },
+        {
+          "label": "right_pitch_return",
+          "command_pulse_us_by_channel": {
+            "5": 1537,
+            "6": 1648
+          },
+          "enabled_mask": 48,
+          "sequence": 207,
+          "host_begin_at": "2026-10-11T16:25:10.102718+08:00",
+          "host_end_at": "2026-10-11T16:25:13.131109+08:00",
+          "selected_front_host_at": "2026-10-11T16:25:12.857031+08:00",
+          "selected_top_host_at": "2026-10-11T16:25:12.853523+08:00",
+          "front_image_displacement_px": [
+            -4,
+            -1
+          ],
+          "front_ncc": 0.952226
+        }
+      ],
+      "capture_result": {
+        "completed": true,
+        "outputs_off_confirmed": true,
+        "camera_guard_error": null
+      },
+      "analysis_summary": {
+        "preferred_roi_xyxy": [
+          293,
+          182,
+          308,
+          195
+        ],
+        "yaw_command_change_us": -37,
+        "pitch_command_change_us": -37,
+        "yaw_image_displacement_px": [
+          -23,
+          1
+        ],
+        "yaw_return_error_px": [
+          -4,
+          0
+        ],
+        "pitch_image_displacement_px": [
+          -6,
+          -15
+        ],
+        "pitch_return_error_px": [
+          -4,
+          -1
+        ],
+        "roi_sensitivity": "Yaw displacement dx=-21..-23, dy=0..1. Pitch displacement is (-6,-15) for all three ROIs. Return retains dx=-3..-4, dy=0..-1. This image hysteresis cannot by itself distinguish shaft backlash, rod slack/slip, puppet articulation, or patch matching bias.",
+        "usable_for": "Coarse local response direction; repeatability needs further validation before fitting a controller."
+      },
+      "top_view_static_inspection": "Selected steady top-view frames show no obvious gross collision or detached rod; static imagery cannot prove clearances throughout motion or exclude small cable-tie slip, and some bases are cropped.",
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/right_pair.json",
+          "sha256": "2b1858e33e404eaec3a3b2f63516de65bcdbf75546b2e44ca68155f95358681e"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/right_pair/events.jsonl",
+          "sha256": "2778df805879e36cb21f35f289751b49d005c04e05906f132c61e3b91ab69191"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/right_pair/capture_result.json",
+          "sha256": "4437f4591009fce4d504c20c32ab389fae11343ef3d5cf42fd7eb58d731e93a8"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/right_pair/selected_frames.json",
+          "sha256": "974e24e83dec4de113e29c5eccf083351f9102380a7f229974a550923c7502bf"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/right_pair/hand_patch_analysis.json",
+          "sha256": "e23fe1cec2a8873474d78ef2c0bef394186d3414d8aec62d61f13fae33bc0edd"
+        }
+      ]
+    },
+    {
+      "name": "tiger_head_pair",
+      "object": "老虎头",
+      "channels": [
+        7,
+        8
+      ],
+      "expected_start_sequence": 211,
+      "sequence_first_enable": 212,
+      "sequence_at_end": 253,
+      "sample_count": 5,
+      "unique_command_points": 3,
+      "initial_single_yaw_hold_excluded": true,
+      "local_command_bounds_us": {
+        "7": [
+          1500,
+          1537
+        ],
+        "8": [
+          1426,
+          1463
+        ]
+      },
+      "selected_front_roi_xyxy": [
+        330,
+        174,
+        373,
+        214
+      ],
+      "selected_front_feature": "head_outline",
+      "samples": [
+        {
+          "label": "tiger_head_base",
+          "command_pulse_us_by_channel": {
+            "7": 1500,
+            "8": 1426
+          },
+          "enabled_mask": 192,
+          "sequence": 213,
+          "host_begin_at": "2026-10-11T16:31:41.365487+08:00",
+          "host_end_at": "2026-10-11T16:31:44.382530+08:00",
+          "selected_front_host_at": "2026-10-11T16:31:43.986509+08:00",
+          "selected_top_host_at": "2026-10-11T16:31:43.994581+08:00",
+          "front_image_displacement_px": [
+            0,
+            0
+          ],
+          "front_ncc": 1.0,
+          "status": "quarantined_after_user_reported_excessive_motion",
+          "valid_for_calibration": false,
+          "replayable": false
+        },
+        {
+          "label": "tiger_head_yaw_140",
+          "command_pulse_us_by_channel": {
+            "7": 1537,
+            "8": 1426
+          },
+          "enabled_mask": 192,
+          "sequence": 223,
+          "host_begin_at": "2026-10-11T16:31:45.376777+08:00",
+          "host_end_at": "2026-10-11T16:31:48.406091+08:00",
+          "selected_front_host_at": "2026-10-11T16:31:48.072344+08:00",
+          "selected_top_host_at": "2026-10-11T16:31:48.060481+08:00",
+          "front_image_displacement_px": [
+            6,
+            0
+          ],
+          "front_ncc": 0.96139,
+          "status": "quarantined_after_user_reported_excessive_motion",
+          "valid_for_calibration": false,
+          "replayable": false
+        },
+        {
+          "label": "tiger_head_yaw_return",
+          "command_pulse_us_by_channel": {
+            "7": 1500,
+            "8": 1426
+          },
+          "enabled_mask": 192,
+          "sequence": 233,
+          "host_begin_at": "2026-10-11T16:31:49.397680+08:00",
+          "host_end_at": "2026-10-11T16:31:52.425971+08:00",
+          "selected_front_host_at": "2026-10-11T16:31:51.988867+08:00",
+          "selected_top_host_at": "2026-10-11T16:31:51.985610+08:00",
+          "front_image_displacement_px": [
+            0,
+            0
+          ],
+          "front_ncc": 0.998522,
+          "status": "quarantined_after_user_reported_excessive_motion",
+          "valid_for_calibration": false,
+          "replayable": false
+        },
+        {
+          "label": "tiger_head_pitch_130",
+          "command_pulse_us_by_channel": {
+            "7": 1500,
+            "8": 1463
+          },
+          "enabled_mask": 192,
+          "sequence": 243,
+          "host_begin_at": "2026-10-11T16:31:53.417659+08:00",
+          "host_end_at": "2026-10-11T16:31:56.446056+08:00",
+          "selected_front_host_at": "2026-10-11T16:31:56.103412+08:00",
+          "selected_top_host_at": "2026-10-11T16:31:56.100402+08:00",
+          "front_image_displacement_px": [
+            -2,
+            -9
+          ],
+          "front_ncc": 0.971873,
+          "status": "quarantined_after_user_reported_excessive_motion",
+          "valid_for_calibration": false,
+          "replayable": false
+        },
+        {
+          "label": "tiger_head_pitch_return",
+          "command_pulse_us_by_channel": {
+            "7": 1500,
+            "8": 1426
+          },
+          "enabled_mask": 192,
+          "sequence": 253,
+          "host_begin_at": "2026-10-11T16:31:57.438336+08:00",
+          "host_end_at": "2026-10-11T16:32:00.464886+08:00",
+          "selected_front_host_at": "2026-10-11T16:32:00.182408+08:00",
+          "selected_top_host_at": "2026-10-11T16:32:00.180643+08:00",
+          "front_image_displacement_px": [
+            0,
+            -1
+          ],
+          "front_ncc": 0.99371,
+          "status": "quarantined_after_user_reported_excessive_motion",
+          "valid_for_calibration": false,
+          "replayable": false
+        }
+      ],
+      "capture_result": {
+        "completed": true,
+        "outputs_off_confirmed": true,
+        "camera_guard_error": null
+      },
+      "analysis_summary": {
+        "preferred_head_roi_xyxy": [
+          330,
+          174,
+          373,
+          214
+        ],
+        "yaw_command_change_us": 37,
+        "pitch_command_change_us": 37,
+        "head_yaw_displacement_px": [
+          6,
+          0
+        ],
+        "head_yaw_return_px": [
+          0,
+          0
+        ],
+        "head_pitch_displacement_px": [
+          -2,
+          -9
+        ],
+        "head_pitch_return_px": [
+          0,
+          -1
+        ],
+        "rod_yaw_displacement_px": [
+          9,
+          -1
+        ],
+        "rod_yaw_return_px": [
+          0,
+          0
+        ],
+        "rod_pitch_displacement_px": [
+          -2,
+          -9
+        ],
+        "rod_pitch_return_px": [
+          0,
+          -1
+        ],
+        "interpretation": "Both axes give distinct local image responses with 0-1px return error in this single sequence. Head/rod differences are consistent with articulated motion and blur, so they must not be mixed as one calibration point.",
+        "status": "quarantined_after_user_reported_excessive_motion",
+        "valid_for_calibration": false,
+        "replayable": false,
+        "superseding_note": "Preserved numerical steady-frame observations only. Superseded as a suitability assessment by the user report and initial-transient review."
+      },
+      "top_view_static_inspection": "Earlier selected steady images were insufficient to assess transitions. The user subsequently reported excessive tiger motion; all tiger samples are quarantined. Existing views cannot identify or exclude cable-tie slip.",
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_head_pair.json",
+          "sha256": "e4b31f18663a8c0cfab9807f591eb3d3e217c650edbb9f18995c294ac2369846"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_head_pair/events.jsonl",
+          "sha256": "e068a18693a41740ba9b656e2ef9049951d3faf5cf67a2388986961a8f867b76"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_head_pair/capture_result.json",
+          "sha256": "4437f4591009fce4d504c20c32ab389fae11343ef3d5cf42fd7eb58d731e93a8"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_head_pair/selected_frames.json",
+          "sha256": "6251078854ad40ac885d4703a9c7b8f48808d048e7ba807689660213e7e61905"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_head_pair/tiger_patch_analysis.json",
+          "sha256": "9580ea65db38301d469bb3b53e0f31f19fcb2a1abe3962fba39d73ff92e1ec04"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_head_pair/frames.jsonl",
+          "sha256": "e9cd63ee12ea783b0f47fcb5b05fb50e87885f848f9be2ad65772cacc114b3a5"
+        }
+      ],
+      "status": "quarantined_after_user_reported_excessive_motion",
+      "valid_for_calibration": false,
+      "replayable": false,
+      "usable_as_start_position": false,
+      "capture_completion_meaning": "Historical program completion/OFF only; does not establish safe motion, valid calibration, or acceptable operation."
+    },
+    {
+      "name": "tiger_leg_pair",
+      "object": "老虎脚控制组",
+      "channels": [
+        9,
+        10
+      ],
+      "expected_start_sequence": 253,
+      "sequence_first_enable": 254,
+      "sequence_at_end": 295,
+      "sample_count": 5,
+      "unique_command_points": 3,
+      "initial_single_yaw_hold_excluded": true,
+      "local_command_bounds_us": {
+        "9": [
+          1500,
+          1537
+        ],
+        "10": [
+          1500,
+          1537
+        ]
+      },
+      "selected_front_roi_xyxy": [
+        432,
+        157,
+        454,
+        190
+      ],
+      "selected_front_feature": "rod_tail_tip",
+      "samples": [
+        {
+          "label": "tiger_leg_base",
+          "command_pulse_us_by_channel": {
+            "9": 1500,
+            "10": 1500
+          },
+          "enabled_mask": 768,
+          "sequence": 255,
+          "host_begin_at": "2026-10-11T16:33:48.475808+08:00",
+          "host_end_at": "2026-10-11T16:33:51.493608+08:00",
+          "selected_front_host_at": "2026-10-11T16:33:51.117579+08:00",
+          "selected_top_host_at": "2026-10-11T16:33:51.114317+08:00",
+          "front_image_displacement_px": [
+            0,
+            0
+          ],
+          "front_ncc": 1.0,
+          "rear_foot_displacement_px": [
+            0,
+            0
+          ],
+          "rear_foot_ncc": 1.0,
+          "status": "quarantined_after_user_reported_excessive_motion",
+          "valid_for_calibration": false,
+          "replayable": false
+        },
+        {
+          "label": "tiger_leg_yaw_140",
+          "command_pulse_us_by_channel": {
+            "9": 1537,
+            "10": 1500
+          },
+          "enabled_mask": 768,
+          "sequence": 265,
+          "host_begin_at": "2026-10-11T16:33:52.488480+08:00",
+          "host_end_at": "2026-10-11T16:33:55.515289+08:00",
+          "selected_front_host_at": "2026-10-11T16:33:55.198924+08:00",
+          "selected_top_host_at": "2026-10-11T16:33:55.197309+08:00",
+          "front_image_displacement_px": [
+            7,
+            0
+          ],
+          "front_ncc": 0.935787,
+          "rear_foot_displacement_px": [
+            4,
+            -2
+          ],
+          "rear_foot_ncc": 0.987994,
+          "status": "quarantined_after_user_reported_excessive_motion",
+          "valid_for_calibration": false,
+          "replayable": false
+        },
+        {
+          "label": "tiger_leg_yaw_return",
+          "command_pulse_us_by_channel": {
+            "9": 1500,
+            "10": 1500
+          },
+          "enabled_mask": 768,
+          "sequence": 275,
+          "host_begin_at": "2026-10-11T16:33:56.508693+08:00",
+          "host_end_at": "2026-10-11T16:33:59.536697+08:00",
+          "selected_front_host_at": "2026-10-11T16:33:59.258338+08:00",
+          "selected_top_host_at": "2026-10-11T16:33:59.266980+08:00",
+          "front_image_displacement_px": [
+            0,
+            0
+          ],
+          "front_ncc": 0.985785,
+          "rear_foot_displacement_px": [
+            0,
+            0
+          ],
+          "rear_foot_ncc": 0.995213,
+          "status": "quarantined_after_user_reported_excessive_motion",
+          "valid_for_calibration": false,
+          "replayable": false
+        },
+        {
+          "label": "tiger_leg_pitch_140",
+          "command_pulse_us_by_channel": {
+            "9": 1500,
+            "10": 1537
+          },
+          "enabled_mask": 768,
+          "sequence": 285,
+          "host_begin_at": "2026-10-11T16:34:00.527879+08:00",
+          "host_end_at": "2026-10-11T16:34:03.555980+08:00",
+          "selected_front_host_at": "2026-10-11T16:34:03.127869+08:00",
+          "selected_top_host_at": "2026-10-11T16:34:03.126863+08:00",
+          "front_image_displacement_px": [
+            -2,
+            9
+          ],
+          "front_ncc": 0.933355,
+          "rear_foot_displacement_px": [
+            -5,
+            7
+          ],
+          "rear_foot_ncc": 0.916606,
+          "status": "quarantined_after_user_reported_excessive_motion",
+          "valid_for_calibration": false,
+          "replayable": false
+        },
+        {
+          "label": "tiger_leg_pitch_return",
+          "command_pulse_us_by_channel": {
+            "9": 1500,
+            "10": 1500
+          },
+          "enabled_mask": 768,
+          "sequence": 295,
+          "host_begin_at": "2026-10-11T16:34:04.549567+08:00",
+          "host_end_at": "2026-10-11T16:34:07.576840+08:00",
+          "selected_front_host_at": "2026-10-11T16:34:07.201005+08:00",
+          "selected_top_host_at": "2026-10-11T16:34:07.208667+08:00",
+          "front_image_displacement_px": [
+            -1,
+            1
+          ],
+          "front_ncc": 0.988362,
+          "rear_foot_displacement_px": [
+            -1,
+            1
+          ],
+          "rear_foot_ncc": 0.989966,
+          "status": "quarantined_after_user_reported_excessive_motion",
+          "valid_for_calibration": false,
+          "replayable": false
+        }
+      ],
+      "capture_result": {
+        "completed": true,
+        "outputs_off_confirmed": true,
+        "camera_guard_error": null
+      },
+      "analysis_summary": {
+        "preferred_rod_roi_xyxy": [
+          432,
+          157,
+          454,
+          190
+        ],
+        "preferred_foot_roi_xyxy": [
+          394,
+          246,
+          425,
+          277
+        ],
+        "yaw_command_change_us": 37,
+        "pitch_command_change_us": 37,
+        "rod_yaw_displacement_px": [
+          7,
+          0
+        ],
+        "rod_yaw_return_px": [
+          0,
+          0
+        ],
+        "rod_pitch_displacement_px": [
+          -2,
+          9
+        ],
+        "rod_pitch_return_px": [
+          -1,
+          1
+        ],
+        "foot_yaw_displacement_px": [
+          4,
+          -2
+        ],
+        "foot_yaw_return_px": [
+          0,
+          0
+        ],
+        "foot_pitch_displacement_px": [
+          -5,
+          7
+        ],
+        "foot_pitch_return_px": [
+          -1,
+          1
+        ],
+        "interpretation": "Two distinct command axes show reversible local image responses. Rod/tail-tip and rear-foot positions have different movements due to the puppet linkage, so nominal leg-pair actuation does not define a unique foot image point.",
+        "status": "quarantined_after_user_reported_excessive_motion",
+        "valid_for_calibration": false,
+        "replayable": false,
+        "superseding_note": "Preserved numerical steady-frame observations only. Superseded as a suitability assessment by the user report and initial-transient review."
+      },
+      "top_view_static_inspection": "Earlier selected steady images were insufficient to assess transitions. The user subsequently reported excessive tiger motion; all tiger samples are quarantined. Existing views cannot identify or exclude cable-tie slip.",
+      "evidence": [
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_leg_pair.json",
+          "sha256": "ee6b200e887fe4a723f7dafb4bb944348f3d7ec0541064d39361c1112ca69631"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_leg_pair/events.jsonl",
+          "sha256": "fc613fc9a34a7abeba0ff8987fe627829b4f5c391a4cfb1782518d4199696fbf"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_leg_pair/capture_result.json",
+          "sha256": "4437f4591009fce4d504c20c32ab389fae11343ef3d5cf42fd7eb58d731e93a8"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_leg_pair/selected_frames.json",
+          "sha256": "297b040d3296df99573c7515c194a6742561ec726d6316a24638d83130d80cd0"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_leg_pair/tiger_patch_analysis.json",
+          "sha256": "a668096d55482ee5dc18a79b8291b0b6e898fcc5098971c8418f780fef395471"
+        },
+        {
+          "path": ".review_work/loaded_calibration_20261011/tiger_leg_pair/frames.jsonl",
+          "sha256": "8f047d53430a95fefb8624112fb822c051cc69b9f9276181f4624dcad6960c72"
+        }
+      ],
+      "status": "quarantined_after_user_reported_excessive_motion",
+      "valid_for_calibration": false,
+      "replayable": false,
+      "usable_as_start_position": false,
+      "capture_completion_meaning": "Historical program completion/OFF only; does not establish safe motion, valid calibration, or acceptable operation."
+    }
+  ],
+  "total_pair_steady_samples": 20,
+  "unique_command_points_per_group": 3,
+  "channel4_status": "Skipped per user request after unresolved mechanical response; no specific fault diagnosed",
+  "all_groups_simultaneously_held_and_validated": false,
+  "final_board_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 296,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1241,
+      1537,
+      1574,
+      1537,
+      1648,
+      1500,
+      1426,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "final_off_host_received_at": "2026-10-11T16:36:58.155+08:00",
+  "limitations": [
+    "No formal millimetre calibration, tested loaded travel envelope, or independent target-point acceptance.",
+    "Each group samples only baseline plus one single-sided perturbation of each axis and two returns; this is three unique command points, not a 2D coverage dataset.",
+    "Right-hand returns retain roughly 3-4 image pixels horizontally; image hysteresis does not identify its electrical or mechanical cause.",
+    "NCC tracks deformable image patches; ROI choice, projection, blur, lighting and linkage motion can bias the result.",
+    "Other groups are not held by PWM during each pair test; simultaneous full-puppet behavior remains unverified.",
+    "Selected steady top images do not exclude transient collisions, subtle slipping or occluded interference.",
+    "Output OFF confirms PWM controller state, not servo power isolation, shaft angle or load holding.",
+    "All tiger initial and pair samples are quarantined after the user report; numerical observations are retained only as diagnostic evidence, not accepted calibration or replay data.",
+    "Old command registers and visual estimates do not establish a reliable physical starting position. Re-enabling a matching register value can still result in motion.",
+    "No exact physical tension onset, slipping tie, or specific mechanical failure is inferred from this record.",
+    "The aborted all-axis attempt has no sample_begin and did not establish four-axis holding; finally OFF does not prove there was no movement before shutdown."
+  ],
+  "next_work": [
+    "Keep all real motion disabled and do not replay or adopt these old pulse values.",
+    "Perform mechanical inspection with servo power isolated before considering further live work.",
+    "Establish a reliably known physical starting position and verify any software fixes offline before a separately reviewed restart.",
+    "Reassess tracking, coupled geometry and camera coverage before collecting a new accepted calibration dataset; retain the current records only for diagnosis."
+  ],
+  "record_status": "motion_halted_pending_mechanical_inspection_and_reliable_start",
+  "valid_for_calibration": false,
+  "replayable": false,
+  "current_motion_status": {
+    "user_report": "老虎变化幅度一下太大，都跑飞了",
+    "user_clarification": "没有太大问题，但是皮影有点扯到了",
+    "damage_assessment": "Operator reported puppet pulling without a major problem; no complete physical inspection or diagnosis recorded",
+    "user_report_has_precedence_over_previous_steady_observations": true,
+    "user_confirmed_servo_power_off": true,
+    "all_motion_disabled_pending_review": true,
+    "physical_position_known": false,
+    "previous_register_values_are_safe_start_pose": false,
+    "instruction": "No replay, recentering, initial adoption, or live trial from these records. Wait for mechanical inspection and a reliably established starting position.",
+    "scope_note": "This JSON is evidence/policy metadata, not proof of deployed runtime enforcement."
+  },
+  "tiger_incident_frame_review": {
+    "status": "quarantined_after_user_reported_excessive_motion",
+    "valid_for_calibration": false,
+    "replayable": false,
+    "method": "All available front/top records scanned for per-frame region change; all available front frames tracked by fixed-template NCC; manually inspected highest-change initial-motion windows in both views and largest tracked pair-transitions. Not every raw image was individually rendered to a human/model viewer.",
+    "coordinate_convention": "Image x right positive, y down positive; pixel differences only",
+    "initial_transients": [
+      {
+        "trial": "tiger_initial7",
+        "feature": "head_rod_tip",
+        "reference_roi_xyxy": [
+          365,
+          165,
+          382,
+          183
+        ],
+        "largest_adjacent_displacement_px": [
+          -26,
+          3
+        ],
+        "adjacent_interval_ms": 218.756,
+        "max_displacement_from_recording_start_px": [
+          -27,
+          3
+        ],
+        "before": {
+          "time": "2026-10-11T16:27:23.872+08:00",
+          "host_unix_ns": 1791707243872290200,
+          "d_px": [
+            0,
+            0
+          ],
+          "ncc": 0.996729,
+          "label": null,
+          "evidence": {
+            "path": ".review_work/loaded_calibration_20261011/tiger_initial7/front_1791707243872290200.jpg",
+            "sha256": "118e68c4682d6031cc56689a820b10f54f1521a8778bbd6fec34c82bfd18759b"
+          }
+        },
+        "after": {
+          "time": "2026-10-11T16:27:24.091+08:00",
+          "host_unix_ns": 1791707244091045800,
+          "d_px": [
+            -26,
+            3
+          ],
+          "ncc": 0.904788,
+          "label": null,
+          "evidence": {
+            "path": ".review_work/loaded_calibration_20261011/tiger_initial7/front_1791707244091045800.jpg",
+            "sha256": "95a0acae36073fc59f37eb3932d6ae7b0be6e8fe05095aa44a6c258862e241e7"
+          }
+        },
+        "maximum": {
+          "time": "2026-10-11T16:27:24.309+08:00",
+          "host_unix_ns": 1791707244309827100,
+          "d_px": [
+            -27,
+            3
+          ],
+          "ncc": 0.901719,
+          "label": null,
+          "evidence": {
+            "path": ".review_work/loaded_calibration_20261011/tiger_initial7/front_1791707244309827100.jpg",
+            "sha256": "8fd81667cca1eb488075aad6139fa8b1f58a989e7a8a90023a269d7ffa216944"
+          }
+        },
+        "meaning": "Observed image-frame change, not exact physical motion onset, travel, velocity or proof of the event the user described."
+      },
+      {
+        "trial": "tiger_initial8",
+        "feature": "head_rod_tip",
+        "reference_roi_xyxy": [
+          337,
+          167,
+          354,
+          185
+        ],
+        "largest_adjacent_displacement_px": [
+          -4,
+          -17
+        ],
+        "adjacent_interval_ms": 209.415,
+        "max_displacement_from_recording_start_px": [
+          -4,
+          -21
+        ],
+        "before": {
+          "time": "2026-10-11T16:28:58.853+08:00",
+          "host_unix_ns": 1791707338853331400,
+          "d_px": [
+            0,
+            0
+          ],
+          "ncc": 0.990979,
+          "label": null,
+          "evidence": {
+            "path": ".review_work/loaded_calibration_20261011/tiger_initial8/front_1791707338853331400.jpg",
+            "sha256": "f92c1c1af89b713aac7e27c64c66e106b227a79eb58429d5a5d027d0bb9535ea"
+          }
+        },
+        "after": {
+          "time": "2026-10-11T16:28:59.062+08:00",
+          "host_unix_ns": 1791707339062746400,
+          "d_px": [
+            -4,
+            -17
+          ],
+          "ncc": 0.884718,
+          "label": null,
+          "evidence": {
+            "path": ".review_work/loaded_calibration_20261011/tiger_initial8/front_1791707339062746400.jpg",
+            "sha256": "454dda964a7d5f0dc9b31bea242907399eaa1ed0da10605499ff7fdee8f104fc"
+          }
+        },
+        "maximum": {
+          "time": "2026-10-11T16:28:59.278+08:00",
+          "host_unix_ns": 1791707339278638400,
+          "d_px": [
+            -4,
+            -21
+          ],
+          "ncc": 0.918848,
+          "label": null,
+          "evidence": {
+            "path": ".review_work/loaded_calibration_20261011/tiger_initial8/front_1791707339278638400.jpg",
+            "sha256": "2fed51ef7aadccbb33621cfea9f9d25a2f05e2ef965de96fbe8102feaa834c6f"
+          }
+        },
+        "meaning": "Observed image-frame change, not exact physical motion onset, travel, velocity or proof of the event the user described."
+      },
+      {
+        "trial": "tiger_initial9",
+        "feature": "rear_rod_tip",
+        "reference_roi_xyxy": [
+          452,
+          157,
+          469,
+          181
+        ],
+        "largest_adjacent_displacement_px": [
+          -18,
+          -1
+        ],
+        "adjacent_interval_ms": 209.944,
+        "max_displacement_from_recording_start_px": [
+          -19,
+          -1
+        ],
+        "before": {
+          "time": "2026-10-11T16:30:02.887+08:00",
+          "host_unix_ns": 1791707402887901100,
+          "d_px": [
+            0,
+            0
+          ],
+          "ncc": 0.980275,
+          "label": null,
+          "evidence": {
+            "path": ".review_work/loaded_calibration_20261011/tiger_initial9/front_1791707402887901100.jpg",
+            "sha256": "909741eae186da86772f98408d4ba58482b7e23b18f5a90072dcf5154865abd5"
+          }
+        },
+        "after": {
+          "time": "2026-10-11T16:30:03.097+08:00",
+          "host_unix_ns": 1791707403097845300,
+          "d_px": [
+            -18,
+            -1
+          ],
+          "ncc": 0.813808,
+          "label": null,
+          "evidence": {
+            "path": ".review_work/loaded_calibration_20261011/tiger_initial9/front_1791707403097845300.jpg",
+            "sha256": "a0d87e6639edc90c6e6a10b3748acc64a0f3e15b507454bd0b88211242d657a8"
+          }
+        },
+        "maximum": {
+          "time": "2026-10-11T16:30:03.305+08:00",
+          "host_unix_ns": 1791707403305550200,
+          "d_px": [
+            -19,
+            -1
+          ],
+          "ncc": 0.857393,
+          "label": null,
+          "evidence": {
+            "path": ".review_work/loaded_calibration_20261011/tiger_initial9/front_1791707403305550200.jpg",
+            "sha256": "c21ec8844b956bdfb381a7d9c840c98884e1bcca2f5ed19be28e075cf2d6f856"
+          }
+        },
+        "meaning": "Observed image-frame change, not exact physical motion onset, travel, velocity or proof of the event the user described."
+      }
+    ],
+    "observable_evidence": "Initial7/8/9 front frames show abrupt rod-tip shifts and changes in body/leg silhouette; initial8 shows motion blur. Top views show rod-direction changes. This does not diagnose a slipping tie or establish when a specific rod was under tension.",
+    "all_recorded_front_frames_tracked": true,
+    "recording_gaps_and_limits": [
+      "About 5fps acquisition cannot bound movement or peaks between frames.",
+      "Saved segments have large gaps; specifically 16:34:07.602 to 16:36:57.440 is about170s without front frames in these trial folders.",
+      "The user reported incident is not yet tied to a specific captured timestamp.",
+      "No calibrated image-to-millimetre mapping or shaft feedback is available; pixel differences are not physical angles or travel.",
+      "Motion blur and changing silhouette are visible, but they do not uniquely identify rotation, depth change, elastic movement, or linkage slip.",
+      "Cable-tie connections are too small/occluded in the available top view to identify or exclude slippage. No verified linkage-detachment diagnosis can be made."
+    ],
+    "later_pair_transition_observations": {
+      "tiger_initial10": "Chosen front features have zero integer-pixel displacement across 48 saved front frames; this alone says nothing about physical shaft movement.",
+      "tiger_head_pair": "Across available 16:31:38.602 to 16:32:00.374 front frames, chosen rod-tip largest consecutive displacement is 4px over about 0.200s. This does not establish safety.",
+      "tiger_leg_pair": "Across available 16:33:45.705 to 16:34:07.602 front frames, chosen rod-tip largest consecutive displacement is 4px over about 0.192s. This does not establish safety."
+    },
+    "causal_conclusion": "No hardware/mechanical cause or exact load/tension moment determined. User report is not contradicted by sparse recorded frames.",
+    "evidence": [
+      {
+        "path": ".review_work/loaded_calibration_20261011/tiger_incident_review.json",
+        "sha256": "5fef4a8ba9d949c59055982e609e2385ecaf6890ab8dae1ec6c0cae4c42cd67f"
+      },
+      {
+        "path": ".review_work/loaded_calibration_20261011/tiger_incident_all_frame_tracking.json",
+        "sha256": "5f0cd162399d7568ea1f770c77a7dddb6fad88614206b80675f63b763cef1799"
+      },
+      {
+        "path": ".review_work/loaded_calibration_20261011/tiger_incident_frame_changes.json",
+        "sha256": "ddf61febfea61f12a60fe1129a39b2827a197bef717913d22b64c46aeba1a14e"
+      },
+      {
+        "path": ".review_work/loaded_calibration_20261011/analyze_tiger_incident_local.py",
+        "sha256": "a73aa57e1ca1d1b3e8ccc3bfe77aeab5971781b253059f1b5e584022897dce82"
+      }
+    ]
+  },
+  "state_after_last_pair_before_aborted_all_axes": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 295,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1241,
+      1537,
+      1574,
+      1537,
+      1648,
+      1500,
+      1426,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "tiger_all_axes_attempt": {
+    "status": "aborted_first_commit_readback_mismatch_quarantined",
+    "valid_for_calibration": false,
+    "replayable": false,
+    "expected_start_sequence": 295,
+    "first_planned_step": {
+      "label": "all_start_7",
+      "channel": 7,
+      "pulse_us": 1500
+    },
+    "reported_exception": "RuntimeError: PWM adopted-state readback mismatch",
+    "sample_begin_count": 0,
+    "four_axis_hold_completed": false,
+    "planned_later_steps_executed": false,
+    "finally_outputs_off_confirmed": true,
+    "final_state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 296,
+      "pending": false,
+      "pulse_us": [
+        1537,
+        1241,
+        1537,
+        1574,
+        1537,
+        1648,
+        1500,
+        1426,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "off_host_received_at": "2026-10-11T16:36:58.155+08:00",
+    "cause_note": "Recorded software readback mismatch is not by itself a diagnosed physical cause of the user-reported motion.",
+    "first_commit_note": "The first commit was attempted before the readback check failed; no sample_begin does not prove that no physical motion occurred.",
+    "capture_result": {
+      "completed": false,
+      "outputs_off_confirmed": true,
+      "camera_guard_error": null
+    },
+    "evidence": [
+      {
+        "path": ".review_work/loaded_calibration_20261011/tiger_all_axes.json",
+        "sha256": "887eb53300b8181c9b46fb70b28d3ed702d5793f76ffc255252ef8c35fccb4f6"
+      },
+      {
+        "path": ".review_work/loaded_calibration_20261011/tiger_all_axes/board.log",
+        "sha256": "5584bfa123542605997f6de97e2f4e2c518606e82c7c4057aec779b5ebddf80c"
+      },
+      {
+        "path": ".review_work/loaded_calibration_20261011/tiger_all_axes/events.jsonl",
+        "sha256": "68a10f0fad603e8ba079eeb0a6451dfe3980cdc38b4aa3a21e7ffb4c0b844f9c"
+      },
+      {
+        "path": ".review_work/loaded_calibration_20261011/tiger_all_axes/capture_result.json",
+        "sha256": "d30fe745d48eef97dd4d9c1b27d073ed5d857321ff1b96335d202d01b21134f1"
+      },
+      {
+        "path": ".review_work/loaded_calibration_20261011/tiger_all_axes/frames.jsonl",
+        "sha256": "aee2c1d6d499455815e47e30a3989461277dbf291ba0230c4a3ce9f0edd70b14"
+      }
+    ]
+  },
+  "final_board_state_meaning": "Historical last observed controller OFF state. User subsequently confirmed physical servo power off; register pulse values are not current shaft feedback or a safe restart pose.",
+  "tiger_quarantined_pair_steady_samples": 10,
+  "tiger_quarantined_initial_adoptions": 4,
+  "valid_calibration_sample_count": 0
+}

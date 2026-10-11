@@ -22,6 +22,18 @@ from camera_bridge import check_jpeg
 
 
 DEFAULT_BOARD_SCRIPT = '/tmp/supervised_capture_plan_20261011_v2.py'
+MOTION_REVIEW = Path(__file__).resolve().parents[1] / 'config/servo_loaded_motion_stop.json'
+
+
+def require_motion_review_clear(path=MOTION_REVIEW):
+    """Fail closed before opening serial/cameras; no command-line override."""
+    try:
+        review = json.loads(Path(path).read_text(encoding='utf-8'))
+    except (OSError, ValueError) as error:
+        raise RuntimeError('Motion review record missing/unreadable; capture is blocked') from error
+    if (not isinstance(review, dict) or review.get('schema_version') != 1 or
+            review.get('active') is not False):
+        raise RuntimeError('Loaded motion is stopped after puppet pulling; mechanical review and a verified start are required')
 
 
 def validate_board_script(value):
@@ -38,6 +50,7 @@ def main():
     p.add_argument('--port',default='COM3')
     p.add_argument('--camera-base',default='http://192.168.45.1:8765')
     args=p.parse_args()
+    require_motion_review_clear()
     if not re.fullmatch(r'/tmp/[A-Za-z0-9_.-]+\.json',args.board_plan):
         raise ValueError('Simple /tmp JSON plan required')
     import serial

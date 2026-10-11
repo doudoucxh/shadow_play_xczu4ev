@@ -1,86 +1,41 @@
-import copy
+import json
 from pathlib import Path
+import subprocess
 import sys
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'integrations/calibration'))
+SOURCE = Path(__file__).resolve().parents[1] / 'integrations/calibration'
+sys.path.insert(0, str(SOURCE))
 from supervised_servo_trial import trial
 
 
-class FakeDevice:
-    def __init__(self):
-        self.state = dict(identity='SP10', clock_hz=100000000, period_us=20000,
-                          armed=False, enabled_mask=0, pending=False, faults=0,
-                          pulse_us=[1500]*10)
-        self.commits = []; self.off_count = 0; self.kicks = 0
-        self.commit_error = False; self.watchdog = False
+class RetiredTrialTests(unittest.TestCase):
+    def test_imported_trial_rejects_even_authorized_without_touching_device(self):
+        device = Mock()
+        with self.assertRaisesRegex(RuntimeError, 'disabled after puppet pulling'):
+            trial(device, 7, 1500, observer_present=True,
+                  estimated_start_authorized=True, hold_seconds=2)
+        self.assertEqual(device.mock_calls, [])
 
-    def status(self): return copy.deepcopy(self.state)
+    def test_execute_fails_without_loading_mmio_driver(self):
+        result = subprocess.run([sys.executable, str(SOURCE / 'supervised_servo_trial.py'),
+                                 '--channel', '7', '--pulse-us', '1500', '--execute',
+                                 '--observer-present', '--estimated-start-authorized'],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn('disabled after puppet pulling', result.stderr)
+        self.assertNotIn('/dev/mem', result.stderr)
+        self.assertNotIn('servo_pwm_device', result.stderr)
 
-    def commit(self, pulses, mask, allow_arm=False):
-        self.commits.append((pulses[:], mask, allow_arm))
-        self.state.update(armed=True, enabled_mask=mask, pulse_us=pulses[:])
-        if self.commit_error: raise TimeoutError('uncertain commit')
-        return self.status()
-
-    def kick(self):
-        self.kicks += 1
-        if self.watchdog: self.state.update(armed=False, enabled_mask=0, faults=2)
-
-    def off(self):
-        self.off_count += 1
-        self.state.update(armed=False, enabled_mask=0, pending=False)
-        return self.status()
-
-
-class TrialTests(unittest.TestCase):
-    def run_trial(self, d, **kwargs):
-        return trial(d, 1, 1500, observer_present=True,
-                     estimated_start_authorized=True, **kwargs)
-
-    def test_missing_authorization_and_invalid_request_do_not_write(self):
-        d = FakeDevice()
-        for kwargs in ({}, {'observer_present': True},
-                       {'observer_present': True, 'estimated_start_authorized': 'yes'}):
-            with self.assertRaises(ValueError): trial(d, 1, 1500, **kwargs)
-        for duration in (0, 3, float('nan'), True):
-            with self.assertRaises(ValueError): self.run_trial(d, hold_seconds=duration)
-        self.assertFalse(d.commits); self.assertEqual(d.off_count, 0)
-
-    def test_does_not_take_over_active_or_faulted_outputs(self):
-        for field, value in (('armed', True), ('enabled_mask', 2), ('faults', 2),
-                             ('pending', True), ('period_us', 10000)):
-            d = FakeDevice(); d.state[field] = value
-            with self.assertRaises(RuntimeError): self.run_trial(d)
-            self.assertFalse(d.commits); self.assertEqual(d.off_count, 0)
-
-    def test_only_one_channel_then_off_and_never_claims_actual_position(self):
-        d = FakeDevice(); events = []
-        with patch('supervised_servo_trial.time.monotonic', side_effect=[0, 2]):
-            self.run_trial(d, emit=events.append)
-        self.assertEqual(d.commits, [([1500]*10, 1, True)])
-        self.assertEqual(d.off_count, 1); self.assertFalse(d.state['armed'])
-        self.assertIs(events[0]['actual_position_verified'], False)
-        self.assertEqual(events[-1]['event'], 'outputs_off')
-
-    def test_uncertain_commit_and_observer_error_always_turn_off_no_retry(self):
-        d = FakeDevice(); d.commit_error = True
-        with self.assertRaises(TimeoutError): self.run_trial(d)
-        self.assertEqual(len(d.commits), 1); self.assertEqual(d.off_count, 1)
-        d = FakeDevice()
-        def fail_on_adopted(event):
-            if event['event'] == 'adopted': raise RuntimeError('observer failed')
-        with self.assertRaises(RuntimeError): self.run_trial(d, emit=fail_on_adopted)
-        self.assertEqual(len(d.commits), 1); self.assertEqual(d.off_count, 1)
-
-    def test_watchdog_expiry_never_rearms(self):
-        d = FakeDevice(); d.watchdog = True
-        with patch('supervised_servo_trial.time.monotonic', side_effect=[0, .1, .2]), \
-                patch('supervised_servo_trial.time.sleep'):
-            with self.assertRaises(RuntimeError): self.run_trial(d)
-        self.assertEqual(len(d.commits), 1); self.assertEqual(d.off_count, 1)
-        self.assertEqual(d.kicks, 1)
+    def test_dry_run_is_explicitly_non_executable(self):
+        result = subprocess.run([sys.executable, str(SOURCE / 'supervised_servo_trial.py'),
+                                 '--channel', '7', '--pulse-us', '1500'],
+                                capture_output=True, text=True, check=True)
+        row = json.loads(result.stdout)
+        self.assertIs(row['execution_allowed'], False)
+        self.assertIs(row['actual_position_verified'], False)
 
 
-if __name__ == '__main__': unittest.main()
+if __name__ == '__main__':
+    unittest.main()
