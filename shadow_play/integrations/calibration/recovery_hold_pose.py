@@ -100,9 +100,13 @@ def run_hold(device, emit, *, clock=time.monotonic, sleep=time.sleep):
         emit({'event':'hold_started','state':state,'duration_seconds':device.plan['duration_seconds'],
               'cancel_path':str(device.cancel_path),'position_feedback':None})
         deadline = clock()+device.plan['duration_seconds']
+        next_report = clock()+1
         while clock()<deadline:
-            device.check_state(active=True)
+            state=device.check_state(active=True)
             device.kick()
+            if clock()>=next_report:
+                emit({'event':'hold_alive','state':state,'remaining_seconds':max(0,deadline-clock())})
+                next_report=clock()+1
             sleep(min(.04,max(0,deadline-clock())))
     finally:
         emit({'event':'outputs_off','state':device.off(),'incident_locks_removed':False})
