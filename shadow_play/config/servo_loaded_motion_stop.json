@@ -9,6 +9,22 @@
   "last_enabled_mask": 0,
   "last_armed": false,
   "actual_position_known": false,
+  "recovery_review": {
+    "date": "2026-10-11",
+    "user_requested_continue": true,
+    "operator_reconfirmed_power_off": true,
+    "tiger_manually_repositioned_after_power_off": true,
+    "operator_attachment_release_status": "Both rod ends currently inconvenient to detach",
+    "verified_restart_pose": false,
+    "latest_read_only_sequence": 296,
+    "latest_read_only_enabled_mask": 0,
+    "motion_issued_during_review": false,
+    "decision": "Keep locks active. Do not use old register pulses as a restart pose after manual repositioning. Establish a released-load or independently verified starting condition before motion.",
+    "front_camera": "Reconnect failed at SDK fingerprint read; operator wake requested",
+    "top_camera": "Advancing Camo frames received",
+    "board_evidence": ".review_work/loaded_calibration_20261011/resume_readonly_a.log",
+    "camera_evidence": ".review_work/loaded_calibration_20261011/resume_check_b/frames.jsonl"
+  },
   "automatic_replay_allowed": false,
   "tiger_records_quarantined": true,
   "board_markers": [
