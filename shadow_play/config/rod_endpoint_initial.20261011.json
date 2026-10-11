@@ -1,0 +1,313 @@
+{
+  "version": 1,
+  "purpose": "static rod-end observations and tracking diagnostic only",
+  "recorded_date": "2026-10-11",
+  "camera_verification": {
+    "front": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 185,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "front",
+        "file": "front_1791719638837069900.jpg",
+        "host_unix_ns": 1791719638837069900,
+        "frame_id": "session-20261011-170627-49975",
+        "age_ms": "87",
+        "image_size": [
+          640,
+          360
+        ],
+        "sha256": "c3765b0171453a2d991203e6c5da7de13d3394d7f6a5bb7fda53947406fd7102",
+        "captured_at": "2026-10-11T19:53:58.837070+08:00"
+      }
+    },
+    "top": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 188,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "top",
+        "file": "top_1791719638845105800.jpg",
+        "host_unix_ns": 1791719638845105800,
+        "frame_id": "0c85f055395d4586aff0968d056f733e-98904",
+        "age_ms": "125",
+        "image_size": [
+          960,
+          540
+        ],
+        "sha256": "8cd451f9c3ac9abe718ea72bf9b8fc1669112534f5f44d2bd60904994307b5fe",
+        "captured_at": "2026-10-11T19:53:58.845106+08:00"
+      }
+    }
+  },
+  "stage_extent_mm": [
+    740,
+    500
+  ],
+  "slides": "operator reports both fixed at audience-left position",
+  "points": [
+    {
+      "label": 1,
+      "rod": "wusong_left",
+      "servos": [
+        1,
+        2
+      ],
+      "pins": [
+        "D14",
+        "D15"
+      ],
+      "front_pixel": [
+        180,
+        143
+      ],
+      "top_pixel": [
+        766,
+        195
+      ],
+      "selection": "manual preliminary visible rod-end ring centre",
+      "servo_to_rod_assignment": "operator-provided pairing; not verified by isolated motion this stage",
+      "shaft_angles_deg": null,
+      "pulse_for_restart_us": null,
+      "stage_position_mm": null,
+      "actual_puppet_attachment_pixel": null,
+      "rod_end_to_puppet_attachment_offset_mm": null,
+      "operator_reported_base_top_height_mm": 380,
+      "base_height_is_axis_height": false
+    },
+    {
+      "label": 2,
+      "rod": "wusong_neck",
+      "servos": [
+        3,
+        4
+      ],
+      "pins": [
+        "F13",
+        "G13"
+      ],
+      "front_pixel": [
+        209,
+        126
+      ],
+      "top_pixel": [
+        716,
+        166
+      ],
+      "selection": "manual preliminary visible rod-end ring centre",
+      "servo_to_rod_assignment": "operator-provided pairing; not verified by isolated motion this stage",
+      "shaft_angles_deg": null,
+      "pulse_for_restart_us": null,
+      "stage_position_mm": null,
+      "actual_puppet_attachment_pixel": null,
+      "rod_end_to_puppet_attachment_offset_mm": null,
+      "operator_reported_base_top_height_mm": 240,
+      "base_height_is_axis_height": false
+    },
+    {
+      "label": 3,
+      "rod": "wusong_right",
+      "servos": [
+        5,
+        6
+      ],
+      "pins": [
+        "G14",
+        "G15"
+      ],
+      "front_pixel": [
+        265,
+        197
+      ],
+      "top_pixel": [
+        613,
+        286
+      ],
+      "selection": "manual preliminary visible rod-end ring centre",
+      "servo_to_rod_assignment": "operator-provided pairing; not verified by isolated motion this stage",
+      "shaft_angles_deg": null,
+      "pulse_for_restart_us": null,
+      "stage_position_mm": null,
+      "actual_puppet_attachment_pixel": null,
+      "rod_end_to_puppet_attachment_offset_mm": null,
+      "operator_reported_base_top_height_mm": 120,
+      "base_height_is_axis_height": false
+    },
+    {
+      "label": 4,
+      "rod": "tiger_head",
+      "servos": [
+        7,
+        8
+      ],
+      "pins": [
+        "J14",
+        "E13"
+      ],
+      "front_pixel": [
+        363,
+        172
+      ],
+      "top_pixel": [
+        466,
+        264
+      ],
+      "selection": "manual preliminary visible rod-end ring centre",
+      "servo_to_rod_assignment": "operator-provided pairing; not verified by isolated motion this stage",
+      "shaft_angles_deg": null,
+      "pulse_for_restart_us": null,
+      "stage_position_mm": null,
+      "actual_puppet_attachment_pixel": null,
+      "rod_end_to_puppet_attachment_offset_mm": null,
+      "operator_reported_base_top_height_mm": 190,
+      "base_height_is_axis_height": false
+    },
+    {
+      "label": 5,
+      "rod": "tiger_leg",
+      "servos": [
+        9,
+        10
+      ],
+      "pins": [
+        "E14",
+        "E15"
+      ],
+      "front_pixel": [
+        426,
+        179
+      ],
+      "top_pixel": [
+        366,
+        277
+      ],
+      "selection": "manual preliminary visible rod-end ring centre",
+      "servo_to_rod_assignment": "operator-provided pairing; not verified by isolated motion this stage",
+      "shaft_angles_deg": null,
+      "pulse_for_restart_us": null,
+      "stage_position_mm": null,
+      "actual_puppet_attachment_pixel": null,
+      "rod_end_to_puppet_attachment_offset_mm": null,
+      "operator_reported_base_top_height_mm": 120,
+      "base_height_is_axis_height": false
+    }
+  ],
+  "local_tracking_diagnostic": {
+    "front": [
+      {
+        "label": 1,
+        "samples": 14,
+        "ncc_min": 0.988618997180321,
+        "ncc_max": 1.0,
+        "samples_above_diagnostic_ncc": 14,
+        "maximum_local_match_shift_px": 0.0,
+        "moving_servo_response_verified": false
+      },
+      {
+        "label": 2,
+        "samples": 14,
+        "ncc_min": 0.9906110805900241,
+        "ncc_max": 0.9999999999999999,
+        "samples_above_diagnostic_ncc": 14,
+        "maximum_local_match_shift_px": 0.0,
+        "moving_servo_response_verified": false
+      },
+      {
+        "label": 3,
+        "samples": 14,
+        "ncc_min": 0.9952175256835493,
+        "ncc_max": 1.0,
+        "samples_above_diagnostic_ncc": 14,
+        "maximum_local_match_shift_px": 0.0,
+        "moving_servo_response_verified": false
+      },
+      {
+        "label": 4,
+        "samples": 14,
+        "ncc_min": 0.9945477712724563,
+        "ncc_max": 1.0,
+        "samples_above_diagnostic_ncc": 14,
+        "maximum_local_match_shift_px": 0.0,
+        "moving_servo_response_verified": false
+      },
+      {
+        "label": 5,
+        "samples": 14,
+        "ncc_min": 0.9979185726365548,
+        "ncc_max": 1.0000000000000002,
+        "samples_above_diagnostic_ncc": 14,
+        "maximum_local_match_shift_px": 0.0,
+        "moving_servo_response_verified": false
+      }
+    ],
+    "top": [
+      {
+        "label": 1,
+        "samples": 14,
+        "ncc_min": 0.9754648992443476,
+        "ncc_max": 1.0,
+        "samples_above_diagnostic_ncc": 14,
+        "maximum_local_match_shift_px": 0.0,
+        "moving_servo_response_verified": false
+      },
+      {
+        "label": 2,
+        "samples": 14,
+        "ncc_min": 0.9930836096764466,
+        "ncc_max": 0.9999999999999999,
+        "samples_above_diagnostic_ncc": 14,
+        "maximum_local_match_shift_px": 0.0,
+        "moving_servo_response_verified": false
+      },
+      {
+        "label": 3,
+        "samples": 14,
+        "ncc_min": 0.9880980499771065,
+        "ncc_max": 1.0,
+        "samples_above_diagnostic_ncc": 14,
+        "maximum_local_match_shift_px": 0.0,
+        "moving_servo_response_verified": false
+      },
+      {
+        "label": 4,
+        "samples": 14,
+        "ncc_min": 0.9925409781139602,
+        "ncc_max": 0.9999999999999999,
+        "samples_above_diagnostic_ncc": 14,
+        "maximum_local_match_shift_px": 0.0,
+        "moving_servo_response_verified": false
+      },
+      {
+        "label": 5,
+        "samples": 14,
+        "ncc_min": 0.9911496034619734,
+        "ncc_max": 0.9999999999999999,
+        "samples_above_diagnostic_ncc": 14,
+        "maximum_local_match_shift_px": 0.0,
+        "moving_servo_response_verified": false
+      }
+    ]
+  },
+  "tracking_method": "existing 15x15 grayscale NCC patches within +/-10 pixels; report threshold 0.85",
+  "tracking_thresholds_validated_as_safety_limits": false,
+  "camera_pair_hardware_synchronized": false,
+  "lens_distortion_corrected": false,
+  "stereo_calibrated": false,
+  "actual_servo_position_known": false,
+  "angle_to_position_calibrated": false,
+  "usable_for_automatic_motor_control": false,
+  "metric_accuracy_verified": false,
+  "old_front_homography_reused": false,
+  "movement_commands_sent": 0,
+  "motion_locks_modified": false,
+  "image_files_in_git": false,
+  "evidence_dir": ".review_work/loaded_calibration_20261011/quick_calibration_l",
+  "limitations": [
+    "Visible ring centres are preliminary selections; image patches do not verify mechanical attachment offsets.",
+    "No known shaft angle or servo command was paired with this image sample.",
+    "Static appearance matching does not validate tracking during movement, association, direction, range or mechanical clearance.",
+    "Current front framing does not establish all four corners for metric conversion; no millimetre positions calculated."
+  ]
+}

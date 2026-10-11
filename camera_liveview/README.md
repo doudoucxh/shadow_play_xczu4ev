@@ -40,6 +40,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "D:\Desktop\piying\camera_li
 
 冻结记录最多保留 8 份、30 分钟内有效。保存时在忽略的 `output/annotations/<编号>/` 中写入同一张 `frame.jpg` 及 `points.json`，记录原始帧号、时间戳、哈希和点选位置。除了用户确认保存的这一帧，不额外归档实时画面。该记录尚未换算为毫米，也不代表实际舵机角度或运动许可；没有串口或电机后端，禁止将点选直接用于自动试转。保存成功后告诉助手“已点好”，再由助手复核四角基准、连接点对应和两路可见性。
 
+已有静态坐标结果时，可给预览服务添加 `--coordinates-dir 本地结果目录`。目录包含 `geometry.json`、`numbered_reference.png` 和 `numbered_stage.png`，页面“查看五点坐标”显示记录时间、编号图及近似毫米坐标。此页是静态记录，不随实时画面更新；数值为幕布平面投影，不是舵机角度。相机画面继续保留在忽略目录中。2026-10-11 的结果和误差说明见 [五点坐标记录](../shadow_play/docs/point_coordinates_20261011.md)。
+
 `snapshot_latest.py` 使用 Python 和 Pillow 检查状态、图片新鲜度及 JPEG 解码，再将最新 JPEG 复制到固定的 `output/snapshot.jpg`，供图像读取工具使用；预览超过 5 秒未更新时拒绝把它当成当前画面。已适配 Sony 在 JPEG 结束标志之后附加的缓冲区填充字节。
 
 在另一个 PowerShell 终端执行下列命令停止取景：

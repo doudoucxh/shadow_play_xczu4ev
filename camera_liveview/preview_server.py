@@ -38,6 +38,7 @@ footer{padding:12px 24px;font-size:14px;color:#a9b9cb}
 </style>
 <header><h1>Sony 正面实时取景</h1><span id="status">正在读取…</span>
 <button id="pause">暂停显示</button><button id="mark">点选五个连接点</button>
+<button onclick="location.href='/coordinates'">查看五点坐标</button>
 <button id="undo" hidden>撤销上一点</button><button id="save" hidden disabled>保存五点</button>
 <button id="cancel" hidden>返回实时画面</button><button id="full">全屏</button></header>
 <main id="screen"><img id="view" alt="Sony 实时画面" hidden>
@@ -138,11 +139,62 @@ poll();
 </script></html>'''.encode('utf-8')
 
 
+COORDINATE_PAGE = r'''<!doctype html><html lang="zh-CN"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>五点静态坐标</title><style>
+body{margin:24px;background:#10151c;color:#ecf2fa;font:16px system-ui,sans-serif}
+h1{font-size:22px}a{color:#86caff}p{line-height:1.6}img{max-width:100%;height:auto}
+table{border-collapse:collapse;width:100%;max-width:760px;margin:20px 0}
+th,td{padding:10px;text-align:left;border-bottom:1px solid #455262}
+.note{color:#ffca80}#stamp{color:#a9b9cb}
+</style><a href="/">返回实时取景</a><h1>五点静态坐标</h1>
+<p id="stamp">正在读取坐标记录…</p>
+<p>原点：幕布左下角。X 向右，Y 向上。有效幕面 740 × 500 mm。</p>
+<p class="note">这是一帧静态记录，不随当前画面更新。数值为杆端在幕布平面的近似投影；
+四角贴标偏差和镜头畸变尚未测量。坐标不代表舵机角度，也不用于启动电机。</p>
+<table><thead><tr><th>点</th><th>部位</th><th>舵机</th><th>X / mm（约）</th><th>Y / mm（约）</th></tr></thead>
+<tbody id="rows"></tbody></table>
+<p>黄色编号是本次记录的五个杆端。</p><img src="/coordinate-overlay.png" alt="五点及幕布四角标注">
+<p>透视校正预览：</p><img src="/coordinate-stage.png" alt="幕布平面坐标预览">
+<script>
+const names=['人物左手','人物头部控制杆','人物右手','虎头控制杆','虎脚控制杆'];
+fetch('/coordinate-result.json',{cache:'no-store'}).then(r=>{
+ if(!r.ok)throw new Error('尚未加载坐标记录');return r.json();
+}).then(r=>{
+ if(!Array.isArray(r.points)||r.points.length!==5)throw new Error('坐标记录不完整');
+ document.querySelector('#stamp').textContent=`静态采集时间：${r.reference_selection.reference_capture_at}`;
+ for(let i=0;i<5;i++){
+  const p=r.points[i],tr=document.createElement('tr');
+  for(const value of [i+1,names[i],`${2*i+1}、${2*i+2}`,Math.round(p.stage_mm[0]),Math.round(p.stage_mm[1])]){
+   const td=document.createElement('td');td.textContent=value;tr.append(td);
+  }document.querySelector('#rows').append(tr);
+ }
+}).catch(e=>{document.querySelector('#stamp').textContent=e.message;});
+</script></html>'''.encode('utf-8')
+
+
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         try:
             if self.path == '/':
                 self.reply(200, 'text/html; charset=utf-8', PAGE)
+            elif self.path == '/coordinates':
+                self.reply(200, 'text/html; charset=utf-8', COORDINATE_PAGE)
+            elif self.path in ('/coordinate-result.json', '/coordinate-overlay.png', '/coordinate-stage.png'):
+                files = {'/coordinate-result.json': ('geometry.json', 'application/json'),
+                         '/coordinate-overlay.png': ('numbered_reference.png', 'image/png'),
+                         '/coordinate-stage.png': ('numbered_stage.png', 'image/png')}
+                folder = getattr(self.server, 'coordinates_dir', None)
+                if folder is None:
+                    self.reply(503, 'text/plain', b'No coordinate record loaded')
+                    return
+                filename, kind = files[self.path]
+                try:
+                    data = (folder / filename).read_bytes()
+                except OSError:
+                    self.reply(503, 'text/plain', b'Coordinate record unavailable')
+                    return
+                self.reply(200, kind, data)
             elif self.path in ('/front.jpg', '/freeze.jpg'):
                 try:
                     data, identity, age, stamp = self.server.source.read()
@@ -265,9 +317,12 @@ def main():
     parser.add_argument('--port', type=int, default=8766)
     parser.add_argument('--sony-output', type=Path,
                         default=Path(__file__).resolve().parent / 'output')
+    parser.add_argument('--coordinates-dir', type=Path,
+                        help='Saved geometry.json and numbered PNGs; static display only')
     args = parser.parse_args()
     with ThreadingHTTPServer(('127.0.0.1', args.port), Handler) as server:
         server.source = SonySource(args.sony_output)
+        server.coordinates_dir = args.coordinates_dir.resolve() if args.coordinates_dir else None
         server.annotation_root = args.sony_output.resolve() / 'annotations'
         server.selections = {}
         server.selection_lock = threading.Lock()

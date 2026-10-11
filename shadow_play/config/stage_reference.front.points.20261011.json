@@ -1,0 +1,189 @@
+{
+  "version": 1,
+  "reference_view": "front",
+  "width_mm": 740,
+  "height_mm": 500,
+  "image_width": 640,
+  "image_height": 360,
+  "reference_pixels": [
+    [
+      130,
+      320
+    ],
+    [
+      519,
+      328
+    ],
+    [
+      535,
+      59
+    ],
+    [
+      131,
+      56
+    ]
+  ],
+  "reference_points_mm": [
+    [
+      0,
+      0
+    ],
+    [
+      740,
+      0
+    ],
+    [
+      740,
+      500
+    ],
+    [
+      0,
+      500
+    ]
+  ],
+  "reference_selection": {
+    "status": "static_five_rod_end_projections_approximate",
+    "physical_extent_confirmed_by_user": true,
+    "physical_extent_description": "Inner edges of four aluminium frame members, viewed from audience",
+    "corner_order": [
+      "lower_left",
+      "lower_right",
+      "upper_right",
+      "upper_left"
+    ],
+    "corner_markers_verified_visible": true,
+    "method": "Manual cross-intersection and visible rod-end selection on decoded source plus enlarged crops",
+    "reference_points_mm_basis": "Crosses assumed at stage inner corners after operator repositioning; offsets not measured",
+    "physical_corner_placement_exact": false,
+    "physical_accuracy_mm": null,
+    "reference_frame_id": "session-20261011-170627-53583",
+    "reference_frame_sha256": "144ffd8510d3652e8ffd078524db786e0ca299f6f70c7894f03d780452debf21",
+    "reference_capture_at": "2026-10-11T20:06:04.195497+08:00",
+    "reference_frame_age_ms": 146,
+    "validity": "Approximate projected rod-end coordinates on curtain plane for this fixed camera view only",
+    "prior_reference_invalid_for_current_view": true,
+    "top_view_used_for_rod_identity_review": true,
+    "camera_verification": {
+      "front": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 146,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "front",
+          "file": "front_1791720364195496600.jpg",
+          "host_unix_ns": 1791720364195496600,
+          "frame_id": "session-20261011-170627-53583",
+          "age_ms": "146",
+          "image_size": [
+            640,
+            360
+          ],
+          "sha256": "144ffd8510d3652e8ffd078524db786e0ca299f6f70c7894f03d780452debf21",
+          "captured_at": "2026-10-11T20:06:04.195497+08:00"
+        }
+      },
+      "top": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 187,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "top",
+          "file": "top_1791720364193246900.jpg",
+          "host_unix_ns": 1791720364193246900,
+          "frame_id": "0c85f055395d4586aff0968d056f733e-102531",
+          "age_ms": "61",
+          "image_size": [
+            960,
+            540
+          ],
+          "sha256": "88ae9007cf73de5ef49e60a0a454540c76d6d4891ce4ad7e2cc9edcc7c287b7b",
+          "captured_at": "2026-10-11T20:06:04.193247+08:00"
+        }
+      }
+    },
+    "servo_to_pixel_assignment_verified_by_motion": false,
+    "actual_servo_position_known": false,
+    "movement_commands_sent": 0,
+    "motion_locks_modified": false,
+    "no_shaft_angle_or_restart_pulse_inferred": true
+  },
+  "points": [
+    {
+      "id": "wusong_left",
+      "label": 1,
+      "servos": [
+        1,
+        2
+      ],
+      "pixel": [
+        200,
+        145
+      ],
+      "interpretation": "Visible rod-end image feature projected onto curtain plane; not measured 3D position or verified puppet-joint centre",
+      "selection_resolution_px": 1,
+      "physical_selection_accuracy_mm": null
+    },
+    {
+      "id": "wusong_neck",
+      "label": 2,
+      "servos": [
+        3,
+        4
+      ],
+      "pixel": [
+        223,
+        129
+      ],
+      "interpretation": "Visible rod-end image feature projected onto curtain plane; not measured 3D position or verified puppet-joint centre",
+      "selection_resolution_px": 1,
+      "physical_selection_accuracy_mm": null
+    },
+    {
+      "id": "wusong_right",
+      "label": 3,
+      "servos": [
+        5,
+        6
+      ],
+      "pixel": [
+        272,
+        195
+      ],
+      "interpretation": "Visible rod-end image feature projected onto curtain plane; not measured 3D position or verified puppet-joint centre",
+      "selection_resolution_px": 1,
+      "physical_selection_accuracy_mm": null
+    },
+    {
+      "id": "tiger_head",
+      "label": 4,
+      "servos": [
+        7,
+        8
+      ],
+      "pixel": [
+        356,
+        173
+      ],
+      "interpretation": "Visible rod-end image feature projected onto curtain plane; not measured 3D position or verified puppet-joint centre",
+      "selection_resolution_px": 1,
+      "physical_selection_accuracy_mm": null
+    },
+    {
+      "id": "tiger_leg",
+      "label": 5,
+      "servos": [
+        9,
+        10
+      ],
+      "pixel": [
+        411,
+        177
+      ],
+      "interpretation": "Visible rod-end image feature projected onto curtain plane; not measured 3D position or verified puppet-joint centre",
+      "selection_resolution_px": 1,
+      "physical_selection_accuracy_mm": null
+    }
+  ]
+}
