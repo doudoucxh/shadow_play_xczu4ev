@@ -566,7 +566,7 @@
   "demo_quarantine_retained": true,
   "channels_5_through_10_enabled_during_recovery": false,
   "position_feedback": null,
-  "operator_post_motion_observation": null,
+  "operator_post_motion_observation": "好了，没有异常",
   "ready_for_loaded_motion": false,
   "automatic_replay_allowed": false,
   "limits": [
@@ -580,5 +580,55 @@
     "Reframe Camo to include both person gimbals and short rods; obtain onsite abnormality report.",
     "Review mechanical posture and select a suitable reconnecting pose before reconnecting rods.",
     "Do not rerun the quarantined demo or command unchanged loaded axes from saved register values."
-  ]
+  ],
+  "post_reframing_review": {
+    "operator_reported_no_abnormality": true,
+    "cameras": {
+      "front": {
+        "samples": 14,
+        "unique_frame_ids": 13,
+        "max_age_ms": 279,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "front",
+          "file": "front_1791731473211349300.jpg",
+          "host_unix_ns": 1791731473211349300,
+          "frame_id": "session-20261011-170627-108834",
+          "age_ms": "138",
+          "image_size": [
+            640,
+            360
+          ],
+          "sha256": "6e0d5ed23e02f07e90536f8e8ccc72d6c9af74244f32f9f6f529d649ba15d7bc",
+          "captured_at": "2026-10-11T23:11:13.211349+08:00"
+        }
+      },
+      "top": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 172,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "top",
+          "file": "top_1791731473219395800.jpg",
+          "host_unix_ns": 1791731473219395800,
+          "frame_id": "0c85f055395d4586aff0968d056f733e-158076",
+          "age_ms": "78",
+          "image_size": [
+            960,
+            540
+          ],
+          "sha256": "575b03066aa0149f449c612d4d83225d69a8a31367e362890153fa883fea6b33",
+          "captured_at": "2026-10-11T23:11:13.219396+08:00"
+        }
+      }
+    },
+    "evidence": {
+      "path": ".review_work/loaded_calibration_20261011/recovery_afterdemo_reframed_ab/verification.json",
+      "sha256": "2b5d8f5e1ed7d6be0731fc3b2357b4996c0582fc266144d5f8266efde4403499"
+    },
+    "observation": "New top view reveals more of the near person gimbals and separated rod sections. Highest right-hand gimbal remains near/outside the right image edge. Person remains at the far left of the front curtain; person working pose is not restored.",
+    "new_motion_after_reframing": false,
+    "physical_center_independently_verified": false
+  }
 }
