@@ -70,7 +70,7 @@ class RouteTests(unittest.TestCase):
     def test_fast_route_needs_all_slow_reviews_and_exact_hash(self):
         r,p,d=self.build('tiger-axis-map-a');p['tempo_step_us']=8
         with self.assertRaises(ValueError):c.validate_plan(p)
-        rows=[dict(event='reference_held',profile=p['profile'],tempo_step_us=3)]
+        rows=[dict(event='reference_held',profile=p['profile'],route_sha256=c.route_hash(p['profile']),tempo_step_us=3)]
         rows += [dict(event='path_reviewed',axis=n) for n in range(1,7)]
         rows += [dict(event='outputs_off',normal_frame_stop=True,state=p['reference_off_state'])]
         raw='\n'.join(json.dumps(x) for x in rows).encode()

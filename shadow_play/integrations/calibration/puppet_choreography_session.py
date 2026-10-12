@@ -30,9 +30,14 @@ PROFILES={
         (0,40,0,0),(0,0,0,0),(0,0,40,0),(0,0,0,0)),
     'tiger-axis-map-b':((0,0,0,0),(0,0,0,-40),(0,0,0,0),
         (40,0,40,0),(0,0,0,0),(0,40,0,-40),(0,0,0,0)),
-    'tiger-pounce-bite':((0,0,0,0),(-40,0,-40,0),(-40,40,-40,-40),
+    'tiger-approach-settle':((0,0,0,0),(-40,0,-40,0),(-40,40,-40,-40),
         (-40,40,-40,40),(-40,0,-40,0),(0,0,0,0)),
+    'tiger-pounce-bite':((0,0,0,0),(-40,0,-40,0),(-40,40,-40,-40),
+        (-40,-40,-40,-40),(-40,0,-40,0),(0,0,0,0)),
 }
+
+def route_hash(profile):
+    return hashlib.sha256(json.dumps(PROFILES[profile],separators=(',',':')).encode()).hexdigest()
 
 
 def checked_log(spec,read=None):
@@ -105,7 +110,7 @@ def audit_logs(p,read=None):
         rows=checked_log(p['prior_slow_route_log'],read)
         first=next(r for r in rows if r['event']=='reference_held')
         count=len(PROFILES[p['profile']])-1
-        if (first.get('profile')!=p['profile'] or first.get('tempo_step_us')!=3
+        if (first.get('profile')!=p['profile'] or first.get('route_sha256')!=route_hash(p['profile']) or first.get('tempo_step_us')!=3
                 or {r['axis'] for r in rows if r['event']=='path_reviewed'}!=set(range(1,count+1))
                 or rows[-1]['event']!='outputs_off' or rows[-1].get('normal_frame_stop') is not True
                 or rows[-1]['state']['pulse_us'][sl]!=p['expected_pulses_us'][sl]):
@@ -163,7 +168,7 @@ class ChoreographySession(TigerCenterSession):
 def run_session(d,emit,*,sleep=time.sleep):
     normal=False
     try:
-        emit({'event':'reference_held','profile':d.plan['profile'],'tempo_step_us':d.plan['tempo_step_us'],
+        emit({'event':'reference_held','profile':d.plan['profile'],'route_sha256':route_hash(d.plan['profile']),'tempo_step_us':d.plan['tempo_step_us'],
               'state':d.adopt(d.pulses[:]),'position_feedback':None,'incident_locks_removed':False})
         d.phase='holding';d.wait(2,sleep);report=d.clock()
         while d.clock()<d.deadline:
