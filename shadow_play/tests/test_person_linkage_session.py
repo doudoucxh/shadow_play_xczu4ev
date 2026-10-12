@@ -134,6 +134,34 @@ class LinkageTests(unittest.TestCase):
         self.assertEqual(sum(a==0x10 for a,v in self.reg.writes),1)
         self.assertEqual(self.lock.read_text(),'retain')
 
+    def test_alternating_paths_keep_support_with_explicit_bounded_tempo(self):
+        p=copy.deepcopy(self.plan)
+        p.update(bilateral_hand_diagnostic=True,head_support_reference_offset_us=-60,
+                 supported_martial_diagnostic=True,tempo_step_us=3,peak_hold_ms=400,
+                 stages=[[0,-80,0,0,0,0],[0,0,0,0,40,120]],demo_stages=[1,2,1,2])
+        pulses=p['expected_pulses_us'][:];pulses[3]-=60
+        p['expected_pulses_us']=pulses[:]
+        for key in ('previous_held_state','previous_off_state'):p[key]['pulse_us']=pulses[:]
+        self.reg.values[0x8c]=pulses[3]
+        self.d=linkage.LinkageSession(self.reg,p,self.host,motion_inhibit_paths=[self.lock],
+            cancel_path=self.root/'cancel',clock=lambda:self.now,wall=lambda:1000)
+        self.resume()
+        for stage in (1,2):self.d.probe(stage,self.emit,self.sleep)
+        previous=pulses;larger=False
+        for r in self.events:
+            if r['event']!='probe_step':continue
+            values=r['state']['pulse_us'];step=max(abs(a-b) for a,b in zip(values,previous))
+            self.assertLessEqual(step,3);larger|=step>1
+            self.assertEqual(values[3],1514);self.assertEqual(values[6:],pulses[6:])
+            previous=values
+        self.assertTrue(larger);self.assertEqual(self.d.pulses,pulses)
+        for field,value in (('tempo_step_us',4),('tempo_step_us',True),('peak_hold_ms',0),
+                            ('supported_martial_diagnostic',False),('head_support_reference_offset_us',-40)):
+            q=copy.deepcopy(p);q[field]=value
+            with self.assertRaises(ValueError):linkage.validate_plan(q)
+        q=copy.deepcopy(self.plan);q['tempo_step_us']=3
+        with self.assertRaises(ValueError):linkage.validate_plan(q)
+
     def test_support_video_loss_does_not_restore_or_start_hand_motion(self):
         p=copy.deepcopy(self.plan);p.update(bilateral_hand_diagnostic=True,
             head_supported_bilateral_diagnostic=True,head_support_offset_us=-60,

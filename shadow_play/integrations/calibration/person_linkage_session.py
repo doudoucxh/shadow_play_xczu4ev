@@ -36,7 +36,8 @@ HEAD_SUPPORT_MIN = (0, 0, 0, -80, 0, 0)
 def reference_plan(plan):
     p = dict(plan)
     for k in ('stages', 'demo_stages', 'bilateral_hand_diagnostic', 'head_support_diagnostic',
-              'head_supported_bilateral_diagnostic', 'head_support_offset_us'):
+              'head_supported_bilateral_diagnostic', 'head_support_offset_us',
+              'supported_martial_diagnostic', 'tempo_step_us', 'peak_hold_ms'):
         p.pop(k, None)
     p['approval'] = 'attended-unchanged-person-continuation-20261012'
     if plan.get('head_support_diagnostic') is True:
@@ -53,6 +54,7 @@ def validate_plan(plan, wall=None):
     bilateral = 'bilateral_hand_diagnostic' in plan
     head_support = 'head_support_diagnostic' in plan
     supported = 'head_supported_bilateral_diagnostic' in plan
+    martial = 'supported_martial_diagnostic' in plan
     if bilateral and plan['bilateral_hand_diagnostic'] is not True:
         raise ValueError('Bilateral diagnostic must be explicitly true')
     if head_support and (bilateral or plan['head_support_diagnostic'] is not True):
@@ -63,6 +65,13 @@ def validate_plan(plan, wall=None):
         raise ValueError('Supported bilateral paths require a reviewed exclusive support lift')
     if 'head_support_offset_us' in plan and not supported:
         raise ValueError('Support offset requires explicit supported bilateral mode')
+    if martial and (plan['supported_martial_diagnostic'] is not True or not bilateral
+            or supported or head_support or plan.get('head_support_reference_offset_us') != -60
+            or type(plan.get('tempo_step_us')) is not int or plan['tempo_step_us'] not in (2,3)
+            or type(plan.get('peak_hold_ms')) is not int or plan['peak_hold_ms'] != 400):
+        raise ValueError('Alternating hand paths require the held head support and explicit bounded tempo')
+    if not martial and ('tempo_step_us' in plan or 'peak_hold_ms' in plan):
+        raise ValueError('Tempo changes require the supported martial diagnostic')
     validate_reference(reference_plan(plan), wall)
     stages = plan.get('stages')
     if not isinstance(stages, list) or not 1 <= len(stages) <= 6:
@@ -75,7 +84,9 @@ def validate_plan(plan, wall=None):
                            (0,)*6 if head_support else CAPS))
                 or not any(vector)):
             raise ValueError('Only bounded, explicitly selected person trial offsets allowed')
-        if bilateral and not (vector[1] < 0 and vector[5] > 0):
+        if martial and not (vector[1] < 0 or vector[5] > 0):
+            raise ValueError('Select a hand pitch path for each martial stage')
+        if bilateral and not martial and not (vector[1] < 0 and vector[5] > 0):
             raise ValueError('Bilateral paths require opposite pitch directions for both hands')
         if head_support and vector[3] >= 0:
             raise ValueError('Exclusive head-support paths must raise axis 4')
@@ -94,6 +105,8 @@ class LinkageSession(VisibleSession):
         self.completed = set()
         self.reviewed = set()
         self.active_stage = None
+        self.step_limit = plan.get('tempo_step_us', 1)
+        self.peak_hold = plan.get('peak_hold_ms', 2000)/1000
         self.support_base = self.plan['expected_pulses_us'][:]
         if plan.get('head_supported_bilateral_diagnostic') is True:
             self.support_base[3] += plan['head_support_offset_us']
@@ -105,8 +118,8 @@ class LinkageSession(VisibleSession):
         if (self.phase not in ('linkage', 'supporting') or self.clock() >= self.deadline
                 or mask != 63 or pulses != self.expected_waypoint):
             raise RuntimeError('Only the next waypoint on the fixed vector path')
-        if any(abs(a-b) > 1 for a, b in zip(pulses, self.pulses)):
-            raise RuntimeError('Each component limited to one microsecond per step')
+        if any(abs(a-b) > self.step_limit for a, b in zip(pulses, self.pulses)):
+            raise RuntimeError('Each component must respect the explicitly selected step limit')
         if self.last_commit is not None and self.clock()-self.last_commit < INTERVAL-1e-9:
             raise RuntimeError('No accelerated catch-up')
         self.inside = True
@@ -149,7 +162,7 @@ class LinkageSession(VisibleSession):
             raise RuntimeError('Each vector starts at the inspected reference')
         offsets = self.linkage_plan['stages'][stage-1]
         extent = max(abs(v) for v in offsets)
-        count = math.ceil(extent*math.pi/1.8)
+        count = math.ceil(extent*math.pi/(1.8*self.step_limit))
         self.phase = 'linkage'
         self.active_stage = stage
         emit({'event':'probe_started', 'axis':stage, 'offset_us':extent,
@@ -169,7 +182,7 @@ class LinkageSession(VisibleSession):
             if not returning:
                 emit({'event':'probe_peak', 'axis':stage, 'offset_us':extent,
                       'vector_us':offsets, 'state':self.check()})
-                self.wait(2,sleep)
+                self.wait(self.peak_hold,sleep)
         self.phase = 'holding'
         self.completed.add(stage)
         emit({'event':'probe_complete', 'axis':stage, 'vector_us':offsets,
