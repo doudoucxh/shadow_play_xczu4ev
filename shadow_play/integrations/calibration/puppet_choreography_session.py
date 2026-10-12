@@ -149,6 +149,7 @@ class ChoreographySession(TigerCenterSession):
     def __init__(self,r,p,host,*,motion_inhibit_paths=None,cancel_path='/run/shadow-pwm-recovery-cancel',clock=time.monotonic,wall=None,read=None):
         validate_plan(p,wall);audit_logs(p,read);PwmDevice.__init__(self,r,motion_inhibit_paths=motion_inhibit_paths)
         self.plan=json.loads(json.dumps(p));self.host=host;self.clock=clock
+        self.route_sha256=route_hash(p['profile'])
         self.deadline=clock()+p['duration_seconds'];self.cancel=Path(cancel_path);self.hashes=self.lock_hashes()
         self.pulses=p['expected_pulses_us'][:];self.sequence=p['expected_sequence'];self.mask=0
         self.inside=False;self.failed=False;self.last_start=None;self.next_command=None
@@ -198,7 +199,7 @@ class ChoreographySession(TigerCenterSession):
 def run_session(d,emit,*,sleep=time.sleep):
     normal=False
     try:
-        emit({'event':'reference_held','profile':d.plan['profile'],'route_sha256':route_hash(d.plan['profile']),'tempo_step_us':d.plan['tempo_step_us'],
+        emit({'event':'reference_held','profile':d.plan['profile'],'route_sha256':d.route_sha256,'tempo_step_us':d.plan['tempo_step_us'],
               'state':d.adopt(d.pulses[:]),'resume_waypoint':d.cursor,'position_feedback':None,'incident_locks_removed':False})
         d.phase='holding';d.wait(2,sleep);report=d.clock()
         while d.clock()<d.deadline:
