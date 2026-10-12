@@ -73,18 +73,18 @@ class LinkageTests(unittest.TestCase):
 
     def test_head_support_is_exclusive_bounded_and_preserves_hand_commands(self):
         p=copy.deepcopy(self.plan);p.update(head_support_diagnostic=True,
-            stages=[[0,0,0,-40,0,0]],demo_stages=[1])
+            stages=[[0,0,0,-80,0,0]],demo_stages=[1])
         d=linkage.LinkageSession(self.reg,p,self.host,motion_inhibit_paths=[self.lock],
             cancel_path=self.root/'cancel',clock=lambda:self.now,wall=lambda:1000)
         self.d=d;self.resume();d.probe(1,self.emit,self.sleep)
         states=[r['state']['pulse_us'] for r in self.events if r['event']=='probe_step']
-        self.assertEqual(min(s[3] for s in states),p['expected_pulses_us'][3]-40)
+        self.assertEqual(min(s[3] for s in states),p['expected_pulses_us'][3]-80)
         previous=p['expected_pulses_us']
         for s in states:
             for i in (0,1,2,4,5,6,7,8,9):self.assertEqual(s[i],p['expected_pulses_us'][i])
             self.assertLessEqual(abs(s[3]-previous[3]),1);previous=s
         self.assertEqual(d.pulses,p['expected_pulses_us'])
-        for vector in ([1,0,0,-40,0,0],[0,0,0,-41,0,0],[0,0,0,1,0,0]):
+        for vector in ([1,0,0,-40,0,0],[0,0,0,-81,0,0],[0,0,0,1,0,0]):
             q=copy.deepcopy(p);q['stages']=[vector]
             with self.assertRaises(ValueError):linkage.validate_plan(q)
         for extra in ({'bilateral_hand_diagnostic':True},{'head_support_diagnostic':False}):

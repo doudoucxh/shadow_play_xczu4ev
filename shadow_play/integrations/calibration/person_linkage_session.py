@@ -28,7 +28,7 @@ INTERVAL = .05
 # These are trial caps, not a calibrated rectangular workspace.
 CAPS = (40, 0, 40, 0, 60, 120)
 BILATERAL_MIN = (0, -40, 0, 0, 0, 0)
-HEAD_SUPPORT_MIN = (0, 0, 0, -40, 0, 0)
+HEAD_SUPPORT_MIN = (0, 0, 0, -80, 0, 0)
 
 
 def reference_plan(plan):
