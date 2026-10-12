@@ -6,6 +6,7 @@ authorize startup. Incident locks remain in place. Only right-hand axes 5/6
 are explored, one at a time, in reviewed 40/80/120-us stages.
 """
 import argparse
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -21,7 +22,7 @@ LEVELS = (40, 80, 120)
 INTERVAL = .05
 
 
-def validate_plan(plan, wall=time.time):
+def validate_plan(plan, wall=None):
     fields = {'approval', 'session_id', 'expected_sequence', 'expected_pulses_us',
               'operator_unchanged_report', 'observer_ready', 'dual_view_pose_reviewed',
               'reviewed_at_unix_ms', 'previous_held_state', 'previous_off_state',
@@ -32,7 +33,11 @@ def validate_plan(plan, wall=time.time):
         raise ValueError('New operator report required; no manual-pose reset')
     if plan['observer_ready'] is not True or plan['dual_view_pose_reviewed'] is not True:
         raise ValueError('Onsite cutoff and fresh physical pose review required')
-    if type(plan['reviewed_at_unix_ms']) is not int or not 0 <= wall()*1000-plan['reviewed_at_unix_ms'] < 120000:
+    if type(plan['reviewed_at_unix_ms']) is not int or plan['reviewed_at_unix_ms'] <= 0:
+        raise ValueError('Host comparison timestamp required')
+    # Host wall time is verified by the Windows launcher. Zynq's un-synchronized
+    # wall clock must not be compared with it; live leases use monotonic time.
+    if wall is not None and not 0 <= wall()*1000-plan['reviewed_at_unix_ms'] < 120000:
         raise ValueError('Physical comparison receipt expired')
     if type(plan['duration_seconds']) is not int or not 120 <= plan['duration_seconds'] <= 900:
         raise ValueError('Attended duration must be 120..900 seconds')
@@ -54,7 +59,7 @@ def validate_plan(plan, wall=time.time):
 class VisibleSession(RecoverySession):
     def __init__(self, registers, plan, host, *, motion_inhibit_paths=None,
                  cancel_path='/run/shadow-pwm-recovery-cancel', clock=time.monotonic,
-                 wall=time.time):
+                 wall=None):
         validate_plan(plan, wall)
         PwmDevice.__init__(self, registers, motion_inhibit_paths=motion_inhibit_paths)
         self.plan=json.loads(json.dumps(plan)); self.host=host; self.clock=clock
@@ -168,9 +173,12 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('plan',type=Path)
     parser.add_argument('--execute-attended-unchanged-continuation',action='store_true')
-    args=parser.parse_args();plan=json.loads(args.plan.read_text());validate_plan(plan)
+    parser.add_argument('--expected-plan-sha256')
+    args=parser.parse_args();raw=args.plan.read_bytes();plan=json.loads(raw);validate_plan(plan)
     if not args.execute_attended_unchanged_continuation:
         print(json.dumps({'dry_run':True,'right_hand_offsets_us':LEVELS,'manual_pose_recovery':False}));return
+    if not args.expected_plan_sha256 or hashlib.sha256(raw).hexdigest()!=args.expected_plan_sha256:
+        raise ValueError('Exact host-reviewed plan hash required before MMIO access')
     def interrupt(signum,frame):raise KeyboardInterrupt()
     signal.signal(signal.SIGINT,interrupt);signal.signal(signal.SIGTERM,interrupt)
     host=HostControl(sys.stdin.fileno());print(json.dumps({'event':'await_host_lease'}),flush=True)
