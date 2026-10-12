@@ -1,8 +1,11 @@
 param([Parameter(Mandatory=$true)][string]$OutputDirectory,
       [Parameter(Mandatory=$true)][string]$BoardPlan,
-      [string]$PortName='COM3')
+      [string]$PortName='COM3',
+      [switch]$AttendedUnchangedContinuation)
 $ErrorActionPreference='Stop'
-if ($BoardPlan -notmatch '^/tmp/person_recovery_[a-z0-9_]+\.json$') {throw 'Session plan path required'}
+if ($AttendedUnchangedContinuation) {
+    if ($BoardPlan -notmatch '^/tmp/person_visible_[a-z0-9_]+\.json$') {throw 'Attended continuation plan path required'}
+} elseif ($BoardPlan -notmatch '^/tmp/person_recovery_[a-z0-9_]+\.json$') {throw 'Session plan path required'}
 if (Test-Path -LiteralPath $OutputDirectory) {throw 'Use a new private session directory; no retry'}
 $taskPython=Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
 $taskGuard=Join-Path $PSScriptRoot 'person_demo_camera_guard.py'
@@ -32,7 +35,11 @@ try {
     $taskSerial.Open();$taskSerial.Write("stty -echo`r");Start-Sleep -Milliseconds 180
     $taskRaw.Write($taskSerial.ReadExisting())
     if (-not (Test-RecoveryViews)) {throw 'Video lost before execution'}
-    $command='PYTHONPATH=/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_recovery_session_20261012.py '+$BoardPlan+' --execute-released-person-recovery; echo RECOVERY_COMPLETE:$?; stty echo'
+    if ($AttendedUnchangedContinuation) {
+        $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_visible_motion_session_20261012.py '+$BoardPlan+' --execute-attended-unchanged-continuation; echo RECOVERY_COMPLETE:$?; stty echo'
+    } else {
+        $command='PYTHONPATH=/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_recovery_session_20261012.py '+$BoardPlan+' --execute-released-person-recovery; echo RECOVERY_COMPLETE:$?; stty echo'
+    }
     $taskSerial.Write($command+"`r");$taskStarted=$true
     $taskDeadline=[DateTime]::UtcNow.AddSeconds(915);$lastLease=[DateTime]::MinValue;$pending=''
     while ([DateTime]::UtcNow -lt $taskDeadline) {
