@@ -39,7 +39,7 @@ def reference_plan(plan):
     for k in ('stages', 'demo_stages', 'bilateral_hand_diagnostic', 'head_support_diagnostic',
               'head_supported_bilateral_diagnostic', 'head_support_offset_us',
               'supported_martial_diagnostic', 'tempo_step_us', 'peak_hold_ms',
-              'motion_interval_ms', 'lower_hands_diagnostic'):
+              'motion_interval_ms', 'lower_hands_diagnostic', 'combined_lower_hands_diagnostic'):
         p.pop(k, None)
     p['approval'] = 'attended-unchanged-person-continuation-20261012'
     if plan.get('head_support_diagnostic') is True:
@@ -58,6 +58,7 @@ def validate_plan(plan, wall=None):
     supported = 'head_supported_bilateral_diagnostic' in plan
     martial = 'supported_martial_diagnostic' in plan
     lower = 'lower_hands_diagnostic' in plan
+    combined_lower = 'combined_lower_hands_diagnostic' in plan
     if not isinstance(plan.get('session_id'),str) or not re.fullmatch('[a-z0-9-]{1,80}', plan['session_id']):
         raise ValueError('Safe unique session ID required')
     if bilateral and plan['bilateral_hand_diagnostic'] is not True:
@@ -78,6 +79,8 @@ def validate_plan(plan, wall=None):
     if lower and (plan['lower_hands_diagnostic'] is not True or not martial
             or plan['tempo_step_us'] != 3):
         raise ValueError('New low-hand geometry requires the separate three-microsecond diagnostic')
+    if combined_lower and (plan['combined_lower_hands_diagnostic'] is not True or not lower):
+        raise ValueError('Combined lowering requires the explicit slow low-hand diagnostic')
     if 'motion_interval_ms' in plan and (not martial
             or type(plan['motion_interval_ms']) is not int or plan['motion_interval_ms'] not in (20,50)):
         raise ValueError('Only explicit 20/50 ms person motion periods allowed')
@@ -97,8 +100,10 @@ def validate_plan(plan, wall=None):
             raise ValueError('Only bounded, explicitly selected person trial offsets allowed')
         if martial and not (vector[1] < 0 or vector[5] > 0):
             raise ValueError('Select a hand pitch path for each martial stage')
-        if lower and (any(vector[i] for i in (0,2,3,4)) or bool(vector[1]) == bool(vector[5])):
-            raise ValueError('New low-hand positions must first be tested one pitch axis at a time')
+        if lower and (any(vector[i] for i in (0,2,3,4))
+                or (not (vector[1] < 0 and vector[5] > 0) if combined_lower
+                    else bool(vector[1]) == bool(vector[5]))):
+            raise ValueError('Low-hand diagnostics require exclusive pitch paths or explicit combined lowering')
         if bilateral and not martial and not (vector[1] < 0 and vector[5] > 0):
             raise ValueError('Bilateral paths require opposite pitch directions for both hands')
         if head_support and vector[3] >= 0:

@@ -232,6 +232,34 @@ class LinkageTests(unittest.TestCase):
         for key,value in (('tempo_step_us',8),('motion_interval_ms',10),('lower_hands_diagnostic',False)):
             q=copy.deepcopy(p);q[key]=value
             with self.assertRaises(ValueError):linkage.validate_plan(q)
+    def test_combined_lowering_requires_explicit_slow_mode_and_preserves_body(self):
+        p=copy.deepcopy(self.plan)
+        p.update(bilateral_hand_diagnostic=True,head_support_reference_offset_us=-60,
+                 supported_martial_diagnostic=True,tempo_step_us=3,peak_hold_ms=400,
+                 motion_interval_ms=20,lower_hands_diagnostic=True,
+                 combined_lower_hands_diagnostic=True,
+                 stages=[[0,-140,0,0,0,240]],demo_stages=[1])
+        pulses=p['expected_pulses_us'][:];pulses[3]-=60;p['expected_pulses_us']=pulses[:]
+        for key in ('previous_held_state','previous_off_state'):p[key]['pulse_us']=pulses[:]
+        self.reg.values[0x8c]=pulses[3]
+        self.d=linkage.LinkageSession(self.reg,p,self.host,motion_inhibit_paths=[self.lock],
+            cancel_path=self.root/'cancel',clock=lambda:self.now,wall=lambda:1000)
+        self.resume();self.d.probe(1,self.emit,self.sleep)
+        previous=pulses
+        for row in self.events:
+            if row['event']!='probe_step':continue
+            values=row['state']['pulse_us']
+            self.assertLessEqual(max(abs(a-b) for a,b in zip(previous,values)),3)
+            for i in (0,2,3,4,6,7,8,9):self.assertEqual(values[i],pulses[i])
+            previous=values
+        self.assertEqual(self.d.pulses,pulses)
+        for extra in ({'tempo_step_us':8},{'combined_lower_hands_diagnostic':False},
+                      {'stages':[[0,-140,0,0,0,0]]},{'stages':[[1,-140,0,0,0,240]]}):
+            q=copy.deepcopy(p);q.update(extra)
+            with self.assertRaises(ValueError):linkage.validate_plan(q)
+        q=copy.deepcopy(p);q.pop('lower_hands_diagnostic')
+        with self.assertRaises(ValueError):linkage.validate_plan(q)
+
     def test_manual_waypoint_and_fast_step_rejected_before_write(self):
         self.resume();self.d.phase='linkage';self.sleep(.05)
         p=self.d.pulses[:];p[4]+=1
