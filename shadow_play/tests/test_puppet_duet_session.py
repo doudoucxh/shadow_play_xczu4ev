@@ -86,4 +86,31 @@ class DuetTests(unittest.TestCase):
         self.plan['tiger_intervening_logs']=[self.spec('broken',broken)]
         with self.assertRaises(ValueError):self.device()
 
+    def test_bold_route_requires_reviewed_original_duet_and_bounded_steps(self):
+        d=self.device();events=[dict(event='reference_held',profile=duet.PROFILE,route_sha256=duet.DIGEST,tempo_step_us=8,state=d.adopt(d.pulses[:]))]
+        d.phase='holding'
+        for n in range(1,7):
+            d.advance(n,events.append,self.sleep);events.append(dict(event='path_reviewed',axis=n,state=d.check()))
+        events.append(dict(event='demo_started',state=d.check()))
+        for cycle in range(1,4):
+            d.cursor=0
+            for n in range(1,7):d.advance(n,events.append,self.sleep)
+            events.append(dict(event='route_cycle_complete',cycle=cycle,state=d.check()))
+        events.append(dict(event='demo_complete',state=d.check()))
+        off=d.stop_after_frame();events.append(dict(event='outputs_off',normal_frame_stop=True,state=off))
+        self.plan.update(profile=duet.BOLD_PROFILE,tempo_step_us=10,expected_sequence=off['sequence'])
+        with self.assertRaises(ValueError):self.device()
+        self.plan['previous_duet_log']=self.spec('previous-duet',events)
+        bold=self.device();bold.adopt(bold.pulses[:]);bold.phase='holding';frames=[]
+        for n in range(1,7):bold.advance(n,frames.append,self.sleep)
+        prior=duet.BASE
+        for row in frames:
+            if row['event']!='probe_step':continue
+            self.assertLessEqual(max(abs(a-b) for a,b in zip(prior,row['state']['pulse_us'])),10)
+            self.assertEqual(row['state']['enabled_mask'],1023);prior=row['state']['pulse_us']
+        self.assertEqual(bold.pulses,duet.BASE)
+        self.assertEqual(duet.BOLD_ROUTE[1][1],175)
+        self.assertEqual(duet.BOLD_ROUTE[1][5],-300)
+        self.assertEqual(duet.BOLD_ROUTE[3][7],-60)
+
 if __name__=='__main__':unittest.main()
