@@ -60,7 +60,7 @@ def validate_plan(p,wall=None):
         'intervening_board_logs','observer_ready','operator_unchanged_report',
         'dual_view_pose_reviewed','reviewed_at_unix_ms','duration_seconds',
         'tempo_step_us','repetitions'}
-    if not isinstance(p,dict) or set(p)-fields-{'prior_slow_route_log'} or not fields<=set(p) or p['approval']!=APPROVAL:
+    if not isinstance(p,dict) or set(p)-fields-{'prior_slow_route_log','resume_waypoint','resume_route_log'} or not fields<=set(p) or p['approval']!=APPROVAL:
         raise ValueError('Exact attended connected-route plan required')
     if not isinstance(p['session_id'],str) or not re.fullmatch('[a-z0-9-]{1,80}',p['session_id']):raise ValueError('Safe unique session ID required')
     if p['profile'] not in PROFILES:raise ValueError('Select a compiled fixed route')
@@ -74,8 +74,15 @@ def validate_plan(p,wall=None):
     if p['tempo_step_us']==8 and 'prior_slow_route_log' not in p:raise ValueError('Fast route needs the same physically reviewed slow route')
     if p['tempo_step_us']==3 and ('prior_slow_route_log' in p or p['repetitions']!=1):raise ValueError('Slow geometry diagnostic is one-use')
     values=p['expected_pulses_us'];person=p['profile'].startswith('person-');own=63 if person else 960
+    stage=p.get('resume_waypoint',0)
+    if type(stage) is not int or not 0<=stage<len(PROFILES[p['profile']])-1:
+        raise ValueError('Resume only at a compiled intermediate waypoint')
+    if ('resume_waypoint' in p)!=('resume_route_log' in p) or (stage and (p['tempo_step_us']!=8 or p['intervening_board_logs'])):
+        raise ValueError('Resume requires an immutable fast prefix and immediate OFF state')
+    reference=PERSON_REFERENCE if person else [1500]*4
+    expected_group=[a+b for a,b in zip(reference,PROFILES[p['profile']][stage])]
     if (not isinstance(values,list) or len(values)!=10 or any(type(v) is not int or not 500<=v<=2500 for v in values)
-            or (values[:6]!=PERSON_REFERENCE if person else values[6:]!=[1500]*4)):
+            or (values[:6] if person else values[6:])!=expected_group):
         raise ValueError('Only the established group reference may start')
     held,off=p['reference_held_state'],p['reference_off_state']
     if (p['reference_normal_frame_stop'] is not True or held['enabled_mask']!=own or held['armed'] is not True
@@ -109,6 +116,24 @@ def audit_logs(p,read=None):
             previous=s
     if previous['sequence']!=p['expected_sequence'] or previous['pulse_us']!=p['expected_pulses_us']:
         raise ValueError('Audited command chain does not reach current OFF state')
+    if p.get('resume_waypoint'):
+        rows=checked_log(p['resume_route_log'],read)
+        first=rows[0];stage=p['resume_waypoint']
+        if (first.get('event')!='reference_held' or first.get('profile')!=p['profile']
+                or first.get('route_sha256')!=route_hash(p['profile']) or first.get('tempo_step_us')!=8
+                or [r['axis'] for r in rows if r['event']=='probe_complete']!=list(range(1,stage+1))
+                or rows[-1].get('event')!='outputs_off' or rows[-1].get('normal_frame_stop') is not True
+                or rows[-1]['state']!=p['reference_off_state']):
+            raise ValueError('Resume prefix does not prove the inspected waypoint')
+        states=[r['state'] for r in rows if 'state' in r]
+        if states[-2]!=p['reference_held_state']:
+            raise ValueError('Resume prefix lacks the final held pose')
+        other=slice(6,10) if own==63 else slice(0,6)
+        for a,b in zip(states,states[1:]):
+            if (b['faults'] or b['pending'] or b['sequence'] not in (a['sequence'],(a['sequence']+1)%2**32)
+                    or b['pulse_us'][other]!=p['expected_pulses_us'][other]
+                    or max(abs(x-y) for x,y in zip(a['pulse_us'],b['pulse_us']))>8):
+                raise ValueError('Resume command chain has a gap or unrelated motion')
     if p['tempo_step_us']==8:
         rows=checked_log(p['prior_slow_route_log'],read)
         first=next(r for r in rows if r['event']=='reference_held')
@@ -116,7 +141,7 @@ def audit_logs(p,read=None):
         if (first.get('profile')!=p['profile'] or first.get('route_sha256')!=route_hash(p['profile']) or first.get('tempo_step_us')!=3
                 or {r['axis'] for r in rows if r['event']=='path_reviewed'}!=set(range(1,count+1))
                 or rows[-1]['event']!='outputs_off' or rows[-1].get('normal_frame_stop') is not True
-                or rows[-1]['state']['pulse_us'][sl]!=p['expected_pulses_us'][sl]):
+                or rows[-1]['state']['pulse_us'][sl]!=(PERSON_REFERENCE if own==63 else [1500]*4)):
             raise ValueError('Same complete slow route was not physically reviewed and closed')
 
 
@@ -127,13 +152,15 @@ class ChoreographySession(TigerCenterSession):
         self.deadline=clock()+p['duration_seconds'];self.cancel=Path(cancel_path);self.hashes=self.lock_hashes()
         self.pulses=p['expected_pulses_us'][:];self.sequence=p['expected_sequence'];self.mask=0
         self.inside=False;self.failed=False;self.last_start=None;self.next_command=None
-        self.phase='resume';self.cursor=0;self.completed=set();self.reviewed=set();self.demo_used=False
+        self.phase='resume';self.cursor=p.get('resume_waypoint',0)
+        self.completed=set(range(1,self.cursor+1));self.reviewed=self.completed.copy();self.demo_used=False
         self.own=63 if p['profile'].startswith('person-') else 960
         self.indices=range(6) if self.own==63 else range(6,10)
         self.targets=[]
         for vector in PROFILES[p['profile']]:
             q=self.pulses[:]
-            for i,v in zip(self.indices,vector):q[i]+=v
+            reference=PERSON_REFERENCE if self.own==63 else [1500]*4
+            for i,a,v in zip(self.indices,reference,vector):q[i]=a+v
             self.targets.append(q)
 
     def center(self,*args,**kwargs):raise RuntimeError('Centering is not part of a connected route')
@@ -172,7 +199,7 @@ def run_session(d,emit,*,sleep=time.sleep):
     normal=False
     try:
         emit({'event':'reference_held','profile':d.plan['profile'],'route_sha256':route_hash(d.plan['profile']),'tempo_step_us':d.plan['tempo_step_us'],
-              'state':d.adopt(d.pulses[:]),'position_feedback':None,'incident_locks_removed':False})
+              'state':d.adopt(d.pulses[:]),'resume_waypoint':d.cursor,'position_feedback':None,'incident_locks_removed':False})
         d.phase='holding';d.wait(2,sleep);report=d.clock()
         while d.clock()<d.deadline:
             d.check();d.kick()

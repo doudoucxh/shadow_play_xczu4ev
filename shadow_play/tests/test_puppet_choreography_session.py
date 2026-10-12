@@ -81,4 +81,31 @@ class RouteTests(unittest.TestCase):
         p['prior_slow_route_log']['sha256']=hashlib.sha256(raw).hexdigest()
         with self.assertRaises(ValueError):c.audit_logs(p,lambda path:raw)
 
+    def test_resume_keeps_route_origin_and_rejects_missing_prefix_frame(self):
+        r,p,d=self.build('person-martial-linked')
+        p['tempo_step_us']=8;d.plan['tempo_step_us']=8
+        self.events=[dict(event='reference_held',profile=p['profile'],route_sha256=c.route_hash(p['profile']),tempo_step_us=8,state=d.adopt(d.pulses[:]))]
+        d.phase='holding';d.advance(1,self.events.append,self.sleep)
+        held=d.check();off=d.stop_after_frame()
+        self.events.append(dict(event='outputs_off',normal_frame_stop=True,state=off))
+        base=c.PERSON_REFERENCE+[1500]*4
+        slow=[dict(event='reference_held',profile=p['profile'],route_sha256=c.route_hash(p['profile']),tempo_step_us=3)]
+        slow += [dict(event='path_reviewed',axis=n) for n in range(1,7)]
+        slow += [dict(event='outputs_off',normal_frame_stop=True,state=dict(off,pulse_us=base))]
+        logs={}
+        def spec(name,rows):
+            path='/tmp/puppet-choreography-'+name+'.jsonl';raw='\n'.join(json.dumps(x) for x in rows).encode();logs[path]=raw
+            return dict(path=path,sha256=hashlib.sha256(raw).hexdigest())
+        p.update(expected_sequence=off['sequence'],expected_pulses_us=off['pulse_us'],reference_held_state=held,
+                 reference_off_state=off,resume_waypoint=1,resume_route_log=spec('prefix',self.events),prior_slow_route_log=spec('slow',slow))
+        resumed=c.ChoreographySession(r,p,self.host,motion_inhibit_paths=[self.lock],cancel_path=self.root/'cancel',clock=lambda:self.now,wall=lambda:1000,read=logs.__getitem__)
+        self.assertEqual(resumed.cursor,1);self.assertEqual(resumed.targets[0],base)
+        self.assertEqual(resumed.targets[1],off['pulse_us'])
+        resumed.adopt(resumed.pulses[:]);resumed.phase='holding'
+        for n in range(2,7):resumed.advance(n,lambda e:None,self.sleep)
+        self.assertEqual(resumed.pulses,base)
+        missing=self.events[:];missing.pop(2)
+        p['resume_route_log']=spec('missing',missing)
+        with self.assertRaises(ValueError):c.audit_logs(p,logs.__getitem__)
+
 if __name__=='__main__':unittest.main()
