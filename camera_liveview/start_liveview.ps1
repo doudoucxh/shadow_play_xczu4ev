@@ -1,5 +1,5 @@
 param([string]$CameraIP = '192.168.31.250', [ValidateRange(10,86400)][int]$Seconds = 28800,
-      [ValidateRange(1,15)][int]$FramesPerSecond = 5)
+      [ValidateRange(1,15)][int]$FramesPerSecond = 15)
 $ErrorActionPreference = 'Stop'
 $exe = Join-Path $PSScriptRoot 'build\sony_liveview.exe'
 if(-not (Test-Path -LiteralPath $exe)){ throw 'Run build.ps1 first.' }

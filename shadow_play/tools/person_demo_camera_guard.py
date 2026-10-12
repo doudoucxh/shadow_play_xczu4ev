@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Private dual-view recording and expiring freshness lease for the one-shot demo."""
 from concurrent.futures import ThreadPoolExecutor
+from collections import deque
 import io
 import argparse
 import json
@@ -15,6 +16,8 @@ def record(folder,base='http://192.168.45.1:8765',duration_seconds=110):
     if type(duration_seconds) is not int or not 10<=duration_seconds<=1200:
         raise ValueError('Recorder duration must be 10..1200 seconds')
     folder.mkdir(parents=True,exist_ok=False)
+    lease_folder=folder/'leases';lease_folder.mkdir()
+    published=deque()
     last={};good={c:time.monotonic() for c in ('front','top')};advancing=set()
     def fetch(camera):
         with urllib.request.urlopen(base+'/'+camera+'.jpg',timeout=.65) as r:
@@ -41,11 +44,16 @@ def record(folder,base='http://192.168.45.1:8765',duration_seconds=110):
                     if time.monotonic()-good[c]>1.2:raise RuntimeError('No fresh decoded '+c+' frame')
                 if len(advancing)==2 and all(time.monotonic()-t<.8 for t in good.values()):
                     stamp=time.time_ns()
-                    temp=folder/'lease.tmp';temp.write_text(json.dumps({'unix_ms':stamp//1000000}),encoding='ascii')
+                    temp=lease_folder/'lease.tmp';temp.write_text(json.dumps({'unix_ms':stamp//1000000}),encoding='ascii')
                     # Publish an immutable uniquely named lease. Never replace a
                     # destination that a Windows reader/indexer may have open.
-                    temp.rename(folder/('lease-'+str(stamp)+'.json'))
-                time.sleep(.15)
+                    target=lease_folder/('lease-'+str(stamp)+'.json');temp.rename(target)
+                    published.append(target)
+                    if len(published)>40:
+                        old=published.popleft()
+                        try:old.unlink()
+                        except PermissionError:pass
+                time.sleep(.04)
             if not (folder/'finish.request').exists():raise RuntimeError('Recorder duration expired')
     except BaseException as error:
         (folder/'guard.error').write_text(str(error),encoding='utf-8');raise

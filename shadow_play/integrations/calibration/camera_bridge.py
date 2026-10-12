@@ -63,7 +63,7 @@ class CamoSource:
         self.log = Path(log_path).open('ab')
         command = [ffmpeg, '-hide_banner', '-loglevel', 'warning', '-f', 'dshow',
                    '-pixel_format', 'yuyv422', '-video_size', '1280x720', '-framerate', '30',
-                   '-i', 'video=' + device, '-an', '-vf', 'fps=5,scale=960:-2',
+                   '-i', 'video=' + device, '-an', '-vf', 'fps=15,scale=960:-2',
                    '-c:v', 'mjpeg', '-q:v', '4', '-f', 'image2pipe', 'pipe:1']
         self.process = subprocess.Popen(command, stdin=subprocess.DEVNULL,
             stdout=subprocess.PIPE, stderr=self.log,

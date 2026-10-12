@@ -24,7 +24,8 @@ $taskOff=$false;$taskStarted=$false;$taskInterrupted=$false;$taskReason=$null
 $taskRaw=$null;$taskEvents=$null;$taskSeen=@{}
 function Test-RecoveryViews {
     if ($taskCapture.HasExited -or (Test-Path -LiteralPath (Join-Path $OutputDirectory 'guard.error'))) {return $false}
-    $leaseFile=Get-ChildItem -LiteralPath $OutputDirectory -Filter 'lease-*.json' -ErrorAction SilentlyContinue | Sort-Object Name | Select-Object -Last 1
+    $taskLeaseDirectory=Join-Path $OutputDirectory 'leases'
+    $leaseFile=Get-ChildItem -LiteralPath $taskLeaseDirectory -Filter 'lease-*.json' -ErrorAction SilentlyContinue | Sort-Object Name | Select-Object -Last 1
     if (-not $leaseFile) {return $false}
     try {
         $stream=[IO.File]::Open($leaseFile.FullName,[IO.FileMode]::Open,[IO.FileAccess]::Read,([IO.FileShare]::ReadWrite -bor [IO.FileShare]::Delete))

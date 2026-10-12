@@ -133,7 +133,7 @@ async function poll(){const started=performance.now();let nextURL=null;
   view.hidden=false;notice.hidden=true;status.textContent='实时更新';status.className='live';
   detail.textContent=`${decoded.naturalWidth} × ${decoded.naturalHeight} · 帧龄约 ${Math.round(age+elapsed)} ms · ${id} · 不控制舵机`;
  }catch(error){if(!paused)unavailable(error.message);}
- finally{if(nextURL)URL.revokeObjectURL(nextURL);setTimeout(poll,Math.max(0,200-(performance.now()-started)));}
+ finally{if(nextURL)URL.revokeObjectURL(nextURL);setTimeout(poll,Math.max(0,50-(performance.now()-started)));}
 }
 poll();
 </script></html>'''.encode('utf-8')
