@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "session_id": "person-performance-20261012-h",
+  "date": "2026-10-12",
+  "phase": "closed",
+  "reference_commands_us": [
+    1537,
+    1352,
+    1537,
+    1574,
+    1508,
+    1500,
+    1500,
+    1426,
+    1500,
+    1500
+  ],
+  "fixed_vectors_us": [
+    [
+      10,
+      0,
+      30,
+      0,
+      40,
+      80
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      120
+    ]
+  ],
+  "demo_stage_ids": [
+    1,
+    2,
+    1,
+    1,
+    2,
+    1
+  ],
+  "plan_sha256": "809ef2006218b9351c369ddfa82b93b6cd0582e7de43cdf3450ba59004a71099",
+  "program_sha256": "62681e9a1d718ae73390374ae8d180f0dd31a731fec9c4fc3f6244bddb1d0919",
+  "main_performance_seconds": 129.59,
+  "previous_held_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 63,
+    "armed": true,
+    "faults": 0,
+    "sequence": 14247,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1352,
+      1537,
+      1574,
+      1508,
+      1500,
+      1500,
+      1426,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "previous_off_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 14248,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1352,
+      1537,
+      1574,
+      1508,
+      1500,
+      1500,
+      1426,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": true,
+  "independent_read_only_sequence": 14248,
+  "incident_locks_removed": false,
+  "automatic_replay_allowed": false,
+  "position_feedback": null,
+  "axis4_pin": "G13",
+  "axis4_response": "weak; held fixed",
+  "tiger_enable_mask": 0,
+  "camera_verification": {
+    "start": {
+      "front": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 191,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "front",
+          "file": "front_1791776852841409700.jpg",
+          "host_unix_ns": 1791776852841409700,
+          "frame_id": "session-20261012-081336-63797",
+          "age_ms": "95",
+          "image_size": [
+            640,
+            360
+          ],
+          "sha256": "6fdbdfdd00f8b940c9540bd61ef6e7238f93144160050bf91a4194ec3bb92cd8",
+          "captured_at": "2026-10-12T11:47:32.841410+08:00"
+        }
+      },
+      "top": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 188,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "top",
+          "file": "top_1791776852838138800.jpg",
+          "host_unix_ns": 1791776852838138800,
+          "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-60351",
+          "age_ms": "108",
+          "image_size": [
+            960,
+            540
+          ],
+          "sha256": "7aa107a9c2717ddadcf72d834625616f72b12d2c5860d4c558d784b950efcca7",
+          "captured_at": "2026-10-12T11:47:32.838139+08:00"
+        }
+      }
+    },
+    "end": {
+      "front": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 197,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "front",
+          "file": "front_1791777530108315200.jpg",
+          "host_unix_ns": 1791777530108315200,
+          "frame_id": "session-20261012-081336-67165",
+          "age_ms": "110",
+          "image_size": [
+            640,
+            360
+          ],
+          "sha256": "0181c4eeb31135997b53535e6ee0a3212990618bd9f07eabf79e55f1f21ee43a",
+          "captured_at": "2026-10-12T11:58:50.108315+08:00"
+        }
+      },
+      "top": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 172,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "top",
+          "file": "top_1791777530104553400.jpg",
+          "host_unix_ns": 1791777530104553400,
+          "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-63737",
+          "age_ms": "172",
+          "image_size": [
+            960,
+            540
+          ],
+          "sha256": "65ade8eb86efb827622a62ddbc9a3006c409461855d58cb9a976840868d485d1",
+          "captured_at": "2026-10-12T11:58:50.104553+08:00"
+        }
+      }
+    }
+  },
+  "whole_session_return_appearance": {
+    "upper_torso": {
+      "rotation_ccw_deg": 0,
+      "dx": -6,
+      "dy": 0,
+      "ncc": 0.9556,
+      "search_boundary_reached": false,
+      "angle_boundary_reached": false,
+      "usable_texture_match": true
+    },
+    "waist_clothing": {
+      "rotation_ccw_deg": 0,
+      "dx": -7,
+      "dy": 0,
+      "ncc": 0.8684,
+      "search_boundary_reached": false,
+      "angle_boundary_reached": false,
+      "usable_texture_match": true
+    }
+  },
+  "completed_paths": [
+    {
+      "host_unix_ms": 1791777033511,
+      "stage": 1,
+      "vector_us": [
+        10,
+        0,
+        30,
+        0,
+        40,
+        80
+      ],
+      "sequence": 11867
+    },
+    {
+      "host_unix_ms": 1791777103136,
+      "stage": 2,
+      "vector_us": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        120
+      ],
+      "sequence": 12287
+    },
+    {
+      "host_unix_ms": 1791777179856,
+      "stage": 1,
+      "vector_us": [
+        10,
+        0,
+        30,
+        0,
+        40,
+        80
+      ],
+      "sequence": 12567
+    },
+    {
+      "host_unix_ms": 1791777207052,
+      "stage": 2,
+      "vector_us": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        120
+      ],
+      "sequence": 12987
+    },
+    {
+      "host_unix_ms": 1791777225859,
+      "stage": 1,
+      "vector_us": [
+        10,
+        0,
+        30,
+        0,
+        40,
+        80
+      ],
+      "sequence": 13267
+    },
+    {
+      "host_unix_ms": 1791777244692,
+      "stage": 1,
+      "vector_us": [
+        10,
+        0,
+        30,
+        0,
+        40,
+        80
+      ],
+      "sequence": 13547
+    },
+    {
+      "host_unix_ms": 1791777271883,
+      "stage": 2,
+      "vector_us": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        120
+      ],
+      "sequence": 13967
+    },
+    {
+      "host_unix_ms": 1791777290690,
+      "stage": 1,
+      "vector_us": [
+        10,
+        0,
+        30,
+        0,
+        40,
+        80
+      ],
+      "sequence": 14247
+    }
+  ],
+  "recording": {
+    "directory": "camera_liveview/output/person-performance-20261012-h",
+    "demo_start_host_unix_ms": 1791777161100,
+    "demo_end_host_unix_ms": 1791777290690,
+    "clip_start_host_unix_ms": 1791777158100,
+    "clip_end_host_unix_ms": 1791777293690,
+    "duration_seconds": 135.5900001525879,
+    "audio_recorded": false,
+    "source": "Saved live JPEG frames, about 5 fps; aligned by host receipt time, not hardware-synchronized",
+    "output_fps": 25,
+    "frame_interpolation": false,
+    "frame_repeat_for_playback": true,
+    "cameras": {
+      "front": {
+        "source_unique_frames": 676,
+        "max_source_gap_seconds": 0.35167765617370605,
+        "max_source_age_ms": 178
+      },
+      "top": {
+        "source_unique_frames": 679,
+        "max_source_gap_seconds": 0.3574717044830322,
+        "max_source_age_ms": 187
+      }
+    },
+    "files": [
+      {
+        "name": "front.mp4",
+        "sha256": "54a63c107ce318e2cc628bacf7ff2defbce032f12b8692249977b77a3a57b5d4",
+        "bytes": 4765764,
+        "width": 640,
+        "height": 360,
+        "duration_seconds": 135.6,
+        "pixel_format": "yuvj420p",
+        "duration_delta_seconds": 0.00999984741210369,
+        "full_decode_passed": true
+      },
+      {
+        "name": "top.mp4",
+        "sha256": "15bb29a9c973b5f631b79af1ba9378ffc453b0201127c5300d6c766cb424acde",
+        "bytes": 25625995,
+        "width": 960,
+        "height": 540,
+        "duration_seconds": 135.6,
+        "pixel_format": "yuvj420p",
+        "duration_delta_seconds": 0.00999984741210369,
+        "full_decode_passed": true
+      },
+      {
+        "name": "dual-view.mp4",
+        "sha256": "ab9fc19d0ffbe9dd2d83021688af2b80f55c2d7883b46eb41869151b881094ff",
+        "bytes": 31667200,
+        "width": 1920,
+        "height": 540,
+        "duration_seconds": 135.6,
+        "pixel_format": "yuvj420p",
+        "duration_delta_seconds": 0.00999984741210369,
+        "full_decode_passed": true
+      }
+    ]
+  },
+  "limits": [
+    "Six segments repeat two reviewed motifs; this is not complete anatomical or metric calibration",
+    "Appearance matching is not shaft feedback",
+    "Review applied only to exact paths with current rod attachments; arbitrary mixtures are not calibrated"
+  ]
+}
