@@ -1,19 +1,20 @@
-param([Parameter(Mandatory=$true)][string]$OutputDirectory,
+﻿param([Parameter(Mandatory=$true)][string]$OutputDirectory,
       [Parameter(Mandatory=$true)][string]$BoardPlan,
       [string]$PortName='COM3',
       [switch]$AttendedUnchangedContinuation,
       [switch]$AttendedLinkageComparison,
       [switch]$AttendedTigerCentering,
+      [switch]$AttendedFixedChoreography,
       [string]$HostPlan)
 $ErrorActionPreference='Stop'
-if (@(@($AttendedUnchangedContinuation,$AttendedLinkageComparison,$AttendedTigerCentering) | Where-Object {$_}).Count -gt 1) {throw 'Choose one explicit attended mode'}
-if ($AttendedUnchangedContinuation -or $AttendedLinkageComparison -or $AttendedTigerCentering) {
-    $taskPlanPattern=if ($AttendedTigerCentering) {'^/tmp/tiger_center_[a-z0-9_]+\.json$'} else {'^/tmp/person_visible_[a-z0-9_]+\.json$'}
+if (@(@($AttendedUnchangedContinuation,$AttendedLinkageComparison,$AttendedTigerCentering,$AttendedFixedChoreography) | Where-Object {$_}).Count -gt 1) {throw 'Choose one explicit attended mode'}
+if ($AttendedUnchangedContinuation -or $AttendedLinkageComparison -or $AttendedTigerCentering -or $AttendedFixedChoreography) {
+    $taskPlanPattern=if ($AttendedFixedChoreography) {'^/tmp/puppet_choreography_[a-z0-9_]+\.json$'} elseif ($AttendedTigerCentering) {'^/tmp/tiger_center_[a-z0-9_]+\.json$'} else {'^/tmp/person_visible_[a-z0-9_]+\.json$'}
     if ($BoardPlan -notmatch $taskPlanPattern) {throw 'Attended plan path required'}
     if (-not $HostPlan -or -not (Test-Path -LiteralPath $HostPlan -PathType Leaf)) {throw 'Local reviewed plan required'}
     $taskReviewedPlan=Get-Content -LiteralPath $HostPlan -Raw | ConvertFrom-Json
     $taskPlanHash=(Get-FileHash -LiteralPath $HostPlan -Algorithm SHA256).Hash.ToLowerInvariant()
-    $taskApproval=if ($AttendedTigerCentering) {'attended-loaded-tiger-centering-20261012'} elseif ($AttendedLinkageComparison) {'attended-person-linkage-comparison-20261012'} else {'attended-unchanged-person-continuation-20261012'}
+    $taskApproval=if ($AttendedFixedChoreography) {'attended-fixed-puppet-choreography-20261012'} elseif ($AttendedTigerCentering) {'attended-loaded-tiger-centering-20261012'} elseif ($AttendedLinkageComparison) {'attended-person-linkage-comparison-20261012'} else {'attended-unchanged-person-continuation-20261012'}
     if ($taskReviewedPlan.approval -ne $taskApproval) {throw 'Wrong continuation approval'}
 } elseif ($BoardPlan -notmatch '^/tmp/person_recovery_[a-z0-9_]+\.json$') {throw 'Session plan path required'}
 if (Test-Path -LiteralPath $OutputDirectory) {throw 'Use a new private session directory; no retry'}
@@ -46,10 +47,12 @@ try {
     $taskSerial.Open();$taskSerial.Write("stty -echo`r");Start-Sleep -Milliseconds 180
     $taskRaw.Write($taskSerial.ReadExisting())
     if (-not (Test-RecoveryViews)) {throw 'Video lost before execution'}
-    if ($AttendedUnchangedContinuation -or $AttendedLinkageComparison -or $AttendedTigerCentering) {
+    if ($AttendedUnchangedContinuation -or $AttendedLinkageComparison -or $AttendedTigerCentering -or $AttendedFixedChoreography) {
         $taskReviewAge=[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()-[long]$taskReviewedPlan.reviewed_at_unix_ms
         if ($taskReviewAge -lt 0 -or $taskReviewAge -ge 120000 -or (Get-FileHash -LiteralPath $HostPlan -Algorithm SHA256).Hash.ToLowerInvariant() -ne $taskPlanHash) {throw 'Physical comparison receipt expired or changed; no motion sent'}
-        if ($AttendedTigerCentering) {
+        if ($AttendedFixedChoreography) {
+            $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/puppet_choreography_session_20261012_r1.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-fixed-choreography; echo RECOVERY_COMPLETE:$?; stty echo'
+        } elseif ($AttendedTigerCentering) {
             $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/tiger_center_session_20261012_r2.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-loaded-centering; echo RECOVERY_COMPLETE:$?; stty echo'
         } elseif ($AttendedLinkageComparison) {
             $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_linkage_session_20261012_r15.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-linkage-comparison; echo RECOVERY_COMPLETE:$?; stty echo'
