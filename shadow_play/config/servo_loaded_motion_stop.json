@@ -5,7 +5,7 @@
   "reason": "Operator reported a large tiger motion and puppet pulling; loaded calibration stopped",
   "scope": "All supervised loaded capture plans and current board driver motion commits",
   "operator_power_off_confirmed": false,
-  "last_read_sequence": 16564,
+  "last_read_sequence": 19195,
   "last_enabled_mask": 0,
   "last_armed": false,
   "actual_position_known": false,
@@ -201,12 +201,13 @@
     "incident_locks_removed": false
   },
   "latest_person_head_diagnostic": {
-    "record": "person_head_diagnostic.20261012.json",
-    "sequence": 9344,
+    "record": "person_supported_result.20261012.json",
+    "sequence": 17548,
     "enabled_mask": 0,
     "incident_locks_removed": false,
-    "response": "weak",
-    "automatic_replay_allowed": false
+    "response": "upward_body_lift_observed",
+    "automatic_replay_allowed": false,
+    "historical_downward_result": "person_head_diagnostic.20261012.json"
   },
   "latest_person_linkage_session": {
     "record": "person_linkage_result.20261012.json",
@@ -233,5 +234,23 @@
     "enabled_mask": 0,
     "normal_frame_stop": true,
     "incident_locks_removed": false
+  },
+  "latest_person_supported_session": {
+    "record": "person_supported_result.20261012.json",
+    "phase": "closed",
+    "sequence": 19195,
+    "enabled_mask": 0,
+    "normal_frame_stop": true,
+    "incident_locks_removed": false,
+    "last_person_pulses_us": [
+      1537,
+      1352,
+      1537,
+      1514,
+      1508,
+      1500
+    ],
+    "actual_angle_feedback": null,
+    "metric_coordinates_calibrated": false
   }
 }

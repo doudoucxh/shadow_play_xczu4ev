@@ -63,7 +63,7 @@ class LinkageTests(unittest.TestCase):
         self.assertEqual(self.d.pulses,base)
 
     def test_bilateral_requires_receipt_and_bounded_opposite_pitch(self):
-        for flag,vector in [(False,[0,-10,0,0,0,20]),(True,[0,-41,0,0,0,20]),
+        for flag,vector in [(False,[0,-10,0,0,0,20]),(True,[0,-81,0,0,0,20]),
                 (True,[0,1,0,0,0,20]),(True,[0,-10,0,0,0,0]),
                 (True,[0,-10,0,1,0,20]),(True,[0,-10,0,0,0,121])]:
             p=copy.deepcopy(self.plan);p.update(bilateral_hand_diagnostic=flag,
@@ -91,6 +91,28 @@ class LinkageTests(unittest.TestCase):
             q=copy.deepcopy(p);q.update(extra)
             with self.assertRaises(ValueError):linkage.validate_plan(q)
 
+    def test_continued_support_requires_exact_normal_off_pose(self):
+        p=copy.deepcopy(self.plan)
+        p.update(bilateral_hand_diagnostic=True, head_support_reference_offset_us=-60,
+                 stages=[[0,-80,0,0,0,120]],demo_stages=[1])
+        pulses=p['expected_pulses_us'][:];pulses[3]-=60
+        p['expected_pulses_us']=pulses[:]
+        for key in ('previous_held_state','previous_off_state'):p[key]['pulse_us']=pulses[:]
+        linkage.validate_plan(p)
+        self.reg.values[0x8c]=pulses[3]
+        self.d=linkage.LinkageSession(self.reg,p,self.host,motion_inhibit_paths=[self.lock],
+            cancel_path=self.root/'cancel',clock=lambda:self.now,wall=lambda:1000)
+        self.resume();self.d.probe(1,self.emit,self.sleep)
+        self.assertTrue(all(r['state']['pulse_us'][3]==1514 for r in self.events))
+        self.assertEqual(self.d.pulses,pulses)
+        for key in ('previous_held_state','previous_off_state'):
+            q=copy.deepcopy(p);q[key]['pulse_us'][3]+=1
+            with self.assertRaises(ValueError):linkage.validate_plan(q)
+        for offset in (-40,-80,True):
+            q=copy.deepcopy(p);q['head_support_reference_offset_us']=offset
+            with self.assertRaises(ValueError):linkage.validate_plan(q)
+        q=copy.deepcopy(p);q['expected_pulses_us'][0]+=1
+        with self.assertRaises(ValueError):linkage.validate_plan(q)
     def test_supported_hands_preserve_head_lift_until_explicit_finish(self):
         p=copy.deepcopy(self.plan);p.update(bilateral_hand_diagnostic=True,
             head_supported_bilateral_diagnostic=True,head_support_offset_us=-60,

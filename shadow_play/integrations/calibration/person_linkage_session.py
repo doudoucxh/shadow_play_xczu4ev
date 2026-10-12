@@ -16,7 +16,9 @@ import sys
 import time
 
 # The board uses immutable, versioned /tmp modules; local tests use the source.
-if Path(__file__).with_name('person_visible_motion_session_20261012_r4.py').exists():
+if Path(__file__).with_name('person_visible_motion_session_20261012_r5.py').exists():
+    from person_visible_motion_session_20261012_r5 import VisibleSession, validate_plan as validate_reference
+elif Path(__file__).with_name('person_visible_motion_session_20261012_r4.py').exists():
     from person_visible_motion_session_20261012_r4 import VisibleSession, validate_plan as validate_reference
 else:
     from person_visible_motion_session import VisibleSession, validate_plan as validate_reference
@@ -27,7 +29,7 @@ APPROVAL = 'attended-person-linkage-comparison-20261012'
 INTERVAL = .05
 # These are trial caps, not a calibrated rectangular workspace.
 CAPS = (40, 0, 40, 0, 60, 120)
-BILATERAL_MIN = (0, -40, 0, 0, 0, 0)
+BILATERAL_MIN = (0, -80, 0, 0, 0, 0)
 HEAD_SUPPORT_MIN = (0, 0, 0, -80, 0, 0)
 
 

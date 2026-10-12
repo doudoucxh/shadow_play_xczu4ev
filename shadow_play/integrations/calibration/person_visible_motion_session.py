@@ -31,8 +31,8 @@ def validate_plan(plan, wall=None):
               'operator_unchanged_report', 'observer_ready', 'dual_view_pose_reviewed',
               'reviewed_at_unix_ms', 'previous_held_state', 'previous_off_state',
               'previous_normal_frame_stop', 'duration_seconds'}
-    if (not isinstance(plan, dict) or set(plan) not in (fields, fields | {'motion_axes'},
-            fields | {'motion_axes','head_pitch_diagnostic'})
+    optional = {'motion_axes', 'head_pitch_diagnostic', 'head_support_reference_offset_us'}
+    if (not isinstance(plan, dict) or not fields <= set(plan) or set(plan)-fields-optional
             or plan['approval'] != APPROVAL):
         raise ValueError('Exact attended continuation receipt required')
     axes = plan.get('motion_axes', [5, 6])
@@ -43,6 +43,11 @@ def validate_plan(plan, wall=None):
     if ('head_pitch_diagnostic' in plan or 4 in axes) and (
             axes != [4] or plan.get('head_pitch_diagnostic') is not True):
         raise ValueError('Axis 4 requires an exclusive, explicit diagnostic plan')
+    support = plan.get('head_support_reference_offset_us', 0)
+    if 'head_support_reference_offset_us' in plan and (
+            type(support) is not int or support != -60 or 4 in axes
+            or 'head_pitch_diagnostic' in plan):
+        raise ValueError('Only the inspected -60 us head support may be continued unchanged')
     if plan['operator_unchanged_report'] != '电源和机构都没动':
         raise ValueError('New operator report required; no manual-pose reset')
     if plan['observer_ready'] is not True or plan['dual_view_pose_reviewed'] is not True:
@@ -57,7 +62,9 @@ def validate_plan(plan, wall=None):
         raise ValueError('Attended duration must be 120..900 seconds')
     held, off = plan['previous_held_state'], plan['previous_off_state']
     pulses = plan['expected_pulses_us']
-    if (not isinstance(pulses, list) or len(pulses) != 10 or pulses[:6] != REFERENCE
+    reference = REFERENCE[:]
+    reference[3] += support
+    if (not isinstance(pulses, list) or len(pulses) != 10 or pulses[:6] != reference
             or any(type(v) is not int or not 500 <= v <= 2500 for v in pulses)):
         raise ValueError('Only the previous inspected person reference is allowed')
     if (plan['previous_normal_frame_stop'] is not True or held['enabled_mask'] != 63
