@@ -31,7 +31,8 @@ def validate_plan(plan, wall=None):
               'operator_unchanged_report', 'observer_ready', 'dual_view_pose_reviewed',
               'reviewed_at_unix_ms', 'previous_held_state', 'previous_off_state',
               'previous_normal_frame_stop', 'duration_seconds'}
-    optional = {'motion_axes', 'head_pitch_diagnostic', 'head_support_reference_offset_us'}
+    optional = {'motion_axes', 'head_pitch_diagnostic', 'head_support_reference_offset_us',
+                'lowered_hands_reference_offset_us'}
     if (not isinstance(plan, dict) or not fields <= set(plan) or set(plan)-fields-optional
             or plan['approval'] != APPROVAL):
         raise ValueError('Exact attended continuation receipt required')
@@ -64,6 +65,12 @@ def validate_plan(plan, wall=None):
     pulses = plan['expected_pulses_us']
     reference = REFERENCE[:]
     reference[3] += support
+    if 'lowered_hands_reference_offset_us' in plan:
+        low = plan['lowered_hands_reference_offset_us']
+        if (not isinstance(low,list) or len(low)!=6 or any(type(v) is not int for v in low)
+                or low != [0,-140,0,0,0,240] or support != -60 or axes != [2,6]):
+            raise ValueError('Only the inspected lowered-hand reference for the fixed guard actor is allowed')
+        reference = [a+b for a,b in zip(reference,low)]
     if (not isinstance(pulses, list) or len(pulses) != 10 or pulses[:6] != reference
             or any(type(v) is not int or not 500 <= v <= 2500 for v in pulses)):
         raise ValueError('Only the previous inspected person reference is allowed')
@@ -129,6 +136,8 @@ class VisibleSession(RecoverySession):
         return state
 
     def probe(self, axis, offset, emit, sleep):
+        if 'lowered_hands_reference_offset_us' in self.plan:
+            raise RuntimeError('Lowered-hand reference is reserved for fixed guard paths; no single-axis replay')
         if axis not in self.motion_axes or offset not in AXIS_LEVELS[axis]:
             raise RuntimeError('Only the selected person stage is allowed')
         if self.pulses != self.plan['expected_pulses_us']:

@@ -260,6 +260,60 @@ class LinkageTests(unittest.TestCase):
         q=copy.deepcopy(p);q.pop('lower_hands_diagnostic')
         with self.assertRaises(ValueError):linkage.validate_plan(q)
 
+    def low_guard_plan(self, continued=False):
+        p=copy.deepcopy(self.plan)
+        p.update(bilateral_hand_diagnostic=True,head_support_reference_offset_us=-60,
+                 supported_martial_diagnostic=True,tempo_step_us=3,peak_hold_ms=400,
+                 motion_interval_ms=20,low_guard_diagnostic=True,
+                 combined_lowering_receipt_sha256=linkage.COMBINED_LOWERING_RECEIPT,
+                 stages=[[0,140,0,0,0,0],[0,0,0,0,0,-240],[0,140,0,0,0,-240]],
+                 demo_stages=[1,2,3])
+        pulses=p['expected_pulses_us'][:];pulses[3]-=60
+        if continued:
+            p['lowered_hands_reference_offset_us']=list(linkage.LOW_GUARD)
+            for i,delta in enumerate(linkage.LOW_GUARD):pulses[i]+=delta
+        p['expected_pulses_us']=pulses[:]
+        for key in ('previous_held_state','previous_off_state'):p[key]['pulse_us']=pulses[:]
+        for i,v in enumerate(pulses):self.reg.values[0x80+4*i]=v
+        return p
+
+    def test_guard_returns_to_low_hands_and_stops_without_high_reset(self):
+        p=self.low_guard_plan()
+        self.d=linkage.LinkageSession(self.reg,p,self.host,motion_inhibit_paths=[self.lock],
+            cancel_path=self.root/'cancel',clock=lambda:self.now,wall=lambda:1000)
+        def emit(row):
+            self.events.append(row)
+            if row['event']=='support_established':self.host.action=('probe_3',self.d.sequence)
+            elif row['event']=='probe_complete':self.host.action=('review_3',self.d.sequence)
+            elif row['event']=='path_reviewed':self.host.action=('finish',self.d.sequence)
+        linkage.run_session(self.d,emit,sleep=self.sleep)
+        low=p['expected_pulses_us'][:]
+        for i,delta in enumerate(linkage.LOW_GUARD):low[i]+=delta
+        self.assertEqual(self.events[-1]['state']['pulse_us'],low)
+        self.assertTrue(self.events[-1]['normal_frame_stop'])
+        self.assertFalse(self.events[-1]['state']['armed'])
+        previous=p['expected_pulses_us']
+        for r in self.events:
+            if r['event'] not in ('support_step','probe_step'):continue
+            values=r['state']['pulse_us'];self.assertLessEqual(max(abs(a-b) for a,b in zip(previous,values)),3)
+            self.assertEqual(values[3],1514);self.assertEqual(values[6:],low[6:]);previous=values
+        self.assertEqual(self.lock.read_text(),'retain')
+
+    def test_guard_reference_requires_exact_low_pose_and_disallows_general_probe(self):
+        p=self.low_guard_plan(continued=True);linkage.validate_plan(p)
+        d=linkage.LinkageSession(self.reg,p,self.host,motion_inhibit_paths=[self.lock],
+            cancel_path=self.root/'cancel',clock=lambda:self.now,wall=lambda:1000)
+        self.assertEqual(d.support_base,p['expected_pulses_us'])
+        from person_visible_motion_session import VisibleSession
+        with self.assertRaises(RuntimeError):VisibleSession.probe(d,2,40,self.emit,self.sleep)
+        for extra in ({'combined_lowering_receipt_sha256':'0'*64},{'tempo_step_us':8},
+                      {'stages':[[1,140,0,0,0,0]]},{'stages':[[0,141,0,0,0,0]]},
+                      {'stages':[[0,0,0,0,0,-241]]},{'lowered_hands_reference_offset_us':[0,-139,0,0,0,240]}):
+            q=copy.deepcopy(p);q.update(extra)
+            with self.assertRaises(ValueError):linkage.validate_plan(q)
+        q=copy.deepcopy(p);q['previous_off_state']['pulse_us'][1]+=1
+        with self.assertRaises(ValueError):linkage.validate_plan(q)
+
     def test_manual_waypoint_and_fast_step_rejected_before_write(self):
         self.resume();self.d.phase='linkage';self.sleep(.05)
         p=self.d.pulses[:];p[4]+=1

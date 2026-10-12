@@ -17,7 +17,9 @@ import sys
 import time
 
 # The board uses immutable, versioned /tmp modules; local tests use the source.
-if Path(__file__).with_name('person_visible_motion_session_20261012_r5.py').exists():
+if Path(__file__).with_name('person_visible_motion_session_20261012_r6.py').exists():
+    from person_visible_motion_session_20261012_r6 import VisibleSession, validate_plan as validate_reference
+elif Path(__file__).with_name('person_visible_motion_session_20261012_r5.py').exists():
     from person_visible_motion_session_20261012_r5 import VisibleSession, validate_plan as validate_reference
 elif Path(__file__).with_name('person_visible_motion_session_20261012_r4.py').exists():
     from person_visible_motion_session_20261012_r4 import VisibleSession, validate_plan as validate_reference
@@ -32,6 +34,8 @@ INTERVAL = .05
 CAPS = (40, 0, 40, 0, 60, 120)
 BILATERAL_MIN = (0, -80, 0, 0, 0, 0)
 HEAD_SUPPORT_MIN = (0, 0, 0, -80, 0, 0)
+LOW_GUARD = (0,-140,0,0,0,240)
+COMBINED_LOWERING_RECEIPT = '1747fc93e1473da1015326c0b2e9f6e37d8e4b979ad306d5a56c0a706960d0f9'
 
 
 def reference_plan(plan):
@@ -39,14 +43,15 @@ def reference_plan(plan):
     for k in ('stages', 'demo_stages', 'bilateral_hand_diagnostic', 'head_support_diagnostic',
               'head_supported_bilateral_diagnostic', 'head_support_offset_us',
               'supported_martial_diagnostic', 'tempo_step_us', 'peak_hold_ms',
-              'motion_interval_ms', 'lower_hands_diagnostic', 'combined_lower_hands_diagnostic'):
+              'motion_interval_ms', 'lower_hands_diagnostic', 'combined_lower_hands_diagnostic',
+              'low_guard_diagnostic', 'combined_lowering_receipt_sha256'):
         p.pop(k, None)
     p['approval'] = 'attended-unchanged-person-continuation-20261012'
     if plan.get('head_support_diagnostic') is True:
         p['motion_axes'] = [4]
         p['head_pitch_diagnostic'] = True
     else:
-        p['motion_axes'] = [1, 2, 3, 5, 6] if plan.get('bilateral_hand_diagnostic') is True else [1, 3, 5, 6]
+        p['motion_axes'] = [2,6] if plan.get('low_guard_diagnostic') is True else [1, 2, 3, 5, 6] if plan.get('bilateral_hand_diagnostic') is True else [1, 3, 5, 6]
     return p
 
 
@@ -59,6 +64,7 @@ def validate_plan(plan, wall=None):
     martial = 'supported_martial_diagnostic' in plan
     lower = 'lower_hands_diagnostic' in plan
     combined_lower = 'combined_lower_hands_diagnostic' in plan
+    guard = 'low_guard_diagnostic' in plan
     if not isinstance(plan.get('session_id'),str) or not re.fullmatch('[a-z0-9-]{1,80}', plan['session_id']):
         raise ValueError('Safe unique session ID required')
     if bilateral and plan['bilateral_hand_diagnostic'] is not True:
@@ -81,6 +87,12 @@ def validate_plan(plan, wall=None):
         raise ValueError('New low-hand geometry requires the separate three-microsecond diagnostic')
     if combined_lower and (plan['combined_lower_hands_diagnostic'] is not True or not lower):
         raise ValueError('Combined lowering requires the explicit slow low-hand diagnostic')
+    if guard and (plan['low_guard_diagnostic'] is not True or not martial or lower
+            or plan['tempo_step_us'] != 3 or plan.get('motion_interval_ms') != 20
+            or plan.get('combined_lowering_receipt_sha256') != COMBINED_LOWERING_RECEIPT):
+        raise ValueError('Low guard requires the reviewed combined lowering and a separate slow diagnostic')
+    if not guard and ('combined_lowering_receipt_sha256' in plan or 'lowered_hands_reference_offset_us' in plan):
+        raise ValueError('Lowered reference is reserved for the fixed low-guard actor')
     if 'motion_interval_ms' in plan and (not martial
             or type(plan['motion_interval_ms']) is not int or plan['motion_interval_ms'] not in (20,50)):
         raise ValueError('Only explicit 20/50 ms person motion periods allowed')
@@ -94,11 +106,11 @@ def validate_plan(plan, wall=None):
         if (not isinstance(vector, list) or len(vector) != 6
                 or any(type(v) is not int or not low <= v <= cap
                        for v, low, cap in zip(vector,
-                           HEAD_SUPPORT_MIN if head_support else (0,-140,0,0,0,0) if lower else BILATERAL_MIN if bilateral else (0,)*6,
-                           (0,)*6 if head_support else (40,0,40,0,60,240) if lower else CAPS))
+                           (0,0,0,0,0,-240) if guard else HEAD_SUPPORT_MIN if head_support else (0,-140,0,0,0,0) if lower else BILATERAL_MIN if bilateral else (0,)*6,
+                           (0,140,0,0,0,0) if guard else (0,)*6 if head_support else (40,0,40,0,60,240) if lower else CAPS))
                 or not any(vector)):
             raise ValueError('Only bounded, explicitly selected person trial offsets allowed')
-        if martial and not (vector[1] < 0 or vector[5] > 0):
+        if martial and not guard and not (vector[1] < 0 or vector[5] > 0):
             raise ValueError('Select a hand pitch path for each martial stage')
         if lower and (any(vector[i] for i in (0,2,3,4))
                 or (not (vector[1] < 0 and vector[5] > 0) if combined_lower
@@ -129,6 +141,8 @@ class LinkageSession(VisibleSession):
         self.support_base = self.plan['expected_pulses_us'][:]
         if plan.get('head_supported_bilateral_diagnostic') is True:
             self.support_base[3] += plan['head_support_offset_us']
+        if plan.get('low_guard_diagnostic') is True and 'lowered_hands_reference_offset_us' not in plan:
+            for i,delta in enumerate(LOW_GUARD):self.support_base[i] += delta
 
     def adopt(self, pulses, mask):
         if self.phase == 'resume':
@@ -172,6 +186,24 @@ class LinkageSession(VisibleSession):
             emit({'event':'support_step','enabled':enabled,'state':self.adopt(p,63)})
         self.phase = 'holding'
         emit({'event':'support_established' if enabled else 'reference_restored','state':self.check()})
+        self.wait(2,sleep)
+
+    def establish_low_guard(self, emit, sleep):
+        source=self.plan['expected_pulses_us'];target=self.support_base
+        if self.pulses != source:raise RuntimeError('Guard transfer requires the exact inspected source')
+        if source != target:
+            count=math.ceil(max(abs(a-b) for a,b in zip(source,target))*math.pi/(1.8*3))
+            self.phase='supporting'
+            emit({'event':'support_started','low_guard':True,'state':self.check()})
+            for step in range(1,count+1):
+                delay=max(0,self.last_commit+self.motion_interval-self.clock()) if self.last_commit is not None else self.motion_interval
+                self.wait(delay,sleep)
+                fraction=.5*(1-math.cos(math.pi*step/count))
+                pulses=[a+round((b-a)*fraction) for a,b in zip(source,target)]
+                self.expected_waypoint=pulses[:]
+                emit({'event':'support_step','low_guard':True,'state':self.adopt(pulses,63)})
+        self.phase='holding'
+        emit({'event':'support_established','low_guard':True,'state':self.check()})
         self.wait(2,sleep)
 
     def probe(self, stage, emit, sleep):
@@ -223,6 +255,8 @@ def run_session(d, emit, *, sleep=time.sleep):
         d.wait(2,sleep)
         if d.linkage_plan.get('head_supported_bilateral_diagnostic') is True:
             d.set_support(True,emit,sleep)
+        if d.linkage_plan.get('low_guard_diagnostic') is True:
+            d.establish_low_guard(emit,sleep)
         next_report = d.clock()
         while d.clock() < d.deadline:
             d.check(); d.kick()
