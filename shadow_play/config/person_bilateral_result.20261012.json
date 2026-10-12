@@ -1,0 +1,2913 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-12",
+  "phase": "closed",
+  "purpose": "Synchronous bilateral hand elevation with head/body rod compensation",
+  "authorization": "Current onsite cutoff operator, unchanged power/mechanism report, continued debugging without routine per-axis questions",
+  "reference_pulses_us": [
+    1537,
+    1352,
+    1537,
+    1574,
+    1508,
+    1500,
+    1500,
+    1426,
+    1500,
+    1500
+  ],
+  "selected_vector_us": [
+    0,
+    -40,
+    40,
+    0,
+    0,
+    80
+  ],
+  "motion_rule": "All nonzero components share scalar cosine progress; same curve used for return",
+  "minimum_interval_ms": 50,
+  "maximum_component_step_us": 1,
+  "peak_hold_seconds": 2,
+  "head_compensation_axis": 3,
+  "head_pitch_axis4_static": true,
+  "axis4_pin": "G13",
+  "axis4_response": "weak; no new claim of repair",
+  "tiger_enabled": false,
+  "incident_locks_removed": false,
+  "automatic_replay_allowed": false,
+  "position_feedback": null,
+  "actor_sha256": "e8938a6e86ee18965156ae6193c06168032c082fa2ef69b16797ac4ccc68ac6c",
+  "sessions": [
+    {
+      "session_id": "person-bilateral-20261012-i",
+      "plan_sha256": "8d0a4be350a097289a8c322f269c9b2836aeaf6de3ec15b24f8113ec43c2cdb2",
+      "stages_us": [
+        [
+          0,
+          -10,
+          0,
+          0,
+          0,
+          20
+        ],
+        [
+          0,
+          -20,
+          0,
+          0,
+          0,
+          40
+        ],
+        [
+          0,
+          -40,
+          0,
+          0,
+          0,
+          80
+        ]
+      ],
+      "actual_demo_completed": false,
+      "previous_held_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 14739,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "previous_off_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 14740,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "normal_frame_stop": true,
+      "samples": [
+        {
+          "selection": ".review_work/loaded_calibration_20261012/person_bilateral_i/stage-review-1-1791778081447/selection.json",
+          "sample": {
+            "axis": 1,
+            "offset_us": 20,
+            "events": [
+              {
+                "event": "probe_started",
+                "axis": 1,
+                "offset_us": 20,
+                "vector_us": [
+                  0,
+                  -10,
+                  0,
+                  0,
+                  0,
+                  20
+                ],
+                "steps_per_leg": 35,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 14249,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778081447
+              },
+              {
+                "event": "probe_peak",
+                "axis": 1,
+                "offset_us": 20,
+                "vector_us": [
+                  0,
+                  -10,
+                  0,
+                  0,
+                  0,
+                  20
+                ],
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 14284,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1342,
+                    1537,
+                    1574,
+                    1508,
+                    1520,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778083554
+              },
+              {
+                "event": "probe_complete",
+                "axis": 1,
+                "vector_us": [
+                  0,
+                  -10,
+                  0,
+                  0,
+                  0,
+                  20
+                ],
+                "offset_us": 20,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 14319,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778087647
+              }
+            ],
+            "views": {
+              "front": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_i\\stage-review-1-1791778081447\\front.jpg",
+                "frames": [
+                  {
+                    "camera": "front",
+                    "file": "front_1791778081320304800.jpg",
+                    "host_unix_ns": 1791778081320304800,
+                    "frame_id": "session-20261012-081336-69906",
+                    "age_ms": 147,
+                    "sha256": "d13a811d17d760899f4538d67e7e2bba79f2ff42bd1a34eab5aac92ab783e2a9"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778084318077500.jpg",
+                    "host_unix_ns": 1791778084318077500,
+                    "frame_id": "session-20261012-081336-69921",
+                    "age_ms": 126,
+                    "sha256": "98996b23b06b3cf017fe26e7a806177d3b744c2ef1a1054ad222ed2ee7334003"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778087818139300.jpg",
+                    "host_unix_ns": 1791778087818139300,
+                    "frame_id": "session-20261012-081336-69939",
+                    "age_ms": 11,
+                    "sha256": "436b89f3f3dcdc296d2d0a8c7ca57b9f3e280eb84d5d298978d5517f1bf48dd3"
+                  }
+                ],
+                "person_detail": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_i\\stage-review-1-1791778081447\\person-detail.jpg"
+              },
+              "top": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_i\\stage-review-1-1791778081447\\top.jpg",
+                "frames": [
+                  {
+                    "camera": "top",
+                    "file": "top_1791778081327331300.jpg",
+                    "host_unix_ns": 1791778081327331300,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-66494",
+                    "age_ms": 14,
+                    "sha256": "0049eb986a32c067c87831cac02ab2edd9af937bd820a0c6b2562b28ecaa5da7"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778084314777500.jpg",
+                    "host_unix_ns": 1791778084314777500,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-66508",
+                    "age_ms": 188,
+                    "sha256": "149cf7f542f1c0e919a22b61b3c0cdccd6cc09004298f17bd174a93043cd0117"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778087826322700.jpg",
+                    "host_unix_ns": 1791778087826322700,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-66526",
+                    "age_ms": 108,
+                    "sha256": "a5077c97b96f70bd09b2c842fdf84850bae3e0f27fb9344d501ee23c50741030"
+                  }
+                ]
+              }
+            }
+          },
+          "body_appearance": {
+            "selection": ".review_work\\loaded_calibration_20261012\\person_bilateral_i\\stage-review-1-1791778081447\\selection.json",
+            "stage_id": 1,
+            "vector_us": [
+              0,
+              -10,
+              0,
+              0,
+              0,
+              20
+            ],
+            "parts": {
+              "upper_torso": {
+                "center_pixel": [
+                  221,
+                  184
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 0,
+                  "dx": -2,
+                  "dy": 0,
+                  "ncc": 0.9593,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 0,
+                  "dy": 0,
+                  "ncc": 0.9695,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              },
+              "waist_clothing": {
+                "center_pixel": [
+                  221,
+                  211
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 0,
+                  "dx": -3,
+                  "dy": 0,
+                  "ncc": 0.9736,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 0,
+                  "dx": -1,
+                  "dy": 0,
+                  "ncc": 0.9678,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              }
+            },
+            "interpretation": "Rigid appearance change only; fabric/depth/joint motion may break this model",
+            "verified_joint_angles": false,
+            "metric_calibration": false
+          }
+        },
+        {
+          "selection": ".review_work/loaded_calibration_20261012/person_bilateral_i/stage-review-2-1791778149231/selection.json",
+          "sample": {
+            "axis": 2,
+            "offset_us": 40,
+            "events": [
+              {
+                "event": "probe_started",
+                "axis": 2,
+                "offset_us": 40,
+                "vector_us": [
+                  0,
+                  -20,
+                  0,
+                  0,
+                  0,
+                  40
+                ],
+                "steps_per_leg": 70,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 14319,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778149231
+              },
+              {
+                "event": "probe_peak",
+                "axis": 2,
+                "offset_us": 40,
+                "vector_us": [
+                  0,
+                  -20,
+                  0,
+                  0,
+                  0,
+                  40
+                ],
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 14389,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1332,
+                    1537,
+                    1574,
+                    1508,
+                    1540,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778153453
+              },
+              {
+                "event": "probe_complete",
+                "axis": 2,
+                "vector_us": [
+                  0,
+                  -20,
+                  0,
+                  0,
+                  0,
+                  40
+                ],
+                "offset_us": 40,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 14459,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778159658
+              }
+            ],
+            "views": {
+              "front": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_i\\stage-review-2-1791778149231\\front.jpg",
+                "frames": [
+                  {
+                    "camera": "front",
+                    "file": "front_1791778149019446000.jpg",
+                    "host_unix_ns": 1791778149019446000,
+                    "frame_id": "session-20261012-081336-70243",
+                    "age_ms": 77,
+                    "sha256": "b1b22ef888c5e76b053f9f44280ee633d0077260a0c66deb8614e745531889db"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778154172924300.jpg",
+                    "host_unix_ns": 1791778154172924300,
+                    "frame_id": "session-20261012-081336-70269",
+                    "age_ms": 3,
+                    "sha256": "044c7c6876e948ac05828197b86220d37c7719a1a31709d74adab1bbea5dd3a4"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778159834858000.jpg",
+                    "host_unix_ns": 1791778159834858000,
+                    "frame_id": "session-20261012-081336-70297",
+                    "age_ms": 38,
+                    "sha256": "5e16dcb3a8dcc43a51fe6c36607e11c6a1b8071f754e54634fd39c1c5916ed4d"
+                  }
+                ],
+                "person_detail": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_i\\stage-review-2-1791778149231\\person-detail.jpg"
+              },
+              "top": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_i\\stage-review-2-1791778149231\\top.jpg",
+                "frames": [
+                  {
+                    "camera": "top",
+                    "file": "top_1791778149025707500.jpg",
+                    "host_unix_ns": 1791778149025707500,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-66832",
+                    "age_ms": 93,
+                    "sha256": "21845514f6d83ad5138bb032c690d0e30db3e7790ea84ab562591717547e3f80"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778154170665900.jpg",
+                    "host_unix_ns": 1791778154170665900,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-66858",
+                    "age_ms": 62,
+                    "sha256": "1bdd3a34c1574d61e878c720ec9b43c6a1166171bec917b2b50c396970958d8f"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778159832600800.jpg",
+                    "host_unix_ns": 1791778159832600800,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-66886",
+                    "age_ms": 108,
+                    "sha256": "4f15b91b8511bc06f5edd37f51688ef82c5728b4875c899acfb0d9da4dcf5960"
+                  }
+                ]
+              }
+            }
+          },
+          "body_appearance": {
+            "selection": ".review_work\\loaded_calibration_20261012\\person_bilateral_i\\stage-review-2-1791778149231\\selection.json",
+            "stage_id": 2,
+            "vector_us": [
+              0,
+              -20,
+              0,
+              0,
+              0,
+              40
+            ],
+            "parts": {
+              "upper_torso": {
+                "center_pixel": [
+                  221,
+                  184
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 0,
+                  "dx": 0,
+                  "dy": 3,
+                  "ncc": 0.9838,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 3,
+                  "dy": 2,
+                  "ncc": 0.9841,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              },
+              "waist_clothing": {
+                "center_pixel": [
+                  221,
+                  211
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 0,
+                  "dy": 2,
+                  "ncc": 0.9737,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 4,
+                  "dy": 2,
+                  "ncc": 0.9806,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              }
+            },
+            "interpretation": "Rigid appearance change only; fabric/depth/joint motion may break this model",
+            "verified_joint_angles": false,
+            "metric_calibration": false
+          }
+        },
+        {
+          "selection": ".review_work/loaded_calibration_20261012/person_bilateral_i/stage-review-3-1791778212084/selection.json",
+          "sample": {
+            "axis": 3,
+            "offset_us": 80,
+            "events": [
+              {
+                "event": "probe_started",
+                "axis": 3,
+                "offset_us": 80,
+                "vector_us": [
+                  0,
+                  -40,
+                  0,
+                  0,
+                  0,
+                  80
+                ],
+                "steps_per_leg": 140,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 14459,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778212084
+              },
+              {
+                "event": "probe_peak",
+                "axis": 3,
+                "offset_us": 80,
+                "vector_us": [
+                  0,
+                  -40,
+                  0,
+                  0,
+                  0,
+                  80
+                ],
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 14599,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1312,
+                    1537,
+                    1574,
+                    1508,
+                    1580,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778220472
+              },
+              {
+                "event": "probe_complete",
+                "axis": 3,
+                "vector_us": [
+                  0,
+                  -40,
+                  0,
+                  0,
+                  0,
+                  80
+                ],
+                "offset_us": 80,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 14739,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778230875
+              }
+            ],
+            "views": {
+              "front": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_i\\stage-review-3-1791778212084\\front.jpg",
+                "frames": [
+                  {
+                    "camera": "front",
+                    "file": "front_1791778211911731600.jpg",
+                    "host_unix_ns": 1791778211911731600,
+                    "frame_id": "session-20261012-081336-70556",
+                    "age_ms": 26,
+                    "sha256": "8a251c92720551337f7735d594b36134e0290bc24c2520d7c19268f78ee1a9d3"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778221302354100.jpg",
+                    "host_unix_ns": 1791778221302354100,
+                    "frame_id": "session-20261012-081336-70602",
+                    "age_ms": 174,
+                    "sha256": "7c5426ff0c61592c86871d42ac7e270e22bd2fa72777290a8cab2b0090770868"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778231145053300.jpg",
+                    "host_unix_ns": 1791778231145053300,
+                    "frame_id": "session-20261012-081336-70651",
+                    "age_ms": 166,
+                    "sha256": "e9cecbdbf90dc8920041cff0c756c2c32e3b7532f44db1fa611b75901c522801"
+                  }
+                ],
+                "person_detail": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_i\\stage-review-3-1791778212084\\person-detail.jpg"
+              },
+              "top": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_i\\stage-review-3-1791778212084\\top.jpg",
+                "frames": [
+                  {
+                    "camera": "top",
+                    "file": "top_1791778211919270700.jpg",
+                    "host_unix_ns": 1791778211919270700,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-67147",
+                    "age_ms": 14,
+                    "sha256": "4cdaacfe993593ec5d86b1ae5d7e7440cf8dc9bd4b7f5e6d67e5fef78985a6e0"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778221301255700.jpg",
+                    "host_unix_ns": 1791778221301255700,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-67193",
+                    "age_ms": 187,
+                    "sha256": "e6ddc0258a9a507c303df2e37b9fe8def12cc139550b30eab5467b4d655d03dc"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778231143290200.jpg",
+                    "host_unix_ns": 1791778231143290200,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-67243",
+                    "age_ms": 31,
+                    "sha256": "42be3a9f0250fe568c9cb47e9c3928c557b703b3827d61fe94d6ed374736ab24"
+                  }
+                ]
+              }
+            }
+          },
+          "body_appearance": {
+            "selection": ".review_work\\loaded_calibration_20261012\\person_bilateral_i\\stage-review-3-1791778212084\\selection.json",
+            "stage_id": 3,
+            "vector_us": [
+              0,
+              -40,
+              0,
+              0,
+              0,
+              80
+            ],
+            "parts": {
+              "upper_torso": {
+                "center_pixel": [
+                  221,
+                  184
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 9,
+                  "dx": 8,
+                  "dy": 5,
+                  "ncc": 0.8874,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 0,
+                  "dx": 1,
+                  "dy": 1,
+                  "ncc": 0.9805,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              },
+              "waist_clothing": {
+                "center_pixel": [
+                  221,
+                  211
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 10,
+                  "dy": 6,
+                  "ncc": 0.9526,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": -3,
+                  "dx": 2,
+                  "dy": 1,
+                  "ncc": 0.9582,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              }
+            },
+            "interpretation": "Rigid appearance change only; fabric/depth/joint motion may break this model",
+            "verified_joint_angles": false,
+            "metric_calibration": false
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "person-bilateral-head-20261012-j",
+      "plan_sha256": "543ac287e1911ef31a4e61b4f9b1f32acf8c4302cba410d5fd0b6c8b57c78754",
+      "stages_us": [
+        [
+          0,
+          -20,
+          10,
+          0,
+          0,
+          40
+        ],
+        [
+          0,
+          -40,
+          20,
+          0,
+          0,
+          80
+        ],
+        [
+          0,
+          -40,
+          40,
+          0,
+          0,
+          80
+        ]
+      ],
+      "actual_demo_completed": false,
+      "previous_held_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 15441,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "previous_off_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 15442,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "normal_frame_stop": true,
+      "samples": [
+        {
+          "selection": ".review_work/loaded_calibration_20261012/person_bilateral_j/stage-review-1-1791778399881/selection.json",
+          "sample": {
+            "axis": 1,
+            "offset_us": 40,
+            "events": [
+              {
+                "event": "probe_started",
+                "axis": 1,
+                "offset_us": 40,
+                "vector_us": [
+                  0,
+                  -20,
+                  10,
+                  0,
+                  0,
+                  40
+                ],
+                "steps_per_leg": 70,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 14741,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778399881
+              },
+              {
+                "event": "probe_peak",
+                "axis": 1,
+                "offset_us": 40,
+                "vector_us": [
+                  0,
+                  -20,
+                  10,
+                  0,
+                  0,
+                  40
+                ],
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 14811,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1332,
+                    1547,
+                    1574,
+                    1508,
+                    1540,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778404087
+              },
+              {
+                "event": "probe_complete",
+                "axis": 1,
+                "vector_us": [
+                  0,
+                  -20,
+                  10,
+                  0,
+                  0,
+                  40
+                ],
+                "offset_us": 40,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 14881,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778410287
+              }
+            ],
+            "views": {
+              "front": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_j\\stage-review-1-1791778399881\\front.jpg",
+                "frames": [
+                  {
+                    "camera": "front",
+                    "file": "front_1791778399695852800.jpg",
+                    "host_unix_ns": 1791778399695852800,
+                    "frame_id": "session-20261012-081336-71490",
+                    "age_ms": 20,
+                    "sha256": "68ecea09d500e163d0e51ac619d651fa199757b6ea643cea3a0bff4970f256bb"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778404847812000.jpg",
+                    "host_unix_ns": 1791778404847812000,
+                    "frame_id": "session-20261012-081336-71515",
+                    "age_ms": 146,
+                    "sha256": "9cb049c0380b11b85c0de6faafb7c7357252ecf50d6fc0bbdfa5d25dbb59541d"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778410403934600.jpg",
+                    "host_unix_ns": 1791778410403934600,
+                    "frame_id": "session-20261012-081336-71543",
+                    "age_ms": 71,
+                    "sha256": "ec8011f63deacd9673dff26efc39dba368b72004a98e23fe99e13d2f18a46206"
+                  }
+                ],
+                "person_detail": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_j\\stage-review-1-1791778399881\\person-detail.jpg"
+              },
+              "top": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_j\\stage-review-1-1791778399881\\top.jpg",
+                "frames": [
+                  {
+                    "camera": "top",
+                    "file": "top_1791778399702911200.jpg",
+                    "host_unix_ns": 1791778399702911200,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-68085",
+                    "age_ms": 187,
+                    "sha256": "81d972e8436dfc0cb64fcfb0e07ea16ef9de90aca9957b045bbbabd0a166cc1e"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778404845527400.jpg",
+                    "host_unix_ns": 1791778404845527400,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-68111",
+                    "age_ms": 125,
+                    "sha256": "ec9debd7eb669b4b6f9cee397afc699ae50ac49d8995dbbc8ef39df4c110f84a"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778410411527800.jpg",
+                    "host_unix_ns": 1791778410411527800,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-68139",
+                    "age_ms": 93,
+                    "sha256": "2eac9f43a10e3f8d75b401220b12ac9ec9fa035ee213c7798153d4b9126f40f7"
+                  }
+                ]
+              }
+            }
+          },
+          "body_appearance": {
+            "selection": ".review_work\\loaded_calibration_20261012\\person_bilateral_j\\stage-review-1-1791778399881\\selection.json",
+            "stage_id": 1,
+            "vector_us": [
+              0,
+              -20,
+              10,
+              0,
+              0,
+              40
+            ],
+            "parts": {
+              "upper_torso": {
+                "center_pixel": [
+                  221,
+                  184
+                ],
+                "peak": {
+                  "rotation_ccw_deg": -3,
+                  "dx": -3,
+                  "dy": 1,
+                  "ncc": 0.9263,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 0,
+                  "dx": 1,
+                  "dy": 1,
+                  "ncc": 0.9605,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              },
+              "waist_clothing": {
+                "center_pixel": [
+                  221,
+                  211
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 0,
+                  "dx": -5,
+                  "dy": 1,
+                  "ncc": 0.9566,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 0,
+                  "dx": 2,
+                  "dy": 1,
+                  "ncc": 0.9615,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              }
+            },
+            "interpretation": "Rigid appearance change only; fabric/depth/joint motion may break this model",
+            "verified_joint_angles": false,
+            "metric_calibration": false
+          }
+        },
+        {
+          "selection": ".review_work/loaded_calibration_20261012/person_bilateral_j/stage-review-2-1791778467640/selection.json",
+          "sample": {
+            "axis": 2,
+            "offset_us": 80,
+            "events": [
+              {
+                "event": "probe_started",
+                "axis": 2,
+                "offset_us": 80,
+                "vector_us": [
+                  0,
+                  -40,
+                  20,
+                  0,
+                  0,
+                  80
+                ],
+                "steps_per_leg": 140,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 14881,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778467640
+              },
+              {
+                "event": "probe_peak",
+                "axis": 2,
+                "offset_us": 80,
+                "vector_us": [
+                  0,
+                  -40,
+                  20,
+                  0,
+                  0,
+                  80
+                ],
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 15021,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1312,
+                    1557,
+                    1574,
+                    1508,
+                    1580,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778476091
+              },
+              {
+                "event": "probe_complete",
+                "axis": 2,
+                "vector_us": [
+                  0,
+                  -40,
+                  20,
+                  0,
+                  0,
+                  80
+                ],
+                "offset_us": 80,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 15161,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778486500
+              }
+            ],
+            "views": {
+              "front": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_j\\stage-review-2-1791778467640\\front.jpg",
+                "frames": [
+                  {
+                    "camera": "front",
+                    "file": "front_1791778467567447600.jpg",
+                    "host_unix_ns": 1791778467567447600,
+                    "frame_id": "session-20261012-081336-71827",
+                    "age_ms": 132,
+                    "sha256": "480a108c3dc7dfc3184855fad5e786076acfdc5b49f36833543bb04f1504d6f4"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778476923462400.jpg",
+                    "host_unix_ns": 1791778476923462400,
+                    "frame_id": "session-20261012-081336-71874",
+                    "age_ms": 33,
+                    "sha256": "0d93fcbfe03592540c04b6e97b618e11c73717940313762c09a18a91045374b0"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778486780986100.jpg",
+                    "host_unix_ns": 1791778486780986100,
+                    "frame_id": "session-20261012-081336-71923",
+                    "age_ms": 44,
+                    "sha256": "cd8ef3090a173abff6895e3e93c29e438b2642b9ef8ced71ce783c325cc762dd"
+                  }
+                ],
+                "person_detail": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_j\\stage-review-2-1791778467640\\person-detail.jpg"
+              },
+              "top": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_j\\stage-review-2-1791778467640\\top.jpg",
+                "frames": [
+                  {
+                    "camera": "top",
+                    "file": "top_1791778467566691100.jpg",
+                    "host_unix_ns": 1791778467566691100,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-68425",
+                    "age_ms": 47,
+                    "sha256": "1127e049ce2dea1f99d5cdb4b7a67a23aba7b6773af34cd7bf6e6baa470daffa"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778476921964100.jpg",
+                    "host_unix_ns": 1791778476921964100,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-68471",
+                    "age_ms": 202,
+                    "sha256": "1c33de2461ec199632f15d38b9baa4ca6281bc0509f643da4909dbbe6c86ef70"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778486769444500.jpg",
+                    "host_unix_ns": 1791778486769444500,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-68521",
+                    "age_ms": 46,
+                    "sha256": "30932059a9d01f19fa5c089580194dc5d1cd1d138ada713a1eefffe0b9938e64"
+                  }
+                ]
+              }
+            }
+          },
+          "body_appearance": {
+            "selection": ".review_work\\loaded_calibration_20261012\\person_bilateral_j\\stage-review-2-1791778467640\\selection.json",
+            "stage_id": 2,
+            "vector_us": [
+              0,
+              -40,
+              20,
+              0,
+              0,
+              80
+            ],
+            "parts": {
+              "upper_torso": {
+                "center_pixel": [
+                  221,
+                  184
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 6,
+                  "dx": 10,
+                  "dy": 6,
+                  "ncc": 0.9152,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 0,
+                  "dx": 1,
+                  "dy": 1,
+                  "ncc": 0.9647,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              },
+              "waist_clothing": {
+                "center_pixel": [
+                  221,
+                  211
+                ],
+                "peak": {
+                  "rotation_ccw_deg": -3,
+                  "dx": 12,
+                  "dy": 7,
+                  "ncc": 0.9559,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 0,
+                  "dx": 1,
+                  "dy": 1,
+                  "ncc": 0.9587,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              }
+            },
+            "interpretation": "Rigid appearance change only; fabric/depth/joint motion may break this model",
+            "verified_joint_angles": false,
+            "metric_calibration": false
+          }
+        },
+        {
+          "selection": ".review_work/loaded_calibration_20261012/person_bilateral_j/stage-review-3-1791778532948/selection.json",
+          "sample": {
+            "axis": 3,
+            "offset_us": 80,
+            "events": [
+              {
+                "event": "probe_started",
+                "axis": 3,
+                "offset_us": 80,
+                "vector_us": [
+                  0,
+                  -40,
+                  40,
+                  0,
+                  0,
+                  80
+                ],
+                "steps_per_leg": 140,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 15161,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778532948
+              },
+              {
+                "event": "probe_peak",
+                "axis": 3,
+                "offset_us": 80,
+                "vector_us": [
+                  0,
+                  -40,
+                  40,
+                  0,
+                  0,
+                  80
+                ],
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 15301,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1312,
+                    1577,
+                    1574,
+                    1508,
+                    1580,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778541365
+              },
+              {
+                "event": "probe_complete",
+                "axis": 3,
+                "vector_us": [
+                  0,
+                  -40,
+                  40,
+                  0,
+                  0,
+                  80
+                ],
+                "offset_us": 80,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 15441,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778551784
+              }
+            ],
+            "views": {
+              "front": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_j\\stage-review-3-1791778532948\\front.jpg",
+                "frames": [
+                  {
+                    "camera": "front",
+                    "file": "front_1791778532854687200.jpg",
+                    "host_unix_ns": 1791778532854687200,
+                    "frame_id": "session-20261012-081336-72152",
+                    "age_ms": 72,
+                    "sha256": "9d4af72fdab750b9d6d2f28511fa05a9dfb657ec5a4f2139275f7a288df4290a"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778542138877500.jpg",
+                    "host_unix_ns": 1791778542138877500,
+                    "frame_id": "session-20261012-081336-72198",
+                    "age_ms": 102,
+                    "sha256": "1173c1a208989ef9fe187ccf88962a15925d62930989578a4fc4a4aeaa7662a8"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778552030251100.jpg",
+                    "host_unix_ns": 1791778552030251100,
+                    "frame_id": "session-20261012-081336-72247",
+                    "age_ms": 144,
+                    "sha256": "57f220ec30b84fffda67458a2f86dcef98a0690171d775cdc882997eeaa1b5e7"
+                  }
+                ],
+                "person_detail": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_j\\stage-review-3-1791778532948\\person-detail.jpg"
+              },
+              "top": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_j\\stage-review-3-1791778532948\\top.jpg",
+                "frames": [
+                  {
+                    "camera": "top",
+                    "file": "top_1791778532842586600.jpg",
+                    "host_unix_ns": 1791778532842586600,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-68751",
+                    "age_ms": 125,
+                    "sha256": "94975ff6247ffb2a562b5ffa9d08ed51f9da6aadeee5dffea986c233ebc40e26"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778542127585900.jpg",
+                    "host_unix_ns": 1791778542127585900,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-68798",
+                    "age_ms": 14,
+                    "sha256": "e9d33d63f16cf7bcd32fdffc1581a6847cd82344fc070eb7b9aa8125c581c3bf"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778552029501600.jpg",
+                    "host_unix_ns": 1791778552029501600,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-68847",
+                    "age_ms": 110,
+                    "sha256": "5758ff35fbace7ffe2a489a3c08accf1d41fdffd53369a12dd4bb9da38e25861"
+                  }
+                ]
+              }
+            }
+          },
+          "body_appearance": {
+            "selection": ".review_work\\loaded_calibration_20261012\\person_bilateral_j\\stage-review-3-1791778532948\\selection.json",
+            "stage_id": 3,
+            "vector_us": [
+              0,
+              -40,
+              40,
+              0,
+              0,
+              80
+            ],
+            "parts": {
+              "upper_torso": {
+                "center_pixel": [
+                  221,
+                  184
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 0,
+                  "dx": 15,
+                  "dy": 5,
+                  "ncc": 0.8793,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 0,
+                  "dx": 1,
+                  "dy": 1,
+                  "ncc": 0.9704,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              },
+              "waist_clothing": {
+                "center_pixel": [
+                  221,
+                  211
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 16,
+                  "dy": 5,
+                  "ncc": 0.917,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 0,
+                  "dy": 1,
+                  "ncc": 0.9513,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              }
+            },
+            "interpretation": "Rigid appearance change only; fabric/depth/joint motion may break this model",
+            "verified_joint_angles": false,
+            "metric_calibration": false
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "person-bilateral-demo-20261012-k",
+      "plan_sha256": "3ffb993446eb57b7205f9ba84bf42ad8d34cf30cae48c7ba5642ca16dc51bb29",
+      "stages_us": [
+        [
+          0,
+          -40,
+          40,
+          0,
+          0,
+          80
+        ]
+      ],
+      "actual_demo_completed": true,
+      "previous_held_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 16563,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "previous_off_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 16564,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "normal_frame_stop": true,
+      "samples": [
+        {
+          "selection": ".review_work/loaded_calibration_20261012/person_bilateral_k/stage-review-1-1791778715369/selection.json",
+          "sample": {
+            "axis": 1,
+            "offset_us": 80,
+            "events": [
+              {
+                "event": "probe_started",
+                "axis": 1,
+                "offset_us": 80,
+                "vector_us": [
+                  0,
+                  -40,
+                  40,
+                  0,
+                  0,
+                  80
+                ],
+                "steps_per_leg": 140,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 15443,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778715369
+              },
+              {
+                "event": "probe_peak",
+                "axis": 1,
+                "offset_us": 80,
+                "vector_us": [
+                  0,
+                  -40,
+                  40,
+                  0,
+                  0,
+                  80
+                ],
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 15583,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1312,
+                    1577,
+                    1574,
+                    1508,
+                    1580,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778723790
+              },
+              {
+                "event": "probe_complete",
+                "axis": 1,
+                "vector_us": [
+                  0,
+                  -40,
+                  40,
+                  0,
+                  0,
+                  80
+                ],
+                "offset_us": 80,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 15723,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778734181
+              }
+            ],
+            "views": {
+              "front": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778715369\\front.jpg",
+                "frames": [
+                  {
+                    "camera": "front",
+                    "file": "front_1791778715185806400.jpg",
+                    "host_unix_ns": 1791778715185806400,
+                    "frame_id": "session-20261012-081336-73059",
+                    "age_ms": 10,
+                    "sha256": "a0a943fec93bb1276c1fbc8f048d13b53dd0b7972f15ef6fac492b80e768ee43"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778724577224300.jpg",
+                    "host_unix_ns": 1791778724577224300,
+                    "frame_id": "session-20261012-081336-73105",
+                    "age_ms": 156,
+                    "sha256": "340aa5db9d1370f6cfaf5e6f202b8263883e36313636eb1bb04a28910b4e7654"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778734327629000.jpg",
+                    "host_unix_ns": 1791778734327629000,
+                    "frame_id": "session-20261012-081336-73154",
+                    "age_ms": 57,
+                    "sha256": "14d7223f17adc05d2a8355f8901fbe28e33c77850455c481b9018add7f2f3d1a"
+                  }
+                ],
+                "person_detail": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778715369\\person-detail.jpg"
+              },
+              "top": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778715369\\top.jpg",
+                "frames": [
+                  {
+                    "camera": "top",
+                    "file": "top_1791778715182791200.jpg",
+                    "host_unix_ns": 1791778715182791200,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-69663",
+                    "age_ms": 62,
+                    "sha256": "c80a6b5938c2dc6e3c58f84081ac01600aaaf8289555db6a9e3b6047aed15cbe"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778724565406300.jpg",
+                    "host_unix_ns": 1791778724565406300,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-69710",
+                    "age_ms": 47,
+                    "sha256": "79e5bcbe1ccf2d7832c256588a077c25c8764d8cbd2e8e8553ad00baf237579d"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778734315565200.jpg",
+                    "host_unix_ns": 1791778734315565200,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-69759",
+                    "age_ms": 0,
+                    "sha256": "7c4512d9eaa9a600c124d5a75e50ce85291059142b8fff2feb56a2ae86afa20a"
+                  }
+                ]
+              }
+            }
+          },
+          "body_appearance": {
+            "selection": ".review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778715369\\selection.json",
+            "stage_id": 1,
+            "vector_us": [
+              0,
+              -40,
+              40,
+              0,
+              0,
+              80
+            ],
+            "parts": {
+              "upper_torso": {
+                "center_pixel": [
+                  221,
+                  184
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 16,
+                  "dy": 5,
+                  "ncc": 0.8966,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 0,
+                  "dx": -1,
+                  "dy": 1,
+                  "ncc": 0.9825,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              },
+              "waist_clothing": {
+                "center_pixel": [
+                  221,
+                  211
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 18,
+                  "dy": 6,
+                  "ncc": 0.9645,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 3,
+                  "dx": -1,
+                  "dy": 1,
+                  "ncc": 0.9741,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              }
+            },
+            "interpretation": "Rigid appearance change only; fabric/depth/joint motion may break this model",
+            "verified_joint_angles": false,
+            "metric_calibration": false
+          }
+        },
+        {
+          "selection": ".review_work/loaded_calibration_20261012/person_bilateral_k/stage-review-1-1791778803580/selection.json",
+          "sample": {
+            "axis": 1,
+            "offset_us": 80,
+            "events": [
+              {
+                "event": "probe_started",
+                "axis": 1,
+                "offset_us": 80,
+                "vector_us": [
+                  0,
+                  -40,
+                  40,
+                  0,
+                  0,
+                  80
+                ],
+                "steps_per_leg": 140,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 15723,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778803580
+              },
+              {
+                "event": "probe_peak",
+                "axis": 1,
+                "offset_us": 80,
+                "vector_us": [
+                  0,
+                  -40,
+                  40,
+                  0,
+                  0,
+                  80
+                ],
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 15863,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1312,
+                    1577,
+                    1574,
+                    1508,
+                    1580,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778811994
+              },
+              {
+                "event": "probe_complete",
+                "axis": 1,
+                "vector_us": [
+                  0,
+                  -40,
+                  40,
+                  0,
+                  0,
+                  80
+                ],
+                "offset_us": 80,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 16003,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778822401
+              }
+            ],
+            "views": {
+              "front": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778803580\\front.jpg",
+                "frames": [
+                  {
+                    "camera": "front",
+                    "file": "front_1791778803442708400.jpg",
+                    "host_unix_ns": 1791778803442708400,
+                    "frame_id": "session-20261012-081336-73498",
+                    "age_ms": 10,
+                    "sha256": "723a79a6200804f000335b9a1d86bc411be0e7dde2feb457158bb63f89257205"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778812818285400.jpg",
+                    "host_unix_ns": 1791778812818285400,
+                    "frame_id": "session-20261012-081336-73544",
+                    "age_ms": 135,
+                    "sha256": "55523e7f298046b68ea1e4f45895ed79b4594e451fde57ca17c998268d21d79e"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778822650649300.jpg",
+                    "host_unix_ns": 1791778822650649300,
+                    "frame_id": "session-20261012-081336-73593",
+                    "age_ms": 112,
+                    "sha256": "b0612c4058a040ba7e4637bc6c907a2eb703e6dbbba125660eefc9c94719aecc"
+                  }
+                ],
+                "person_detail": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778803580\\person-detail.jpg"
+              },
+              "top": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778803580\\top.jpg",
+                "frames": [
+                  {
+                    "camera": "top",
+                    "file": "top_1791778803441198200.jpg",
+                    "host_unix_ns": 1791778803441198200,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-70104",
+                    "age_ms": 125,
+                    "sha256": "5e325adf85e2711bce19be2c187184ba754681aeb189bd2ebb5b14504342b257"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778812807099100.jpg",
+                    "host_unix_ns": 1791778812807099100,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-70151",
+                    "age_ms": 93,
+                    "sha256": "5f2219a7ddded1a57483b0a4b6c4e7e5fa4101677a0f95473df6ddb656edda90"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778822648875300.jpg",
+                    "host_unix_ns": 1791778822648875300,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-70200",
+                    "age_ms": 125,
+                    "sha256": "05871faed0ac3d446fc2c5c019abdba6d168d3b5edf0bbe7989c5c9be2b3e351"
+                  }
+                ]
+              }
+            }
+          },
+          "body_appearance": {
+            "selection": ".review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778803580\\selection.json",
+            "stage_id": 1,
+            "vector_us": [
+              0,
+              -40,
+              40,
+              0,
+              0,
+              80
+            ],
+            "parts": {
+              "upper_torso": {
+                "center_pixel": [
+                  221,
+                  184
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 16,
+                  "dy": 6,
+                  "ncc": 0.8834,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": -3,
+                  "dx": 1,
+                  "dy": 1,
+                  "ncc": 0.9518,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              },
+              "waist_clothing": {
+                "center_pixel": [
+                  221,
+                  211
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 17,
+                  "dy": 6,
+                  "ncc": 0.9659,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 2,
+                  "dy": 1,
+                  "ncc": 0.9573,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              }
+            },
+            "interpretation": "Rigid appearance change only; fabric/depth/joint motion may break this model",
+            "verified_joint_angles": false,
+            "metric_calibration": false
+          }
+        },
+        {
+          "selection": ".review_work/loaded_calibration_20261012/person_bilateral_k/stage-review-1-1791778822448/selection.json",
+          "sample": {
+            "axis": 1,
+            "offset_us": 80,
+            "events": [
+              {
+                "event": "probe_started",
+                "axis": 1,
+                "offset_us": 80,
+                "vector_us": [
+                  0,
+                  -40,
+                  40,
+                  0,
+                  0,
+                  80
+                ],
+                "steps_per_leg": 140,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 16003,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778822448
+              },
+              {
+                "event": "probe_peak",
+                "axis": 1,
+                "offset_us": 80,
+                "vector_us": [
+                  0,
+                  -40,
+                  40,
+                  0,
+                  0,
+                  80
+                ],
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 16143,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1312,
+                    1577,
+                    1574,
+                    1508,
+                    1580,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778830812
+              },
+              {
+                "event": "probe_complete",
+                "axis": 1,
+                "vector_us": [
+                  0,
+                  -40,
+                  40,
+                  0,
+                  0,
+                  80
+                ],
+                "offset_us": 80,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 16283,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778841214
+              }
+            ],
+            "views": {
+              "front": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778822448\\front.jpg",
+                "frames": [
+                  {
+                    "camera": "front",
+                    "file": "front_1791778822314397800.jpg",
+                    "host_unix_ns": 1791778822314397800,
+                    "frame_id": "session-20261012-081336-73591",
+                    "age_ms": 177,
+                    "sha256": "cbde0f4d0cb8658f3e4e3fb18868ed5d2992b26b2497f78f36b7e59c292b05cd"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778831638741200.jpg",
+                    "host_unix_ns": 1791778831638741200,
+                    "frame_id": "session-20261012-081336-73638",
+                    "age_ms": 48,
+                    "sha256": "cc5b85f1fc50124be5c9798f6311cf98214bb46ca8c721955c359f49e5be7d9e"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778841335443600.jpg",
+                    "host_unix_ns": 1791778841335443600,
+                    "frame_id": "session-20261012-081336-73686",
+                    "age_ms": 93,
+                    "sha256": "ca5e56b4f7f2b87257fefb90c73fcb56de99505c1413c4d5d7dda81d7f0fae6e"
+                  }
+                ],
+                "person_detail": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778822448\\person-detail.jpg"
+              },
+              "top": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778822448\\top.jpg",
+                "frames": [
+                  {
+                    "camera": "top",
+                    "file": "top_1791778822311793300.jpg",
+                    "host_unix_ns": 1791778822311793300,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-70198",
+                    "age_ms": 203,
+                    "sha256": "5ece0a26dedbcb11dcdf1d220b0972496c742901e3c8915d94ebf116937719aa"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778831637223300.jpg",
+                    "host_unix_ns": 1791778831637223300,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-70245",
+                    "age_ms": 125,
+                    "sha256": "df2a452f025824621651f2f2025b1d66025802fa22e9f2e65d3ffa52a0c4d8f8"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778841332660400.jpg",
+                    "host_unix_ns": 1791778841332660400,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-70294",
+                    "age_ms": 14,
+                    "sha256": "effffabf49aaa73c1f53fc6bf68a2390cfb63f139fa4cccd7cf8e9339f47adfb"
+                  }
+                ]
+              }
+            }
+          },
+          "body_appearance": {
+            "selection": ".review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778822448\\selection.json",
+            "stage_id": 1,
+            "vector_us": [
+              0,
+              -40,
+              40,
+              0,
+              0,
+              80
+            ],
+            "parts": {
+              "upper_torso": {
+                "center_pixel": [
+                  221,
+                  184
+                ],
+                "peak": {
+                  "rotation_ccw_deg": -3,
+                  "dx": 12,
+                  "dy": 3,
+                  "ncc": 0.8594,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 0,
+                  "dx": -1,
+                  "dy": -1,
+                  "ncc": 0.9733,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              },
+              "waist_clothing": {
+                "center_pixel": [
+                  221,
+                  211
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 14,
+                  "dy": 4,
+                  "ncc": 0.9253,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 0,
+                  "dx": -2,
+                  "dy": -1,
+                  "ncc": 0.9357,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              }
+            },
+            "interpretation": "Rigid appearance change only; fabric/depth/joint motion may break this model",
+            "verified_joint_angles": false,
+            "metric_calibration": false
+          }
+        },
+        {
+          "selection": ".review_work/loaded_calibration_20261012/person_bilateral_k/stage-review-1-1791778841276/selection.json",
+          "sample": {
+            "axis": 1,
+            "offset_us": 80,
+            "events": [
+              {
+                "event": "probe_started",
+                "axis": 1,
+                "offset_us": 80,
+                "vector_us": [
+                  0,
+                  -40,
+                  40,
+                  0,
+                  0,
+                  80
+                ],
+                "steps_per_leg": 140,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 16283,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778841276
+              },
+              {
+                "event": "probe_peak",
+                "axis": 1,
+                "offset_us": 80,
+                "vector_us": [
+                  0,
+                  -40,
+                  40,
+                  0,
+                  0,
+                  80
+                ],
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 16423,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1312,
+                    1577,
+                    1574,
+                    1508,
+                    1580,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778849600
+              },
+              {
+                "event": "probe_complete",
+                "axis": 1,
+                "vector_us": [
+                  0,
+                  -40,
+                  40,
+                  0,
+                  0,
+                  80
+                ],
+                "offset_us": 80,
+                "state": {
+                  "identity": "SP10",
+                  "period_us": 20000,
+                  "clock_hz": 100000000,
+                  "enabled_mask": 63,
+                  "armed": true,
+                  "faults": 0,
+                  "sequence": 16563,
+                  "pending": false,
+                  "pulse_us": [
+                    1537,
+                    1352,
+                    1537,
+                    1574,
+                    1508,
+                    1500,
+                    1500,
+                    1426,
+                    1500,
+                    1500
+                  ],
+                  "position_feedback": null
+                },
+                "host_unix_ms": 1791778859995
+              }
+            ],
+            "views": {
+              "front": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778841276\\front.jpg",
+                "frames": [
+                  {
+                    "camera": "front",
+                    "file": "front_1791778841171297400.jpg",
+                    "host_unix_ns": 1791778841171297400,
+                    "frame_id": "session-20261012-081336-73685",
+                    "age_ms": 130,
+                    "sha256": "352f15112c3b44d520910754751deab96992df747f2ea7824dc9a9cbe6b2c146"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778850375446400.jpg",
+                    "host_unix_ns": 1791778850375446400,
+                    "frame_id": "session-20261012-081336-73731",
+                    "age_ms": 86,
+                    "sha256": "59d799bc4d97511b323d1d74728a1f75f7f547177405eeeecee10032a9e5fbb3"
+                  },
+                  {
+                    "camera": "front",
+                    "file": "front_1791778860180700800.jpg",
+                    "host_unix_ns": 1791778860180700800,
+                    "frame_id": "session-20261012-081336-73780",
+                    "age_ms": 33,
+                    "sha256": "0402a370aa94a5f8eb15397e477d8664e57e5b744cdc057372fd04503a02d74e"
+                  }
+                ],
+                "person_detail": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778841276\\person-detail.jpg"
+              },
+              "top": {
+                "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778841276\\top.jpg",
+                "frames": [
+                  {
+                    "camera": "top",
+                    "file": "top_1791778841168780000.jpg",
+                    "host_unix_ns": 1791778841168780000,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-70293",
+                    "age_ms": 62,
+                    "sha256": "029df9e4049d60385c4747e93f4ddb91fb352e0f58fa3923744e12d1339d74aa"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778850373945900.jpg",
+                    "host_unix_ns": 1791778850373945900,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-70339",
+                    "age_ms": 61,
+                    "sha256": "073b2970fd54e2367a8f101c290fde697a169ac9086e290a854de0d93af45d01"
+                  },
+                  {
+                    "camera": "top",
+                    "file": "top_1791778860178923600.jpg",
+                    "host_unix_ns": 1791778860178923600,
+                    "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-70388",
+                    "age_ms": 62,
+                    "sha256": "c4b8492a54dc9aacdca4728395609762c64e1ae5dc55dfcaf2dfc8b63e4b713c"
+                  }
+                ]
+              }
+            }
+          },
+          "body_appearance": {
+            "selection": ".review_work\\loaded_calibration_20261012\\person_bilateral_k\\stage-review-1-1791778841276\\selection.json",
+            "stage_id": 1,
+            "vector_us": [
+              0,
+              -40,
+              40,
+              0,
+              0,
+              80
+            ],
+            "parts": {
+              "upper_torso": {
+                "center_pixel": [
+                  221,
+                  184
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 14,
+                  "dy": 4,
+                  "ncc": 0.8803,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 2,
+                  "dy": 1,
+                  "ncc": 0.9732,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              },
+              "waist_clothing": {
+                "center_pixel": [
+                  221,
+                  211
+                ],
+                "peak": {
+                  "rotation_ccw_deg": 3,
+                  "dx": 15,
+                  "dy": 5,
+                  "ncc": 0.9659,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                },
+                "return": {
+                  "rotation_ccw_deg": 0,
+                  "dx": 3,
+                  "dy": 1,
+                  "ncc": 0.9674,
+                  "search_boundary_reached": false,
+                  "angle_boundary_reached": false,
+                  "usable_texture_match": true
+                }
+              }
+            },
+            "interpretation": "Rigid appearance change only; fabric/depth/joint motion may break this model",
+            "verified_joint_angles": false,
+            "metric_calibration": false
+          }
+        }
+      ]
+    }
+  ],
+  "camera_verification": {
+    "start": {
+      "front": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 168,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "front",
+          "file": "front_1791777986641649000.jpg",
+          "host_unix_ns": 1791777986641649000,
+          "frame_id": "session-20261012-081336-69435",
+          "age_ms": "168",
+          "image_size": [
+            640,
+            360
+          ],
+          "sha256": "eac2296ca61c9ef16970fc2b6fcf2355257244d931fc02fe5fde4a017a383a7b",
+          "captured_at": "2026-10-12T12:06:26.641649+08:00"
+        }
+      },
+      "top": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 186,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "top",
+          "file": "top_1791777986638130900.jpg",
+          "host_unix_ns": 1791777986638130900,
+          "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-66020",
+          "age_ms": "125",
+          "image_size": [
+            960,
+            540
+          ],
+          "sha256": "ae8fcaca8060cc343fba0ac939b691c7091ce6f1e0884ac461bad02b0e67468f",
+          "captured_at": "2026-10-12T12:06:26.638131+08:00"
+        }
+      }
+    },
+    "end": {
+      "front": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 202,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "front",
+          "file": "front_1791778973391483500.jpg",
+          "host_unix_ns": 1791778973391483500,
+          "frame_id": "session-20261012-081336-74343",
+          "age_ms": "38",
+          "image_size": [
+            640,
+            360
+          ],
+          "sha256": "78bc9474ddc7dbdc1e1dbc15fead98b0b22e4cd8d4872f2b4e70975ebcd48dda",
+          "captured_at": "2026-10-12T12:22:53.391483+08:00"
+        }
+      },
+      "top": {
+        "samples": 14,
+        "unique_frame_ids": 14,
+        "max_age_ms": 203,
+        "all_jpeg_decoded": true,
+        "selected": {
+          "camera": "top",
+          "file": "top_1791778973397759900.jpg",
+          "host_unix_ns": 1791778973397759900,
+          "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-70954",
+          "age_ms": "77",
+          "image_size": [
+            960,
+            540
+          ],
+          "sha256": "4c423ecd07a629f165576187dff5327289ccc5dd01907cdcca8b81ad1a495c94",
+          "captured_at": "2026-10-12T12:22:53.397760+08:00"
+        }
+      }
+    }
+  },
+  "whole_task_return_appearance": {
+    "upper_torso": {
+      "rotation_ccw_deg": 6,
+      "dx": 2,
+      "dy": 1,
+      "ncc": 0.973,
+      "search_boundary_reached": false,
+      "angle_boundary_reached": false,
+      "usable_texture_match": true
+    },
+    "waist_clothing": {
+      "rotation_ccw_deg": 3,
+      "dx": 3,
+      "dy": 2,
+      "ncc": 0.9752,
+      "search_boundary_reached": false,
+      "angle_boundary_reached": false,
+      "usable_texture_match": true
+    }
+  },
+  "recording": {
+    "directory": "camera_liveview/output/person-bilateral-20261012-k",
+    "demo_start_host_unix_ms": 1791778803617,
+    "demo_end_host_unix_ms": 1791778860058,
+    "clip_start_host_unix_ms": 1791778800617,
+    "clip_end_host_unix_ms": 1791778863058,
+    "duration_seconds": 62.44099998474121,
+    "audio_recorded": false,
+    "source": "Saved live JPEG frames, about 5 fps; aligned by host receipt time, not hardware-synchronized",
+    "output_fps": 25,
+    "frame_interpolation": false,
+    "frame_repeat_for_playback": true,
+    "cameras": {
+      "front": {
+        "source_unique_frames": 312,
+        "max_source_gap_seconds": 0.348128080368042,
+        "max_source_age_ms": 173
+      },
+      "top": {
+        "source_unique_frames": 313,
+        "max_source_gap_seconds": 0.3452894687652588,
+        "max_source_age_ms": 172
+      }
+    },
+    "files": [
+      {
+        "name": "front.mp4",
+        "sha256": "3d10b08da629290fee6c371aea8ed27a0eca854bdc08ee3893a7c2c58de3a7a2",
+        "bytes": 1961361,
+        "width": 640,
+        "height": 360,
+        "duration_seconds": 62.48,
+        "pixel_format": "yuvj420p",
+        "duration_delta_seconds": 0.039000015258785936,
+        "full_decode_passed": true
+      },
+      {
+        "name": "top.mp4",
+        "sha256": "4794c482b241c1d331703877a5e9b6912fb3eaac3659b30534aa22c7ba5a4c66",
+        "bytes": 10659450,
+        "width": 960,
+        "height": 540,
+        "duration_seconds": 62.48,
+        "pixel_format": "yuvj420p",
+        "duration_delta_seconds": 0.039000015258785936,
+        "full_decode_passed": true
+      },
+      {
+        "name": "dual-view.mp4",
+        "sha256": "13b02751b96639e85e5f2e101ae4fda938cd678c4060d9f954475d66e1f9e631",
+        "bytes": 12920555,
+        "width": 1920,
+        "height": 540,
+        "duration_seconds": 62.48,
+        "pixel_format": "yuvj420p",
+        "duration_delta_seconds": 0.039000015258785936,
+        "full_decode_passed": true
+      }
+    ]
+  },
+  "last_independent_read_only_sequence": 16564,
+  "findings": [
+    "Opposite command signs are needed for both hands to move down together",
+    "No-head-follow large path produced about 6 degrees of torso-relative-waist appearance change",
+    "Head follow +20 us did not improve the large path; +40 us reduced relative appearance tilt to about 3 degrees in the comparison",
+    "Whole-body translation remains; head yaw compensation does not control vertical body position",
+    "Three consecutive selected round trips were performed and dual views reviewed",
+    "Operator observed one arm staying extended; synchronized commands have not yet established satisfactory bilateral elbow articulation"
+  ],
+  "limitations": [
+    "Image texture rotation is not an anatomical joint angle; angular search is quantized at 3 degrees",
+    "Command synchronization does not guarantee equal real wrist heights or joint angles",
+    "No force or shaft feedback, no current precise image-to-mm map, no full multi-axis envelope",
+    "Reviewed paths apply to current attachments and physical reference only"
+  ]
+}
