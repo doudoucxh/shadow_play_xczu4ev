@@ -17,7 +17,9 @@ import sys
 import time
 
 # The board uses immutable, versioned /tmp modules; local tests use the source.
-if Path(__file__).with_name('person_visible_motion_session_20261012_r8.py').exists():
+if Path(__file__).with_name('person_visible_motion_session_20261012_r9.py').exists():
+    from person_visible_motion_session_20261012_r9 import VisibleSession, validate_plan as validate_reference
+elif Path(__file__).with_name('person_visible_motion_session_20261012_r8.py').exists():
     from person_visible_motion_session_20261012_r8 import VisibleSession, validate_plan as validate_reference
 elif Path(__file__).with_name('person_visible_motion_session_20261012_r7.py').exists():
     from person_visible_motion_session_20261012_r7 import VisibleSession, validate_plan as validate_reference

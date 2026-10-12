@@ -33,7 +33,7 @@ def validate_plan(plan, wall=None):
               'previous_normal_frame_stop', 'duration_seconds'}
     optional = {'motion_axes', 'head_pitch_diagnostic', 'head_support_reference_offset_us',
                 'lowered_hands_reference_offset_us', 'lowered_head_support_diagnostic',
-                'low_guard_head_follow'}
+                'low_guard_head_follow', 'intervening_tiger_centering_states'}
     if (not isinstance(plan, dict) or not fields <= set(plan) or set(plan)-fields-optional
             or plan['approval'] != APPROVAL):
         raise ValueError('Exact attended continuation receipt required')
@@ -85,14 +85,33 @@ def validate_plan(plan, wall=None):
     if (not isinstance(pulses, list) or len(pulses) != 10 or pulses[:6] != reference
             or any(type(v) is not int or not 500 <= v <= 2500 for v in pulses)):
         raise ValueError('Only the previous inspected person reference is allowed')
+    prior=off['pulse_us']
     if (plan['previous_normal_frame_stop'] is not True or held['enabled_mask'] != 63
             or held['armed'] is not True or off['enabled_mask'] != 0 or off['armed'] is not False
-            or held['pulse_us'] != pulses or off['pulse_us'] != pulses
+            or held['pulse_us'] != prior or prior[:6] != pulses[:6]
             or held['faults'] or held['pending'] or off['faults'] or off['pending']
             or type(plan['expected_sequence']) is not int
-            or off['sequence'] != plan['expected_sequence']
             or off['sequence'] != (held['sequence']+1) % 2**32):
         raise ValueError('Previous normal held-to-OFF transition not verified')
+    chain=plan.get('intervening_tiger_centering_states',[])
+    if chain:
+        if not isinstance(chain,list) or len(chain)!=5:
+            raise ValueError('Complete four-axis tiger centering plus normal OFF required')
+        previous=off
+        for i,state in enumerate(chain):
+            expected=previous['pulse_us'][:]
+            if i<4:expected[i+6]=1500
+            mask=((1<<(i+1))-1)<<6 if i<4 else 0
+            if (state['sequence']!=(previous['sequence']+1)%2**32 or state['pulse_us']!=expected
+                    or state['enabled_mask']!=mask or state['armed'] is not bool(mask)
+                    or state['faults'] or state['pending']):
+                raise ValueError('Intervening centering changed person state or broke the command chain')
+            previous=state
+        off=previous
+    elif 'intervening_tiger_centering_states' in plan:
+        raise ValueError('Empty intervening centering receipt')
+    if off['pulse_us']!=pulses or off['sequence']!=plan['expected_sequence']:
+        raise ValueError('Current OFF state does not match the verified continuation chain')
 
 
 class VisibleSession(RecoverySession):

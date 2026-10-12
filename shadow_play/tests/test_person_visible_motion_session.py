@@ -50,6 +50,22 @@ class VisibleTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):visible.run_session(self.d,self.emit,sleep=self.sleep)
         self.assertFalse(any(a==0x10 for a,v in self.reg.writes))
 
+    def test_verified_tiger_centering_can_intervene_without_rewriting_person_history(self):
+        p=copy.deepcopy(self.plan);previous=p['previous_off_state'];chain=[]
+        for i in range(5):
+            values=previous['pulse_us'][:]
+            if i<4:values[i+6]=1500
+            mask=((1<<(i+1))-1)<<6 if i<4 else 0
+            s=dict(previous,sequence=previous['sequence']+1,pulse_us=values,enabled_mask=mask,armed=bool(mask))
+            chain.append(s);previous=s
+        p.update(intervening_tiger_centering_states=chain,expected_sequence=previous['sequence'],expected_pulses_us=previous['pulse_us'])
+        visible.validate_plan(p,wall=lambda:1000)
+        for key,value in [('sequence',2000),('enabled_mask',65),('pulse_us',[1500]*10)]:
+            q=copy.deepcopy(p);q['intervening_tiger_centering_states'][0][key]=value
+            with self.assertRaises(ValueError):visible.validate_plan(q,wall=lambda:1000)
+        q=copy.deepcopy(p);q['intervening_tiger_centering_states']=[]
+        with self.assertRaises(ValueError):visible.validate_plan(q,wall=lambda:1000)
+
     def test_stage_changes_only_selected_axis_and_returns_without_rearming(self):
         self.resume();before=len(self.reg.writes)
         self.d.probe(6,120,self.emit,self.sleep)

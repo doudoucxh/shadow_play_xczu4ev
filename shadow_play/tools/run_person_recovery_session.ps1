@@ -52,7 +52,7 @@ try {
         if ($AttendedTigerCentering) {
             $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/tiger_center_session_20261012_r2.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-loaded-centering; echo RECOVERY_COMPLETE:$?; stty echo'
         } elseif ($AttendedLinkageComparison) {
-            $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_linkage_session_20261012_r13.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-linkage-comparison; echo RECOVERY_COMPLETE:$?; stty echo'
+            $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_linkage_session_20261012_r14.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-linkage-comparison; echo RECOVERY_COMPLETE:$?; stty echo'
         } else {
             $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_visible_motion_session_20261012_r4.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-unchanged-continuation; echo RECOVERY_COMPLETE:$?; stty echo'
         }

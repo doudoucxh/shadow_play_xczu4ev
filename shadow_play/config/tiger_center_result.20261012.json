@@ -1,0 +1,547 @@
+{
+  "date": "2026-10-12",
+  "session_id": "tiger-center-evening-r2-20261012",
+  "actor_sha256": "769a28bb10996a2546f7d834f68502c5a1d2e27e977d2194b7e093ebcee7fd28",
+  "events": [
+    {
+      "event": "reference_held",
+      "phase": "await_sequential_centering",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 26017,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "position_feedback": null,
+      "incident_locks_removed": false,
+      "host_unix_ms": 1791808804011
+    },
+    {
+      "event": "axis_centered",
+      "axis": 7,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 64,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26018,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "position_feedback": null,
+      "startup_is_not_rate_limited": true,
+      "incident_locks_removed": false,
+      "host_unix_ms": 1791808829151
+    },
+    {
+      "event": "probe_complete",
+      "axis": 1,
+      "centered_servo": 7,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 64,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26018,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791808832139
+    },
+    {
+      "event": "axis_centered",
+      "axis": 8,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 192,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26019,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "position_feedback": null,
+      "startup_is_not_rate_limited": true,
+      "incident_locks_removed": false,
+      "host_unix_ms": 1791808862124
+    },
+    {
+      "event": "probe_complete",
+      "axis": 2,
+      "centered_servo": 8,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 192,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26019,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791808865125
+    },
+    {
+      "event": "axis_centered",
+      "axis": 9,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 448,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26020,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "position_feedback": null,
+      "startup_is_not_rate_limited": true,
+      "incident_locks_removed": false,
+      "host_unix_ms": 1791808905825
+    },
+    {
+      "event": "probe_complete",
+      "axis": 3,
+      "centered_servo": 9,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 448,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26020,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791808908805
+    },
+    {
+      "event": "axis_centered",
+      "axis": 10,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26021,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "position_feedback": null,
+      "startup_is_not_rate_limited": true,
+      "incident_locks_removed": false,
+      "host_unix_ms": 1791808970467
+    },
+    {
+      "event": "probe_complete",
+      "axis": 4,
+      "centered_servo": 10,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26021,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791808973452
+    },
+    {
+      "event": "center_reference_held",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26021,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "position_feedback": null,
+      "incident_locks_removed": false,
+      "host_unix_ms": 1791808973497
+    },
+    {
+      "event": "outputs_off",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 26022,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "normal_frame_stop": true,
+      "incident_locks_removed": false,
+      "host_unix_ms": 1791809033817
+    }
+  ],
+  "host_log_sha256": "085d3c6daeb423d04c152255930efd876ed5037cc6aff73511b0ac1d2c90b654",
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 26022,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "incident_locks_removed": false,
+  "position_feedback": null,
+  "old_tiger_paths_quarantined": true,
+  "automatic_replay_allowed": false,
+  "head_foot_axis_mapping": "requires_local_probe_confirmation",
+  "observations": [
+    "Axes 7..10 sequentially commanded to 1500 us under explicit loaded-centering authorization.",
+    "Axis 9 activation visibly moved the rod on the tiger head side; original semantic mapping is not assumed valid.",
+    "No visible collision in reviewed dual views; not a force measurement."
+  ],
+  "visual_reviews": [
+    {
+      "axis": 7,
+      "verification": {
+        "front": {
+          "samples": 5,
+          "unique_frame_ids": 5,
+          "max_age_ms": 65,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "front",
+            "file": "front_1791808833339595900.jpg",
+            "host_unix_ns": 1791808833339595900,
+            "frame_id": "session-20261012-203625-3655",
+            "age_ms": "30",
+            "image_size": [
+              640,
+              360
+            ],
+            "sha256": "592afe7b29725160f4d3e8b3009d4f1502eca82e4526e5c9bf1db25182ac2a07",
+            "captured_at": "2026-10-12T20:40:33.339596+08:00"
+          }
+        },
+        "top": {
+          "samples": 5,
+          "unique_frame_ids": 5,
+          "max_age_ms": 62,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "top",
+            "file": "top_1791808833334794100.jpg",
+            "host_unix_ns": 1791808833334794100,
+            "frame_id": "b8e2759a07db488bb0aadfebe32b3543-3585",
+            "age_ms": "62",
+            "image_size": [
+              960,
+              540
+            ],
+            "sha256": "55f1dd13bffcc6c48fe90e18809d97d281a37f12ce92263896e7dc7d3c98e956",
+            "captured_at": "2026-10-12T20:40:33.334794+08:00"
+          }
+        }
+      },
+      "sha256": "3cbec3e695cb9749f9434fc4b9ab517b0135900f8627d7ae24c52b17c658c615"
+    },
+    {
+      "axis": 8,
+      "verification": {
+        "front": {
+          "samples": 5,
+          "unique_frame_ids": 5,
+          "max_age_ms": 60,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "front",
+            "file": "front_1791808866311625800.jpg",
+            "host_unix_ns": 1791808866311625800,
+            "frame_id": "session-20261012-203625-4146",
+            "age_ms": "60",
+            "image_size": [
+              640,
+              360
+            ],
+            "sha256": "7c5b304601a9d1af6d53593c0d865b3859e983e9b64a0a4cce79716f633a172b",
+            "captured_at": "2026-10-12T20:41:06.311626+08:00"
+          }
+        },
+        "top": {
+          "samples": 5,
+          "unique_frame_ids": 5,
+          "max_age_ms": 62,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "top",
+            "file": "top_1791808866297939700.jpg",
+            "host_unix_ns": 1791808866297939700,
+            "frame_id": "b8e2759a07db488bb0aadfebe32b3543-4080",
+            "age_ms": "31",
+            "image_size": [
+              960,
+              540
+            ],
+            "sha256": "70a98cf837c82035071af417ae4b770cdc00bed20d8815d679ffb3dbc2953029",
+            "captured_at": "2026-10-12T20:41:06.297940+08:00"
+          }
+        }
+      },
+      "sha256": "0274d101482dc09edd879cce390ab59e59975f7c56a294f2fc97acdfb35926f2"
+    },
+    {
+      "axis": 9,
+      "verification": {
+        "front": {
+          "samples": 5,
+          "unique_frame_ids": 5,
+          "max_age_ms": 49,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "front",
+            "file": "front_1791808910044787400.jpg",
+            "host_unix_ns": 1791808910044787400,
+            "frame_id": "session-20261012-203625-4799",
+            "age_ms": "12",
+            "image_size": [
+              640,
+              360
+            ],
+            "sha256": "3b6719d580ba31d07c1b499961593eb37637ba3d329f9f4b09824a65fc98c76c",
+            "captured_at": "2026-10-12T20:41:50.044787+08:00"
+          }
+        },
+        "top": {
+          "samples": 5,
+          "unique_frame_ids": 5,
+          "max_age_ms": 62,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "top",
+            "file": "top_1791808910042984500.jpg",
+            "host_unix_ns": 1791808910042984500,
+            "frame_id": "b8e2759a07db488bb0aadfebe32b3543-4736",
+            "age_ms": "30",
+            "image_size": [
+              960,
+              540
+            ],
+            "sha256": "ccefc627909aa0da9c781bd456fe60ca5dc1df43994bb294109bb1ee307856d1",
+            "captured_at": "2026-10-12T20:41:50.042984+08:00"
+          }
+        }
+      },
+      "sha256": "441c4e98db0c4233a2093b189dfc3219254ca2f8735729917e09a2296618da63"
+    },
+    {
+      "axis": 10,
+      "verification": {
+        "front": {
+          "samples": 9,
+          "unique_frame_ids": 9,
+          "max_age_ms": 64,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "front",
+            "file": "front_1791808975467491500.jpg",
+            "host_unix_ns": 1791808975467491500,
+            "frame_id": "session-20261012-203625-5774",
+            "age_ms": "33",
+            "image_size": [
+              640,
+              360
+            ],
+            "sha256": "672f84e3f2116364eb01fa702ffd7b95308d940dd1c81823d7077228c3012c55",
+            "captured_at": "2026-10-12T20:42:55.467492+08:00"
+          }
+        },
+        "top": {
+          "samples": 9,
+          "unique_frame_ids": 9,
+          "max_age_ms": 62,
+          "all_jpeg_decoded": true,
+          "selected": {
+            "camera": "top",
+            "file": "top_1791808975462138000.jpg",
+            "host_unix_ns": 1791808975462138000,
+            "frame_id": "b8e2759a07db488bb0aadfebe32b3543-5717",
+            "age_ms": "62",
+            "image_size": [
+              960,
+              540
+            ],
+            "sha256": "bf1161d91498242a03855eecd8f74c9feeb38b7e62b25b020c9ed38db0c871e9",
+            "captured_at": "2026-10-12T20:42:55.462138+08:00"
+          }
+        }
+      },
+      "sha256": "c59cec7e9b21b6b76a92ce188a9476395c73b4888e603afad35d6e20d812e923"
+    }
+  ]
+}
