@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "session_id": "person-head-diagnostic-20261012-f",
+  "pin": "G13",
+  "reference_us": 1574,
+  "target_us": 1614,
+  "reference_sequence": 9062,
+  "resume_sequence": 9063,
+  "completed_probes": [
+    {
+      "event": "probe_complete",
+      "axis": 4,
+      "offset_us": 40,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 9203,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791772442135
+    },
+    {
+      "event": "probe_complete",
+      "axis": 4,
+      "offset_us": 40,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 9343,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791772551758
+    }
+  ],
+  "program_sha256": "39de9a7255d179a0822343393b574a89313e15f766c641f27b41b147070feefa",
+  "plan_sha256": "34f2a95e1692253a25ea43c4d7cbee7a5daeb0756c7f29e0e3b83b8d81064b32",
+  "startup_camera_verification": {
+    "front": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 189,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "front",
+        "file": "front_1791772388329421600.jpg",
+        "host_unix_ns": 1791772388329421600,
+        "frame_id": "session-20261012-081336-41597",
+        "age_ms": "97",
+        "image_size": [
+          640,
+          360
+        ],
+        "sha256": "8af89f19af71549cdaeaa706f28cb212974814dacc914f23ee6f59743e892028",
+        "captured_at": "2026-10-12T10:33:08.329422+08:00"
+      }
+    },
+    "top": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 203,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "top",
+        "file": "top_1791772388334150800.jpg",
+        "host_unix_ns": 1791772388334150800,
+        "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-38028",
+        "age_ms": "203",
+        "image_size": [
+          960,
+          540
+        ],
+        "sha256": "60443349242dba14261414f458ceda5329edbe10bd331a267364b9b4ea41e741",
+        "captured_at": "2026-10-12T10:33:08.334151+08:00"
+      }
+    }
+  },
+  "normal_stop": {
+    "event": "outputs_off",
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 9344,
+      "pending": false,
+      "pulse_us": [
+        1537,
+        1352,
+        1537,
+        1574,
+        1508,
+        1500,
+        1500,
+        1426,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "normal_frame_stop": true,
+    "incident_locks_removed": false,
+    "host_unix_ms": 1791772662973
+  },
+  "stop_reason": "240-second attended deadline, completed normally before late finish request; RECOVERY_COMPLETE:0",
+  "independent_readback_sequence": 9344,
+  "independent_readback_log_sha256": "3694f990209c0885d06e3edccf38743db94bef299339d0a14c6f2b3cad1c0a20",
+  "other_nine_pulse_commands_changed": false,
+  "tiger_outputs_enabled": false,
+  "incident_locks_removed": false,
+  "physical_response_classification": "Weak small image response observed; does not establish shaft movement, hardware fault cause or usable vertical coordinate mapping",
+  "nominal_angle_is_measured_angle": false,
+  "automatic_replay_allowed": false,
+  "full_coordinate_calibration_complete": false,
+  "image_feature_diagnostic": "person_feature_diagnostic.20261012.json",
+  "recording": {
+    "demo_start_host_unix_ms": 1791772541408,
+    "demo_end_host_unix_ms": 1791772551805,
+    "clip_start_host_unix_ms": 1791772538408,
+    "clip_end_host_unix_ms": 1791772554805,
+    "duration_seconds": 16.397000074386597,
+    "audio_recorded": false,
+    "source": "Saved live JPEG frames, about 5 fps; aligned by host receipt time, not hardware-synchronized",
+    "output_fps": 25,
+    "frame_interpolation": false,
+    "frame_repeat_for_playback": true,
+    "cameras": {
+      "front": {
+        "source_unique_frames": 82,
+        "max_source_gap_seconds": 0.34761714935302734,
+        "max_source_age_ms": 174
+      },
+      "top": {
+        "source_unique_frames": 83,
+        "max_source_gap_seconds": 0.35609006881713867,
+        "max_source_age_ms": 172
+      }
+    },
+    "files": [
+      {
+        "name": "front.mp4",
+        "sha256": "59ebb3aabc2187b58fb3817714eadb8d03f23569cfe82525fb7a9f07238fc6d1",
+        "bytes": 625721,
+        "width": 640,
+        "height": 360,
+        "duration_seconds": 16.28,
+        "pixel_format": "yuvj420p",
+        "duration_delta_seconds": -0.11700007438659554,
+        "full_decode_passed": true
+      },
+      {
+        "name": "top.mp4",
+        "sha256": "6fc18ccbd9aacf487426ff1dd40ccaf0d0fcd9629aad35f8cd0b6919306ef73a",
+        "bytes": 2676991,
+        "width": 960,
+        "height": 540,
+        "duration_seconds": 16.4,
+        "pixel_format": "yuvj420p",
+        "duration_delta_seconds": 0.0029999256134018992,
+        "full_decode_passed": true
+      },
+      {
+        "name": "dual-view.mp4",
+        "sha256": "773f4d2dbb0669e210aa8827e5b77ae769b1de2c466090ce64c90ecd5ec92425",
+        "bytes": 3610405,
+        "width": 1920,
+        "height": 540,
+        "duration_seconds": 16.4,
+        "pixel_format": "yuvj420p",
+        "duration_delta_seconds": 0.0029999256134018992,
+        "full_decode_passed": true
+      }
+    ]
+  }
+}

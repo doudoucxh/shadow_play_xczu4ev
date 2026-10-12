@@ -1,0 +1,907 @@
+{
+  "schema_version": 1,
+  "method": "17x17 normalized texture correlation, +/-24 pixel search",
+  "image_size": [
+    640,
+    360
+  ],
+  "feature_points_are_verified_joints": false,
+  "metric_coordinates_calibrated": false,
+  "automatic_motion_allowed": false,
+  "limitations": [
+    "Texture matches can follow shadows, deformation or nearby similar patterns",
+    "Low quality or boundary matches must not be used as joint displacement",
+    "Pixel shifts do not establish millimeter mapping or a simultaneous-axis envelope"
+  ],
+  "records": [
+    {
+      "selection": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-1-1791771860853\\selection.json",
+      "axis": 1,
+      "offset_us": 80,
+      "features": {
+        "raised_hand_texture": {
+          "seed_pixel": [
+            216,
+            117
+          ],
+          "peak": {
+            "dx": 17,
+            "dy": -1,
+            "ncc": 0.6919,
+            "search_boundary_reached": false,
+            "usable_texture_match": false
+          },
+          "return": {
+            "dx": 2,
+            "dy": -3,
+            "ncc": 0.9257,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "head_texture": {
+          "seed_pixel": [
+            218,
+            141
+          ],
+          "peak": {
+            "dx": 11,
+            "dy": -10,
+            "ncc": 0.6264,
+            "search_boundary_reached": false,
+            "usable_texture_match": false
+          },
+          "return": {
+            "dx": 0,
+            "dy": -3,
+            "ncc": 0.8528,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "other_hand_texture": {
+          "seed_pixel": [
+            251,
+            149
+          ],
+          "peak": {
+            "dx": 3,
+            "dy": 0,
+            "ncc": 0.9136,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": -1,
+            "dy": -1,
+            "ncc": 0.9622,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "torso_texture": {
+          "seed_pixel": [
+            221,
+            207
+          ],
+          "peak": {
+            "dx": 7,
+            "dy": -2,
+            "ncc": 0.9418,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": -3,
+            "dy": -3,
+            "ncc": 0.9467,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "feet_texture": {
+          "seed_pixel": [
+            223,
+            267
+          ],
+          "peak": {
+            "dx": 5,
+            "dy": -1,
+            "ncc": 0.9741,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": -4,
+            "dy": -2,
+            "ncc": 0.9431,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "frame_corner_texture": {
+          "seed_pixel": [
+            145,
+            74
+          ],
+          "peak": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9899,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9874,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        }
+      }
+    },
+    {
+      "selection": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-2-1791771850487\\selection.json",
+      "axis": 2,
+      "offset_us": 40,
+      "features": {
+        "raised_hand_texture": {
+          "seed_pixel": [
+            216,
+            117
+          ],
+          "peak": {
+            "dx": -2,
+            "dy": 9,
+            "ncc": 0.9306,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": -1,
+            "dy": 3,
+            "ncc": 0.9564,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "head_texture": {
+          "seed_pixel": [
+            218,
+            141
+          ],
+          "peak": {
+            "dx": 0,
+            "dy": 8,
+            "ncc": 0.7312,
+            "search_boundary_reached": false,
+            "usable_texture_match": false
+          },
+          "return": {
+            "dx": 0,
+            "dy": 3,
+            "ncc": 0.9369,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "other_hand_texture": {
+          "seed_pixel": [
+            251,
+            149
+          ],
+          "peak": {
+            "dx": 3,
+            "dy": 2,
+            "ncc": 0.8364,
+            "search_boundary_reached": false,
+            "usable_texture_match": false
+          },
+          "return": {
+            "dx": 0,
+            "dy": 1,
+            "ncc": 0.9662,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "torso_texture": {
+          "seed_pixel": [
+            221,
+            207
+          ],
+          "peak": {
+            "dx": 11,
+            "dy": 6,
+            "ncc": 0.8207,
+            "search_boundary_reached": false,
+            "usable_texture_match": false
+          },
+          "return": {
+            "dx": 2,
+            "dy": 3,
+            "ncc": 0.8976,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "feet_texture": {
+          "seed_pixel": [
+            223,
+            267
+          ],
+          "peak": {
+            "dx": 11,
+            "dy": 7,
+            "ncc": 0.9281,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 2,
+            "dy": 3,
+            "ncc": 0.9668,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "frame_corner_texture": {
+          "seed_pixel": [
+            145,
+            74
+          ],
+          "peak": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9863,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9923,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        }
+      }
+    },
+    {
+      "selection": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-3-1791771879656\\selection.json",
+      "axis": 3,
+      "offset_us": 40,
+      "features": {
+        "raised_hand_texture": {
+          "seed_pixel": [
+            216,
+            117
+          ],
+          "peak": {
+            "dx": -1,
+            "dy": -1,
+            "ncc": 0.8856,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": -2,
+            "dy": 0,
+            "ncc": 0.9678,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "head_texture": {
+          "seed_pixel": [
+            218,
+            141
+          ],
+          "peak": {
+            "dx": 3,
+            "dy": 1,
+            "ncc": 0.7688,
+            "search_boundary_reached": false,
+            "usable_texture_match": false
+          },
+          "return": {
+            "dx": -1,
+            "dy": 0,
+            "ncc": 0.8595,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "other_hand_texture": {
+          "seed_pixel": [
+            251,
+            149
+          ],
+          "peak": {
+            "dx": 5,
+            "dy": 2,
+            "ncc": 0.8764,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9827,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "torso_texture": {
+          "seed_pixel": [
+            221,
+            207
+          ],
+          "peak": {
+            "dx": 1,
+            "dy": -2,
+            "ncc": 0.9035,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": -2,
+            "dy": -1,
+            "ncc": 0.8656,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "feet_texture": {
+          "seed_pixel": [
+            223,
+            267
+          ],
+          "peak": {
+            "dx": 0,
+            "dy": -2,
+            "ncc": 0.8989,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": -3,
+            "dy": 0,
+            "ncc": 0.9217,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "frame_corner_texture": {
+          "seed_pixel": [
+            145,
+            74
+          ],
+          "peak": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9832,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9939,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        }
+      }
+    },
+    {
+      "selection": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-5-1791771831651\\selection.json",
+      "axis": 5,
+      "offset_us": 80,
+      "features": {
+        "raised_hand_texture": {
+          "seed_pixel": [
+            216,
+            117
+          ],
+          "peak": {
+            "dx": 5,
+            "dy": -1,
+            "ncc": 0.7826,
+            "search_boundary_reached": false,
+            "usable_texture_match": false
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9545,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "head_texture": {
+          "seed_pixel": [
+            218,
+            141
+          ],
+          "peak": {
+            "dx": 11,
+            "dy": -1,
+            "ncc": 0.6863,
+            "search_boundary_reached": false,
+            "usable_texture_match": false
+          },
+          "return": {
+            "dx": 1,
+            "dy": 0,
+            "ncc": 0.9619,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "other_hand_texture": {
+          "seed_pixel": [
+            251,
+            149
+          ],
+          "peak": {
+            "dx": 11,
+            "dy": -23,
+            "ncc": 0.7164,
+            "search_boundary_reached": false,
+            "usable_texture_match": false
+          },
+          "return": {
+            "dx": 1,
+            "dy": 2,
+            "ncc": 0.9828,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "torso_texture": {
+          "seed_pixel": [
+            221,
+            207
+          ],
+          "peak": {
+            "dx": 24,
+            "dy": 5,
+            "ncc": 0.513,
+            "search_boundary_reached": true,
+            "usable_texture_match": false
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9129,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "feet_texture": {
+          "seed_pixel": [
+            223,
+            267
+          ],
+          "peak": {
+            "dx": 5,
+            "dy": 10,
+            "ncc": 0.5458,
+            "search_boundary_reached": false,
+            "usable_texture_match": false
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9802,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "frame_corner_texture": {
+          "seed_pixel": [
+            145,
+            74
+          ],
+          "peak": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9964,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9963,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        }
+      }
+    },
+    {
+      "selection": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-6-1791771804410\\selection.json",
+      "axis": 6,
+      "offset_us": 120,
+      "features": {
+        "raised_hand_texture": {
+          "seed_pixel": [
+            216,
+            117
+          ],
+          "peak": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9577,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9826,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "head_texture": {
+          "seed_pixel": [
+            218,
+            141
+          ],
+          "peak": {
+            "dx": -1,
+            "dy": 0,
+            "ncc": 0.9634,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9879,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "other_hand_texture": {
+          "seed_pixel": [
+            251,
+            149
+          ],
+          "peak": {
+            "dx": 1,
+            "dy": 17,
+            "ncc": 0.9413,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9936,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "torso_texture": {
+          "seed_pixel": [
+            221,
+            207
+          ],
+          "peak": {
+            "dx": -3,
+            "dy": 0,
+            "ncc": 0.9342,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9307,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "feet_texture": {
+          "seed_pixel": [
+            223,
+            267
+          ],
+          "peak": {
+            "dx": -3,
+            "dy": 0,
+            "ncc": 0.973,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9762,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "frame_corner_texture": {
+          "seed_pixel": [
+            145,
+            74
+          ],
+          "peak": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9947,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9906,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        }
+      }
+    },
+    {
+      "selection": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_head_f\\stage-review-4-1791772541321\\selection.json",
+      "axis": 4,
+      "offset_us": 40,
+      "features": {
+        "raised_hand_texture": {
+          "seed_pixel": [
+            216,
+            117
+          ],
+          "peak": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9578,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9804,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "head_texture": {
+          "seed_pixel": [
+            218,
+            141
+          ],
+          "peak": {
+            "dx": 0,
+            "dy": 1,
+            "ncc": 0.9111,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.983,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "other_hand_texture": {
+          "seed_pixel": [
+            251,
+            149
+          ],
+          "peak": {
+            "dx": 0,
+            "dy": 2,
+            "ncc": 0.9248,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9865,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "torso_texture": {
+          "seed_pixel": [
+            221,
+            207
+          ],
+          "peak": {
+            "dx": -4,
+            "dy": 0,
+            "ncc": 0.9015,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": -1,
+            "dy": 0,
+            "ncc": 0.9108,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "feet_texture": {
+          "seed_pixel": [
+            223,
+            267
+          ],
+          "peak": {
+            "dx": -3,
+            "dy": 0,
+            "ncc": 0.9658,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": -1,
+            "dy": 0,
+            "ncc": 0.9828,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "frame_corner_texture": {
+          "seed_pixel": [
+            145,
+            74
+          ],
+          "peak": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9916,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9899,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        }
+      }
+    },
+    {
+      "selection": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_head_f\\stage-review-4-1791772431669\\selection.json",
+      "axis": 4,
+      "offset_us": 40,
+      "features": {
+        "raised_hand_texture": {
+          "seed_pixel": [
+            216,
+            117
+          ],
+          "peak": {
+            "dx": -1,
+            "dy": 0,
+            "ncc": 0.9398,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": -1,
+            "dy": 0,
+            "ncc": 0.9578,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "head_texture": {
+          "seed_pixel": [
+            218,
+            141
+          ],
+          "peak": {
+            "dx": -1,
+            "dy": 1,
+            "ncc": 0.8957,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": -1,
+            "dy": 1,
+            "ncc": 0.9753,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "other_hand_texture": {
+          "seed_pixel": [
+            251,
+            149
+          ],
+          "peak": {
+            "dx": -1,
+            "dy": 1,
+            "ncc": 0.9285,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": -1,
+            "dy": 0,
+            "ncc": 0.9795,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "torso_texture": {
+          "seed_pixel": [
+            221,
+            207
+          ],
+          "peak": {
+            "dx": -4,
+            "dy": 0,
+            "ncc": 0.8534,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": -1,
+            "dy": 1,
+            "ncc": 0.7948,
+            "search_boundary_reached": false,
+            "usable_texture_match": false
+          }
+        },
+        "feet_texture": {
+          "seed_pixel": [
+            223,
+            267
+          ],
+          "peak": {
+            "dx": -4,
+            "dy": 0,
+            "ncc": 0.977,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": -1,
+            "dy": 1,
+            "ncc": 0.8969,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        },
+        "frame_corner_texture": {
+          "seed_pixel": [
+            145,
+            74
+          ],
+          "peak": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9929,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          },
+          "return": {
+            "dx": 0,
+            "dy": 0,
+            "ncc": 0.9947,
+            "search_boundary_reached": false,
+            "usable_texture_match": true
+          }
+        }
+      }
+    }
+  ]
+}
