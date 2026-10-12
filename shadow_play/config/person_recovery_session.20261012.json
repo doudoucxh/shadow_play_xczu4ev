@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-12",
+  "session_id": "person-recovery-20261012-a",
+  "phase": "reference_held_awaiting_reconnection",
+  "completed": false,
+  "operator_reports": {
+    "onsite_cutoff_available": true,
+    "axes_1_to_4_splices_released": true,
+    "axes_5_6_single_free_connection": true,
+    "clear_sweep_confirmed": true,
+    "servo_power_8v_on_confirmed": true,
+    "new_program_angles_after_manual_reset_provided": false
+  },
+  "preflight_sequence": 965,
+  "initialization_us": 1500,
+  "initialization_channels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "candidate_person_reference_us": [
+    1537,
+    1352,
+    1537,
+    1574,
+    1508,
+    1500
+  ],
+  "held_at_host_unix_ms": 1791766139777,
+  "held_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 63,
+    "armed": true,
+    "faults": 0,
+    "sequence": 1275,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1352,
+      1537,
+      1574,
+      1508,
+      1500,
+      1500,
+      1426,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "actual_position_feedback": null,
+  "actual_shaft_angles_independently_measured": false,
+  "latest_checked_at_host_unix_ms": 1791766337196,
+  "remaining_seconds_at_check": 641.8690611010097,
+  "host_pid": 73196,
+  "duration_seconds": 900,
+  "tiger_mask": 0,
+  "slides_controlled": false,
+  "incident_locks_removed": false,
+  "old_demo_replayed": false,
+  "loaded_paths_reviewed": [],
+  "loaded_coordinates_calibrated": false,
+  "axis_4_mechanical_response": "Not independently confirmed; excluded from demo",
+  "program_sha256": "a5d674853d9c3650770c1701a79560de634e60fea1b44f424da89d42dcbd9592",
+  "driver_sha256": "ee917182d4a7b38f97556fa5e663f2c5f1d787ebdb5337462b0fb8f9794fa408",
+  "evidence_directory": ".review_work/loaded_calibration_20261012/person_recovery_a",
+  "preflight_log": ".review_work/loaded_calibration_20261011/recovery_20261012_poweron_state.log",
+  "camera_check": {
+    "front_max_age_ms": 201,
+    "top_max_age_ms": 202,
+    "front_unique_frames": 14,
+    "top_unique_frames": 13,
+    "all_jpeg_decoded": true
+  },
+  "next_condition": "Natural splice alignment and operator reconnection report, followed by fresh dual-view linkage review; do not rearm from this saved record after OFF"
+}
