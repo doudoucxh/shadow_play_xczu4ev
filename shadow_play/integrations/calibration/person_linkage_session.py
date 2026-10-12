@@ -11,6 +11,7 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import re
 import signal
 import sys
 import time
@@ -37,7 +38,8 @@ def reference_plan(plan):
     p = dict(plan)
     for k in ('stages', 'demo_stages', 'bilateral_hand_diagnostic', 'head_support_diagnostic',
               'head_supported_bilateral_diagnostic', 'head_support_offset_us',
-              'supported_martial_diagnostic', 'tempo_step_us', 'peak_hold_ms'):
+              'supported_martial_diagnostic', 'tempo_step_us', 'peak_hold_ms',
+              'motion_interval_ms', 'lower_hands_diagnostic'):
         p.pop(k, None)
     p['approval'] = 'attended-unchanged-person-continuation-20261012'
     if plan.get('head_support_diagnostic') is True:
@@ -55,6 +57,9 @@ def validate_plan(plan, wall=None):
     head_support = 'head_support_diagnostic' in plan
     supported = 'head_supported_bilateral_diagnostic' in plan
     martial = 'supported_martial_diagnostic' in plan
+    lower = 'lower_hands_diagnostic' in plan
+    if not isinstance(plan.get('session_id'),str) or not re.fullmatch('[a-z0-9-]{1,80}', plan['session_id']):
+        raise ValueError('Safe unique session ID required')
     if bilateral and plan['bilateral_hand_diagnostic'] is not True:
         raise ValueError('Bilateral diagnostic must be explicitly true')
     if head_support and (bilateral or plan['head_support_diagnostic'] is not True):
@@ -67,9 +72,15 @@ def validate_plan(plan, wall=None):
         raise ValueError('Support offset requires explicit supported bilateral mode')
     if martial and (plan['supported_martial_diagnostic'] is not True or not bilateral
             or supported or head_support or plan.get('head_support_reference_offset_us') != -60
-            or type(plan.get('tempo_step_us')) is not int or plan['tempo_step_us'] not in (2,3)
-            or type(plan.get('peak_hold_ms')) is not int or plan['peak_hold_ms'] != 400):
+            or type(plan.get('tempo_step_us')) is not int or plan['tempo_step_us'] not in (2,3,6,8)
+            or type(plan.get('peak_hold_ms')) is not int or plan['peak_hold_ms'] not in (100,400)):
         raise ValueError('Alternating hand paths require the held head support and explicit bounded tempo')
+    if lower and (plan['lower_hands_diagnostic'] is not True or not martial
+            or plan['tempo_step_us'] != 3):
+        raise ValueError('New low-hand geometry requires the separate three-microsecond diagnostic')
+    if 'motion_interval_ms' in plan and (not martial
+            or type(plan['motion_interval_ms']) is not int or plan['motion_interval_ms'] not in (20,50)):
+        raise ValueError('Only explicit 20/50 ms person motion periods allowed')
     if not martial and ('tempo_step_us' in plan or 'peak_hold_ms' in plan):
         raise ValueError('Tempo changes require the supported martial diagnostic')
     validate_reference(reference_plan(plan), wall)
@@ -80,12 +91,14 @@ def validate_plan(plan, wall=None):
         if (not isinstance(vector, list) or len(vector) != 6
                 or any(type(v) is not int or not low <= v <= cap
                        for v, low, cap in zip(vector,
-                           HEAD_SUPPORT_MIN if head_support else BILATERAL_MIN if bilateral else (0,)*6,
-                           (0,)*6 if head_support else CAPS))
+                           HEAD_SUPPORT_MIN if head_support else (0,-140,0,0,0,0) if lower else BILATERAL_MIN if bilateral else (0,)*6,
+                           (0,)*6 if head_support else (40,0,40,0,60,240) if lower else CAPS))
                 or not any(vector)):
             raise ValueError('Only bounded, explicitly selected person trial offsets allowed')
         if martial and not (vector[1] < 0 or vector[5] > 0):
             raise ValueError('Select a hand pitch path for each martial stage')
+        if lower and (any(vector[i] for i in (0,2,3,4)) or bool(vector[1]) == bool(vector[5])):
+            raise ValueError('New low-hand positions must first be tested one pitch axis at a time')
         if bilateral and not martial and not (vector[1] < 0 and vector[5] > 0):
             raise ValueError('Bilateral paths require opposite pitch directions for both hands')
         if head_support and vector[3] >= 0:
@@ -107,6 +120,7 @@ class LinkageSession(VisibleSession):
         self.active_stage = None
         self.step_limit = plan.get('tempo_step_us', 1)
         self.peak_hold = plan.get('peak_hold_ms', 2000)/1000
+        self.motion_interval = plan.get('motion_interval_ms', 50)/1000
         self.support_base = self.plan['expected_pulses_us'][:]
         if plan.get('head_supported_bilateral_diagnostic') is True:
             self.support_base[3] += plan['head_support_offset_us']
@@ -120,9 +134,10 @@ class LinkageSession(VisibleSession):
             raise RuntimeError('Only the next waypoint on the fixed vector path')
         if any(abs(a-b) > self.step_limit for a, b in zip(pulses, self.pulses)):
             raise RuntimeError('Each component must respect the explicitly selected step limit')
-        if self.last_commit is not None and self.clock()-self.last_commit < INTERVAL-1e-9:
+        if self.last_commit is not None and self.clock()-self.last_commit < self.motion_interval-1e-9:
             raise RuntimeError('No accelerated catch-up')
         self.inside = True
+        commit_started = self.clock()
         try:
             state = PwmDevice.commit(self, pulses, mask, allow_arm=False)
         except BaseException:
@@ -132,7 +147,7 @@ class LinkageSession(VisibleSession):
             self.inside = False
         self.pulses = pulses[:]
         self.sequence = state['sequence']
-        self.last_commit = self.clock()
+        self.last_commit = commit_started if self.motion_interval == .02 else self.clock()
         self.expected_waypoint = None
         return state
 
@@ -169,7 +184,12 @@ class LinkageSession(VisibleSession):
               'vector_us':offsets, 'steps_per_leg':count, 'state':self.check()})
         for returning in (False, True):
             for step in range(1, count+1):
-                self.wait(INTERVAL, sleep)
+                # The driver already waits for frame adoption. Do not add a
+                # second full frame delay to the explicit performance mode.
+                delay = self.motion_interval
+                if self.motion_interval == .02 and self.last_commit is not None:
+                    delay = max(0, self.last_commit+self.motion_interval-self.clock())
+                self.wait(delay, sleep)
                 fraction = .5*(1-math.cos(math.pi*step/count))
                 if returning:
                     fraction = 1-fraction
@@ -247,6 +267,22 @@ def run_session(d, emit, *, sleep=time.sleep):
               'incident_locks_removed':False})
 
 
+def motion_emitter(log, output, clock=time.monotonic):
+    """Preserve every state locally without flooding a 115200-baud console."""
+    last_step = -math.inf
+    def emit(row):
+        nonlocal last_step
+        now = clock()
+        row = dict(row, board_monotonic_seconds=now)
+        log.write(json.dumps(row)+'\n')
+        step = row['event'] in ('probe_step','support_step')
+        if not step or now-last_step >= .2:
+            log.flush()
+            output(row)
+            if step:last_step=now
+    return emit
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('plan',type=Path)
@@ -268,7 +304,14 @@ def main():
     registers=Registers()
     try:
         d=LinkageSession(registers,plan,host)
-        run_session(d,lambda row:print(json.dumps(row),flush=True))
+        output=lambda row:print(json.dumps(row),flush=True)
+        if plan.get('motion_interval_ms') == 20:
+            log_path=Path('/tmp')/('person-linkage-'+plan['session_id']+'.jsonl')
+            with log_path.open('x',encoding='utf-8') as log:
+                output({'event':'local_motion_log','path':str(log_path)})
+                run_session(d,motion_emitter(log,output))
+        else:
+            run_session(d,output)
     finally:registers.close()
 
 

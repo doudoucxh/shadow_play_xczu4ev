@@ -1,7 +1,10 @@
 import copy
+import io
+import json
 import sys
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'integrations/calibration'))
 import person_linkage_session as linkage
@@ -174,6 +177,61 @@ class LinkageTests(unittest.TestCase):
         with self.assertRaises(ObservationLost):linkage.run_session(self.d,self.emit,sleep=self.sleep)
         self.assertFalse(any(r['event'] in ('reference_restored','probe_started') for r in self.events))
         self.assertFalse(self.events[-1]['state']['armed'])
+
+    def test_frame_pacing_does_not_add_a_second_frame_after_readback(self):
+        p=copy.deepcopy(self.plan)
+        p.update(bilateral_hand_diagnostic=True,head_support_reference_offset_us=-60,
+                 supported_martial_diagnostic=True,tempo_step_us=8,peak_hold_ms=100,
+                 motion_interval_ms=20,stages=[[20,-80,20,0,40,120]],demo_stages=[1])
+        pulses=p['expected_pulses_us'][:];pulses[3]-=60
+        p['expected_pulses_us']=pulses[:]
+        for key in ('previous_held_state','previous_off_state'):p[key]['pulse_us']=pulses[:]
+        self.reg.values[0x8c]=pulses[3]
+        self.d=linkage.LinkageSession(self.reg,p,self.host,motion_inhibit_paths=[self.lock],
+            cancel_path=self.root/'cancel',clock=lambda:self.now,wall=lambda:1000)
+        self.resume();original=linkage.PwmDevice.commit;starts=[]
+        def commit(device,*args,**kwargs):
+            starts.append(self.now);state=original(device,*args,**kwargs)
+            self.now+=.019;return state
+        started=self.now
+        with patch.object(linkage.PwmDevice,'commit',commit):self.d.probe(1,self.emit,self.sleep)
+        self.assertTrue(all(b-a >= .02-1e-9 for a,b in zip(starts,starts[1:])))
+        self.assertLess(self.now-started,1.3)
+        previous=pulses
+        for row in self.events:
+            if row['event']=='probe_step':
+                values=row['state']['pulse_us']
+                self.assertLessEqual(max(abs(a-b) for a,b in zip(values,previous)),8)
+                self.assertEqual(values[3],1514);self.assertEqual(values[6:],pulses[6:])
+                previous=values
+        self.assertEqual(self.d.pulses,pulses)
+
+    def test_fast_console_is_throttled_but_local_motion_log_is_complete(self):
+        log=io.StringIO();sent=[];now=[0.]
+        emit=linkage.motion_emitter(log,sent.append,clock=lambda:now[0])
+        for i in range(25):
+            now[0]=i*.02;emit(dict(event='probe_step',sequence=i))
+        emit(dict(event='probe_complete',sequence=24))
+        rows=[json.loads(x) for x in log.getvalue().splitlines()]
+        self.assertEqual(len(rows),26)
+        self.assertEqual(sum(r['event']=='probe_step' for r in sent),3)
+        self.assertEqual(sent[-1]['event'],'probe_complete')
+
+    def test_low_hand_geometry_is_separate_single_pitch_diagnostic(self):
+        p=copy.deepcopy(self.plan)
+        p.update(bilateral_hand_diagnostic=True,head_support_reference_offset_us=-60,
+                 supported_martial_diagnostic=True,tempo_step_us=3,peak_hold_ms=400,
+                 motion_interval_ms=20,lower_hands_diagnostic=True,
+                 stages=[[0,-140,0,0,0,0],[0,0,0,0,0,240]],demo_stages=[1,2])
+        pulses=p['expected_pulses_us'][:];pulses[3]-=60;p['expected_pulses_us']=pulses[:]
+        for key in ('previous_held_state','previous_off_state'):p[key]['pulse_us']=pulses[:]
+        linkage.validate_plan(p)
+        for vector in ([0,-141,0,0,0,0],[0,0,0,0,0,241],[0,-140,0,0,0,240],[1,-140,0,0,0,0]):
+            q=copy.deepcopy(p);q['stages']=[vector];q['demo_stages']=[1]
+            with self.assertRaises(ValueError):linkage.validate_plan(q)
+        for key,value in (('tempo_step_us',8),('motion_interval_ms',10),('lower_hands_diagnostic',False)):
+            q=copy.deepcopy(p);q[key]=value
+            with self.assertRaises(ValueError):linkage.validate_plan(q)
     def test_manual_waypoint_and_fast_step_rejected_before_write(self):
         self.resume();self.d.phase='linkage';self.sleep(.05)
         p=self.d.pulses[:];p[4]+=1
