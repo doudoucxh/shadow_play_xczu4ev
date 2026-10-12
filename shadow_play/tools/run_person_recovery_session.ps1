@@ -1,0 +1,92 @@
+param([Parameter(Mandatory=$true)][string]$OutputDirectory,
+      [Parameter(Mandatory=$true)][string]$BoardPlan,
+      [string]$PortName='COM3')
+$ErrorActionPreference='Stop'
+if ($BoardPlan -notmatch '^/tmp/person_recovery_[a-z0-9_]+\.json$') {throw 'Session plan path required'}
+if (Test-Path -LiteralPath $OutputDirectory) {throw 'Use a new private session directory; no retry'}
+$taskPython=Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
+$taskGuard=Join-Path $PSScriptRoot 'person_demo_camera_guard.py'
+$taskCapture=Start-Process -FilePath $taskPython -ArgumentList @($taskGuard,$OutputDirectory,'--seconds','1000') -WindowStyle Hidden -PassThru
+$taskSerial=[IO.Ports.SerialPort]::new($PortName,115200,[IO.Ports.Parity]::None,8,[IO.Ports.StopBits]::One)
+$taskSerial.DtrEnable=$false;$taskSerial.RtsEnable=$false;$taskSerial.WriteTimeout=500
+$taskOff=$false;$taskStarted=$false;$taskInterrupted=$false;$taskReason=$null
+$taskRaw=$null;$taskEvents=$null;$taskSeen=@{}
+function Test-RecoveryViews {
+    if ($taskCapture.HasExited -or (Test-Path -LiteralPath (Join-Path $OutputDirectory 'guard.error'))) {return $false}
+    $leaseFile=Get-ChildItem -LiteralPath $OutputDirectory -Filter 'lease-*.json' -ErrorAction SilentlyContinue | Sort-Object Name | Select-Object -Last 1
+    if (-not $leaseFile) {return $false}
+    try {
+        $stream=[IO.File]::Open($leaseFile.FullName,[IO.FileMode]::Open,[IO.FileAccess]::Read,([IO.FileShare]::ReadWrite -bor [IO.FileShare]::Delete))
+        try {$reader=[IO.StreamReader]::new($stream);try {$value=$reader.ReadToEnd()|ConvertFrom-Json} finally {$reader.Dispose()}} finally {$stream.Dispose()}
+        $age=[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()-[long]$value.unix_ms
+        return ($age -ge 0 -and $age -lt 800)
+    } catch {return $false}
+}
+try {
+    $readyUntil=[DateTime]::UtcNow.AddSeconds(5)
+    while (-not (Test-RecoveryViews) -and [DateTime]::UtcNow -lt $readyUntil) {Start-Sleep -Milliseconds 80}
+    if (-not (Test-RecoveryViews)) {throw 'Two advancing camera streams not ready; no motion sent'}
+    $taskRaw=[IO.StreamWriter]::new((Join-Path $OutputDirectory 'board.log'),$false,[Text.UTF8Encoding]::new($false))
+    $taskEvents=[IO.StreamWriter]::new((Join-Path $OutputDirectory 'events.jsonl'),$false,[Text.UTF8Encoding]::new($false))
+    $taskRaw.AutoFlush=$true;$taskEvents.AutoFlush=$true
+    $taskSerial.Open();$taskSerial.Write("stty -echo`r");Start-Sleep -Milliseconds 180
+    $taskRaw.Write($taskSerial.ReadExisting())
+    if (-not (Test-RecoveryViews)) {throw 'Video lost before execution'}
+    $command='PYTHONPATH=/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_recovery_session_20261012.py '+$BoardPlan+' --execute-released-person-recovery; echo RECOVERY_COMPLETE:$?; stty echo'
+    $taskSerial.Write($command+"`r");$taskStarted=$true
+    $taskDeadline=[DateTime]::UtcNow.AddSeconds(915);$lastLease=[DateTime]::MinValue;$pending=''
+    while ([DateTime]::UtcNow -lt $taskDeadline) {
+        if (-not $taskOff -and -not $taskInterrupted) {
+            if (Test-Path -LiteralPath (Join-Path $OutputDirectory 'stop.request')) {
+                $taskReason='Operator emergency stop';$taskSerial.Write([string][char]3)
+                $taskInterrupted=$true;$taskDeadline=[DateTime]::UtcNow.AddSeconds(5)
+            } elseif (-not (Test-RecoveryViews)) {
+                $taskReason='Video unavailable; frame stop requested';$taskSerial.Write(": # PERSON_RECOVERY_VIDEO_STOP`n")
+                $taskInterrupted=$true;$taskDeadline=[DateTime]::UtcNow.AddSeconds(5)
+            }
+        }
+        if (-not $taskOff -and -not $taskInterrupted) {
+            if (([DateTime]::UtcNow-$lastLease).TotalMilliseconds -ge 200) {
+                $taskSerial.Write(": # PERSON_RECOVERY_LEASE`n");$lastLease=[DateTime]::UtcNow
+            }
+            foreach ($file in @(Get-ChildItem -LiteralPath $OutputDirectory -Filter 'request-*.json' | Sort-Object Name)) {
+                if ($taskSeen.ContainsKey($file.Name)) {continue}
+                $request=Get-Content -LiteralPath $file.FullName -Raw|ConvertFrom-Json
+                if ($request.action -notmatch '^(reconnected|probe_[1-6]|review_[1-6]|demo|finish)$' -or
+                    $request.sequence -notmatch '^\d{1,10}$' -or [decimal]$request.sequence -ge 4294967296) {throw 'Invalid session action'}
+                $taskSeen[$file.Name]=$true
+                $taskSerial.Write(": # PERSON_RECOVERY_ACTION $($request.action) $($request.sequence)`n")
+            }
+        }
+        $chunk=$taskSerial.ReadExisting()
+        if ($chunk) {
+            $taskRaw.Write($chunk);$pending+=$chunk
+            while ($pending.Contains("`n")) {
+                $cut=$pending.IndexOf("`n");$line=$pending.Substring(0,$cut).Trim();$pending=$pending.Substring($cut+1)
+                if ($line.StartsWith('{"event":')) {
+                    $event=$line|ConvertFrom-Json
+                    $event|Add-Member -NotePropertyName host_unix_ms -NotePropertyValue ([DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds())
+                    $taskEvents.WriteLine(($event|ConvertTo-Json -Depth 12 -Compress))
+                    if ($event.event -eq 'outputs_off') {$taskOff=($event.state.enabled_mask -eq 0 -and -not $event.state.armed -and -not $event.state.pending)}
+                    if ($event.event -notin @('probe_step','reference_step','hold_alive')) {Write-Output $line}
+                }
+                if ($line -match '^RECOVERY_COMPLETE:(\d+)$') {$taskDeadline=[DateTime]::MinValue}
+            }
+        }
+        Start-Sleep -Milliseconds 25
+    }
+    if (-not $taskOff) {throw 'Session ended without confirmed OFF; inspect, do not retry'}
+} finally {
+    if ($taskSerial.IsOpen) {
+        if ($taskStarted -and -not $taskOff) {$taskSerial.Write([string][char]3);Start-Sleep -Milliseconds 300}
+        $taskSerial.Close()
+    }
+    $taskSerial.Dispose()
+    if ($taskRaw) {$taskRaw.Dispose()};if ($taskEvents) {$taskEvents.Dispose()}
+    if (Test-Path -LiteralPath $OutputDirectory) {
+        [IO.File]::WriteAllText((Join-Path $OutputDirectory 'finish.request'),'finish')
+        @{outputs_off_confirmed=$taskOff;interrupted=$taskInterrupted;reason=$taskReason}|ConvertTo-Json|
+            Set-Content -LiteralPath (Join-Path $OutputDirectory 'capture_result.json') -Encoding utf8
+    }
+    $taskCapture.WaitForExit(3000)|Out-Null
+}

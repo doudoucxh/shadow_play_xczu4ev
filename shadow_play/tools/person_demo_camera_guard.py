@@ -2,6 +2,7 @@
 """Private dual-view recording and expiring freshness lease for the one-shot demo."""
 from concurrent.futures import ThreadPoolExecutor
 import io
+import argparse
 import json
 from pathlib import Path
 import sys
@@ -10,7 +11,9 @@ import urllib.request
 from PIL import Image
 
 
-def record(folder,base='http://192.168.45.1:8765'):
+def record(folder,base='http://192.168.45.1:8765',duration_seconds=110):
+    if type(duration_seconds) is not int or not 10<=duration_seconds<=1200:
+        raise ValueError('Recorder duration must be 10..1200 seconds')
     folder.mkdir(parents=True,exist_ok=False)
     last={};good={c:time.monotonic() for c in ('front','top')};advancing=set()
     def fetch(camera):
@@ -24,7 +27,7 @@ def record(folder,base='http://192.168.45.1:8765'):
         return dict(camera=camera,file=name,host_unix_ns=stamp,frame_id=fid,age_ms=age)
     try:
         with ThreadPoolExecutor(max_workers=2) as pool,(folder/'frames.jsonl').open('x',encoding='utf-8') as log:
-            until=time.monotonic()+110
+            until=time.monotonic()+duration_seconds
             while time.monotonic()<until and not (folder/'finish.request').exists():
                 futures={c:pool.submit(fetch,c) for c in ('front','top')}
                 for c,f in futures.items():
@@ -48,4 +51,7 @@ def record(folder,base='http://192.168.45.1:8765'):
         (folder/'guard.error').write_text(str(error),encoding='utf-8');raise
 
 
-if __name__=='__main__':record(Path(sys.argv[1]))
+if __name__=='__main__':
+    parser=argparse.ArgumentParser();parser.add_argument('folder',type=Path)
+    parser.add_argument('--seconds',type=int,default=110);args=parser.parse_args()
+    record(args.folder,duration_seconds=args.seconds)
