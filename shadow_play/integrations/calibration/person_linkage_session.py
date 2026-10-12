@@ -46,6 +46,7 @@ LOW_GUARD_GEOMETRY_RECEIPT = '1639361a56578d3ffb9a1a08b7d168da1f6abb2f658dd67f06
 LOW_GUARD_REVIEWED_PATHS = ((0,140,0,0,0,0),(0,0,0,0,0,-240),(0,140,0,0,0,-240))
 LOW_HEAD_FOLLOW_RECEIPT = 'a83323b9593830ca97fda4eafedb02d1213ed1bc98ab358c316565d8257968c5'
 LOW_HEAD_FOLLOW_PATHS = ((0,0,0,-40,0,0),(0,140,0,-40,0,0),(0,0,0,-40,0,-240),(0,140,0,-40,0,-240))
+HEAD_FOLLOW_GEOMETRY_RECEIPT = 'dc933480a54ecd51d242a66a41923032aae1df60b9823a9b8e7445c3aba3c16f'
 
 
 def reference_plan(plan):
@@ -55,7 +56,8 @@ def reference_plan(plan):
               'supported_martial_diagnostic', 'tempo_step_us', 'peak_hold_ms',
               'motion_interval_ms', 'lower_hands_diagnostic', 'combined_lower_hands_diagnostic',
               'low_guard_diagnostic', 'combined_lowering_receipt_sha256',
-              'low_guard_performance', 'low_guard_geometry_receipt_sha256', 'head_follow_receipt_sha256'):
+              'low_guard_performance', 'low_guard_geometry_receipt_sha256', 'head_follow_receipt_sha256',
+              'low_guard_head_follow_performance', 'head_follow_geometry_receipt_sha256'):
         p.pop(k, None)
     p['approval'] = 'attended-unchanged-person-continuation-20261012'
     if plan.get('head_support_diagnostic') is True:
@@ -79,6 +81,7 @@ def validate_plan(plan, wall=None):
     guard_performance = 'low_guard_performance' in plan
     low_head = 'lowered_head_support_diagnostic' in plan
     follow = 'low_guard_head_follow' in plan
+    follow_fast = 'low_guard_head_follow_performance' in plan
     if not isinstance(plan.get('session_id'),str) or not re.fullmatch('[a-z0-9-]{1,80}', plan['session_id']):
         raise ValueError('Safe unique session ID required')
     if bilateral and plan['bilateral_hand_diagnostic'] is not True:
@@ -102,7 +105,7 @@ def validate_plan(plan, wall=None):
     if combined_lower and (plan['combined_lower_hands_diagnostic'] is not True or not lower):
         raise ValueError('Combined lowering requires the explicit slow low-hand diagnostic')
     if guard and (plan['low_guard_diagnostic'] is not True or not martial or lower
-            or plan['tempo_step_us'] != (8 if guard_performance else 3) or plan.get('motion_interval_ms') != 20
+            or plan['tempo_step_us'] != (8 if guard_performance or follow_fast else 3) or plan.get('motion_interval_ms') != 20
             or plan.get('combined_lowering_receipt_sha256') != COMBINED_LOWERING_RECEIPT):
         raise ValueError('Low guard requires the reviewed combined lowering and a separate slow diagnostic')
     if guard_performance and (plan['low_guard_performance'] is not True or not guard
@@ -121,6 +124,12 @@ def validate_plan(plan, wall=None):
         raise ValueError('Coordinated head follow requires the separate reviewed 40-us head lift and slow guard diagnostic')
     if not follow and 'head_follow_receipt_sha256' in plan:
         raise ValueError('Head-follow receipt requires the explicit fixed-path diagnostic')
+    if follow_fast and (plan['low_guard_head_follow_performance'] is not True or not follow
+            or plan.get('peak_hold_ms')!=400
+            or plan.get('head_follow_geometry_receipt_sha256')!=HEAD_FOLLOW_GEOMETRY_RECEIPT):
+        raise ValueError('Fast head follow requires the four reviewed combined paths and 400-ms peak')
+    if not follow_fast and 'head_follow_geometry_receipt_sha256' in plan:
+        raise ValueError('Combined-path receipt requires explicit head-follow performance mode')
     if not guard and not low_head and ('combined_lowering_receipt_sha256' in plan or 'lowered_hands_reference_offset_us' in plan):
         raise ValueError('Lowered reference is reserved for the fixed low-guard actor')
     if 'motion_interval_ms' in plan and (not (martial or low_head)

@@ -379,6 +379,26 @@ class LinkageTests(unittest.TestCase):
             q=copy.deepcopy(p);q.update(extra)
             with self.assertRaises(ValueError):linkage.validate_plan(q)
 
+    def test_fast_head_follow_needs_combined_geometry_and_retains_static_axes(self):
+        p=self.low_guard_plan(continued=True)
+        p.update(low_guard_head_follow=True,head_follow_receipt_sha256=linkage.LOW_HEAD_FOLLOW_RECEIPT,
+                 low_guard_head_follow_performance=True,head_follow_geometry_receipt_sha256=linkage.HEAD_FOLLOW_GEOMETRY_RECEIPT,
+                 tempo_step_us=8,peak_hold_ms=400,stages=[list(v) for v in linkage.LOW_HEAD_FOLLOW_PATHS],demo_stages=[2,3,4])
+        self.d=linkage.LinkageSession(self.reg,p,self.host,motion_inhibit_paths=[self.lock],
+            cancel_path=self.root/'cancel',clock=lambda:self.now,wall=lambda:1000)
+        self.resume();self.d.probe(4,self.emit,self.sleep)
+        previous=p['expected_pulses_us']
+        for r in self.events:
+            if r['event']!='probe_step':continue
+            values=r['state']['pulse_us'];self.assertLessEqual(max(abs(a-b) for a,b in zip(previous,values)),8)
+            for i in (0,2,4,6,7,8,9):self.assertEqual(values[i],p['expected_pulses_us'][i])
+            previous=values
+        self.assertEqual(self.d.pulses,p['expected_pulses_us'])
+        for extra in ({'head_follow_geometry_receipt_sha256':'0'*64},{'peak_hold_ms':100},
+                      {'low_guard_head_follow_performance':False},{'stages':[[0,140,0,-60,0,-240]]}):
+            q=copy.deepcopy(p);q.update(extra)
+            with self.assertRaises(ValueError):linkage.validate_plan(q)
+
     def test_manual_waypoint_and_fast_step_rejected_before_write(self):
         self.resume();self.d.phase='linkage';self.sleep(.05)
         p=self.d.pulses[:];p[4]+=1
