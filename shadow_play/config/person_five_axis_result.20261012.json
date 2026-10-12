@@ -1,0 +1,1385 @@
+{
+  "schema_version": 1,
+  "session_id": "person-extended-20261012-e",
+  "source_sequence": 5840,
+  "resume_sequence": 5841,
+  "operator_authorization": "Continue normal attended debugging without asking for each stage; previous unchanged power and mechanism report retained; fresh dual-view posture comparison and board normal stop verified",
+  "startup_plan_sha256": "0369740a73456c095478d6a20847f0b38d25d955b5bf5e3585aa05cbd4c46014",
+  "program_sha256": "a53eb1a9e96a9df5b35df53e2970a57292ed3e176426172d1f7c55c225e83dff",
+  "startup_camera_verification": {
+    "front": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 201,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "front",
+        "file": "front_1791771104132036500.jpg",
+        "host_unix_ns": 1791771104132036500,
+        "frame_id": "session-20261012-081336-35211",
+        "age_ms": "201",
+        "image_size": [
+          640,
+          360
+        ],
+        "sha256": "1c5a44769178087d5265ebaa38c3318b68ae89f3bcd2351cb62592ac21e8c457",
+        "captured_at": "2026-10-12T10:11:44.132037+08:00"
+      }
+    },
+    "top": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 187,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "top",
+        "file": "top_1791771104138004700.jpg",
+        "host_unix_ns": 1791771104138004700,
+        "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-31608",
+        "age_ms": "16",
+        "image_size": [
+          960,
+          540
+        ],
+        "sha256": "bbd9d4a5124dd8b6e3905308c3afc675d66db7b4c341b341edab73c3efffd8b0",
+        "captured_at": "2026-10-12T10:11:44.138005+08:00"
+      }
+    }
+  },
+  "reference_pulses_us": [
+    1537,
+    1352,
+    1537,
+    1574,
+    1508,
+    1500,
+    1500,
+    1426,
+    1500,
+    1500
+  ],
+  "reviewed_paths": [
+    {
+      "axis": 1,
+      "reference_us": 1537,
+      "tested_target_us": 1617,
+      "direction": 1,
+      "reviewed_magnitude_us": 80,
+      "other_axes_reference_required": true,
+      "selection": {
+        "axis": 1,
+        "offset_us": 80,
+        "events": [
+          {
+            "event": "probe_started",
+            "axis": 1,
+            "offset_us": 80,
+            "steps_per_leg": 140,
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 63,
+              "armed": true,
+              "faults": 0,
+              "sequence": 8641,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1352,
+                1537,
+                1574,
+                1508,
+                1500,
+                1500,
+                1426,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            },
+            "host_unix_ms": 1791771860853
+          },
+          {
+            "event": "probe_peak",
+            "axis": 1,
+            "offset_us": 80,
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 63,
+              "armed": true,
+              "faults": 0,
+              "sequence": 8781,
+              "pending": false,
+              "pulse_us": [
+                1617,
+                1352,
+                1537,
+                1574,
+                1508,
+                1500,
+                1500,
+                1426,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            },
+            "host_unix_ms": 1791771869261
+          },
+          {
+            "event": "probe_complete",
+            "axis": 1,
+            "offset_us": 80,
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 63,
+              "armed": true,
+              "faults": 0,
+              "sequence": 8921,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1352,
+                1537,
+                1574,
+                1508,
+                1500,
+                1500,
+                1426,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            },
+            "host_unix_ms": 1791771879582
+          }
+        ],
+        "views": {
+          "front": {
+            "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-1-1791771860853\\front.jpg",
+            "frames": [
+              {
+                "camera": "front",
+                "file": "front_1791771860640987800.jpg",
+                "host_unix_ns": 1791771860640987800,
+                "frame_id": "session-20261012-081336-38973",
+                "age_ms": 31
+              },
+              {
+                "camera": "front",
+                "file": "front_1791771870049561400.jpg",
+                "host_unix_ns": 1791771870049561400,
+                "frame_id": "session-20261012-081336-39019",
+                "age_ms": 188
+              },
+              {
+                "camera": "front",
+                "file": "front_1791771879834196300.jpg",
+                "host_unix_ns": 1791771879834196300,
+                "frame_id": "session-20261012-081336-39068",
+                "age_ms": 127
+              }
+            ],
+            "person_detail": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-1-1791771860853\\person-detail.jpg"
+          },
+          "top": {
+            "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-1-1791771860853\\top.jpg",
+            "frames": [
+              {
+                "camera": "top",
+                "file": "top_1791771860637983500.jpg",
+                "host_unix_ns": 1791771860637983500,
+                "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-35390",
+                "age_ms": 108
+              },
+              {
+                "camera": "top",
+                "file": "top_1791771870039251900.jpg",
+                "host_unix_ns": 1791771870039251900,
+                "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-35437",
+                "age_ms": 110
+              },
+              {
+                "camera": "top",
+                "file": "top_1791771879831688700.jpg",
+                "host_unix_ns": 1791771879831688700,
+                "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-35486",
+                "age_ms": 108
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "axis": 2,
+      "reference_us": 1352,
+      "tested_target_us": 1312,
+      "direction": -1,
+      "reviewed_magnitude_us": 40,
+      "other_axes_reference_required": true,
+      "selection": {
+        "axis": 2,
+        "offset_us": 40,
+        "events": [
+          {
+            "event": "probe_started",
+            "axis": 2,
+            "offset_us": 40,
+            "steps_per_leg": 70,
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 63,
+              "armed": true,
+              "faults": 0,
+              "sequence": 8501,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1352,
+                1537,
+                1574,
+                1508,
+                1500,
+                1500,
+                1426,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            },
+            "host_unix_ms": 1791771850487
+          },
+          {
+            "event": "probe_peak",
+            "axis": 2,
+            "offset_us": 40,
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 63,
+              "armed": true,
+              "faults": 0,
+              "sequence": 8571,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1312,
+                1537,
+                1574,
+                1508,
+                1500,
+                1500,
+                1426,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            },
+            "host_unix_ms": 1791771854600
+          },
+          {
+            "event": "probe_complete",
+            "axis": 2,
+            "offset_us": 40,
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 63,
+              "armed": true,
+              "faults": 0,
+              "sequence": 8641,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1352,
+                1537,
+                1574,
+                1508,
+                1500,
+                1500,
+                1426,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            },
+            "host_unix_ms": 1791771860851
+          }
+        ],
+        "views": {
+          "front": {
+            "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-2-1791771850487\\front.jpg",
+            "frames": [
+              {
+                "camera": "front",
+                "file": "front_1791771850327415700.jpg",
+                "host_unix_ns": 1791771850327415700,
+                "frame_id": "session-20261012-081336-38921",
+                "age_ms": 180
+              },
+              {
+                "camera": "front",
+                "file": "front_1791771855421573600.jpg",
+                "host_unix_ns": 1791771855421573600,
+                "frame_id": "session-20261012-081336-38947",
+                "age_ms": 47
+              },
+              {
+                "camera": "front",
+                "file": "front_1791771860983328500.jpg",
+                "host_unix_ns": 1791771860983328500,
+                "frame_id": "session-20261012-081336-38974",
+                "age_ms": 170
+              }
+            ],
+            "person_detail": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-2-1791771850487\\person-detail.jpg"
+          },
+          "top": {
+            "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-2-1791771850487\\top.jpg",
+            "frames": [
+              {
+                "camera": "top",
+                "file": "top_1791771850324404000.jpg",
+                "host_unix_ns": 1791771850324404000,
+                "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-35338",
+                "age_ms": 188
+              },
+              {
+                "camera": "top",
+                "file": "top_1791771855409201300.jpg",
+                "host_unix_ns": 1791771855409201300,
+                "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-35364",
+                "age_ms": 93
+              },
+              {
+                "camera": "top",
+                "file": "top_1791771860979759700.jpg",
+                "host_unix_ns": 1791771860979759700,
+                "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-35392",
+                "age_ms": 47
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "axis": 3,
+      "reference_us": 1537,
+      "tested_target_us": 1577,
+      "direction": 1,
+      "reviewed_magnitude_us": 40,
+      "other_axes_reference_required": true,
+      "selection": {
+        "axis": 3,
+        "offset_us": 40,
+        "events": [
+          {
+            "event": "probe_started",
+            "axis": 3,
+            "offset_us": 40,
+            "steps_per_leg": 70,
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 63,
+              "armed": true,
+              "faults": 0,
+              "sequence": 8921,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1352,
+                1537,
+                1574,
+                1508,
+                1500,
+                1500,
+                1426,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            },
+            "host_unix_ms": 1791771879656
+          },
+          {
+            "event": "probe_peak",
+            "axis": 3,
+            "offset_us": 40,
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 63,
+              "armed": true,
+              "faults": 0,
+              "sequence": 8991,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1352,
+                1577,
+                1574,
+                1508,
+                1500,
+                1500,
+                1426,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            },
+            "host_unix_ms": 1791771883803
+          },
+          {
+            "event": "probe_complete",
+            "axis": 3,
+            "offset_us": 40,
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 63,
+              "armed": true,
+              "faults": 0,
+              "sequence": 9061,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1352,
+                1537,
+                1574,
+                1508,
+                1500,
+                1500,
+                1426,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            },
+            "host_unix_ms": 1791771890007
+          }
+        ],
+        "views": {
+          "front": {
+            "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-3-1791771879656\\front.jpg",
+            "frames": [
+              {
+                "camera": "front",
+                "file": "front_1791771879503715100.jpg",
+                "host_unix_ns": 1791771879503715100,
+                "frame_id": "session-20261012-081336-39066",
+                "age_ms": 196
+              },
+              {
+                "camera": "front",
+                "file": "front_1791771884571704200.jpg",
+                "host_unix_ns": 1791771884571704200,
+                "frame_id": "session-20261012-081336-39092",
+                "age_ms": 40
+              },
+              {
+                "camera": "front",
+                "file": "front_1791771890139429900.jpg",
+                "host_unix_ns": 1791771890139429900,
+                "frame_id": "session-20261012-081336-39119",
+                "age_ms": 181
+              }
+            ],
+            "person_detail": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-3-1791771879656\\person-detail.jpg"
+          },
+          "top": {
+            "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-3-1791771879656\\top.jpg",
+            "frames": [
+              {
+                "camera": "top",
+                "file": "top_1791771879509975200.jpg",
+                "host_unix_ns": 1791771879509975200,
+                "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-35484",
+                "age_ms": 186
+              },
+              {
+                "camera": "top",
+                "file": "top_1791771884579978000.jpg",
+                "host_unix_ns": 1791771884579978000,
+                "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-35510",
+                "age_ms": 62
+              },
+              {
+                "camera": "top",
+                "file": "top_1791771890127783100.jpg",
+                "host_unix_ns": 1791771890127783100,
+                "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-35537",
+                "age_ms": 202
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "axis": 5,
+      "reference_us": 1508,
+      "tested_target_us": 1588,
+      "direction": 1,
+      "reviewed_magnitude_us": 80,
+      "other_axes_reference_required": true,
+      "selection": {
+        "axis": 5,
+        "offset_us": 80,
+        "events": [
+          {
+            "event": "probe_started",
+            "axis": 5,
+            "offset_us": 80,
+            "steps_per_leg": 140,
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 63,
+              "armed": true,
+              "faults": 0,
+              "sequence": 8221,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1352,
+                1537,
+                1574,
+                1508,
+                1500,
+                1500,
+                1426,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            },
+            "host_unix_ms": 1791771831651
+          },
+          {
+            "event": "probe_peak",
+            "axis": 5,
+            "offset_us": 80,
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 63,
+              "armed": true,
+              "faults": 0,
+              "sequence": 8361,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1352,
+                1537,
+                1574,
+                1588,
+                1500,
+                1500,
+                1426,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            },
+            "host_unix_ms": 1791771839994
+          },
+          {
+            "event": "probe_complete",
+            "axis": 5,
+            "offset_us": 80,
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 63,
+              "armed": true,
+              "faults": 0,
+              "sequence": 8501,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1352,
+                1537,
+                1574,
+                1508,
+                1500,
+                1500,
+                1426,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            },
+            "host_unix_ms": 1791771850402
+          }
+        ],
+        "views": {
+          "front": {
+            "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-5-1791771831651\\front.jpg",
+            "frames": [
+              {
+                "camera": "front",
+                "file": "front_1791771831481060100.jpg",
+                "host_unix_ns": 1791771831481060100,
+                "frame_id": "session-20261012-081336-38828",
+                "age_ms": 41
+              },
+              {
+                "camera": "front",
+                "file": "front_1791771840863306900.jpg",
+                "host_unix_ns": 1791771840863306900,
+                "frame_id": "session-20261012-081336-38874",
+                "age_ms": 167
+              },
+              {
+                "camera": "front",
+                "file": "front_1791771850662640700.jpg",
+                "host_unix_ns": 1791771850662640700,
+                "frame_id": "session-20261012-081336-38923",
+                "age_ms": 114
+              }
+            ],
+            "person_detail": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-5-1791771831651\\person-detail.jpg"
+          },
+          "top": {
+            "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-5-1791771831651\\top.jpg",
+            "frames": [
+              {
+                "camera": "top",
+                "file": "top_1791771831478046400.jpg",
+                "host_unix_ns": 1791771831478046400,
+                "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-35244",
+                "age_ms": 141
+              },
+              {
+                "camera": "top",
+                "file": "top_1791771840859784700.jpg",
+                "host_unix_ns": 1791771840859784700,
+                "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-35291",
+                "age_ms": 140
+              },
+              {
+                "camera": "top",
+                "file": "top_1791771850669472600.jpg",
+                "host_unix_ns": 1791771850669472600,
+                "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-35340",
+                "age_ms": 156
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "axis": 6,
+      "reference_us": 1500,
+      "tested_target_us": 1620,
+      "direction": 1,
+      "reviewed_magnitude_us": 120,
+      "other_axes_reference_required": true,
+      "selection": {
+        "axis": 6,
+        "offset_us": 120,
+        "events": [
+          {
+            "event": "probe_started",
+            "axis": 6,
+            "offset_us": 120,
+            "steps_per_leg": 210,
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 63,
+              "armed": true,
+              "faults": 0,
+              "sequence": 7801,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1352,
+                1537,
+                1574,
+                1508,
+                1500,
+                1500,
+                1426,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            },
+            "host_unix_ms": 1791771804410
+          },
+          {
+            "event": "probe_peak",
+            "axis": 6,
+            "offset_us": 120,
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 63,
+              "armed": true,
+              "faults": 0,
+              "sequence": 8011,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1352,
+                1537,
+                1574,
+                1508,
+                1620,
+                1500,
+                1426,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            },
+            "host_unix_ms": 1791771817045
+          },
+          {
+            "event": "probe_complete",
+            "axis": 6,
+            "offset_us": 120,
+            "state": {
+              "identity": "SP10",
+              "period_us": 20000,
+              "clock_hz": 100000000,
+              "enabled_mask": 63,
+              "armed": true,
+              "faults": 0,
+              "sequence": 8221,
+              "pending": false,
+              "pulse_us": [
+                1537,
+                1352,
+                1537,
+                1574,
+                1508,
+                1500,
+                1500,
+                1426,
+                1500,
+                1500
+              ],
+              "position_feedback": null
+            },
+            "host_unix_ms": 1791771831579
+          }
+        ],
+        "views": {
+          "front": {
+            "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-6-1791771804410\\front.jpg",
+            "frames": [
+              {
+                "camera": "front",
+                "file": "front_1791771804215222800.jpg",
+                "host_unix_ns": 1791771804215222800,
+                "frame_id": "session-20261012-081336-38692",
+                "age_ms": 122
+              },
+              {
+                "camera": "front",
+                "file": "front_1791771817808950400.jpg",
+                "host_unix_ns": 1791771817808950400,
+                "frame_id": "session-20261012-081336-38760",
+                "age_ms": 42
+              },
+              {
+                "camera": "front",
+                "file": "front_1791771831809833100.jpg",
+                "host_unix_ns": 1791771831809833100,
+                "frame_id": "session-20261012-081336-38829",
+                "age_ms": 168
+              }
+            ],
+            "person_detail": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-6-1791771804410\\person-detail.jpg"
+          },
+          "top": {
+            "montage": "D:\\Desktop\\piying\\.review_work\\loaded_calibration_20261012\\person_extended_e\\stage-review-6-1791771804410\\top.jpg",
+            "frames": [
+              {
+                "camera": "top",
+                "file": "top_1791771804221521000.jpg",
+                "host_unix_ns": 1791771804221521000,
+                "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-35108",
+                "age_ms": 109
+              },
+              {
+                "camera": "top",
+                "file": "top_1791771817805947100.jpg",
+                "host_unix_ns": 1791771817805947100,
+                "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-35176",
+                "age_ms": 77
+              },
+              {
+                "camera": "top",
+                "file": "top_1791771831807584300.jpg",
+                "host_unix_ns": 1791771831807584300,
+                "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-35246",
+                "age_ms": 77
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "completed_probes": [
+    {
+      "event": "probe_complete",
+      "axis": 2,
+      "offset_us": 40,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5981,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791771165654
+    },
+    {
+      "event": "probe_complete",
+      "axis": 1,
+      "offset_us": 40,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 6121,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791771265468
+    },
+    {
+      "event": "probe_complete",
+      "axis": 1,
+      "offset_us": 80,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 6401,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791771347774
+    },
+    {
+      "event": "probe_complete",
+      "axis": 3,
+      "offset_us": 40,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 6541,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791771420003
+    },
+    {
+      "event": "probe_complete",
+      "axis": 5,
+      "offset_us": 40,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 6681,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791771485480
+    },
+    {
+      "event": "probe_complete",
+      "axis": 5,
+      "offset_us": 80,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 6961,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791771572250
+    },
+    {
+      "event": "probe_complete",
+      "axis": 6,
+      "offset_us": 40,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 7101,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791771633528
+    },
+    {
+      "event": "probe_complete",
+      "axis": 6,
+      "offset_us": 80,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 7381,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791771693529
+    },
+    {
+      "event": "probe_complete",
+      "axis": 6,
+      "offset_us": 120,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 7801,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791771772704
+    },
+    {
+      "event": "probe_complete",
+      "axis": 6,
+      "offset_us": 120,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 8221,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791771831579
+    },
+    {
+      "event": "probe_complete",
+      "axis": 5,
+      "offset_us": 80,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 8501,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791771850402
+    },
+    {
+      "event": "probe_complete",
+      "axis": 2,
+      "offset_us": 40,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 8641,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791771860851
+    },
+    {
+      "event": "probe_complete",
+      "axis": 1,
+      "offset_us": 80,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 8921,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791771879582
+    },
+    {
+      "event": "probe_complete",
+      "axis": 3,
+      "offset_us": 40,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 9061,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1352,
+          1537,
+          1574,
+          1508,
+          1500,
+          1500,
+          1426,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "host_unix_ms": 1791771890007
+    }
+  ],
+  "demo_complete": {
+    "event": "demo_complete",
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 63,
+      "armed": true,
+      "faults": 0,
+      "sequence": 9061,
+      "pending": false,
+      "pulse_us": [
+        1537,
+        1352,
+        1537,
+        1574,
+        1508,
+        1500,
+        1500,
+        1426,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "host_unix_ms": 1791771890008
+  },
+  "normal_stop": {
+    "event": "outputs_off",
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 9062,
+      "pending": false,
+      "pulse_us": [
+        1537,
+        1352,
+        1537,
+        1574,
+        1508,
+        1500,
+        1500,
+        1426,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "normal_frame_stop": true,
+    "incident_locks_removed": false,
+    "host_unix_ms": 1791771968433
+  },
+  "independent_readback_sequence": 9062,
+  "independent_readback_log_sha256": "b7b06f3038c3d22a192b4499f7c2f02092cf5c8a455b2a7a22afadf3175e65d4",
+  "incident_locks_removed": false,
+  "actual_position_feedback": null,
+  "full_loaded_workspace_calibrated": false,
+  "simultaneous_axis_combinations_validated": false,
+  "automatic_replay_allowed": false,
+  "metric_joint_coordinates_calibrated": false,
+  "observations": [
+    "Axes 1,2,3,5,6 have visible response; head yaw and both hand paths also move the body",
+    "Before/peak/return views reviewed for each stage and each demo segment; no visible rod detachment or curtain exit",
+    "Axis 2 retained at 40 us after body coupling and small return difference; no 80 us motion was issued on axis 2",
+    "Returning the same pulse yields a visually close posture, not measured identical joint coordinates"
+  ],
+  "recording": {
+    "demo_start_host_unix_ms": 1791771804411,
+    "demo_end_host_unix_ms": 1791771890008,
+    "clip_start_host_unix_ms": 1791771801411,
+    "clip_end_host_unix_ms": 1791771893008,
+    "duration_seconds": 91.59699988365173,
+    "audio_recorded": false,
+    "source": "Saved live JPEG frames, about 5 fps; aligned by host receipt time, not hardware-synchronized",
+    "output_fps": 25,
+    "frame_interpolation": false,
+    "frame_repeat_for_playback": true,
+    "cameras": {
+      "front": {
+        "source_unique_frames": 457,
+        "max_source_gap_seconds": 0.3537158966064453,
+        "max_source_age_ms": 179
+      },
+      "top": {
+        "source_unique_frames": 459,
+        "max_source_gap_seconds": 0.3523416519165039,
+        "max_source_age_ms": 188
+      }
+    },
+    "files": [
+      {
+        "name": "front.mp4",
+        "sha256": "010a38097ff67469bb02552f488e884894b9f7eb15d6ba9b9c3cc47427e64fa9",
+        "bytes": 3051649,
+        "width": 640,
+        "height": 360,
+        "duration_seconds": 91.6,
+        "pixel_format": "yuvj420p",
+        "duration_delta_seconds": 0.0030001163482609172,
+        "full_decode_passed": true
+      },
+      {
+        "name": "top.mp4",
+        "sha256": "c0ab53cd18b635a7e0115920de0a183fe712efa6070403b5bdebc7e5c473ffd0",
+        "bytes": 15036303,
+        "width": 960,
+        "height": 540,
+        "duration_seconds": 91.6,
+        "pixel_format": "yuvj420p",
+        "duration_delta_seconds": 0.0030001163482609172,
+        "full_decode_passed": true
+      },
+      {
+        "name": "dual-view.mp4",
+        "sha256": "c44d9b6082bb3cea8556d304606bff56fc7da35d5c10f9eac2b75ab6b233e477",
+        "bytes": 19598421,
+        "width": 1920,
+        "height": 540,
+        "duration_seconds": 91.6,
+        "pixel_format": "yuvj420p",
+        "duration_delta_seconds": 0.0030001163482609172,
+        "full_decode_passed": true
+      }
+    ]
+  }
+}
