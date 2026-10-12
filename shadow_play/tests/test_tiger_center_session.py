@@ -75,5 +75,10 @@ class TigerCenterTests(unittest.TestCase):
             p=copy.deepcopy(self.plan);p[k]=v
             with self.assertRaises(ValueError):tiger.validate_plan(p,wall=lambda:1000)
 
+    def test_board_does_not_compare_unsynchronized_wall_clock(self):
+        p=copy.deepcopy(self.plan);p['reviewed_at_unix_ms']=1791800000000
+        tiger.validate_plan(p)
+        with self.assertRaises(ValueError):tiger.validate_plan(p,wall=lambda:1000)
+
 
 if __name__=='__main__':unittest.main()

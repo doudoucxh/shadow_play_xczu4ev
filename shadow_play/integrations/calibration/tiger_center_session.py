@@ -34,8 +34,11 @@ def validate_plan(p, wall=None):
     values=p['expected_pulses_us']
     if not isinstance(values,list) or len(values)!=10 or any(type(v) is not int or not 500<=v<=2500 for v in values):
         raise ValueError('Ten inspected command registers required, not angle feedback')
-    now=(time.time if wall is None else wall)()*1000
-    if type(p['reviewed_at_unix_ms']) is not int or not 0<=now-p['reviewed_at_unix_ms']<120000:
+    # Windows verifies the host timestamp before launch. The board wall clock
+    # is not synchronized; ongoing camera/host leases use monotonic time.
+    if type(p['reviewed_at_unix_ms']) is not int or p['reviewed_at_unix_ms']<=0:
+        raise ValueError('Scene review timestamp required')
+    if wall is not None and not 0<=wall()*1000-p['reviewed_at_unix_ms']<120000:
         raise ValueError('Fresh scene review required')
     if type(p['duration_seconds']) is not int or not 60<=p['duration_seconds']<=600:
         raise ValueError('Attended centering duration limited to 60..600 seconds')
