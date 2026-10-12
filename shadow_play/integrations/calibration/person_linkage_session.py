@@ -17,7 +17,9 @@ import sys
 import time
 
 # The board uses immutable, versioned /tmp modules; local tests use the source.
-if Path(__file__).with_name('person_visible_motion_session_20261012_r7.py').exists():
+if Path(__file__).with_name('person_visible_motion_session_20261012_r8.py').exists():
+    from person_visible_motion_session_20261012_r8 import VisibleSession, validate_plan as validate_reference
+elif Path(__file__).with_name('person_visible_motion_session_20261012_r7.py').exists():
     from person_visible_motion_session_20261012_r7 import VisibleSession, validate_plan as validate_reference
 elif Path(__file__).with_name('person_visible_motion_session_20261012_r6.py').exists():
     from person_visible_motion_session_20261012_r6 import VisibleSession, validate_plan as validate_reference
@@ -40,6 +42,8 @@ LOW_GUARD = (0,-140,0,0,0,240)
 COMBINED_LOWERING_RECEIPT = '1747fc93e1473da1015326c0b2e9f6e37d8e4b979ad306d5a56c0a706960d0f9'
 LOW_GUARD_GEOMETRY_RECEIPT = '1639361a56578d3ffb9a1a08b7d168da1f6abb2f658dd67f0660ce7da5a5c10b'
 LOW_GUARD_REVIEWED_PATHS = ((0,140,0,0,0,0),(0,0,0,0,0,-240),(0,140,0,0,0,-240))
+LOW_HEAD_FOLLOW_RECEIPT = 'a83323b9593830ca97fda4eafedb02d1213ed1bc98ab358c316565d8257968c5'
+LOW_HEAD_FOLLOW_PATHS = ((0,0,0,-40,0,0),(0,140,0,-40,0,0),(0,0,0,-40,0,-240),(0,140,0,-40,0,-240))
 
 
 def reference_plan(plan):
@@ -49,14 +53,14 @@ def reference_plan(plan):
               'supported_martial_diagnostic', 'tempo_step_us', 'peak_hold_ms',
               'motion_interval_ms', 'lower_hands_diagnostic', 'combined_lower_hands_diagnostic',
               'low_guard_diagnostic', 'combined_lowering_receipt_sha256',
-              'low_guard_performance', 'low_guard_geometry_receipt_sha256'):
+              'low_guard_performance', 'low_guard_geometry_receipt_sha256', 'head_follow_receipt_sha256'):
         p.pop(k, None)
     p['approval'] = 'attended-unchanged-person-continuation-20261012'
     if plan.get('head_support_diagnostic') is True:
         p['motion_axes'] = [4]
         p['head_pitch_diagnostic'] = True
     else:
-        p['motion_axes'] = [2,6] if plan.get('low_guard_diagnostic') is True else [1, 2, 3, 5, 6] if plan.get('bilateral_hand_diagnostic') is True else [1, 3, 5, 6]
+        p['motion_axes'] = [2,4,6] if plan.get('low_guard_head_follow') is True else [2,6] if plan.get('low_guard_diagnostic') is True else [1, 2, 3, 5, 6] if plan.get('bilateral_hand_diagnostic') is True else [1, 3, 5, 6]
     return p
 
 
@@ -72,6 +76,7 @@ def validate_plan(plan, wall=None):
     guard = 'low_guard_diagnostic' in plan
     guard_performance = 'low_guard_performance' in plan
     low_head = 'lowered_head_support_diagnostic' in plan
+    follow = 'low_guard_head_follow' in plan
     if not isinstance(plan.get('session_id'),str) or not re.fullmatch('[a-z0-9-]{1,80}', plan['session_id']):
         raise ValueError('Safe unique session ID required')
     if bilateral and plan['bilateral_hand_diagnostic'] is not True:
@@ -108,6 +113,12 @@ def validate_plan(plan, wall=None):
             or plan.get('peak_hold_ms') != 400 or plan.get('combined_lowering_receipt_sha256') != COMBINED_LOWERING_RECEIPT
             or plan.get('lowered_hands_reference_offset_us') != list(LOW_GUARD)):
         raise ValueError('Further head lift requires an exclusive slow diagnostic with both hands at the reviewed low pose')
+    if follow and (plan['low_guard_head_follow'] is not True or not guard or low_head or guard_performance
+            or 'lowered_hands_reference_offset_us' not in plan
+            or plan.get('head_follow_receipt_sha256') != LOW_HEAD_FOLLOW_RECEIPT):
+        raise ValueError('Coordinated head follow requires the separate reviewed 40-us head lift and slow guard diagnostic')
+    if not follow and 'head_follow_receipt_sha256' in plan:
+        raise ValueError('Head-follow receipt requires the explicit fixed-path diagnostic')
     if not guard and not low_head and ('combined_lowering_receipt_sha256' in plan or 'lowered_hands_reference_offset_us' in plan):
         raise ValueError('Lowered reference is reserved for the fixed low-guard actor')
     if 'motion_interval_ms' in plan and (not (martial or low_head)
@@ -123,7 +134,7 @@ def validate_plan(plan, wall=None):
         if (not isinstance(vector, list) or len(vector) != 6
                 or any(type(v) is not int or not low <= v <= cap
                        for v, low, cap in zip(vector,
-                           (0,0,0,0,0,-240) if guard else HEAD_SUPPORT_MIN if head_support else (0,-140,0,0,0,0) if lower else BILATERAL_MIN if bilateral else (0,)*6,
+                           (0,0,0,-40,0,-240) if follow else (0,0,0,0,0,-240) if guard else HEAD_SUPPORT_MIN if head_support else (0,-140,0,0,0,0) if lower else BILATERAL_MIN if bilateral else (0,)*6,
                            (0,140,0,0,0,0) if guard else (0,)*6 if head_support else (40,0,40,0,60,240) if lower else CAPS))
                 or not any(vector)):
             raise ValueError('Only bounded, explicitly selected person trial offsets allowed')
@@ -131,6 +142,8 @@ def validate_plan(plan, wall=None):
             raise ValueError('Select a hand pitch path for each martial stage')
         if guard_performance and tuple(vector) not in LOW_GUARD_REVIEWED_PATHS:
             raise ValueError('Performance may select only the three reviewed low-guard paths')
+        if follow and tuple(vector) not in LOW_HEAD_FOLLOW_PATHS:
+            raise ValueError('Select one of the four fixed head-follow guard paths')
         if lower and (any(vector[i] for i in (0,2,3,4))
                 or (not (vector[1] < 0 and vector[5] > 0) if combined_lower
                     else bool(vector[1]) == bool(vector[5]))):
