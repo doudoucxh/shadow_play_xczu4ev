@@ -2,14 +2,17 @@ param([Parameter(Mandatory=$true)][string]$OutputDirectory,
       [Parameter(Mandatory=$true)][string]$BoardPlan,
       [string]$PortName='COM3',
       [switch]$AttendedUnchangedContinuation,
+      [switch]$AttendedLinkageComparison,
       [string]$HostPlan)
 $ErrorActionPreference='Stop'
-if ($AttendedUnchangedContinuation) {
+if ($AttendedUnchangedContinuation -and $AttendedLinkageComparison) {throw 'Choose one explicit continuation mode'}
+if ($AttendedUnchangedContinuation -or $AttendedLinkageComparison) {
     if ($BoardPlan -notmatch '^/tmp/person_visible_[a-z0-9_]+\.json$') {throw 'Attended continuation plan path required'}
     if (-not $HostPlan -or -not (Test-Path -LiteralPath $HostPlan -PathType Leaf)) {throw 'Local reviewed plan required'}
     $taskReviewedPlan=Get-Content -LiteralPath $HostPlan -Raw | ConvertFrom-Json
     $taskPlanHash=(Get-FileHash -LiteralPath $HostPlan -Algorithm SHA256).Hash.ToLowerInvariant()
-    if ($taskReviewedPlan.approval -ne 'attended-unchanged-person-continuation-20261012') {throw 'Wrong continuation approval'}
+    $taskApproval=if ($AttendedLinkageComparison) {'attended-person-linkage-comparison-20261012'} else {'attended-unchanged-person-continuation-20261012'}
+    if ($taskReviewedPlan.approval -ne $taskApproval) {throw 'Wrong continuation approval'}
 } elseif ($BoardPlan -notmatch '^/tmp/person_recovery_[a-z0-9_]+\.json$') {throw 'Session plan path required'}
 if (Test-Path -LiteralPath $OutputDirectory) {throw 'Use a new private session directory; no retry'}
 $taskPython=Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
@@ -40,10 +43,14 @@ try {
     $taskSerial.Open();$taskSerial.Write("stty -echo`r");Start-Sleep -Milliseconds 180
     $taskRaw.Write($taskSerial.ReadExisting())
     if (-not (Test-RecoveryViews)) {throw 'Video lost before execution'}
-    if ($AttendedUnchangedContinuation) {
+    if ($AttendedUnchangedContinuation -or $AttendedLinkageComparison) {
         $taskReviewAge=[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()-[long]$taskReviewedPlan.reviewed_at_unix_ms
         if ($taskReviewAge -lt 0 -or $taskReviewAge -ge 120000 -or (Get-FileHash -LiteralPath $HostPlan -Algorithm SHA256).Hash.ToLowerInvariant() -ne $taskPlanHash) {throw 'Physical comparison receipt expired or changed; no motion sent'}
-        $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_visible_motion_session_20261012_r4.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-unchanged-continuation; echo RECOVERY_COMPLETE:$?; stty echo'
+        if ($AttendedLinkageComparison) {
+            $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_linkage_session_20261012_r1.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-linkage-comparison; echo RECOVERY_COMPLETE:$?; stty echo'
+        } else {
+            $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_visible_motion_session_20261012_r4.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-unchanged-continuation; echo RECOVERY_COMPLETE:$?; stty echo'
+        }
     } else {
         $command='PYTHONPATH=/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_recovery_session_20261012.py '+$BoardPlan+' --execute-released-person-recovery; echo RECOVERY_COMPLETE:$?; stty echo'
     }
