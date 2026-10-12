@@ -2,10 +2,10 @@
   "schema_version": 1,
   "date": "2026-10-12",
   "session_id": "person-visible-20261012-b",
-  "phase_at_record": "holding_after_visible_demo",
+  "phase_at_record": "closed",
   "demo_completed": true,
-  "session_closed_at_record": false,
-  "operator_unchanged_report": "电源和机构都没动",
+  "session_closed_at_record": true,
+  "operator_unchanged_report": "\u7535\u6e90\u548c\u673a\u6784\u90fd\u6ca1\u52a8",
   "onsite_cutoff_confirmation_retained": true,
   "startup_basis": "New operator unchanged-power/mechanism report, fresh dual-view physical posture comparison, verified previous normal held-to-OFF transition and unchanged read-only board state. Not saved register values alone.",
   "source_session_record": "person_recovery_session.20261012.json",
@@ -254,5 +254,34 @@
       }
     ]
   },
-  "note": "This is a time-stamped holding snapshot, not a claim that outputs remain enabled after the session deadline or a fault. No automatic restart from this saved record."
+  "note": "This is a time-stamped holding snapshot, not a claim that outputs remain enabled after the session deadline or a fault. No automatic restart from this saved record.",
+  "normal_stop_receipt": {
+    "event": "outputs_off",
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 3878,
+      "pending": false,
+      "pulse_us": [
+        1537,
+        1352,
+        1537,
+        1574,
+        1508,
+        1500,
+        1500,
+        1426,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "normal_frame_stop": true,
+    "incident_locks_removed": false,
+    "host_unix_ms": 1791769011372
+  }
 }
