@@ -314,6 +314,28 @@ class LinkageTests(unittest.TestCase):
         q=copy.deepcopy(p);q['previous_off_state']['pulse_us'][1]+=1
         with self.assertRaises(ValueError):linkage.validate_plan(q)
 
+    def test_fast_guard_uses_only_reviewed_paths_and_finishes_low(self):
+        p=self.low_guard_plan(continued=True)
+        p.update(low_guard_performance=True,tempo_step_us=8,peak_hold_ms=100,
+                 low_guard_geometry_receipt_sha256=linkage.LOW_GUARD_GEOMETRY_RECEIPT)
+        self.d=linkage.LinkageSession(self.reg,p,self.host,motion_inhibit_paths=[self.lock],
+            cancel_path=self.root/'cancel',clock=lambda:self.now,wall=lambda:1000)
+        self.resume();before=self.now;self.d.probe(3,self.emit,self.sleep)
+        self.assertLess(self.now-before,2.4)
+        previous=p['expected_pulses_us']
+        for r in self.events:
+            if r['event']!='probe_step':continue
+            values=r['state']['pulse_us'];self.assertLessEqual(max(abs(a-b) for a,b in zip(previous,values)),8)
+            self.assertTrue(1212<=values[1]<=1352 and 1500<=values[5]<=1740)
+            for i in (0,2,3,4,6,7,8,9):self.assertEqual(values[i],p['expected_pulses_us'][i])
+            previous=values
+        self.assertEqual(self.d.pulses,p['expected_pulses_us'])
+        for extra in ({'low_guard_geometry_receipt_sha256':'0'*64},
+                      {'low_guard_performance':False},{'tempo_step_us':3},
+                      {'stages':[[0,100,0,0,0,0]]}):
+            q=copy.deepcopy(p);q.update(extra)
+            with self.assertRaises(ValueError):linkage.validate_plan(q)
+
     def test_manual_waypoint_and_fast_step_rejected_before_write(self):
         self.resume();self.d.phase='linkage';self.sleep(.05)
         p=self.d.pulses[:];p[4]+=1
