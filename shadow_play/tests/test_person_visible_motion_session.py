@@ -113,5 +113,52 @@ class VisibleTests(unittest.TestCase):
             with self.assertRaises(RuntimeError):self.d.adopt(p,63)
             self.assertEqual(len(self.reg.writes),count)
 
+    def extended(self, axes):
+        plan=copy.deepcopy(self.plan);plan['motion_axes']=axes
+        return visible.VisibleSession(self.reg,plan,self.host,motion_inhibit_paths=[self.lock],
+            cancel_path=self.root/'cancel',clock=lambda:self.now,wall=lambda:1000)
+
+    def test_left_pitch_uses_negative_direction_and_preserves_other_axes(self):
+        self.d=self.extended([1,2,3]);self.resume()
+        self.d.probe(2,80,self.emit,self.sleep)
+        states=[r['state'] for r in self.events if r['event']=='probe_step']
+        self.assertEqual(min(s['pulse_us'][1] for s in states),1272)
+        previous=self.plan['expected_pulses_us']
+        for state in states:
+            self.assertEqual(state['pulse_us'][:1],previous[:1])
+            self.assertEqual(state['pulse_us'][2:],previous[2:])
+            self.assertLessEqual(abs(state['pulse_us'][1]-previous[1]),1)
+            previous=state['pulse_us']
+        self.assertEqual(self.d.pulses,self.plan['expected_pulses_us'])
+
+    def test_axis_four_tiger_and_unselected_axes_cannot_be_enabled(self):
+        for axes in ([4],[7],[True],[1,1],[]):
+            p=copy.deepcopy(self.plan);p['motion_axes']=axes
+            with self.assertRaises(ValueError):visible.validate_plan(p)
+        self.d=self.extended([1,2,3]);self.resume()
+        for axis,offset in ((4,40),(5,40),(3,80),(2,120)):
+            before=len(self.reg.writes)
+            with self.assertRaises(RuntimeError):self.d.probe(axis,offset,self.emit,self.sleep)
+            self.assertEqual(len(self.reg.writes),before)
+
+    def test_extended_demo_requires_each_selected_path_review_and_one_arm(self):
+        self.d=self.extended([1,2,3])
+        def emit(row):
+            self.events.append(row);action=None
+            if row['event']=='reference_held':action='probe_1'
+            elif row['event']=='probe_complete' and not self.d.demo_used:
+                action='review_'+str(row['axis'])
+            elif row['event']=='path_reviewed':
+                next_axis=next((a for a in (1,2,3) if a not in self.d.reviewed),None)
+                action='probe_'+str(next_axis) if next_axis else 'demo'
+            elif row['event']=='demo_complete':action='finish'
+            if action:self.host.action=(action,self.d.sequence)
+        visible.run_session(self.d,emit,sleep=self.sleep)
+        self.assertEqual(self.d.reviewed,{1:40,2:40,3:40})
+        self.assertEqual(sum(a==0x10 for a,v in self.reg.writes),1)
+        self.assertEqual(sum(a==0x0c for a,v in self.reg.writes),1)
+        self.assertTrue(self.events[-1]['normal_frame_stop'])
+        self.assertEqual(self.lock.read_text(),'retain')
+
 
 if __name__=='__main__':unittest.main()

@@ -2,8 +2,9 @@
 
 This is NOT recovery from an unknown/manual pose. A new operator report and
 fresh dual-view comparison are required; saved register values alone never
-authorize startup. Incident locks remain in place. Only right-hand axes 5/6
-are explored, one at a time, in reviewed 40/80/120-us stages.
+authorize startup. Incident locks remain in place. Axes 1/2/3/5/6 may be
+selected explicitly, one at a time, in separately reviewed stages. Axis 4
+remains excluded because its physical response has not been verified.
 """
 import argparse
 import hashlib
@@ -20,6 +21,9 @@ from servo_pwm_device import PwmDevice, Registers
 APPROVAL = 'attended-unchanged-person-continuation-20261012'
 LEVELS = (40, 80, 120)
 INTERVAL = .05
+DIRECTIONS = {1: 1, 2: -1, 3: 1, 5: 1, 6: 1}
+AXIS_LEVELS = {1: (40, 80), 2: (40, 80), 3: (40,), 5: LEVELS, 6: LEVELS}
+DEMO_ORDER = (6, 5, 2, 1, 3)
 
 
 def validate_plan(plan, wall=None):
@@ -27,8 +31,13 @@ def validate_plan(plan, wall=None):
               'operator_unchanged_report', 'observer_ready', 'dual_view_pose_reviewed',
               'reviewed_at_unix_ms', 'previous_held_state', 'previous_off_state',
               'previous_normal_frame_stop', 'duration_seconds'}
-    if not isinstance(plan, dict) or set(plan) != fields or plan['approval'] != APPROVAL:
+    if (not isinstance(plan, dict) or set(plan) not in (fields, fields | {'motion_axes'})
+            or plan['approval'] != APPROVAL):
         raise ValueError('Exact attended continuation receipt required')
+    axes = plan.get('motion_axes', [5, 6])
+    if (not isinstance(axes, list) or not axes or len(set(axes)) != len(axes)
+            or any(type(axis) is not int or axis not in DIRECTIONS for axis in axes)):
+        raise ValueError('Explicit person axes required; axis 4 and tiger excluded')
     if plan['operator_unchanged_report'] != '电源和机构都没动':
         raise ValueError('New operator report required; no manual-pose reset')
     if plan['observer_ready'] is not True or plan['dual_view_pose_reviewed'] is not True:
@@ -69,6 +78,7 @@ class VisibleSession(RecoverySession):
         self.failed=False; self.phase='resume'; self.last_commit=None
         self.completed={}; self.reviewed={}; self.demo_used=False
         self.active_axis=None; self.active_offset=0
+        self.motion_axes=tuple(plan.get('motion_axes', [5, 6]))
 
     def adopt(self, pulses, mask):
         self.check()
@@ -79,9 +89,12 @@ class VisibleSession(RecoverySession):
             if self.mask or pulses != base:
                 raise RuntimeError('Resume can enable the inspected reference only once')
         elif self.phase == 'motion':
+            if self.active_axis not in self.motion_axes or self.active_offset not in AXIS_LEVELS[self.active_axis]:
+                raise RuntimeError('Unselected axis or invalid stage')
             for i, value in enumerate(pulses):
                 if i == self.active_axis-1:
-                    if type(value) is not int or not base[i] <= value <= base[i]+self.active_offset:
+                    target=base[i]+DIRECTIONS[self.active_axis]*self.active_offset
+                    if type(value) is not int or not min(base[i],target) <= value <= max(base[i],target):
                         raise RuntimeError('Outside the current reviewed-stage interval')
                 elif value != base[i]:
                     raise RuntimeError('All other person/tiger commands must remain unchanged')
@@ -104,8 +117,8 @@ class VisibleSession(RecoverySession):
         return state
 
     def probe(self, axis, offset, emit, sleep):
-        if axis not in (5,6) or offset not in LEVELS:
-            raise RuntimeError('Only the current right-hand stage is allowed')
+        if axis not in self.motion_axes or offset not in AXIS_LEVELS[axis]:
+            raise RuntimeError('Only the selected person stage is allowed')
         if self.pulses != self.plan['expected_pulses_us']:
             raise RuntimeError('A path must begin at its inspected reference')
         self.phase='motion'; self.active_axis=axis; self.active_offset=offset
@@ -116,7 +129,7 @@ class VisibleSession(RecoverySession):
             for step in range(1,count+1):
                 self.wait(INTERVAL,sleep)
                 delta=round(offset*.5*(1-math.cos(math.pi*step/count)))
-                p=self.pulses[:];p[axis-1]=base+(offset-delta if returning else delta)
+                p=self.pulses[:];p[axis-1]=base+DIRECTIONS[axis]*(offset-delta if returning else delta)
                 emit({'event':'probe_step','axis':axis,'returning':returning,'step':step,
                       'offset_us':offset,'state':self.adopt(p,63)})
             if not returning:
@@ -140,9 +153,11 @@ def run_session(device, emit, *, sleep=time.sleep):
                 if action=='finish':frame_stop=True;break
                 if action.startswith('probe_'):
                     axis=int(action[-1]); old=d.reviewed.get(axis,0)
-                    if axis not in (5,6) or d.completed.get(axis,0)!=old or old==LEVELS[-1]:
-                        raise RuntimeError('Only the next visually reviewed right-hand stage')
-                    offset=LEVELS[0] if not old else LEVELS[LEVELS.index(old)+1]
+                    if (axis not in d.motion_axes or d.completed.get(axis,0)!=old
+                            or old==AXIS_LEVELS[axis][-1]):
+                        raise RuntimeError('Only the next visually reviewed person stage')
+                    levels=AXIS_LEVELS[axis]
+                    offset=levels[0] if not old else levels[levels.index(old)+1]
                     d.probe(axis,offset,emit,sleep)
                 elif action.startswith('review_'):
                     axis=int(action[-1]);level=d.completed.get(axis)
@@ -150,10 +165,12 @@ def run_session(device, emit, *, sleep=time.sleep):
                     d.reviewed[axis]=level
                     emit({'event':'path_reviewed','axis':axis,'offset_us':level,'state':d.check()})
                 elif action=='demo':
-                    if d.demo_used or any(d.reviewed.get(axis,0)<80 for axis in (5,6)):
+                    if d.demo_used or any(d.reviewed.get(axis,0)<(80 if axis in (5,6) else 40)
+                                         for axis in d.motion_axes):
                         raise RuntimeError('Visible paths must first be separately reviewed')
                     d.demo_used=True
-                    for axis in (6,5):d.probe(axis,d.reviewed[axis],emit,sleep)
+                    for axis in DEMO_ORDER:
+                        if axis in d.motion_axes:d.probe(axis,d.reviewed[axis],emit,sleep)
                     emit({'event':'demo_complete','state':d.check()})
                 else:raise RuntimeError('No other action is authorized')
             if d.clock()>=next_report:
@@ -176,7 +193,9 @@ def main():
     parser.add_argument('--expected-plan-sha256')
     args=parser.parse_args();raw=args.plan.read_bytes();plan=json.loads(raw);validate_plan(plan)
     if not args.execute_attended_unchanged_continuation:
-        print(json.dumps({'dry_run':True,'right_hand_offsets_us':LEVELS,'manual_pose_recovery':False}));return
+        print(json.dumps({'dry_run':True,'selected_axes':plan.get('motion_axes',[5,6]),
+                          'offsets_us':AXIS_LEVELS,'directions':DIRECTIONS,
+                          'manual_pose_recovery':False}));return
     if not args.expected_plan_sha256 or hashlib.sha256(raw).hexdigest()!=args.expected_plan_sha256:
         raise ValueError('Exact host-reviewed plan hash required before MMIO access')
     def interrupt(signum,frame):raise KeyboardInterrupt()
