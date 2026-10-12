@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-12",
+  "saved_at": "2026-10-12T22:30:00.317819+08:00",
+  "status": "paused_by_operator",
+  "operator_report": "\u4eca\u5929\u5c31\u8fd9\u6837\u5427\uff0c\u6211\u8981\u4f11\u606f\u4e86\uff0c\u786c\u4ef6\u6211\u4fdd\u6301\u4e0d\u53d8",
+  "last_completed_performance": "person_tiger_duet_result.20261012.json",
+  "last_operator_observation": "\u52a8\u4f5c\u534f\u8c03\uff0c\u6ca1\u6709\u5f02\u5e38",
+  "board_read_only_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 31666,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "position_feedback": null,
+  "incident_locks_removed": false,
+  "automatic_restart_allowed": false,
+  "pending_variant": {
+    "profile": "person-tiger-duet-bold",
+    "person_amplitude_scale": 1.25,
+    "tiger_amplitude_scale": 1.5,
+    "max_step_us": 10,
+    "minimum_frame_interval_ms": 20,
+    "software_tests_passed": 9,
+    "source_commit": "5908a35",
+    "transferred_actor": "/tmp/puppet_duet_session_20261012_r2.py",
+    "actor_sha256": "25d7aed760a1e26ad9aa36b0db2c11f41f17377bb4846d27f10a44260500cef2",
+    "physical_motion_executed": false,
+    "physical_route_validated": false
+  },
+  "resume_requirements": [
+    "User returns and can cut servo power",
+    "Read current board state; do not use old registers as angle feedback after power/manual movement",
+    "Verify both camera streams and actual pose",
+    "Review each expanded edge before any continuous expanded performance"
+  ]
+}
