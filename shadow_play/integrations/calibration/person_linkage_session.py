@@ -2,8 +2,9 @@
 
 Keeps the inspected reference and incident locks. A stage is a single fixed
 vector round trip. Only visually accepted stages can be replayed in the demo.
-Axis 4 and the tiger remain unchanged. An explicit bilateral diagnostic may
-move axis 2 downward on a fixed path; loss of observation stops output.
+An explicit bilateral diagnostic may move axis 2 downward on a fixed path.
+An exclusive head-support diagnostic may raise axis 4, with every other axis
+fixed. The tiger remains unchanged; loss of observation stops output.
 """
 import argparse
 import hashlib
@@ -27,14 +28,19 @@ INTERVAL = .05
 # These are trial caps, not a calibrated rectangular workspace.
 CAPS = (40, 0, 40, 0, 60, 120)
 BILATERAL_MIN = (0, -40, 0, 0, 0, 0)
+HEAD_SUPPORT_MIN = (0, 0, 0, -40, 0, 0)
 
 
 def reference_plan(plan):
     p = dict(plan)
-    for k in ('stages', 'demo_stages', 'bilateral_hand_diagnostic'):
+    for k in ('stages', 'demo_stages', 'bilateral_hand_diagnostic', 'head_support_diagnostic'):
         p.pop(k, None)
     p['approval'] = 'attended-unchanged-person-continuation-20261012'
-    p['motion_axes'] = [1, 2, 3, 5, 6] if plan.get('bilateral_hand_diagnostic') is True else [1, 3, 5, 6]
+    if plan.get('head_support_diagnostic') is True:
+        p['motion_axes'] = [4]
+        p['head_pitch_diagnostic'] = True
+    else:
+        p['motion_axes'] = [1, 2, 3, 5, 6] if plan.get('bilateral_hand_diagnostic') is True else [1, 3, 5, 6]
     return p
 
 
@@ -42,8 +48,11 @@ def validate_plan(plan, wall=None):
     if not isinstance(plan, dict) or plan.get('approval') != APPROVAL:
         raise ValueError('Explicit attended linkage comparison receipt required')
     bilateral = 'bilateral_hand_diagnostic' in plan
+    head_support = 'head_support_diagnostic' in plan
     if bilateral and plan['bilateral_hand_diagnostic'] is not True:
         raise ValueError('Bilateral diagnostic must be explicitly true')
+    if head_support and (bilateral or plan['head_support_diagnostic'] is not True):
+        raise ValueError('Head support requires an exclusive explicit diagnostic')
     validate_reference(reference_plan(plan), wall)
     stages = plan.get('stages')
     if not isinstance(stages, list) or not 1 <= len(stages) <= 6:
@@ -51,11 +60,15 @@ def validate_plan(plan, wall=None):
     for vector in stages:
         if (not isinstance(vector, list) or len(vector) != 6
                 or any(type(v) is not int or not low <= v <= cap
-                       for v, low, cap in zip(vector, BILATERAL_MIN if bilateral else (0,)*6, CAPS))
+                       for v, low, cap in zip(vector,
+                           HEAD_SUPPORT_MIN if head_support else BILATERAL_MIN if bilateral else (0,)*6,
+                           (0,)*6 if head_support else CAPS))
                 or not any(vector)):
             raise ValueError('Only bounded, explicitly selected person trial offsets allowed')
         if bilateral and not (vector[1] < 0 and vector[5] > 0):
             raise ValueError('Bilateral paths require opposite pitch directions for both hands')
+        if head_support and vector[3] >= 0:
+            raise ValueError('Exclusive head-support paths must raise axis 4')
     demo = plan.get('demo_stages')
     if (not isinstance(demo, list) or not 1 <= len(demo) <= 6
             or any(type(v) is not int or not 1 <= v <= len(stages) for v in demo)):
