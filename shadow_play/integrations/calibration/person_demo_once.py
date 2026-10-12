@@ -25,6 +25,10 @@ INTERVAL = .125
 APPROVAL = 'attended-person-demo-once-20261011'
 
 
+class VideoLeaseUnavailable(RuntimeError):
+    """Stop at the next PWM frame boundary without changing the last target."""
+
+
 def validate_plan(p):
     fields={'approval','expected_sequence','expected_pulses_us','reference_session',
             'observer_ready','views_reviewed','mechanism_unchanged'}
@@ -58,14 +62,16 @@ class HostLease:
     def check(self):
         if select.select([self.fd],[],[],0)[0]:
             data=os.read(self.fd,1024)
-            if not data:raise RuntimeError('Host input closed')
+            if not data:raise VideoLeaseUnavailable('Host input closed')
             self.buffer+=data
             while b'\n' in self.buffer:
                 line,self.buffer=self.buffer.split(b'\n',1)
+                if line.strip()==b': # PERSON_DEMO_VIDEO_STOP':
+                    raise VideoLeaseUnavailable('Host reported unavailable video')
                 if line.strip()!=b': # PERSON_DEMO_LEASE':raise RuntimeError('Unexpected host input')
                 self.last=self.clock();self.received=True
             if len(self.buffer)>100:raise RuntimeError('Oversized lease input')
-        if self.clock()-self.last>1.5:raise RuntimeError('Host/video lease expired')
+        if self.clock()-self.last>1.5:raise VideoLeaseUnavailable('Host/video lease expired')
 
 
 class DemoDevice(PwmDevice):
@@ -82,7 +88,6 @@ class DemoDevice(PwmDevice):
         return tuple(hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in self.motion_inhibit_paths)
 
     def check(self):
-        self.lease_check()
         if self.failed or self.cancel.exists() or self.clock()>=self.expires or self._hashes()!=self.lock_hashes:
             raise RuntimeError('Demo cancelled, expired, failed or incident lock changed')
         s=self.status();active=self.index>0
@@ -91,6 +96,7 @@ class DemoDevice(PwmDevice):
             or s['armed']!=active or s['enabled_mask']!=(63 if active else 0)
             or s['pulse_us']!=expected or s['sequence']!=(self.plan['expected_sequence']+self.index)%2**32):
             raise RuntimeError('Demo state changed; no rearm or retry')
+        self.lease_check()
         return s
 
     def _check_motion_allowed(self):
@@ -113,7 +119,7 @@ class DemoDevice(PwmDevice):
 
 
 def run_once(device,emit,*,clock=time.monotonic,sleep=time.sleep):
-    completed=False;last_label=None
+    frame_stop=False;last_label=None
     try:
         for i,(label,pulses) in enumerate(device.path):
             state=device.commit(pulses,63,allow_arm=i==0)
@@ -124,10 +130,15 @@ def run_once(device,emit,*,clock=time.monotonic,sleep=time.sleep):
             until=clock()+(1. if i==len(device.path)-1 else INTERVAL)
             while clock()<until:
                 device.check();device.kick();sleep(min(.03,max(0,until-clock())))
-        completed=True
+        frame_stop=True
+    except VideoLeaseUnavailable:
+        # Loss of observation is a stop request, not a new angle command.
+        # Hardware/cancel faults are checked first and still use emergency OFF.
+        frame_stop=True
+        raise
     finally:
-        state=device.stop_after_frame() if completed else device.off()
-        emit({'event':'outputs_off','state':state,'normal_frame_stop':completed,'incident_locks_removed':False})
+        state=device.stop_after_frame() if frame_stop else device.off()
+        emit({'event':'outputs_off','state':state,'normal_frame_stop':frame_stop,'incident_locks_removed':False})
 
 
 def main():

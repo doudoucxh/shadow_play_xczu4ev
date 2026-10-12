@@ -39,13 +39,19 @@ try {
     $taskSerial.Open();$taskSerial.Write("stty -echo`r");Start-Sleep -Milliseconds 180
     $taskRaw.Write($taskSerial.ReadExisting())
     if (-not (Test-DemoViews)) {throw 'Video lost before execution'}
-    $command='PYTHONPATH=/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_demo_once_20261011_a.py '+$BoardPlan+' --execute-attended-demo; echo DEMO_COMPLETE:$?; stty echo'
+    $command='PYTHONPATH=/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_demo_once_20261012_frame_stop.py '+$BoardPlan+' --execute-attended-demo; echo DEMO_COMPLETE:$?; stty echo'
     $taskSerial.Write($command+"`r");$taskStarted=$true
     $taskDeadline=[DateTime]::UtcNow.AddSeconds(95);$lastLease=[DateTime]::MinValue;$pending=''
     while ([DateTime]::UtcNow -lt $taskDeadline) {
-        if (-not $taskOff -and -not (Test-DemoViews) -and -not $taskInterrupted) {
-            $taskReason='Camera guard or local stop request';$taskSerial.Write([string][char]3)
-            $taskInterrupted=$true;$taskDeadline=[DateTime]::UtcNow.AddSeconds(5)
+        if (-not $taskOff -and -not $taskInterrupted) {
+            if (Test-Path -LiteralPath (Join-Path $OutputDirectory 'stop.request')) {
+                $taskReason='Local emergency stop request';$taskSerial.Write([string][char]3)
+                $taskInterrupted=$true;$taskDeadline=[DateTime]::UtcNow.AddSeconds(5)
+            } elseif (-not (Test-DemoViews)) {
+                $taskReason='Camera guard unavailable; frame-boundary stop requested'
+                $taskSerial.Write(": # PERSON_DEMO_VIDEO_STOP`n")
+                $taskInterrupted=$true;$taskDeadline=[DateTime]::UtcNow.AddSeconds(5)
+            }
         }
         if (-not $taskOff -and -not $taskInterrupted -and ([DateTime]::UtcNow-$lastLease).TotalMilliseconds -ge 200) {
             $taskSerial.Write(": # PERSON_DEMO_LEASE`n");$lastLease=[DateTime]::UtcNow
