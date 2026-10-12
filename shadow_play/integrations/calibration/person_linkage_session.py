@@ -33,7 +33,8 @@ HEAD_SUPPORT_MIN = (0, 0, 0, -80, 0, 0)
 
 def reference_plan(plan):
     p = dict(plan)
-    for k in ('stages', 'demo_stages', 'bilateral_hand_diagnostic', 'head_support_diagnostic'):
+    for k in ('stages', 'demo_stages', 'bilateral_hand_diagnostic', 'head_support_diagnostic',
+              'head_supported_bilateral_diagnostic', 'head_support_offset_us'):
         p.pop(k, None)
     p['approval'] = 'attended-unchanged-person-continuation-20261012'
     if plan.get('head_support_diagnostic') is True:
@@ -49,10 +50,17 @@ def validate_plan(plan, wall=None):
         raise ValueError('Explicit attended linkage comparison receipt required')
     bilateral = 'bilateral_hand_diagnostic' in plan
     head_support = 'head_support_diagnostic' in plan
+    supported = 'head_supported_bilateral_diagnostic' in plan
     if bilateral and plan['bilateral_hand_diagnostic'] is not True:
         raise ValueError('Bilateral diagnostic must be explicitly true')
     if head_support and (bilateral or plan['head_support_diagnostic'] is not True):
         raise ValueError('Head support requires an exclusive explicit diagnostic')
+    if supported and (plan['head_supported_bilateral_diagnostic'] is not True
+            or not bilateral or head_support or type(plan.get('head_support_offset_us')) is not int
+            or plan['head_support_offset_us'] not in (-40, -60, -80)):
+        raise ValueError('Supported bilateral paths require a reviewed exclusive support lift')
+    if 'head_support_offset_us' in plan and not supported:
+        raise ValueError('Support offset requires explicit supported bilateral mode')
     validate_reference(reference_plan(plan), wall)
     stages = plan.get('stages')
     if not isinstance(stages, list) or not 1 <= len(stages) <= 6:
@@ -84,12 +92,15 @@ class LinkageSession(VisibleSession):
         self.completed = set()
         self.reviewed = set()
         self.active_stage = None
+        self.support_base = self.plan['expected_pulses_us'][:]
+        if plan.get('head_supported_bilateral_diagnostic') is True:
+            self.support_base[3] += plan['head_support_offset_us']
 
     def adopt(self, pulses, mask):
         if self.phase == 'resume':
             return super().adopt(pulses, mask)
         self.check()
-        if (self.phase != 'linkage' or self.clock() >= self.deadline
+        if (self.phase not in ('linkage', 'supporting') or self.clock() >= self.deadline
                 or mask != 63 or pulses != self.expected_waypoint):
             raise RuntimeError('Only the next waypoint on the fixed vector path')
         if any(abs(a-b) > 1 for a, b in zip(pulses, self.pulses)):
@@ -110,10 +121,28 @@ class LinkageSession(VisibleSession):
         self.expected_waypoint = None
         return state
 
+    def set_support(self, enabled, emit, sleep):
+        reference = self.plan['expected_pulses_us']
+        source, target = (reference, self.support_base) if enabled else (self.support_base, reference)
+        if self.pulses != source or source == target:
+            raise RuntimeError('Support transfer must start from its exact inspected waypoint')
+        count = math.ceil(abs(target[3]-source[3])*math.pi/1.8)
+        self.phase = 'supporting'
+        emit({'event':'support_started','enabled':enabled,'state':self.check()})
+        for step in range(1,count+1):
+            self.wait(INTERVAL,sleep)
+            fraction = .5*(1-math.cos(math.pi*step/count))
+            p = source[:];p[3] += round((target[3]-source[3])*fraction)
+            self.expected_waypoint = p[:]
+            emit({'event':'support_step','enabled':enabled,'state':self.adopt(p,63)})
+        self.phase = 'holding'
+        emit({'event':'support_established' if enabled else 'reference_restored','state':self.check()})
+        self.wait(2,sleep)
+
     def probe(self, stage, emit, sleep):
         if type(stage) is not int or not 1 <= stage <= len(self.linkage_plan['stages']):
             raise RuntimeError('Unspecified linkage stage')
-        base = self.plan['expected_pulses_us']
+        base = self.support_base
         if self.pulses != base:
             raise RuntimeError('Each vector starts at the inspected reference')
         offsets = self.linkage_plan['stages'][stage-1]
@@ -152,6 +181,8 @@ def run_session(d, emit, *, sleep=time.sleep):
               'linkage_comparison':True, 'position_feedback':None})
         d.phase = 'holding'
         d.wait(2,sleep)
+        if d.linkage_plan.get('head_supported_bilateral_diagnostic') is True:
+            d.set_support(True,emit,sleep)
         next_report = d.clock()
         while d.clock() < d.deadline:
             d.check(); d.kick()
@@ -161,6 +192,8 @@ def run_session(d, emit, *, sleep=time.sleep):
                 if sequence != d.sequence:
                     raise RuntimeError('Stale action; no retry')
                 if action == 'finish':
+                    if d.linkage_plan.get('head_supported_bilateral_diagnostic') is True:
+                        d.set_support(False,emit,sleep)
                     frame_stop = True
                     break
                 if action.startswith('probe_'):

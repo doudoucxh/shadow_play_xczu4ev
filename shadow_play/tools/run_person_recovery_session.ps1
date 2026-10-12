@@ -47,7 +47,7 @@ try {
         $taskReviewAge=[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()-[long]$taskReviewedPlan.reviewed_at_unix_ms
         if ($taskReviewAge -lt 0 -or $taskReviewAge -ge 120000 -or (Get-FileHash -LiteralPath $HostPlan -Algorithm SHA256).Hash.ToLowerInvariant() -ne $taskPlanHash) {throw 'Physical comparison receipt expired or changed; no motion sent'}
         if ($AttendedLinkageComparison) {
-            $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_linkage_session_20261012_r4.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-linkage-comparison; echo RECOVERY_COMPLETE:$?; stty echo'
+            $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_linkage_session_20261012_r5.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-linkage-comparison; echo RECOVERY_COMPLETE:$?; stty echo'
         } else {
             $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/person_visible_motion_session_20261012_r4.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-unchanged-continuation; echo RECOVERY_COMPLETE:$?; stty echo'
         }

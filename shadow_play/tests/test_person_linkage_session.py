@@ -91,6 +91,39 @@ class LinkageTests(unittest.TestCase):
             q=copy.deepcopy(p);q.update(extra)
             with self.assertRaises(ValueError):linkage.validate_plan(q)
 
+    def test_supported_hands_preserve_head_lift_until_explicit_finish(self):
+        p=copy.deepcopy(self.plan);p.update(bilateral_hand_diagnostic=True,
+            head_supported_bilateral_diagnostic=True,head_support_offset_us=-60,
+            stages=[[0,-40,0,0,0,80]],demo_stages=[1,1])
+        self.d=linkage.LinkageSession(self.reg,p,self.host,motion_inhibit_paths=[self.lock],
+            cancel_path=self.root/'cancel',clock=lambda:self.now,wall=lambda:1000)
+        def emit(row):
+            self.events.append(row);action=None
+            if row['event']=='hold_alive' and not self.d.completed:action='probe_1'
+            elif row['event']=='probe_complete' and not self.d.demo_used:action='review_1'
+            elif row['event']=='path_reviewed':action='demo'
+            elif row['event']=='demo_complete':action='finish'
+            if action:self.host.action=(action,self.d.sequence)
+        linkage.run_session(self.d,emit,sleep=self.sleep)
+        hand_states=[r['state']['pulse_us'] for r in self.events if r['event']=='probe_step']
+        self.assertTrue(hand_states)
+        self.assertTrue(all(s[3]==p['expected_pulses_us'][3]-60 for s in hand_states))
+        self.assertEqual(self.events[-1]['state']['pulse_us'],p['expected_pulses_us'])
+        self.assertEqual(sum(a==0x10 for a,v in self.reg.writes),1)
+        self.assertEqual(self.lock.read_text(),'retain')
+
+    def test_support_video_loss_does_not_restore_or_start_hand_motion(self):
+        p=copy.deepcopy(self.plan);p.update(bilateral_hand_diagnostic=True,
+            head_supported_bilateral_diagnostic=True,head_support_offset_us=-60,
+            stages=[[0,-40,0,0,0,80]],demo_stages=[1])
+        self.d=linkage.LinkageSession(self.reg,p,self.host,motion_inhibit_paths=[self.lock],
+            cancel_path=self.root/'cancel',clock=lambda:self.now,wall=lambda:1000)
+        def check():
+            if self.now>4:raise ObservationLost('camera stale')
+        self.host.check=check
+        with self.assertRaises(ObservationLost):linkage.run_session(self.d,self.emit,sleep=self.sleep)
+        self.assertFalse(any(r['event'] in ('reference_restored','probe_started') for r in self.events))
+        self.assertFalse(self.events[-1]['state']['armed'])
     def test_manual_waypoint_and_fast_step_rejected_before_write(self):
         self.resume();self.d.phase='linkage';self.sleep(.05)
         p=self.d.pulses[:];p[4]+=1
