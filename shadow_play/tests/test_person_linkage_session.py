@@ -44,6 +44,33 @@ class LinkageTests(unittest.TestCase):
             with self.assertRaises(ValueError):linkage.validate_plan(p)
         self.assertEqual(self.reg.writes,[])
 
+    def test_bilateral_opposite_pitch_steps_are_synchronous_and_return(self):
+        self.plan.update(bilateral_hand_diagnostic=True,
+                         stages=[[0,-40,0,0,0,20]],demo_stages=[1])
+        self.d=linkage.LinkageSession(self.reg,self.plan,self.host,
+            motion_inhibit_paths=[self.lock],cancel_path=self.root/'cancel',
+            clock=lambda:self.now,wall=lambda:1000)
+        self.resume();self.d.probe(1,self.emit,self.sleep)
+        states=[r['state'] for r in self.events if r['event']=='probe_step']
+        base=self.plan['expected_pulses_us'];previous=base
+        self.assertEqual(min(s['pulse_us'][1] for s in states),base[1]-40)
+        self.assertEqual(max(s['pulse_us'][5] for s in states),base[5]+20)
+        for s in states:
+            p=s['pulse_us'];self.assertLessEqual(max(abs(a-b) for a,b in zip(p,previous)),1)
+            for i in (0,2,3,4,6,7,8,9):self.assertEqual(p[i],base[i])
+            self.assertLessEqual(abs((p[1]-base[1])+2*(p[5]-base[5])),1)
+            previous=p
+        self.assertEqual(self.d.pulses,base)
+
+    def test_bilateral_requires_receipt_and_bounded_opposite_pitch(self):
+        for flag,vector in [(False,[0,-10,0,0,0,20]),(True,[0,-41,0,0,0,20]),
+                (True,[0,1,0,0,0,20]),(True,[0,-10,0,0,0,0]),
+                (True,[0,-10,0,1,0,20]),(True,[0,-10,0,0,0,121])]:
+            p=copy.deepcopy(self.plan);p.update(bilateral_hand_diagnostic=flag,
+                stages=[vector],demo_stages=[1])
+            with self.assertRaises(ValueError):linkage.validate_plan(p)
+        self.assertEqual(self.reg.writes,[])
+
     def test_manual_waypoint_and_fast_step_rejected_before_write(self):
         self.resume();self.d.phase='linkage';self.sleep(.05)
         p=self.d.pulses[:];p[4]+=1

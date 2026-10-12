@@ -2,7 +2,8 @@
 
 Keeps the inspected reference and incident locks. A stage is a single fixed
 vector round trip. Only visually accepted stages can be replayed in the demo.
-Axes 2/4 and the tiger remain unchanged; loss of observation stops output.
+Axis 4 and the tiger remain unchanged. An explicit bilateral diagnostic may
+move axis 2 downward on a fixed path; loss of observation stops output.
 """
 import argparse
 import hashlib
@@ -25,29 +26,36 @@ APPROVAL = 'attended-person-linkage-comparison-20261012'
 INTERVAL = .05
 # These are trial caps, not a calibrated rectangular workspace.
 CAPS = (40, 0, 40, 0, 60, 120)
+BILATERAL_MIN = (0, -40, 0, 0, 0, 0)
 
 
 def reference_plan(plan):
     p = dict(plan)
-    for k in ('stages', 'demo_stages'):
+    for k in ('stages', 'demo_stages', 'bilateral_hand_diagnostic'):
         p.pop(k, None)
     p['approval'] = 'attended-unchanged-person-continuation-20261012'
-    p['motion_axes'] = [1, 3, 5, 6]
+    p['motion_axes'] = [1, 2, 3, 5, 6] if plan.get('bilateral_hand_diagnostic') is True else [1, 3, 5, 6]
     return p
 
 
 def validate_plan(plan, wall=None):
     if not isinstance(plan, dict) or plan.get('approval') != APPROVAL:
         raise ValueError('Explicit attended linkage comparison receipt required')
+    bilateral = 'bilateral_hand_diagnostic' in plan
+    if bilateral and plan['bilateral_hand_diagnostic'] is not True:
+        raise ValueError('Bilateral diagnostic must be explicitly true')
     validate_reference(reference_plan(plan), wall)
     stages = plan.get('stages')
     if not isinstance(stages, list) or not 1 <= len(stages) <= 6:
         raise ValueError('One to six fixed vector stages required')
     for vector in stages:
         if (not isinstance(vector, list) or len(vector) != 6
-                or any(type(v) is not int or not 0 <= v <= cap
-                       for v, cap in zip(vector, CAPS)) or not any(vector)):
-            raise ValueError('Only bounded positive 1/3/5/6 trial offsets allowed')
+                or any(type(v) is not int or not low <= v <= cap
+                       for v, low, cap in zip(vector, BILATERAL_MIN if bilateral else (0,)*6, CAPS))
+                or not any(vector)):
+            raise ValueError('Only bounded, explicitly selected person trial offsets allowed')
+        if bilateral and not (vector[1] < 0 and vector[5] > 0):
+            raise ValueError('Bilateral paths require opposite pitch directions for both hands')
     demo = plan.get('demo_stages')
     if (not isinstance(demo, list) or not 1 <= len(demo) <= 6
             or any(type(v) is not int or not 1 <= v <= len(stages) for v in demo)):
@@ -96,10 +104,11 @@ class LinkageSession(VisibleSession):
         if self.pulses != base:
             raise RuntimeError('Each vector starts at the inspected reference')
         offsets = self.linkage_plan['stages'][stage-1]
-        count = math.ceil(max(offsets)*math.pi/1.8)
+        extent = max(abs(v) for v in offsets)
+        count = math.ceil(extent*math.pi/1.8)
         self.phase = 'linkage'
         self.active_stage = stage
-        emit({'event':'probe_started', 'axis':stage, 'offset_us':max(offsets),
+        emit({'event':'probe_started', 'axis':stage, 'offset_us':extent,
               'vector_us':offsets, 'steps_per_leg':count, 'state':self.check()})
         for returning in (False, True):
             for step in range(1, count+1):
@@ -114,13 +123,13 @@ class LinkageSession(VisibleSession):
                 emit({'event':'probe_step', 'axis':stage, 'returning':returning,
                       'step':step, 'vector_us':offsets, 'state':self.adopt(p,63)})
             if not returning:
-                emit({'event':'probe_peak', 'axis':stage, 'offset_us':max(offsets),
+                emit({'event':'probe_peak', 'axis':stage, 'offset_us':extent,
                       'vector_us':offsets, 'state':self.check()})
                 self.wait(2,sleep)
         self.phase = 'holding'
         self.completed.add(stage)
         emit({'event':'probe_complete', 'axis':stage, 'vector_us':offsets,
-              'offset_us':max(offsets), 'state':self.check()})
+              'offset_us':extent, 'state':self.check()})
 
 
 def run_session(d, emit, *, sleep=time.sleep):
