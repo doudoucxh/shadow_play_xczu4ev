@@ -336,6 +336,27 @@ class LinkageTests(unittest.TestCase):
             q=copy.deepcopy(p);q.update(extra)
             with self.assertRaises(ValueError):linkage.validate_plan(q)
 
+    def test_low_hand_head_lift_is_exclusive_and_returns_to_inspected_pose(self):
+        p=self.low_guard_plan(continued=True)
+        for key in ('low_guard_diagnostic','supported_martial_diagnostic','bilateral_hand_diagnostic'):p.pop(key)
+        p.update(head_support_diagnostic=True,lowered_head_support_diagnostic=True,
+                 stages=[[0,0,0,-80,0,0]],demo_stages=[1])
+        self.d=linkage.LinkageSession(self.reg,p,self.host,motion_inhibit_paths=[self.lock],
+            cancel_path=self.root/'cancel',clock=lambda:self.now,wall=lambda:1000)
+        self.resume();self.d.probe(1,self.emit,self.sleep)
+        previous=p['expected_pulses_us']
+        states=[r['state']['pulse_us'] for r in self.events if r['event']=='probe_step']
+        self.assertEqual(min(r[3] for r in states),1434)
+        for values in states:
+            self.assertLessEqual(max(abs(a-b) for a,b in zip(previous,values)),3)
+            for i in (0,1,2,4,5,6,7,8,9):self.assertEqual(values[i],p['expected_pulses_us'][i])
+            previous=values
+        self.assertEqual(self.d.pulses,p['expected_pulses_us'])
+        for extra in ({'tempo_step_us':8},{'lowered_head_support_diagnostic':False},
+                      {'stages':[[0,0,0,-81,0,0]]},{'stages':[[0,1,0,-20,0,0]]}):
+            q=copy.deepcopy(p);q.update(extra)
+            with self.assertRaises(ValueError):linkage.validate_plan(q)
+
     def test_manual_waypoint_and_fast_step_rejected_before_write(self):
         self.resume();self.d.phase='linkage';self.sleep(.05)
         p=self.d.pulses[:];p[4]+=1

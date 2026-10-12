@@ -17,7 +17,9 @@ import sys
 import time
 
 # The board uses immutable, versioned /tmp modules; local tests use the source.
-if Path(__file__).with_name('person_visible_motion_session_20261012_r6.py').exists():
+if Path(__file__).with_name('person_visible_motion_session_20261012_r7.py').exists():
+    from person_visible_motion_session_20261012_r7 import VisibleSession, validate_plan as validate_reference
+elif Path(__file__).with_name('person_visible_motion_session_20261012_r6.py').exists():
     from person_visible_motion_session_20261012_r6 import VisibleSession, validate_plan as validate_reference
 elif Path(__file__).with_name('person_visible_motion_session_20261012_r5.py').exists():
     from person_visible_motion_session_20261012_r5 import VisibleSession, validate_plan as validate_reference
@@ -69,6 +71,7 @@ def validate_plan(plan, wall=None):
     combined_lower = 'combined_lower_hands_diagnostic' in plan
     guard = 'low_guard_diagnostic' in plan
     guard_performance = 'low_guard_performance' in plan
+    low_head = 'lowered_head_support_diagnostic' in plan
     if not isinstance(plan.get('session_id'),str) or not re.fullmatch('[a-z0-9-]{1,80}', plan['session_id']):
         raise ValueError('Safe unique session ID required')
     if bilateral and plan['bilateral_hand_diagnostic'] is not True:
@@ -100,12 +103,17 @@ def validate_plan(plan, wall=None):
         raise ValueError('Fast low guard requires the three physically reviewed guard paths')
     if not guard_performance and 'low_guard_geometry_receipt_sha256' in plan:
         raise ValueError('Guard geometry receipt requires explicit performance mode')
-    if not guard and ('combined_lowering_receipt_sha256' in plan or 'lowered_hands_reference_offset_us' in plan):
+    if low_head and (plan['lowered_head_support_diagnostic'] is not True or not head_support
+            or guard or lower or plan.get('tempo_step_us') != 3 or plan.get('motion_interval_ms') != 20
+            or plan.get('peak_hold_ms') != 400 or plan.get('combined_lowering_receipt_sha256') != COMBINED_LOWERING_RECEIPT
+            or plan.get('lowered_hands_reference_offset_us') != list(LOW_GUARD)):
+        raise ValueError('Further head lift requires an exclusive slow diagnostic with both hands at the reviewed low pose')
+    if not guard and not low_head and ('combined_lowering_receipt_sha256' in plan or 'lowered_hands_reference_offset_us' in plan):
         raise ValueError('Lowered reference is reserved for the fixed low-guard actor')
-    if 'motion_interval_ms' in plan and (not martial
+    if 'motion_interval_ms' in plan and (not (martial or low_head)
             or type(plan['motion_interval_ms']) is not int or plan['motion_interval_ms'] not in (20,50)):
         raise ValueError('Only explicit 20/50 ms person motion periods allowed')
-    if not martial and ('tempo_step_us' in plan or 'peak_hold_ms' in plan):
+    if not martial and not low_head and ('tempo_step_us' in plan or 'peak_hold_ms' in plan):
         raise ValueError('Tempo changes require the supported martial diagnostic')
     validate_reference(reference_plan(plan), wall)
     stages = plan.get('stages')

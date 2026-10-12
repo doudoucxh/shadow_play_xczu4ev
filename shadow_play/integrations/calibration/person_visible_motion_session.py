@@ -32,7 +32,7 @@ def validate_plan(plan, wall=None):
               'reviewed_at_unix_ms', 'previous_held_state', 'previous_off_state',
               'previous_normal_frame_stop', 'duration_seconds'}
     optional = {'motion_axes', 'head_pitch_diagnostic', 'head_support_reference_offset_us',
-                'lowered_hands_reference_offset_us'}
+                'lowered_hands_reference_offset_us', 'lowered_head_support_diagnostic'}
     if (not isinstance(plan, dict) or not fields <= set(plan) or set(plan)-fields-optional
             or plan['approval'] != APPROVAL):
         raise ValueError('Exact attended continuation receipt required')
@@ -45,9 +45,14 @@ def validate_plan(plan, wall=None):
             axes != [4] or plan.get('head_pitch_diagnostic') is not True):
         raise ValueError('Axis 4 requires an exclusive, explicit diagnostic plan')
     support = plan.get('head_support_reference_offset_us', 0)
+    low_head = plan.get('lowered_head_support_diagnostic') is True
+    if 'lowered_head_support_diagnostic' in plan and (not low_head or axes != [4]
+            or plan.get('head_pitch_diagnostic') is not True or support != -60
+            or 'lowered_hands_reference_offset_us' not in plan):
+        raise ValueError('Low-hand head support requires an exclusive diagnostic at the inspected reference')
     if 'head_support_reference_offset_us' in plan and (
-            type(support) is not int or support != -60 or 4 in axes
-            or 'head_pitch_diagnostic' in plan):
+            type(support) is not int or support != -60 or (4 in axes and not low_head)
+            or ('head_pitch_diagnostic' in plan and not low_head)):
         raise ValueError('Only the inspected -60 us head support may be continued unchanged')
     if plan['operator_unchanged_report'] != '电源和机构都没动':
         raise ValueError('New operator report required; no manual-pose reset')
@@ -68,7 +73,7 @@ def validate_plan(plan, wall=None):
     if 'lowered_hands_reference_offset_us' in plan:
         low = plan['lowered_hands_reference_offset_us']
         if (not isinstance(low,list) or len(low)!=6 or any(type(v) is not int for v in low)
-                or low != [0,-140,0,0,0,240] or support != -60 or axes != [2,6]):
+                or low != [0,-140,0,0,0,240] or support != -60 or axes != ([4] if low_head else [2,6])):
             raise ValueError('Only the inspected lowered-hand reference for the fixed guard actor is allowed')
         reference = [a+b for a,b in zip(reference,low)]
     if (not isinstance(pulses, list) or len(pulses) != 10 or pulses[:6] != reference
