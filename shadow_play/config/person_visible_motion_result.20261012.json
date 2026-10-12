@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-12",
+  "session_id": "person-visible-20261012-b",
+  "phase_at_record": "holding_after_visible_demo",
+  "demo_completed": true,
+  "session_closed_at_record": false,
+  "operator_unchanged_report": "电源和机构都没动",
+  "onsite_cutoff_confirmation_retained": true,
+  "startup_basis": "New operator unchanged-power/mechanism report, fresh dual-view physical posture comparison, verified previous normal held-to-OFF transition and unchanged read-only board state. Not saved register values alone.",
+  "source_session_record": "person_recovery_session.20261012.json",
+  "source_sequence": 1916,
+  "resume_sequence": 1917,
+  "new_center_1500us_issued": false,
+  "incident_locks_removed": false,
+  "host_plan_sha256": "6c7dea1aa6a6d610f70b32e2666c05118114f1940bff238a5ec4b0fe2001c9bf",
+  "program_sha256": "d98f2ed7b326be3cf83105ae6305502ac4d5204631f4e198c2e49ba3c9ef03d3",
+  "startup_failure_before_mmio": {
+    "initial_plan_rejected": true,
+    "reason": "Board wall clock was not synchronized with the Windows host; epoch freshness comparison rejected before Registers construction.",
+    "board_unix_ms_read_only": 1678654861906,
+    "independent_off_read_sequence": 1916,
+    "fix": "Check physical-review receipt age on Windows, verify exact plan SHA256 on board, and use monotonic live leases."
+  },
+  "startup_camera_verification": {
+    "front": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 197,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "front",
+        "file": "front_1791768085517768200.jpg",
+        "host_unix_ns": 1791768085517768200,
+        "frame_id": "session-20261012-081336-20201",
+        "age_ms": "139",
+        "image_size": [
+          640,
+          360
+        ],
+        "sha256": "38a7b9a60a7e608e7caee27a8f9522e7d98f06b0a32ad1c2a2ac3fc4d87e7d29",
+        "captured_at": "2026-10-12T09:21:25.517768+08:00"
+      }
+    },
+    "top": {
+      "samples": 14,
+      "unique_frame_ids": 14,
+      "max_age_ms": 187,
+      "all_jpeg_decoded": true,
+      "selected": {
+        "camera": "top",
+        "file": "top_1791768085505686600.jpg",
+        "host_unix_ns": 1791768085505686600,
+        "frame_id": "755cb3233f7c46d79c10c75e41e5c8b6-16514",
+        "age_ms": "171",
+        "image_size": [
+          960,
+          540
+        ],
+        "sha256": "a4dfb7090f42820e9ef6e32887c18ec469f450ffe759cc8b4c728adde70643ca",
+        "captured_at": "2026-10-12T09:21:25.505687+08:00"
+      }
+    }
+  },
+  "loaded_stages_reviewed": [
+    {
+      "axis": 6,
+      "offset_us": 40,
+      "nominal_angle_delta_degrees": 5.4,
+      "returned_sequence": 2057,
+      "reviewed_at_host_unix_ms": 1791768216910,
+      "fresh_before_peak_return_views_reviewed": true,
+      "observation": "Visible hand lowering/raising for axis 6; visible person side lean and hand displacement for axis 5. Person stayed inside curtain and returned close to starting image posture.",
+      "actual_servo_angle_measured": false
+    },
+    {
+      "axis": 6,
+      "offset_us": 80,
+      "nominal_angle_delta_degrees": 10.8,
+      "returned_sequence": 2337,
+      "reviewed_at_host_unix_ms": 1791768279904,
+      "fresh_before_peak_return_views_reviewed": true,
+      "observation": "Visible hand lowering/raising for axis 6; visible person side lean and hand displacement for axis 5. Person stayed inside curtain and returned close to starting image posture.",
+      "actual_servo_angle_measured": false
+    },
+    {
+      "axis": 6,
+      "offset_us": 120,
+      "nominal_angle_delta_degrees": 16.2,
+      "returned_sequence": 2757,
+      "reviewed_at_host_unix_ms": 1791768343561,
+      "fresh_before_peak_return_views_reviewed": true,
+      "observation": "Visible hand lowering/raising for axis 6; visible person side lean and hand displacement for axis 5. Person stayed inside curtain and returned close to starting image posture.",
+      "actual_servo_angle_measured": false
+    },
+    {
+      "axis": 5,
+      "offset_us": 40,
+      "nominal_angle_delta_degrees": 5.4,
+      "returned_sequence": 2897,
+      "reviewed_at_host_unix_ms": 1791768392709,
+      "fresh_before_peak_return_views_reviewed": true,
+      "observation": "Visible hand lowering/raising for axis 6; visible person side lean and hand displacement for axis 5. Person stayed inside curtain and returned close to starting image posture.",
+      "actual_servo_angle_measured": false
+    },
+    {
+      "axis": 5,
+      "offset_us": 80,
+      "nominal_angle_delta_degrees": 10.8,
+      "returned_sequence": 3177,
+      "reviewed_at_host_unix_ms": 1791768467205,
+      "fresh_before_peak_return_views_reviewed": true,
+      "observation": "Visible hand lowering/raising for axis 6; visible person side lean and hand displacement for axis 5. Person stayed inside curtain and returned close to starting image posture.",
+      "actual_servo_angle_measured": false
+    }
+  ],
+  "demo": {
+    "axis_order": [
+      6,
+      5
+    ],
+    "peak_offset_us": {
+      "6": 120,
+      "5": 80
+    },
+    "nominal_peak_angle_delta_degrees": {
+      "6": 16.2,
+      "5": 10.8
+    },
+    "start_host_unix_ms": 1791768467645,
+    "end_host_unix_ms": 1791768513647,
+    "duration_seconds": 46.002,
+    "adopted_steps": 700,
+    "complete_state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 63,
+      "armed": true,
+      "faults": 0,
+      "sequence": 3877,
+      "pending": false,
+      "pulse_us": [
+        1537,
+        1352,
+        1537,
+        1574,
+        1508,
+        1500,
+        1500,
+        1426,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "newly_reviewed_paths_only": true,
+    "demo_peak_and_return_dual_views_reviewed": true,
+    "observation": "Clear right-arm raising/lowering and person side lean were visible. Return images were close to starting posture; no obvious rod separation or large residual displacement visible."
+  },
+  "last_observed_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 63,
+    "armed": true,
+    "faults": 0,
+    "sequence": 3877,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1352,
+      1537,
+      1574,
+      1508,
+      1500,
+      1500,
+      1426,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "last_observed_host_unix_ms": 1791768737700,
+  "remaining_seconds_at_record": 273.5991315489955,
+  "expected_automatic_stop_approx": "2026-10-12T09:36:51+08:00",
+  "actual_position_feedback": null,
+  "full_loaded_coordinate_calibration_complete": false,
+  "combined_simultaneous_axis_envelope_calibrated": false,
+  "maximum_physical_clearance_measured": false,
+  "axis_4_mechanical_response": "Still independently unconfirmed; no axis-4 path in this demo",
+  "tiger_controlled": false,
+  "slides_controlled": false,
+  "old_failed_demo_replayed": false,
+  "evidence_directory": ".review_work/loaded_calibration_20261012/person_visible_b",
+  "recording": {
+    "directory": "camera_liveview/output/person-visible-demo-20261012-092747",
+    "raw_media_committed": false,
+    "demo_start_host_unix_ms": 1791768467645,
+    "demo_end_host_unix_ms": 1791768513647,
+    "clip_start_host_unix_ms": 1791768464645,
+    "clip_end_host_unix_ms": 1791768516647,
+    "duration_seconds": 52.00200009346008,
+    "audio_recorded": false,
+    "source": "Saved live JPEG frames, about 5 fps; aligned by host receipt time, not hardware-synchronized",
+    "output_fps": 25,
+    "frame_interpolation": false,
+    "frame_repeat_for_playback": true,
+    "cameras": {
+      "front": {
+        "source_unique_frames": 259,
+        "max_source_gap_seconds": 0.34850311279296875,
+        "max_source_age_ms": 174
+      },
+      "top": {
+        "source_unique_frames": 261,
+        "max_source_gap_seconds": 0.3492460250854492,
+        "max_source_age_ms": 172
+      }
+    },
+    "files": [
+      {
+        "name": "front.mp4",
+        "sha256": "ae696976ebfb1b38f6b35dd8d8d25d084bfa42e2286b7dfac06ae7ba1b46bb7a",
+        "bytes": 1311062,
+        "width": 640,
+        "height": 360,
+        "duration_seconds": 51.8,
+        "pixel_format": "yuvj420p",
+        "duration_delta_seconds": -0.20200009346008585,
+        "full_decode_passed": true
+      },
+      {
+        "name": "top.mp4",
+        "sha256": "8d010364409248cef556a529f2d4d8e301dca30b51577515581d4555391fd03e",
+        "bytes": 7994164,
+        "width": 960,
+        "height": 540,
+        "duration_seconds": 51.96,
+        "pixel_format": "yuvj420p",
+        "duration_delta_seconds": -0.042000093460082155,
+        "full_decode_passed": true
+      },
+      {
+        "name": "dual-view.mp4",
+        "sha256": "bee4ed871e649229cf2e133152a683d21b8603a259279c439f987893e1d7a667",
+        "bytes": 9582119,
+        "width": 1920,
+        "height": 540,
+        "duration_seconds": 51.96,
+        "pixel_format": "yuvj420p",
+        "duration_delta_seconds": -0.042000093460082155,
+        "full_decode_passed": true
+      }
+    ]
+  },
+  "note": "This is a time-stamped holding snapshot, not a claim that outputs remain enabled after the session deadline or a fault. No automatic restart from this saved record."
+}
