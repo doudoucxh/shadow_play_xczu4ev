@@ -2,15 +2,17 @@
   "schema_version": 1,
   "date": "2026-10-12",
   "session_id": "person-recovery-20261012-a",
-  "phase": "reference_held_awaiting_reconnection",
-  "completed": false,
+  "phase": "loaded_small_demo_complete_outputs_off",
+  "completed": true,
   "operator_reports": {
     "onsite_cutoff_available": true,
     "axes_1_to_4_splices_released": true,
     "axes_5_6_single_free_connection": true,
     "clear_sweep_confirmed": true,
     "servo_power_8v_on_confirmed": true,
-    "new_program_angles_after_manual_reset_provided": false
+    "new_program_angles_after_manual_reset_provided": false,
+    "reconnection_report": "前两根杆已接回，无拉扯",
+    "reconnected_without_reported_shaft_or_power_change": true
   },
   "preflight_sequence": 965,
   "initialization_us": 1500,
@@ -56,15 +58,66 @@
   },
   "actual_position_feedback": null,
   "actual_shaft_angles_independently_measured": false,
-  "latest_checked_at_host_unix_ms": 1791766337196,
-  "remaining_seconds_at_check": 641.8690611010097,
+  "latest_checked_at_host_unix_ms": 1791766968405,
+  "remaining_seconds_at_check": 0,
   "host_pid": 73196,
   "duration_seconds": 900,
   "tiger_mask": 0,
   "slides_controlled": false,
   "incident_locks_removed": false,
   "old_demo_replayed": false,
-  "loaded_paths_reviewed": [],
+  "loaded_paths_reviewed": [
+    {
+      "axis": 5,
+      "peak_offset_us": 12,
+      "nominal_peak_angle_change_degrees": 1.62,
+      "complete_sequence": 1339,
+      "completed_at_host_unix_ms": 1791766556102,
+      "reviewed_at_host_unix_ms": 1791766649750,
+      "review": "Fresh front/top before, peak and return frames inspected; person remained inside curtain; no obvious attachment separation or large return offset visible",
+      "quantitative_mechanical_response_measured": false
+    },
+    {
+      "axis": 6,
+      "peak_offset_us": 12,
+      "nominal_peak_angle_change_degrees": 1.62,
+      "complete_sequence": 1403,
+      "completed_at_host_unix_ms": 1791766659110,
+      "reviewed_at_host_unix_ms": 1791766693401,
+      "review": "Fresh front/top before, peak and return frames inspected; person remained inside curtain; no obvious attachment separation or large return offset visible",
+      "quantitative_mechanical_response_measured": false
+    },
+    {
+      "axis": 3,
+      "peak_offset_us": 12,
+      "nominal_peak_angle_change_degrees": 1.62,
+      "complete_sequence": 1467,
+      "completed_at_host_unix_ms": 1791766702655,
+      "reviewed_at_host_unix_ms": 1791766734605,
+      "review": "Fresh front/top before, peak and return frames inspected; person remained inside curtain; no obvious attachment separation or large return offset visible",
+      "quantitative_mechanical_response_measured": false
+    },
+    {
+      "axis": 1,
+      "peak_offset_us": 12,
+      "nominal_peak_angle_change_degrees": 1.62,
+      "complete_sequence": 1531,
+      "completed_at_host_unix_ms": 1791766743900,
+      "reviewed_at_host_unix_ms": 1791766772887,
+      "review": "Fresh front/top before, peak and return frames inspected; person remained inside curtain; no obvious attachment separation or large return offset visible",
+      "quantitative_mechanical_response_measured": false
+    },
+    {
+      "axis": 2,
+      "peak_offset_us": -12,
+      "nominal_peak_angle_change_degrees": 1.62,
+      "complete_sequence": 1595,
+      "completed_at_host_unix_ms": 1791766782105,
+      "reviewed_at_host_unix_ms": 1791766819976,
+      "review": "Fresh front/top before, peak and return frames inspected; person remained inside curtain; no obvious attachment separation or large return offset visible",
+      "quantitative_mechanical_response_measured": false
+    }
+  ],
   "loaded_coordinates_calibrated": false,
   "axis_4_mechanical_response": "Not independently confirmed; excluded from demo",
   "program_sha256": "a5d674853d9c3650770c1701a79560de634e60fea1b44f424da89d42dcbd9592",
@@ -78,5 +131,135 @@
     "top_unique_frames": 13,
     "all_jpeg_decoded": true
   },
-  "next_condition": "Natural splice alignment and operator reconnection report, followed by fresh dual-view linkage review; do not rearm from this saved record after OFF"
+  "next_condition": "Session is closed and ten channels are OFF. Do not restart from saved pulse registers. No loaded coordinate or combined-axis envelope calibration was established.",
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 1916,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1352,
+      1537,
+      1574,
+      1508,
+      1500,
+      1500,
+      1426,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": true,
+  "board_final_read_only_confirmed": true,
+  "board_final_read_only_log": ".review_work/loaded_calibration_20261012/person_recovery_a/final_readonly.log",
+  "board_incident_lock_sha256": "1ab30a79eb277e8e6fe4cc563634e0cc73d0417e8ea7b18b74e86bdbddcc74cf",
+  "reference_valid_for_automatic_restart_after_off": false,
+  "reconnection_recorded_at_host_unix_ms": 1791766494701,
+  "demo": {
+    "completed": true,
+    "axis_order": [
+      5,
+      6,
+      3,
+      1,
+      2
+    ],
+    "axis_4_excluded": true,
+    "simultaneous_multi_axis_paths": false,
+    "one_use": true,
+    "new_session_paths_only": true,
+    "start_host_unix_ms": 1791766820468,
+    "end_host_unix_ms": 1791766865222,
+    "duration_seconds": 44.754,
+    "adopted_steps": 320,
+    "complete_state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 63,
+      "armed": true,
+      "faults": 0,
+      "sequence": 1915,
+      "pending": false,
+      "pulse_us": [
+        1537,
+        1352,
+        1537,
+        1574,
+        1508,
+        1500,
+        1500,
+        1426,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "returned_command_reference": true,
+    "observation": "Reviewed fresh start/peak/return images and final dual views. Person remained inside curtain; visible movement was small. This does not establish actual servo angles, full path clearance, or metric coordinate calibration."
+  },
+  "recording": {
+    "directory": "camera_liveview/output/person-demo-20261012-090020",
+    "raw_camera_media_committed": false,
+    "demo_start_host_unix_ms": 1791766820468,
+    "demo_end_host_unix_ms": 1791766865222,
+    "clip_start_host_unix_ms": 1791766817468,
+    "clip_end_host_unix_ms": 1791766868222,
+    "duration_seconds": 50.75399994850159,
+    "audio_recorded": false,
+    "source": "Saved live JPEG frames, about 5 fps; aligned by host receipt time, not hardware-synchronized",
+    "output_fps": 25,
+    "frame_interpolation": false,
+    "frame_repeat_for_playback": true,
+    "cameras": {
+      "front": {
+        "source_unique_frames": 254,
+        "max_source_gap_seconds": 0.3473532199859619,
+        "max_source_age_ms": 172
+      },
+      "top": {
+        "source_unique_frames": 255,
+        "max_source_gap_seconds": 0.3498353958129883,
+        "max_source_age_ms": 172
+      }
+    },
+    "files": [
+      {
+        "name": "front.mp4",
+        "sha256": "30c638022aa4525a3e48ecbad76cf40a729d8e040aefda01fefa892b5b28ac20",
+        "bytes": 1256030,
+        "width": 640,
+        "height": 360,
+        "duration_seconds": 50.72,
+        "pixel_format": "yuvj420p",
+        "full_decode_passed": true
+      },
+      {
+        "name": "top.mp4",
+        "sha256": "25f8237ee41e965514fdbf83003fec5a52f311aba0ff5003795f3c3295c9effb",
+        "bytes": 7768400,
+        "width": 960,
+        "height": 540,
+        "duration_seconds": 50.76,
+        "pixel_format": "yuvj420p",
+        "full_decode_passed": true
+      },
+      {
+        "name": "dual-view.mp4",
+        "sha256": "210f56276e0cace064d3bb16042eaf9c0f71b88daf4d20aa6ba6e86be803def6",
+        "bytes": 9259207,
+        "width": 1920,
+        "height": 540,
+        "duration_seconds": 50.76,
+        "pixel_format": "yuvj420p",
+        "full_decode_passed": true
+      }
+    ]
+  }
 }
