@@ -160,5 +160,23 @@ class VisibleTests(unittest.TestCase):
         self.assertTrue(self.events[-1]['normal_frame_stop'])
         self.assertEqual(self.lock.read_text(),'retain')
 
+    def test_head_pitch_diagnostic_cannot_mix_axes_or_expand_excursion(self):
+        for axes,flag in (([4],False),([1,4],True),([3],True)):
+            p=copy.deepcopy(self.plan);p.update(motion_axes=axes,head_pitch_diagnostic=flag)
+            with self.assertRaises(ValueError):visible.validate_plan(p)
+        p=copy.deepcopy(self.plan);p.update(motion_axes=[4],head_pitch_diagnostic=True)
+        self.d=visible.VisibleSession(self.reg,p,self.host,motion_inhibit_paths=[self.lock],
+            cancel_path=self.root/'cancel',clock=lambda:self.now,wall=lambda:1000)
+        self.resume();self.d.probe(4,40,self.emit,self.sleep)
+        states=[r['state'] for r in self.events if r['event']=='probe_step']
+        self.assertEqual(max(s['pulse_us'][3] for s in states),1614)
+        for state in states:
+            self.assertEqual(state['pulse_us'][:3],p['expected_pulses_us'][:3])
+            self.assertEqual(state['pulse_us'][4:],p['expected_pulses_us'][4:])
+        self.assertEqual(self.d.pulses,p['expected_pulses_us'])
+        before=len(self.reg.writes)
+        with self.assertRaises(RuntimeError):self.d.probe(4,80,self.emit,self.sleep)
+        self.assertEqual(len(self.reg.writes),before)
+
 
 if __name__=='__main__':unittest.main()

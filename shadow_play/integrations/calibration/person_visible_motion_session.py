@@ -4,7 +4,7 @@ This is NOT recovery from an unknown/manual pose. A new operator report and
 fresh dual-view comparison are required; saved register values alone never
 authorize startup. Incident locks remain in place. Axes 1/2/3/5/6 may be
 selected explicitly, one at a time, in separately reviewed stages. Axis 4
-remains excluded because its physical response has not been verified.
+requires an exclusive diagnostic plan and cannot join a multi-axis demo.
 """
 import argparse
 import hashlib
@@ -21,9 +21,9 @@ from servo_pwm_device import PwmDevice, Registers
 APPROVAL = 'attended-unchanged-person-continuation-20261012'
 LEVELS = (40, 80, 120)
 INTERVAL = .05
-DIRECTIONS = {1: 1, 2: -1, 3: 1, 5: 1, 6: 1}
-AXIS_LEVELS = {1: (40, 80), 2: (40, 80), 3: (40,), 5: LEVELS, 6: LEVELS}
-DEMO_ORDER = (6, 5, 2, 1, 3)
+DIRECTIONS = {1: 1, 2: -1, 3: 1, 4: 1, 5: 1, 6: 1}
+AXIS_LEVELS = {1: (40, 80), 2: (40, 80), 3: (40,), 4: (40,), 5: LEVELS, 6: LEVELS}
+DEMO_ORDER = (6, 5, 2, 1, 3, 4)
 
 
 def validate_plan(plan, wall=None):
@@ -31,13 +31,18 @@ def validate_plan(plan, wall=None):
               'operator_unchanged_report', 'observer_ready', 'dual_view_pose_reviewed',
               'reviewed_at_unix_ms', 'previous_held_state', 'previous_off_state',
               'previous_normal_frame_stop', 'duration_seconds'}
-    if (not isinstance(plan, dict) or set(plan) not in (fields, fields | {'motion_axes'})
+    if (not isinstance(plan, dict) or set(plan) not in (fields, fields | {'motion_axes'},
+            fields | {'motion_axes','head_pitch_diagnostic'})
             or plan['approval'] != APPROVAL):
         raise ValueError('Exact attended continuation receipt required')
     axes = plan.get('motion_axes', [5, 6])
-    if (not isinstance(axes, list) or not axes or len(set(axes)) != len(axes)
-            or any(type(axis) is not int or axis not in DIRECTIONS for axis in axes)):
-        raise ValueError('Explicit person axes required; axis 4 and tiger excluded')
+    if (not isinstance(axes, list) or not axes
+            or any(type(axis) is not int or axis not in DIRECTIONS for axis in axes)
+            or len(set(axes)) != len(axes)):
+        raise ValueError('Explicit person axes required; tiger excluded')
+    if ('head_pitch_diagnostic' in plan or 4 in axes) and (
+            axes != [4] or plan.get('head_pitch_diagnostic') is not True):
+        raise ValueError('Axis 4 requires an exclusive, explicit diagnostic plan')
     if plan['operator_unchanged_report'] != '电源和机构都没动':
         raise ValueError('New operator report required; no manual-pose reset')
     if plan['observer_ready'] is not True or plan['dual_view_pose_reviewed'] is not True:
