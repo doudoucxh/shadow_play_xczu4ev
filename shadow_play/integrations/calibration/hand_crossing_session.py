@@ -35,9 +35,15 @@ ROUTES={
  'person-script-hand-b-strike-probe':(ZERO,(0,0,0,-40,0,0),(0,0,0,-40,0,-120),
      (0,0,0,-40,0,-240),(0,0,0,-40,0,-120),(0,0,0,-40,0,0),ZERO),
  'person-script-double-hit-probe':(ZERO,(0,0,0,-40,0,0),(0,70,0,-40,0,-120),
-     (0,140,0,-40,0,-240),(0,70,0,-40,0,-120),(0,0,0,-40,0,0),ZERO)
+     (0,140,0,-40,0,-240),(0,70,0,-40,0,-120),(0,0,0,-40,0,0),ZERO),
+ # The observed hand A remained raised at +70 on descent. Return it to its
+ # reference during the first descending edge, alongside hand B's -120 pose.
+ # This is a new combined path and requires its own slow review before tempo 8.
+ 'person-script-double-drop-sync-probe':(ZERO,(0,0,0,-40,0,0),(0,70,0,-40,0,-120),
+     (0,140,0,-40,0,-240),(0,0,0,-40,0,-120),(0,0,0,-40,0,0),ZERO)
 }
-FAST_GESTURE_PROFILES=frozenset(('person-script-hand-b-strike-probe','person-script-double-hit-probe'))
+FAST_GESTURE_PROFILES=frozenset(('person-script-hand-b-strike-probe','person-script-double-hit-probe',
+                               'person-script-double-drop-sync-probe'))
 
 def digest(profile):
     return hashlib.sha256(json.dumps(ROUTES[profile],separators=(',',':')).encode()).hexdigest()

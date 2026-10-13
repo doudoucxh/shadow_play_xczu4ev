@@ -95,6 +95,16 @@ class CrossingTests(unittest.TestCase):
             d.demo_used=True
             with self.assertRaisesRegex(RuntimeError,'diagnostic-only'):d.check()
 
+    def test_new_drop_geometry_cannot_use_old_double_route_receipt(self):
+        self.prepare_fast();self.p['profile']='person-script-double-drop-sync-probe'
+        with self.assertRaisesRegex(ValueError,'same complete slow gesture'):self.device()
+        self.assertEqual(self.r.writes,[])
+        old=h.ROUTES['person-script-double-hit-probe'];new=h.ROUTES[self.p['profile']]
+        for vector in new:
+            for axis,value in enumerate(vector):
+                self.assertGreaterEqual(value,min(v[axis] for v in old))
+                self.assertLessEqual(value,max(v[axis] for v in old))
+
     def test_restore_uses_observed_reference_not_reset_registers_and_keeps_tiger_off(self):
         d=self.device();state=d.adopt([1500]*10)
         self.assertEqual(state['pulse_us'],h.BASE);self.assertEqual(state['enabled_mask'],63)
