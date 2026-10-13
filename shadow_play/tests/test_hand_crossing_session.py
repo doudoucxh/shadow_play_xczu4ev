@@ -1,4 +1,4 @@
-import hashlib,json
+import copy,hashlib,json
 from pathlib import Path
 import sys,tempfile,unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'integrations/calibration'))
@@ -34,6 +34,66 @@ class CrossingTests(unittest.TestCase):
           clock=lambda:self.now,wall=lambda:1000,read=lambda p:self.raw,boot_id_path=self.boot,image_marker=self.marker)
 
     def sleep(self,t):self.now+=t
+
+    def prepare_fast(self,profile='person-script-double-hit-probe'):
+        off=dict(sequence=100,pulse_us=h.BASE,enabled_mask=0,armed=False,pending=False,faults=0)
+        rows=[dict(event='reference_held',profile=profile,route_sha256=h.digest(profile),tempo_step_us=3)]
+        for i in range(1,7):
+            rows.extend((dict(event='probe_complete',axis=i),dict(event='path_reviewed',axis=i)))
+        rows.append(dict(event='outputs_off',normal_frame_stop=True,state=off))
+        self.raw='\n'.join(json.dumps(r) for r in rows).encode()
+        spec=dict(path='/tmp/puppet-choreography-slow-gesture.jsonl',sha256=hashlib.sha256(self.raw).hexdigest())
+        self.p.update(profile=profile,restore_after_power_cycle=False,tempo_step_us=8,
+                      expected_sequence=100,expected_pulses_us=h.BASE[:],baseline_source=spec,
+                      prior_slow_route_log=copy.deepcopy(spec))
+        self.r.values[0x20]=100
+        for i,v in enumerate(h.BASE):self.r.values[0x80+4*i]=v
+
+    def test_fast_gesture_requires_same_slow_route_and_no_power_cycle(self):
+        self.prepare_fast();original=copy.deepcopy(self.p)
+        for change in ({'restore_after_power_cycle':True}, {'profile':'person-overhead-map-positive'},
+                       {'profile':'person-script-hand-b-strike-probe'}, {'tempo_step_us':9},
+                       {'prior_slow_route_log':dict(original['prior_slow_route_log'],sha256='0'*64)}):
+            self.p=copy.deepcopy(original);self.p.update(change)
+            with self.assertRaises(ValueError):self.device()
+            self.assertEqual(self.r.writes,[])
+        self.p=copy.deepcopy(original);del self.p['prior_slow_route_log']
+        with self.assertRaises(ValueError):self.device()
+        self.assertEqual(self.r.writes,[])
+
+    def test_incomplete_or_unclosed_slow_gesture_cannot_enable_fast_motion(self):
+        self.prepare_fast();original_raw=self.raw;original=copy.deepcopy(self.p)
+        for mutation in ('missing_review','wrong_route','wrong_tempo','not_off','missing_edge'):
+            rows=[json.loads(r) for r in original_raw.splitlines()]
+            if mutation=='missing_review':rows=[r for r in rows if not (r['event']=='path_reviewed' and r['axis']==6)]
+            elif mutation=='wrong_route':rows[0]['route_sha256']='0'*64
+            elif mutation=='wrong_tempo':rows[0]['tempo_step_us']=8
+            elif mutation=='not_off':rows[-1]['state']['enabled_mask']=63
+            else:rows=[r for r in rows if not (r['event']=='probe_complete' and r['axis']==6)]
+            self.raw='\n'.join(json.dumps(r) for r in rows).encode();self.p=copy.deepcopy(original)
+            for key in ('baseline_source','prior_slow_route_log'):
+                self.p[key]['sha256']=hashlib.sha256(self.raw).hexdigest()
+            with self.assertRaises(ValueError):self.device()
+            self.assertEqual(self.r.writes,[])
+
+    def test_fast_same_gestures_preserve_axes_and_never_catch_up(self):
+        for profile in sorted(h.FAST_GESTURE_PROFILES):
+            self.now=0;self.r=FakeRegisters();self.prepare_fast(profile);d=self.device()
+            d.adopt(h.BASE[:]);events=[]
+            def emit(e):events.append(dict(e,time=self.now))
+            for n in range(1,7):d.advance(n,emit,self.sleep)
+            prior=h.BASE[:];last=0
+            for e in events:
+                if e['event']!='probe_step':continue
+                s=e['state'];self.assertEqual(s['enabled_mask'],63)
+                for i in (0,2,4,6,7,8,9):self.assertEqual(s['pulse_us'][i],h.BASE[i])
+                self.assertLessEqual(max(abs(a-b) for a,b in zip(prior,s['pulse_us'])),8)
+                self.assertGreaterEqual(e['time']-last,.02-1e-9)
+                prior=s['pulse_us'];last=e['time']
+            self.assertEqual(d.pulses,h.BASE)
+            self.assertEqual(self.lock.read_text(),'incident')
+            d.demo_used=True
+            with self.assertRaisesRegex(RuntimeError,'diagnostic-only'):d.check()
 
     def test_restore_uses_observed_reference_not_reset_registers_and_keeps_tiger_off(self):
         d=self.device();state=d.adopt([1500]*10)

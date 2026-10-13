@@ -37,6 +37,7 @@ ROUTES={
  'person-script-double-hit-probe':(ZERO,(0,0,0,-40,0,0),(0,70,0,-40,0,-120),
      (0,140,0,-40,0,-240),(0,70,0,-40,0,-120),(0,0,0,-40,0,0),ZERO)
 }
+FAST_GESTURE_PROFILES=frozenset(('person-script-hand-b-strike-probe','person-script-double-hit-probe'))
 
 def digest(profile):
     return hashlib.sha256(json.dumps(ROUTES[profile],separators=(',',':')).encode()).hexdigest()
@@ -45,16 +46,34 @@ def validate_plan(p,read=None,wall=None):
     fields={'approval','session_id','profile','expected_sequence','expected_pulses_us',
      'observer_ready','operator_hardware_unmoved','dual_view_pose_reviewed','reviewed_at_unix_ms',
      'duration_seconds','tempo_step_us','repetitions','boot_id','restore_after_power_cycle','baseline_source'}
-    if (not isinstance(p,dict) or set(p)!=fields or p['approval']!=c.APPROVAL or p['profile'] not in ROUTES
+    if (not isinstance(p,dict) or not fields<=set(p) or set(p)-fields-{'prior_slow_route_log'}
+            or p['approval']!=c.APPROVAL or p['profile'] not in ROUTES
             or not c.re.fullmatch('[a-z0-9-]{1,80}',p['session_id'])
             or type(p['expected_sequence']) is not int or not 0<=p['expected_sequence']<2**32
             or any(p[k] is not True for k in ('observer_ready','operator_hardware_unmoved','dual_view_pose_reviewed'))
             or type(p['restore_after_power_cycle']) is not bool
-            or p['tempo_step_us']!=3 or p['repetitions']!=1
+            or type(p['tempo_step_us']) is not int or p['tempo_step_us'] not in (3,8) or p['repetitions']!=1
             or type(p['duration_seconds']) is not int or not 120<=p['duration_seconds']<=900
             or not c.re.fullmatch('[a-f0-9-]{36}',p['boot_id'])
             or type(p['reviewed_at_unix_ms']) is not int):
         raise ValueError('Exact attended overhead mapping plan required')
+    if p['tempo_step_us']==3 and 'prior_slow_route_log' in p:
+        raise ValueError('Slow diagnostic cannot include a fast-route receipt')
+    if p['tempo_step_us']==8:
+        if (p['profile'] not in FAST_GESTURE_PROFILES or p['restore_after_power_cycle']
+                or 'prior_slow_route_log' not in p):
+            raise ValueError('Faster gesture requires an unchanged boot and its completed slow-route receipt')
+        slow=c.checked_log(p['prior_slow_route_log'],read)
+        first_slow=next(r for r in slow if r['event']=='reference_held')
+        last_slow=slow[-1]
+        if (first_slow.get('profile')!=p['profile'] or first_slow.get('route_sha256')!=digest(p['profile'])
+                or first_slow.get('tempo_step_us')!=3
+                or [r['axis'] for r in slow if r['event']=='probe_complete']!=list(range(1,7))
+                or {r['axis'] for r in slow if r['event']=='path_reviewed'}!=set(range(1,7))
+                or last_slow['event']!='outputs_off' or last_slow.get('normal_frame_stop') is not True
+                or last_slow['state']['pulse_us']!=BASE or last_slow['state']['enabled_mask']!=0
+                or last_slow['state']['armed'] or last_slow['state']['pending'] or last_slow['state']['faults']):
+            raise ValueError('The same complete slow gesture must be reviewed and closed at the reference')
     if wall is not None and not 0<=wall()*1000-p['reviewed_at_unix_ms']<120000:
         raise ValueError('Fresh dual-view pose review required')
     rows=c.checked_log(p['baseline_source'],read)
