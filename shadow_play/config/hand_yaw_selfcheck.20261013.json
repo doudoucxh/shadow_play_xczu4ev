@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-13",
+  "type": "read_only_board_and_offline_yaw_diagnostic",
+  "user_requested_self_tests_without_scope_setup": true,
+  "real_motion_or_signal_enable_sent": false,
+  "board_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 1644,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "boot_id": "7eea2c53-e104-45cf-88fe-439f1821e5d4",
+  "incident_lock_sha256": {
+    "/run/shadow-pwm-motion-inhibit": "1ab30a79eb277e8e6fe4cc563634e0cc73d0417e8ea7b18b74e86bdbddcc74cf",
+    "/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration/.motion-inhibit": "1ab30a79eb277e8e6fe4cc563634e0cc73d0417e8ea7b18b74e86bdbddcc74cf"
+  },
+  "loaded_image_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+  "pins": [
+    "D14",
+    "D15",
+    "F13",
+    "G13",
+    "G14",
+    "G15",
+    "J14",
+    "E13",
+    "E14",
+    "E15"
+  ],
+  "software_tests": {
+    "hand_crossing_session": 3,
+    "pwm_scope_check": 8,
+    "passed": true
+  },
+  "rtl_simulation": {
+    "tool": "Vivado XSIM 2022.2",
+    "clock_hz": 100000000,
+    "channel_1_pulse_us": [
+      1537,
+      1540,
+      1597,
+      1594,
+      1537
+    ],
+    "period_us": 20000,
+    "six_active_output_pulses_measured": true,
+    "channels_7_to_10_remained_low": true,
+    "final_outputs_low": true,
+    "passed": true,
+    "log_sha256": "6b45674fae1621789da0b34c6650812f804b5af8a16a2f589a506f816b41e79e",
+    "fixed_1500us_output_mutation_detected": true,
+    "mutation_log_sha256": "a0d08b8b069dd46e425c95971cfee22af854453aa78966b2dc5a7df5147eb7b6"
+  },
+  "source_sha256": {
+    "shadow_play/hardware/servo_pwm/servo_pwm_axi.v": "225a3d31ee42c774cd1ce43c6c1ff85cb82175ae285e3eaff886a168ee25b73d",
+    "shadow_play/hardware/servo_pwm/tb_yaw_response_100mhz.v": "3d74b0e02146fdfbe365332343f61806ae6c35dc3ecf61bb8ee4ec5f59fdd2b1",
+    "shadow_play/integrations/calibration/hand_crossing_session.py": "4bb83dacb46d9c35443ebf3082a4e975ca3c4c5e4e5a64e15b3cdefc908cb4f8",
+    "shadow_play/integrations/calibration/pwm_scope_check.py": "9f792c1485e29180dde166e7df8d54807eee7c6ef1eba518227c9f4c65a330fd"
+  },
+  "conclusion": "No discrepancy found in the checked software, board status, and current RTL simulation. Physical channel-1 signal and shaft response remain unresolved.",
+  "limitations": [
+    "Simulation measures current source RTL, not the physical D14 connector or servo position.",
+    "Register readback proves command adoption only.",
+    "External 8V OFF and scope connection were not confirmed, so no scope signal was enabled."
+  ],
+  "next_physical_check": {
+    "requires_external_servo_supply_off": true,
+    "probe": "channel-1 servo signal connector D14 and common GND",
+    "existing_pulse_us": 1537,
+    "period_us": 20000,
+    "expected_high_voltage_v_approx": 3.3,
+    "maximum_seconds": 30,
+    "ready_program": "pwm_scope_check.py"
+  }
+}
