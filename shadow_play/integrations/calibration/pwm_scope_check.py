@@ -7,6 +7,57 @@ readback is not proof of a waveform at the connector. Default is read-only.
 import argparse
 import json
 import time
+import hashlib
+from pathlib import Path
+from servo_pwm_device import PwmDevice
+
+
+class PowerOffScopeDevice(PwmDevice):
+    """One finite check may retain incident locks and enable an unchanged signal.
+
+    The external supply must be physically OFF. This is not a motion recovery:
+    no pulse change, other channel, second arm, or lock removal is permitted.
+    """
+    def __init__(self, registers, channel, *, servo_power_off_confirmed=False,
+                 motion_inhibit_paths=None):
+        if servo_power_off_confirmed is not True or type(channel) is not int or not 1 <= channel <= 10:
+            raise ValueError('Power OFF confirmation and one channel required')
+        super().__init__(registers, motion_inhibit_paths=motion_inhibit_paths)
+        self.mask = 1 << (channel - 1)
+        self.lock_receipt = self._locks()
+        self.initial = super().status()
+        self.used = False
+        self.inside_check = False
+
+    def _locks(self):
+        return tuple(hashlib.sha256(Path(p).read_bytes()).hexdigest()
+                     if Path(p).exists() else None for p in self.motion_inhibit_paths)
+
+    def _verify_locks(self):
+        if self._locks() != self.lock_receipt:
+            raise RuntimeError('Incident lock state changed; stop signal check')
+
+    def status(self):
+        self._verify_locks()
+        return super().status()
+
+    def _check_motion_allowed(self):
+        self._verify_locks()
+        if not self.inside_check:
+            raise RuntimeError('Only the single power-OFF signal check is permitted')
+
+    def commit(self, pulses, mask, allow_arm=False):
+        if (self.used or mask != self.mask or allow_arm is not True
+                or pulses != self.initial['pulse_us'] or self.status() != self.initial
+                or self.initial['armed'] or self.initial['enabled_mask']
+                or self.initial['pending'] or self.initial['faults']):
+            raise RuntimeError('Only one unchanged, selected-channel signal may be enabled')
+        self.used = True
+        self.inside_check = True
+        try:
+            return super().commit(pulses, mask, allow_arm=True)
+        finally:
+            self.inside_check = False
 
 
 def scope_check(device, channel, expected_sequence, seconds=30, *,
@@ -67,7 +118,8 @@ def main():
     from servo_pwm_device import Registers, PwmDevice
     registers = Registers()
     try:
-        scope_check(PwmDevice(registers), args.channel, args.expected_sequence, args.seconds,
+        scope_check(PowerOffScopeDevice(registers, args.channel, servo_power_off_confirmed=True),
+                    args.channel, args.expected_sequence, args.seconds,
                     servo_power_off_confirmed=True,
                     emit=lambda event: print(json.dumps(event), flush=True))
     finally:

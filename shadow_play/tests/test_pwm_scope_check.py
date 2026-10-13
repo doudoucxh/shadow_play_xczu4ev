@@ -1,10 +1,12 @@
 import copy
 import sys
 import unittest
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'integrations/calibration'))
-from pwm_scope_check import scope_check
+from pwm_scope_check import scope_check, PowerOffScopeDevice
+from test_servo_commissioning import FakeRegisters
 
 
 class FakeDevice:
@@ -31,6 +33,38 @@ class FakeDevice:
 
 
 class ScopeCheckTests(unittest.TestCase):
+    def test_locked_signal_device_preserves_locks_and_rejects_pulse_change_and_rearm(self):
+        with tempfile.TemporaryDirectory() as folder:
+            lock = Path(folder)/'incident'; lock.write_text('stop')
+            r = FakeRegisters()
+            for i in range(10): r.values[0x80+4*i] = 1500
+            d = PowerOffScopeDevice(r, 1, servo_power_off_confirmed=True,
+                                    motion_inhibit_paths=[lock])
+            changed = [1500]*10; changed[0] = 1597
+            with self.assertRaises(RuntimeError): d.commit(changed, 1, allow_arm=True)
+            with self.assertRaises(RuntimeError): d.commit([1500]*10, 3, allow_arm=True)
+            self.assertEqual(r.writes, [])
+            ticks = [0.0]
+            scope_check(d, 1, d.initial['sequence'], 1, servo_power_off_confirmed=True,
+                        emit=lambda event: None, clock=lambda: ticks[0],
+                        sleep=lambda dt: ticks.__setitem__(0, ticks[0]+dt))
+            self.assertEqual(lock.read_text(), 'stop')
+            self.assertFalse(d.status()['armed'])
+            self.assertEqual(d.status()['pulse_us'], [1500]*10)
+            with self.assertRaises(RuntimeError): d.commit([1500]*10, 1, allow_arm=True)
+
+    def test_locked_signal_device_requires_power_off_and_unchanged_locks(self):
+        r = FakeRegisters()
+        with self.assertRaises(ValueError): PowerOffScopeDevice(r, 1)
+        self.assertEqual(r.writes, [])
+        with tempfile.TemporaryDirectory() as folder:
+            lock = Path(folder)/'incident'; lock.write_text('stop')
+            d = PowerOffScopeDevice(r, 1, servo_power_off_confirmed=True,
+                                    motion_inhibit_paths=[lock])
+            lock.write_text('changed')
+            with self.assertRaises(RuntimeError): d.status()
+            self.assertEqual(r.writes, [])
+
     def run_check(self, device, **overrides):
         ticks = [0.0]
         def sleep(dt): ticks[0] += dt
