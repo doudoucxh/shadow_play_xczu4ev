@@ -63,4 +63,14 @@ class CrossingTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):d.adopt([1500]*10)
         self.assertEqual(self.r.writes,[])
 
+    def test_reviewed_mapping_cannot_be_replayed_as_a_validated_demonstration(self):
+        d=self.device();d.completed=set(range(1,7));d.reviewed=d.completed.copy();d.cursor=6
+        self.host.action=('demo',1);events=[]
+        with self.assertRaisesRegex(RuntimeError,'diagnostic-only'):
+            h.c.run_session(d,events.append,sleep=self.sleep)
+        self.assertEqual(sum(offset==0x18 and value==0x434f4d54 for offset,value in self.r.writes),1)
+        self.assertEqual(events[-1]['event'],'outputs_off')
+        self.assertFalse(events[-1]['state']['armed'])
+        self.assertEqual(events[-1]['state']['pulse_us'],h.BASE)
+
 if __name__=='__main__':unittest.main()

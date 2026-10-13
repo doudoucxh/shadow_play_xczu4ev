@@ -1,0 +1,247 @@
+{
+  "date": "2026-10-13",
+  "type": "offline_gimbal_pixel_response_review",
+  "source_motion_session": "person-overhead-close-positive-20261013",
+  "no_motor_or_signal_output_this_round": true,
+  "observed_cause_confirmed": false,
+  "conclusion": "Pitch raise/lower have clear pixel changes. Positive yaw outbound/return do not exceed the selected image-change threshold. This does not prove zero shaft motion or a defective servo.",
+  "pixel_reviews": [
+    {
+      "angle_feedback": null,
+      "automatic_motion_allowed": false,
+      "fixed_roi": [
+        578,
+        302,
+        172,
+        180
+      ],
+      "moving_roi": [
+        501,
+        101,
+        238,
+        190
+      ],
+      "verdict": "visible_pixel_change",
+      "camera_shift_pixels": [
+        0,
+        0
+      ],
+      "fixed_correlation": 0.9924853665021223,
+      "fixed_noise_rms": 0.018778725683938437,
+      "moving_change_rms": 0.10442361291565073,
+      "change_threshold": 0.05633617705181531,
+      "reason": "Pixel comparison requires a human review of axis motion and linkage",
+      "stage": 2,
+      "command_change_us": [
+        0,
+        210,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "frame_ids": [
+        "b68ef75147974d09ad07adf563081a06-76593",
+        "b68ef75147974d09ad07adf563081a06-76648"
+      ],
+      "selection_sha256": "875cec9ec8475d7cb3baa8f8d28baf5b15d7075ab43400a752e2632bf6e237e7",
+      "frame_sha256": [
+        "3c0754b73f36b007e992112345cc0c72f5e4b4a0325355937ab90a10b325382a",
+        "1dabee287426f7ba35dc915ebe42e8efba46604210f92e6de91aa66efdc8f7eb"
+      ]
+    },
+    {
+      "angle_feedback": null,
+      "automatic_motion_allowed": false,
+      "fixed_roi": [
+        578,
+        302,
+        172,
+        180
+      ],
+      "moving_roi": [
+        501,
+        101,
+        238,
+        190
+      ],
+      "verdict": "no_clear_pixel_change",
+      "camera_shift_pixels": [
+        1,
+        0
+      ],
+      "fixed_correlation": 0.9837664222145144,
+      "fixed_noise_rms": 0.027817725999804914,
+      "moving_change_rms": 0.06668558212966963,
+      "change_threshold": 0.08345317799941473,
+      "reason": "Pixel comparison requires a human review of axis motion and linkage",
+      "stage": 3,
+      "command_change_us": [
+        60,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "frame_ids": [
+        "b68ef75147974d09ad07adf563081a06-77007",
+        "b68ef75147974d09ad07adf563081a06-77033"
+      ],
+      "selection_sha256": "f05551e0cdbdf4c4527d4f353dfdd3f0dc82dab19c04797fe2bced758153478b",
+      "frame_sha256": [
+        "20e182eb92ad5ca1a19597fbb161d3bb29bfbcf1c10ac26b42d29ae25984b654",
+        "80f33af1c047e561b18148a375c24f74563fba8da09a3f8f036a00d238dfc01c"
+      ]
+    },
+    {
+      "angle_feedback": null,
+      "automatic_motion_allowed": false,
+      "fixed_roi": [
+        578,
+        302,
+        172,
+        180
+      ],
+      "moving_roi": [
+        501,
+        101,
+        238,
+        190
+      ],
+      "verdict": "no_clear_pixel_change",
+      "camera_shift_pixels": [
+        -1,
+        0
+      ],
+      "fixed_correlation": 0.9773149178909304,
+      "fixed_noise_rms": 0.032812761458025835,
+      "moving_change_rms": 0.0894612676388548,
+      "change_threshold": 0.0984382843740775,
+      "reason": "Pixel comparison requires a human review of axis motion and linkage",
+      "stage": 4,
+      "command_change_us": [
+        -60,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "frame_ids": [
+        "b68ef75147974d09ad07adf563081a06-77529",
+        "b68ef75147974d09ad07adf563081a06-77555"
+      ],
+      "selection_sha256": "35bc8eaa16fc713eed579d65f06b1448e1489a690226887f37a931451883d7d6",
+      "frame_sha256": [
+        "4381bc21d8a3dff14c969473f6cc34dbdfbb64e36caa6f7a028f8770a179e13d",
+        "ab62c070fe2c48d2f258699086849ba9e89300eb1755dd38aef34302b96d5a91"
+      ]
+    },
+    {
+      "angle_feedback": null,
+      "automatic_motion_allowed": false,
+      "fixed_roi": [
+        578,
+        302,
+        172,
+        180
+      ],
+      "moving_roi": [
+        501,
+        101,
+        238,
+        190
+      ],
+      "verdict": "visible_pixel_change",
+      "camera_shift_pixels": [
+        -1,
+        0
+      ],
+      "fixed_correlation": 0.9914613278229655,
+      "fixed_noise_rms": 0.02057108644982159,
+      "moving_change_rms": 0.11416906041762122,
+      "change_threshold": 0.06171325934946477,
+      "reason": "Pixel comparison requires a human review of axis motion and linkage",
+      "stage": 5,
+      "command_change_us": [
+        0,
+        -210,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "frame_ids": [
+        "b68ef75147974d09ad07adf563081a06-78202",
+        "b68ef75147974d09ad07adf563081a06-78256"
+      ],
+      "selection_sha256": "d740a3f5ee359dae2d80362e4e447cfd0dd4cbb1343964a9c479076569412ca4",
+      "frame_sha256": [
+        "ba71505ffe44e2e001bfc415d8453c8b005c833dce5ac66c55030c82226cf9bc",
+        "efd73ad11c57186ea8d756c9ba14ebb52aa5577906b6093f3d541040e6cdd55a"
+      ]
+    }
+  ],
+  "threshold_is_heuristic_not_an_angle_calibration": true,
+  "pixel_change_is_not_collision_clearance_or_motion_authorization": true,
+  "previous_negative_tip_change_is_not_proof_of_yaw_shaft_rotation": true,
+  "board_state_after_review": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 1644,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "boot_id": "7eea2c53-e104-45cf-88fe-439f1821e5d4",
+  "incident_lock_sha256": {
+    "/run/shadow-pwm-motion-inhibit": "1ab30a79eb277e8e6fe4cc563634e0cc73d0417e8ea7b18b74e86bdbddcc74cf",
+    "/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration/.motion-inhibit": "1ab30a79eb277e8e6fe4cc563634e0cc73d0417e8ea7b18b74e86bdbddcc74cf"
+  },
+  "diagnostic_replay": {
+    "disabled": true,
+    "reason": "Path review alone does not verify actual response or a repeatable reference.",
+    "board_actor": "/tmp/hand_crossing_session_20261013_r5.py",
+    "board_dry_run_passed": true,
+    "sha256": "88e8671f7b6c2a669b51e8ce3fe706291a32bc1510ee85630321283b7ef71e21"
+  },
+  "analysis_source_sha256": "1e11d4d8a6b445a5a2118c93f72235d78420e8cd548465eeab36e261ff57ae44",
+  "validation": {
+    "crossing_tests_passed": 4,
+    "image_response_tests_passed": 3,
+    "launcher_syntax_passed": true
+  },
+  "pending_physical_check": "External 8V OFF confirmation and D14 connector waveform/shaft inspection remain needed before further crossing calibration."
+}

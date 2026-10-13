@@ -96,6 +96,8 @@ class CrossingSession(c.ChoreographySession):
     def check(self):
         if self.boot_id_path.read_text().strip()!=self.plan['boot_id']:
             raise RuntimeError('Boot changed; do not rearm')
+        if self.demo_used:
+            raise RuntimeError('Overhead mapping is diagnostic-only; path review does not validate motion response or authorize replay')
         return super().check()
 
     def adopt(self,pulses):
