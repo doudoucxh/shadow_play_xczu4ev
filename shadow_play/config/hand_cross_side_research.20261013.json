@@ -1,0 +1,153 @@
+{
+  "date": "2026-10-13",
+  "goal_confirmed_by_user": "Move a hand to the other side of the puppet body",
+  "status": "offline_research_and_slow_response_probe_prepared",
+  "executable_motor_script": false,
+  "automatic_motion_allowed": false,
+  "complete_crossing_verified": false,
+  "physical_motion_this_research_turn": false,
+  "camera_capture_verification": {
+    "front": {
+      "unique_frame_count": 41,
+      "max_age_ms": 66,
+      "jpeg_decode_checked": true,
+      "last_frame_id": "session-20261013-211339-50865",
+      "last_host_unix_ns": 1791900636466641900
+    },
+    "top": {
+      "unique_frame_count": 41,
+      "max_age_ms": 78,
+      "jpeg_decode_checked": true,
+      "last_frame_id": "b68ef75147974d09ad07adf563081a06-228149",
+      "last_host_unix_ns": 1791900636463345300
+    }
+  },
+  "board_readonly_check": {
+    "source_sha256": "4b08040843b4eb45f7cb35b5e500258baf2b4d6fd311d86239d50f3841e12012",
+    "profile": "person-script-hand-b-local-yaw-probe",
+    "route_sha256": "3884563257b4fc36f6a21eafaff81f76c491200237d0cb14e86d8c214632aa4b",
+    "compile_passed": true,
+    "synthetic_validation_not_execution_receipt": true,
+    "physical_probe_executed": false,
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 2906,
+      "pending": false,
+      "pulse_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "locks": {
+      "/run/shadow-pwm-motion-inhibit": "1ab30a79eb277e8e6fe4cc563634e0cc73d0417e8ea7b18b74e86bdbddcc74cf",
+      "/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration/.motion-inhibit": "1ab30a79eb277e8e6fe4cc563634e0cc73d0417e8ea7b18b74e86bdbddcc74cf"
+    },
+    "boot_id": "7eea2c53-e104-45cf-88fe-439f1821e5d4"
+  },
+  "image_review_record": "hand_cross_side_image_review.20261013.json",
+  "manual_estimates_are_not_joint_calibration": true,
+  "findings": [
+    "Reviewed raised hand endpoints remain on their original torso-relative sides.",
+    "Reviewed raised hand endpoints are not above the full supplied head/headdress outline.",
+    "Earlier common-yaw motion cannot establish independent hand crossing.",
+    "Actual hand-A yaw response remains unresolved; no servo failure diagnosis is made."
+  ],
+  "preferred_initial_route": "Chest-side transfer after independent hand-B yaw response is observed",
+  "slow_response_probe": {
+    "profile": "person-script-hand-b-local-yaw-probe",
+    "route_sha256": "3884563257b4fc36f6a21eafaff81f76c491200237d0cb14e86d8c214632aa4b",
+    "offsets_us": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        -40,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        -40,
+        40,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        -40,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        -40,
+        -40,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        -40,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "maximum_step_us": 3,
+    "minimum_commit_start_interval_seconds": 0.02,
+    "fast_mode_allowed": false,
+    "power_cycle_restore_allowed": false,
+    "auto_replay_allowed": false,
+    "physically_executed": false,
+    "cross_side_endpoint_defined": false
+  },
+  "required_for_completed_crossing": [
+    "Independent actual lateral response and current pose continuity",
+    "Hand endpoint passes to the opposite torso-relative side outside annotation uncertainty",
+    "Continuous arm, elbow, weapon, head/headdress, body support and top-view rod-path review",
+    "Closed return route observed at the intended performance tempo"
+  ],
+  "metric_clearance_mm": null,
+  "actual_joint_angles": null,
+  "validation": {
+    "session_tests_passed": 9,
+    "offline_image_review_tests_passed": 6,
+    "launcher_syntax_passed": true,
+    "board_source_compile_and_non_execution_validation_passed": true
+  }
+}

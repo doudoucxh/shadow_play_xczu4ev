@@ -1,0 +1,299 @@
+{
+  "schema_version": 1,
+  "method": "Torso-relative signed hand distance with conditional annotation-error bounds",
+  "manual_image_estimates": true,
+  "metric_coordinates_calibrated": false,
+  "actual_angle_feedback": null,
+  "automatic_motion_allowed": false,
+  "complete_crossing_verified": false,
+  "samples": [
+    {
+      "label": "reviewed_rest",
+      "frame_id": "session-20261013-211339-35268",
+      "hand_a": {
+        "transverse_offset_px": -31.304951684997054,
+        "transverse_interval_px": [
+          -51.54593423602179,
+          -11.06396913397231
+        ],
+        "transverse_offset_in_torso_axis_lengths": -0.7,
+        "upward_offset_px": -15.652475842498529,
+        "torso_axis_length_px": 44.721359549995796,
+        "side": "negative",
+        "whole_arm_weapon_and_rod_clearance_verified": false,
+        "wrist_above_head_interval_px": [
+          -96.12981757016934,
+          -33.56212512481846
+        ],
+        "wrist_above_entire_supplied_head_outline": false
+      },
+      "hand_b": {
+        "transverse_offset_px": 36.134858516396605,
+        "transverse_interval_px": [
+          11.802837693468057,
+          60.46687933932515
+        ],
+        "transverse_offset_in_torso_axis_lengths": 0.808,
+        "upward_offset_px": -36.045415797296606,
+        "torso_axis_length_px": 44.721359549995796,
+        "side": "positive",
+        "whole_arm_weapon_and_rod_clearance_verified": false,
+        "wrist_above_head_interval_px": [
+          -120.39539713295824,
+          -50.08242547162572
+        ],
+        "wrist_above_entire_supplied_head_outline": false
+      }
+    },
+    {
+      "label": "reviewed_both_hands_raised",
+      "frame_id": "session-20261013-211339-35760",
+      "hand_a": {
+        "transverse_offset_px": -24.266460917318156,
+        "transverse_interval_px": [
+          -42.536594130302014,
+          -5.996327704334298
+        ],
+        "transverse_offset_in_torso_axis_lengths": -0.5513680949922561,
+        "upward_offset_px": 11.451588298060253,
+        "torso_axis_length_px": 44.01136216933077,
+        "side": "negative",
+        "whole_arm_weapon_and_rod_clearance_verified": false,
+        "wrist_above_head_interval_px": [
+          -60.13493021144944,
+          -13.209766268984087
+        ],
+        "wrist_above_entire_supplied_head_outline": false
+      },
+      "hand_b": {
+        "transverse_offset_px": 28.62897074515063,
+        "transverse_interval_px": [
+          8.728624229643522,
+          48.52931726065774
+        ],
+        "transverse_offset_in_torso_axis_lengths": 0.6504904491481672,
+        "upward_offset_px": 16.654790123964617,
+        "torso_axis_length_px": 44.01136216933077,
+        "side": "positive",
+        "whole_arm_weapon_and_rod_clearance_verified": false,
+        "wrist_above_head_interval_px": [
+          -56.98496382601257,
+          -5.953329002612243
+        ],
+        "wrist_above_entire_supplied_head_outline": false
+      }
+    },
+    {
+      "label": "fresh_research_rest",
+      "frame_id": "session-20261013-211339-50865",
+      "hand_a": {
+        "transverse_offset_px": -31.304951684997054,
+        "transverse_interval_px": [
+          -51.54593423602179,
+          -11.06396913397231
+        ],
+        "transverse_offset_in_torso_axis_lengths": -0.7,
+        "upward_offset_px": -15.652475842498529,
+        "torso_axis_length_px": 44.721359549995796,
+        "side": "negative",
+        "whole_arm_weapon_and_rod_clearance_verified": false,
+        "wrist_above_head_interval_px": [
+          -96.12981757016934,
+          -33.56212512481846
+        ],
+        "wrist_above_entire_supplied_head_outline": false
+      },
+      "hand_b": {
+        "transverse_offset_px": 36.134858516396605,
+        "transverse_interval_px": [
+          11.802837693468057,
+          60.46687933932515
+        ],
+        "transverse_offset_in_torso_axis_lengths": 0.808,
+        "upward_offset_px": -36.045415797296606,
+        "torso_axis_length_px": 44.721359549995796,
+        "side": "positive",
+        "whole_arm_weapon_and_rod_clearance_verified": false,
+        "wrist_above_head_interval_px": [
+          -120.39539713295824,
+          -50.08242547162572
+        ],
+        "wrist_above_entire_supplied_head_outline": false
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "before_label": "reviewed_rest",
+      "after_label": "reviewed_both_hands_raised",
+      "hands": [
+        {
+          "hand": "hand_a",
+          "before": {
+            "transverse_offset_px": -31.304951684997054,
+            "transverse_interval_px": [
+              -51.54593423602179,
+              -11.06396913397231
+            ],
+            "transverse_offset_in_torso_axis_lengths": -0.7,
+            "upward_offset_px": -15.652475842498529,
+            "torso_axis_length_px": 44.721359549995796,
+            "side": "negative",
+            "whole_arm_weapon_and_rod_clearance_verified": false,
+            "wrist_above_head_interval_px": [
+              -96.12981757016934,
+              -33.56212512481846
+            ],
+            "wrist_above_entire_supplied_head_outline": false
+          },
+          "after": {
+            "transverse_offset_px": -24.266460917318156,
+            "transverse_interval_px": [
+              -42.536594130302014,
+              -5.996327704334298
+            ],
+            "transverse_offset_in_torso_axis_lengths": -0.5513680949922561,
+            "upward_offset_px": 11.451588298060253,
+            "torso_axis_length_px": 44.01136216933077,
+            "side": "negative",
+            "whole_arm_weapon_and_rod_clearance_verified": false,
+            "wrist_above_head_interval_px": [
+              -60.13493021144944,
+              -13.209766268984087
+            ],
+            "wrist_above_entire_supplied_head_outline": false
+          },
+          "endpoint_side_change_candidate": false,
+          "complete_crossing_verified": false,
+          "automatic_motion_allowed": false
+        },
+        {
+          "hand": "hand_b",
+          "before": {
+            "transverse_offset_px": 36.134858516396605,
+            "transverse_interval_px": [
+              11.802837693468057,
+              60.46687933932515
+            ],
+            "transverse_offset_in_torso_axis_lengths": 0.808,
+            "upward_offset_px": -36.045415797296606,
+            "torso_axis_length_px": 44.721359549995796,
+            "side": "positive",
+            "whole_arm_weapon_and_rod_clearance_verified": false,
+            "wrist_above_head_interval_px": [
+              -120.39539713295824,
+              -50.08242547162572
+            ],
+            "wrist_above_entire_supplied_head_outline": false
+          },
+          "after": {
+            "transverse_offset_px": 28.62897074515063,
+            "transverse_interval_px": [
+              8.728624229643522,
+              48.52931726065774
+            ],
+            "transverse_offset_in_torso_axis_lengths": 0.6504904491481672,
+            "upward_offset_px": 16.654790123964617,
+            "torso_axis_length_px": 44.01136216933077,
+            "side": "positive",
+            "whole_arm_weapon_and_rod_clearance_verified": false,
+            "wrist_above_head_interval_px": [
+              -56.98496382601257,
+              -5.953329002612243
+            ],
+            "wrist_above_entire_supplied_head_outline": false
+          },
+          "endpoint_side_change_candidate": false,
+          "complete_crossing_verified": false,
+          "automatic_motion_allowed": false
+        }
+      ]
+    },
+    {
+      "before_label": "reviewed_both_hands_raised",
+      "after_label": "fresh_research_rest",
+      "hands": [
+        {
+          "hand": "hand_a",
+          "before": {
+            "transverse_offset_px": -24.266460917318156,
+            "transverse_interval_px": [
+              -42.536594130302014,
+              -5.996327704334298
+            ],
+            "transverse_offset_in_torso_axis_lengths": -0.5513680949922561,
+            "upward_offset_px": 11.451588298060253,
+            "torso_axis_length_px": 44.01136216933077,
+            "side": "negative",
+            "whole_arm_weapon_and_rod_clearance_verified": false,
+            "wrist_above_head_interval_px": [
+              -60.13493021144944,
+              -13.209766268984087
+            ],
+            "wrist_above_entire_supplied_head_outline": false
+          },
+          "after": {
+            "transverse_offset_px": -31.304951684997054,
+            "transverse_interval_px": [
+              -51.54593423602179,
+              -11.06396913397231
+            ],
+            "transverse_offset_in_torso_axis_lengths": -0.7,
+            "upward_offset_px": -15.652475842498529,
+            "torso_axis_length_px": 44.721359549995796,
+            "side": "negative",
+            "whole_arm_weapon_and_rod_clearance_verified": false,
+            "wrist_above_head_interval_px": [
+              -96.12981757016934,
+              -33.56212512481846
+            ],
+            "wrist_above_entire_supplied_head_outline": false
+          },
+          "endpoint_side_change_candidate": false,
+          "complete_crossing_verified": false,
+          "automatic_motion_allowed": false
+        },
+        {
+          "hand": "hand_b",
+          "before": {
+            "transverse_offset_px": 28.62897074515063,
+            "transverse_interval_px": [
+              8.728624229643522,
+              48.52931726065774
+            ],
+            "transverse_offset_in_torso_axis_lengths": 0.6504904491481672,
+            "upward_offset_px": 16.654790123964617,
+            "torso_axis_length_px": 44.01136216933077,
+            "side": "positive",
+            "whole_arm_weapon_and_rod_clearance_verified": false,
+            "wrist_above_head_interval_px": [
+              -56.98496382601257,
+              -5.953329002612243
+            ],
+            "wrist_above_entire_supplied_head_outline": false
+          },
+          "after": {
+            "transverse_offset_px": 36.134858516396605,
+            "transverse_interval_px": [
+              11.802837693468057,
+              60.46687933932515
+            ],
+            "transverse_offset_in_torso_axis_lengths": 0.808,
+            "upward_offset_px": -36.045415797296606,
+            "torso_axis_length_px": 44.721359549995796,
+            "side": "positive",
+            "whole_arm_weapon_and_rod_clearance_verified": false,
+            "wrist_above_head_interval_px": [
+              -120.39539713295824,
+              -50.08242547162572
+            ],
+            "wrist_above_entire_supplied_head_outline": false
+          },
+          "endpoint_side_change_candidate": false,
+          "complete_crossing_verified": false,
+          "automatic_motion_allowed": false
+        }
+      ]
+    }
+  ]
+}

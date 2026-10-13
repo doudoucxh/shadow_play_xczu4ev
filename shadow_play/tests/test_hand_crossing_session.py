@@ -115,7 +115,15 @@ class CrossingTests(unittest.TestCase):
         for profile in h.ROUTES:
             self.now=0;self.r=FakeRegisters()
             for i in range(10):self.r.values[0x80+4*i]=1500
-            self.p['profile']=profile;d=self.device();d.adopt([1500]*10);events=[]
+            if profile=='person-script-hand-b-local-yaw-probe':
+                self.prepare_fast(profile);self.p['tempo_step_us']=3;del self.p['prior_slow_route_log']
+                d=self.device();d.adopt(h.BASE[:])
+            else:
+                self.p.update(profile=profile,restore_after_power_cycle=True,tempo_step_us=3,
+                              expected_sequence=0,expected_pulses_us=[1500]*10)
+                # Restore the completed original-duet fixture after a continuation.
+                self.set_restore_source();d=self.device();d.adopt([1500]*10)
+            events=[]
             for n in range(1,7):d.advance(n,events.append,self.sleep)
             prior=h.BASE
             for e in events:
@@ -123,13 +131,32 @@ class CrossingTests(unittest.TestCase):
                 s=e['state'];self.assertEqual(s['enabled_mask'],63)
                 if profile.startswith('person-script-'):
                     self.assertEqual(s['pulse_us'][6:],h.BASE[6:])
-                    for i in (0,2,4):self.assertEqual(s['pulse_us'][i],h.BASE[i])
+                    fixed=(0,1,2,5) if profile=='person-script-hand-b-local-yaw-probe' else (0,2,4)
+                    for i in fixed:self.assertEqual(s['pulse_us'][i],h.BASE[i])
                     if profile=='person-script-hand-b-strike-probe':
                         self.assertEqual(s['pulse_us'][1],h.BASE[1])
                 else:self.assertEqual(s['pulse_us'][4:],h.BASE[4:])
                 self.assertLessEqual(max(abs(a-b) for a,b in zip(prior,s['pulse_us'])),3)
                 prior=s['pulse_us']
             self.assertEqual(d.pulses,h.BASE)
+
+    def set_restore_source(self):
+        off=dict(sequence=31666,pulse_us=h.BASE,enabled_mask=0,armed=False,pending=False,faults=0)
+        rows=[dict(event='reference_held',profile='person-tiger-duet',route_sha256=h.DUET_SHA)]
+        rows += [dict(event='path_reviewed',axis=i) for i in range(1,7)]
+        rows += [dict(event='route_cycle_complete',cycle=i) for i in range(1,4)]
+        rows += [dict(event='outputs_off',normal_frame_stop=True,state=off)]
+        self.raw='\n'.join(json.dumps(r) for r in rows).encode()
+        self.p['baseline_source']=dict(path='/tmp/puppet-choreography-prior.jsonl',sha256=hashlib.sha256(self.raw).hexdigest())
+
+    def test_local_hand_b_yaw_has_no_fast_or_power_cycle_mode(self):
+        profile='person-script-hand-b-local-yaw-probe'
+        self.prepare_fast(profile)
+        with self.assertRaises(ValueError):self.device()
+        self.p['tempo_step_us']=3;del self.p['prior_slow_route_log']
+        self.p['restore_after_power_cycle']=True
+        with self.assertRaises(ValueError):self.device()
+        self.assertEqual(self.r.writes,[])
 
     def test_source_tamper_and_boot_change_reject_before_arm(self):
         self.raw+=b' '

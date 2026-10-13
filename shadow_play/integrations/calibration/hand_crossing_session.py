@@ -40,7 +40,11 @@ ROUTES={
  # reference during the first descending edge, alongside hand B's -120 pose.
  # This is a new combined path and requires its own slow review before tempo 8.
  'person-script-double-drop-sync-probe':(ZERO,(0,0,0,-40,0,0),(0,70,0,-40,0,-120),
-     (0,140,0,-40,0,-240),(0,0,0,-40,0,-120),(0,0,0,-40,0,0),ZERO)
+     (0,140,0,-40,0,-240),(0,0,0,-40,0,-120),(0,0,0,-40,0,0),ZERO),
+ # Isolate hand B's lateral response at the low hand pose. This does not
+ # cross the torso and is not an overhead clearance test.
+ 'person-script-hand-b-local-yaw-probe':(ZERO,(0,0,0,-40,0,0),(0,0,0,-40,40,0),
+     (0,0,0,-40,0,0),(0,0,0,-40,-40,0),(0,0,0,-40,0,0),ZERO)
 }
 FAST_GESTURE_PROFILES=frozenset(('person-script-hand-b-strike-probe','person-script-double-hit-probe',
                                'person-script-double-drop-sync-probe'))
@@ -65,6 +69,8 @@ def validate_plan(p,read=None,wall=None):
         raise ValueError('Exact attended overhead mapping plan required')
     if p['tempo_step_us']==3 and 'prior_slow_route_log' in p:
         raise ValueError('Slow diagnostic cannot include a fast-route receipt')
+    if p['profile']=='person-script-hand-b-local-yaw-probe' and p['restore_after_power_cycle']:
+        raise ValueError('Local hand yaw review requires the current-boot closed reference')
     if p['tempo_step_us']==8:
         if (p['profile'] not in FAST_GESTURE_PROFILES or p['restore_after_power_cycle']
                 or 'prior_slow_route_log' not in p):
