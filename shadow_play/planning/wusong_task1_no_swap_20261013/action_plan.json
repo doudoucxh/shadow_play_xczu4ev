@@ -1,0 +1,965 @@
+{
+  "schema": "wusong_no_swap_choreography_plan_v1",
+  "title": "武松打虎：暂不换位动作规划",
+  "date": "2026-10-13",
+  "is_executable_motor_script": false,
+  "hardware_output_backend": null,
+  "source": {
+    "archive": "wusong_task1_handoff_v2_20261012.zip",
+    "archive_sha256": "e681dc11ad182655c2f92a7851468499f3cee93f6e9d7b60614056c5ef8a594b",
+    "time_table_entry": "wusong_task1_handoff_v2_20261012/辅助文件/动作时间表.json",
+    "time_table_sha256": "040c386c2c747fb7bdb4f440d228e96876a6ba0e2fce9783995a9bfd030fb035"
+  },
+  "audio": {
+    "frames": 3763200,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "sample_width_bytes": 2,
+    "file": "音频/9月23日武松打虎.wav",
+    "sha256": "e25f577cf187270a8c7ba57ac296d70f9d254e251c8a0610dcc8c5721679a842",
+    "duration_s": 85.33333333333333,
+    "unchanged": true,
+    "board_sample_rate_hz": 48000,
+    "board_frames": 4096000
+  },
+  "duration_s": 85.33333333333333,
+  "duration_ms": 85333.33333333333,
+  "viewpoint": "audience_front",
+  "layout": {
+    "wusong": "left",
+    "tiger": "right"
+  },
+  "swaps_enabled": false,
+  "replaced_swap_windows": [
+    {
+      "start_s": 56,
+      "end_s": 58,
+      "replacement": "扑击后收势"
+    },
+    {
+      "start_s": 61.5,
+      "end_s": 63,
+      "replacement": "砸击后收拳"
+    }
+  ],
+  "rail_translation": {
+    "planned": false,
+    "commands": null,
+    "reason": "本轮先做固定位置舵机动作规划；进退场用原地步态占位，真实平移另行标定，不代表原剧本取消进退场。"
+  },
+  "coordinate_convention": {
+    "origin": "audience_bottom_left",
+    "width_mm": 740,
+    "height_mm": 500,
+    "x": "right",
+    "y": "up",
+    "physical_target_coordinates_supplied": false,
+    "rod_naming": "本文件用实际组号绑定手杆，不自动把观众左右转换为人物自身左右。"
+  },
+  "roles": [
+    {
+      "id": "w_hand_a",
+      "name": "人物第一手杆",
+      "servos": [
+        1,
+        2
+      ],
+      "pins": [
+        "D14",
+        "D15"
+      ],
+      "attachment": "既有第一组手部连接点；此前位于正面画面左侧。"
+    },
+    {
+      "id": "w_body",
+      "name": "人物头/身体杆",
+      "servos": [
+        3,
+        4
+      ],
+      "pins": [
+        "F13",
+        "G13"
+      ],
+      "attachment": "颈部连接点，承担身体支撑与姿态联动。"
+    },
+    {
+      "id": "w_hand_b",
+      "name": "人物第二手杆",
+      "servos": [
+        5,
+        6
+      ],
+      "pins": [
+        "G14",
+        "G15"
+      ],
+      "attachment": "既有第三组手部连接点；此前位于正面画面右侧。"
+    },
+    {
+      "id": "t_head",
+      "name": "虎头杆",
+      "servos": [
+        7,
+        8
+      ],
+      "pins": [
+        "J14",
+        "E13"
+      ],
+      "attachment": "按用户最初编号为虎头；导出前核验实际杆端。"
+    },
+    {
+      "id": "t_rear",
+      "name": "虎后部杆",
+      "servos": [
+        9,
+        10
+      ],
+      "pins": [
+        "E14",
+        "E15"
+      ],
+      "attachment": "用户原称虎脚，剧本称尾杆；独立摆尾与抓尾目标尚需实物确认。"
+    }
+  ],
+  "phases": [
+    {
+      "id": "C01",
+      "start_s": 0,
+      "end_s": 5.5,
+      "name": "原地进场步态一",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "低手站立→交替摆臂→低手站立",
+      "rod_actions": {
+        "w_hand_a": "第一手低位摆动",
+        "w_body": "身体缓慢起伏、保持支撑",
+        "w_hand_b": "第二手与第一手错相摆动",
+        "t_head": "候场保持",
+        "t_rear": "候场保持"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b"
+      ],
+      "source_name": "慢进场一",
+      "source_timing_basis": "按用户0–28秒进场要求细分",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C02",
+      "start_s": 5.5,
+      "end_s": 8.3,
+      "name": "旁白停步一",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "收势→说话手势→停稳",
+      "rod_actions": {
+        "w_hand_a": "收至腰胸之间的小手势",
+        "w_body": "整体行进停止，身体仅轻微表情起伏",
+        "w_hand_b": "轻微应答手势，肘部不持续拉直",
+        "t_head": "保持",
+        "t_rear": "保持"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b"
+      ],
+      "source_name": "旁白停步一",
+      "source_timing_basis": "第一段语音自动定位约5.88–7.90秒，窗口留前后余量，待试听确认",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C03",
+      "start_s": 8.3,
+      "end_s": 12.8,
+      "name": "原地进场步态二",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "摆臂→起伏→收势",
+      "rod_actions": {
+        "w_hand_a": "恢复低位摆臂",
+        "w_body": "恢复缓慢起伏，手杆跟随身体基准",
+        "w_hand_b": "与第一手错相摆动",
+        "t_head": "保持",
+        "t_rear": "保持"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b"
+      ],
+      "source_name": "慢进场二",
+      "source_timing_basis": "建议衔接窗口",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C04",
+      "start_s": 12.8,
+      "end_s": 19.8,
+      "name": "旁白停步二",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "挺身→手势→自然落手",
+      "rod_actions": {
+        "w_hand_a": "一次示意后回到胸前",
+        "w_body": "挺身/抬头，保持颈部主支撑",
+        "w_hand_b": "自然低手位或小幅表情",
+        "t_head": "保持",
+        "t_rear": "保持"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b"
+      ],
+      "source_name": "旁白停步二",
+      "source_timing_basis": "第二段语音自动定位约13.12–19.42秒，待试听确认",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C05",
+      "start_s": 19.8,
+      "end_s": 28,
+      "name": "进入对峙姿态",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "步态收尾→双手戒备",
+      "rod_actions": {
+        "w_hand_a": "由低位进入戒备",
+        "w_body": "减小起伏，朝虎方向微倾后停稳",
+        "w_hand_b": "另一手守住胸前，肘部有弯曲",
+        "t_head": "保持",
+        "t_rear": "保持"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b"
+      ],
+      "source_name": "进入对峙位置",
+      "source_timing_basis": "建议衔接窗口",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C06",
+      "start_s": 28,
+      "end_s": 40,
+      "name": "虎出现、吼叫",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "虎抬头→武松警觉→双方稳定",
+      "rod_actions": {
+        "w_hand_a": "保持戒备，仅一次警觉抬手",
+        "w_body": "身体后仰/再收回，双手同向跟随基准",
+        "w_hand_b": "保持低于持续悬挂人物的高度",
+        "t_head": "抬头→短停→低头，吼叫落点待试听",
+        "t_rear": "轻微后部摆动；不能预设独立尾巴控制"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b",
+        "t_head",
+        "t_rear"
+      ],
+      "source_name": "老虎出现、吼叫",
+      "source_timing_basis": "用户指定28秒出现及28–40秒吼叫；小幅摆尾不表示每一拍都要摆动",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C07",
+      "start_s": 40,
+      "end_s": 42,
+      "name": "双方收位",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "双方蓄势→静止短停",
+      "rod_actions": {
+        "w_hand_a": "收回戒备位",
+        "w_body": "站稳，准备扑击",
+        "w_hand_b": "收回戒备位",
+        "t_head": "头部压低蓄势",
+        "t_rear": "稳定后部，避免头尾杆反向硬拉"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b",
+        "t_head"
+      ],
+      "source_name": "双方收位",
+      "source_timing_basis": "补齐用户40–42秒未细分的过渡",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C08",
+      "start_s": 42,
+      "end_s": 56,
+      "name": "两次相向扑击、弹开",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "准备→冲击→弹开→恢复，恰好两轮",
+      "rod_actions": {
+        "w_hand_a": "护在前方，随身体前倾后回收",
+        "w_body": "用前倾/回撤表现冲击，整体位移待滑轨另行接入",
+        "w_hand_b": "向虎前部作短程冲击，随身体回撤",
+        "t_head": "前伸→声点处冲击投影→回撤",
+        "t_rear": "同步支撑扑势与回撤，避免头杆单独拖虎"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b",
+        "t_head",
+        "t_rear"
+      ],
+      "source_name": "两次相向扑击、弹开",
+      "source_timing_basis": "两声属于扑击由用户指定；准确的两次落点尚待试听确认",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C09",
+      "start_s": 56,
+      "end_s": 58,
+      "name": "扑击后收势（代替第一次换位）",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "回撤收势→下一招准备",
+      "rod_actions": {
+        "w_hand_a": "落回低戒备，预留双手砸头空间",
+        "w_body": "恢复主支撑，保持武松左/虎右",
+        "w_hand_b": "落回低戒备",
+        "t_head": "收回面对武松的头位",
+        "t_rear": "保持"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b",
+        "t_head"
+      ],
+      "source_name": "第一次换位准备及运动",
+      "source_timing_basis": "58秒为用户指定锚点，动程起止需按实机速度调整",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C10",
+      "start_s": 58,
+      "end_s": 61.5,
+      "name": "虎吼、双手砸头",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "吼叫→双手抬起→同步下砸→收手",
+      "rod_actions": {
+        "w_hand_a": "从自身外侧抬起，与另一手保持分离通道后下砸",
+        "w_body": "适度随砸击下沉，始终支撑身体",
+        "w_hand_b": "从另一侧抬起，与第一手同步下砸后回收",
+        "t_head": "先吼叫；双手到达时同步下压，表现受击",
+        "t_rear": "配合稳住后部，不要求身体真实承受拳力"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b",
+        "t_head",
+        "t_rear"
+      ],
+      "source_name": "虎吼、武松双手砸头",
+      "source_timing_basis": "顺序按用户指定；61.5秒是为第二次换位预留的暂定分界，不是已听辨声点",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C11",
+      "start_s": 61.5,
+      "end_s": 63,
+      "name": "砸击后收拳（代替第二次换位）",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "收拳→站稳→第一拳准备",
+      "rod_actions": {
+        "w_hand_a": "回到胸前，准备第二拳",
+        "w_body": "恢复站姿，保持武松左/虎右",
+        "w_hand_b": "先收拳，准备第一拳",
+        "t_head": "回到站姿拳击的受击目标位",
+        "t_rear": "保持"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b",
+        "t_head"
+      ],
+      "source_name": "第二次换位",
+      "source_timing_basis": "用户指定63秒换位；预留1.5秒只是排练规划，需实机验证",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C12",
+      "start_s": 63,
+      "end_s": 64,
+      "name": "准备站姿两拳",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "第一拳预备，不等待64.56秒才起动",
+      "rod_actions": {
+        "w_hand_a": "保持防守",
+        "w_body": "稳定身体、不要将手杆作为唯一悬挂点",
+        "w_hand_b": "第一拳提前蓄力",
+        "t_head": "头位稳定，为拳头投影接近预留空间",
+        "t_rear": "保持"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b",
+        "t_head"
+      ],
+      "source_name": "换回后准备出拳",
+      "source_timing_basis": "第二次换位后至拳击仅约1秒，需连贯规划",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C13",
+      "start_s": 64,
+      "end_s": 65.9,
+      "name": "前两拳：站姿打虎",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "第二手第一拳→第一手第二拳→第一手按头",
+      "rod_actions": {
+        "w_hand_a": "暂定第二拳；击后转为按头，不急着完全松开",
+        "w_body": "随拳小幅前倾和回收，抑制腰部被单手拽走",
+        "w_hand_b": "暂定第一拳，击后收回，为后续砸头准备",
+        "t_head": "每拳到达时短促退让，不能先于拳到达大幅下沉",
+        "t_rear": "稳定身体后部"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b",
+        "t_head"
+      ],
+      "source_name": "前两拳：站姿打虎",
+      "source_timing_basis": "候选响点64.56、65.71秒来自波形，类别及细落点待试听确认；65.9秒是暂定动作分界",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C14",
+      "start_s": 65.9,
+      "end_s": 67.4,
+      "name": "压虎、建立骑虎投影",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "第一手按头→身体下沉→第二手蓄力",
+      "rod_actions": {
+        "w_hand_a": "接近虎头投影并随虎头降低，表现按头",
+        "w_body": "向虎背投影靠近并下沉；腿随人物被动变化",
+        "w_hand_b": "提前准备67.40秒候选第一砸，不与按头手交叉",
+        "t_head": "降低，配合身体投影重合",
+        "t_rear": "配合降低、保持姿态，不真实承重"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b",
+        "t_head",
+        "t_rear"
+      ],
+      "source_name": "压虎、建立骑虎姿态",
+      "source_timing_basis": "建议过渡窗口；67.4秒是后续强攻击起点候选，不是机械可达性保证",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C15",
+      "start_s": 67.4,
+      "end_s": 77,
+      "name": "骑虎连续砸头",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "一手按头、一手连续短程砸击",
+      "rod_actions": {
+        "w_hand_a": "保持按头关系，随虎头缓慢下沉，不能钉死坐标",
+        "w_body": "保持骑虎投影，小幅随拳动作，不反复抬整个人",
+        "w_hand_b": "主打击手反复蓄力→下砸→短收；密集段缩短行程",
+        "t_head": "按每次砸击作短促下压，累积缓慢降低",
+        "t_rear": "先短程挣扎，随后逐渐减弱；视实际连接点决定表现"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b",
+        "t_head",
+        "t_rear"
+      ],
+      "source_name": "骑虎连续砸头",
+      "source_timing_basis": "候选响点由波形分析提供，实际拳数和落点待试听确定；密集段可减小行程",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C16",
+      "start_s": 77,
+      "end_s": 79.5,
+      "name": "虎倒地、武松喘息",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "停拳→松手→虎倒地→喘息",
+      "rod_actions": {
+        "w_hand_a": "释放按头，回到自然低手位",
+        "w_body": "停止进攻，轻微喘息起伏，从虎背投影退出",
+        "w_hand_b": "停止挥拳，回到低手位",
+        "t_head": "逐渐降低并保持倒地",
+        "t_rear": "协同降低并保持，尾巴/后部不继续强摆"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b",
+        "t_head",
+        "t_rear"
+      ],
+      "source_name": "虎倒地、武松喘息",
+      "source_timing_basis": "按用户剩余时段的喘息退场意图细分",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C17",
+      "start_s": 79.5,
+      "end_s": 83.5,
+      "name": "抓尾、原地拖行步态",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "伸手找尾→牵尾姿态→缓慢步态",
+      "rod_actions": {
+        "w_hand_a": "自然摆动或低位防守",
+        "w_body": "缓慢后撤感/喘息步态；平移退场待滑轨接入",
+        "w_hand_b": "优先用第二手接近尾部投影并保持牵尾关系",
+        "t_head": "保持倒地，身体投影随牵尾步态轻微变化",
+        "t_rear": "与牵尾手投影接近；不把两根杆绑成承重连接"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b",
+        "t_head",
+        "t_rear"
+      ],
+      "source_name": "抓尾、缓慢拖行",
+      "source_timing_basis": "结尾对白自动定位约79.92–83.46秒；不要求补新对白",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    },
+    {
+      "id": "C18",
+      "start_s": 83.5,
+      "end_s": 85.33333333333333,
+      "name": "拖尾收尾（固定位置版）",
+      "layout": {
+        "wusong": "left",
+        "tiger": "right"
+      },
+      "sequence": "缓慢收势→85.333秒停稳",
+      "rod_actions": {
+        "w_hand_a": "保持低手位",
+        "w_body": "减速、停止步态，保持最后姿态",
+        "w_hand_b": "保持牵尾投影，停止新增攻击",
+        "t_head": "保持倒地",
+        "t_rear": "保持倒地/牵尾关系"
+      },
+      "active_rods": [
+        "w_hand_a",
+        "w_body",
+        "w_hand_b",
+        "t_head",
+        "t_rear"
+      ],
+      "source_name": "拖尾完成退场",
+      "source_timing_basis": "方向根据滑轨行程与皮影朝向确认；原音频在85.333333秒结束",
+      "mechanically_validated": false,
+      "target_coordinates_mm": null,
+      "servo_targets_us": null
+    }
+  ],
+  "punch_events": [
+    {
+      "id": "punch_candidate_01",
+      "impact_candidate_s": 64.56,
+      "sound_confirmed": false,
+      "actor_rod": "w_hand_b",
+      "mode": "standing",
+      "windup_start_s": 64.14,
+      "impact_arrival_s": 64.56,
+      "recoil_end_s": 64.68,
+      "recover_or_hold_end_s": 64.96,
+      "next_role": "recoil",
+      "amplitude": "medium",
+      "timing_is_proposed_not_measured": true,
+      "requires_listening_confirmation": true,
+      "required_cycle_budget_s": 0.82
+    },
+    {
+      "id": "punch_candidate_02",
+      "impact_candidate_s": 65.71,
+      "sound_confirmed": false,
+      "actor_rod": "w_hand_a",
+      "mode": "standing",
+      "windup_start_s": 65.29,
+      "impact_arrival_s": 65.71,
+      "recoil_end_s": 65.83,
+      "recover_or_hold_end_s": 66.11,
+      "next_role": "pin_head",
+      "amplitude": "medium",
+      "timing_is_proposed_not_measured": true,
+      "requires_listening_confirmation": true,
+      "required_cycle_budget_s": 0.82
+    },
+    {
+      "id": "punch_candidate_03",
+      "impact_candidate_s": 67.4,
+      "sound_confirmed": false,
+      "actor_rod": "w_hand_b",
+      "mode": "ride_projection",
+      "windup_start_s": 66.98,
+      "impact_arrival_s": 67.4,
+      "recoil_end_s": 67.52,
+      "recover_or_hold_end_s": 67.8,
+      "next_role": "recoil",
+      "amplitude": "medium",
+      "timing_is_proposed_not_measured": true,
+      "requires_listening_confirmation": true,
+      "required_cycle_budget_s": 0.82
+    },
+    {
+      "id": "punch_candidate_04",
+      "impact_candidate_s": 68.92,
+      "sound_confirmed": false,
+      "actor_rod": "w_hand_b",
+      "mode": "ride_projection",
+      "windup_start_s": 68.5,
+      "impact_arrival_s": 68.92,
+      "recoil_end_s": 69.04,
+      "recover_or_hold_end_s": 69.32,
+      "next_role": "recoil",
+      "amplitude": "medium",
+      "timing_is_proposed_not_measured": true,
+      "requires_listening_confirmation": true,
+      "required_cycle_budget_s": 0.82
+    },
+    {
+      "id": "punch_candidate_05",
+      "impact_candidate_s": 70.44,
+      "sound_confirmed": false,
+      "actor_rod": "w_hand_b",
+      "mode": "ride_projection",
+      "windup_start_s": 70.02,
+      "impact_arrival_s": 70.44,
+      "recoil_end_s": 70.56,
+      "recover_or_hold_end_s": 70.84,
+      "next_role": "recoil",
+      "amplitude": "medium",
+      "timing_is_proposed_not_measured": true,
+      "requires_listening_confirmation": true,
+      "required_cycle_budget_s": 0.82
+    },
+    {
+      "id": "punch_candidate_06",
+      "impact_candidate_s": 72.48,
+      "sound_confirmed": false,
+      "actor_rod": "w_hand_b",
+      "mode": "ride_projection",
+      "windup_start_s": 72.06,
+      "impact_arrival_s": 72.48,
+      "recoil_end_s": 72.6,
+      "recover_or_hold_end_s": 72.88,
+      "next_role": "recoil",
+      "amplitude": "medium",
+      "timing_is_proposed_not_measured": true,
+      "requires_listening_confirmation": true,
+      "required_cycle_budget_s": 0.82
+    },
+    {
+      "id": "punch_candidate_07",
+      "impact_candidate_s": 73.28,
+      "sound_confirmed": false,
+      "actor_rod": "w_hand_b",
+      "mode": "ride_projection",
+      "windup_start_s": 72.98,
+      "impact_arrival_s": 73.28,
+      "recoil_end_s": 73.4,
+      "recover_or_hold_end_s": 73.6,
+      "next_role": "recoil",
+      "amplitude": "compact",
+      "timing_is_proposed_not_measured": true,
+      "requires_listening_confirmation": true,
+      "required_cycle_budget_s": 0.62
+    },
+    {
+      "id": "punch_candidate_08",
+      "impact_candidate_s": 74.04,
+      "sound_confirmed": false,
+      "actor_rod": "w_hand_b",
+      "mode": "ride_projection",
+      "windup_start_s": 73.74,
+      "impact_arrival_s": 74.04,
+      "recoil_end_s": 74.16,
+      "recover_or_hold_end_s": 74.36,
+      "next_role": "recoil",
+      "amplitude": "compact",
+      "timing_is_proposed_not_measured": true,
+      "requires_listening_confirmation": true,
+      "required_cycle_budget_s": 0.62
+    },
+    {
+      "id": "punch_candidate_09",
+      "impact_candidate_s": 74.88,
+      "sound_confirmed": false,
+      "actor_rod": "w_hand_b",
+      "mode": "ride_projection",
+      "windup_start_s": 74.58,
+      "impact_arrival_s": 74.88,
+      "recoil_end_s": 75.0,
+      "recover_or_hold_end_s": 75.2,
+      "next_role": "recoil",
+      "amplitude": "compact",
+      "timing_is_proposed_not_measured": true,
+      "requires_listening_confirmation": true,
+      "required_cycle_budget_s": 0.62
+    },
+    {
+      "id": "punch_candidate_10",
+      "impact_candidate_s": 76.07,
+      "sound_confirmed": false,
+      "actor_rod": "w_hand_b",
+      "mode": "ride_projection",
+      "windup_start_s": 75.77,
+      "impact_arrival_s": 76.07,
+      "recoil_end_s": 76.19,
+      "recover_or_hold_end_s": 76.39,
+      "next_role": "recoil",
+      "amplitude": "compact",
+      "timing_is_proposed_not_measured": true,
+      "requires_listening_confirmation": true,
+      "required_cycle_budget_s": 0.62
+    }
+  ],
+  "clashes": {
+    "count": 2,
+    "windows_s": [
+      [
+        42,
+        49
+      ],
+      [
+        49,
+        56
+      ]
+    ],
+    "impact_times_s": [
+      null,
+      null
+    ],
+    "onset_candidates_s": [
+      43.76,
+      46.76,
+      52.17
+    ],
+    "candidate_count_is_not_attack_count": true,
+    "sound_confirmation_required": true,
+    "rail_free_substitute": "双方前倾/前伸→受击投影→回撤；不能把它称为实测相向平移扑击。"
+  },
+  "double_hit": {
+    "window_s": [
+      58,
+      61.5
+    ],
+    "roar_then_raise_then_strike": true,
+    "impact_time_s": null,
+    "proposed_budget_s": {
+      "roar_settle": 0.7,
+      "raise": 0.9,
+      "strike": 0.45,
+      "recoil": 0.65,
+      "settle": 0.8
+    },
+    "validated": false,
+    "overhead_hand_crossing_required": false
+  },
+  "speech_intervals_candidates": [
+    {
+      "start_s": 5.88,
+      "end_s": 7.9,
+      "role": "进场第一段旁白",
+      "verification": "automatic_asr_candidate"
+    },
+    {
+      "start_s": 13.12,
+      "end_s": 19.42,
+      "role": "进场第二段旁白",
+      "verification": "automatic_asr_candidate"
+    },
+    {
+      "start_s": 79.92,
+      "end_s": 83.46,
+      "role": "结尾对白",
+      "verification": "automatic_asr_candidate"
+    }
+  ],
+  "optional_overhead_crossing": {
+    "enabled": false,
+    "basic_show_requires_it": false,
+    "steps": [
+      "颈部杆稳定支撑，另一手保持低位",
+      "选定手先在自身一侧抬到实测避让高度",
+      "按多个关键点沿头顶上方弧线移动，检查长杆、杆尾与邻杆",
+      "过头后再落到对侧，保持身体与另一手协同",
+      "沿已验证通道返回"
+    ],
+    "requires": [
+      "1号横移实际响应确认",
+      "带杆两轴组合标定",
+      "三杆联动与杆尾三维间距验证"
+    ],
+    "clearance_mm": null,
+    "joint_waypoints": null
+  },
+  "planning_constraints": [
+    "脖子/身体杆是支撑基准，手杆叠加手势并随身体基准运动。",
+    "拳头到达应对齐声点，运动提前开始；不是声点处才启动。",
+    "手腕轨迹须兼顾被动肘关节，不把高举、拉直手臂作为所有动作默认。",
+    "打击、骑虎与牵尾先表现投影接近/重叠，不规划硬碰撞、真实承重或真实抓握。",
+    "幕面投影不相交不能证明背后长杆、杆尾和云台不会碰撞。",
+    "左右手可达性不同，不能镜像复制舵机角度。",
+    "小幅姿态逐渐连接；每个阶段终态就是下一阶段初态，音频同步不靠串口延时累计。",
+    "1号横移响应未验证；已有短表演只能作为设计参考，不覆盖本剧本新动作和新组合。"
+  ],
+  "calibration_order": [
+    "确认1号横移响应/实际接线",
+    "低手站立与双手戒备",
+    "第二手短程出拳与颈部协同",
+    "第一手单拳与按头姿态",
+    "虎头和后部杆受击/倒地关系",
+    "双手抬起与下砸（先不交叉）",
+    "单次冲击与回撤再重复两次",
+    "骑虎投影及短程连砸",
+    "喘息、牵尾投影和原地收尾",
+    "分段实测时间、试听对齐并录制85.333秒基础版",
+    "独立增补越头交叉及滑轨移动"
+  ],
+  "pending": [
+    {
+      "id": "P1",
+      "item": "1号D14线端波形和云台实际横移响应",
+      "status": "unresolved"
+    },
+    {
+      "id": "P2",
+      "item": "五杆幕面坐标、被动关节活动与带杆组合范围",
+      "status": "unvalidated"
+    },
+    {
+      "id": "P3",
+      "item": "9/10号实际控制部位是否可独立表现尾巴",
+      "status": "needs_attachment_check"
+    },
+    {
+      "id": "P4",
+      "item": "两次扑击和拳声候选点逐声试听",
+      "status": "unconfirmed"
+    },
+    {
+      "id": "P5",
+      "item": "实测抬手/出拳/回收时间，尤其73秒后密集段",
+      "status": "unmeasured"
+    },
+    {
+      "id": "P6",
+      "item": "剧本为空手，现装配曾持武器，正式排练前核对造型",
+      "status": "needs_visual_check"
+    },
+    {
+      "id": "P7",
+      "item": "滑轨平移、极限位置与进退场出口",
+      "status": "deferred"
+    },
+    {
+      "id": "P8",
+      "item": "结束姿态保持及正常停输出对负载的影响",
+      "status": "unvalidated"
+    }
+  ],
+  "ending_policy": "85.333秒先停止动作并保持终态；保持时长/正常停PWM须实机确认，不能默认回135度。",
+  "frames": null,
+  "pwm_angles": null,
+  "mechanical_validation_required": true,
+  "hardware_execution_authorized_by_this_file": false
+}

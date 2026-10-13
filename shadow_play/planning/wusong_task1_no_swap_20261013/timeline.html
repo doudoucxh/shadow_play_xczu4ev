@@ -1,0 +1,93 @@
+<div id="wusong-no-swap-timeline">
+  <div class="viz-row"><h3>武松打虎 · 暂不换位</h3></div>
+  <div class="text-muted">85.333秒 · 武松左／虎右 · 动作意图，未实机验收</div>
+  <div class="viz-controls">
+    <label class="form-label" for="ws-cue">段落
+      <select id="ws-cue" class="form-select" aria-label="选择动作段落"></select>
+    </label>
+  </div>
+  <label class="form-label" for="ws-time">音频时间 <output id="ws-clock" class="tabular-nums">0.00 / 85.33 秒</output></label>
+  <input id="ws-time" class="form-range" type="range" min="0" max="85.33333333333333" step="0.01" value="0" aria-label="查看该时刻的动作编排">
+  <div id="ws-chart" style="width:100%">
+    <svg id="ws-lanes" role="img" aria-label="五根控制杆在85.333秒音频中的动作分工" style="width:100%;height:300px;display:block"></svg>
+  </div>
+  <div class="text-small text-muted">实色：动作段　浅色：保持／候场　○：拳声候选，待试听</div>
+  <div id="ws-current" aria-live="polite" style="margin-top:12px"></div>
+</div>
+<script>
+(() => {
+  const root=document.getElementById('wusong-no-swap-timeline');
+  const plan={"duration_s":85.33333333333333,"roles":[{"id":"w_hand_a","name":"人物第一手杆","servos":[1,2],"pins":["D14","D15"],"attachment":"既有第一组手部连接点；此前位于正面画面左侧。"},{"id":"w_body","name":"人物头/身体杆","servos":[3,4],"pins":["F13","G13"],"attachment":"颈部连接点，承担身体支撑与姿态联动。"},{"id":"w_hand_b","name":"人物第二手杆","servos":[5,6],"pins":["G14","G15"],"attachment":"既有第三组手部连接点；此前位于正面画面右侧。"},{"id":"t_head","name":"虎头杆","servos":[7,8],"pins":["J14","E13"],"attachment":"按用户最初编号为虎头；导出前核验实际杆端。"},{"id":"t_rear","name":"虎后部杆","servos":[9,10],"pins":["E14","E15"],"attachment":"用户原称虎脚，剧本称尾杆；独立摆尾与抓尾目标尚需实物确认。"}],"phases":[{"id":"C01","start_s":0,"end_s":5.5,"name":"原地进场步态一","layout":{"wusong":"left","tiger":"right"},"sequence":"低手站立→交替摆臂→低手站立","rod_actions":{"w_hand_a":"第一手低位摆动","w_body":"身体缓慢起伏、保持支撑","w_hand_b":"第二手与第一手错相摆动","t_head":"候场保持","t_rear":"候场保持"},"active_rods":["w_hand_a","w_body","w_hand_b"],"source_name":"慢进场一","source_timing_basis":"按用户0–28秒进场要求细分","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C02","start_s":5.5,"end_s":8.3,"name":"旁白停步一","layout":{"wusong":"left","tiger":"right"},"sequence":"收势→说话手势→停稳","rod_actions":{"w_hand_a":"收至腰胸之间的小手势","w_body":"整体行进停止，身体仅轻微表情起伏","w_hand_b":"轻微应答手势，肘部不持续拉直","t_head":"保持","t_rear":"保持"},"active_rods":["w_hand_a","w_body","w_hand_b"],"source_name":"旁白停步一","source_timing_basis":"第一段语音自动定位约5.88–7.90秒，窗口留前后余量，待试听确认","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C03","start_s":8.3,"end_s":12.8,"name":"原地进场步态二","layout":{"wusong":"left","tiger":"right"},"sequence":"摆臂→起伏→收势","rod_actions":{"w_hand_a":"恢复低位摆臂","w_body":"恢复缓慢起伏，手杆跟随身体基准","w_hand_b":"与第一手错相摆动","t_head":"保持","t_rear":"保持"},"active_rods":["w_hand_a","w_body","w_hand_b"],"source_name":"慢进场二","source_timing_basis":"建议衔接窗口","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C04","start_s":12.8,"end_s":19.8,"name":"旁白停步二","layout":{"wusong":"left","tiger":"right"},"sequence":"挺身→手势→自然落手","rod_actions":{"w_hand_a":"一次示意后回到胸前","w_body":"挺身/抬头，保持颈部主支撑","w_hand_b":"自然低手位或小幅表情","t_head":"保持","t_rear":"保持"},"active_rods":["w_hand_a","w_body","w_hand_b"],"source_name":"旁白停步二","source_timing_basis":"第二段语音自动定位约13.12–19.42秒，待试听确认","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C05","start_s":19.8,"end_s":28,"name":"进入对峙姿态","layout":{"wusong":"left","tiger":"right"},"sequence":"步态收尾→双手戒备","rod_actions":{"w_hand_a":"由低位进入戒备","w_body":"减小起伏，朝虎方向微倾后停稳","w_hand_b":"另一手守住胸前，肘部有弯曲","t_head":"保持","t_rear":"保持"},"active_rods":["w_hand_a","w_body","w_hand_b"],"source_name":"进入对峙位置","source_timing_basis":"建议衔接窗口","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C06","start_s":28,"end_s":40,"name":"虎出现、吼叫","layout":{"wusong":"left","tiger":"right"},"sequence":"虎抬头→武松警觉→双方稳定","rod_actions":{"w_hand_a":"保持戒备，仅一次警觉抬手","w_body":"身体后仰/再收回，双手同向跟随基准","w_hand_b":"保持低于持续悬挂人物的高度","t_head":"抬头→短停→低头，吼叫落点待试听","t_rear":"轻微后部摆动；不能预设独立尾巴控制"},"active_rods":["w_hand_a","w_body","w_hand_b","t_head","t_rear"],"source_name":"老虎出现、吼叫","source_timing_basis":"用户指定28秒出现及28–40秒吼叫；小幅摆尾不表示每一拍都要摆动","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C07","start_s":40,"end_s":42,"name":"双方收位","layout":{"wusong":"left","tiger":"right"},"sequence":"双方蓄势→静止短停","rod_actions":{"w_hand_a":"收回戒备位","w_body":"站稳，准备扑击","w_hand_b":"收回戒备位","t_head":"头部压低蓄势","t_rear":"稳定后部，避免头尾杆反向硬拉"},"active_rods":["w_hand_a","w_body","w_hand_b","t_head"],"source_name":"双方收位","source_timing_basis":"补齐用户40–42秒未细分的过渡","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C08","start_s":42,"end_s":56,"name":"两次相向扑击、弹开","layout":{"wusong":"left","tiger":"right"},"sequence":"准备→冲击→弹开→恢复，恰好两轮","rod_actions":{"w_hand_a":"护在前方，随身体前倾后回收","w_body":"用前倾/回撤表现冲击，整体位移待滑轨另行接入","w_hand_b":"向虎前部作短程冲击，随身体回撤","t_head":"前伸→声点处冲击投影→回撤","t_rear":"同步支撑扑势与回撤，避免头杆单独拖虎"},"active_rods":["w_hand_a","w_body","w_hand_b","t_head","t_rear"],"source_name":"两次相向扑击、弹开","source_timing_basis":"两声属于扑击由用户指定；准确的两次落点尚待试听确认","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C09","start_s":56,"end_s":58,"name":"扑击后收势（代替第一次换位）","layout":{"wusong":"left","tiger":"right"},"sequence":"回撤收势→下一招准备","rod_actions":{"w_hand_a":"落回低戒备，预留双手砸头空间","w_body":"恢复主支撑，保持武松左/虎右","w_hand_b":"落回低戒备","t_head":"收回面对武松的头位","t_rear":"保持"},"active_rods":["w_hand_a","w_body","w_hand_b","t_head"],"source_name":"第一次换位准备及运动","source_timing_basis":"58秒为用户指定锚点，动程起止需按实机速度调整","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C10","start_s":58,"end_s":61.5,"name":"虎吼、双手砸头","layout":{"wusong":"left","tiger":"right"},"sequence":"吼叫→双手抬起→同步下砸→收手","rod_actions":{"w_hand_a":"从自身外侧抬起，与另一手保持分离通道后下砸","w_body":"适度随砸击下沉，始终支撑身体","w_hand_b":"从另一侧抬起，与第一手同步下砸后回收","t_head":"先吼叫；双手到达时同步下压，表现受击","t_rear":"配合稳住后部，不要求身体真实承受拳力"},"active_rods":["w_hand_a","w_body","w_hand_b","t_head","t_rear"],"source_name":"虎吼、武松双手砸头","source_timing_basis":"顺序按用户指定；61.5秒是为第二次换位预留的暂定分界，不是已听辨声点","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C11","start_s":61.5,"end_s":63,"name":"砸击后收拳（代替第二次换位）","layout":{"wusong":"left","tiger":"right"},"sequence":"收拳→站稳→第一拳准备","rod_actions":{"w_hand_a":"回到胸前，准备第二拳","w_body":"恢复站姿，保持武松左/虎右","w_hand_b":"先收拳，准备第一拳","t_head":"回到站姿拳击的受击目标位","t_rear":"保持"},"active_rods":["w_hand_a","w_body","w_hand_b","t_head"],"source_name":"第二次换位","source_timing_basis":"用户指定63秒换位；预留1.5秒只是排练规划，需实机验证","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C12","start_s":63,"end_s":64,"name":"准备站姿两拳","layout":{"wusong":"left","tiger":"right"},"sequence":"第一拳预备，不等待64.56秒才起动","rod_actions":{"w_hand_a":"保持防守","w_body":"稳定身体、不要将手杆作为唯一悬挂点","w_hand_b":"第一拳提前蓄力","t_head":"头位稳定，为拳头投影接近预留空间","t_rear":"保持"},"active_rods":["w_hand_a","w_body","w_hand_b","t_head"],"source_name":"换回后准备出拳","source_timing_basis":"第二次换位后至拳击仅约1秒，需连贯规划","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C13","start_s":64,"end_s":65.9,"name":"前两拳：站姿打虎","layout":{"wusong":"left","tiger":"right"},"sequence":"第二手第一拳→第一手第二拳→第一手按头","rod_actions":{"w_hand_a":"暂定第二拳；击后转为按头，不急着完全松开","w_body":"随拳小幅前倾和回收，抑制腰部被单手拽走","w_hand_b":"暂定第一拳，击后收回，为后续砸头准备","t_head":"每拳到达时短促退让，不能先于拳到达大幅下沉","t_rear":"稳定身体后部"},"active_rods":["w_hand_a","w_body","w_hand_b","t_head"],"source_name":"前两拳：站姿打虎","source_timing_basis":"候选响点64.56、65.71秒来自波形，类别及细落点待试听确认；65.9秒是暂定动作分界","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C14","start_s":65.9,"end_s":67.4,"name":"压虎、建立骑虎投影","layout":{"wusong":"left","tiger":"right"},"sequence":"第一手按头→身体下沉→第二手蓄力","rod_actions":{"w_hand_a":"接近虎头投影并随虎头降低，表现按头","w_body":"向虎背投影靠近并下沉；腿随人物被动变化","w_hand_b":"提前准备67.40秒候选第一砸，不与按头手交叉","t_head":"降低，配合身体投影重合","t_rear":"配合降低、保持姿态，不真实承重"},"active_rods":["w_hand_a","w_body","w_hand_b","t_head","t_rear"],"source_name":"压虎、建立骑虎姿态","source_timing_basis":"建议过渡窗口；67.4秒是后续强攻击起点候选，不是机械可达性保证","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C15","start_s":67.4,"end_s":77,"name":"骑虎连续砸头","layout":{"wusong":"left","tiger":"right"},"sequence":"一手按头、一手连续短程砸击","rod_actions":{"w_hand_a":"保持按头关系，随虎头缓慢下沉，不能钉死坐标","w_body":"保持骑虎投影，小幅随拳动作，不反复抬整个人","w_hand_b":"主打击手反复蓄力→下砸→短收；密集段缩短行程","t_head":"按每次砸击作短促下压，累积缓慢降低","t_rear":"先短程挣扎，随后逐渐减弱；视实际连接点决定表现"},"active_rods":["w_hand_a","w_body","w_hand_b","t_head","t_rear"],"source_name":"骑虎连续砸头","source_timing_basis":"候选响点由波形分析提供，实际拳数和落点待试听确定；密集段可减小行程","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C16","start_s":77,"end_s":79.5,"name":"虎倒地、武松喘息","layout":{"wusong":"left","tiger":"right"},"sequence":"停拳→松手→虎倒地→喘息","rod_actions":{"w_hand_a":"释放按头，回到自然低手位","w_body":"停止进攻，轻微喘息起伏，从虎背投影退出","w_hand_b":"停止挥拳，回到低手位","t_head":"逐渐降低并保持倒地","t_rear":"协同降低并保持，尾巴/后部不继续强摆"},"active_rods":["w_hand_a","w_body","w_hand_b","t_head","t_rear"],"source_name":"虎倒地、武松喘息","source_timing_basis":"按用户剩余时段的喘息退场意图细分","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C17","start_s":79.5,"end_s":83.5,"name":"抓尾、原地拖行步态","layout":{"wusong":"left","tiger":"right"},"sequence":"伸手找尾→牵尾姿态→缓慢步态","rod_actions":{"w_hand_a":"自然摆动或低位防守","w_body":"缓慢后撤感/喘息步态；平移退场待滑轨接入","w_hand_b":"优先用第二手接近尾部投影并保持牵尾关系","t_head":"保持倒地，身体投影随牵尾步态轻微变化","t_rear":"与牵尾手投影接近；不把两根杆绑成承重连接"},"active_rods":["w_hand_a","w_body","w_hand_b","t_head","t_rear"],"source_name":"抓尾、缓慢拖行","source_timing_basis":"结尾对白自动定位约79.92–83.46秒；不要求补新对白","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null},{"id":"C18","start_s":83.5,"end_s":85.33333333333333,"name":"拖尾收尾（固定位置版）","layout":{"wusong":"left","tiger":"right"},"sequence":"缓慢收势→85.333秒停稳","rod_actions":{"w_hand_a":"保持低手位","w_body":"减速、停止步态，保持最后姿态","w_hand_b":"保持牵尾投影，停止新增攻击","t_head":"保持倒地","t_rear":"保持倒地/牵尾关系"},"active_rods":["w_hand_a","w_body","w_hand_b","t_head","t_rear"],"source_name":"拖尾完成退场","source_timing_basis":"方向根据滑轨行程与皮影朝向确认；原音频在85.333333秒结束","mechanically_validated":false,"target_coordinates_mm":null,"servo_targets_us":null}],"punch_events":[{"id":"punch_candidate_01","impact_candidate_s":64.56,"sound_confirmed":false,"actor_rod":"w_hand_b","mode":"standing","windup_start_s":64.14,"impact_arrival_s":64.56,"recoil_end_s":64.68,"recover_or_hold_end_s":64.96,"next_role":"recoil","amplitude":"medium","timing_is_proposed_not_measured":true,"requires_listening_confirmation":true,"required_cycle_budget_s":0.82},{"id":"punch_candidate_02","impact_candidate_s":65.71,"sound_confirmed":false,"actor_rod":"w_hand_a","mode":"standing","windup_start_s":65.29,"impact_arrival_s":65.71,"recoil_end_s":65.83,"recover_or_hold_end_s":66.11,"next_role":"pin_head","amplitude":"medium","timing_is_proposed_not_measured":true,"requires_listening_confirmation":true,"required_cycle_budget_s":0.82},{"id":"punch_candidate_03","impact_candidate_s":67.4,"sound_confirmed":false,"actor_rod":"w_hand_b","mode":"ride_projection","windup_start_s":66.98,"impact_arrival_s":67.4,"recoil_end_s":67.52,"recover_or_hold_end_s":67.8,"next_role":"recoil","amplitude":"medium","timing_is_proposed_not_measured":true,"requires_listening_confirmation":true,"required_cycle_budget_s":0.82},{"id":"punch_candidate_04","impact_candidate_s":68.92,"sound_confirmed":false,"actor_rod":"w_hand_b","mode":"ride_projection","windup_start_s":68.5,"impact_arrival_s":68.92,"recoil_end_s":69.04,"recover_or_hold_end_s":69.32,"next_role":"recoil","amplitude":"medium","timing_is_proposed_not_measured":true,"requires_listening_confirmation":true,"required_cycle_budget_s":0.82},{"id":"punch_candidate_05","impact_candidate_s":70.44,"sound_confirmed":false,"actor_rod":"w_hand_b","mode":"ride_projection","windup_start_s":70.02,"impact_arrival_s":70.44,"recoil_end_s":70.56,"recover_or_hold_end_s":70.84,"next_role":"recoil","amplitude":"medium","timing_is_proposed_not_measured":true,"requires_listening_confirmation":true,"required_cycle_budget_s":0.82},{"id":"punch_candidate_06","impact_candidate_s":72.48,"sound_confirmed":false,"actor_rod":"w_hand_b","mode":"ride_projection","windup_start_s":72.06,"impact_arrival_s":72.48,"recoil_end_s":72.6,"recover_or_hold_end_s":72.88,"next_role":"recoil","amplitude":"medium","timing_is_proposed_not_measured":true,"requires_listening_confirmation":true,"required_cycle_budget_s":0.82},{"id":"punch_candidate_07","impact_candidate_s":73.28,"sound_confirmed":false,"actor_rod":"w_hand_b","mode":"ride_projection","windup_start_s":72.98,"impact_arrival_s":73.28,"recoil_end_s":73.4,"recover_or_hold_end_s":73.6,"next_role":"recoil","amplitude":"compact","timing_is_proposed_not_measured":true,"requires_listening_confirmation":true,"required_cycle_budget_s":0.62},{"id":"punch_candidate_08","impact_candidate_s":74.04,"sound_confirmed":false,"actor_rod":"w_hand_b","mode":"ride_projection","windup_start_s":73.74,"impact_arrival_s":74.04,"recoil_end_s":74.16,"recover_or_hold_end_s":74.36,"next_role":"recoil","amplitude":"compact","timing_is_proposed_not_measured":true,"requires_listening_confirmation":true,"required_cycle_budget_s":0.62},{"id":"punch_candidate_09","impact_candidate_s":74.88,"sound_confirmed":false,"actor_rod":"w_hand_b","mode":"ride_projection","windup_start_s":74.58,"impact_arrival_s":74.88,"recoil_end_s":75.0,"recover_or_hold_end_s":75.2,"next_role":"recoil","amplitude":"compact","timing_is_proposed_not_measured":true,"requires_listening_confirmation":true,"required_cycle_budget_s":0.62},{"id":"punch_candidate_10","impact_candidate_s":76.07,"sound_confirmed":false,"actor_rod":"w_hand_b","mode":"ride_projection","windup_start_s":75.77,"impact_arrival_s":76.07,"recoil_end_s":76.19,"recover_or_hold_end_s":76.39,"next_role":"recoil","amplitude":"compact","timing_is_proposed_not_measured":true,"requires_listening_confirmation":true,"required_cycle_budget_s":0.62}]};
+  const picker=root.querySelector('#ws-cue'),slider=root.querySelector('#ws-time');
+  const chart=root.querySelector('#ws-chart'),svg=root.querySelector('#ws-lanes');
+  const clock=root.querySelector('#ws-clock'),detail=root.querySelector('#ws-current');
+  const labels=['手杆 1/2','头身 3/4','手杆 5/6','虎头 7/8','后部 9/10'];
+  const namespace='http://www.w3.org/2000/svg';
+  let time=0;
+  for(const cue of plan.phases) {
+    const option=document.createElement('option');option.value=cue.id;
+    option.textContent=`${cue.start_s.toFixed(1)}–${cue.end_s.toFixed(1)}秒 · ${cue.name}`;
+    picker.appendChild(option);
+  }
+  function node(name,attributes,text) {
+    const el=document.createElementNS(namespace,name);
+    for(const [key,value] of Object.entries(attributes))el.setAttribute(key,String(value));
+    if(text!==undefined)el.textContent=text;
+    svg.appendChild(el);return el;
+  }
+  function selected() {
+    return plan.phases.find(c=>time>=c.start_s&&time<c.end_s)||plan.phases[plan.phases.length-1];
+  }
+  function draw() {
+    const width=Math.round(chart.getBoundingClientRect().width||root.clientWidth||736);
+    const left=108,right=width-9,scale=t=>left+t/plan.duration_s*(right-left);
+    const cue=selected();svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${width} 300`);
+    node('title',{},'暂不换位的五杆动作时间轴');
+    node('desc',{},'横轴为音频秒数。五行分别对应两只手、头身、虎头和虎后部。所有动作尚待本剧本实机验收。');
+    const ticks=width<440?[0,42,plan.duration_s]:[0,14,28,42,56,70,plan.duration_s];
+    for(const tick of ticks) {
+      const x=scale(tick);
+      node('line',{x1:x,y1:35,x2:x,y2:264,stroke:'var(--border)','stroke-width':1});
+      node('text',{x,y:283,fill:'var(--muted-foreground)','text-anchor':tick===0?'start':tick===plan.duration_s?'end':'middle'},tick===plan.duration_s?'85.33':String(tick));
+    }
+    for(let i=0;i<plan.roles.length;i++) {
+      const role=plan.roles[i],y=48+i*42;
+      node('text',{x:0,y:y+18,fill:'var(--foreground)'},labels[i]);
+      for(const phase of plan.phases) {
+        const active=phase.active_rods.includes(role.id),current=phase.id===cue.id;
+        node('rect',{x:scale(phase.start_s),y,width:Math.max(.5,scale(phase.end_s)-scale(phase.start_s)-1),height:25,
+          fill:i<3?'var(--viz-series-1)':'var(--viz-series-2)',
+          opacity:active?(current?.9:.4):.10,
+          'data-tooltip':`${phase.start_s.toFixed(2)}–${phase.end_s.toFixed(2)}秒｜${role.name}：${phase.rod_actions[role.id]}`});
+      }
+    }
+    for(const event of plan.punch_events) {
+      node('circle',{cx:scale(event.impact_candidate_s),cy:22,r:3.3,fill:'none',stroke:'var(--foreground)','stroke-width':1,
+        'data-tooltip':`${event.impact_candidate_s.toFixed(2)}秒拳声候选（待试听确认）`});
+    }
+    const x=scale(time);
+    node('line',{x1:x,y1:31,x2:x,y2:264,stroke:'var(--foreground)','stroke-width':1.5});
+    clock.textContent=`${time.toFixed(2)} / 85.33 秒`;slider.value=String(time);picker.value=cue.id;
+    detail.textContent=`${cue.name}：${cue.sequence}`;
+  }
+  function setTime(value) {
+    const v=Number(value);time=Number.isFinite(v)?Math.max(0,Math.min(plan.duration_s,v)):0;draw();
+  }
+  function save() {
+    if(window.openai&&typeof window.openai.setWidgetState==='function') {
+      window.openai.setWidgetState({modelContent:{cue_id:selected().id,time_s:time},privateContent:{time_s:time}}).catch(()=>{});
+    }
+  }
+  slider.addEventListener('input',()=>setTime(slider.value));
+  slider.addEventListener('change',save);
+  picker.addEventListener('change',()=>{setTime(plan.phases.find(c=>c.id===picker.value).start_s);save();});
+  window.addEventListener('openai:set_globals',event=>{
+    const state=event.detail?.globals?.widgetState;
+    const saved=state?.privateContent?.time_s??state?.modelContent?.time_s;
+    if(saved!==undefined)setTime(saved);
+  });
+  const initial=window.openai?.widgetState;
+  setTime(initial?.privateContent?.time_s??initial?.modelContent?.time_s??0);
+  new ResizeObserver(draw).observe(chart);
+})();
+</script>
