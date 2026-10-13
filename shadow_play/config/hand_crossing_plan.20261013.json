@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-13",
+  "status": "planning_only_after_board_restart",
+  "executable": false,
+  "motor_commands": null,
+  "objective": "One hand passes over the head to the opposite side, with coordinated torso support and rod clearance",
+  "last_verified_session": "person_tiger_duet_result.20261012.json",
+  "last_verified_command_reference_us": [1537, 1212, 1537, 1514, 1508, 1740, 1500, 1500, 1500, 1500],
+  "reference_is_current_angle_feedback": false,
+  "operator_report": {
+    "onsite_cutoff_available": true,
+    "power_was_interrupted": true,
+    "board_restarted": true,
+    "gimbals_not_manually_moved": true,
+    "servo_power_currently_on": true
+  },
+  "required_before_motion": [
+    "Identify and read the actual PS debug serial port",
+    "Verify the ten-channel PWM image after reboot; turn servo power off before any image change",
+    "Restore and inspect advancing front and top camera frames",
+    "Establish a fresh held-to-OFF reference for the current boot; old command registers alone are insufficient",
+    "Keep the incident locks and stop configuration; do not replay the incident trajectories"
+  ],
+  "axis_groups": {
+    "person_left_hand": [1, 2],
+    "person_head_and_body_support": [3, 4],
+    "person_right_hand": [5, 6],
+    "tiger": [7, 8, 9, 10]
+  },
+  "first_crossing_hand": "choose_after_fresh_dual_view_inspection",
+  "stages": [
+    {"stage": 1, "intent": "Establish body support and place the other hand below the crossing corridor", "checks": ["No arm is carrying the entire body", "Shoulder and waist are not being pulled sideways", "Both rods have visible clearance"]},
+    {"stage": 2, "intent": "Raise the active hand outside the head silhouette before any crossing", "checks": ["Check wrist, forearm and weapon together", "Active arm clears the head and headdress", "Rod clears the frame and neighboring rods"]},
+    {"stage": 3, "intent": "Probe active-hand lateral direction with head support held, then cross above the head", "checks": ["Determine lateral response from fresh observations, not shared whole-body yaw", "Both camera views remain available", "Do not infer 3D clearance from front-view silhouette overlap alone"]},
+    {"stage": 4, "intent": "Lower the hand on the opposite side while the other hand and body support follow as needed", "checks": ["No rod winding or crossed-rod contact", "Passive elbow and shoulder follow without torso distortion", "Character remains inside the curtain"]},
+    {"stage": 5, "intent": "Return over the same reviewed elevated corridor to the established reference", "checks": ["Do not take a straight diagonal shortcut through the head", "Stop without automatic return if abnormal contact, video loss or state mismatch occurs"]}
+  ],
+  "validation_order": ["One hand, segmented observations", "Repeat the same reviewed closed route", "Opposite hand as a separate route", "Only then combine into double-hand crossing"],
+  "tiger_motion_during_initial_crossing_validation": false,
+  "expanded_duet_from_previous_evening_executed": false,
+  "full_loaded_workspace_calibrated": false
+}
