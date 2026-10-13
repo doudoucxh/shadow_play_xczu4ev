@@ -1,4 +1,4 @@
-"""Attended overhead direction mapping; never performs an unreviewed crossing.
+"""Attended fixed gesture diagnostics; never performs an unreviewed crossing.
 
 After an unchanged, operator-confirmed power cycle, explicitly adopt the last
 observed reference, not the reset registers. That first activation has no shaft
@@ -31,7 +31,11 @@ ROUTES={
  'person-overhead-high-map-positive':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
      (60,210,0,-40,0,0),(0,210,0,-40,0,0),(0,0,0,-40,0,0),ZERO),
  'person-overhead-high-map-negative':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
-     (-60,210,0,-40,0,0),(0,210,0,-40,0,0),(0,0,0,-40,0,0),ZERO)
+     (-60,210,0,-40,0,0),(0,210,0,-40,0,0),(0,0,0,-40,0,0),ZERO),
+ 'person-script-hand-b-strike-probe':(ZERO,(0,0,0,-40,0,0),(0,0,0,-40,0,-120),
+     (0,0,0,-40,0,-240),(0,0,0,-40,0,-120),(0,0,0,-40,0,0),ZERO),
+ 'person-script-double-hit-probe':(ZERO,(0,0,0,-40,0,0),(0,70,0,-40,0,-120),
+     (0,140,0,-40,0,-240),(0,70,0,-40,0,-120),(0,0,0,-40,0,0),ZERO)
 }
 
 def digest(profile):

@@ -41,7 +41,7 @@ class CrossingTests(unittest.TestCase):
         self.assertEqual(state['pulse_us'][6:],[1500]*4)
         self.assertEqual(self.lock.read_text(),'incident')
 
-    def test_both_direction_paths_keep_other_hand_and_tiger_static_and_return(self):
+    def test_fixed_paths_preserve_unrelated_axes_keep_tiger_off_and_return(self):
         for profile in h.ROUTES:
             self.now=0;self.r=FakeRegisters()
             for i in range(10):self.r.values[0x80+4*i]=1500
@@ -51,7 +51,12 @@ class CrossingTests(unittest.TestCase):
             for e in events:
                 if e['event']!='probe_step':continue
                 s=e['state'];self.assertEqual(s['enabled_mask'],63)
-                self.assertEqual(s['pulse_us'][4:],h.BASE[4:])
+                if profile.startswith('person-script-'):
+                    self.assertEqual(s['pulse_us'][6:],h.BASE[6:])
+                    for i in (0,2,4):self.assertEqual(s['pulse_us'][i],h.BASE[i])
+                    if profile=='person-script-hand-b-strike-probe':
+                        self.assertEqual(s['pulse_us'][1],h.BASE[1])
+                else:self.assertEqual(s['pulse_us'][4:],h.BASE[4:])
                 self.assertLessEqual(max(abs(a-b) for a,b in zip(prior,s['pulse_us'])),3)
                 prior=s['pulse_us']
             self.assertEqual(d.pulses,h.BASE)
