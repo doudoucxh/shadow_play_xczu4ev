@@ -741,7 +741,10 @@
     "obvious_rod_interference_observed": false,
     "overhead_gap_quantified_mm": null
   },
-  "operator_observation_for_this_probe": null,
+  "operator_observation_for_this_probe": {
+    "yaw_motion_not_observed_by_operator": true,
+    "reason": "operator did not notice; this is not evidence of no movement"
+  },
   "overhead_crossing_completed": false,
   "full_loaded_workspace_calibrated": false
 }
