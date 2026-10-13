@@ -268,13 +268,14 @@
     "position_feedback": null
   },
   "latest_fixed_choreography": {
-    "record": "person_tiger_duet_result.20261012.json",
-    "sequence": 31666,
+    "record": "hand_overhead_map_positive_result.20261013.json",
+    "boot_id": "7eea2c53-e104-45cf-88fe-439f1821e5d4",
+    "sequence": 250,
     "enabled_mask": 0,
     "normal_frame_stop": true,
     "actual_angle_feedback": null,
     "complete_route": true,
-    "fixed_route_accepted_by_operator": true
+    "overhead_crossing_completed": false
   },
   "latest_operator_pause": {
     "record": "servo_session_pause.20261012.json",
@@ -282,5 +283,13 @@
     "enabled_mask": 0,
     "automatic_restart_allowed": false,
     "expanded_variant_executed": false
+  },
+  "latest_operator_resume": {
+    "date": "2026-10-13",
+    "serial": "COM9",
+    "sony_ip": "192.168.31.251",
+    "runtime_image_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+    "incident_locks_removed": false,
+    "automatic_restart_allowed": false
   }
 }

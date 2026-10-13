@@ -1,6 +1,6 @@
 {
   "date": "2026-10-13",
-  "status": "planning_only_after_board_restart",
+  "status": "first_direction_probe_completed_crossing_not_yet_verified",
   "executable": false,
   "motor_commands": null,
   "objective": "One hand passes over the head to the opposite side, with coordinated torso support and rod clearance",
@@ -110,27 +110,25 @@
   "full_loaded_workspace_calibrated": false,
   "connection_checks": {
     "ps_serial": {
-      "old_port": "COM3",
-      "old_port_present": false,
-      "candidate_port": "COM9",
-      "candidate_identified_as_board": false,
-      "passive_read": "unreadable bytes; no command sent"
+      "port": "COM9",
+      "board_identified": true,
+      "root_ready": true
     },
     "sony": {
-      "ip": "192.168.31.250",
-      "authorized_network_sdk_probe": "fingerprint failed",
-      "tcp_22": "timeout",
-      "live_view_restored": false
+      "ip": "192.168.31.251",
+      "live_view_restored": true,
+      "duration_seconds": 28800
     },
     "top_camera": {
       "gateway_restored": true,
-      "decoded_advancing_samples": 3,
-      "max_frame_age_ms": 46,
-      "rod_visibility_reviewed": true
+      "decoded_advancing_frames_verified": true
     },
-    "ubuntu": {
-      "last_known_ip": "192.168.45.132",
-      "ssh_22": "timeout"
+    "pwm": {
+      "image_loaded": true,
+      "servo4_pin": "G13",
+      "current_outputs_off": true,
+      "boot_id": "7eea2c53-e104-45cf-88fe-439f1821e5d4"
     }
-  }
+  },
+  "latest_probe_result": "hand_overhead_map_positive_result.20261013.json"
 }
