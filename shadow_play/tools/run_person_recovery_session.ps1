@@ -51,7 +51,7 @@ try {
         $taskReviewAge=[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()-[long]$taskReviewedPlan.reviewed_at_unix_ms
         if ($taskReviewAge -lt 0 -or $taskReviewAge -ge 120000 -or (Get-FileHash -LiteralPath $HostPlan -Algorithm SHA256).Hash.ToLowerInvariant() -ne $taskPlanHash) {throw 'Physical comparison receipt expired or changed; no motion sent'}
         if ($AttendedFixedChoreography) {
-            $taskActor=if ($taskReviewedPlan.profile -in @('person-tiger-duet','person-tiger-duet-bold')) {'/tmp/puppet_duet_session_20261012_r2.py'} else {'/tmp/puppet_choreography_session_20261012_r5.py'}
+            $taskActor=if ($taskReviewedPlan.profile -in @('person-tiger-duet','person-tiger-duet-bold')) {'/tmp/puppet_duet_session_20261012_r2.py'} elseif ($taskReviewedPlan.profile -in @('person-overhead-map-positive','person-overhead-map-negative')) {'/tmp/hand_crossing_session_20261013_r1.py'} else {'/tmp/puppet_choreography_session_20261012_r5.py'}
             $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u '+$taskActor+' '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-fixed-choreography; echo RECOVERY_COMPLETE:$?; stty echo'
         } elseif ($AttendedTigerCentering) {
             $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/tiger_center_session_20261012_r2.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-loaded-centering; echo RECOVERY_COMPLETE:$?; stty echo'
