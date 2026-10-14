@@ -66,6 +66,9 @@ try {
             if ($taskReviewedPlan.profile -eq 'person-body-double-smash-v3') {$taskActor='/tmp/person_variety_trial_20261014_r3.py'}
             if ($taskReviewedPlan.profile -eq 'person-be-recovery-v1') {$taskActor='/tmp/person_be_recovery_20261014.py'}
             if ($taskReviewedPlan.profile -eq 'person-left-clearance-v1') {$taskActor='/tmp/person_left_clearance_20261014.py'}
+            if ($taskReviewedPlan.profile -eq 'tiger-continuous-v1') {$taskActor='/tmp/tiger_continuous_trial_20261014_r2.py'}
+            if ($taskReviewedPlan.profile -eq 'stage-low-start-v1') {$taskActor='/tmp/stage_low_start_trial_20261014.py'}
+            if ($taskReviewedPlan.profile -eq 'stage-right-low-v1') {$taskActor='/tmp/stage_right_low_extension_20261014.py'}
             $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u '+$taskActor+' '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-fixed-choreography; echo RECOVERY_COMPLETE:$?; stty echo'
         } elseif ($AttendedTigerCentering) {
             $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/tiger_center_session_20261012_r2.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-loaded-centering; echo RECOVERY_COMPLETE:$?; stty echo'

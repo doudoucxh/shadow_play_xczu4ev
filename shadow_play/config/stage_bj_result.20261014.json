@@ -1,0 +1,989 @@
+{
+  "session": "bj",
+  "profile": "tiger-continuous-v1",
+  "route_sha256": "e5371475e81aea491c55bb9af9a0cafd2a149eb49b3a381bfcb8e586f85fa822",
+  "status": "executed_normal_stop",
+  "full_board_log_sha256": "7e59de9c896eadb6ccab9a6ef4da6b8b002cc39c4aa87af781f5099fba0d8b90",
+  "last_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 31748,
+    "pending": false,
+    "pulse_us": [
+      1515,
+      1372,
+      1515,
+      1514,
+      1506,
+      1660,
+      1510,
+      1275,
+      1550,
+      1640
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": true,
+  "observations": [
+    "Tiger shifted to Sony right; head rose and enlarged shadow, rear followed; downward head stroke returned to a clearer silhouette.",
+    "Two continuous cycles executed in approximately 5.5 seconds. Ceiling-height leap and convincing crouch are not verified."
+  ],
+  "phases": [
+    {
+      "event": "reference_held",
+      "stage": 0,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986628145084400.jpg",
+          "host_unix_ns": 1791986628145084400,
+          "frame_id": "session-20261014-191050-154643",
+          "age_ms": 63,
+          "sha256": "718beb1f87f81783959886c7f275d3e73da0a749d5fe0dd6656797a085143abf"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986628141815500.jpg",
+          "host_unix_ns": 1791986628141815500,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-588115",
+          "age_ms": 16,
+          "sha256": "7be6ac25c4761291ae3a59886d5b89e7d41893ba47c6fa4da10bd7fe736e41ee"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_pose_held",
+      "stage": 1,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1570,
+        1275,
+        1610,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986649074154300.jpg",
+          "host_unix_ns": 1791986649074154300,
+          "frame_id": "session-20261014-191050-154955",
+          "age_ms": 55,
+          "sha256": "2ebd128d226641ad081e61c49b4acf2f5aec4ea9978e889a174fe0daa7f46df5"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986649063034100.jpg",
+          "host_unix_ns": 1791986649063034100,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-588429",
+          "age_ms": 15,
+          "sha256": "868af04077484ae6b786f058511f56e90f5c82701c7c3114cdabe0b960394323"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_pose_held",
+      "stage": 2,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1630,
+        1275,
+        1670,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986664539286500.jpg",
+          "host_unix_ns": 1791986664539286500,
+          "frame_id": "session-20261014-191050-155186",
+          "age_ms": 19,
+          "sha256": "4c88d32d654d666991b0824c6bff9946e9d5f9ea705402dc4a507af801994a1c"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986664537033600.jpg",
+          "host_unix_ns": 1791986664537033600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-588661",
+          "age_ms": 16,
+          "sha256": "50bbf2284482861d617e42710cded5a0c6a290ede2e21f0901a2516096d032ef"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_pose_held",
+      "stage": 3,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1630,
+        1455,
+        1670,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986681004947400.jpg",
+          "host_unix_ns": 1791986681004947400,
+          "frame_id": "session-20261014-191050-155431",
+          "age_ms": 46,
+          "sha256": "a4ac5a46bee3e949aa2e22237cc6b108a8c2a79c5980f2ba33bcb3ceda1ea81c"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986681003441500.jpg",
+          "host_unix_ns": 1791986681003441500,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-588908",
+          "age_ms": 16,
+          "sha256": "620b55162ec4a95d6b54a9f9c91817c3c75d480edded504407d967125d2102d8"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_pose_held",
+      "stage": 4,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1590,
+        1535,
+        1630,
+        1600
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986695390850800.jpg",
+          "host_unix_ns": 1791986695390850800,
+          "frame_id": "session-20261014-191050-155646",
+          "age_ms": 13,
+          "sha256": "ee96d7b8c998b27daad493317b5464ae9082645e693f393ed9263a2254a0e442"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986695388345100.jpg",
+          "host_unix_ns": 1791986695388345100,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-589124",
+          "age_ms": 0,
+          "sha256": "fdf3d643655faa55bc085e2a038dc8b755c828101e584516145b72af847ce754"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_pose_held",
+      "stage": 5,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1550,
+        1615,
+        1590,
+        1520
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986713903749300.jpg",
+          "host_unix_ns": 1791986713903749300,
+          "frame_id": "session-20261014-191050-155922",
+          "age_ms": 15,
+          "sha256": "3c3e8f439c109d95c9413f5744946c77919dca0ef15d097fe6a4820315b137b0"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986713901234200.jpg",
+          "host_unix_ns": 1791986713901234200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-589401",
+          "age_ms": 46,
+          "sha256": "747d27b09f4333295626e3b7f71ab1ce74511d01071d34465bda5cbebf7e5579"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_pose_held",
+      "stage": 6,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1510,
+        1695,
+        1550,
+        1440
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986746448346000.jpg",
+          "host_unix_ns": 1791986746448346000,
+          "frame_id": "session-20261014-191050-156407",
+          "age_ms": 23,
+          "sha256": "0b89f6ae0266496e54216d7a8ecb4f96354ec7f9e4d9262376aaf6b097ec789c"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986746446843300.jpg",
+          "host_unix_ns": 1791986746446843300,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-589889",
+          "age_ms": 61,
+          "sha256": "ecfba348bcc0fe10ae98985a085f1bda10fe9b6799f3dbbba24f3e3914f361ac"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_pose_held",
+      "stage": 7,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1510,
+        1275,
+        1550,
+        1440
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986766436161200.jpg",
+          "host_unix_ns": 1791986766436161200,
+          "frame_id": "session-20261014-191050-156705",
+          "age_ms": 18,
+          "sha256": "b4e15f4de6cabe8c2d7ebffcab0b29cc9e3c4d5fba3e398ef51fbdf65650dffe"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986766433144500.jpg",
+          "host_unix_ns": 1791986766433144500,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590189",
+          "age_ms": 46,
+          "sha256": "1107805d5b5f81344ae302a019a2c98ed631af3e575b2faea4f9ee6ecf80fbfe"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_pose_held",
+      "stage": 8,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986782409807600.jpg",
+          "host_unix_ns": 1791986782409807600,
+          "frame_id": "session-20261014-191050-156943",
+          "age_ms": 17,
+          "sha256": "a6f451a1f022e6263eed1929096a1358787fa7caa8e0d28fb68a2d6a8cd245a4"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986782408308700.jpg",
+          "host_unix_ns": 1791986782408308700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590429",
+          "age_ms": 31,
+          "sha256": "68bd37c59252811fb69372aadefff919ae089f215cd11fb993bee85e10beed5d"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 1,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1570,
+        1275,
+        1610,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986795737690800.jpg",
+          "host_unix_ns": 1791986795737690800,
+          "frame_id": "session-20261014-191050-157141",
+          "age_ms": 60,
+          "sha256": "de4b0211f2e68fbc6476afb96105eb6cd2bcacd6206463cbbfa2cf4806bdee47"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986795725162100.jpg",
+          "host_unix_ns": 1791986795725162100,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590629",
+          "age_ms": 14,
+          "sha256": "77f53ea6896b22de9291fc391c9c5c04454a1a9e141a590d4d164f071e822a3a"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 2,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1630,
+        1275,
+        1670,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986795859569300.jpg",
+          "host_unix_ns": 1791986795859569300,
+          "frame_id": "session-20261014-191050-157143",
+          "age_ms": 50,
+          "sha256": "36408ac12fedc3de7ab502188ce8b662113879e23d9a0e99215e66655915b1b9"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986795865662400.jpg",
+          "host_unix_ns": 1791986795865662400,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590631",
+          "age_ms": 15,
+          "sha256": "d4ec72aaadf5a784d9405bbc9fac4fcdc812388b89f1eafbb9801d09535e7662"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 3,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1630,
+        1455,
+        1670,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986796296542000.jpg",
+          "host_unix_ns": 1791986796296542000,
+          "frame_id": "session-20261014-191050-157150",
+          "age_ms": 16,
+          "sha256": "46302727dc3c34ea10c4166f84e5f6dc0394c575388ef7c09b22807f91163059"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986796303407000.jpg",
+          "host_unix_ns": 1791986796303407000,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590637",
+          "age_ms": 46,
+          "sha256": "df54d3e3881306d657911f9d930b33b01441c24d9f93f0b8bc69095d22688b76"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 4,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1590,
+        1535,
+        1630,
+        1600
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986796541728100.jpg",
+          "host_unix_ns": 1791986796541728100,
+          "frame_id": "session-20261014-191050-157153",
+          "age_ms": 61,
+          "sha256": "7bc57021615aa84f0c0aa4b50ada7d4ec80ceb1b6a88268195fea5fc9182d0e9"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986796538718600.jpg",
+          "host_unix_ns": 1791986796538718600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590641",
+          "age_ms": 31,
+          "sha256": "1217499f01c07163ae9e516ab88b9d5c9dd9354632524f6e6dc5dab0963b451e"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 5,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1550,
+        1615,
+        1590,
+        1520
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986796711600400.jpg",
+          "host_unix_ns": 1791986796711600400,
+          "frame_id": "session-20261014-191050-157156",
+          "age_ms": 28,
+          "sha256": "743358d760d76a7159ff7ca2de72023ad314d4fb62e0cd801bcc8fd83508fd7c"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986796709841400.jpg",
+          "host_unix_ns": 1791986796709841400,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590643",
+          "age_ms": 63,
+          "sha256": "9b4ea29d0a6c29f841e0f5b29acf23c765baf9a401e90373756ae8f5bface794"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 6,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1510,
+        1695,
+        1550,
+        1440
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986796942627900.jpg",
+          "host_unix_ns": 1791986796942627900,
+          "frame_id": "session-20261014-191050-157159",
+          "age_ms": 55,
+          "sha256": "25e221e46b13943575b8450b459a4168076a78e676f55d97bfbad6121ae2d395"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986796949391800.jpg",
+          "host_unix_ns": 1791986796949391800,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590647",
+          "age_ms": 30,
+          "sha256": "2f551fcd3fd1798249f9d42eb47af59f5b642250e9d883dbaae1a057e7a21737"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 7,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1510,
+        1275,
+        1550,
+        1440
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986797897550000.jpg",
+          "host_unix_ns": 1791986797897550000,
+          "frame_id": "session-20261014-191050-157174",
+          "age_ms": 5,
+          "sha256": "adeae948be0667e38d739451ae8827e11b67d41058c78e0b7fb27230023be935"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986797894980700.jpg",
+          "host_unix_ns": 1791986797894980700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590661",
+          "age_ms": 46,
+          "sha256": "56a36e28370e552376a56dec5d1fea416f642b62ca3c9fdf92bcef3cf221f306"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 8,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986798391749400.jpg",
+          "host_unix_ns": 1791986798391749400,
+          "frame_id": "session-20261014-191050-157181",
+          "age_ms": 31,
+          "sha256": "40834c0529eb598f2579425730f8719a5d340027a7f52b496bb81a2f027fcb8c"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986798389490200.jpg",
+          "host_unix_ns": 1791986798389490200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590669",
+          "age_ms": 0,
+          "sha256": "384bfa4f7c5f8956f1b4e801f20c1f724c9b728e52d43eea59bc7ae247d80828"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 9,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1570,
+        1275,
+        1610,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986798503043200.jpg",
+          "host_unix_ns": 1791986798503043200,
+          "frame_id": "session-20261014-191050-157183",
+          "age_ms": 7,
+          "sha256": "84483ff4095f0b889cfe5133a3e5ee4c3d0aaff0b9fccb409b8a6199eb5bbedd"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986798509311700.jpg",
+          "host_unix_ns": 1791986798509311700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590670",
+          "age_ms": 46,
+          "sha256": "55017f0c9b3ab713d8b32b0996cd5b028cc43af9b35b7659cfe044b285381080"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 10,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1630,
+        1275,
+        1670,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986798679526700.jpg",
+          "host_unix_ns": 1791986798679526700,
+          "frame_id": "session-20261014-191050-157185",
+          "age_ms": 47,
+          "sha256": "3f144b46ba12b4c56f19670a56da6807ab242c782bf9bab0aebb6287b599257a"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986798676527300.jpg",
+          "host_unix_ns": 1791986798676527300,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590673",
+          "age_ms": 31,
+          "sha256": "1680208ca4afbd431e03a212b2922a20a9eca705e33f84f97f4a1aa19cbe1293"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 11,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1630,
+        1455,
+        1670,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986799101531800.jpg",
+          "host_unix_ns": 1791986799101531800,
+          "frame_id": "session-20261014-191050-157192",
+          "age_ms": 3,
+          "sha256": "c9b2f13acbc9e2473f1c96509d89959b6e235843437e8f02560bd42e85c961a8"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986799099203700.jpg",
+          "host_unix_ns": 1791986799099203700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590679",
+          "age_ms": 46,
+          "sha256": "149aef3b74fddcd332180735527508ee492dfb37f8cb2a970c1732031c82c725"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 12,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1590,
+        1535,
+        1630,
+        1600
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986799283534200.jpg",
+          "host_unix_ns": 1791986799283534200,
+          "frame_id": "session-20261014-191050-157194",
+          "age_ms": 45,
+          "sha256": "180add77bd7b0384278eacbd92399be2c2a78f0f4546a41763938246953739d2"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986799280813600.jpg",
+          "host_unix_ns": 1791986799280813600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590682",
+          "age_ms": 14,
+          "sha256": "9352f8fe49207889996f3e153d5df4694613e571ee5b3a7ba233a3307cd3c6a2"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 13,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1550,
+        1615,
+        1590,
+        1520
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986799467086300.jpg",
+          "host_unix_ns": 1791986799467086300,
+          "frame_id": "session-20261014-191050-157197",
+          "age_ms": 28,
+          "sha256": "25535f1fce4f2f9f76e129dbde0c77907743075c0e49a03499f81f7c8771f786"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986799466332600.jpg",
+          "host_unix_ns": 1791986799466332600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590685",
+          "age_ms": 16,
+          "sha256": "e98715c717bca5f07282f1758870635b08f6af7e4fb6fc692ee59ee30a23bb0e"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 14,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1510,
+        1695,
+        1550,
+        1440
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986799710592900.jpg",
+          "host_unix_ns": 1791986799710592900,
+          "frame_id": "session-20261014-191050-157201",
+          "age_ms": 3,
+          "sha256": "7443671725f214953e771ab4af725b82d83a5a246456feb447ecc836f138c9fd"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986799708838800.jpg",
+          "host_unix_ns": 1791986799708838800,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590688",
+          "age_ms": 63,
+          "sha256": "199103cb1bb585d15a593d9d016b26db3d31d42cf745110347412aec1bb36d05"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 15,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1510,
+        1275,
+        1550,
+        1440
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986800672157100.jpg",
+          "host_unix_ns": 1791986800672157100,
+          "frame_id": "session-20261014-191050-157215",
+          "age_ms": 27,
+          "sha256": "caff6515499eb9d7d554032462e2537bbf5e9ee0a444b71dc1d1fb2d845dde52"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986800669216300.jpg",
+          "host_unix_ns": 1791986800669216300,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590703",
+          "age_ms": 16,
+          "sha256": "7e3fb97c59d6b0354e4f527c8336d462118236a8c3e5ed85661a77ea62042d48"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "tiger_continuous_checkpoint",
+      "stage": 16,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986801159683900.jpg",
+          "host_unix_ns": 1791986801159683900,
+          "frame_id": "session-20261014-191050-157222",
+          "age_ms": 48,
+          "sha256": "118793256ea479fc56a3586a173b3b49d984a5d033c2b3a009bed7b5333088f6"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986801148632200.jpg",
+          "host_unix_ns": 1791986801148632200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-590710",
+          "age_ms": 31,
+          "sha256": "5b1c553199892b43cc2abfeeb0cd08c966d21d12ca012a14f6df9ae4fd5d4902"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    }
+  ],
+  "automatic_replay_allowed": false,
+  "incident_locks_removed": false
+}

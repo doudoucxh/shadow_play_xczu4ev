@@ -1,0 +1,305 @@
+{
+  "session": "bk",
+  "profile": "stage-low-start-v1",
+  "route_sha256": "d72981f319c816cbeb74ddee4bd090a3ecac771a3f5cb792eab6e1773d94a790",
+  "status": "executed_normal_stop",
+  "full_board_log_sha256": "1fb53e0c6818aaa4743925ee483376f89ec7eccc97e8ee10a33c55712a3a18ce",
+  "last_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 31824,
+    "pending": false,
+    "pulse_us": [
+      1515,
+      1252,
+      1515,
+      1594,
+      1506,
+      1720,
+      1630,
+      1275,
+      1670,
+      1720
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": true,
+  "observations": [
+    "Person lowered but weapon hand remained near/above head.",
+    "Tiger moved right; rear commands 1640 to 1720 us produced little obvious image change. Crouch not verified."
+  ],
+  "phases": [
+    {
+      "event": "reference_held",
+      "stage": 0,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986920914993400.jpg",
+          "host_unix_ns": 1791986920914993400,
+          "frame_id": "session-20261014-191050-159007",
+          "age_ms": 40,
+          "sha256": "5d7d39b036a159eeef449daf55773b262ed18ce297e68aa7e43c794f0ef3ac68"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986920911299800.jpg",
+          "host_unix_ns": 1791986920911299800,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-592506",
+          "age_ms": 63,
+          "sha256": "05ac0512b56c5f5bd1f4f01e6efe4af1109837fa2e05d9406e7018fbab8cca08"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "low_start_pose_held",
+      "stage": 1,
+      "command_pulses_us": [
+        1515,
+        1312,
+        1515,
+        1554,
+        1506,
+        1690,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986941352623900.jpg",
+          "host_unix_ns": 1791986941352623900,
+          "frame_id": "session-20261014-191050-159312",
+          "age_ms": 4,
+          "sha256": "a6d932dfb6e7cdbe773d37e376892e3fc7847aea1f2f7aa7c17f8e4fe0bba7dc"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986941407835300.jpg",
+          "host_unix_ns": 1791986941407835300,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-592814",
+          "age_ms": 31,
+          "sha256": "f6820774b93f3eee2487dd423fe3e0c0d032a0dd4d3cbe65f2f7728815e003a9"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "low_start_pose_held",
+      "stage": 2,
+      "command_pulses_us": [
+        1515,
+        1252,
+        1515,
+        1594,
+        1506,
+        1720,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986957270624400.jpg",
+          "host_unix_ns": 1791986957270624400,
+          "frame_id": "session-20261014-191050-159549",
+          "age_ms": 22,
+          "sha256": "a8b71396c2646da75d21632c89b69046f904eef34370c638d5501726adbe5c72"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986957268084500.jpg",
+          "host_unix_ns": 1791986957268084500,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-593052",
+          "age_ms": 31,
+          "sha256": "3b039354dd8555134e3ef98fc02f6a7da3d0ef7cab5a834a1ba88f91a2436bd8"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "low_start_pose_held",
+      "stage": 3,
+      "command_pulses_us": [
+        1515,
+        1252,
+        1515,
+        1594,
+        1506,
+        1720,
+        1570,
+        1275,
+        1610,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791986987480662900.jpg",
+          "host_unix_ns": 1791986987480662900,
+          "frame_id": "session-20261014-191050-159999",
+          "age_ms": 31,
+          "sha256": "bb2780c21715cdf21cfdd256825cd223ef19a2b8370d57356578ac94a42ba7d8"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791986987476905500.jpg",
+          "host_unix_ns": 1791986987476905500,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-593505",
+          "age_ms": 31,
+          "sha256": "74ddb235983a013dbeee9aa381bf73001254557a0b258dc8ed3e172f9253e4ef"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "low_start_pose_held",
+      "stage": 4,
+      "command_pulses_us": [
+        1515,
+        1252,
+        1515,
+        1594,
+        1506,
+        1720,
+        1630,
+        1275,
+        1670,
+        1640
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791987011024372300.jpg",
+          "host_unix_ns": 1791987011024372300,
+          "frame_id": "session-20261014-191050-160350",
+          "age_ms": 31,
+          "sha256": "f13888486584960df92401794807b627b5a814c40fba4a2c41744a5bc7457c94"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791987011033153900.jpg",
+          "host_unix_ns": 1791987011033153900,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-593858",
+          "age_ms": 63,
+          "sha256": "422c87769d2cb5c4549a067ad3575184a762d378b3a0ae1b7a5be8cf9f49c79d"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "low_start_pose_held",
+      "stage": 5,
+      "command_pulses_us": [
+        1515,
+        1252,
+        1515,
+        1594,
+        1506,
+        1720,
+        1630,
+        1275,
+        1670,
+        1680
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791987031359098900.jpg",
+          "host_unix_ns": 1791987031359098900,
+          "frame_id": "session-20261014-191050-160653",
+          "age_ms": 46,
+          "sha256": "95f8e2abf851239dd1ddd0b7d9fb6d645f7d2a3d7e37420b6364cc2860feb208"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791987031347206900.jpg",
+          "host_unix_ns": 1791987031347206900,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-594163",
+          "age_ms": 31,
+          "sha256": "02897c6a304c816061a8ddbbc9bfa4f568cef8c76cf448d99ec9abcaaf1bcc0f"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "low_start_pose_held",
+      "stage": 6,
+      "command_pulses_us": [
+        1515,
+        1252,
+        1515,
+        1594,
+        1506,
+        1720,
+        1630,
+        1275,
+        1670,
+        1720
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791987048959226500.jpg",
+          "host_unix_ns": 1791987048959226500,
+          "frame_id": "session-20261014-191050-160915",
+          "age_ms": 70,
+          "sha256": "dc6e78c14d98f1e6e2c027790ac198ecf82f2134e3d6ed7b8fb30356d3aae05a"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791987048956978800.jpg",
+          "host_unix_ns": 1791987048956978800,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-594427",
+          "age_ms": 46,
+          "sha256": "d4d5f786c23a0d83b90a8123b24504b456c6b02e1fbae47da85199d64fb96209"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_pixels_note": "Not confidently digitized; retain images for later annotation.",
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    }
+  ],
+  "automatic_replay_allowed": false,
+  "incident_locks_removed": false
+}
