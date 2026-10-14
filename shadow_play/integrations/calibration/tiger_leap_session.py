@@ -20,6 +20,7 @@ STAGGERED='tiger-operator-staggered-right-start'
 PARK='tiger-operator-tree-position'
 PRESS='tiger-operator-head-lower-at-tree'
 LOWER5='tiger-operator-head-lower-five'
+LOWER_LEFT='tiger-operator-head-lower-ten-left'
 INTERRUPTED_AI_SHA='b0fbd146897f875d15d0e96a7921c19aeea0fcdab309a7c217633cb63bf538e1'
 ROUTES={PROFILE:ROUTE,STAGGERED:((0,0,0,0),(40,0,40,0),(40,-20,40,20),
     (10,80,10,20),(-30,80,-30,-80),(-60,-60,-60,-80),
@@ -27,8 +28,9 @@ ROUTES={PROFILE:ROUTE,STAGGERED:((0,0,0,0),(40,0,40,0),(40,-20,40,20),
 ROUTES[PARK]=tuple((v,0,v,0) for v in (40,100,180,260,340))
 ROUTES[PRESS]=((340,0,340,0),(340,-20,340,0),(340,-40,340,0))
 ROUTES[LOWER5]=((340,-40,340,0),(340,-77,340,0))
-STEP_TABLE={LOWER5:(0,2),PRESS:(0,2,2),PARK:(0,3,3,3,3),PROFILE:STEPS,STAGGERED:(0,3,3,12,12,12,3,3,3)}
-HOLD_TABLE={LOWER5:(0,.5),PRESS:(0,.3,.3),PARK:(0,.2,.2,.2,.2),PROFILE:HOLDS,STAGGERED:(0,.2,.18,.02,.05,.25,.15,.2,.1)}
+ROUTES[LOWER_LEFT]=((340,-77,340,0),(310,-151,310,0))
+STEP_TABLE={LOWER_LEFT:(0,2),LOWER5:(0,2),PRESS:(0,2,2),PARK:(0,3,3,3,3),PROFILE:STEPS,STAGGERED:(0,3,3,12,12,12,3,3,3)}
+HOLD_TABLE={LOWER_LEFT:(0,.5),LOWER5:(0,.5),PRESS:(0,.3,.3),PARK:(0,.2,.2,.2,.2),PROFILE:HOLDS,STAGGERED:(0,.2,.18,.02,.05,.25,.15,.2,.1)}
 def digest(profile=PROFILE):return hashlib.sha256(json.dumps(ROUTES[profile],separators=(',',':')).encode()).hexdigest()
 def closed_tiger_reference(rows):
     first,last=rows[0],rows[-1];profile=first.get('profile')

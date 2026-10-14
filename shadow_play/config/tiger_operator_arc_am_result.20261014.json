@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-14",
+  "profile": "tiger-operator-head-lower-ten-left",
+  "status": "completed_attended_reposition",
+  "full_board_log_sha256": "a7feea3e152ede7d646b0c683e7e52b0bc181fce3905fd980fc50857ac1276b1",
+  "normal_frame_stop": true,
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 21055,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1810,
+      1349,
+      1810,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "automatic_replay_allowed": false,
+  "route": [
+    [
+      340,
+      -77,
+      340,
+      0
+    ],
+    [
+      310,
+      -151,
+      310,
+      0
+    ]
+  ],
+  "poses": [
+    {
+      "stage": 0,
+      "command_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1840,
+        1423,
+        1840,
+        1500
+      ],
+      "actual_axis_angles": null,
+      "attachment_mm": null,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-191050-14336",
+          "sha256": "dd57e5e6cd1c690578728b32dd81976070b07125902f0c60f855c13d32ec7881",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_am\\front_1791977213799395500.jpg",
+          "time_offset_ms": 6.3955078125,
+          "attachment_pixels": null
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-446900",
+          "sha256": "15475a58ea1df3566f0b8441466151ec45ca46940115476b565b8b39cc696ba5",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_am\\top_1791977213797890700.jpg",
+          "time_offset_ms": 4.890869140625,
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "stage": 1,
+      "command_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1810,
+        1349,
+        1810,
+        1500
+      ],
+      "actual_axis_angles": null,
+      "attachment_mm": null,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-191050-14796",
+          "sha256": "c2152ee940ea8f38fa5dc5452172aefa0bca39aeb48b2683d08cb6a754950d74",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_am\\front_1791977244663588800.jpg",
+          "time_offset_ms": 24.5888671875,
+          "attachment_pixels": null
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-447362",
+          "sha256": "0ecb0f752a62eb7e86b36072a4234e5797745ff0e80ce8c252c7986c6f81b975",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_am\\top_1791977244660820700.jpg",
+          "time_offset_ms": 21.82080078125,
+          "attachment_pixels": null
+        }
+      }
+    }
+  ],
+  "visual_findings": [
+    "User requested another approximately ten degrees down and a slight left turn, interpreted in Sony front view.",
+    "Servo 8 command 1423 to 1349 us; servo 7/9 both 1840 to 1810 us, about four command degrees left; rear pitch unchanged.",
+    "Head visibly lower; body stripes appear more distinguishable. Exposure varied, so no quantitative clarity improvement or screen contact is claimed.",
+    "No obvious rod collision in inspected views."
+  ],
+  "geometry_note": "Fixed-length rod endpoint can be approximated by a sphere intersecting the screen plane; two-axis offsets and linked puppet rods prevent treating this as a calibrated exact sphere."
+}

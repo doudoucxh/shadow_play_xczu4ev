@@ -68,6 +68,21 @@ class TigerLeapTests(unittest.TestCase):
         self.assertEqual(prior[7],1460)
         self.assertEqual(events[-1]['state']['enabled_mask'],0)
 
+    def test_ten_degree_lower_and_small_left_keeps_rear_pitch_fixed(self):
+        f,p,args=self.setup_device();p.update(profile=t.LOWER_LEFT,expected_pulses_us=t.BASE[:6]+[1840,1423,1840,1500])
+        for i,v in enumerate(p['expected_pulses_us']):f.r.values[0x80+4*i]=v
+        with patch.object(t,'validate'):d=t.TigerLeapSession(f.r,p,f.host,**args)
+        events=[]
+        def emit(r):
+            events.append(r)
+            if r['event']=='reference_held':f.host.action=('demo',r['state']['sequence'])
+        t.run(d,emit,f.sleep);prior=p['expected_pulses_us']
+        for r in events:
+            if r['event']!='probe_step':continue
+            q=r['state']['pulse_us'];self.assertEqual(q[:6],t.BASE[:6]);self.assertEqual(q[9],1500)
+            self.assertEqual(q[6],q[8]);self.assertTrue(all(0<=prior[i]-q[i]<=2 for i in (6,7,8)));prior=q
+        self.assertEqual(prior[6:],[1810,1349,1810,1500]);self.assertTrue(t.closed_tiger_reference(events))
+
     def test_staggered_right_start_waits_then_lifts_head_before_rear(self):
         f,p,args=self.setup_device();prior=[]
         def first(r):
