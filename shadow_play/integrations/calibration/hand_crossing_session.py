@@ -46,6 +46,10 @@ ROUTES={
  # inward yaw. This is an exploratory geometry, not an inferred semicircle.
  'person-overhead-arc-entry-probe':(ZERO,(0,280,0,0,0,0),(160,280,0,0,0,0),
      (160,210,0,0,0,0),(160,280,0,0,0,0),(0,280,0,0,0,0),ZERO),
+ # Explicitly requested, operator-observed single trial. This wider candidate
+ # is not represented as a calibrated semicircle or an automatically reusable path.
+ 'person-overhead-operator-arc-trial':(ZERO,(0,280,0,0,0,0),(240,280,0,0,0,0),
+     (240,140,0,0,0,0),(240,280,0,0,0,0),(0,280,0,0,0,0),ZERO),
  'person-overhead-high-map-positive':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
      (60,210,0,-40,0,0),(0,210,0,-40,0,0),(0,0,0,-40,0,0),ZERO),
  'person-overhead-high-map-negative':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
@@ -94,6 +98,7 @@ OVERHEAD_BODY_PROFILES=frozenset(('person-overhead-body-clearance-probe',))
 OVERHEAD_APPROACH_PROFILES=frozenset(('person-overhead-high280-yaw80-probe',))
 OVERHEAD_WIDER_PROFILES=frozenset(('person-overhead-high280-yaw160-probe',))
 OVERHEAD_ARC_PROFILES=frozenset(('person-overhead-arc-entry-probe',))
+OPERATOR_ARC_PROFILES=frozenset(('person-overhead-operator-arc-trial',))
 SLOW_DIAGNOSTIC_PROFILES=HAND_B_DIAGNOSTIC_PROFILES|SLOW_YAW_PROFILES|OVERHEAD_LIFT_PROFILES|OVERHEAD_BODY_PROFILES|OVERHEAD_APPROACH_PROFILES|OVERHEAD_WIDER_PROFILES|OVERHEAD_ARC_PROFILES
 FAST_GESTURE_PROFILES=frozenset(('person-script-hand-b-strike-probe','person-script-double-hit-probe',
                                'person-script-double-drop-sync-probe','person-reference-guard-counter-probe'))
@@ -108,7 +113,7 @@ def checked_reviews(p,rows,read=None,wall=None):
     proof=c.checked_log(p['post_stop_closure_review'],read)
     if len(proof)!=1:raise ValueError('Single post-stop closure review required')
     witness=proof[0];first,last=rows[0],rows[-1]
-    if (p['profile'] not in OVERHEAD_ARC_PROFILES or p['restore_after_power_cycle'] or reviewed!=set(range(1,6))
+    if (p['profile'] not in (OVERHEAD_ARC_PROFILES|OPERATOR_ARC_PROFILES) or p['restore_after_power_cycle'] or reviewed!=set(range(1,6))
             or first.get('profile')!='person-overhead-high280-yaw160-probe'
             or [r['axis'] for r in rows if r['event']=='probe_complete']!=list(range(1,7))
             or witness.get('event')!='post_stop_closure_review' or witness.get('reviewed_stage')!=6
@@ -118,8 +123,15 @@ def checked_reviews(p,rows,read=None,wall=None):
             or not isinstance(witness.get('views'),dict) or set(witness['views'])!={'front','top'}
             or any(not v.get('frame_id') or not c.re.fullmatch('[a-f0-9]{64}',v.get('jpeg_sha256','')) for v in witness['views'].values())):
         raise ValueError('Post-stop review must bind only the completed high-160 final reference')
-    now=(wall or time.time)()*1000
-    if type(witness.get('reviewed_at_unix_ms')) is not int or not 0<=now-witness['reviewed_at_unix_ms']<120000:
+    # Board UTC is not synchronized with Windows. On hardware, use uptime from
+    # the same verified boot; host-side validation uses its own UTC timestamp.
+    if wall is not None:
+        age=wall()*1000-witness.get('reviewed_at_unix_ms',-1)
+    else:
+        stamp=witness.get('board_monotonic_seconds')
+        if type(stamp) not in (int,float):raise ValueError('Board monotonic closure timestamp required')
+        age=(time.monotonic()-stamp)*1000
+    if type(witness.get('reviewed_at_unix_ms')) is not int or not 0<=age<120000:
         raise ValueError('Post-stop closure review expired')
     return reviewed|{6}
 
@@ -156,7 +168,7 @@ def validate_plan(p,read=None,wall=None):
     fields={'approval','session_id','profile','expected_sequence','expected_pulses_us',
      'observer_ready','operator_hardware_unmoved','dual_view_pose_reviewed','reviewed_at_unix_ms',
      'duration_seconds','tempo_step_us','repetitions','boot_id','restore_after_power_cycle','baseline_source'}
-    if (not isinstance(p,dict) or not fields<=set(p) or set(p)-fields-{'prior_slow_route_log','prior_high_route_log','post_stop_closure_review','resume_waypoint','resume_route_log'}
+    if (not isinstance(p,dict) or not fields<=set(p) or set(p)-fields-{'prior_slow_route_log','prior_high_route_log','post_stop_closure_review','execution_mode','resume_waypoint','resume_route_log'}
             or p['approval']!=c.APPROVAL or p['profile'] not in ROUTES
             or not c.re.fullmatch('[a-z0-9-]{1,80}',p['session_id'])
             or type(p['expected_sequence']) is not int or not 0<=p['expected_sequence']<2**32
@@ -167,6 +179,11 @@ def validate_plan(p,read=None,wall=None):
             or not c.re.fullmatch('[a-f0-9-]{36}',p['boot_id'])
             or type(p['reviewed_at_unix_ms']) is not int):
         raise ValueError('Exact attended overhead mapping plan required')
+    trial=p['profile'] in OPERATOR_ARC_PROFILES
+    if (trial and (p.get('execution_mode')!='operator-attended-one-arc-trial' or p['tempo_step_us']!=8
+                  or p['restore_after_power_cycle'] or 'prior_slow_route_log' in p)
+            or not trial and 'execution_mode' in p):
+        raise ValueError('Operator arc trial requires its explicit single-trial mode')
     resume=p.get('resume_waypoint',0)
     if (type(resume) is not int or resume not in (0,1)
             or ('resume_waypoint' in p)!=('resume_route_log' in p)
@@ -175,9 +192,9 @@ def validate_plan(p,read=None,wall=None):
         raise ValueError('Only current-boot slow support-prefix continuation is allowed')
     if p['tempo_step_us']==3 and 'prior_slow_route_log' in p:
         raise ValueError('Slow diagnostic cannot include a fast-route receipt')
-    if p['profile'] in (SLOW_DIAGNOSTIC_PROFILES|CONTINUOUS_PRESENTATION_PROFILES) and p['restore_after_power_cycle']:
+    if p['profile'] in (SLOW_DIAGNOSTIC_PROFILES|CONTINUOUS_PRESENTATION_PROFILES|OPERATOR_ARC_PROFILES) and p['restore_after_power_cycle']:
         raise ValueError('Local hand yaw review requires the current-boot closed reference')
-    if p['tempo_step_us']==8:
+    if p['tempo_step_us']==8 and not trial:
         if (p['profile'] not in FAST_GESTURE_PROFILES or p['restore_after_power_cycle']
                 or 'prior_slow_route_log' not in p):
             raise ValueError('Faster gesture requires an unchanged boot and its completed slow-route receipt')
@@ -240,6 +257,8 @@ def validate_plan(p,read=None,wall=None):
             raise ValueError('Wider approach requires closed low-yaw and high-80 reviews')
     if p['profile'] in OVERHEAD_ARC_PROFILES and first.get('profile') not in (OVERHEAD_ARC_PROFILES|OVERHEAD_WIDER_PROFILES):
         raise ValueError('Arc entry requires the completed high-160 review')
+    if trial and first.get('profile') not in (OVERHEAD_WIDER_PROFILES|OVERHEAD_ARC_PROFILES|OPERATOR_ARC_PROFILES):
+        raise ValueError('Operator arc trial requires the observed high-160 reference')
 
 
 class CrossingSession(c.ChoreographySession):
@@ -287,6 +306,36 @@ class CrossingSession(c.ChoreographySession):
         return s
 
 
+def run_operator_arc_trial(d,emit,sleep=time.sleep):
+    """One user-triggered candidate trial; never fabricates visual review events."""
+    if d.plan.get('execution_mode')!='operator-attended-one-arc-trial' or d.plan['profile'] not in OPERATOR_ARC_PROFILES:
+        raise ValueError('Explicit operator trial required')
+    if getattr(d,'operator_trial_used',False):raise RuntimeError('Operator trial already used')
+    d.operator_trial_used=True
+    try:
+        state=d.adopt(d.plan['expected_pulses_us'][:])
+        emit(dict(event='reference_held',profile=d.plan['profile'],route_sha256=d.route_sha256,
+                  tempo_step_us=8,execution_mode=d.plan['execution_mode'],state=state,position_feedback=None,
+                  incident_locks_removed=False))
+        last=d.clock()
+        while True:
+            d.check();action=d.host.action;d.host.action=None
+            if action:
+                name,seq=action
+                if name!='demo' or seq!=d.sequence:raise RuntimeError('Only one explicit trial trigger is allowed')
+                break
+            if d.clock()-last>=.5:
+                emit(dict(event='hold_alive',state=d.status()));last=d.clock()
+            sleep(.02)
+        emit(dict(event='operator_trial_started',state=d.status(),visual_reviews_performed=False))
+        for stage in range(1,7):
+            d.advance(stage,emit,sleep);d.check();sleep(.12)
+        emit(dict(event='operator_trial_complete',state=d.status(),visual_reviews_performed=False,
+                  overhead_crossing_verified=False,automatic_replay_allowed=False))
+    finally:
+        state=d.stop_after_frame()
+        emit(dict(event='outputs_off',state=state,normal_frame_stop=True,incident_locks_removed=False))
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('plan',type=Path)
     parser.add_argument('--expected-plan-sha256',required=True)
@@ -303,7 +352,8 @@ def main():
     try:
         d=CrossingSession(r,p,host)
         with (Path('/tmp')/('puppet-choreography-'+p['session_id']+'.jsonl')).open('x') as log:
-            c.run_session(d,c.motion_emitter(log))
+            if p.get('execution_mode')=='operator-attended-one-arc-trial':run_operator_arc_trial(d,c.motion_emitter(log))
+            else:c.run_session(d,c.motion_emitter(log))
     finally:r.close()
 
 if __name__=='__main__':main()

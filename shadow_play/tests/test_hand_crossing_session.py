@@ -53,6 +53,9 @@ class CrossingTests(unittest.TestCase):
             high_raw='\n'.join(json.dumps(r) for r in high).encode();high_path='/tmp/puppet-choreography-prior-high.jsonl'
             self.p['prior_high_route_log']=dict(path=high_path,sha256=hashlib.sha256(high_raw).hexdigest())
             self.reader=lambda path:high_raw if path==high_path else self.raw
+        self.p.pop('execution_mode',None)
+        if profile in h.OPERATOR_ARC_PROFILES:
+            self.p['execution_mode']='operator-attended-one-arc-trial';self.p.pop('prior_slow_route_log',None)
         self.r.values[0x20]=100
         for i,v in enumerate(h.BASE):self.r.values[0x80+4*i]=v
 
@@ -120,6 +123,7 @@ class CrossingTests(unittest.TestCase):
 
     def test_fixed_paths_preserve_unrelated_axes_keep_tiger_off_and_return(self):
         for profile in h.ROUTES:
+            if profile in h.OPERATOR_ARC_PROFILES:continue
             self.now=0;self.r=FakeRegisters()
             for i in range(10):self.r.values[0x80+4*i]=1500
             if profile in (h.SLOW_DIAGNOSTIC_PROFILES|h.CONTINUOUS_PRESENTATION_PROFILES):
@@ -311,6 +315,24 @@ class CrossingTests(unittest.TestCase):
             bad=copy.deepcopy(record);bad[key]=value;bind(bad)
             with self.assertRaises(ValueError):self.device()
             self.assertEqual(self.r.writes,[])
+
+    def test_operator_trial_is_single_triggered_keeps_other_axes_and_never_fakes_review(self):
+        self.prepare_fast('person-overhead-operator-arc-trial');d=self.device();events=[]
+        def emit(row):
+            events.append(row)
+            if row['event']=='reference_held':self.host.action=('demo',row['state']['sequence'])
+        h.run_operator_arc_trial(d,emit,self.sleep)
+        self.assertEqual(sum(r['event']=='operator_trial_complete' for r in events),1)
+        self.assertFalse(any(r['event']=='path_reviewed' for r in events))
+        self.assertEqual([r['axis'] for r in events if r['event']=='probe_complete'],list(range(1,7)))
+        for row in events:
+            if row['event']=='probe_step':self.assertEqual(row['state']['pulse_us'][2:],h.BASE[2:])
+        self.assertEqual(events[-1]['state']['enabled_mask'],0);self.assertEqual(events[-1]['state']['pulse_us'],h.BASE)
+        self.assertEqual(self.lock.read_text(),'incident')
+        self.prepare_fast('person-overhead-operator-arc-trial');self.p.pop('execution_mode')
+        before=len(self.r.writes)
+        with self.assertRaises(ValueError):self.device()
+        self.assertEqual(len(self.r.writes),before)
 
     def test_only_new_frontal_gesture_after_slow_and_fast_review_can_present_once(self):
         self.prepare_fast('person-reference-guard-counter-probe');d=self.device()
