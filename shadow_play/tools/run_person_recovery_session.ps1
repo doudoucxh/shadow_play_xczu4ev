@@ -60,6 +60,7 @@ try {
             if ($taskReviewedPlan.profile -eq 'tiger-height-aw-v1') {$taskActor='/tmp/tiger_height_trial_20261014_r3.py'}
             if ($taskReviewedPlan.profile -eq 'tiger-shadow-roar-v1') {$taskActor='/tmp/tiger_shadow_roar_20261014.py'}
             if ($taskReviewedPlan.profile -eq 'person-body-double-smash-v1') {$taskActor='/tmp/person_variety_trial_20261014.py'}
+            if ($taskReviewedPlan.profile -eq 'person-body-double-smash-v2') {$taskActor='/tmp/person_variety_trial_20261014_r2.py'}
             $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u '+$taskActor+' '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-fixed-choreography; echo RECOVERY_COMPLETE:$?; stty echo'
         } elseif ($AttendedTigerCentering) {
             $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/tiger_center_session_20261012_r2.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-loaded-centering; echo RECOVERY_COMPLETE:$?; stty echo'

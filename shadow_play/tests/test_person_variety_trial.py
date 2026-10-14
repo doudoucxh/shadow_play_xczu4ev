@@ -3,8 +3,13 @@ from pathlib import Path
 import sys
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'integrations/calibration'))
-from test_tiger_height_trial import Fake
+from test_tiger_height_trial import Fake as BaseFake
 m=importlib.import_module('person_variety_trial')
+
+
+class Fake(BaseFake):
+    def wait(self,n,sleep):
+        if n!=.10:raise AssertionError('Unexpected idle in fake')
 
 
 class Tests(unittest.TestCase):
@@ -14,8 +19,8 @@ class Tests(unittest.TestCase):
         self.assertTrue(d.normal and d.stopped)
         self.assertTrue(next(e for e in events if e['event']=='person_variety_complete')['full_route_executed'])
     def test_partial_trial_reverses_only_visited_corridor(self):
-        d=Fake(2);events=[];m.run(d,events.append)
-        self.assertEqual(d.visited,[m.TARGETS[1],m.TARGETS[2],m.TARGETS[1],m.TARGETS[0]])
+        d=Fake(4);events=[];m.run(d,events.append)
+        self.assertEqual(d.visited,m.TARGETS[1:5]+list(reversed(m.TARGETS[:4])))
         self.assertFalse(next(e for e in events if e['event']=='person_variety_complete')['full_route_executed'])
     def test_tiger_unchanged_and_bare_inset_not_exceeded(self):
         lo=[10,95,10,50,70,50];hi=[260,260,260,170,260,170]
