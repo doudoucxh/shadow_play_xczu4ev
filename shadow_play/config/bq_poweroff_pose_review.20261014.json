@@ -31,5 +31,10 @@
     "Possible loss-of-holding-torque drift is an inference, not a confirmed mechanical diagnosis."
   ],
   "automatic_recovery_allowed": false,
-  "next_step": "Inspect connections and obstruction while power remains off; do not treat BP command register as actual pose."
+  "next_step": "Power remains off; await released linkage and clearance review before establishing a new commanded reference. No automatic replay.",
+  "user_visual_inspection": {
+    "pose_shift_confirmed": true,
+    "loose_connections_reported": false,
+    "jam_reported": false
+  }
 }
