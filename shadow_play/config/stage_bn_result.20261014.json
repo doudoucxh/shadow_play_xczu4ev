@@ -1,0 +1,151 @@
+{
+  "session": "bn",
+  "profile": "person-hand-lower-v1",
+  "route_sha256": "978dc54ab93ee1ced1bcd898606427091c53b143ae7c0fed053023d72bd6aa00",
+  "status": "executed_normal_stop",
+  "full_board_log_sha256": "99e07e864f5ad340fb168335224fcfc13ea267abe5785d25b643b1bdc031473b",
+  "last_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 31900,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1425,
+      1514,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": true,
+  "observations": [
+    "Body support raised while hand yaw moves inward: weapon arm bent near chest, no longer held overhead.",
+    "Foot is higher than BM; simultaneous feet-at-bottom and lowered hand is not yet achieved.",
+    "Channel 2 command1212us is close to configured95deg inset lower boundary1203.7us. This is nominal command mapping, not measured angle."
+  ],
+  "phases": [
+    {
+      "event": "reference_held",
+      "stage": 0,
+      "command_pulses_us": [
+        1425,
+        1212,
+        1425,
+        1594,
+        1416,
+        1740,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791987616420816500.jpg",
+          "host_unix_ns": 1791987616420816500,
+          "frame_id": "session-20261014-191050-169373",
+          "age_ms": 54,
+          "sha256": "950c8f190789111b1eee4fa8756c0a8a19df9c82065ff03b09e32a1cbfeb6afd"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791987616428849700.jpg",
+          "host_unix_ns": 1791987616428849700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-602939",
+          "age_ms": 46,
+          "sha256": "57da863c423bcc2c2b03e8fbff9e24ac4dbdcdda0d32eecf275abfc1f1045eb6"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "low_start_pose_held",
+      "stage": 1,
+      "command_pulses_us": [
+        1450,
+        1212,
+        1425,
+        1554,
+        1416,
+        1740,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791987636253328500.jpg",
+          "host_unix_ns": 1791987636253328500,
+          "frame_id": "session-20261014-191050-169669",
+          "age_ms": 29,
+          "sha256": "c02d8f30584cca30cb216b47ea31e19e8c8cf3002dad2d0b5c13e2a175730dc7"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791987636241698000.jpg",
+          "host_unix_ns": 1791987636241698000,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-603236",
+          "age_ms": 62,
+          "sha256": "d376923fcaee590f10db2fc78a664496d828ca1a9531f052c63b7afd0c6be602"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "low_start_pose_held",
+      "stage": 2,
+      "command_pulses_us": [
+        1470,
+        1212,
+        1425,
+        1514,
+        1416,
+        1740,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791987657452942500.jpg",
+          "host_unix_ns": 1791987657452942500,
+          "frame_id": "session-20261014-191050-169985",
+          "age_ms": 7,
+          "sha256": "f7cd45fafb630744ee931d9038d6f26af8269caec8969879e89ed94b7f548c13"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791987657440271000.jpg",
+          "host_unix_ns": 1791987657440271000,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-603554",
+          "age_ms": 61,
+          "sha256": "d0d11c758f1d778a9f8ad50e528c454683fdf19de069b0be535d320d517d5143"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    }
+  ],
+  "automatic_replay_allowed": false,
+  "incident_locks_removed": false
+}

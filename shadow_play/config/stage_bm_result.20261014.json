@@ -1,0 +1,150 @@
+{
+  "session": "bm",
+  "profile": "person-left-low-v1",
+  "route_sha256": "3f20727f6c13c2bb299229ec8a5dbc6ed8bef97e95c55b35c0b7dd32801aadb7",
+  "status": "executed_normal_stop",
+  "full_board_log_sha256": "dea2012b7a88e5296f2c550d39d3416d712870b4a75a6263258e3eed69711d6a",
+  "last_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 31880,
+    "pending": false,
+    "pulse_us": [
+      1425,
+      1212,
+      1425,
+      1594,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": true,
+  "observations": [
+    "Person moved toward Sony lower-left; central empty space increased.",
+    "Weapon hand is close to left frame edge; foot contact with lower cloth edge not achieved."
+  ],
+  "phases": [
+    {
+      "event": "reference_held",
+      "stage": 0,
+      "command_pulses_us": [
+        1515,
+        1212,
+        1515,
+        1554,
+        1506,
+        1720,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791987414746865200.jpg",
+          "host_unix_ns": 1791987414746865200,
+          "frame_id": "session-20261014-191050-166367",
+          "age_ms": 65,
+          "sha256": "235bae93c6ef05f790960ad7d27459d10d7ad1a24b1695f281d47cc85ef63049"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791987414798344900.jpg",
+          "host_unix_ns": 1791987414798344900,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-599915",
+          "age_ms": 14,
+          "sha256": "4e24200b77234494d315d2911a5efd458dd1a2de4555fe961b5a6db9fe42d046"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "low_start_pose_held",
+      "stage": 1,
+      "command_pulses_us": [
+        1470,
+        1212,
+        1470,
+        1574,
+        1461,
+        1730,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791987433260809300.jpg",
+          "host_unix_ns": 1791987433260809300,
+          "frame_id": "session-20261014-191050-166643",
+          "age_ms": 48,
+          "sha256": "2ce6c9c2ecba16a2e718f254d2bdfadccb72993fcc7053859a180fe60c0cf1d3"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791987433256790800.jpg",
+          "host_unix_ns": 1791987433256790800,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-600192",
+          "age_ms": 16,
+          "sha256": "5a801f5b80db83b8c03a18caec27343a56f84260a13b3d2e21125c058a26529a"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    },
+    {
+      "event": "low_start_pose_held",
+      "stage": 2,
+      "command_pulses_us": [
+        1425,
+        1212,
+        1425,
+        1594,
+        1416,
+        1740,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frame_evidence": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791987449733010100.jpg",
+          "host_unix_ns": 1791987449733010100,
+          "frame_id": "session-20261014-191050-166889",
+          "age_ms": 22,
+          "sha256": "8ec763eda7bb8bd50138507e50b85041f4b99368fedc26180b6072af8ef85f40"
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791987449740811600.jpg",
+          "host_unix_ns": 1791987449740811600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-600439",
+          "age_ms": 15,
+          "sha256": "ed710566ffbd32d718570c8d07f9e5a271b3329f8e9d78993a39eef2aa552896"
+        }
+      },
+      "endpoint_pixels": null,
+      "endpoint_mm": null,
+      "actual_axis_feedback": null
+    }
+  ],
+  "automatic_replay_allowed": false,
+  "incident_locks_removed": false
+}
