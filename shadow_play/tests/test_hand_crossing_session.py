@@ -202,6 +202,23 @@ class CrossingTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.device()
         self.assertEqual(self.r.writes,[])
 
+    def test_additional_lift_needs_its_own_prior_lift_and_cannot_replay(self):
+        self.prepare_fast('person-reference-guard-counter-probe')
+        self.p.update(profile='person-overhead-lift-280-probe',tempo_step_us=3)
+        del self.p['prior_slow_route_log']
+        with self.assertRaisesRegex(ValueError,'completed 210-us lift review'):self.device()
+        self.assertEqual(self.r.writes,[])
+        self.prepare_fast('person-overhead-lift-clearance')
+        self.p.update(profile='person-overhead-lift-280-probe',tempo_step_us=3)
+        del self.p['prior_slow_route_log']
+        d=self.device();d.adopt(h.BASE[:]);events=[]
+        for stage in range(1,7):d.advance(stage,events.append,self.sleep)
+        self.assertEqual(d.pulses,h.BASE)
+        self.assertEqual(self.lock.read_text(),'incident')
+        self.assertEqual(max(r['state']['pulse_us'][1] for r in events),h.BASE[1]+280)
+        d.completed=d.reviewed=set(range(1,7));d.demo_used=True
+        with self.assertRaisesRegex(RuntimeError,'diagnostic-only'):d.check()
+
     def test_only_new_frontal_gesture_after_slow_and_fast_review_can_present_once(self):
         self.prepare_fast('person-reference-guard-counter-probe');d=self.device()
         d.adopt(h.BASE[:]);events=[]
