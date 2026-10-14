@@ -14,8 +14,10 @@ def sha(path):
 
 def export(result_path,session,annotations_path=None):
     result=json.loads(result_path.read_text(encoding='utf-8-sig'))
+    pose_count=result.get('expected_pose_count',7)
+    if type(pose_count) is not int or not 7<=pose_count<=64:raise ValueError('Invalid expected pose count')
     annotations=json.loads(annotations_path.read_text(encoding='utf-8-sig')) if annotations_path else {}
-    if set(annotations)-{str(i) for i in range(7)}:
+    if set(annotations)-{str(i) for i in range(pose_count)}:
         raise ValueError('Unknown annotation stage')
     if any(set(value)-{'front','top'} for value in annotations.values()):
         raise ValueError('Unknown annotation camera')
@@ -34,24 +36,25 @@ def export(result_path,session,annotations_path=None):
     if continuous:
         if (sum(r['event']=='operator_trial_started' for r in events)!=1
                 or sum(r['event']=='operator_trial_complete' for r in events)!=1
-                or [r['axis'] for r in events if r['event']=='probe_complete']!=list(range(1,7))
+                or [r['axis'] for r in events if r['event']=='probe_complete']!=list(range(1,pose_count))
                 or events[-1].get('event')!='outputs_off' or not events[-1].get('normal_frame_stop')
                 or events[-1]['state']!=final or events[0]['state']['pulse_us']!=final['pulse_us']):
-            raise ValueError('Continuous trial must complete six edges and close at its reference')
+            raise ValueError('Continuous trial must complete all declared edges and close at its reference')
         review=session/'continuous_selection.json'
         if sha(review)!=result['continuous_selection_sha256']:raise ValueError('Continuous camera selection was changed')
         continuous_selection=json.loads(review.read_text())
-        if set(continuous_selection)!=set(str(i) for i in range(7)):
-            raise ValueError('Seven continuous trial snapshots required')
+        if set(continuous_selection)!=set(str(i) for i in range(pose_count)):
+            raise ValueError('Every declared trial snapshot required')
+    elif pose_count!=7:raise ValueError('Variable stage count is only supported for continuous trials')
     elif acknowledged!=set(range(1,7)):
         witness=result.get('post_stop_closure_review',{})
         if (acknowledged!=set(range(1,6)) or witness.get('event')!='post_stop_closure_review'
                 or witness.get('reviewed_stage')!=6 or witness.get('source_log_sha256')!=result['full_board_log_sha256']
                 or witness.get('state')!=final or witness.get('fresh_dual_view_reviewed') is not True
-                or [r['axis'] for r in events if r['event']=='probe_complete']!=list(range(1,7))):
+                or [r['axis'] for r in events if r['event']=='probe_complete']!=list(range(1,pose_count))):
             raise ValueError('Six reviewed stages or a bound final closure review are required')
     poses=[]
-    for stage in range(7):
+    for stage in range(pose_count):
         if continuous:selection={'views':continuous_selection[str(stage)]}
         else:
             review=session/f'review-{max(1,stage)}'/'selection.json'

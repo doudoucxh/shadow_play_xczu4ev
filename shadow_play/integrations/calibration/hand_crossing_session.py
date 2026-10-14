@@ -81,6 +81,21 @@ ROUTES={
  # Small endpoint extension after observing the same-side level pose.
  'person-overhead-operator-punch-extend-trial':(ZERO,(0,180,0,0,0,0),(180,90,0,0,0,0),
      (200,-20,0,0,60,-160),(0,160,0,0,20,-80),(-80,80,0,0,0,-40),ZERO),
+ # Six alternating attacks: one extended fist and the other folded guard.
+ # Slow entry/exit, bounded tempo-8 attack transitions, no tiger motion.
+ 'person-operator-alternating-punch-combo':(ZERO,(0,180,0,0,0,0),(180,90,0,0,0,0),
+     (140,40,0,0,-20,-120),
+     (200,-20,0,0,-20,-120),(140,40,0,0,60,-160),
+     (200,-20,0,0,-20,-120),(140,40,0,0,60,-160),
+     (200,-20,0,0,-20,-120),(140,40,0,0,60,-160),
+     (140,40,0,0,-20,-120),(0,160,0,0,20,-80),(-80,80,0,0,0,-40),ZERO),
+ # More distinct folded guards after observing insufficient retraction.
+ 'person-operator-alternating-guard-combo':(ZERO,(0,180,0,0,0,0),(180,90,0,0,0,0),
+     (100,70,0,0,-40,-100),
+     (200,-20,0,0,-40,-100),(100,70,0,0,60,-160),
+     (200,-20,0,0,-40,-100),(100,70,0,0,60,-160),
+     (200,-20,0,0,-40,-100),(100,70,0,0,60,-160),
+     (100,70,0,0,-40,-100),(0,160,0,0,20,-80),(-80,80,0,0,0,-40),ZERO),
  'person-overhead-high-map-positive':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
      (60,210,0,-40,0,0),(0,210,0,-40,0,0),(0,0,0,-40,0,0),ZERO),
  'person-overhead-high-map-negative':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
@@ -131,14 +146,16 @@ OVERHEAD_WIDER_PROFILES=frozenset(('person-overhead-high280-yaw160-probe',))
 OVERHEAD_ARC_PROFILES=frozenset(('person-overhead-arc-entry-probe',))
 OPERATOR_ARC_PROFILES=frozenset(('person-overhead-operator-arc-trial','person-overhead-operator-low-arc-trial',
                               'person-overhead-operator-balanced-arc-trial','person-overhead-operator-jump-slow-trial',
-                              'person-overhead-operator-return-arc-trial','person-overhead-operator-cross-entry-trial','person-overhead-operator-double-punch-trial','person-overhead-operator-punch-hold-trial','person-overhead-operator-punch-level-trial','person-overhead-operator-punch-extend-trial'))
+                              'person-overhead-operator-return-arc-trial','person-overhead-operator-cross-entry-trial','person-overhead-operator-double-punch-trial','person-overhead-operator-punch-hold-trial','person-overhead-operator-punch-level-trial','person-overhead-operator-punch-extend-trial','person-operator-alternating-punch-combo','person-operator-alternating-guard-combo'))
 FOCUSED_SLOW_STAGES={'person-overhead-operator-jump-slow-trial':(3,4,6),
                      'person-overhead-operator-return-arc-trial':(3,4,5,6),
                      'person-overhead-operator-cross-entry-trial':(2,3,4,5,6),
                      'person-overhead-operator-double-punch-trial':(2,3,4,5,6),
                      'person-overhead-operator-punch-hold-trial':(2,3,4,5,6),
                      'person-overhead-operator-punch-level-trial':(2,3,4,5,6),
-                     'person-overhead-operator-punch-extend-trial':(2,3,4,5,6)}
+                     'person-overhead-operator-punch-extend-trial':(2,3,4,5,6),
+                     'person-operator-alternating-punch-combo':(2,3,11,12,13),
+                     'person-operator-alternating-guard-combo':(2,3,11,12,13)}
 SLOW_DIAGNOSTIC_PROFILES=HAND_B_DIAGNOSTIC_PROFILES|SLOW_YAW_PROFILES|OVERHEAD_LIFT_PROFILES|OVERHEAD_BODY_PROFILES|OVERHEAD_APPROACH_PROFILES|OVERHEAD_WIDER_PROFILES|OVERHEAD_ARC_PROFILES
 FAST_GESTURE_PROFILES=frozenset(('person-script-hand-b-strike-probe','person-script-double-hit-probe',
                                'person-script-double-drop-sync-probe','person-reference-guard-counter-probe'))
@@ -172,7 +189,7 @@ def closed_operator_reference(rows):
             or first.get('execution_mode')!='operator-attended-one-arc-trial' or first.get('tempo_step_us')!=8
             or sum(r.get('event')=='operator_trial_started' for r in rows)!=1
             or sum(r.get('event')=='operator_trial_complete' for r in rows)!=1
-            or [r['axis'] for r in rows if r.get('event')=='probe_complete']!=list(range(1,7))
+            or [r['axis'] for r in rows if r.get('event')=='probe_complete']!=list(range(1,len(ROUTES[first['profile']])))
             or last.get('event')!='outputs_off' or not last.get('normal_frame_stop')
             or first['state']['pulse_us']!=BASE or last['state']['pulse_us']!=BASE):
         raise ValueError('Attended trial reference must be complete and normally closed')
@@ -417,9 +434,10 @@ def run_operator_arc_trial(d,emit,sleep=time.sleep):
                   incident_locks_removed=False))
         d.wait(.25,sleep)
         emit(dict(event='operator_trial_started',state=d.status(),visual_reviews_performed=False))
-        for stage in range(1,7):
+        for stage in range(1,len(d.targets)):
             d.advance(stage,emit,sleep)
             hold=4.0 if d.plan['profile'] in ('person-overhead-operator-double-punch-trial','person-overhead-operator-punch-hold-trial','person-overhead-operator-punch-level-trial','person-overhead-operator-punch-extend-trial') and stage in (2,3,4) else .12
+            if d.plan['profile'] in ('person-operator-alternating-punch-combo','person-operator-alternating-guard-combo'):hold=.06 if 4<=stage<=9 else .12
             d.wait(hold,sleep)
             if hold>1:emit(dict(event='inspection_hold_complete',axis=stage,state=d.status()))
         emit(dict(event='operator_trial_complete',state=d.status(),visual_reviews_performed=False,

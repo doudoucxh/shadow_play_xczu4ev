@@ -428,6 +428,39 @@ class CrossingTests(unittest.TestCase):
         self.assertEqual(events[-1]['state']['pulse_us'],h.BASE)
         self.assertFalse(events[-1]['state']['armed'])
 
+    def test_alternating_combo_six_attacks_preserves_support_and_closes(self):
+        self.prepare_fast('person-operator-alternating-punch-combo');events=[]
+        h.run_operator_arc_trial(self.device(),events.append,self.sleep)
+        self.assertTrue(h.closed_operator_reference(events))
+        ends=[r for r in events if r['event']=='probe_complete']
+        self.assertEqual([r['axis'] for r in ends],list(range(1,14)))
+        self.assertEqual([r['state']['pulse_us'][0] for r in ends[3:9]],[1737,1677]*3)
+        self.assertEqual([r['state']['pulse_us'][4] for r in ends[3:9]],[1488,1568]*3)
+        prior=h.BASE[:]
+        for r in events:
+            if r['event']!='probe_step':continue
+            pulse=r['state']['pulse_us'];self.assertEqual(pulse[2:4],h.BASE[2:4]);self.assertEqual(pulse[6:],h.BASE[6:])
+            self.assertLessEqual(max(abs(a-b) for a,b in zip(prior,pulse)),1 if r['axis'] in (2,3,11,12,13) else 8)
+            prior=pulse
+        self.assertFalse(events[-1]['state']['armed']);self.assertEqual(events[-1]['state']['pulse_us'],h.BASE)
+        bad=[r for r in events if not (r['event']=='probe_complete' and r['axis']==8)]
+        with self.assertRaises(ValueError):h.closed_operator_reference(bad)
+
+    def test_alternating_guard_combo_distinct_guards_preserves_head(self):
+        self.prepare_fast('person-operator-alternating-guard-combo');events=[]
+        h.run_operator_arc_trial(self.device(),events.append,self.sleep)
+        self.assertTrue(h.closed_operator_reference(events))
+        ends=[r for r in events if r['event']=='probe_complete' and 4<=r['axis']<=9]
+        self.assertEqual([r['state']['pulse_us'][0] for r in ends],[1737,1637]*3)
+        self.assertEqual([r['state']['pulse_us'][4] for r in ends],[1468,1568]*3)
+        prior=h.BASE[:]
+        for r in events:
+            if r['event']!='probe_step':continue
+            pulse=r['state']['pulse_us'];self.assertEqual(pulse[2:4],h.BASE[2:4]);self.assertEqual(pulse[6:],h.BASE[6:])
+            self.assertLessEqual(max(abs(a-b) for a,b in zip(prior,pulse)),1 if r['axis'] in (2,3,11,12,13) else 8)
+            prior=pulse
+        self.assertFalse(events[-1]['state']['armed']);self.assertEqual(events[-1]['state']['pulse_us'],h.BASE)
+
     def test_reference_sequence_exception_only_accepts_an_unchanged_static_hold(self):
         self.prepare_fast('person-overhead-operator-arc-trial')
         rows=[json.loads(r) for r in self.raw.splitlines()]
