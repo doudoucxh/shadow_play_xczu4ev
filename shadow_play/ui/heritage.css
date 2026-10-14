@@ -294,6 +294,55 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline-color: #d1a
 .paper-binding { position: absolute; left: 22px; top: 12%; bottom: 12%; width: 11px; background: repeating-linear-gradient(0deg,transparent 0,transparent 49px,#5a361b 50px,#c6a672 52px,#53351c 54px,transparent 56px,transparent 95px); border-left: 1px solid #72512f70; }
 .turning-page { overflow-x: hidden; }
 .turning-page .site-header { pointer-events: none; }
+
+/* Slow embers fall in front of the theatre; decorative layers never catch input. */
+.home-embers { display: none; position: fixed; inset: 0; z-index: 5; pointer-events: none; overflow: hidden; }
+body[data-page="home"] .home-embers { display: block; }
+.home-embers::before {
+  content: ""; position: absolute; inset: 0;
+  box-shadow: inset 0 -2px 2px #e86a2c88, inset 0 -12px 40px #a63e152b;
+  background: radial-gradient(ellipse at 0 95%,#c84b1724,transparent 23%),radial-gradient(ellipse at 100% 20%,#b63b1721,transparent 20%);
+  animation: hearth-breathe 7s ease-in-out infinite alternate;
+}
+.burn-edge { position: absolute; pointer-events: none; width: 52px; top: 0; bottom: 0; }
+.burn-edge svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.burn-edge-right { right: 0; }
+.burn-edge-left { left: 0; transform: scaleX(-1); opacity: .72; }
+.ember-halo { animation: coal-breathe 4.7s ease-in-out infinite alternate; }
+.ember-seam { animation: coal-breathe 3.1s ease-in-out -1.2s infinite alternate; }
+.edge-flame { opacity: .7; transform-box: fill-box; transform-origin: center bottom; animation: flame-lick 2.6s ease-in-out var(--f-delay) infinite alternate; }
+.paper-burn { right: 0; width: 90px; z-index: 4; }
+.paper-embers { z-index: 5; }
+.ember-field { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.falling-ember {
+  position: absolute; left: var(--x); top: -20px; width: var(--size); height: calc(var(--size) * 1.8);
+  border-radius: 65% 20% 70% 30%; background: #f5b66b;
+  box-shadow: 0 0 4px 1px #ed7726bb,0 0 12px 2px #c443164d;
+  opacity: 0; animation: ember-fall var(--fall-time) linear var(--fall-delay) infinite;
+}
+.falling-ember:nth-child(3n) { background: #cc632d; }
+.falling-ember:nth-child(5n)::after { content: ""; position: absolute; bottom: 1px; left: 0; width: 1px; height: 13px; background: linear-gradient(transparent,#ef9c474d); }
+@keyframes ember-fall {
+  0% { opacity: 0; transform: translate3d(0,0,0) rotate(0deg); }
+  12% { opacity: .7; }
+  45% { opacity: .4; transform: translate3d(calc(var(--drift) * -.25),46vh,0) rotate(90deg); }
+  70% { opacity: .8; }
+  100% { opacity: 0; transform: translate3d(var(--drift),106vh,0) rotate(var(--turn)); }
+}
+@keyframes coal-breathe { from { opacity: .4; } to { opacity: .9; } }
+@keyframes flame-lick { from { opacity: .3; transform: scale(.8,.65) skewX(-8deg); } to { opacity: .85; transform: scale(1.1,1.3) skewX(9deg); } }
+@keyframes hearth-breathe { from { opacity: .45; } to { opacity: .9; } }
+.effects-suspended .home-embers *, .effects-suspended .home-embers::before { animation-play-state: paused !important; }
+@media(max-width:700px) {
+  .home-embers .burn-edge { width: 28px; }
+  .paper-burn { width: 56px; }
+  .home-embers .falling-ember:nth-child(2n) { display: none; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .ember-field, .edge-flame { display: none; }
+  .home-embers *, .home-embers::before { animation: none !important; }
+  .ember-halo { opacity: .45; }
+}
 @media(max-width:1150px) {
   .hero { gap: 30px; }
   .hero h1 { font-size: 53px; }

@@ -6,7 +6,27 @@
   const glint = layer.querySelector('.paper-curl');
   const main = document.querySelector('#main');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const TURN_DURATION = 3200;
   let animations = [], fallback = 0, revision = 0;
+
+  // Code-native singed paper: charcoal, a broken hot seam and small flame tongues.
+  const seam = 'M70 0L64 30 69 58 57 84 63 114 52 141 59 172 68 197 60 225 67 251 54 278 62 307 51 335 63 364 57 395 68 421 59 451 65 480 53 510 60 541 49 568 61 598 56 627 67 655 58 684 64 713 52 744 62 774 55 804 66 834 59 865 65 900';
+  document.querySelectorAll('.burn-edge').forEach((edge,index)=>{
+    const id = `ember-glow-${index}`;
+    edge.innerHTML = `<svg viewBox="0 0 80 900" preserveAspectRatio="none" aria-hidden="true"><defs><filter id="${id}" x="-200%" y="-20%" width="500%" height="140%"><feGaussianBlur stdDeviation="4"/></filter></defs><path d="${seam}H80V0Z" fill="#130b07"/><path class="ember-halo" d="${seam}" fill="none" stroke="#ed4b13" stroke-width="14" filter="url(#${id})"/><path d="${seam}" fill="none" stroke="#963115" stroke-width="5"/><path class="ember-seam" d="${seam}" fill="none" stroke="#ffa247" stroke-width="1.7" stroke-dasharray="39 13 7 18 25 31"/>${[84,225,364,510,655,804].map((y,i)=>`<path class="edge-flame" style="--f-delay:-${i*.63}s" d="M62 ${y+13}Q37 ${y-3} 55 ${y-29}Q48 ${y-12} 64 ${y-2}Q73 ${y+6} 62 ${y+13}Z" fill="#ed7626"/>`).join('')}</svg>`;
+  });
+  document.querySelectorAll('.ember-field').forEach(field=>{
+    const paper = field.classList.contains('paper-embers');
+    const count = paper ? 10 : 30;
+    field.innerHTML = Array.from({length:count},(_,i)=>{
+      const x = paper ? 93+(i*3%7) : (i*37+11)%100;
+      const duration = paper ? 3.5+(i%4)*.7 : 10+(i%7)*1.8;
+      return `<i class="falling-ember" style="--x:${x}%;--size:${i%5===0?4:2}px;--drift:${paper?-26-(i%4)*12:(i%2?1:-1)*(25+i%6*14)}px;--fall-time:${duration}s;--fall-delay:-${(i*.91)%duration}s;--turn:${i%2?240:-210}deg"></i>`;
+    }).join('');
+  });
+  const suspendEffects = () => document.body.classList.toggle('effects-suspended',document.hidden);
+  document.addEventListener('visibilitychange',suspendEffects);
+  suspendEffects();
 
   function finish() {
     revision++;
@@ -35,7 +55,7 @@
     main.setAttribute('aria-busy','true');
     document.body.classList.add('turning-page');
     const current = revision;
-    const timing = {duration:1450,easing:'cubic-bezier(.36,.02,.22,1)',fill:'forwards'};
+    const timing = {duration:TURN_DURATION,easing:'cubic-bezier(.36,.02,.22,1)',fill:'forwards'};
     try {
       animations = [
         leaf.animate([
@@ -57,7 +77,7 @@
         if(revision===current) finish();
       }).catch(()=>{if(revision===current) finish();});
       // A suspended tab or interrupted animation must never leave the controls blocked.
-      fallback = setTimeout(()=>{if(revision===current) finish();},1800);
+      fallback = setTimeout(()=>{if(revision===current) finish();},TURN_DURATION+400);
     } catch { finish(); }
   }
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!layer.hidden)finish();});
