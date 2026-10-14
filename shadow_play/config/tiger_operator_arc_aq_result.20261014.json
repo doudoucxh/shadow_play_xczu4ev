@@ -1,0 +1,194 @@
+{
+  "date": "2026-10-14",
+  "profile": "tiger-operator-low-rear-stretch",
+  "status": "interrupted_by_attended_duration_timeout",
+  "full_board_log_sha256": "f15370cf229b925a1fd0ab7fa6496ca7531cdcdd25d41b4242b4f4cc99342ec5",
+  "normal_frame_stop": false,
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 21530,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1631,
+      1438,
+      1740,
+      1600
+    ],
+    "position_feedback": null
+  },
+  "automatic_replay_allowed": false,
+  "route": [
+    [
+      230,
+      -225,
+      230,
+      0
+    ],
+    [
+      230,
+      -225,
+      240,
+      100
+    ],
+    [
+      120,
+      -45,
+      240,
+      100
+    ],
+    [
+      60,
+      -45,
+      160,
+      -30
+    ],
+    [
+      10,
+      -200,
+      100,
+      -30
+    ],
+    [
+      40,
+      -200,
+      80,
+      40
+    ],
+    [
+      140,
+      -210,
+      160,
+      40
+    ],
+    [
+      230,
+      -225,
+      230,
+      0
+    ]
+  ],
+  "poses": [
+    {
+      "event": "reference_held",
+      "stage": null,
+      "command_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1730,
+        1275,
+        1730,
+        1500
+      ],
+      "actual_axis_angles": null,
+      "attachment_mm": null,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-191050-37824",
+          "sha256": "d03cbad8415597a49a548307ca3634c2320bad35022c1636116e135599ca2f3b",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_aq\\front_1791978789076415000.jpg",
+          "time_offset_ms": 16.4150390625,
+          "attachment_pixels": null
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-470529",
+          "sha256": "9469fb208b1fe4f6e2c2a6568568bac7df946e2ccfc0949c96b70de14ae93607",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_aq\\top_1791978789074913800.jpg",
+          "time_offset_ms": 14.913818359375,
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "event": "probe_complete",
+      "stage": 1,
+      "command_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1730,
+        1275,
+        1740,
+        1600
+      ],
+      "actual_axis_angles": null,
+      "attachment_mm": null,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-191050-39599",
+          "sha256": "98eae23ad519c0ef7f4fcaaf5cea4ab611d6a2decd30b5731e12d24e3768a113",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_aq\\front_1791978908154020500.jpg",
+          "time_offset_ms": -15.9794921875,
+          "attachment_pixels": null
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-472315",
+          "sha256": "0a79a1d5258b5c8f5df05317d002f852e83fa32bceb270e090de8a5c53958bf8",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_aq\\top_1791978908143111100.jpg",
+          "time_offset_ms": -26.888916015625,
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "event": "outputs_off",
+      "stage": null,
+      "command_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1631,
+        1438,
+        1740,
+        1600
+      ],
+      "actual_axis_angles": null,
+      "attachment_mm": null,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-191050-39612",
+          "sha256": "4c67b89f0ee9a95c6390279f9160f151d409853b1d7a01255c0d5a2be1fe83c0",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_aq\\front_1791978909028517000.jpg",
+          "time_offset_ms": -15.48291015625,
+          "attachment_pixels": null
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-472328",
+          "sha256": "f646b5a0b7cb31a053a2059b299e24de5e9de0a491b5bae9ef3a9e553dcbb138",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_aq\\top_1791978909027768000.jpg",
+          "time_offset_ms": -16.23193359375,
+          "attachment_pixels": null
+        }
+      }
+    }
+  ],
+  "duration_seconds": 1.6153971130115679,
+  "video": null,
+  "visual_findings": [
+    "User clarified rear attachment point must be lower and separated farther from head; independent tail-tip articulation is not the requested correction.",
+    "Rear remains low/right while head moves up/left, then rear follows; no automatic replay authorization.",
+    "No measured physical angles, attachment separation in mm, or screen contact force."
+  ],
+  "reason": "Occlusion wait consumed the 120-second session deadline. Timeout occurred during stage 2. Only stage 1 completed; no return was attempted.",
+  "full_route_completed": false
+}

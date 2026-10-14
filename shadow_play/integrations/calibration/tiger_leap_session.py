@@ -24,6 +24,9 @@ LOWER_LEFT='tiger-operator-head-lower-ten-left'
 SCREEN='tiger-operator-screen-approach'
 SCREEN_LEAP='tiger-operator-screen-leap-bite'
 UPLEFT='tiger-operator-up-left-leap'
+STRETCH='tiger-operator-low-rear-stretch'
+STRETCH_RESUME='tiger-operator-stretch-timeout-continuation'
+STRETCH_TIMEOUT_SHA='f15370cf229b925a1fd0ab7fa6496ca7531cdcdd25d41b4242b4f4cc99342ec5'
 INTERRUPTED_AI_SHA='b0fbd146897f875d15d0e96a7921c19aeea0fcdab309a7c217633cb63bf538e1'
 ROUTES={PROFILE:ROUTE,STAGGERED:((0,0,0,0),(40,0,40,0),(40,-20,40,20),
     (10,80,10,20),(-30,80,-30,-80),(-60,-60,-60,-80),
@@ -35,8 +38,10 @@ ROUTES[LOWER_LEFT]=((340,-77,340,0),(310,-151,310,0))
 ROUTES[SCREEN]=((310,-151,310,0),(270,-188,270,0),(230,-225,230,0))
 ROUTES[SCREEN_LEAP]=((230,-225,230,0),(220,-225,220,20),(150,-135,150,20),(100,-115,100,-65),(40,-210,40,-65),(40,-200,40,-10),(140,-210,140,0),(230,-225,230,0))
 ROUTES[UPLEFT]=((230,-225,230,0),(220,-225,220,60),(150,-75,150,60),(100,-45,100,-50),(40,-200,40,-50),(40,-200,40,10),(140,-210,140,0),(230,-225,230,0))
-STEP_TABLE={UPLEFT:(0,5,10,10,10,5,5,5),SCREEN_LEAP:(0,3,10,10,10,5,5,5),SCREEN:(0,2,2),LOWER_LEFT:(0,2),LOWER5:(0,2),PRESS:(0,2,2),PARK:(0,3,3,3,3),PROFILE:STEPS,STAGGERED:(0,3,3,12,12,12,3,3,3)}
-HOLD_TABLE={UPLEFT:(0,.18,.18,.08,.2,.1,.05,.15),SCREEN_LEAP:(0,.15,.06,.08,.2,.1,.05,.15),SCREEN:(0,.4,.4),LOWER_LEFT:(0,.5),LOWER5:(0,.5),PRESS:(0,.3,.3),PARK:(0,.2,.2,.2,.2),PROFILE:HOLDS,STAGGERED:(0,.2,.18,.02,.05,.25,.15,.2,.1)}
+ROUTES[STRETCH]=((230,-225,230,0),(230,-225,240,100),(120,-45,240,100),(60,-45,160,-30),(10,-200,100,-30),(40,-200,80,40),(140,-210,160,40),(230,-225,230,0))
+ROUTES[STRETCH_RESUME]=((131,-62,240,100),)+ROUTES[STRETCH][2:]
+STEP_TABLE={STRETCH_RESUME:(0,3,8,10,5,5,5),STRETCH:(0,5,8,8,10,5,5,5),UPLEFT:(0,5,10,10,10,5,5,5),SCREEN_LEAP:(0,3,10,10,10,5,5,5),SCREEN:(0,2,2),LOWER_LEFT:(0,2),LOWER5:(0,2),PRESS:(0,2,2),PARK:(0,3,3,3,3),PROFILE:STEPS,STAGGERED:(0,3,3,12,12,12,3,3,3)}
+HOLD_TABLE={STRETCH_RESUME:(0,.18,.08,.2,.1,.05,.15),STRETCH:(0,.18,.18,.08,.2,.1,.05,.15),UPLEFT:(0,.18,.18,.08,.2,.1,.05,.15),SCREEN_LEAP:(0,.15,.06,.08,.2,.1,.05,.15),SCREEN:(0,.4,.4),LOWER_LEFT:(0,.5),LOWER5:(0,.5),PRESS:(0,.3,.3),PARK:(0,.2,.2,.2,.2),PROFILE:HOLDS,STAGGERED:(0,.2,.18,.02,.05,.25,.15,.2,.1)}
 def digest(profile=PROFILE):return hashlib.sha256(json.dumps(ROUTES[profile],separators=(',',':')).encode()).hexdigest()
 def closed_tiger_reference(rows):
     first,last=rows[0],rows[-1];profile=first.get('profile')
@@ -86,6 +91,13 @@ def validate(p,read=None,wall=None):
             and rows[-1]['event']=='outputs_off' and rows[-1]['state']['enabled_mask']==0
             and not rows[-1]['state']['armed'] and not rows[-1]['state']['faults']):
             pass # Exact camera-expiry receipt, separately observed at the current pose.
+        elif (p['profile']==STRETCH_RESUME and q['baseline_source']['sha256']==STRETCH_TIMEOUT_SHA
+            and rows[0].get('profile')==STRETCH and rows[-1]['event']=='outputs_off'
+            and rows[-1]['state']['pulse_us']==BASE[:6]+[1631,1438,1740,1600]
+            and rows[-1]['state']['sequence']==21530 and rows[-1]['state']['enabled_mask']==0
+            and not rows[-1]['state']['armed'] and not rows[-1]['state']['faults']
+            and not rows[-1]['state']['pending']):
+            pass # Exact attended-duration timeout; fresh dual-view inspection required above.
         else:closed_tiger_reference(rows)
         if wall is not None and not 0<=wall()*1000-q['reviewed_at_unix_ms']<120000:raise ValueError('Stale scene')
     else:
