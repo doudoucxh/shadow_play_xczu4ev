@@ -219,6 +219,17 @@ class CrossingTests(unittest.TestCase):
         d.completed=d.reviewed=set(range(1,7));d.demo_used=True
         with self.assertRaisesRegex(RuntimeError,'diagnostic-only'):d.check()
 
+    def test_body_clearance_cannot_start_from_unreviewed_lift(self):
+        self.prepare_fast('person-overhead-lift-clearance')
+        self.p.update(profile='person-overhead-body-clearance-probe',tempo_step_us=3)
+        del self.p['prior_slow_route_log']
+        with self.assertRaisesRegex(ValueError,'completed 280-us lift review'):self.device()
+        self.assertEqual(self.r.writes,[])
+        route=h.ROUTES['person-overhead-body-clearance-probe']
+        self.assertEqual(route[2][1],route[3][1])
+        self.assertEqual(route[3][3],0)
+        self.assertTrue(all(v[0]==v[2]==v[4]==v[5]==0 for v in route))
+
     def test_only_new_frontal_gesture_after_slow_and_fast_review_can_present_once(self):
         self.prepare_fast('person-reference-guard-counter-probe');d=self.device()
         d.adopt(h.BASE[:]);events=[]

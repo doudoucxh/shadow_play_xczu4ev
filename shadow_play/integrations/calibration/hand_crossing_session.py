@@ -32,6 +32,10 @@ ROUTES={
  # This only measures lift clearance; it never commands an overhead crossing.
  'person-overhead-lift-280-probe':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
      (0,280,0,-40,0,0),(0,210,0,-40,0,0),(0,0,0,-40,0,0),ZERO),
+ # Keep the hand raised while restoring the body's original support height.
+ # Review that coupling separately before any lateral move.
+ 'person-overhead-body-clearance-probe':(ZERO,(0,0,0,-40,0,0),(0,280,0,-40,0,0),
+     (0,280,0,0,0,0),(0,280,0,-40,0,0),(0,0,0,-40,0,0),ZERO),
  'person-overhead-high-map-positive':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
      (60,210,0,-40,0,0),(0,210,0,-40,0,0),(0,0,0,-40,0,0),ZERO),
  'person-overhead-high-map-negative':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
@@ -76,7 +80,8 @@ HAND_B_DIAGNOSTIC_PROFILES=HAND_B_YAW_PROFILES|frozenset(('person-script-hand-b-
 HAND_A_YAW_PROFILES=frozenset(('person-script-hand-a-local-yaw-probe','person-script-hand-a-inward-80-probe'))
 SLOW_YAW_PROFILES=HAND_B_YAW_PROFILES|HAND_A_YAW_PROFILES
 OVERHEAD_LIFT_PROFILES=frozenset(('person-overhead-lift-280-probe',))
-SLOW_DIAGNOSTIC_PROFILES=HAND_B_DIAGNOSTIC_PROFILES|SLOW_YAW_PROFILES|OVERHEAD_LIFT_PROFILES
+OVERHEAD_BODY_PROFILES=frozenset(('person-overhead-body-clearance-probe',))
+SLOW_DIAGNOSTIC_PROFILES=HAND_B_DIAGNOSTIC_PROFILES|SLOW_YAW_PROFILES|OVERHEAD_LIFT_PROFILES|OVERHEAD_BODY_PROFILES
 FAST_GESTURE_PROFILES=frozenset(('person-script-hand-b-strike-probe','person-script-double-hit-probe',
                                'person-script-double-drop-sync-probe','person-reference-guard-counter-probe'))
 CONTINUOUS_PRESENTATION_PROFILES=frozenset(('person-reference-guard-counter-probe',))
@@ -181,6 +186,8 @@ def validate_plan(p,read=None,wall=None):
         raise ValueError('Second inward level requires the completed local hand-A yaw review')
     if p['profile'] in OVERHEAD_LIFT_PROFILES and first.get('profile') not in (OVERHEAD_LIFT_PROFILES|{'person-overhead-lift-clearance'}):
         raise ValueError('Additional overhead lift requires the completed 210-us lift review')
+    if p['profile'] in OVERHEAD_BODY_PROFILES and first.get('profile') not in (OVERHEAD_BODY_PROFILES|OVERHEAD_LIFT_PROFILES):
+        raise ValueError('Overhead body coupling requires the completed 280-us lift review')
 
 
 class CrossingSession(c.ChoreographySession):
