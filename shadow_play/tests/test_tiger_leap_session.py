@@ -1,4 +1,5 @@
 import copy,hashlib,json,unittest
+from unittest.mock import patch
 from pathlib import Path
 import test_hand_crossing_session as fixture
 import tiger_leap_session as t
@@ -30,6 +31,43 @@ class TigerLeapTests(unittest.TestCase):
         f,p,args=self.setup_device();p['tiger_hardware_unchanged']=False
         with self.assertRaises(ValueError):t.TigerLeapSession(f.r,p,f.host,**args)
         self.assertEqual(f.r.writes,[])
+    def test_tree_position_moves_only_yaw_and_reviews_each_segment(self):
+        f,p,args=self.setup_device();p.update(profile=t.PARK,expected_pulses_us=t.BASE[:6]+[1540,1500,1540,1500])
+        for i,v in enumerate(p['expected_pulses_us']):f.r.values[0x80+4*i]=v
+        with patch.object(t,'validate'):
+            d=t.TigerLeapSession(f.r,p,f.host,**args)
+        events=[]
+        def emit(r):
+            events.append(r)
+            if r['event'] in ('reference_held','launch_position_held'):f.host.action=('demo',r['state']['sequence'])
+        t.run(d,emit,f.sleep)
+        self.assertEqual(sum(r['event']=='launch_position_held' for r in events),3)
+        prior=p['expected_pulses_us']
+        for r in events:
+            if r['event']!='probe_step':continue
+            q=r['state']['pulse_us'];self.assertEqual(q[:6],t.BASE[:6]);self.assertEqual((q[7],q[9]),(1500,1500))
+            self.assertGreaterEqual(q[6],prior[6]);self.assertEqual(q[6],q[8])
+            self.assertLessEqual(q[6]-prior[6],3);prior=q
+        self.assertTrue(t.closed_tiger_reference(events));self.assertEqual(prior[6],1840)
+    def test_head_lower_keeps_other_nine_commands_fixed(self):
+        f,p,args=self.setup_device();p.update(profile=t.PRESS,expected_pulses_us=t.BASE[:6]+[1840,1500,1840,1500])
+        for i,v in enumerate(p['expected_pulses_us']):f.r.values[0x80+4*i]=v
+        with patch.object(t,'validate'):d=t.TigerLeapSession(f.r,p,f.host,**args)
+        events=[]
+        def emit(r):
+            events.append(r)
+            if r['event'] in ('reference_held','launch_position_held'):f.host.action=('demo',r['state']['sequence'])
+        t.run(d,emit,f.sleep)
+        prior=p['expected_pulses_us']
+        for r in events:
+            if r['event']!='probe_step':continue
+            q=r['state']['pulse_us']
+            self.assertEqual(q[:7]+q[8:],prior[:7]+prior[8:])
+            self.assertTrue(0<=prior[7]-q[7]<=2);prior=q
+        self.assertTrue(t.closed_tiger_reference(events))
+        self.assertEqual(prior[7],1460)
+        self.assertEqual(events[-1]['state']['enabled_mask'],0)
+
     def test_staggered_right_start_waits_then_lifts_head_before_rear(self):
         f,p,args=self.setup_device();prior=[]
         def first(r):

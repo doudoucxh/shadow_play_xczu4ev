@@ -17,11 +17,18 @@ STEPS=(0,3,8,8,3,3,3)
 HOLDS=(0,.25,.12,.3,.15,.12,.1)
 HISTORICAL_SHA='3f8547793801264ad92c4007aabfef321f6e92277f8f0662af719e3230fbd5f4'
 STAGGERED='tiger-operator-staggered-right-start'
+PARK='tiger-operator-tree-position'
+PRESS='tiger-operator-head-lower-at-tree'
+LOWER5='tiger-operator-head-lower-five'
+INTERRUPTED_AI_SHA='b0fbd146897f875d15d0e96a7921c19aeea0fcdab309a7c217633cb63bf538e1'
 ROUTES={PROFILE:ROUTE,STAGGERED:((0,0,0,0),(40,0,40,0),(40,-20,40,20),
     (10,80,10,20),(-30,80,-30,-80),(-60,-60,-60,-80),
     (-60,-20,-60,-20),(40,0,40,0),(0,0,0,0))}
-STEP_TABLE={PROFILE:STEPS,STAGGERED:(0,3,3,12,12,12,3,3,3)}
-HOLD_TABLE={PROFILE:HOLDS,STAGGERED:(0,.2,.18,.02,.05,.25,.15,.2,.1)}
+ROUTES[PARK]=tuple((v,0,v,0) for v in (40,100,180,260,340))
+ROUTES[PRESS]=((340,0,340,0),(340,-20,340,0),(340,-40,340,0))
+ROUTES[LOWER5]=((340,-40,340,0),(340,-77,340,0))
+STEP_TABLE={LOWER5:(0,2),PRESS:(0,2,2),PARK:(0,3,3,3,3),PROFILE:STEPS,STAGGERED:(0,3,3,12,12,12,3,3,3)}
+HOLD_TABLE={LOWER5:(0,.5),PRESS:(0,.3,.3),PARK:(0,.2,.2,.2,.2),PROFILE:HOLDS,STAGGERED:(0,.2,.18,.02,.05,.25,.15,.2,.1)}
 def digest(profile=PROFILE):return hashlib.sha256(json.dumps(ROUTES[profile],separators=(',',':')).encode()).hexdigest()
 def closed_tiger_reference(rows):
     first,last=rows[0],rows[-1];profile=first.get('profile')
@@ -31,7 +38,8 @@ def closed_tiger_reference(rows):
         or sum(r['event']=='operator_trial_complete' for r in rows)!=1
         or [r['axis'] for r in rows if r['event']=='probe_complete']!=list(range(1,len(ROUTES[profile])))
         or last.get('event')!='outputs_off' or not last.get('normal_frame_stop')
-        or first['state']['pulse_us']!=BASE or last['state']['pulse_us']!=BASE):
+        or first['state']['pulse_us']!=BASE[:6]+[1500+v for v in ROUTES[profile][0]]
+        or last['state']['pulse_us']!=BASE[:6]+[1500+v for v in ROUTES[profile][-1]]):
         raise ValueError('Incomplete tiger reference')
     prior=first['state'];stage=0
     for r in rows:
@@ -65,12 +73,17 @@ def validate(p,read=None,wall=None):
             or type(q['duration_seconds']) is not int or not 120<=q['duration_seconds']<=900
             or not c.re.fullmatch('[a-f0-9-]{36}',q['boot_id'])
             or type(q['reviewed_at_unix_ms']) is not int):raise ValueError('Exact tiger continuation required')
-        closed_tiger_reference(rows)
+        if (p['profile']==PARK and q['baseline_source']['sha256']==INTERRUPTED_AI_SHA
+            and rows[-1]['state']['pulse_us']==BASE[:6]+[1540,1500,1540,1500]
+            and rows[-1]['event']=='outputs_off' and rows[-1]['state']['enabled_mask']==0
+            and not rows[-1]['state']['armed'] and not rows[-1]['state']['faults']):
+            pass # Exact camera-expiry receipt, separately observed at the current pose.
+        else:closed_tiger_reference(rows)
         if wall is not None and not 0<=wall()*1000-q['reviewed_at_unix_ms']<120000:raise ValueError('Stale scene')
     else:
         q['profile']=h.TIGER_DIRECTED_PROFILE
         h.validate_plan(q,read,wall)
-    if p['restore_after_power_cycle'] or p['expected_pulses_us']!=BASE:
+    if p['restore_after_power_cycle'] or p['expected_pulses_us']!=BASE[:6]+[1500+v for v in ROUTES[p['profile']][0]]:
         raise ValueError('Inspected current command reference required')
     spec=p['historical_tiger_reference']
     if spec!={'path':'/tmp/tiger_duet_reference_20261012.json','sha256':HISTORICAL_SHA}:
@@ -90,7 +103,7 @@ class TigerLeapSession(c.ChoreographySession):
         c.PwmDevice.__init__(self,r,motion_inhibit_paths=motion_inhibit_paths)
         self.plan=json.loads(json.dumps(p));self.host=host;self.clock=clock
         self.deadline=clock()+p['duration_seconds'];self.cancel=Path(cancel_path);self.hashes=self.lock_hashes()
-        self.pulses=BASE[:];self.sequence=p['expected_sequence'];self.mask=0
+        self.pulses=p['expected_pulses_us'][:];self.sequence=p['expected_sequence'];self.mask=0
         self.inside=False;self.failed=False;self.last_start=None;self.next_command=None
         self.phase='resume';self.cursor=0;self.completed=set();self.reviewed=set();self.demo_used=False
         self.own=960;self.indices=range(6,10);self.route_sha256=digest(p['profile'])
@@ -106,7 +119,7 @@ class TigerLeapSession(c.ChoreographySession):
 def run(d,emit,sleep=time.sleep):
     normal=False
     try:
-        state=d.adopt(BASE[:])
+        state=d.adopt(d.plan['expected_pulses_us'][:])
         emit(dict(event='reference_held',profile=d.plan['profile'],route_sha256=d.route_sha256,tempo_step_us=8,state=state,
                   position_feedback=None,startup_is_not_rate_limited=True,incident_locks_removed=False))
         while True:
@@ -119,7 +132,7 @@ def run(d,emit,sleep=time.sleep):
         emit(dict(event='operator_trial_started',state=d.status(),static_reference_visually_reviewed=True))
         for stage in range(1,len(d.targets)):
             d.advance(stage,emit,sleep);d.wait(HOLD_TABLE[d.plan['profile']][stage],sleep)
-            if d.plan['profile']==STAGGERED and stage==1:
+            if (d.plan['profile']==STAGGERED and stage==1) or (d.plan['profile'] in (PARK,PRESS) and stage<len(d.targets)-1):
                 emit(dict(event='launch_position_held',state=d.check()))
                 while True:
                     d.check()

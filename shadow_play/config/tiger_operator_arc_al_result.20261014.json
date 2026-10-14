@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-14",
+  "profile": "tiger-operator-head-lower-five",
+  "status": "completed_attended_reposition",
+  "full_board_log_sha256": "9a5387f7ebf83b093e596b73cfc77667e5f84b91b42f8a0b524fa6a85434d67a",
+  "normal_frame_stop": true,
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 20988,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1840,
+      1423,
+      1840,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "automatic_replay_allowed": false,
+  "route": [
+    [
+      340,
+      -40,
+      340,
+      0
+    ],
+    [
+      340,
+      -77,
+      340,
+      0
+    ]
+  ],
+  "poses": [
+    {
+      "stage": 0,
+      "command_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1840,
+        1460,
+        1840,
+        1500
+      ],
+      "actual_axis_angles": null,
+      "attachment_mm": null,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-191050-9931",
+          "sha256": "39a387ac92b3d024424da86a3cce613f971a177b8a322cf1ee2e96bef875149c",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_al\\front_1791976918327229700.jpg",
+          "attachment_pixels": null
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-442467",
+          "sha256": "2809ca04b2d2fb37893ae9e5ec72e93dc87331a03894b932b9cd3e5b789cfd6b",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_al\\top_1791976918315427600.jpg",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "stage": 1,
+      "command_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1840,
+        1423,
+        1840,
+        1500
+      ],
+      "actual_axis_angles": null,
+      "attachment_mm": null,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-191050-10377",
+          "sha256": "4cdd5bcdf03ce9673d833f1392cf2a13f0647afe0b903c3297106ad5d3833502",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_al\\front_1791976948261836900.jpg",
+          "attachment_pixels": null
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-442916",
+          "sha256": "042a90e4015ca229e0492d5a4102cd489f5e32a525fc49a2bee2e9b1a2c4df3b",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_al\\top_1791976948252046700.jpg",
+          "attachment_pixels": null
+        }
+      }
+    }
+  ],
+  "visual_findings": [
+    "User requested another approximately five degrees downward. Servo 8 command changed 1460 to 1423 us; other nine unchanged.",
+    "Tiger head lowers in Sony view, but contour remains blurred; screen contact is not confirmed.",
+    "No obvious rod collision in inspected top views."
+  ]
+}

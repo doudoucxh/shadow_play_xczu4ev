@@ -1,0 +1,157 @@
+{
+  "date": "2026-10-14",
+  "profile": "tiger-operator-head-lower-at-tree",
+  "status": "completed_attended_reposition",
+  "full_board_log_sha256": "8dec657b97192f11e1c516b24001a168ff729f72ed7463219bd3ff85f4eff348",
+  "normal_frame_stop": true,
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 20953,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1840,
+      1460,
+      1840,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "automatic_replay_allowed": false,
+  "route": [
+    [
+      340,
+      0,
+      340,
+      0
+    ],
+    [
+      340,
+      -20,
+      340,
+      0
+    ],
+    [
+      340,
+      -40,
+      340,
+      0
+    ]
+  ],
+  "poses": [
+    {
+      "stage": 0,
+      "command_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1840,
+        1500,
+        1840,
+        1500
+      ],
+      "actual_axis_angles": null,
+      "attachment_mm": null,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-191050-7779",
+          "sha256": "043bf49d6cf04f6688edd10324cd446cb565f7cde0121c8a88b2e80cf012393c",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_ak\\front_1791976773988378200.jpg",
+          "time_offset_ms": -8.621826171875,
+          "attachment_pixels": null
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-440302",
+          "sha256": "e5a287daa00dcce50cd34801737fa46dc743b4437aae9ec8a32367253862618e",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_ak\\top_1791976773987630400.jpg",
+          "time_offset_ms": -9.36962890625,
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "stage": 1,
+      "command_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1840,
+        1480,
+        1840,
+        1500
+      ],
+      "actual_axis_angles": null,
+      "attachment_mm": null,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-191050-8177",
+          "sha256": "d6aaae60928f353d8598ec5d7127550473ac03cd1d3397c2d4f9bcc9e6367078",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_ak\\front_1791976800676848400.jpg",
+          "time_offset_ms": -21.151611328125,
+          "attachment_pixels": null
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-440703",
+          "sha256": "e0456022481c9b6f38f2f1140ad1d68b0a2f2bd5ab298d74c5b56e95b42692d0",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_ak\\top_1791976800686138600.jpg",
+          "time_offset_ms": -11.861328125,
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "stage": 2,
+      "command_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1840,
+        1460,
+        1840,
+        1500
+      ],
+      "actual_axis_angles": null,
+      "attachment_mm": null,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-191050-8628",
+          "sha256": "2dfcdd4d1c3dc90d9ce1c2ec794e48d6891f8c1a195e8a4a7b032487def2d25d",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_ak\\front_1791976830945653400.jpg",
+          "time_offset_ms": 13.653564453125,
+          "attachment_pixels": null
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-441157",
+          "sha256": "69060a6cd8d5f1bfc6249324818f5b3fdf15342c525eb3fe89b12ae04956ab77",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_ak\\top_1791976830944147400.jpg",
+          "time_offset_ms": 12.1474609375,
+          "attachment_pixels": null
+        }
+      }
+    }
+  ],
+  "visual_findings": [
+    "Only servo 8 command lowered 1500 -> 1480 -> 1460 us; yaw and rear commands unchanged.",
+    "Head lowered visibly; contact with screen and improved clarity are not established.",
+    "No obvious rod collision visible in inspected views; no physical angle feedback."
+  ]
+}
