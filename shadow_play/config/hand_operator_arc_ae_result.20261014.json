@@ -1,0 +1,1176 @@
+{
+  "date": "2026-10-14",
+  "session_id": "person-operator-body-guard-20261014-ae",
+  "status": "completed_operator_attended_trial",
+  "plan": {
+    "approval": "attended-fixed-puppet-choreography-20261012",
+    "session_id": "person-operator-body-guard-20261014-ae",
+    "profile": "person-operator-body-guard-combo",
+    "expected_sequence": 18044,
+    "expected_pulses_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "observer_ready": true,
+    "operator_hardware_unmoved": true,
+    "dual_view_pose_reviewed": true,
+    "reviewed_at_unix_ms": 1791974566561,
+    "duration_seconds": 120,
+    "tempo_step_us": 8,
+    "repetitions": 1,
+    "boot_id": "7eea2c53-e104-45cf-88fe-439f1821e5d4",
+    "restore_after_power_cycle": false,
+    "baseline_source": {
+      "path": "/tmp/puppet-choreography-person-operator-alternating-guard-20261014-ad.jsonl",
+      "sha256": "fe4afb2b8506966808eb6756f63ec33fbb7a564511a5356efb4f6d9b9216bcf9"
+    },
+    "execution_mode": "operator-attended-one-arc-trial"
+  },
+  "full_board_log_sha256": "4b6ad7e806357cf30d14f4de427f6b6af29a9da402c8647d3487cb1996b4f8b5",
+  "continuous_selection_sha256": "c1d2e8a853f1b2aa6b16534cc8e875a7228341d0a6f43cd26697d406cb5eb978",
+  "normal_frame_stop": true,
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 19143,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "visual_findings": [
+    "六拳指令段约2.02秒，身体与下摆有明显跟随摆动，快速交替时格挡轮廓不够稳定。",
+    "抽查双视角阶段画面未见明显杆件相顶；快速画面存在模糊，不等于排除所有接触。",
+    "头部轴指令已变化并随换手交替；实际轴角未知，像素点未标注，毫米坐标不换算。"
+  ],
+  "automatic_replay_allowed": false,
+  "overhead_crossing_completed": false,
+  "continuous_trial_seconds": 24.4308021379984,
+  "events": [
+    {
+      "event": "reference_held",
+      "profile": "person-operator-body-guard-combo",
+      "route_sha256": "0114ddd2dec740e509258618629cd6311e25006bc7e4107eb4da07480f33461d",
+      "tempo_step_us": 8,
+      "execution_mode": "operator-attended-one-arc-trial",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18045,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "position_feedback": null,
+      "incident_locks_removed": false,
+      "board_monotonic_seconds": 89953.511830151
+    },
+    {
+      "event": "operator_trial_started",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18045,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "visual_reviews_performed": false,
+      "board_monotonic_seconds": 89953.763213404
+    },
+    {
+      "event": "body_combo_stage_tempo",
+      "axis": 1,
+      "maximum_step_us": 8,
+      "board_monotonic_seconds": 89953.763544428
+    },
+    {
+      "event": "probe_started",
+      "axis": 1,
+      "target_pulses_us": [
+        1537,
+        1392,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 40,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18045,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89953.764854391
+    },
+    {
+      "event": "probe_complete",
+      "axis": 1,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18085,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1392,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89954.611621228
+    },
+    {
+      "event": "body_combo_stage_tempo",
+      "axis": 2,
+      "maximum_step_us": 1,
+      "board_monotonic_seconds": 89954.732020082
+    },
+    {
+      "event": "probe_started",
+      "axis": 2,
+      "target_pulses_us": [
+        1717,
+        1302,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 315,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18085,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1392,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89954.733352005
+    },
+    {
+      "event": "probe_complete",
+      "axis": 2,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18400,
+        "pending": false,
+        "pulse_us": [
+          1717,
+          1302,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89961.472840107
+    },
+    {
+      "event": "body_combo_stage_tempo",
+      "axis": 3,
+      "maximum_step_us": 1,
+      "board_monotonic_seconds": 89961.593246611
+    },
+    {
+      "event": "probe_started",
+      "axis": 3,
+      "target_pulses_us": [
+        1637,
+        1282,
+        1537,
+        1494,
+        1468,
+        1640,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 175,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18400,
+        "pending": false,
+        "pulse_us": [
+          1717,
+          1302,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89961.594614175
+    },
+    {
+      "event": "probe_complete",
+      "axis": 3,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18575,
+        "pending": false,
+        "pulse_us": [
+          1637,
+          1282,
+          1537,
+          1494,
+          1468,
+          1640,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89965.352764025
+    },
+    {
+      "event": "body_combo_stage_tempo",
+      "axis": 4,
+      "maximum_step_us": 12,
+      "board_monotonic_seconds": 89965.473199869
+    },
+    {
+      "event": "probe_started",
+      "axis": 4,
+      "target_pulses_us": [
+        1737,
+        1192,
+        1557,
+        1474,
+        1468,
+        1640,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 15,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18575,
+        "pending": false,
+        "pulse_us": [
+          1637,
+          1282,
+          1537,
+          1494,
+          1468,
+          1640,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89965.474544693
+    },
+    {
+      "event": "probe_complete",
+      "axis": 4,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18590,
+        "pending": false,
+        "pulse_us": [
+          1737,
+          1192,
+          1557,
+          1474,
+          1468,
+          1640,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89965.792221739
+    },
+    {
+      "event": "body_combo_stage_tempo",
+      "axis": 5,
+      "maximum_step_us": 12,
+      "board_monotonic_seconds": 89965.812634513
+    },
+    {
+      "event": "probe_started",
+      "axis": 5,
+      "target_pulses_us": [
+        1637,
+        1282,
+        1517,
+        1494,
+        1568,
+        1580,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 15,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18590,
+        "pending": false,
+        "pulse_us": [
+          1737,
+          1192,
+          1557,
+          1474,
+          1468,
+          1640,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89965.813943457
+    },
+    {
+      "event": "probe_complete",
+      "axis": 5,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18605,
+        "pending": false,
+        "pulse_us": [
+          1637,
+          1282,
+          1517,
+          1494,
+          1568,
+          1580,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89966.131542352
+    },
+    {
+      "event": "body_combo_stage_tempo",
+      "axis": 6,
+      "maximum_step_us": 12,
+      "board_monotonic_seconds": 89966.151944056
+    },
+    {
+      "event": "probe_started",
+      "axis": 6,
+      "target_pulses_us": [
+        1737,
+        1192,
+        1557,
+        1474,
+        1468,
+        1640,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 15,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18605,
+        "pending": false,
+        "pulse_us": [
+          1637,
+          1282,
+          1517,
+          1494,
+          1568,
+          1580,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89966.15325762
+    },
+    {
+      "event": "probe_complete",
+      "axis": 6,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18620,
+        "pending": false,
+        "pulse_us": [
+          1737,
+          1192,
+          1557,
+          1474,
+          1468,
+          1640,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89966.473098048
+    },
+    {
+      "event": "body_combo_stage_tempo",
+      "axis": 7,
+      "maximum_step_us": 12,
+      "board_monotonic_seconds": 89966.493510672
+    },
+    {
+      "event": "probe_started",
+      "axis": 7,
+      "target_pulses_us": [
+        1637,
+        1282,
+        1517,
+        1494,
+        1568,
+        1580,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 15,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18620,
+        "pending": false,
+        "pulse_us": [
+          1737,
+          1192,
+          1557,
+          1474,
+          1468,
+          1640,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89966.494810585
+    },
+    {
+      "event": "probe_complete",
+      "axis": 7,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18635,
+        "pending": false,
+        "pulse_us": [
+          1637,
+          1282,
+          1517,
+          1494,
+          1568,
+          1580,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89966.812977146
+    },
+    {
+      "event": "body_combo_stage_tempo",
+      "axis": 8,
+      "maximum_step_us": 12,
+      "board_monotonic_seconds": 89966.833418511
+    },
+    {
+      "event": "probe_started",
+      "axis": 8,
+      "target_pulses_us": [
+        1737,
+        1192,
+        1557,
+        1474,
+        1468,
+        1640,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 15,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18635,
+        "pending": false,
+        "pulse_us": [
+          1637,
+          1282,
+          1517,
+          1494,
+          1568,
+          1580,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89966.834733844
+    },
+    {
+      "event": "probe_complete",
+      "axis": 8,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18650,
+        "pending": false,
+        "pulse_us": [
+          1737,
+          1192,
+          1557,
+          1474,
+          1468,
+          1640,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89967.152902326
+    },
+    {
+      "event": "body_combo_stage_tempo",
+      "axis": 9,
+      "maximum_step_us": 12,
+      "board_monotonic_seconds": 89967.173278769
+    },
+    {
+      "event": "probe_started",
+      "axis": 9,
+      "target_pulses_us": [
+        1637,
+        1282,
+        1517,
+        1494,
+        1568,
+        1580,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 15,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18650,
+        "pending": false,
+        "pulse_us": [
+          1737,
+          1192,
+          1557,
+          1474,
+          1468,
+          1640,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89967.174575052
+    },
+    {
+      "event": "probe_complete",
+      "axis": 9,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18665,
+        "pending": false,
+        "pulse_us": [
+          1637,
+          1282,
+          1517,
+          1494,
+          1568,
+          1580,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89967.492222939
+    },
+    {
+      "event": "body_combo_stage_tempo",
+      "axis": 10,
+      "maximum_step_us": 8,
+      "board_monotonic_seconds": 89967.512647053
+    },
+    {
+      "event": "probe_started",
+      "axis": 10,
+      "target_pulses_us": [
+        1637,
+        1282,
+        1537,
+        1494,
+        1468,
+        1640,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 22,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18665,
+        "pending": false,
+        "pulse_us": [
+          1637,
+          1282,
+          1517,
+          1494,
+          1568,
+          1580,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89967.513949396
+    },
+    {
+      "event": "probe_complete",
+      "axis": 10,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18687,
+        "pending": false,
+        "pulse_us": [
+          1637,
+          1282,
+          1537,
+          1494,
+          1468,
+          1640,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89967.972703873
+    },
+    {
+      "event": "body_combo_stage_tempo",
+      "axis": 11,
+      "maximum_step_us": 1,
+      "board_monotonic_seconds": 89968.093142178
+    },
+    {
+      "event": "probe_started",
+      "axis": 11,
+      "target_pulses_us": [
+        1537,
+        1372,
+        1537,
+        1514,
+        1528,
+        1660,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 175,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18687,
+        "pending": false,
+        "pulse_us": [
+          1637,
+          1282,
+          1537,
+          1494,
+          1468,
+          1640,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89968.094481751
+    },
+    {
+      "event": "probe_complete",
+      "axis": 11,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18862,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1372,
+          1537,
+          1514,
+          1528,
+          1660,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89971.831423639
+    },
+    {
+      "event": "body_combo_stage_tempo",
+      "axis": 12,
+      "maximum_step_us": 1,
+      "board_monotonic_seconds": 89971.951840853
+    },
+    {
+      "event": "probe_started",
+      "axis": 12,
+      "target_pulses_us": [
+        1457,
+        1292,
+        1537,
+        1514,
+        1508,
+        1700,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 140,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 18862,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1372,
+          1537,
+          1514,
+          1528,
+          1660,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89971.953178596
+    },
+    {
+      "event": "probe_complete",
+      "axis": 12,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 19002,
+        "pending": false,
+        "pulse_us": [
+          1457,
+          1292,
+          1537,
+          1514,
+          1508,
+          1700,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89974.951632619
+    },
+    {
+      "event": "body_combo_stage_tempo",
+      "axis": 13,
+      "maximum_step_us": 1,
+      "board_monotonic_seconds": 89975.072060904
+    },
+    {
+      "event": "probe_started",
+      "axis": 13,
+      "target_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 140,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 19002,
+        "pending": false,
+        "pulse_us": [
+          1457,
+          1292,
+          1537,
+          1514,
+          1508,
+          1700,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89975.073412777
+    },
+    {
+      "event": "probe_complete",
+      "axis": 13,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 19142,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 89978.073243454
+    },
+    {
+      "event": "operator_trial_complete",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 19142,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "visual_reviews_performed": false,
+      "overhead_crossing_verified": false,
+      "automatic_replay_allowed": false,
+      "board_monotonic_seconds": 89978.194015542
+    },
+    {
+      "event": "outputs_off",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 19143,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "normal_frame_stop": true,
+      "incident_locks_removed": false,
+      "board_monotonic_seconds": 89978.210584738
+    }
+  ],
+  "operator_authorization": "User requested live validation of the new body-sway combo in the continuing attended session; front view cleared before execution.",
+  "local_video": "camera_liveview/output/hand-overhead-test-20261014/operator_ae/continuous_original_speed.mp4",
+  "expected_pose_count": 14,
+  "attack_count": 6,
+  "attack_command_seconds": 2.017678246003925,
+  "guard_motion_observed": false,
+  "body_sway_observed": true,
+  "guard_quality": "alternation_visible_but_not_stable_enough_for_final_pose"
+}
