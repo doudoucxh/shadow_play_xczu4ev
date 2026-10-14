@@ -1,0 +1,601 @@
+{
+  "schema": "wusong_interaction_revision_v3",
+  "status": "offline_choreography_only_not_executed",
+  "motor_ready": false,
+  "automatic_replay_allowed": false,
+  "source_score": "score.json",
+  "audio": {
+    "file": "audio/task1.wav",
+    "sha256": "950e52cc19d84877327e2a399ec5e078ed76daece6e358a61c0679af2114db5e",
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "pcm_bits": 16,
+    "sample_frames": 2959360,
+    "duration_s": 67.10566893424036,
+    "duration_ms": 67105.66893424036,
+    "edited_in_this_package": false
+  },
+  "direction_frame": "Sony正面：人物左下、老虎右下",
+  "initial_composition": {
+    "human": "左下低手、脚底接近有效幕面底边；不悬挂在高位手点",
+    "tiger": "右下树下，后端控制点降低且与头拉开距离",
+    "center": "开场中间留白",
+    "verified": false,
+    "unresolved": [
+      "BN低手与脚触底未同时通过",
+      "BL老虎低伏仍弱"
+    ],
+    "latest_evidence": [
+      "../../config/stage_bn_result.20261014.json",
+      "../../config/stage_bl_result.20261014.json"
+    ]
+  },
+  "geometry": {
+    "head_rod_change_mm": -5,
+    "right_hand_rod_change_mm": -5,
+    "manual_axis_rotation_reported": false,
+    "old_pixel_mapping_reusable": false
+  },
+  "movement_policy": {
+    "rails_enabled": false,
+    "tiger_local_translation": "按最新用户要求由双杆补足短丝杆覆盖，新的局部范围必须单独验证；不全局放大PWM",
+    "micro_motion": "短促、有限段的试探与双颤；不做无界随机抖动，不向已饱和通道累加",
+    "continuous_motion": "活跃段由蓄势、探头、跟随、收护连续衔接；短留和终场静止保留",
+    "amplitude": "按可读轮廓和杆件余量扩展，幅度单位暂不绑定脉宽、角度或毫米",
+    "human_support": "头杆随对手与攻防方向支撑躯干，另一手回护，避免手成为唯一悬挂支点",
+    "overhead": "先Sony左分离、抬过头再横移；顶视确认前后关系，未验证全越头不编入可执行路线",
+    "failed_route": "BE v3禁用，任何新几何不得自动恢复该路线"
+  },
+  "motion_phrases": {
+    "roar_bite": [
+      "低伏拉开前后端",
+      "虎头快提离幕放影",
+      "后端迟随",
+      "头向对手下压贴幕扑咬",
+      "后端跟落",
+      "回伏并换一次试探节奏"
+    ],
+    "probe_tension": [
+      "虎头先探",
+      "人物收护并朝虎跟身",
+      "虎短收或有限双颤",
+      "人物另一手试探",
+      "虎后端留后再换强弱探头"
+    ]
+  },
+  "roar_links": [
+    {
+      "roar_scene": "S03",
+      "bite_scene": "S04",
+      "bite_required": true
+    },
+    {
+      "roar_scene": "S13",
+      "bite_scene": "S13",
+      "bite_required": true
+    },
+    {
+      "roar_scene": "S14",
+      "bite_scene": "S14",
+      "bite_required": true
+    }
+  ],
+  "scenes": [
+    {
+      "id": "S01",
+      "title": "虎现",
+      "start_sample": 0,
+      "end_sample": 44100,
+      "start_s": 0,
+      "end_s": 1,
+      "status": "planned_not_executed",
+      "variant": "低位开场",
+      "human": "武松位于Sony左下，双手低于肩、肘松曲；脚底贴幕底是待验证目标。",
+      "tiger": "虎在右下树下，后端控制点更低，头保持可辨认轮廓。",
+      "interaction": "双方之间中央留白；第一拍仅虎头探动，人物小幅警觉回应。",
+      "screen_intent": "贴幕清晰",
+      "rhythm": "短探—轻收",
+      "visual_acceptance": "低手与脚触底必须同时可见，不能以悬空人物换取低手。",
+      "motor_binding": null
+    },
+    {
+      "id": "S02",
+      "title": "巡视领地",
+      "start_sample": 44100,
+      "end_sample": 220500,
+      "start_s": 1,
+      "end_s": 5,
+      "status": "planned_not_executed",
+      "variant": "搜索机会",
+      "human": "低手维持，头杆转向虎的探头方向，胸前手轻收紧。",
+      "tiger": "两次不等幅前探，第二次更深；后端略迟跟随，夹一组短促双颤。",
+      "interaction": "虎先试探，人物延迟一小拍收护；不做双方同步钟摆。",
+      "screen_intent": "贴幕搜索",
+      "rhythm": "探—收—双颤—深探",
+      "visual_acceptance": "虎头与后端有明显伸展距离，杆颤不牵扯人物。",
+      "motor_binding": null
+    },
+    {
+      "id": "S03",
+      "title": "昂首威吓",
+      "start_sample": 220500,
+      "end_sample": 264600,
+      "start_s": 5,
+      "end_s": 6,
+      "status": "planned_not_executed",
+      "variant": "吼后必咬",
+      "human": "看向虎，身前手抬起护胸，身体稍后让。",
+      "tiger": "猛提虎头，后端迟随，适当离幕扩大影子；此段起吼，下段完成扑咬。",
+      "interaction": "虎头提起触发武松收护，咆哮不作为孤立循环。",
+      "screen_intent": "有意离幕影子",
+      "rhythm": "快提—短悬",
+      "visual_acceptance": "影子扩大可读；并非自动证明已经高跃到幕顶。",
+      "motor_binding": null
+    },
+    {
+      "id": "S04",
+      "title": "伏低警觉",
+      "start_sample": 264600,
+      "end_sample": 405720,
+      "start_s": 6,
+      "end_s": 9.2,
+      "status": "planned_not_executed",
+      "variant": "首次试咬",
+      "human": "双手短格挡，头杆带躯干略让；虎头落后回到低位戒备。",
+      "tiger": "从上段影子提头接向武松的下压扑咬，后端跟落，再回右下蓄势。",
+      "interaction": "咬到之前格挡，虎撤后人才松半拍；不模拟真实碰撞。",
+      "screen_intent": "由影子转贴幕",
+      "rhythm": "下扑—跟落—回伏",
+      "visual_acceptance": "虎头下降才算扑咬，单降后端不算。",
+      "motor_binding": null
+    },
+    {
+      "id": "S05",
+      "title": "收势潜伏",
+      "start_sample": 405720,
+      "end_sample": 441000,
+      "start_s": 9.2,
+      "end_s": 10,
+      "status": "planned_not_executed",
+      "variant": "伏而不僵",
+      "human": "低手站稳，小幅胸前收紧。",
+      "tiger": "低伏后一次短颤，头略探，保持注视。",
+      "interaction": "低幅张力给下一次人物亮相让重音。",
+      "screen_intent": "贴幕",
+      "rhythm": "小颤—短留",
+      "visual_acceptance": "留白不被无意义摆杆填满。",
+      "motor_binding": null
+    },
+    {
+      "id": "S06",
+      "title": "武松入场",
+      "start_sample": 441000,
+      "end_sample": 476280,
+      "start_s": 10,
+      "end_s": 10.8,
+      "status": "planned_not_executed",
+      "variant": "左下亮相",
+      "human": "身体挺起有限高度，先一手展开再另一手收护，避免起手就过头。",
+      "tiger": "头部转向武松，后端低位轻跟。",
+      "interaction": "人物动作引出虎头注意。",
+      "screen_intent": "贴幕",
+      "rhythm": "挺身—低位亮相",
+      "visual_acceptance": "不宣称滑轨入场，初始脚触底仍须验证。",
+      "motor_binding": null
+    },
+    {
+      "id": "S07",
+      "title": "环顾山林",
+      "start_sample": 476280,
+      "end_sample": 705600,
+      "start_s": 10.8,
+      "end_s": 16,
+      "status": "planned_not_executed",
+      "variant": "环顾受盯",
+      "human": "低位展开、看虎、单手遮目后收下；头杆支撑身体而非手把人吊起。",
+      "tiger": "头低探、高探、缩回三种反应，穿插一组短颤；不重复等幅抖动。",
+      "interaction": "武松转头时虎探，武松看回时虎收。",
+      "screen_intent": "贴幕主导",
+      "rhythm": "探/看互相错拍",
+      "visual_acceptance": "人物另一手保持可见弯肘，腰部不被拖偏。",
+      "motor_binding": null
+    },
+    {
+      "id": "S08",
+      "title": "察觉停步",
+      "start_sample": 705600,
+      "end_sample": 749700,
+      "start_s": 16,
+      "end_s": 17,
+      "status": "planned_not_executed",
+      "variant": "察觉",
+      "human": "双手收身前，身体短停后极小起伏。",
+      "tiger": "突然短探诱发人物察觉，随后低伏。",
+      "interaction": "一次清楚的虎先人后。",
+      "screen_intent": "贴幕",
+      "rhythm": "突探—收护",
+      "visual_acceptance": "不全段静止，也不抢对白。",
+      "motor_binding": null
+    },
+    {
+      "id": "S09",
+      "title": "对白亮相",
+      "start_sample": 749700,
+      "end_sample": 1014300,
+      "start_s": 17,
+      "end_s": 23,
+      "status": "planned_not_executed",
+      "variant": "对白张力",
+      "human": "单手指虎、收护、双手胸前展开、再放低；身体朝对手跟进。",
+      "tiger": "低位呼吸起伏与两次短促试探，人物指虎时后端收紧。",
+      "interaction": "对白重音由人物主导，虎低幅持续蓄势而不重复吼咬。",
+      "screen_intent": "贴幕；人物短暂影子强调可选",
+      "rhythm": "语句重音—收势",
+      "visual_acceptance": "变化来自动作类型而非随机十路噪声。",
+      "motor_binding": null
+    },
+    {
+      "id": "S10",
+      "title": "行进戒备",
+      "start_sample": 1014300,
+      "end_sample": 1278900,
+      "start_s": 23,
+      "end_s": 29,
+      "status": "planned_not_executed",
+      "variant": "蓄势升级",
+      "human": "高低格挡交替，末段身体沉下，头始终朝虎。",
+      "tiger": "右下低伏、头前探、后端留后，末段拉开两控制点准备起跳。",
+      "interaction": "虎每次前探引出不同高低格挡，幅度逐步升级。",
+      "screen_intent": "贴幕",
+      "rhythm": "低—探—收—更深探",
+      "visual_acceptance": "只用已验证局部杆域，丝杆距离与速度不配置。",
+      "motor_binding": null
+    },
+    {
+      "id": "S11",
+      "title": "腾跃扑咬与闪避",
+      "start_sample": 1278900,
+      "end_sample": 1411200,
+      "start_s": 29,
+      "end_s": 32,
+      "status": "planned_not_executed",
+      "variant": "主腾跃扑咬",
+      "human": "先看虎起势，双手上格挡，然后沉身避头，最后短反击。",
+      "tiger": "头猛向左上，后端晚一拍追高；头先向左下压，后端随后落，回低伏。",
+      "interaction": "虎起人挡，虎落人让，虎收人击；不可双方同相上下。",
+      "screen_intent": "起跳可放大影子，落咬贴幕",
+      "rhythm": "压低—头起—后追—头扑—后落",
+      "visual_acceptance": "两端均抬才是腾跃；幕顶高跃未验证，不用动作名代替观察。",
+      "motor_binding": null
+    },
+    {
+      "id": "S12",
+      "title": "对峙蓄势",
+      "start_sample": 1411200,
+      "end_sample": 1543500,
+      "start_s": 32,
+      "end_s": 35,
+      "status": "planned_not_executed",
+      "variant": "重新锁定",
+      "human": "一手前探另手胸前，头杆向虎跟进再收。",
+      "tiger": "先低伏，再双颤，头微抬寻找空门，后端留后。",
+      "interaction": "对方收势才探，错开主动作。",
+      "screen_intent": "贴幕",
+      "rhythm": "短探—收—双颤",
+      "visual_acceptance": "双方可读，无机械同频。",
+      "motor_binding": null
+    },
+    {
+      "id": "S13",
+      "title": "两次试探",
+      "start_sample": 1543500,
+      "end_sample": 1764000,
+      "start_s": 35,
+      "end_s": 40,
+      "status": "planned_not_executed",
+      "variant": "两次不同试探",
+      "human": "首次短格挡不反击，第二次沉身后换手反击。",
+      "tiger": "36.2秒短扑、38.6秒更强抬头后下咬；两次轨迹大小与时长不同。",
+      "interaction": "第一次诱招，第二次武松识破；每次虎提头威吓均有咬的下行。",
+      "screen_intent": "第二次可离幕放大再贴幕",
+      "rhythm": "短扑—撤—大提—咬",
+      "visual_acceptance": "不照搬未验证越头或BE落拳。",
+      "motor_binding": null
+    },
+    {
+      "id": "S14",
+      "title": "交锋格挡",
+      "start_sample": 1764000,
+      "end_sample": 1984500,
+      "start_s": 40,
+      "end_s": 45,
+      "status": "planned_not_executed",
+      "variant": "反扑与双砸",
+      "human": "先高挡，后双手举砸；再低位避让，单拳朝虎跟进。",
+      "tiger": "挡后撤头，低位换节奏，再抬头威吓并扑咬，受双砸后头先回。",
+      "interaction": "人举时虎逼，人砸时虎退；下一次虎先攻人再避。",
+      "screen_intent": "双砸和咬保持清晰，蓄势可影子",
+      "rhythm": "挡—撤—压—砸—避—击",
+      "visual_acceptance": "双手举砸必须各杆共同支撑，避免手绕头后折叠。",
+      "motor_binding": null
+    },
+    {
+      "id": "S15",
+      "title": "压制占位",
+      "start_sample": 1984500,
+      "end_sample": 2028600,
+      "start_s": 45,
+      "end_s": 46,
+      "status": "planned_not_executed",
+      "variant": "抢节拍",
+      "human": "身体朝虎前压，一手护身一手预备，短促紧绷。",
+      "tiger": "后端低、头低但仍试探一次，末尾准备受击。",
+      "interaction": "人物逐渐夺取主动。",
+      "screen_intent": "贴幕",
+      "rhythm": "短压—留",
+      "visual_acceptance": "不把压制说成骑乘或承重。",
+      "motor_binding": null
+    },
+    {
+      "id": "S16",
+      "title": "连续重拳",
+      "start_sample": 2028600,
+      "end_sample": 2557800,
+      "start_s": 46,
+      "end_s": 58,
+      "status": "planned_not_executed",
+      "variant": "八拍攻防变式",
+      "human": "按独立hit_variants执行：交替直拳、双砸、双拳、格挡反击、沉身上击。",
+      "tiger": "前半仍抢攻，后半逐渐失势；每拳后头先受击、后端迟随，不等幅回弹。",
+      "interaction": "所有命中保持原音频HITS；攻击与受击有相位差。",
+      "screen_intent": "打击贴幕，选定蓄势短暂影子",
+      "rhythm": "八拍各异，快速攻击、较缓回收",
+      "visual_acceptance": "不可直接执行语义方案，尚需各姿态固定路线和实机确认。",
+      "motor_binding": null
+    },
+    {
+      "id": "S17",
+      "title": "受击倒伏",
+      "start_sample": 2557800,
+      "end_sample": 2646000,
+      "start_s": 58,
+      "end_s": 60,
+      "status": "planned_not_executed",
+      "variant": "失势倒伏",
+      "human": "手收低，头朝虎，留出虎倒伏的观看空间。",
+      "tiger": "头先沉、后端再低，58.36秒附近塌落；不再持续强烈抖动。",
+      "interaction": "人物停止追打，虎反应衰减。",
+      "screen_intent": "贴幕",
+      "rhythm": "沉—随—弱余动",
+      "visual_acceptance": "倒伏尚未验证；不得将站立小摆称倒伏。",
+      "motor_binding": null
+    },
+    {
+      "id": "S18",
+      "title": "喘息收势",
+      "start_sample": 2646000,
+      "end_sample": 2690100,
+      "start_s": 60,
+      "end_s": 61,
+      "status": "planned_not_executed",
+      "variant": "喘息",
+      "human": "一次身体呼吸起伏，双手放低。",
+      "tiger": "只留一次微弱余动。",
+      "interaction": "人物紧绷转喘息，虎不复活式抖杆。",
+      "screen_intent": "贴幕",
+      "rhythm": "呼—吸",
+      "visual_acceptance": "持续运动要求用于活跃对峙/搏斗，不破坏死亡剧情。",
+      "motor_binding": null
+    },
+    {
+      "id": "S19",
+      "title": "拖虎意象",
+      "start_sample": 2690100,
+      "end_sample": 2932650,
+      "start_s": 61,
+      "end_s": 66.5,
+      "status": "planned_not_executed",
+      "variant": "收场拉拽意象",
+      "human": "低手牵引、松、再牵引，头杆有限后倾。",
+      "tiger": "低位随牵引迟动，第二次弱于第一次。",
+      "interaction": "人拉虎随，因果清楚。",
+      "screen_intent": "贴幕",
+      "rhythm": "拉—松—再拉",
+      "visual_acceptance": "无滑轨不宣称真实拖离舞台。",
+      "motor_binding": null
+    },
+    {
+      "id": "S20",
+      "title": "终场定格",
+      "start_sample": 2932650,
+      "end_sample": 2959360,
+      "start_s": 66.5,
+      "end_s": 67.10566893424036,
+      "status": "planned_not_executed",
+      "variant": "定格",
+      "human": "低手末姿，不自动举手或回中。",
+      "tiger": "保持已验证的低伏末姿。",
+      "interaction": "音轨结束后定格。",
+      "screen_intent": "贴幕",
+      "rhythm": "落定",
+      "visual_acceptance": "倒伏未通过则保留低伏描述；末态由执行记录决定。",
+      "motor_binding": null
+    }
+  ],
+  "hits_s": [
+    46.38,
+    47.78,
+    50.21,
+    51.68,
+    53.35,
+    54.56,
+    56.82,
+    57.44
+  ],
+  "hit_variants": [
+    {
+      "id": "P01",
+      "audio_hit_s": 46.38,
+      "human_attack": "近侧直拳",
+      "human_support": "另一手胸前格挡",
+      "tiger_response": "头先退，后端迟退；仍保留抢攻",
+      "status": "planned_not_executed",
+      "timing_intent": {
+        "prepare_before_hit_s": 0.25,
+        "tiger_response_after_hit_s": 0.06,
+        "rear_follow_after_hit_s": 0.2,
+        "recover_after_hit_s": 0.4
+      },
+      "physical_phase_lag_measured": false,
+      "motor_binding": null
+    },
+    {
+      "id": "P02",
+      "audio_hit_s": 47.78,
+      "human_attack": "换手直拳",
+      "human_support": "前拳收胸换护",
+      "tiger_response": "低位短闪后受击，不同首拍",
+      "status": "planned_not_executed",
+      "timing_intent": {
+        "prepare_before_hit_s": 0.25,
+        "tiger_response_after_hit_s": 0.06,
+        "rear_follow_after_hit_s": 0.2,
+        "recover_after_hit_s": 0.4
+      },
+      "physical_phase_lag_measured": false,
+      "motor_binding": null
+    },
+    {
+      "id": "P03",
+      "audio_hit_s": 50.21,
+      "human_attack": "双手举砸",
+      "human_support": "头杆带身体向虎压下",
+      "tiger_response": "头下沉、后端稍后落",
+      "status": "planned_not_executed",
+      "timing_intent": {
+        "prepare_before_hit_s": 0.25,
+        "tiger_response_after_hit_s": 0.06,
+        "rear_follow_after_hit_s": 0.2,
+        "recover_after_hit_s": 0.4
+      },
+      "physical_phase_lag_measured": false,
+      "motor_binding": null
+    },
+    {
+      "id": "P04",
+      "audio_hit_s": 51.68,
+      "human_attack": "双拳前送",
+      "human_support": "出拳后两手收回，不穿头",
+      "tiger_response": "头先回弹，后端留后形成伸展",
+      "status": "planned_not_executed",
+      "timing_intent": {
+        "prepare_before_hit_s": 0.25,
+        "tiger_response_after_hit_s": 0.06,
+        "rear_follow_after_hit_s": 0.2,
+        "recover_after_hit_s": 0.4
+      },
+      "physical_phase_lag_measured": false,
+      "motor_binding": null
+    },
+    {
+      "id": "P05",
+      "audio_hit_s": 53.35,
+      "human_attack": "格挡后反击",
+      "human_support": "先护上方，再单拳朝虎",
+      "tiger_response": "先提头短咬，遭反击撤头",
+      "status": "planned_not_executed",
+      "timing_intent": {
+        "prepare_before_hit_s": 0.25,
+        "tiger_response_after_hit_s": 0.06,
+        "rear_follow_after_hit_s": 0.2,
+        "recover_after_hit_s": 0.4
+      },
+      "physical_phase_lag_measured": false,
+      "motor_binding": null
+    },
+    {
+      "id": "P06",
+      "audio_hit_s": 54.56,
+      "human_attack": "沉身后上击",
+      "human_support": "另一手护胸，身体先沉后起",
+      "tiger_response": "先低探，受击后短扬头再回落",
+      "status": "planned_not_executed",
+      "timing_intent": {
+        "prepare_before_hit_s": 0.25,
+        "tiger_response_after_hit_s": 0.06,
+        "rear_follow_after_hit_s": 0.2,
+        "recover_after_hit_s": 0.4
+      },
+      "physical_phase_lag_measured": false,
+      "motor_binding": null
+    },
+    {
+      "id": "P07",
+      "audio_hit_s": 56.82,
+      "human_attack": "短双砸",
+      "human_support": "不越头，身手同向短压",
+      "tiger_response": "双端沉降，明显弱于第三拍",
+      "status": "planned_not_executed",
+      "timing_intent": {
+        "prepare_before_hit_s": 0.25,
+        "tiger_response_after_hit_s": 0.06,
+        "rear_follow_after_hit_s": 0.2,
+        "recover_after_hit_s": 0.4
+      },
+      "physical_phase_lag_measured": false,
+      "motor_binding": null
+    },
+    {
+      "id": "P08",
+      "audio_hit_s": 57.44,
+      "human_attack": "末拳定势",
+      "human_support": "另一手格挡，击后缓收",
+      "tiger_response": "头先失势，接58.36秒倒伏候选",
+      "status": "planned_not_executed",
+      "timing_intent": {
+        "prepare_before_hit_s": 0.25,
+        "tiger_response_after_hit_s": 0.06,
+        "rear_follow_after_hit_s": 0.2,
+        "recover_after_hit_s": 0.4
+      },
+      "physical_phase_lag_measured": false,
+      "motor_binding": null
+    }
+  ],
+  "short_trial_order": [
+    {
+      "id": "T01",
+      "duration_intent_s": 4,
+      "purpose": "低手低站起势＋虎短探，人收护",
+      "gate": "低手和脚接底尚待几何确认；不能自动沿用旧BASE",
+      "bind_pwm": false
+    },
+    {
+      "id": "T02",
+      "duration_intent_s": 5.5,
+      "purpose": "虎影子吼→扑咬→武松格挡反击，一次因果闭环",
+      "gate": "BJ仅是动作次序参考，当前右下起点不同，必须重新固定路线",
+      "bind_pwm": false
+    },
+    {
+      "id": "T03",
+      "duration_intent_s": 5,
+      "purpose": "直拳/换手/双砸三变式，虎先头后端受击",
+      "gate": "分别记录可辨杆点，未通过越头不加入",
+      "bind_pwm": false
+    }
+  ],
+  "evidence_contract": {
+    "required": [
+      "十路指令",
+      "阶段时间",
+      "双视角帧编号/哈希",
+      "可辨杆端像素",
+      "身体/两杆联动观察"
+    ],
+    "occluded_points": null,
+    "millimeter_coordinates": null,
+    "actual_axis_feedback": null,
+    "completion": "指令完成不等于动作效果通过；本文件没有执行证据"
+  }
+}
