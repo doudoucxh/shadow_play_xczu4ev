@@ -1,0 +1,2491 @@
+{
+  "session": "story-full-20261014-bp",
+  "status": "interrupted_step_limit_not_complete",
+  "route_sha256": "fc949f9bd18a23897e21d3f760995b905e6c19aade2d5f005a6f93de7cb27e0d",
+  "raw_log_sha256": "de2cbcd5dadebea08436ba675eec3505c90a22962be868e932ebd384f72bf2d6",
+  "last_executed_audio_time_s": 37.315736730990466,
+  "requested_duration_s": 67.105668934,
+  "failure": "Timeline step exceeds 24 us; no catch-up",
+  "normal_frame_stop": false,
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 34017,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1243,
+      1465,
+      1563,
+      1460,
+      1674,
+      1633,
+      1463,
+      1673,
+      1597
+    ],
+    "position_feedback": null
+  },
+  "audio_closed": true,
+  "user_subsequently_powered_off": true,
+  "automatic_replay_allowed": false,
+  "new_start_review_required": true,
+  "actual_axis_feedback": null,
+  "camera_geometry_changed": true,
+  "old_homography_used": false,
+  "checkpoints": [
+    {
+      "audio_time_s": 0.0021442110009957105,
+      "command_pulses_us": [
+        1470,
+        1212,
+        1425,
+        1514,
+        1416,
+        1740,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988921612167100.jpg",
+          "host_unix_ns": 1791988921612167100,
+          "frame_id": "session-20261014-191050-188828",
+          "age_ms": 27,
+          "sha256": "8c40f5d34c02e3b1b114eeff2dd192d71a5e12ca352a93795da38c2086fa8391",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988921619192800.jpg",
+          "host_unix_ns": 1791988921619192800,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622517",
+          "age_ms": 30,
+          "sha256": "1c08c645c4ab7f55caa280f7d081f79289ce8a60ec3ea20fbbbfce7e1e893a54",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 1.0024494339886587,
+      "command_pulses_us": [
+        1470,
+        1212,
+        1425,
+        1514,
+        1416,
+        1740,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988922536616900.jpg",
+          "host_unix_ns": 1791988922536616900,
+          "frame_id": "session-20261014-191050-188842",
+          "age_ms": 12,
+          "sha256": "73062997656c07c98d655195de2dcac832ab45e9cc006b9e7bfd2226dcd694d5",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988922543897000.jpg",
+          "host_unix_ns": 1791988922543897000,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622531",
+          "age_ms": 31,
+          "sha256": "def5aae1a60fe883897fe7e9562aad5e093c8d0f97309b856db973fb7c402388",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 1.5041514709882904,
+      "command_pulses_us": [
+        1470,
+        1222,
+        1435,
+        1524,
+        1426,
+        1720,
+        1710,
+        1292,
+        1750,
+        1720
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988923043027300.jpg",
+          "host_unix_ns": 1791988923043027300,
+          "frame_id": "session-20261014-191050-188849",
+          "age_ms": 46,
+          "sha256": "e5024e3050043813b5cdacfb61022141d7c67462b9bc899f96f9f3f508015ead",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988923050293300.jpg",
+          "host_unix_ns": 1791988923050293300,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622539",
+          "age_ms": 14,
+          "sha256": "1e637760ae380985c3575b75b1d3f8fbf6e3435a08f1511ecb3593ca511dfcf5",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 1.8074952439928893,
+      "command_pulses_us": [
+        1470,
+        1226,
+        1439,
+        1528,
+        1431,
+        1712,
+        1720,
+        1270,
+        1760,
+        1730
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988923349450000.jpg",
+          "host_unix_ns": 1791988923349450000,
+          "frame_id": "session-20261014-191050-188854",
+          "age_ms": 19,
+          "sha256": "fa1fd81bf97c5c9d0f0a32166ddcb61d4a7b2e79653380f25eec6548992a25cc",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988923347690500.jpg",
+          "host_unix_ns": 1791988923347690500,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622543",
+          "age_ms": 31,
+          "sha256": "e8d1698903657936ea6209f99fa6cabe24166c39c6ef4bd5ba28a06fcd697b2b",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 2.1107899969938444,
+      "command_pulses_us": [
+        1470,
+        1221,
+        1434,
+        1523,
+        1426,
+        1721,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988923657697700.jpg",
+          "host_unix_ns": 1791988923657697700,
+          "frame_id": "session-20261014-191050-188858",
+          "age_ms": 56,
+          "sha256": "e38a4c501269c2e4b25ec397a62c315a4d876a281d372dfbcf07fa25798a97d2",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988923664212200.jpg",
+          "host_unix_ns": 1791988923664212200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622548",
+          "age_ms": 16,
+          "sha256": "314eb38fe6ef71d487ad0f0fff311a4539a39a8986272635e9a7c879fed63287",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 2.6095333739940543,
+      "command_pulses_us": [
+        1470,
+        1212,
+        1425,
+        1514,
+        1416,
+        1740,
+        1692,
+        1330,
+        1732,
+        1702
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988924125341900.jpg",
+          "host_unix_ns": 1791988924125341900,
+          "frame_id": "session-20261014-191050-188865",
+          "age_ms": 54,
+          "sha256": "78f9b96a8325ea4b717744d215cc437fdaf0d79cac03773979914a88b3d75386",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988924113310500.jpg",
+          "host_unix_ns": 1791988924113310500,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622554",
+          "age_ms": 77,
+          "sha256": "7b54b415b76edf1e4eccc3bd35bf14a6abc1aeadf50d4e7ef91eac99b9feeed1",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 2.7195288439979777,
+      "command_pulses_us": [
+        1470,
+        1213,
+        1426,
+        1515,
+        1417,
+        1738,
+        1690,
+        1335,
+        1730,
+        1700
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988924248391300.jpg",
+          "host_unix_ns": 1791988924248391300,
+          "frame_id": "session-20261014-191050-188867",
+          "age_ms": 47,
+          "sha256": "2ada3d1a02c0bf12f25e0a969ab410ab557dab53895554e8e369b3f36469da5a",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988924256108500.jpg",
+          "host_unix_ns": 1791988924256108500,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622557",
+          "age_ms": 16,
+          "sha256": "84ffb14f3618d9ffe0f59237063989257e9c011c9a27cc9ccad67d18944fea3e",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 3.219222271000035,
+      "command_pulses_us": [
+        1470,
+        1229,
+        1442,
+        1531,
+        1435,
+        1706,
+        1716,
+        1280,
+        1756,
+        1726
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988924744905200.jpg",
+          "host_unix_ns": 1791988924744905200,
+          "frame_id": "session-20261014-191050-188875",
+          "age_ms": 9,
+          "sha256": "e962accb7251d66616f06e863f7432f5fb9f7e065f367597acf682dab1dff060",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988924751945600.jpg",
+          "host_unix_ns": 1791988924751945600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622564",
+          "age_ms": 46,
+          "sha256": "997b1828f5ade19091090296dd43526bcdf8475ed2863382ceeddc0abdc8b3b4",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 3.5038536270003533,
+      "command_pulses_us": [
+        1470,
+        1234,
+        1447,
+        1536,
+        1440,
+        1696,
+        1710,
+        1292,
+        1750,
+        1720
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988925071688600.jpg",
+          "host_unix_ns": 1791988925071688600,
+          "frame_id": "session-20261014-191050-188879",
+          "age_ms": 56,
+          "sha256": "ae480c9a7aacc60bfceb6e66788745a38c90056897f031a52867aab64c502552",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988925060341600.jpg",
+          "host_unix_ns": 1791988925060341600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622569",
+          "age_ms": 0,
+          "sha256": "c952744244eac5759eeac801cd5c7e813134a97069801d47561ea0278644f8f1",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 3.8068022359948372,
+      "command_pulses_us": [
+        1470,
+        1240,
+        1453,
+        1542,
+        1446,
+        1684,
+        1718,
+        1276,
+        1758,
+        1728
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988925367568800.jpg",
+          "host_unix_ns": 1791988925367568800,
+          "frame_id": "session-20261014-191050-188884",
+          "age_ms": 26,
+          "sha256": "c3a256bb3c0e84d7acb0f451e6f7c69f9a8530da7d432beb0f509bc07c8140c0",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988925366063600.jpg",
+          "host_unix_ns": 1791988925366063600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622573",
+          "age_ms": 46,
+          "sha256": "5080528a052c0989f8bb51eb6c8f0ff71ee941d91c4aa46540b3bf73efc93e21",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 4.305592293996597,
+      "command_pulses_us": [
+        1470,
+        1252,
+        1465,
+        1554,
+        1460,
+        1660,
+        1630,
+        1535,
+        1670,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988925807185000.jpg",
+          "host_unix_ns": 1791988925807185000,
+          "frame_id": "session-20261014-191050-188890",
+          "age_ms": 62,
+          "sha256": "da29f42549007c76a281fe3b3b87899a2a7f066c08a992e5468d5428159ddac8",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988925814801600.jpg",
+          "host_unix_ns": 1791988925814801600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622580",
+          "age_ms": 46,
+          "sha256": "062f67577bd8876a60eef38fca7a92616e19ce56fe32841e1254210571ce5c4e",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 5.10834605099808,
+      "command_pulses_us": [
+        1530,
+        1272,
+        1485,
+        1554,
+        1440,
+        1650,
+        1570,
+        1695,
+        1610,
+        1440
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988926689326100.jpg",
+          "host_unix_ns": 1791988926689326100,
+          "frame_id": "session-20261014-191050-188904",
+          "age_ms": 5,
+          "sha256": "94caf7793d4aad575f9d6fae124bc52d2c38f463f9d9edfb603100538924f98a",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988926687070200.jpg",
+          "host_unix_ns": 1791988926687070200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622593",
+          "age_ms": 31,
+          "sha256": "8322a33057674ba96cc19038e6c3e921f47107c52cb49d38bd4eccc8096bdb4c",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 5.414040288000251,
+      "command_pulses_us": [
+        1514,
+        1256,
+        1480,
+        1565,
+        1445,
+        1669,
+        1570,
+        1695,
+        1610,
+        1440
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988926925516200.jpg",
+          "host_unix_ns": 1791988926925516200,
+          "frame_id": "session-20261014-191050-188907",
+          "age_ms": 39,
+          "sha256": "3167884421e976c1abc7a054f59e3447a12c17a4588368f1f3cba57a55d8427a",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988926923260700.jpg",
+          "host_unix_ns": 1791988926923260700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622597",
+          "age_ms": 14,
+          "sha256": "4c7c538d2bac7e4ae19821293da345cdfcb0029ef5871f31b4b4a433fe056111",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 6.001633933992707,
+      "command_pulses_us": [
+        1470,
+        1212,
+        1465,
+        1594,
+        1460,
+        1720,
+        1513,
+        1295,
+        1553,
+        1440
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988927535906000.jpg",
+          "host_unix_ns": 1791988927535906000,
+          "frame_id": "session-20261014-191050-188916",
+          "age_ms": 45,
+          "sha256": "fe5c3da50d453333909cbc6ea75ba420535418b9ce72170777352ad255ac877b",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988927533655000.jpg",
+          "host_unix_ns": 1791988927533655000,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622606",
+          "age_ms": 31,
+          "sha256": "e9df7839e81e371bd7ed33819c4296a939f552b996673f3697f233a7466804de",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 6.108779494999908,
+      "command_pulses_us": [
+        1470,
+        1213,
+        1466,
+        1593,
+        1463,
+        1715,
+        1510,
+        1275,
+        1550,
+        1440
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988927651691700.jpg",
+          "host_unix_ns": 1791988927651691700,
+          "frame_id": "session-20261014-191050-188918",
+          "age_ms": 30,
+          "sha256": "1cdbfa40cf5259efd4821d4451f18b8afccccfe803c65d47749b85d902fcc9f6",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988927658708300.jpg",
+          "host_unix_ns": 1791988927658708300,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622608",
+          "age_ms": 16,
+          "sha256": "6158c7f7fee7587c8ba1b0f967816eef0cca0ca2d5c73cd764f82d8db237bad3",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 6.803873455995927,
+      "command_pulses_us": [
+        1470,
+        1251,
+        1484,
+        1555,
+        1538,
+        1584,
+        1690,
+        1250,
+        1730,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988928346779100.jpg",
+          "host_unix_ns": 1791988928346779100,
+          "frame_id": "session-20261014-191050-188928",
+          "age_ms": 53,
+          "sha256": "e24e03fd619c87f129cb7af6547465a5d8a2d1d4e234352acf88ac4b0edca3e0",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988928343777800.jpg",
+          "host_unix_ns": 1791988928343777800,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622618",
+          "age_ms": 31,
+          "sha256": "3338bb93d2da20a35c1a9fd77ef2e940914c10bc596ed2f14d1805b0617992ea",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 6.911186748999171,
+      "command_pulses_us": [
+        1470,
+        1252,
+        1485,
+        1554,
+        1540,
+        1580,
+        1690,
+        1253,
+        1730,
+        1739
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988928412687600.jpg",
+          "host_unix_ns": 1791988928412687600,
+          "frame_id": "session-20261014-191050-188929",
+          "age_ms": 46,
+          "sha256": "4fc381bef653adc8cec117a793dc2c1d253ea66f6ee4a1650dff63600fd4cc9c",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988928409253200.jpg",
+          "host_unix_ns": 1791988928409253200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622619",
+          "age_ms": 31,
+          "sha256": "885d48f691630479e04ba5b8c5836a87a1dbbffef3440c5726f32cbe2e6a57c5",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 7.7153116400004365,
+      "command_pulses_us": [
+        1470,
+        1252,
+        1465,
+        1554,
+        1460,
+        1660,
+        1690,
+        1335,
+        1730,
+        1700
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988929285538400.jpg",
+          "host_unix_ns": 1791988929285538400,
+          "frame_id": "session-20261014-191050-188942",
+          "age_ms": 45,
+          "sha256": "f0dd7400e973c43c0b19b68c39a0a0c51417eef47cd91f755a913e02e4173c8a",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988929282528700.jpg",
+          "host_unix_ns": 1791988929282528700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622632",
+          "age_ms": 47,
+          "sha256": "26e913f41b1b1c89389dd103cfb81f4d93b665f4e3348071eb267107b1bce3b2",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 8.520140127991908,
+      "command_pulses_us": [
+        1470,
+        1240,
+        1465,
+        1566,
+        1460,
+        1678,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988930088410900.jpg",
+          "host_unix_ns": 1791988930088410900,
+          "frame_id": "session-20261014-191050-188954",
+          "age_ms": 52,
+          "sha256": "c9f21de29c7b6bf4643f6af8c49ee7d8cac23519e665545df489d995db0beda1",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988930085158400.jpg",
+          "host_unix_ns": 1791988930085158400,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622644",
+          "age_ms": 31,
+          "sha256": "ead922827b1755a7751feb9a5c4dc1d3e5ed9a9cef212c2c4a5f08bf0875e4bb",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 8.605906244993093,
+      "command_pulses_us": [
+        1470,
+        1240,
+        1465,
+        1566,
+        1460,
+        1678,
+        1730,
+        1251,
+        1770,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988930148613700.jpg",
+          "host_unix_ns": 1791988930148613700,
+          "frame_id": "session-20261014-191050-188955",
+          "age_ms": 46,
+          "sha256": "2fa29835c04c872469f0eeaa21b449be4ac023a210ecd94f4ce31b682e801b91",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988930156186700.jpg",
+          "host_unix_ns": 1791988930156186700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622645",
+          "age_ms": 31,
+          "sha256": "ecedf260159a84a2a86f4f526a930740169752973d193c6380a628733000952a",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 9.212527130992385,
+      "command_pulses_us": [
+        1470,
+        1213,
+        1427,
+        1516,
+        1418,
+        1738,
+        1722,
+        1267,
+        1762,
+        1732
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988930769282700.jpg",
+          "host_unix_ns": 1791988930769282700,
+          "frame_id": "session-20261014-191050-188964",
+          "age_ms": 62,
+          "sha256": "3a65413ff1e76b1cb37686475c5e2d461cea4bdaf0ae4c6499c4686a65237d42",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988930766772400.jpg",
+          "host_unix_ns": 1791988930766772400,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622654",
+          "age_ms": 46,
+          "sha256": "ed2d686899df64fcf4e19efaf0ec0f922b329f62a6da44e50d4c3dee26e72eea",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 9.301021925988607,
+      "command_pulses_us": [
+        1470,
+        1212,
+        1425,
+        1514,
+        1416,
+        1740,
+        1722,
+        1266,
+        1762,
+        1732
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988930843237700.jpg",
+          "host_unix_ns": 1791988930843237700,
+          "frame_id": "session-20261014-191050-188966",
+          "age_ms": 3,
+          "sha256": "aaad3b5ba043ff1f6d7329978126f51bb260b76b5a12cc91e9d9a5e8b2e6f8d7",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988930841186000.jpg",
+          "host_unix_ns": 1791988930841186000,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622655",
+          "age_ms": 46,
+          "sha256": "35c51f9681cacc4589c5a0b83578af397310362ccb31afc2e4f74b4297cf0aeb",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 10.014446339991991,
+      "command_pulses_us": [
+        1470,
+        1212,
+        1425,
+        1514,
+        1416,
+        1740,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988931563604100.jpg",
+          "host_unix_ns": 1791988931563604100,
+          "frame_id": "session-20261014-191050-188976",
+          "age_ms": 50,
+          "sha256": "72a1926934b91da85908fac9a709b110a90545fce641a85bba2b47292b58ea3f",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988931571313500.jpg",
+          "host_unix_ns": 1791988931571313500,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622666",
+          "age_ms": 61,
+          "sha256": "9ccfc676896e25e7b8e6842a6698061d35d1f508dbf68f7e82fa9931beb93328",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 10.804064615993411,
+      "command_pulses_us": [
+        1470,
+        1252,
+        1465,
+        1554,
+        1460,
+        1660,
+        1694,
+        1327,
+        1734,
+        1704
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988932369129900.jpg",
+          "host_unix_ns": 1791988932369129900,
+          "frame_id": "session-20261014-191050-188988",
+          "age_ms": 45,
+          "sha256": "25aa1d21b15b9db2df8baf05a7121459750313e214e4cc60b40471f2cba47960",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988932376210700.jpg",
+          "host_unix_ns": 1791988932376210700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622678",
+          "age_ms": 63,
+          "sha256": "75d0ed40c1f23dd9e4608a9b0d2906490d41252a90cb523c2afc1f1bcb84c45b",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 11.002493380001397,
+      "command_pulses_us": [
+        1476,
+        1254,
+        1467,
+        1554,
+        1458,
+        1659,
+        1690,
+        1335,
+        1730,
+        1700
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988932519212700.jpg",
+          "host_unix_ns": 1791988932519212700,
+          "frame_id": "session-20261014-191050-188990",
+          "age_ms": 60,
+          "sha256": "f797c27903ebea4c8545170c60864ba2e0f02ff42857f1965987dffb4a8679e2",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988932515193400.jpg",
+          "host_unix_ns": 1791988932515193400,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622680",
+          "age_ms": 63,
+          "sha256": "7ec853dbfd380ca55b067efc4a02ba1caf3e65302c16bea07ac5a92d25502189",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 11.806812822993379,
+      "command_pulses_us": [
+        1530,
+        1272,
+        1485,
+        1554,
+        1440,
+        1650,
+        1726,
+        1258,
+        1766,
+        1736
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988933321837200.jpg",
+          "host_unix_ns": 1791988933321837200,
+          "frame_id": "session-20261014-191050-189002",
+          "age_ms": 61,
+          "sha256": "a1a61f20c9e12dbe98072c4aa9032a061d8e7418989c32c038c0df0c7b4bacb4",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988933319328100.jpg",
+          "host_unix_ns": 1791988933319328100,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622693",
+          "age_ms": 0,
+          "sha256": "db026764119cf54080ce90f25d306df0b39f7517f6e103de008698144bc0b952",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 12.002930784001364,
+      "command_pulses_us": [
+        1524,
+        1270,
+        1483,
+        1554,
+        1442,
+        1651,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988933516112900.jpg",
+          "host_unix_ns": 1791988933516112900,
+          "frame_id": "session-20261014-191050-189005",
+          "age_ms": 54,
+          "sha256": "12b9a34fe0e8bd423f3c3188b88891be82f20b3ba10fb41d125dad3237fa5b1d",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988933512530500.jpg",
+          "host_unix_ns": 1791988933512530500,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622695",
+          "age_ms": 63,
+          "sha256": "b81af5b012ff65aa32efd08363812f9b107049bc3f2783c7ad78e4f510f97c54",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 12.807005063994438,
+      "command_pulses_us": [
+        1470,
+        1252,
+        1465,
+        1554,
+        1460,
+        1660,
+        1712,
+        1288,
+        1752,
+        1722
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988934314648800.jpg",
+          "host_unix_ns": 1791988934314648800,
+          "frame_id": "session-20261014-191050-189017",
+          "age_ms": 46,
+          "sha256": "e16513269ce27f3e2e0d4c04ae2e29c7844994f2c1bc419d86211d043a80bf83",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988934313148800.jpg",
+          "host_unix_ns": 1791988934313148800,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622707",
+          "age_ms": 46,
+          "sha256": "d5a34d1a4a88942a377b5deb0a4feb70f94b33febd2088861399347334a888c3",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 13.002665850988706,
+      "command_pulses_us": [
+        1470,
+        1258,
+        1465,
+        1552,
+        1460,
+        1652,
+        1710,
+        1292,
+        1750,
+        1720
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988934566568700.jpg",
+          "host_unix_ns": 1791988934566568700,
+          "frame_id": "session-20261014-191050-189021",
+          "age_ms": 34,
+          "sha256": "2abb63130717d947de7c6e4fabd8dee3d45fd271464248b367ddfa2ef620e39a",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988934552178200.jpg",
+          "host_unix_ns": 1791988934552178200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622711",
+          "age_ms": 46,
+          "sha256": "de1da544bd090c4ef67140a1046e2c23ca8581369043929e3c920b7fe464e6cb",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 13.413377697987016,
+      "command_pulses_us": [
+        1470,
+        1292,
+        1465,
+        1541,
+        1460,
+        1606,
+        1718,
+        1276,
+        1758,
+        1728
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988934994848400.jpg",
+          "host_unix_ns": 1791988934994848400,
+          "frame_id": "session-20261014-191050-189027",
+          "age_ms": 58,
+          "sha256": "7770bd7ff5bc8c149f9aa27eafbfc8c912f03f79c1fd309f9182b90d4685f024",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988934991586000.jpg",
+          "host_unix_ns": 1791988934991586000,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622718",
+          "age_ms": 15,
+          "sha256": "798aa5c01c1726816b34ef1b5774bc2e247b4e014c4ca1484dc8a0c8594c130e",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 13.805329336988507,
+      "command_pulses_us": [
+        1470,
+        1312,
+        1465,
+        1534,
+        1460,
+        1580,
+        1706,
+        1301,
+        1746,
+        1716
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988935369033200.jpg",
+          "host_unix_ns": 1791988935369033200,
+          "frame_id": "session-20261014-191050-189033",
+          "age_ms": 36,
+          "sha256": "93e8c5d48fedc21211ba35a30936db11ec54d2190efd650938c9507ed10754a6",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988935367206200.jpg",
+          "host_unix_ns": 1791988935367206200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622723",
+          "age_ms": 46,
+          "sha256": "7d256cbaf432b73694268a8f8eac6085c2b7a8d513bc0cb056f9d0a68abef456",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 14.501363146991935,
+      "command_pulses_us": [
+        1470,
+        1232,
+        1465,
+        1582,
+        1460,
+        1691,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988936039468200.jpg",
+          "host_unix_ns": 1791988936039468200,
+          "frame_id": "session-20261014-191050-189043",
+          "age_ms": 31,
+          "sha256": "fc1e0ac0c57ee9053d72e58f4d9d2d7f84acbdae1797dc93f3e61a321a421a08",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988936037208800.jpg",
+          "host_unix_ns": 1791988936037208800,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622733",
+          "age_ms": 47,
+          "sha256": "8d3b097e08eed0749825e7def8bdee01b53980b3c4e6b53dac80486cd84ca5cd",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 14.806781651001074,
+      "command_pulses_us": [
+        1470,
+        1212,
+        1465,
+        1594,
+        1460,
+        1720,
+        1726,
+        1258,
+        1766,
+        1736
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988936356702300.jpg",
+          "host_unix_ns": 1791988936356702300,
+          "frame_id": "session-20261014-191050-189048",
+          "age_ms": 14,
+          "sha256": "71287779eaf7bfdb02428ac9618d49045befaa670e0635cc159d8c1cfbc1a97b",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988936353700900.jpg",
+          "host_unix_ns": 1791988936353700900,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622738",
+          "age_ms": 31,
+          "sha256": "bf1cd09c7342df84e132a7be555cb03b3e2954486fc46446a730d154efdd558b",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 16.00246259800042,
+      "command_pulses_us": [
+        1530,
+        1272,
+        1485,
+        1554,
+        1440,
+        1650,
+        1690,
+        1335,
+        1730,
+        1700
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988937532290900.jpg",
+          "host_unix_ns": 1791988937532290900,
+          "frame_id": "session-20261014-191050-189065",
+          "age_ms": 52,
+          "sha256": "f4d14d84403a472406ed2d826eff8395bff285db67cbe1dd1deead65597036e1",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988937539311700.jpg",
+          "host_unix_ns": 1791988937539311700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622756",
+          "age_ms": 31,
+          "sha256": "ffb12ea3d31074803f1ed42f732d48173a032ff6ed15e2081bde261918fc8ef3",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 17.00030338599754,
+      "command_pulses_us": [
+        1470,
+        1252,
+        1465,
+        1554,
+        1460,
+        1660,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988938547067200.jpg",
+          "host_unix_ns": 1791988938547067200,
+          "frame_id": "session-20261014-191050-189080",
+          "age_ms": 61,
+          "sha256": "088e8f8decc81ded675cbb8e40be9af9ae03bfcbfc66c519bdcef36dd7704296",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988938545571100.jpg",
+          "host_unix_ns": 1791988938545571100,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622771",
+          "age_ms": 31,
+          "sha256": "87bb11ec995ba9032f53d00e17bfc700a037a24aa98bd3640b8b9dd4aec588db",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 18.019650039001135,
+      "command_pulses_us": [
+        1470,
+        1252,
+        1485,
+        1554,
+        1540,
+        1580,
+        1720,
+        1271,
+        1760,
+        1730
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988939593053600.jpg",
+          "host_unix_ns": 1791988939593053600,
+          "frame_id": "session-20261014-191050-189096",
+          "age_ms": 34,
+          "sha256": "0bbb86ff2bbc23c5aed6ffbc2516f5251206be0b93d94753eba7ecb9b846883f",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988939580523900.jpg",
+          "host_unix_ns": 1791988939580523900,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622786",
+          "age_ms": 78,
+          "sha256": "2f2f00b966fc7e8ed74f5bab97a80a474838230e1fd5a9355411a79f08dbf078",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 19.019759418995818,
+      "command_pulses_us": [
+        1470,
+        1252,
+        1465,
+        1554,
+        1460,
+        1660,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988940545968100.jpg",
+          "host_unix_ns": 1791988940545968100,
+          "frame_id": "session-20261014-191050-189110",
+          "age_ms": 46,
+          "sha256": "76ca7406fa5d63d2197c25ae1ac23970b24a650876a395fff0fe5b066015b8df",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988940543711100.jpg",
+          "host_unix_ns": 1791988940543711100,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622801",
+          "age_ms": 31,
+          "sha256": "85c879fd6ec5caa7ae90dc0c981bf8786bd53240033de9c5a00ca1e168e533ea",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 20.015525536990026,
+      "command_pulses_us": [
+        1470,
+        1312,
+        1465,
+        1534,
+        1460,
+        1580,
+        1712,
+        1288,
+        1752,
+        1722
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988941563801700.jpg",
+          "host_unix_ns": 1791988941563801700,
+          "frame_id": "session-20261014-191050-189125",
+          "age_ms": 54,
+          "sha256": "639297d43e72b29d644896dba29b2492657a40eb3620f9e0daf505b49625287c",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988941560777700.jpg",
+          "host_unix_ns": 1791988941560777700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622816",
+          "age_ms": 46,
+          "sha256": "3900d22587aa33e6780baaac0f127369281d241d417e433787e2292644d697cb",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 21.013475465995725,
+      "command_pulses_us": [
+        1470,
+        1212,
+        1465,
+        1594,
+        1460,
+        1720,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988942574778700.jpg",
+          "host_unix_ns": 1791988942574778700,
+          "frame_id": "session-20261014-191050-189140",
+          "age_ms": 64,
+          "sha256": "9c4ea39edd997adfd759df5a4bc376044428accf400e00bf6713ae6b3d0df487",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988942570995700.jpg",
+          "host_unix_ns": 1791988942570995700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622831",
+          "age_ms": 46,
+          "sha256": "d494dd306af6fca50b0ae156d1f4f3e7adb06cc863eddb1809114ac71158503f",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 22.01133332400059,
+      "command_pulses_us": [
+        1530,
+        1272,
+        1485,
+        1554,
+        1440,
+        1650,
+        1690,
+        1335,
+        1730,
+        1700
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988943509047200.jpg",
+          "host_unix_ns": 1791988943509047200,
+          "frame_id": "session-20261014-191050-189154",
+          "age_ms": 54,
+          "sha256": "e9a63f1f1616c8f17adbf39331270b0e80f4288bf2fa663c1af77001f82e8f0e",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988943507284900.jpg",
+          "host_unix_ns": 1791988943507284900,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622845",
+          "age_ms": 63,
+          "sha256": "e8bec0dbded767467ad8dee66971f412e4f7ef4f95a5cf00b5d07af288ce8675",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 23.009758577987668,
+      "command_pulses_us": [
+        1470,
+        1252,
+        1465,
+        1554,
+        1460,
+        1660,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988944508698900.jpg",
+          "host_unix_ns": 1791988944508698900,
+          "frame_id": "session-20261014-191050-189169",
+          "age_ms": 47,
+          "sha256": "8857e7e4d0e9ae005350421906a26d96797ee9970a9df3255441fb6d4fae54e1",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988944569099200.jpg",
+          "host_unix_ns": 1791988944569099200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622861",
+          "age_ms": 61,
+          "sha256": "1b51520ab7829efe7653dc49a9a021a32a10168dc5037eb9631d7e38b08900c3",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 24.009958018999896,
+      "command_pulses_us": [
+        1470,
+        1212,
+        1465,
+        1594,
+        1460,
+        1720,
+        1690,
+        1335,
+        1730,
+        1700
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988945518626500.jpg",
+          "host_unix_ns": 1791988945518626500,
+          "frame_id": "session-20261014-191050-189184",
+          "age_ms": 59,
+          "sha256": "e120fa6fd6f684ac5b414348f62d787c1f7270d2ad8ea5d6e3f4abc82df69b3f",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988945516369300.jpg",
+          "host_unix_ns": 1791988945516369300,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622876",
+          "age_ms": 14,
+          "sha256": "79aad50fb9f99d4a1dce2d81238da7e9b50088d497cfcb7496b77a6fceb3b839",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 25.009503153996775,
+      "command_pulses_us": [
+        1530,
+        1272,
+        1485,
+        1554,
+        1440,
+        1650,
+        1690,
+        1250,
+        1730,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988946515751100.jpg",
+          "host_unix_ns": 1791988946515751100,
+          "frame_id": "session-20261014-191050-189199",
+          "age_ms": 51,
+          "sha256": "f17917a896545abb2046c6568d8766f4049e63ca656e312f18d99863030814b3",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988946503884000.jpg",
+          "host_unix_ns": 1791988946503884000,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622890",
+          "age_ms": 63,
+          "sha256": "ae178e8f7c601c2942d72675c2c67e96bedac69ac9c342c048232447004aa8d5",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 26.006942447987967,
+      "command_pulses_us": [
+        1470,
+        1252,
+        1465,
+        1554,
+        1460,
+        1660,
+        1690,
+        1335,
+        1730,
+        1700
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988947540436200.jpg",
+          "host_unix_ns": 1791988947540436200,
+          "frame_id": "session-20261014-191050-189214",
+          "age_ms": 65,
+          "sha256": "3f44cc4b0b90b2b4944f6444263f2edcc81c9f1219dd5899126d3aa36aa36a91",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988947527601600.jpg",
+          "host_unix_ns": 1791988947527601600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622906",
+          "age_ms": 14,
+          "sha256": "17a85f3b67b259145530a78cb341e60fa14e5139a4c42c6a478eb54188c6a1d1",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 27.00401189799595,
+      "command_pulses_us": [
+        1470,
+        1212,
+        1465,
+        1594,
+        1460,
+        1720,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988948562366800.jpg",
+          "host_unix_ns": 1791988948562366800,
+          "frame_id": "session-20261014-191050-189230",
+          "age_ms": 12,
+          "sha256": "3c2625800d80b428ea412868e806c270c3ccf74fbd9a4e9edaaa9fd0c4e806cc",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988948570749300.jpg",
+          "host_unix_ns": 1791988948570749300,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622921",
+          "age_ms": 61,
+          "sha256": "9989b31798dfd96f4f3a98cee3d11f4964aa44e228139d0a50b37d7ef33e2a1d",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 28.000881426996784,
+      "command_pulses_us": [
+        1530,
+        1272,
+        1485,
+        1554,
+        1440,
+        1650,
+        1690,
+        1250,
+        1730,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988949534998000.jpg",
+          "host_unix_ns": 1791988949534998000,
+          "frame_id": "session-20261014-191050-189244",
+          "age_ms": 45,
+          "sha256": "d6da0e18108a74e9ad1d82a1ca9108504477dd792df9ed4100786b638dea73ba",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988949532743200.jpg",
+          "host_unix_ns": 1791988949532743200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622936",
+          "age_ms": 31,
+          "sha256": "f59499a7bcb9ef1a475feef249c7c2bfcad379042ee01c8a5cfbadefb695f1a6",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 29.01960347298882,
+      "command_pulses_us": [
+        1530,
+        1272,
+        1485,
+        1554,
+        1440,
+        1650,
+        1690,
+        1251,
+        1730,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988950560200000.jpg",
+          "host_unix_ns": 1791988950560200000,
+          "frame_id": "session-20261014-191050-189259",
+          "age_ms": 68,
+          "sha256": "638850e0567e445ca89f693d52ebfb5533590e0f845f46278bf735e8340d2851",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988950557183700.jpg",
+          "host_unix_ns": 1791988950557183700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622951",
+          "age_ms": 31,
+          "sha256": "3a466fdd9051f6f9252f90991b67cb3cefe22f0e3bcd6a26bd36c7acdee2ccf9",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 29.66815610899357,
+      "command_pulses_us": [
+        1474,
+        1365,
+        1466,
+        1517,
+        1459,
+        1510,
+        1630,
+        1536,
+        1670,
+        1639
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988951217150800.jpg",
+          "host_unix_ns": 1791988951217150800,
+          "frame_id": "session-20261014-191050-189269",
+          "age_ms": 50,
+          "sha256": "836089a6af4e0ba0b8a45b15c2830167c41ae1cf2f77740af369b4c67c26c914",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988951225695600.jpg",
+          "host_unix_ns": 1791988951225695600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622961",
+          "age_ms": 46,
+          "sha256": "3fe27206214114e4174a030dede3b15ea335aeb3ad3e63968ddbef5f57ec79c3",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 29.821152869000798,
+      "command_pulses_us": [
+        1470,
+        1372,
+        1465,
+        1514,
+        1460,
+        1500,
+        1607,
+        1597,
+        1647,
+        1562
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988951355657300.jpg",
+          "host_unix_ns": 1791988951355657300,
+          "frame_id": "session-20261014-191050-189271",
+          "age_ms": 55,
+          "sha256": "41ffd7a2e6228879b1179c995905962359597cdbc1b68d837f8b76fda0d9cf51",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988951354131900.jpg",
+          "host_unix_ns": 1791988951354131900,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622963",
+          "age_ms": 46,
+          "sha256": "62f48d5b975d4eca7aa13f94dc4849247c28c0f3fd0ea15b7df3cc969ad5d241",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 30.0594960419985,
+      "command_pulses_us": [
+        1470,
+        1334,
+        1465,
+        1533,
+        1460,
+        1552,
+        1570,
+        1695,
+        1610,
+        1440
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988951606707500.jpg",
+          "host_unix_ns": 1791988951606707500,
+          "frame_id": "session-20261014-191050-189275",
+          "age_ms": 38,
+          "sha256": "a9d364b650cb317120f4cdec03d784b2c0c503c72f813c0e9450dfd22fa83c36",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988951605205700.jpg",
+          "host_unix_ns": 1791988951605205700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622967",
+          "age_ms": 14,
+          "sha256": "b314eed9b6a03f5fc0ce2cb0a1f6de14beaa07af5d92163cc08346e2e6a2415a",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 30.601001577000716,
+      "command_pulses_us": [
+        1470,
+        1212,
+        1465,
+        1594,
+        1460,
+        1720,
+        1513,
+        1299,
+        1553,
+        1440
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988952163658300.jpg",
+          "host_unix_ns": 1791988952163658300,
+          "frame_id": "session-20261014-191050-189283",
+          "age_ms": 59,
+          "sha256": "21147153f12d5faa807ed23703d084c3d3880a9178aece0dcd9e70cfeb274e51",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988952152469100.jpg",
+          "host_unix_ns": 1791988952152469100,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622975",
+          "age_ms": 31,
+          "sha256": "223f04b4ddad1b228573ccd724db5438221253b48f36a730f45460c319da508a",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 30.708209838994662,
+      "command_pulses_us": [
+        1470,
+        1214,
+        1466,
+        1592,
+        1465,
+        1712,
+        1510,
+        1275,
+        1550,
+        1440
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988952232204500.jpg",
+          "host_unix_ns": 1791988952232204500,
+          "frame_id": "session-20261014-191050-189284",
+          "age_ms": 60,
+          "sha256": "46790c6ef5990474ae94b15a9d73a870902950f74633a86d0e9ddfd8be6093c0",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988952229432800.jpg",
+          "host_unix_ns": 1791988952229432800,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622976",
+          "age_ms": 46,
+          "sha256": "448eac2888034ca47eb14c4e054f637dcba4124e45104a30d3f9e16e802256ea",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 31.31381836500077,
+      "command_pulses_us": [
+        1470,
+        1252,
+        1485,
+        1554,
+        1540,
+        1580,
+        1689,
+        1250,
+        1729,
+        1738
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988952819227200.jpg",
+          "host_unix_ns": 1791988952819227200,
+          "frame_id": "session-20261014-191050-189293",
+          "age_ms": 42,
+          "sha256": "8d413e865f55cc6b257af38a99113141027e53050eb7dfe7d579d5103575e671",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988952873338700.jpg",
+          "host_unix_ns": 1791988952873338700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622986",
+          "age_ms": 15,
+          "sha256": "88dc15817b94c75a99cbd97664df8c22dd887fb3d71f5f46dc7034652b39e898",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 31.35926497899345,
+      "command_pulses_us": [
+        1471,
+        1252,
+        1485,
+        1554,
+        1538,
+        1581,
+        1690,
+        1250,
+        1730,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988952936087100.jpg",
+          "host_unix_ns": 1791988952936087100,
+          "frame_id": "session-20261014-191050-189295",
+          "age_ms": 22,
+          "sha256": "1c674ae36639427c68ccd1aa6cfe668477b9718f2a03575f71d931da9bff0e13",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988952873338700.jpg",
+          "host_unix_ns": 1791988952873338700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622986",
+          "age_ms": 15,
+          "sha256": "88dc15817b94c75a99cbd97664df8c22dd887fb3d71f5f46dc7034652b39e898",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 32.00840027999948,
+      "command_pulses_us": [
+        1530,
+        1272,
+        1485,
+        1554,
+        1440,
+        1650,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988953557341500.jpg",
+          "host_unix_ns": 1791988953557341500,
+          "frame_id": "session-20261014-191050-189304",
+          "age_ms": 40,
+          "sha256": "f2fb3c25ab9fb2ca031bdc22fa5dde9eddaaf4a83a2029298e87f6e13b063b89",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988953555089800.jpg",
+          "host_unix_ns": 1791988953555089800,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-622996",
+          "age_ms": 46,
+          "sha256": "c6b0b4a3054ea843306fc594b10fe7cc94f0e72ab3265e02c07a3dc5127df36f",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 32.61391919499147,
+      "command_pulses_us": [
+        1489,
+        1258,
+        1471,
+        1554,
+        1454,
+        1657,
+        1690,
+        1335,
+        1730,
+        1700
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988954154830800.jpg",
+          "host_unix_ns": 1791988954154830800,
+          "frame_id": "session-20261014-191050-189313",
+          "age_ms": 37,
+          "sha256": "f14ad1ada316cd0008d3d5bcea07abd827f93511ae1ae76c2c90a91a49f94b44",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988954152321900.jpg",
+          "host_unix_ns": 1791988954152321900,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-623005",
+          "age_ms": 31,
+          "sha256": "cc6cdbbf61ad2b326a432894d71d8918e0f094b8bd7fa45f96829d329ffbee47",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 33.00541297000018,
+      "command_pulses_us": [
+        1470,
+        1252,
+        1465,
+        1554,
+        1460,
+        1660,
+        1716,
+        1281,
+        1756,
+        1726
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988954512236500.jpg",
+          "host_unix_ns": 1791988954512236500,
+          "frame_id": "session-20261014-191050-189318",
+          "age_ms": 55,
+          "sha256": "992fbb11280f9d11af54c61093846c35b4b67dd9a0d0ca16f0177cc5e8975d41",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988954510731200.jpg",
+          "host_unix_ns": 1791988954510731200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-623011",
+          "age_ms": 0,
+          "sha256": "4463530899e176436fffddfd9f81904ed07549261fa830eb827c8e322148cf07",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 33.11248365099891,
+      "command_pulses_us": [
+        1472,
+        1253,
+        1466,
+        1554,
+        1459,
+        1660,
+        1718,
+        1276,
+        1758,
+        1728
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988954649326600.jpg",
+          "host_unix_ns": 1791988954649326600,
+          "frame_id": "session-20261014-191050-189320",
+          "age_ms": 56,
+          "sha256": "843e79486acc9f0e7ba59e7c1d974b0c6cb3dd6bf95eec12a249b7067816771d",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988954646812900.jpg",
+          "host_unix_ns": 1791988954646812900,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-623012",
+          "age_ms": 61,
+          "sha256": "5c397a1bec21ffee5bbc9ff904fcac1593b99e1a6c882cf4a244c3ed192286a5",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 33.415236447995994,
+      "command_pulses_us": [
+        1492,
+        1259,
+        1472,
+        1554,
+        1453,
+        1656,
+        1710,
+        1292,
+        1750,
+        1720
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988954961016700.jpg",
+          "host_unix_ns": 1791988954961016700,
+          "frame_id": "session-20261014-191050-189325",
+          "age_ms": 40,
+          "sha256": "429981661f658ff50b946ff55f2783dcc5ea235d0a24944cc06ece9d8d035a9f",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988954959229200.jpg",
+          "host_unix_ns": 1791988954959229200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-623017",
+          "age_ms": 46,
+          "sha256": "5c80179f1fd73095b69b81f791096bc823c4e21d20eeed4c4c616bc081c58368",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 33.72110375599004,
+      "command_pulses_us": [
+        1519,
+        1268,
+        1481,
+        1554,
+        1444,
+        1652,
+        1718,
+        1276,
+        1758,
+        1728
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988955263377800.jpg",
+          "host_unix_ns": 1791988955263377800,
+          "frame_id": "session-20261014-191050-189330",
+          "age_ms": 6,
+          "sha256": "e6579c4391e75d18bfc70026357ce8f55ef638c9565db7a4c4bd2a3a43068c97",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988955260547900.jpg",
+          "host_unix_ns": 1791988955260547900,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-623022",
+          "age_ms": 16,
+          "sha256": "1c897a2495345af838810428cf40fdc2ee3cf939246d1edfcd8c5440bf9ad3a1",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 34.002626661997056,
+      "command_pulses_us": [
+        1530,
+        1272,
+        1485,
+        1554,
+        1440,
+        1650,
+        1723,
+        1266,
+        1763,
+        1733
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988955575397300.jpg",
+          "host_unix_ns": 1791988955575397300,
+          "frame_id": "session-20261014-191050-189334",
+          "age_ms": 50,
+          "sha256": "4bcd68ce034c274abcdb896f770076222c60cfe962af43552a6593b3741c5b83",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988955582943900.jpg",
+          "host_unix_ns": 1791988955582943900,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-623026",
+          "age_ms": 78,
+          "sha256": "956abe4771981c173d73fcae5d10384a296271be89cd583083276c83c47f0d21",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 34.4124645999982,
+      "command_pulses_us": [
+        1508,
+        1265,
+        1478,
+        1554,
+        1447,
+        1654,
+        1730,
+        1250,
+        1770,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988955959319400.jpg",
+          "host_unix_ns": 1791988955959319400,
+          "frame_id": "session-20261014-191050-189340",
+          "age_ms": 37,
+          "sha256": "c4443cced5a6d2339a89157be20f24692908086cfe675d8837ab5b78638c2c38",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988955958547900.jpg",
+          "host_unix_ns": 1791988955958547900,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-623032",
+          "age_ms": 46,
+          "sha256": "27d821bdc54d073bdaeb3af8eda5b1e4d6aeaff6fa3f1fecb65500256b8294d6",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 35.021373878989834,
+      "command_pulses_us": [
+        1470,
+        1252,
+        1465,
+        1554,
+        1460,
+        1660,
+        1670,
+        1421,
+        1710,
+        1680
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988956583705200.jpg",
+          "host_unix_ns": 1791988956583705200,
+          "frame_id": "session-20261014-191050-189349",
+          "age_ms": 57,
+          "sha256": "46122c4b0864eef8eddfaca0ac20f72c93f06b4b7932e8febfd4b9bd56d4088f",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988956580370400.jpg",
+          "host_unix_ns": 1791988956580370400,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-623041",
+          "age_ms": 78,
+          "sha256": "8c00a3657f13d36c0a066e929835479106129150ef5c73640c2cc8cc31c7f677",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 35.519576979990234,
+      "command_pulses_us": [
+        1494,
+        1260,
+        1473,
+        1554,
+        1452,
+        1656,
+        1630,
+        1534,
+        1670,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988957019168100.jpg",
+          "host_unix_ns": 1791988957019168100,
+          "frame_id": "session-20261014-191050-189356",
+          "age_ms": 24,
+          "sha256": "629359186f1814fe882a5bf4781d349596a0ece79a3330b1b7d8ae63dd0deb8d",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988957076503100.jpg",
+          "host_unix_ns": 1791988957076503100,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-623049",
+          "age_ms": 30,
+          "sha256": "7f0e1a4adcbd8891bcbc419c7b843dea6a3d2c6b7b2fe00fa651b7e81b6bfb08",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 36.21135848799895,
+      "command_pulses_us": [
+        1530,
+        1272,
+        1485,
+        1554,
+        1440,
+        1650,
+        1510,
+        1275,
+        1550,
+        1440
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988957721922400.jpg",
+          "host_unix_ns": 1791988957721922400,
+          "frame_id": "session-20261014-191050-189366",
+          "age_ms": 53,
+          "sha256": "98cbdc5d37bfabc9ab464797ea0150a8cf1b94549b801988b72861f6e484029e",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988957718653600.jpg",
+          "host_unix_ns": 1791988957718653600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-623059",
+          "age_ms": 0,
+          "sha256": "d827bd03fef45775a2a4da1a4dee17c971e8b970ea81a3a40fbb6e6093f3a9e9",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    },
+    {
+      "audio_time_s": 37.012614419989404,
+      "command_pulses_us": [
+        1470,
+        1252,
+        1465,
+        1554,
+        1460,
+        1660,
+        1690,
+        1250,
+        1730,
+        1740
+      ],
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": "front_1791988958521429800.jpg",
+          "host_unix_ns": 1791988958521429800,
+          "frame_id": "session-20261014-191050-189378",
+          "age_ms": 55,
+          "sha256": "3b85e42a23ae3508b9be0d9336aa636f2b32ac86c038772be62cc138f59d3c9f",
+          "control_points_px": null,
+          "control_points_mm": null
+        },
+        "top": {
+          "camera": "top",
+          "file": "top_1791988958529258500.jpg",
+          "host_unix_ns": 1791988958529258500,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-623071",
+          "age_ms": 0,
+          "sha256": "cdc73558b7cdf44180a82ac690004b8a1df4541f5654e044a40b2c3c1f2b34fa",
+          "control_points_px": null,
+          "control_points_mm": null
+        }
+      }
+    }
+  ],
+  "notes": [
+    "24us limit retained; actual scheduling interval exceeded ideal offline20ms sampling assumption near second tiger raise.",
+    "User reported power off after the stopped trial; do not re-arm automatically.",
+    "No full-show or physical-clearance pass claimed.",
+    "Independent front review 29-31s: clear tiger rise and left/down pounce with delayed rear follow, person arm/body response visible.",
+    "Reviewed 36-37.3s and stopped frame show unfolded silhouettes, no clear rod impact in sampled top frames; stopping pose is an unfinished raise."
+  ]
+}

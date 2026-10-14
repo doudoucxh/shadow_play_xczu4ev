@@ -59,6 +59,7 @@ try {
             if ($WithTigerAudioSegment) {$taskActor='/tmp/tiger_audio_segment_20261014.py'}
             if ($taskReviewedPlan.profile -eq 'story-audio-v1') {$taskActor='/tmp/story_audio_session_20261014.py'}
             if ($taskReviewedPlan.profile -eq 'story-audio-v2') {$taskActor='/tmp/story_audio_session_v2_20261014.py'}
+            if ($taskReviewedPlan.profile -eq 'story-audio-v3') {$taskActor='/tmp/story_audio_session_v3_20261014.py'}
             if ($taskReviewedPlan.profile -eq 'tiger-height-aw-v1') {$taskActor='/tmp/tiger_height_trial_20261014_r3.py'}
             if ($taskReviewedPlan.profile -eq 'tiger-shadow-roar-v1') {$taskActor='/tmp/tiger_shadow_roar_20261014.py'}
             if ($taskReviewedPlan.profile -eq 'person-body-double-smash-v1') {$taskActor='/tmp/person_variety_trial_20261014.py'}
