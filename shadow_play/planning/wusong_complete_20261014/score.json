@@ -2220,5 +2220,72 @@
     "先用已记录大幅腾跃作为幅度基准；扩大幅度另存新版本，不能直接乘倍率。",
     "音效候选未听审；视觉阶段时间是编舞目标，不代表电机实测提前量。",
     "不加入未完成的越头交叉，不做真实骑乘承重；无滑轨版不宣称换位退场。"
-  ]
+  ],
+  "rehearsal_evidence": {
+    "latest_full_run": "../../config/story_full_aw_result.20261014.json",
+    "full_timeline_executed": true,
+    "stage_effect_verified": false,
+    "note": "AW跑完67秒；新动作变化和大幅版本仍待逐项实机验证。"
+  },
+  "revision_v2": {
+    "status": "planned_not_executed",
+    "slide_rails_enabled": false,
+    "horizontal_approach_and_separation": "deferred_until_leadscrews_added",
+    "stage_translation_by_gimbal_substitution": false,
+    "human_motifs": [
+      "双手举起后砸落",
+      "双手身前格挡",
+      "双手同时向虎出拳",
+      "交替出拳、一手收护",
+      "身体先压低再挺起、双手配合",
+      "受扑时沉身闪避后反击"
+    ],
+    "tiger_motifs": [
+      "低伏蓄势",
+      "虎头猛抬配合吼叫",
+      "前端先升、后端迟随的高跃",
+      "虎头下压扑咬、后端留后形成伸展",
+      "受击时头先回缩、后端迟随"
+    ],
+    "sequence_notes": [
+      "不把所有重音都编成交替出拳，穿插格挡、双砸、双拳。",
+      "人物起落由头杆与两手协调，避免单手成为吊挂支点。",
+      "新幅度以实际幕内可见行程和贴幕情况确定，不能把脉宽同比放大当作标定。",
+      "双手砸落、双拳和跳起均不得仅凭动作名或指令完成标为通过。"
+    ],
+    "future_rail_cues": [
+      {
+        "scene": "S11",
+        "intent": "虎接近、武松让开",
+        "enabled": false,
+        "distance_mm": null
+      },
+      {
+        "scene": "S13",
+        "intent": "试探靠近后分开",
+        "enabled": false,
+        "distance_mm": null
+      },
+      {
+        "scene": "S14",
+        "intent": "双方接近对峙",
+        "enabled": false,
+        "distance_mm": null
+      },
+      {
+        "scene": "S19",
+        "intent": "拖虎退出",
+        "enabled": false,
+        "distance_mm": null
+      }
+    ],
+    "shadow_roar": {
+      "intent": "适当离幕、快速提头，用放大的影子表现咆哮；结束后恢复辨认清楚的扑咬姿态",
+      "intentional_soft_shadow_allowed": true,
+      "full_motion_verified": false,
+      "evidence": "../../config/tiger_height_az_result.20261014.json",
+      "four_height_levels_observed": true,
+      "fast_audio_timing_verified": false
+    }
+  }
 }
