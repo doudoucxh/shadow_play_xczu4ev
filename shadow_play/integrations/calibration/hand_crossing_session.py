@@ -79,11 +79,40 @@ CONTINUOUS_PRESENTATION_PROFILES=frozenset(('person-reference-guard-counter-prob
 def digest(profile):
     return hashlib.sha256(json.dumps(ROUTES[profile],separators=(',',':')).encode()).hexdigest()
 
+def audit_support_prefix(p,baseline,read=None):
+    """Only the interrupted support edge of this frontal gesture may resume."""
+    rows=c.checked_log(p['resume_route_log'],read)
+    target=BASE[:]
+    for i,offset in enumerate(ROUTES[p['profile']][1]):target[i]+=offset
+    first,last=rows[0],rows[-1]
+    if (first.get('event')!='reference_held' or first.get('profile')!=p['profile']
+            or first.get('route_sha256')!=digest(p['profile']) or first.get('tempo_step_us')!=3
+            or [r['axis'] for r in rows if r['event']=='probe_complete']!=[1]
+            or [r['axis'] for r in rows if r['event']=='probe_started']!=[1]
+            or any(r['event'] in ('path_reviewed','demo_started','demo_complete','route_cycle_complete') for r in rows)
+            or last.get('event')!='outputs_off' or last.get('normal_frame_stop') is not True
+            or last['state']['pulse_us']!=target or p['expected_pulses_us']!=target
+            or last['state']['sequence']!=p['expected_sequence']):
+        raise ValueError('Only the immutable interrupted support prefix may resume')
+    previous=baseline
+    for index,row in enumerate(r for r in rows if 'state' in r):
+        state=row['state'];is_off=row['event']=='outputs_off'
+        if (state['pending'] or state['faults'] or state['enabled_mask']!=(0 if is_off else 63)
+                or state['armed'] is not (not is_off)
+                or state['sequence'] not in (previous['sequence'],(previous['sequence']+1)%2**32)
+                or (index==0 and (state['sequence']!=(previous['sequence']+1)%2**32 or state['pulse_us']!=BASE))
+                or (state['sequence']==previous['sequence'] and state['pulse_us']!=previous['pulse_us'])
+                or max(abs(a-b) for a,b in zip(previous['pulse_us'],state['pulse_us']))>3
+                or any(state['pulse_us'][i]!=BASE[i] for i in (0,1,2,4,5,6,7,8,9))
+                or not target[3]<=state['pulse_us'][3]<=BASE[3]):
+            raise ValueError('Interrupted support command chain is inconsistent')
+        previous=state
+
 def validate_plan(p,read=None,wall=None):
     fields={'approval','session_id','profile','expected_sequence','expected_pulses_us',
      'observer_ready','operator_hardware_unmoved','dual_view_pose_reviewed','reviewed_at_unix_ms',
      'duration_seconds','tempo_step_us','repetitions','boot_id','restore_after_power_cycle','baseline_source'}
-    if (not isinstance(p,dict) or not fields<=set(p) or set(p)-fields-{'prior_slow_route_log'}
+    if (not isinstance(p,dict) or not fields<=set(p) or set(p)-fields-{'prior_slow_route_log','resume_waypoint','resume_route_log'}
             or p['approval']!=c.APPROVAL or p['profile'] not in ROUTES
             or not c.re.fullmatch('[a-z0-9-]{1,80}',p['session_id'])
             or type(p['expected_sequence']) is not int or not 0<=p['expected_sequence']<2**32
@@ -94,6 +123,12 @@ def validate_plan(p,read=None,wall=None):
             or not c.re.fullmatch('[a-f0-9-]{36}',p['boot_id'])
             or type(p['reviewed_at_unix_ms']) is not int):
         raise ValueError('Exact attended overhead mapping plan required')
+    resume=p.get('resume_waypoint',0)
+    if (type(resume) is not int or resume not in (0,1)
+            or ('resume_waypoint' in p)!=('resume_route_log' in p)
+            or ('resume_waypoint' in p and (resume!=1 or p['profile']!='person-reference-guard-counter-probe'
+                or p['restore_after_power_cycle'] or p['tempo_step_us']!=3))):
+        raise ValueError('Only current-boot slow support-prefix continuation is allowed')
     if p['tempo_step_us']==3 and 'prior_slow_route_log' in p:
         raise ValueError('Slow diagnostic cannot include a fast-route receipt')
     if p['profile'] in (SLOW_DIAGNOSTIC_PROFILES|CONTINUOUS_PRESENTATION_PROFILES) and p['restore_after_power_cycle']:
@@ -129,9 +164,10 @@ def validate_plan(p,read=None,wall=None):
                 or [r['cycle'] for r in rows if r['event']=='route_cycle_complete']!=[1,2,3]):
             raise ValueError('Power-cycle restoration needs the completed original duet and fresh reset state')
     elif (first.get('profile') not in ROUTES or first.get('route_sha256')!=digest(first['profile'])
-            or p['expected_pulses_us']!=BASE or p['expected_sequence']!=final['state']['sequence']
+            or (not resume and (p['expected_pulses_us']!=BASE or p['expected_sequence']!=final['state']['sequence']))
             or {r['axis'] for r in rows if r['event']=='path_reviewed'}!=set(range(1,7))):
         raise ValueError('Continuation requires the complete reviewed mapping route')
+    if resume:audit_support_prefix(p,final['state'],read)
     if p['profile']=='person-script-hand-b-inward-80-probe' and first.get('profile') not in HAND_B_YAW_PROFILES:
         raise ValueError('Second inward level requires the completed local hand-B yaw review')
     if p['profile']=='person-script-hand-b-inward-fold-probe' and first.get('profile') not in HAND_B_DIAGNOSTIC_PROFILES:
@@ -155,7 +191,7 @@ class CrossingSession(c.ChoreographySession):
         self.pulses=p['expected_pulses_us'][:];self.sequence=p['expected_sequence'];self.mask=0
         self.inside=False;self.failed=False;self.last_start=None;self.next_command=None
         self.phase='restore' if p['restore_after_power_cycle'] else 'resume'
-        self.cursor=0;self.completed=set();self.reviewed=set();self.demo_used=False
+        self.cursor=p.get('resume_waypoint',0);self.completed=set(range(1,self.cursor+1));self.reviewed=set();self.demo_used=False
         self.own=63;self.indices=range(6);self.route_sha256=digest(p['profile'])
         self.targets=[BASE[:] for _ in ROUTES[p['profile']]]
         for target,vector in zip(self.targets,ROUTES[p['profile']]):

@@ -31,7 +31,7 @@ class CrossingTests(unittest.TestCase):
 
     def device(self):
         return h.CrossingSession(self.r,self.p,self.host,motion_inhibit_paths=[self.lock],cancel_path=self.lock.with_name('cancel'),
-          clock=lambda:self.now,wall=lambda:1000,read=lambda p:self.raw,boot_id_path=self.boot,image_marker=self.marker)
+          clock=lambda:self.now,wall=lambda:1000,read=getattr(self,'reader',lambda p:self.raw),boot_id_path=self.boot,image_marker=self.marker)
 
     def sleep(self,t):self.now+=t
 
@@ -226,6 +226,33 @@ class CrossingTests(unittest.TestCase):
         self.assertEqual(events[-1]['state']['enabled_mask'],0)
         self.assertEqual(events[-1]['state']['pulse_us'],h.BASE)
         self.assertEqual(self.lock.read_text(),'incident')
+
+    def test_occluded_support_prefix_resumes_only_that_current_pose_and_requires_review(self):
+        profile='person-reference-guard-counter-probe';self.prepare_fast(profile)
+        self.p['tempo_step_us']=3;del self.p['prior_slow_route_log'];baseline_raw=self.raw
+        device=self.device();held=device.adopt(h.BASE[:])
+        rows=[dict(event='reference_held',profile=profile,route_sha256=h.digest(profile),tempo_step_us=3,state=held)]
+        device.advance(1,rows.append,self.sleep)
+        rows.append(dict(event='outputs_off',normal_frame_stop=True,state=device.stop_after_frame()))
+        prefix_raw='\n'.join(json.dumps(row) for row in rows).encode()
+        prefix=dict(path='/tmp/puppet-choreography-support-prefix.jsonl',sha256=hashlib.sha256(prefix_raw).hexdigest())
+        self.p.update(expected_sequence=rows[-1]['state']['sequence'],expected_pulses_us=rows[-1]['state']['pulse_us'],
+                      resume_waypoint=1,resume_route_log=prefix)
+        baseline_path=self.p['baseline_source']['path']
+        self.reader=lambda path:baseline_raw if path==baseline_path else prefix_raw
+        before=len(self.r.writes);resumed=self.device()
+        self.assertEqual(len(self.r.writes),before)
+        self.assertEqual(resumed.cursor,1);self.assertEqual(resumed.completed,{1});self.assertEqual(resumed.reviewed,set())
+        resumed.adopt(self.p['expected_pulses_us'][:]);resumed.reviewed.add(1)
+        for stage in range(2,7):resumed.advance(stage,lambda r:None,self.sleep)
+        self.assertEqual(resumed.pulses,h.BASE);self.assertEqual(self.lock.read_text(),'incident')
+        original=copy.deepcopy(self.p)
+        for changes in ({'tempo_step_us':8},{'resume_waypoint':2},{'profile':'person-script-hand-a-local-yaw-probe'},
+                        {'expected_sequence':original['expected_sequence']+1},{'expected_pulses_us':h.BASE[:]},
+                        {'resume_route_log':dict(prefix,sha256='0'*64)}):
+            self.p=copy.deepcopy(original);self.p.update(changes);before=len(self.r.writes)
+            with self.assertRaises(ValueError):self.device()
+            self.assertEqual(len(self.r.writes),before)
 
     def test_source_tamper_and_boot_change_reject_before_arm(self):
         self.raw+=b' '
