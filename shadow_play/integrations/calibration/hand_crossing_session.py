@@ -96,6 +96,14 @@ ROUTES={
      (200,-20,0,0,-40,-100),(100,70,0,0,60,-160),
      (200,-20,0,0,-40,-100),(100,70,0,0,60,-160),
      (100,70,0,0,-40,-100),(0,160,0,0,20,-80),(-80,80,0,0,0,-40),ZERO),
+ # Candidate only: alternate body yaw and height with the six punches.
+ # Combined loaded geometry still requires an attended trial; no auto replay.
+ 'person-operator-body-guard-combo':(ZERO,(0,180,0,0,0,0),(180,90,0,0,0,0),
+     (100,70,0,-20,-40,-100),
+     (200,-20,20,-40,-40,-100),(100,70,-20,-20,60,-160),
+     (200,-20,20,-40,-40,-100),(100,70,-20,-20,60,-160),
+     (200,-20,20,-40,-40,-100),(100,70,-20,-20,60,-160),
+     (100,70,0,-20,-40,-100),(0,160,0,0,20,-80),(-80,80,0,0,0,-40),ZERO),
  'person-overhead-high-map-positive':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
      (60,210,0,-40,0,0),(0,210,0,-40,0,0),(0,0,0,-40,0,0),ZERO),
  'person-overhead-high-map-negative':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
@@ -157,6 +165,15 @@ FOCUSED_SLOW_STAGES={'person-overhead-operator-jump-slow-trial':(3,4,6),
                      'person-operator-alternating-punch-combo':(2,3,11,12,13),
                      'person-operator-alternating-guard-combo':(2,3,11,12,13)}
 SLOW_DIAGNOSTIC_PROFILES=HAND_B_DIAGNOSTIC_PROFILES|SLOW_YAW_PROFILES|OVERHEAD_LIFT_PROFILES|OVERHEAD_BODY_PROFILES|OVERHEAD_APPROACH_PROFILES|OVERHEAD_WIDER_PROFILES|OVERHEAD_ARC_PROFILES
+BODY_GUARD_PROFILE='person-operator-body-guard-combo'
+OPERATOR_ARC_PROFILES=OPERATOR_ARC_PROFILES|frozenset((BODY_GUARD_PROFILE,))
+FOCUSED_SLOW_STAGES[BODY_GUARD_PROFILE]=(2,3,11,12,13)
+
+def operator_stage_step(profile,stage):
+    if stage in FOCUSED_SLOW_STAGES.get(profile,()):return 1
+    if profile==BODY_GUARD_PROFILE and 4<=stage<=9:return 12
+    return 8
+
 FAST_GESTURE_PROFILES=frozenset(('person-script-hand-b-strike-probe','person-script-double-hit-probe',
                                'person-script-double-drop-sync-probe','person-reference-guard-counter-probe'))
 CONTINUOUS_PRESENTATION_PROFILES=frozenset(('person-reference-guard-counter-probe',))
@@ -195,16 +212,22 @@ def closed_operator_reference(rows):
         raise ValueError('Attended trial reference must be complete and normally closed')
     route=ROUTES[first['profile']]
     allowed_axes={i for i in range(6) if any(point[i] for point in route)}
-    previous=first['state']
+    previous=first['state'];active_stage=0
     for row in rows:
+        if row.get('event')=='probe_started':active_stage=row['axis']
         if 'state' not in row:continue
         state=row['state'];off=row['event']=='outputs_off'
+        step_limit=8
+        if first['profile']==BODY_GUARD_PROFILE:
+            step_limit=operator_stage_step(first['profile'],active_stage)
+            if row.get('event')=='probe_step' and row.get('axis')!=active_stage:
+                raise ValueError('Body combo step does not belong to the active stage')
         if (state['faults'] or state['pending'] or state['enabled_mask']!=(0 if off else 63)
                 or state['armed'] is not (not off)
                 or any(state['pulse_us'][i]!=BASE[i] for i in range(10) if i not in allowed_axes)
                 or any(not BASE[i]+min(point[i] for point in route)<=state['pulse_us'][i]<=BASE[i]+max(point[i] for point in route) for i in allowed_axes)
                 or state['sequence'] not in (previous['sequence'],(previous['sequence']+1)%2**32)
-                or max(abs(a-b) for a,b in zip(state['pulse_us'],previous['pulse_us']))>8
+                or max(abs(a-b) for a,b in zip(state['pulse_us'],previous['pulse_us']))>step_limit
                 or (state['sequence']==previous['sequence'] and state['pulse_us']!=previous['pulse_us'])):
             raise ValueError('Attended trial command continuity is inconsistent')
         previous=state
@@ -399,6 +422,13 @@ class CrossingSession(c.ChoreographySession):
         return super().check()
 
     def advance(self,stage,emit,sleep):
+        if self.plan['profile']==BODY_GUARD_PROFILE:
+            original=self.plan['tempo_step_us']
+            self.plan['tempo_step_us']=operator_stage_step(self.plan['profile'],stage)
+            try:
+                emit(dict(event='body_combo_stage_tempo',axis=stage,maximum_step_us=self.plan['tempo_step_us']))
+                return super().advance(stage,emit,sleep)
+            finally:self.plan['tempo_step_us']=original
         if stage not in FOCUSED_SLOW_STAGES.get(self.plan['profile'],()):
             return super().advance(stage,emit,sleep)
         original=self.plan['tempo_step_us'];self.plan['tempo_step_us']=1
@@ -438,6 +468,7 @@ def run_operator_arc_trial(d,emit,sleep=time.sleep):
             d.advance(stage,emit,sleep)
             hold=4.0 if d.plan['profile'] in ('person-overhead-operator-double-punch-trial','person-overhead-operator-punch-hold-trial','person-overhead-operator-punch-level-trial','person-overhead-operator-punch-extend-trial') and stage in (2,3,4) else .12
             if d.plan['profile'] in ('person-operator-alternating-punch-combo','person-operator-alternating-guard-combo'):hold=.06 if 4<=stage<=9 else .12
+            if d.plan['profile']==BODY_GUARD_PROFILE:hold=.02 if 4<=stage<=9 else .12
             d.wait(hold,sleep)
             if hold>1:emit(dict(event='inspection_hold_complete',axis=stage,state=d.status()))
         emit(dict(event='operator_trial_complete',state=d.status(),visual_reviews_performed=False,

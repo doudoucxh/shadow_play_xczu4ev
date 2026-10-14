@@ -1,0 +1,321 @@
+{
+  "profile": "person-operator-body-guard-combo",
+  "status": "planned_offline_only",
+  "executed": false,
+  "automatic_replay_allowed": false,
+  "route_sha256": "0114ddd2dec740e509258618629cd6311e25006bc7e4107eb4da07480f33461d",
+  "nominal_plan_tempo_step_us": 8,
+  "minimum_command_interval_ms": 20,
+  "attack_stages": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "simulated_attack_seconds": {
+    "person-operator-alternating-guard-combo": 2.82,
+    "person-operator-body-guard-combo": 1.78
+  },
+  "measured_hardware_attack_seconds": null,
+  "coordinate_note": "PWM commands only; no shaft feedback, measured pixel points or calibrated millimeter coordinates.",
+  "body_motion_note": "Alternate head-rod yaw offsets +20/-20 us and pitch offsets -40/-20 us. Screen direction and combined rod clearance need physical validation.",
+  "requires": "Dedicated attended trial after hardware/start-pose/dual-camera checks. Not deployed or wired into launcher; incident locks remain unchanged.",
+  "stages": [
+    {
+      "stage": 0,
+      "command_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "maximum_step_us": null,
+      "hold_seconds": 0.25,
+      "frame_id": null,
+      "image_points_px": null,
+      "points_mm": null,
+      "actual_axis_angles": null
+    },
+    {
+      "stage": 1,
+      "command_pulses_us": [
+        1537,
+        1392,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "maximum_step_us": 8,
+      "hold_seconds": 0.12,
+      "frame_id": null,
+      "image_points_px": null,
+      "points_mm": null,
+      "actual_axis_angles": null
+    },
+    {
+      "stage": 2,
+      "command_pulses_us": [
+        1717,
+        1302,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "maximum_step_us": 1,
+      "hold_seconds": 0.12,
+      "frame_id": null,
+      "image_points_px": null,
+      "points_mm": null,
+      "actual_axis_angles": null
+    },
+    {
+      "stage": 3,
+      "command_pulses_us": [
+        1637,
+        1282,
+        1537,
+        1494,
+        1468,
+        1640,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "maximum_step_us": 1,
+      "hold_seconds": 0.12,
+      "frame_id": null,
+      "image_points_px": null,
+      "points_mm": null,
+      "actual_axis_angles": null
+    },
+    {
+      "stage": 4,
+      "command_pulses_us": [
+        1737,
+        1192,
+        1557,
+        1474,
+        1468,
+        1640,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "maximum_step_us": 12,
+      "hold_seconds": 0.02,
+      "frame_id": null,
+      "image_points_px": null,
+      "points_mm": null,
+      "actual_axis_angles": null
+    },
+    {
+      "stage": 5,
+      "command_pulses_us": [
+        1637,
+        1282,
+        1517,
+        1494,
+        1568,
+        1580,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "maximum_step_us": 12,
+      "hold_seconds": 0.02,
+      "frame_id": null,
+      "image_points_px": null,
+      "points_mm": null,
+      "actual_axis_angles": null
+    },
+    {
+      "stage": 6,
+      "command_pulses_us": [
+        1737,
+        1192,
+        1557,
+        1474,
+        1468,
+        1640,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "maximum_step_us": 12,
+      "hold_seconds": 0.02,
+      "frame_id": null,
+      "image_points_px": null,
+      "points_mm": null,
+      "actual_axis_angles": null
+    },
+    {
+      "stage": 7,
+      "command_pulses_us": [
+        1637,
+        1282,
+        1517,
+        1494,
+        1568,
+        1580,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "maximum_step_us": 12,
+      "hold_seconds": 0.02,
+      "frame_id": null,
+      "image_points_px": null,
+      "points_mm": null,
+      "actual_axis_angles": null
+    },
+    {
+      "stage": 8,
+      "command_pulses_us": [
+        1737,
+        1192,
+        1557,
+        1474,
+        1468,
+        1640,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "maximum_step_us": 12,
+      "hold_seconds": 0.02,
+      "frame_id": null,
+      "image_points_px": null,
+      "points_mm": null,
+      "actual_axis_angles": null
+    },
+    {
+      "stage": 9,
+      "command_pulses_us": [
+        1637,
+        1282,
+        1517,
+        1494,
+        1568,
+        1580,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "maximum_step_us": 12,
+      "hold_seconds": 0.02,
+      "frame_id": null,
+      "image_points_px": null,
+      "points_mm": null,
+      "actual_axis_angles": null
+    },
+    {
+      "stage": 10,
+      "command_pulses_us": [
+        1637,
+        1282,
+        1537,
+        1494,
+        1468,
+        1640,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "maximum_step_us": 8,
+      "hold_seconds": 0.12,
+      "frame_id": null,
+      "image_points_px": null,
+      "points_mm": null,
+      "actual_axis_angles": null
+    },
+    {
+      "stage": 11,
+      "command_pulses_us": [
+        1537,
+        1372,
+        1537,
+        1514,
+        1528,
+        1660,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "maximum_step_us": 1,
+      "hold_seconds": 0.12,
+      "frame_id": null,
+      "image_points_px": null,
+      "points_mm": null,
+      "actual_axis_angles": null
+    },
+    {
+      "stage": 12,
+      "command_pulses_us": [
+        1457,
+        1292,
+        1537,
+        1514,
+        1508,
+        1700,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "maximum_step_us": 1,
+      "hold_seconds": 0.12,
+      "frame_id": null,
+      "image_points_px": null,
+      "points_mm": null,
+      "actual_axis_angles": null
+    },
+    {
+      "stage": 13,
+      "command_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "maximum_step_us": 1,
+      "hold_seconds": 0.12,
+      "frame_id": null,
+      "image_points_px": null,
+      "points_mm": null,
+      "actual_axis_angles": null
+    }
+  ]
+}

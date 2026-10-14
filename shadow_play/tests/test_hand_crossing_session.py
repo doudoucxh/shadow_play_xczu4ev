@@ -461,6 +461,54 @@ class CrossingTests(unittest.TestCase):
             prior=pulse
         self.assertFalse(events[-1]['state']['armed']);self.assertEqual(events[-1]['state']['pulse_us'],h.BASE)
 
+    def test_body_guard_combo_faster_attacks_with_bounded_body_and_closed_return(self):
+        durations={}
+        for profile in ('person-operator-alternating-guard-combo',h.BODY_GUARD_PROFILE):
+            self.now=0;self.r=FakeRegisters();self.prepare_fast(profile);events=[]
+            d=self.device()
+            h.run_operator_arc_trial(d,lambda r:events.append(dict(r,time=self.now)),self.sleep)
+            self.assertTrue(h.closed_operator_reference(events))
+            start=next(r['time'] for r in events if r['event']=='probe_started' and r['axis']==4)
+            end=next(r['time'] for r in events if r['event']=='probe_complete' and r['axis']==9)
+            durations[profile]=end-start
+        ends=[r['state']['pulse_us'] for r in events if r['event']=='probe_complete' and 4<=r['axis']<=9]
+        self.assertEqual([p[2:4] for p in ends],[[1557,1474],[1517,1494]]*3)
+        self.assertEqual([p[0] for p in ends],[1737,1637]*3)
+        self.assertEqual([p[4] for p in ends],[1468,1568]*3)
+        prior=h.BASE[:];last_time=-1;largest_attack_step=0
+        for row in events:
+            if row['event']!='probe_step':continue
+            p=row['state']['pulse_us'];step=max(abs(a-b) for a,b in zip(p,prior))
+            self.assertLessEqual(step,h.operator_stage_step(h.BODY_GUARD_PROFILE,row['axis']))
+            self.assertGreaterEqual(row['time']-last_time,.02-1e-9)
+            self.assertTrue(1517<=p[2]<=1557 and 1474<=p[3]<=1514)
+            self.assertEqual(p[6:],h.BASE[6:])
+            if 4<=row['axis']<=9:largest_attack_step=max(largest_attack_step,step)
+            prior=p;last_time=row['time']
+        self.assertGreater(largest_attack_step,8)
+        self.assertLess(durations[h.BODY_GUARD_PROFILE],.8*durations['person-operator-alternating-guard-combo'])
+        self.assertEqual(events[-1]['state']['pulse_us'],h.BASE)
+        self.assertEqual(events[-1]['state']['enabled_mask'],0)
+        self.assertEqual(d.plan['tempo_step_us'],8)
+        self.assertEqual(self.lock.read_text(),'incident')
+        bad=copy.deepcopy(events)
+        next(r for r in bad if r['event']=='probe_step' and r['axis']==4)['axis']=1
+        with self.assertRaises(ValueError):h.closed_operator_reference(bad)
+
+    def test_body_guard_fault_restores_tempo_and_stops_without_replay(self):
+        self.prepare_fast(h.BODY_GUARD_PROFILE);d=self.device();events=[]
+        def emit(row):
+            events.append(row)
+            if row['event']=='probe_step' and row['axis']==4:
+                raise RuntimeError('injected camera failure')
+        with self.assertRaisesRegex(RuntimeError,'injected camera failure'):
+            h.run_operator_arc_trial(d,emit,self.sleep)
+        self.assertEqual(d.plan['tempo_step_us'],8)
+        self.assertEqual(events[-1]['event'],'outputs_off')
+        self.assertEqual(events[-1]['state']['enabled_mask'],0)
+        self.assertFalse(events[-1]['normal_frame_stop'])
+        self.assertEqual(self.lock.read_text(),'incident')
+
     def test_reference_sequence_exception_only_accepts_an_unchanged_static_hold(self):
         self.prepare_fast('person-overhead-operator-arc-trial')
         rows=[json.loads(r) for r in self.raw.splitlines()]
