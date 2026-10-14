@@ -1,0 +1,245 @@
+{
+  "status": "body_drop_double_lift_double_drop_guard_executed_segmented",
+  "full_board_log_sha256": "2478bf1c0a6a4b1135c9acc698f1c7b356d9e5e2c2bd24e4ee2a20d7c56b4224",
+  "normal_frame_stop": true,
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 26784,
+    "pending": false,
+    "pulse_us": [
+      1515,
+      1372,
+      1515,
+      1514,
+      1506,
+      1660,
+      1510,
+      1275,
+      1550,
+      1640
+    ],
+    "position_feedback": null
+  },
+  "records": [
+    {
+      "event": "reference_held",
+      "pose_label": "reference",
+      "command_pulse_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "level": 0,
+      "actual_shaft_angles_deg": null,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_bb/front_1791983086503067300.jpg",
+          "frame_id": "session-20261014-191050-101861",
+          "sha256": "f9c314344be10f1cc914d1f8dea1856f5146a7f7ef4b39c08769bdaf607bd19b",
+          "attachment_pixels": null,
+          "time_offset_ms": 1493.0673828125
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_bb/top_1791983086499241200.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-534990",
+          "sha256": "5bd2d05fcb46e6c482842efc99c53400619777f67d1d3fbd3d80880799315fc3",
+          "attachment_pixels": null,
+          "time_offset_ms": 1489.2412109375
+        }
+      }
+    },
+    {
+      "event": "person_pose_held",
+      "pose_label": "lower_body",
+      "command_pulse_us": [
+        1515,
+        1252,
+        1515,
+        1594,
+        1506,
+        1720,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "level": 1,
+      "actual_shaft_angles_deg": null,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_bb/front_1791983107731080300.jpg",
+          "frame_id": "session-20261014-191050-102177",
+          "sha256": "db97b032c22ce4096bb5de84ba002103a39609ad9353cec97c4893e806e5b1c9",
+          "attachment_pixels": null,
+          "time_offset_ms": 1528.080078125
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_bb/top_1791983107727314600.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-535308",
+          "sha256": "8e26c105f5f5a26edbd312613dbd9e0ff2468d22a6566376f04bf6ce4a8970eb",
+          "attachment_pixels": null,
+          "time_offset_ms": 1524.314697265625
+        }
+      }
+    },
+    {
+      "event": "person_pose_held",
+      "pose_label": "double_lift",
+      "command_pulse_us": [
+        1515,
+        1372,
+        1515,
+        1554,
+        1506,
+        1500,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "level": 2,
+      "actual_shaft_angles_deg": null,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_bb/front_1791983133334393300.jpg",
+          "frame_id": "session-20261014-191050-102558",
+          "sha256": "224d5db2cfffc8af29a0ca5c70dbdd0e3b4fe07d0decc68ef60190719a0e2966",
+          "attachment_pixels": null,
+          "time_offset_ms": 1522.393310546875
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_bb/top_1791983133330850600.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-535693",
+          "sha256": "d5da850482f6270b77f0896b0bc2dbf890ebe4f7c6a91244a63309242f966f22",
+          "attachment_pixels": null,
+          "time_offset_ms": 1518.8505859375
+        }
+      }
+    },
+    {
+      "event": "person_pose_held",
+      "pose_label": "double_drop",
+      "command_pulse_us": [
+        1515,
+        1212,
+        1535,
+        1594,
+        1546,
+        1660,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "level": 3,
+      "actual_shaft_angles_deg": null,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_bb/front_1791983159445827900.jpg",
+          "frame_id": "session-20261014-191050-102943",
+          "sha256": "ccf7c64b71ab68923e6f72695c1e613948b32297b880a1db497eed149383e857",
+          "attachment_pixels": null,
+          "time_offset_ms": 1511.827880859375
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_bb/top_1791983159443544200.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-536084",
+          "sha256": "e4d037f16fcf89832ac8215280084115d7b05f4e1c91fbae58e62de40cbeb39f",
+          "attachment_pixels": null,
+          "time_offset_ms": 1509.54443359375
+        }
+      }
+    },
+    {
+      "event": "person_pose_held",
+      "pose_label": "guard",
+      "command_pulse_us": [
+        1575,
+        1272,
+        1535,
+        1574,
+        1486,
+        1650,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "level": 4,
+      "actual_shaft_angles_deg": null,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_bb/front_1791983211232465700.jpg",
+          "frame_id": "session-20261014-191050-103714",
+          "sha256": "4e6108c3cece758d18db98f82d7be5997f77d238eaa8656f4e1fe9bf90510af2",
+          "attachment_pixels": null,
+          "time_offset_ms": 1499.465576171875
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_bb/top_1791983211229958300.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-536861",
+          "sha256": "8da2cffe0be5bde60210b5d19e1b2debc49a14e6f75148a8684923c689ee701f",
+          "attachment_pixels": null,
+          "time_offset_ms": 1496.95849609375
+        }
+      }
+    },
+    {
+      "event": "person_variety_complete",
+      "pose_label": "reference_return",
+      "command_pulse_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "level": 0,
+      "actual_shaft_angles_deg": null,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_bb/front_1791983265040804100.jpg",
+          "frame_id": "session-20261014-191050-104516",
+          "sha256": "23d7e6d9b2c38baa9694fa55b1a40fccacb7bc0bdbaf63a62b12d9cfb9d6ee4f",
+          "attachment_pixels": null,
+          "time_offset_ms": -1.19580078125
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_bb/top_1791983265038548400.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-537668",
+          "sha256": "2582a9057b319725b8ef4d6ea7490566f28b0a8bdc73e5cab3acbd5cb44d9954",
+          "attachment_pixels": null,
+          "time_offset_ms": -3.451416015625
+        }
+      }
+    }
+  ],
+  "highest_executed_stage": 4,
+  "full_candidate_route_executed": false,
+  "double_strike_executed": false,
+  "observations": [
+    "身体下沉与上起明显，双手均抬起并在下降段落下。",
+    "落下后持械手肘部弯曲；格挡候选为一手护头、一手收在身前。",
+    "未执行直线横拉的双拳候选：下一版将先提高持械手，绕头后落拳。",
+    "顶视所见人物三杆保持分开，未见明显碰杆；不能替代实际角度反馈或完整工作空间标定。",
+    "本次含人工图像复核停顿，尚不是快速连续、有音频的双砸表演。"
+  ],
+  "automatic_replay_allowed": false
+}

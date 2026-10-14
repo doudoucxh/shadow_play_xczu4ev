@@ -1,0 +1,621 @@
+{
+  "status": "shadow_roar_with_audio_executed",
+  "original_audio_range_s": [
+    4,
+    7
+  ],
+  "full_board_log_sha256": "baa0ff233d8fe614bcf962c78d6b900132bdab729cd645f9a265a69df949217b",
+  "normal_frame_stop": true,
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 26534,
+    "pending": false,
+    "pulse_us": [
+      1515,
+      1372,
+      1515,
+      1514,
+      1506,
+      1660,
+      1510,
+      1275,
+      1550,
+      1640
+    ],
+    "position_feedback": null
+  },
+  "checkpoints": [
+    {
+      "event": "roar_checkpoint",
+      "index": 0,
+      "target_audio_time_s": 4,
+      "audio_time_s": 4.000445144003606,
+      "level": 0,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26393,
+        "pending": false,
+        "pulse_us": [
+          1515,
+          1372,
+          1515,
+          1514,
+          1506,
+          1660,
+          1510,
+          1275,
+          1550,
+          1640
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 98297.014441831,
+      "host_unix_ms": 1791982924010,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/front_1791982924034847700.jpg",
+          "frame_id": "session-20261014-191050-99442",
+          "sha256": "58570b9fa0eb70a47d3a68b11fa298b280915483ae469bbcc196c3cb3e5f09df",
+          "attachment_pixels": null,
+          "time_offset_ms": 24.84765625
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/top_1791982924032581900.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-532553",
+          "sha256": "41d5cf5e9592cb9636d07e1c6ddfa985282cd544979e27fb8577057b22b5a204",
+          "attachment_pixels": null,
+          "time_offset_ms": 22.581787109375
+        }
+      }
+    },
+    {
+      "event": "roar_checkpoint",
+      "index": 1,
+      "target_audio_time_s": 4.15,
+      "audio_time_s": 4.150548824996804,
+      "level": 0,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26400,
+        "pending": false,
+        "pulse_us": [
+          1515,
+          1372,
+          1515,
+          1514,
+          1506,
+          1660,
+          1510,
+          1275,
+          1550,
+          1640
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 98297.154320089,
+      "host_unix_ms": 1791982924120,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/front_1791982924147855000.jpg",
+          "frame_id": "session-20261014-191050-99444",
+          "sha256": "ae8f29c3f1ad39f8338a96a5637750297675d708fe58e681df277025e7ae4323",
+          "attachment_pixels": null,
+          "time_offset_ms": 27.855224609375
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/top_1791982924145593000.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-532555",
+          "sha256": "db24ec4490c63d8d63d81b3f3084223a7db6de0dc1d30e2d3214156102d80904",
+          "attachment_pixels": null,
+          "time_offset_ms": 25.593017578125
+        }
+      }
+    },
+    {
+      "event": "roar_checkpoint",
+      "index": 2,
+      "target_audio_time_s": 4.47,
+      "audio_time_s": 4.473244081993471,
+      "level": 1,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26415,
+        "pending": false,
+        "pulse_us": [
+          1515,
+          1372,
+          1515,
+          1514,
+          1506,
+          1660,
+          1510,
+          1455,
+          1550,
+          1640
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 98297.474734183,
+      "host_unix_ms": 1791982924452,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/front_1791982924453302200.jpg",
+          "frame_id": "session-20261014-191050-99448",
+          "sha256": "305752660147a1416783dadfa8748e904fdc721126b560fd9f62cc153304fcd9",
+          "attachment_pixels": null,
+          "time_offset_ms": 1.30224609375
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/top_1791982924451801700.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-532559",
+          "sha256": "de930de2ac1e7a00f7b23932429496ab0806c7f04d941922a194bd635bc0fa3c",
+          "attachment_pixels": null,
+          "time_offset_ms": -0.198486328125
+        }
+      }
+    },
+    {
+      "event": "roar_checkpoint",
+      "index": 3,
+      "target_audio_time_s": 4.65,
+      "audio_time_s": 4.668265022002743,
+      "level": 2,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26424,
+        "pending": false,
+        "pulse_us": [
+          1515,
+          1372,
+          1515,
+          1514,
+          1506,
+          1660,
+          1510,
+          1537,
+          1550,
+          1598
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 98297.674550671,
+      "host_unix_ms": 1791982924649,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/front_1791982924632722400.jpg",
+          "frame_id": "session-20261014-191050-99451",
+          "sha256": "0427611fee15a498ddfc2bd4dcbe63adf616aa952d344d02b7ac4f0f26d88998",
+          "attachment_pixels": null,
+          "time_offset_ms": -16.277587890625
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/top_1791982924630219500.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-532562",
+          "sha256": "c445452fc0160824862144134ec4931e6b6ab7ea083e50c09ad291e5a708fcb7",
+          "attachment_pixels": null,
+          "time_offset_ms": -18.780517578125
+        }
+      }
+    },
+    {
+      "event": "roar_checkpoint",
+      "index": 4,
+      "target_audio_time_s": 4.83,
+      "audio_time_s": 4.841385532999993,
+      "level": 3,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26432,
+        "pending": false,
+        "pulse_us": [
+          1515,
+          1372,
+          1515,
+          1514,
+          1506,
+          1660,
+          1510,
+          1616,
+          1550,
+          1519
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 98297.855324259,
+      "host_unix_ms": 1791982924842,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/front_1791982924810072100.jpg",
+          "frame_id": "session-20261014-191050-99454",
+          "sha256": "c757fd0b070f4a61c0cbd34fc146f84471c0d0774904f3c74b6e0e00ff56bc52",
+          "attachment_pixels": null,
+          "time_offset_ms": -31.927978515625
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/top_1791982924817412800.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-532565",
+          "sha256": "0529fccb97e3734d8fd2c3255f45ffc1a1be8d1745a7228932a98f2cebf7bc7b",
+          "attachment_pixels": null,
+          "time_offset_ms": -24.587158203125
+        }
+      }
+    },
+    {
+      "event": "roar_checkpoint",
+      "index": 5,
+      "target_audio_time_s": 5.01,
+      "audio_time_s": 5.012713616000838,
+      "level": 4,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26440,
+        "pending": false,
+        "pulse_us": [
+          1515,
+          1372,
+          1515,
+          1514,
+          1506,
+          1660,
+          1510,
+          1695,
+          1550,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 98298.014200658,
+      "host_unix_ms": 1791982924951,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/front_1791982924937497400.jpg",
+          "frame_id": "session-20261014-191050-99455",
+          "sha256": "d4c9c57f3fbb0d987a0a52804ba573c7c3d40018880b241a0d1bef8e8322eafc",
+          "attachment_pixels": null,
+          "time_offset_ms": -13.502685546875
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/top_1791982924934980700.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-532567",
+          "sha256": "f2096b7debc816e7b9196229561e9423109b0a68e0177bb3f9adca50870786fd",
+          "attachment_pixels": null,
+          "time_offset_ms": -16.019287109375
+        }
+      }
+    },
+    {
+      "event": "roar_checkpoint",
+      "index": 6,
+      "target_audio_time_s": 5.14,
+      "audio_time_s": 5.143346772994846,
+      "level": 4,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26446,
+        "pending": false,
+        "pulse_us": [
+          1515,
+          1372,
+          1515,
+          1514,
+          1506,
+          1660,
+          1510,
+          1695,
+          1550,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 98298.15445494,
+      "host_unix_ms": 1791982925090,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/front_1791982925061661200.jpg",
+          "frame_id": "session-20261014-191050-99457",
+          "sha256": "a91912e79bb8a6abfaaa7a57bfa306461126f78d62cafe96d5029e15b5b78582",
+          "attachment_pixels": null,
+          "time_offset_ms": -28.3388671875
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/top_1791982925116797300.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-532569",
+          "sha256": "8f22e182ad4388e6f99315d68b6a1d689c6cc73e978121041ca77be16192edf0",
+          "attachment_pixels": null,
+          "time_offset_ms": 26.797119140625
+        }
+      }
+    },
+    {
+      "event": "roar_checkpoint",
+      "index": 7,
+      "target_audio_time_s": 5.32,
+      "audio_time_s": 5.334942128989496,
+      "level": 3,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26455,
+        "pending": false,
+        "pulse_us": [
+          1515,
+          1372,
+          1515,
+          1514,
+          1506,
+          1660,
+          1510,
+          1614,
+          1550,
+          1521
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 98298.333936175,
+      "host_unix_ms": 1791982925308,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/front_1791982925300465400.jpg",
+          "frame_id": "session-20261014-191050-99461",
+          "sha256": "bb1b6b42e363cabb4f3d5f4d4df6765c899affc5f786bea1c61774b2833a9e4b",
+          "attachment_pixels": null,
+          "time_offset_ms": -7.53466796875
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/top_1791982925287874900.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-532572",
+          "sha256": "08a8efdcfb2355c1a51295f7b78899ce6af2315ae249c4adb748622528aca40f",
+          "attachment_pixels": null,
+          "time_offset_ms": -20.125244140625
+        }
+      }
+    },
+    {
+      "event": "roar_checkpoint",
+      "index": 8,
+      "target_audio_time_s": 5.5,
+      "audio_time_s": 5.50820517099055,
+      "level": 2,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26463,
+        "pending": false,
+        "pulse_us": [
+          1515,
+          1372,
+          1515,
+          1514,
+          1506,
+          1660,
+          1510,
+          1535,
+          1550,
+          1600
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 98298.514499821,
+      "host_unix_ms": 1791982925484,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/front_1791982925476099900.jpg",
+          "frame_id": "session-20261014-191050-99463",
+          "sha256": "de9e08dc64404a6bed4453661bba0768d37c43651a24073a1356e53868d347aa",
+          "attachment_pixels": null,
+          "time_offset_ms": -7.900146484375
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/top_1791982925473588900.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-532575",
+          "sha256": "339ca1d839ca3f46fc5f4326b42724c3067bef9b40d0f249ce90df511681b23f",
+          "attachment_pixels": null,
+          "time_offset_ms": -10.410888671875
+        }
+      }
+    },
+    {
+      "event": "roar_checkpoint",
+      "index": 9,
+      "target_audio_time_s": 5.68,
+      "audio_time_s": 5.681614435001393,
+      "level": 1,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26471,
+        "pending": false,
+        "pulse_us": [
+          1515,
+          1372,
+          1515,
+          1514,
+          1506,
+          1660,
+          1510,
+          1455,
+          1550,
+          1640
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 98298.6954502,
+      "host_unix_ms": 1791982925680,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/front_1791982925707120200.jpg",
+          "frame_id": "session-20261014-191050-99467",
+          "sha256": "42cd418f759380c3eb804ab4e176c2b949dff8a568971d60110afdfb11322915",
+          "attachment_pixels": null,
+          "time_offset_ms": 27.1201171875
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/top_1791982925648446500.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-532577",
+          "sha256": "8c316ade80a194ec332be4dcda44fd4bb35e9ed9714009c17022f7ae64ccb2ae",
+          "attachment_pixels": null,
+          "time_offset_ms": -31.553466796875
+        }
+      }
+    },
+    {
+      "event": "roar_checkpoint",
+      "index": 10,
+      "target_audio_time_s": 6.140000000000001,
+      "audio_time_s": 6.153456872998504,
+      "level": 0,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26493,
+        "pending": false,
+        "pulse_us": [
+          1515,
+          1372,
+          1515,
+          1514,
+          1506,
+          1660,
+          1510,
+          1275,
+          1550,
+          1640
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 98299.154914604,
+      "host_unix_ms": 1791982926118,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/front_1791982926148436700.jpg",
+          "frame_id": "session-20261014-191050-99473",
+          "sha256": "997670eb62b1c1d57f3bc9f9d8478f6dc0630b981c4a147959fbd94d74ce55bc",
+          "attachment_pixels": null,
+          "time_offset_ms": 30.436767578125
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/top_1791982926135847200.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-532585",
+          "sha256": "d2d299fb4ce5c236bd1d94d4e6ecf606792168b385bdc9589800ef46d1e815b7",
+          "attachment_pixels": null,
+          "time_offset_ms": 17.84716796875
+        }
+      }
+    },
+    {
+      "event": "roar_checkpoint",
+      "index": 11,
+      "target_audio_time_s": 7,
+      "audio_time_s": 7,
+      "level": 0,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 26533,
+        "pending": false,
+        "pulse_us": [
+          1515,
+          1372,
+          1515,
+          1514,
+          1506,
+          1660,
+          1510,
+          1275,
+          1550,
+          1640
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 98300.013869724,
+      "host_unix_ms": 1791982926968,
+      "evidence_views": {
+        "front": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/front_1791982926977316800.jpg",
+          "frame_id": "session-20261014-191050-99486",
+          "sha256": "a5d6e4c6bfdb55ce49b27b8a5303dc36597c21a069e44a3b75fde40e69aeb534",
+          "attachment_pixels": null,
+          "time_offset_ms": 9.31689453125
+        },
+        "top": {
+          "file": ".review_work/hand_cross_side_test_20261014/operator_arc_ba/top_1791982926975555800.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-532597",
+          "sha256": "f7d7e0a97a8005713426f5cbdb4a7fc4e4cc1744d25f6e55f81a328ba8d3eeba",
+          "attachment_pixels": null,
+          "time_offset_ms": 7.555908203125
+        }
+      }
+    }
+  ],
+  "shadow_enlargement_and_return_visually_observed": true,
+  "acoustic_latency_measured": false,
+  "full_show_effect_verified": false,
+  "observations": [
+    "连续录像可见低位提头、影子升高放大、回落恢复轮廓；约原音频5.2至5.5秒出现较高影子。",
+    "指令最高点在原音频5.013秒附近；图像动作滞后，不能用指令时间代替实际轴反馈。",
+    "本段为咆哮技法，不等同于完成跳到幕布顶端或扑咬。"
+  ],
+  "local_video": "camera_liveview/output/story-rehearsal-20261014/shadow_roar_ba.mp4",
+  "video_audio": "原音频按PCM_RUNNING估计起点重建配音；不是现场麦克风实录",
+  "automatic_replay_allowed": false
+}
