@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "purpose": "动作阶段坐标记录；用于场景编排和进一步标定，不自动驱动硬件",
+  "updated": "2026-10-14",
+  "entries": [
+    {"title": "左手抬高至210μs偏移", "file": "overhead_recheck_20261014.json", "pose_count": 7, "image_points_annotated": 0},
+    {"title": "左手抬高至280μs偏移", "file": "overhead_lift280_20261014.json", "pose_count": 7, "image_points_annotated": 0},
+    {"title": "高位手与身体支撑联动", "file": "overhead_body_20261014.json", "pose_count": 7, "image_points_annotated": 6}
+  ],
+  "requested_overhead_crossing_completed": false,
+  "both_hands_on_same_side_verified": false,
+  "millimeter_calibration_currently_verified": false,
+  "local_diagnostic_video": "camera_liveview/output/hand-overhead-test-20261014/overhead_preparation_original_speed.mp4",
+  "video_sha256": "9dade051ea0d4c86c3c9ccaf60a50eecce61205e73f3322b86386e87768dc784",
+  "video_seconds": 39.066667,
+  "video_is_continuous_performance": false,
+  "video_review_waits_removed": true,
+  "raw_images_and_video_in_git": false
+}
