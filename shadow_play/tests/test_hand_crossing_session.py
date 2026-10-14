@@ -230,6 +230,24 @@ class CrossingTests(unittest.TestCase):
         self.assertEqual(route[3][3],0)
         self.assertTrue(all(v[0]==v[2]==v[4]==v[5]==0 for v in route))
 
+    def test_high_lateral_approach_requires_body_review_and_keeps_other_supports_fixed(self):
+        self.prepare_fast('person-overhead-lift-280-probe')
+        self.p.update(profile='person-overhead-high280-yaw80-probe',tempo_step_us=3)
+        del self.p['prior_slow_route_log']
+        with self.assertRaisesRegex(ValueError,'completed overhead body review'):self.device()
+        self.assertEqual(self.r.writes,[])
+        self.prepare_fast('person-overhead-body-clearance-probe')
+        self.p.update(profile='person-overhead-high280-yaw80-probe',tempo_step_us=3)
+        del self.p['prior_slow_route_log']
+        d=self.device();d.adopt(h.BASE[:]);events=[]
+        for stage in range(1,7):d.advance(stage,events.append,self.sleep)
+        for event in events:
+            if event['event']=='probe_step':self.assertEqual(event['state']['pulse_us'][2:],h.BASE[2:])
+        self.assertEqual(d.pulses,h.BASE)
+        d.completed=d.reviewed=set(range(1,7));d.demo_used=True
+        with self.assertRaisesRegex(RuntimeError,'diagnostic-only'):d.check()
+        self.assertEqual(self.lock.read_text(),'incident')
+
     def test_only_new_frontal_gesture_after_slow_and_fast_review_can_present_once(self):
         self.prepare_fast('person-reference-guard-counter-probe');d=self.device()
         d.adopt(h.BASE[:]);events=[]
