@@ -1,0 +1,19 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>武松打虎 · 完整剧情排练</title><style>
+body{background:#141b22;color:#e7eef4;font:17px/1.7 system-ui;margin:0 auto;max-width:1150px;padding:28px}h1{margin:0}small{color:#aabccb}audio{width:100%;margin:18px 0}.row{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:#202c36;padding:22px;border-radius:12px}#clock{color:#ffc66d;font-size:30px}#scene{font-size:26px}button{background:#304457;color:white;border:0;padding:8px 12px;border-radius:6px;cursor:pointer}table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:9px;text-align:left;border-bottom:1px solid #34434f}.active{background:#314a55}#hits{display:flex;gap:8px;flex-wrap:wrap}.hit{padding:6px 12px;background:#304457;border-radius:6px}.now{background:#a34b32}.notice{border-left:4px solid #ffc66d;padding:8px 16px}details{margin:22px 0} @media(max-width:700px){.row{grid-template-columns:1fr}}
+</style><h1>武松打虎 · 音频同步编舞台</h1><small>67.106秒版本 · 无滑轨 · 新剧情待分段实机排练</small>
+<p class="notice">这是带原音频的剧情提示器，不连接舵机。已有短动作记录作为素材；新组合、幅度与完整表演尚未验证。</p>
+<audio id="audio" controls preload="metadata" src="task1.wav"></audio>
+<div id="clock"></div><div id="scene"></div><div class="row"><div class="card"><b>武松</b><p id="human"></p></div><div class="card"><b>老虎</b><p id="tiger"></p></div></div>
+<p id="phase"></p><div id="hits"></div>
+<details open><summary>20段完整编排 · 点击时间跳转试听</summary><table><thead><tr><th>时间</th><th>段落</th><th>武松 / 老虎</th></tr></thead><tbody id="timeline"></tbody></table></details>
+<details><summary>动作素材、坐标证据和接下来排练顺序</summary><div id="evidence"></div></details>
+<script>
+const score=__SCORE_JSON__,audio=document.getElementById('audio');
+const el=id=>document.getElementById(id);
+score.scenes.forEach((s,i)=>{const tr=document.createElement('tr');tr.id='s'+i;const time=document.createElement('td'),b=document.createElement('button');b.textContent=s.start_s+'–'+s.end_s.toFixed(2)+'s';b.onclick=()=>{audio.currentTime=s.start_s;render()};time.append(b);tr.append(time);for(const text of [s.title,s.human+' / '+s.tiger]){const td=document.createElement('td');td.textContent=text;tr.append(td)}el('timeline').append(tr)});
+score.impact_cues.forEach(c=>{const n=document.createElement('span');n.id=c.id;n.className='hit';n.textContent=`${c.id} ${c.time_s}s ${c.strength}`;el('hits').append(n)});
+el('evidence').textContent='人物：AG 已执行记录；老虎：AT 已执行约2.904秒大幅腾跃素材。新剧情没有生成虚构杆端坐标。排练顺序：'+score.rehearsal_order.join(' → ')+'。'+score.limitations.join(' ');
+function render(){const t=Math.min(audio.currentTime,score.audio.duration_s),sample=Math.round(t*score.audio.sample_rate_hz);let i=score.scenes.findIndex(s=>sample>=s.start_sample&&sample<s.end_sample);if(i<0)i=score.scenes.length-1;const s=score.scenes[i];el('clock').textContent=`${t.toFixed(3)} / ${score.audio.duration_s.toFixed(3)} 秒`;el('scene').textContent=s.id+' '+s.title;el('human').textContent=s.human;el('tiger').textContent=s.tiger;score.scenes.forEach((_,j)=>el('s'+j).classList.toggle('active',i===j));let phases=[];for(const c of score.impact_cues){el(c.id).classList.toggle('now',Math.abs(t-c.time_s)<.15);if(t>=c.phases[0].time_s&&t<=c.time_s+.25){let p=c.phases[0];for(const q of c.phases)if(t>=q.time_s)p=q;phases.push(c.id+' '+p.action)}}el('phase').textContent=phases.join(' / ')||'按音频当前时间定位；暂停或拖动进度条不会发送任何电机指令。'}
+function tick(){render();requestAnimationFrame(tick)}tick();
+</script></html>
