@@ -3,9 +3,74 @@
   "purpose": "动作阶段坐标记录；用于场景编排和进一步标定，不自动驱动硬件",
   "updated": "2026-10-14",
   "entries": [
-    {"title": "左手抬高至210μs偏移", "file": "overhead_recheck_20261014.json", "pose_count": 7, "image_points_annotated": 0},
-    {"title": "左手抬高至280μs偏移", "file": "overhead_lift280_20261014.json", "pose_count": 7, "image_points_annotated": 0},
-    {"title": "高位手与身体支撑联动", "file": "overhead_body_20261014.json", "pose_count": 7, "image_points_annotated": 6}
+    {
+      "title": "左手抬高至210μs偏移",
+      "file": "overhead_recheck_20261014.json",
+      "pose_count": 7,
+      "image_points_annotated": 0
+    },
+    {
+      "title": "左手抬高至280μs偏移",
+      "file": "overhead_lift280_20261014.json",
+      "pose_count": 7,
+      "image_points_annotated": 0
+    },
+    {
+      "title": "高位手与身体支撑联动",
+      "file": "overhead_body_20261014.json",
+      "pose_count": 7,
+      "image_points_annotated": 6
+    },
+    {
+      "title": "高位80μs横移",
+      "file": "overhead_yaw80_20261014.json",
+      "pose_count": 7,
+      "image_points_annotated": 14
+    },
+    {
+      "title": "低位左右方向复查",
+      "file": "hand_a_low_yaw_recheck_20261014.json",
+      "pose_count": 7,
+      "image_points_annotated": 0
+    },
+    {
+      "title": "高位160μs横移",
+      "file": "overhead_yaw160_20261014.json",
+      "pose_count": 7,
+      "image_points_annotated": 0
+    },
+    {
+      "title": "较高抬升和240μs横移连续试验",
+      "file": "operator_arc_q_20261014.json",
+      "pose_count": 7,
+      "image_points_annotated": 0,
+      "automatic_replay_allowed": false,
+      "reported_anomaly": false
+    },
+    {
+      "title": "降低抬升并扩大320μs横移试验",
+      "file": "operator_arc_r_20261014.json",
+      "pose_count": 7,
+      "image_points_annotated": 0,
+      "automatic_replay_allowed": false,
+      "reported_anomaly": false
+    },
+    {
+      "title": "180μs抬升和200μs横移试验",
+      "file": "operator_arc_s_20261014.json",
+      "pose_count": 7,
+      "image_points_annotated": 0,
+      "automatic_replay_allowed": false,
+      "reported_anomaly": false
+    },
+    {
+      "title": "180μs抬升和200μs横移重复，发现跳跃",
+      "file": "operator_arc_t_20261014.json",
+      "pose_count": 7,
+      "image_points_annotated": 0,
+      "automatic_replay_allowed": false,
+      "reported_anomaly": true
+    }
   ],
   "requested_overhead_crossing_completed": false,
   "both_hands_on_same_side_verified": false,
@@ -15,5 +80,8 @@
   "video_seconds": 39.066667,
   "video_is_continuous_performance": false,
   "video_review_waits_removed": true,
-  "raw_images_and_video_in_git": false
+  "raw_images_and_video_in_git": false,
+  "latest_local_video": "camera_liveview/output/hand-overhead-test-20261014/operator_t/continuous_original_speed.mp4",
+  "latest_trial_reported_jump": true,
+  "automatic_replay_allowed": false
 }

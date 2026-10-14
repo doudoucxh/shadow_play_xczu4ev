@@ -19,7 +19,8 @@ def export(result_path,session,annotations_path=None):
         raise ValueError('Unknown annotation stage')
     if any(set(value)-{'front','top'} for value in annotations.values()):
         raise ValueError('Unknown annotation camera')
-    if result['status']!='closed_attended_gesture_probe' or not result['normal_frame_stop']:
+    continuous=result['status']=='completed_operator_attended_trial'
+    if result['status'] not in ('closed_attended_gesture_probe','completed_operator_attended_trial') or not result['normal_frame_stop']:
         raise ValueError('Only completed, normally stopped diagnostics may be exported')
     final=result['final_state']
     if final['enabled_mask'] or final['armed'] or final['pending'] or final['faults']:
@@ -29,7 +30,20 @@ def export(result_path,session,annotations_path=None):
         raise ValueError('Board log does not match the result')
     events=[json.loads(line) for line in raw.read_bytes().splitlines()]
     acknowledged={r['axis'] for r in events if r['event']=='path_reviewed'}
-    if acknowledged!=set(range(1,7)):
+    continuous_selection=None
+    if continuous:
+        if (sum(r['event']=='operator_trial_started' for r in events)!=1
+                or sum(r['event']=='operator_trial_complete' for r in events)!=1
+                or [r['axis'] for r in events if r['event']=='probe_complete']!=list(range(1,7))
+                or events[-1].get('event')!='outputs_off' or not events[-1].get('normal_frame_stop')
+                or events[-1]['state']!=final or events[0]['state']['pulse_us']!=final['pulse_us']):
+            raise ValueError('Continuous trial must complete six edges and close at its reference')
+        review=session/'continuous_selection.json'
+        if sha(review)!=result['continuous_selection_sha256']:raise ValueError('Continuous camera selection was changed')
+        continuous_selection=json.loads(review.read_text())
+        if set(continuous_selection)!=set(str(i) for i in range(7)):
+            raise ValueError('Seven continuous trial snapshots required')
+    elif acknowledged!=set(range(1,7)):
         witness=result.get('post_stop_closure_review',{})
         if (acknowledged!=set(range(1,6)) or witness.get('event')!='post_stop_closure_review'
                 or witness.get('reviewed_stage')!=6 or witness.get('source_log_sha256')!=result['full_board_log_sha256']
@@ -38,16 +52,18 @@ def export(result_path,session,annotations_path=None):
             raise ValueError('Six reviewed stages or a bound final closure review are required')
     poses=[]
     for stage in range(7):
-        review=session/f'review-{max(1,stage)}'/'selection.json'
-        selection=json.loads(review.read_text())
-        expected=next(r['selection_sha256'] for r in result['visual_reviews'] if r['stage']==max(1,stage))
-        if sha(review)!=expected:raise ValueError('Camera selection was changed')
+        if continuous:selection={'views':continuous_selection[str(stage)]}
+        else:
+            review=session/f'review-{max(1,stage)}'/'selection.json'
+            selection=json.loads(review.read_text())
+            expected=next(r['selection_sha256'] for r in result['visual_reviews'] if r['stage']==max(1,stage))
+            if sha(review)!=expected:raise ValueError('Camera selection was changed')
         event=next(r for r in events if (r['event']=='reference_held' if stage==0 else r['event']=='probe_complete' and r['axis']==stage))
         state=event['state'];pulse=state['pulse_us']
         if len(pulse)!=10 or any(type(v) is not int for v in pulse):raise ValueError('Ten command coordinates required')
         views={}
         for camera,selected in selection['views'].items():
-            frame=selected[0 if stage==0 else 1];path=session/frame['file']
+            frame=selected if continuous else selected[0 if stage==0 else 1];path=session/frame['file']
             with Image.open(path) as im:im.load();width,height=im.size
             manual=annotations.get(str(stage),{}).get(camera,{})
             if set(manual)-set(POINTS):raise ValueError('Unknown attachment identifier')
@@ -65,10 +81,11 @@ def export(result_path,session,annotations_path=None):
                            'jpeg_sha256':sha(path),'image_size_px':[width,height],'points':points}
         poses.append({'stage':stage,'command_sequence':state['sequence'],'command_pulse_us':pulse,
                       'controller_visual_review_acknowledged':stage in acknowledged if stage else None,
+                      'snapshot_timing':'during_continuous_motion_not_a_settled_pose' if continuous else 'separate_before_and_settled_review',
                       'actual_shaft_angles_deg':None,'board_monotonic_seconds':event['board_monotonic_seconds'],
                       'views':views})
     return {'schema_version':1,'action_id':result['session_id'],'profile':result['plan']['profile'],
-            'status':'executed_diagnostic_not_a_completed_crossing','result_file':result_path.name,
+            'status':'executed_attended_trial_not_an_approved_replay' if continuous else 'executed_diagnostic_not_a_completed_crossing','result_file':result_path.name,
             'result_sha256':sha(result_path),'boot_id':result['plan']['boot_id'],
             'coordinate_convention':{'pixel_origin':'raw_image_top_left','x_direction':'right','y_direction':'down',
                 'servo_coordinates':'command_pulse_us_ordered_servo_1_to_10','millimeter_transform':None,
@@ -77,6 +94,7 @@ def export(result_path,session,annotations_path=None):
             'poses':poses,'visual_findings':result['visual_findings'],
             'diagnostic_execution_completed':True,'automatic_replay_allowed':False,'overhead_crossing_completed':False,
             'post_stop_closure_review':result.get('post_stop_closure_review'),
+            'reported_anomaly':result.get('reported_anomaly'),
             'reuse_requirements':['unchanged mechanical connections and reference verified',
                                  'same camera framing or new image calibration',
                                  'current attended authorization and unchanged incident locks'],

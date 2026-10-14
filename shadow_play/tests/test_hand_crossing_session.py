@@ -334,6 +334,21 @@ class CrossingTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.device()
         self.assertEqual(len(self.r.writes),before)
 
+    def test_focused_jump_trial_slows_pitch_edges_without_changing_geometry(self):
+        self.prepare_fast('person-overhead-operator-jump-slow-trial');events=[]
+        h.run_operator_arc_trial(self.device(),events.append,self.sleep)
+        self.assertEqual(h.ROUTES[self.p['profile']],h.ROUTES['person-overhead-operator-balanced-arc-trial'])
+        self.assertEqual([r['axis'] for r in events if r['event']=='focused_slow_stage_started'],[3,4,6])
+        previous=h.BASE[:]
+        for row in events:
+            if row['event']!='probe_step':continue
+            limit=1 if row['axis'] in (3,4,6) else 8
+            self.assertLessEqual(max(abs(a-b) for a,b in zip(previous,row['state']['pulse_us'])),limit)
+            self.assertEqual(row['state']['pulse_us'][2:],h.BASE[2:]);previous=row['state']['pulse_us']
+        self.assertGreater(self.now,15)
+        self.assertEqual(events[-1]['state']['enabled_mask'],0)
+        self.assertEqual(self.lock.read_text(),'incident')
+
     def test_reference_sequence_exception_only_accepts_an_unchanged_static_hold(self):
         self.prepare_fast('person-overhead-operator-arc-trial')
         rows=[json.loads(r) for r in self.raw.splitlines()]
