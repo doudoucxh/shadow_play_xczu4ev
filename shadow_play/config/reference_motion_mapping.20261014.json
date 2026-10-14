@@ -1,0 +1,177 @@
+{
+  "date": "2026-10-14",
+  "source": {
+    "file": "\u9655\u897f\u975e\u9057\u6587\u5316\u76ae\u5f71\u620f\u4f20\u7edf\u66f2\u76ee\u300a\u6b66\u677e\u6253\u864e\u300b\u5b59\u5bb6\u76ae\u5f71\u620f.flv",
+    "sha256": "572b355e04ba2f31bc942b5ff529b716b5d51172037d615c1de55c4dc0845ea2",
+    "overview_sampling": "every 300 decoded frames, approximate 10-second intervals at nominal 30 fps",
+    "overview_frames": 51,
+    "duration_seconds": 507.425238,
+    "width": 1280,
+    "height": 720,
+    "nominal_fps": 30
+  },
+  "method": "Manual phase analysis of user-provided video; no pose-model training or video-to-servo inverse calibration",
+  "detailed_sampling_fps": 4,
+  "detailed_windows_seconds": [
+    [
+      58,
+      64
+    ],
+    [
+      174,
+      180
+    ],
+    [
+      352,
+      358
+    ],
+    [
+      406,
+      412
+    ],
+    [
+      420,
+      426
+    ]
+  ],
+  "observations": [
+    {
+      "window_seconds": [
+        58,
+        64
+      ],
+      "visible_sequence": "held weapon stance, coupled body/weapon burst and exit",
+      "adaptation": "Use preparation then visible burst; omit exit and rail movement"
+    },
+    {
+      "window_seconds": [
+        174,
+        180
+      ],
+      "visible_sequence": "guard, tiger lunge, body/weapon response, recovery; repeated exchanges",
+      "adaptation": "Separate guard, response and recovery phases rather than independent hand sine waves"
+    },
+    {
+      "window_seconds": [
+        352,
+        358
+      ],
+      "visible_sequence": "front hand guard, body dip/hand lift response to pounce, return to guard",
+      "adaptation": "Prepare body support first; stagger the two hands and return hands before body"
+    },
+    {
+      "window_seconds": [
+        406,
+        412
+      ],
+      "visible_sequence": "most sampled views have no visible character",
+      "adaptation": "No motion coordinates inferred"
+    },
+    {
+      "window_seconds": [
+        420,
+        426
+      ],
+      "visible_sequence": "overlapping person/tiger with rises and holds",
+      "adaptation": "No independent wrist coordinates or contact path inferred from occluded figures"
+    }
+  ],
+  "excluded_this_trial": [
+    "rail translation and swaps",
+    "tiger replay",
+    "full head-top crossing",
+    "acrobatics and exits",
+    "person-tiger contact",
+    "unknown elbow inversion"
+  ],
+  "selected_fixed_profile": "person-reference-guard-counter-probe",
+  "route_sha256": "12010630212ec27dc2b6a5225d6eefdf9a37893b8b6be0e8d3c8acfe506ad5a7",
+  "relative_offsets_us": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      -40,
+      0,
+      0
+    ],
+    [
+      0,
+      70,
+      0,
+      -40,
+      0,
+      0
+    ],
+    [
+      0,
+      140,
+      0,
+      -40,
+      0,
+      -240
+    ],
+    [
+      0,
+      0,
+      0,
+      -40,
+      0,
+      -120
+    ],
+    [
+      0,
+      0,
+      0,
+      -40,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "phases": [
+    "reference",
+    "body_support_prepare",
+    "leading_hand_guard",
+    "coordinated_counter_peak",
+    "leading_hand_early_recovery",
+    "second_hand_recovery",
+    "body_recovery"
+  ],
+  "all_yaw_axes_fixed": true,
+  "tiger_enabled": false,
+  "motion_limits_calibrated_from_video": false,
+  "slow_step_limit_us": 3,
+  "fast_step_limit_us": 8,
+  "minimum_commit_start_interval_seconds": 0.02,
+  "fast_requires_same_completed_slow_route": true,
+  "one_continuous_presentation_requires_slow_and_fast_dual_view_reviews": true,
+  "repetitions_per_session": 1,
+  "automatic_crossing_or_freeform_control_allowed": false,
+  "incident_locks_may_be_removed": false,
+  "validation": {
+    "offline_session_tests_passed": 15,
+    "launcher_powershell_syntax_passed": true,
+    "board_source_hash_and_compile_passed": true
+  },
+  "physical_result": "only_support_preparation_executed; stopped because front view repeatedly occluded",
+  "video_ref_is_angle_feedback": false,
+  "physical_result_record": "reference_guard_counter_prefix_result.20261014.json",
+  "fast_route_physically_validated": false,
+  "continuous_presentation_physically_validated": false
+}

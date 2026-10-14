@@ -1,0 +1,214 @@
+{
+  "date": "2026-10-14",
+  "session_id": "person-reference-counter-slow-20261014-f",
+  "plan": {
+    "approval": "attended-fixed-puppet-choreography-20261012",
+    "session_id": "person-reference-counter-slow-20261014-f",
+    "profile": "person-reference-guard-counter-probe",
+    "expected_sequence": 3658,
+    "expected_pulses_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "observer_ready": true,
+    "operator_hardware_unmoved": true,
+    "dual_view_pose_reviewed": true,
+    "reviewed_at_unix_ms": 1791958136594,
+    "duration_seconds": 600,
+    "tempo_step_us": 3,
+    "repetitions": 1,
+    "boot_id": "7eea2c53-e104-45cf-88fe-439f1821e5d4",
+    "restore_after_power_cycle": false,
+    "baseline_source": {
+      "path": "/tmp/puppet-choreography-person-hand-a-inward-20261014-e.jsonl",
+      "sha256": "c1f8b57daee1fffc2d5804e9dda8371be8ce9038ee06f17d21eb1182333844b5"
+    }
+  },
+  "status": "incomplete_route_stopped_for_front_occlusion",
+  "actor_sha256": "f4dfa8b8d062535436e37e314762b8fbadafd538f3c53648a42d158774824282",
+  "full_board_log_sha256": "715dd92fd1d820ac7a7c97f714e055a6af648bb43fe8dbdc876bd97749b3c4d5",
+  "events": [
+    {
+      "event": "reference_held",
+      "profile": "person-reference-guard-counter-probe",
+      "route_sha256": "12010630212ec27dc2b6a5225d6eefdf9a37893b8b6be0e8d3c8acfe506ad5a7",
+      "tempo_step_us": 3,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 3659,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "resume_waypoint": 0,
+      "position_feedback": null,
+      "incident_locks_removed": false,
+      "board_monotonic_seconds": 73520.906739553
+    },
+    {
+      "event": "probe_started",
+      "axis": 1,
+      "target_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1474,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 24,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 3659,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 73875.457241127
+    },
+    {
+      "event": "probe_complete",
+      "axis": 1,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 3683,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1474,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 73875.970953334
+    },
+    {
+      "event": "outputs_off",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 3684,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1474,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "normal_frame_stop": true,
+      "incident_locks_removed": false,
+      "board_monotonic_seconds": 74105.91343348
+    }
+  ],
+  "command_stages_completed": [
+    1
+  ],
+  "visually_reviewed_stages": [],
+  "complete_route": false,
+  "hand_movement_stages_executed": false,
+  "slow_route_review_passed": false,
+  "fast_route_executed": false,
+  "continuous_presentation_executed": false,
+  "tiger_outputs_enabled": false,
+  "front_visibility_note": "The front view was blocked at activation. No route edge was requested then. After a later visible view the support edge was requested, but the person immediately occluded the front view again. No hand edge was requested or marked reviewed.",
+  "full_camera_visibility_sustained": false,
+  "no_automatic_return_command_sent": true,
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 3684,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1212,
+      1537,
+      1474,
+      1508,
+      1740,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": true,
+  "incident_locks_removed": false,
+  "position_feedback": null,
+  "final_command_is_original_reference": false,
+  "automatic_resume_or_replay_allowed": false,
+  "partial_path_media_stored_locally": true,
+  "raw_media_committed": false
+}
