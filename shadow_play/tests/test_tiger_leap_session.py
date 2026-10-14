@@ -1,4 +1,4 @@
-import copy,json,unittest
+import copy,hashlib,json,unittest
 from pathlib import Path
 import test_hand_crossing_session as fixture
 import tiger_leap_session as t
@@ -30,6 +30,32 @@ class TigerLeapTests(unittest.TestCase):
         f,p,args=self.setup_device();p['tiger_hardware_unchanged']=False
         with self.assertRaises(ValueError):t.TigerLeapSession(f.r,p,f.host,**args)
         self.assertEqual(f.r.writes,[])
+    def test_staggered_right_start_waits_then_lifts_head_before_rear(self):
+        f,p,args=self.setup_device();prior=[]
+        def first(r):
+            prior.append(r)
+            if r['event']=='reference_held':f.host.action=('demo',r['state']['sequence'])
+        t.run(t.TigerLeapSession(f.r,p,f.host,**args),first,f.sleep)
+        self.assertTrue(t.closed_tiger_reference(prior))
+        raw='\n'.join(json.dumps(r) for r in prior).encode();old_read=args['read']
+        args['read']=lambda path:raw if path==p['baseline_source']['path'] else old_read(path)
+        p.update(profile=t.STAGGERED,expected_sequence=prior[-1]['state']['sequence'])
+        p['baseline_source']['sha256']=hashlib.sha256(raw).hexdigest()
+        events=[]
+        def emit(r):
+            events.append(r)
+            if r['event'] in ('reference_held','launch_position_held'):f.host.action=('demo',r['state']['sequence'])
+        t.run(t.TigerLeapSession(f.r,p,f.host,**args),emit,f.sleep)
+        self.assertTrue(t.closed_tiger_reference(events))
+        ends=[r['state']['pulse_us'][6:] for r in events if r['event']=='probe_complete']
+        self.assertEqual(ends[0],[1540,1500,1540,1500])
+        self.assertEqual(ends[2][3],ends[1][3])
+        self.assertEqual(ends[3][1],ends[2][1])
+        self.assertLess(ends[4][1],ends[3][1]);self.assertEqual(ends[4][3],ends[3][3])
+        self.assertTrue(all(r['state']['pulse_us'][:6]==t.BASE[:6] for r in events if 'state' in r))
+        self.assertEqual(events[-1]['state']['enabled_mask'],0)
+        bad=copy.deepcopy(events);next(r for r in bad if r['event']=='probe_step')['state']['pulse_us'][0]+=1
+        with self.assertRaises(ValueError):t.closed_tiger_reference(bad)
     def test_no_start_without_static_review_and_cancel_turns_off(self):
         f,p,args=self.setup_device();d=t.TigerLeapSession(f.r,p,f.host,**args);events=[]
         def emit(r):
