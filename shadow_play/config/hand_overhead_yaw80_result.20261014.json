@@ -1,0 +1,780 @@
+{
+  "date": "2026-10-14",
+  "session_id": "person-overhead-yaw80-20261014-l",
+  "status": "closed_attended_gesture_probe",
+  "plan": {
+    "approval": "attended-fixed-puppet-choreography-20261012",
+    "session_id": "person-overhead-yaw80-20261014-l",
+    "profile": "person-overhead-high280-yaw80-probe",
+    "expected_sequence": 5433,
+    "expected_pulses_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "observer_ready": true,
+    "operator_hardware_unmoved": true,
+    "dual_view_pose_reviewed": true,
+    "reviewed_at_unix_ms": 1791963339116,
+    "duration_seconds": 600,
+    "tempo_step_us": 3,
+    "repetitions": 1,
+    "boot_id": "7eea2c53-e104-45cf-88fe-439f1821e5d4",
+    "restore_after_power_cycle": false,
+    "baseline_source": {
+      "path": "/tmp/puppet-choreography-person-overhead-body-20261014-k.jsonl",
+      "sha256": "d63a6aa863bc147f7553b4b63579cce0c3a614132039d18b5c3cc383e08088aa"
+    }
+  },
+  "actor_sha256": "f1f66e14a9bd8ddbdafcb28f5bbe6bba5a666b9b69a8a06d1aadbce2d7caf77d",
+  "full_board_log_sha256": "562f3de9a71d93e3bf1c862bee2e17aafa0f867d020158e6fa419a77aa1bc592",
+  "events": [
+    {
+      "event": "reference_held",
+      "profile": "person-overhead-high280-yaw80-probe",
+      "route_sha256": "33104d1ccc6efce00859bb1a1cbeef5bcc6f75fd3747e4a3499950c7fcf7020d",
+      "tempo_step_us": 3,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5434,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "resume_waypoint": 0,
+      "position_feedback": null,
+      "incident_locks_removed": false,
+      "board_monotonic_seconds": 78715.999009106
+    },
+    {
+      "event": "probe_started",
+      "axis": 1,
+      "target_pulses_us": [
+        1537,
+        1492,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 163,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5434,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78724.403259844
+    },
+    {
+      "event": "probe_complete",
+      "axis": 1,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5597,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1492,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78727.898787638
+    },
+    {
+      "event": "path_reviewed",
+      "axis": 1,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5597,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1492,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78760.470209129
+    },
+    {
+      "event": "probe_started",
+      "axis": 2,
+      "target_pulses_us": [
+        1577,
+        1492,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 24,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5597,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1492,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78760.940455851
+    },
+    {
+      "event": "probe_complete",
+      "axis": 2,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5621,
+        "pending": false,
+        "pulse_us": [
+          1577,
+          1492,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78761.439636782
+    },
+    {
+      "event": "path_reviewed",
+      "axis": 2,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5621,
+        "pending": false,
+        "pulse_us": [
+          1577,
+          1492,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78798.288810948
+    },
+    {
+      "event": "probe_started",
+      "axis": 3,
+      "target_pulses_us": [
+        1617,
+        1492,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 24,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5621,
+        "pending": false,
+        "pulse_us": [
+          1577,
+          1492,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78798.757645347
+    },
+    {
+      "event": "probe_complete",
+      "axis": 3,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5645,
+        "pending": false,
+        "pulse_us": [
+          1617,
+          1492,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78799.261374624
+    },
+    {
+      "event": "path_reviewed",
+      "axis": 3,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5645,
+        "pending": false,
+        "pulse_us": [
+          1617,
+          1492,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78874.44723803
+    },
+    {
+      "event": "probe_started",
+      "axis": 4,
+      "target_pulses_us": [
+        1577,
+        1492,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 24,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5645,
+        "pending": false,
+        "pulse_us": [
+          1617,
+          1492,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78874.947184689
+    },
+    {
+      "event": "probe_complete",
+      "axis": 4,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5669,
+        "pending": false,
+        "pulse_us": [
+          1577,
+          1492,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78875.460827386
+    },
+    {
+      "event": "path_reviewed",
+      "axis": 4,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5669,
+        "pending": false,
+        "pulse_us": [
+          1577,
+          1492,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78894.399446854
+    },
+    {
+      "event": "probe_started",
+      "axis": 5,
+      "target_pulses_us": [
+        1537,
+        1492,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 24,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5669,
+        "pending": false,
+        "pulse_us": [
+          1577,
+          1492,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78894.837230611
+    },
+    {
+      "event": "probe_complete",
+      "axis": 5,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5693,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1492,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78895.341997659
+    },
+    {
+      "event": "path_reviewed",
+      "axis": 5,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5693,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1492,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78914.030617757
+    },
+    {
+      "event": "probe_started",
+      "axis": 6,
+      "target_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 163,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5693,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1492,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78914.499413635
+    },
+    {
+      "event": "probe_complete",
+      "axis": 6,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5856,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 78917.982220851
+    },
+    {
+      "event": "path_reviewed",
+      "axis": 6,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 5856,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 79082.863264581
+    },
+    {
+      "event": "outputs_off",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 5857,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "normal_frame_stop": true,
+      "incident_locks_removed": false,
+      "board_monotonic_seconds": 79083.282287291
+    }
+  ],
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 5857,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": true,
+  "position_feedback": null,
+  "incident_locks_removed": false,
+  "motion_times": [
+    {
+      "stage": 1,
+      "seconds": 3.4955277940025553,
+      "steps": 163
+    },
+    {
+      "stage": 2,
+      "seconds": 0.49918093100131955,
+      "steps": 24
+    },
+    {
+      "stage": 3,
+      "seconds": 0.5037292769993655,
+      "steps": 24
+    },
+    {
+      "stage": 4,
+      "seconds": 0.5136426970129833,
+      "steps": 24
+    },
+    {
+      "stage": 5,
+      "seconds": 0.5047670479980297,
+      "steps": 24
+    },
+    {
+      "stage": 6,
+      "seconds": 3.4828072160016745,
+      "steps": 163
+    }
+  ],
+  "movement_seconds_excluding_operator_review_holds": 8.999654963015928,
+  "visual_reviews": [
+    {
+      "stage": 1,
+      "selection_sha256": "317f935711053109bdaf5288a8448665b0e4ae53c2ac7988e460a0aa4e919199"
+    },
+    {
+      "stage": 2,
+      "selection_sha256": "54ec623df4a44c90788e95b30384609a0081ba6a86fae78c0284d7c3f177796c"
+    },
+    {
+      "stage": 3,
+      "selection_sha256": "8983fb33d96326dc36d03fd40c111e377999131aa39ff413be7f6ef91a4320c5"
+    },
+    {
+      "stage": 4,
+      "selection_sha256": "aaa8d63f334dc291eb9d5717b29848dd3a0a74aebe9d35fa102ad5bec493ad8d"
+    },
+    {
+      "stage": 5,
+      "selection_sha256": "83c955e6be9c6c59077ae29c78ca1741b0c308db9f90677e49585d9a002bbe68"
+    },
+    {
+      "stage": 6,
+      "selection_sha256": "a4539c608e6b03ffc385112a2ccd0c84dc0545ab11e064a184e45a70b2b48d9b"
+    }
+  ],
+  "visual_findings": [
+    "Wider Camo framing shows the high hand attachment, head attachment, whole active rod and rod tail. Camera framing epoch differs from the prior K trial.",
+    "Direct 280-us lift at the original body-support pulse visibly raises the hand and turns/translates the figure; the high hand attachment lies above the head in oblique projection. This alone does not prove whole-arm clearance.",
+    "At the high pose, yaw +40 then +80 us and their return show no clear independent lateral response in the paired front/oblique images. Crossing and both-hands-on-one-side have not been achieved.",
+    "After pitch return the 900-ms snapshot differs from the initial posture. A later fresh dual-view check while still holding the original pulses shows recovery toward the initial posture; do not assume immediate mechanical settlement from a commit acknowledgement.",
+    "No obvious rod interference seen in visible regions. Normal OFF at the original commands; no force, shaft-angle or three-dimensional clearance feedback."
+  ],
+  "operator_observation": null,
+  "full_audio_script_validated": false,
+  "audio_synchronization_validated": false,
+  "full_loaded_workspace_calibrated": false
+}

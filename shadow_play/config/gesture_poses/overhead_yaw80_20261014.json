@@ -1,0 +1,826 @@
+{
+  "schema_version": 1,
+  "action_id": "person-overhead-yaw80-20261014-l",
+  "profile": "person-overhead-high280-yaw80-probe",
+  "status": "executed_diagnostic_not_a_completed_crossing",
+  "result_file": "hand_overhead_yaw80_result.20261014.json",
+  "result_sha256": "0504f6a5216879a8bda08bf498759fe315865e2f0535430716c430ae51c644aa",
+  "boot_id": "7eea2c53-e104-45cf-88fe-439f1821e5d4",
+  "coordinate_convention": {
+    "pixel_origin": "raw_image_top_left",
+    "x_direction": "right",
+    "y_direction": "down",
+    "servo_coordinates": "command_pulse_us_ordered_servo_1_to_10",
+    "millimeter_transform": null,
+    "manual_points_are_approximate": true,
+    "null_point_means_not_measured": true
+  },
+  "servo_pins": [
+    "D14",
+    "D15",
+    "F13",
+    "G13",
+    "G14",
+    "G15",
+    "J14",
+    "E13",
+    "E14",
+    "E15"
+  ],
+  "poses": [
+    {
+      "stage": 0,
+      "command_sequence": 5434,
+      "command_pulse_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "actual_shaft_angles_deg": null,
+      "board_monotonic_seconds": 78715.999009106,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-110934-238046",
+          "host_unix_ns": 1791963349783082400,
+          "jpeg_sha256": "1ebeafad31643b4f4340f38e59706c5fbb5bdf4310f97a0970cdaab1928c963e",
+          "image_size_px": [
+            640,
+            360
+          ],
+          "points": {
+            "hand_a_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "hand_b_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_foot_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            }
+          }
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-238939",
+          "host_unix_ns": 1791963349772170300,
+          "jpeg_sha256": "c7f4c0bc1ef7af8aa10ff77a24dee7744064b99188184d5d8baedf08c6ba646e",
+          "image_size_px": [
+            960,
+            540
+          ],
+          "points": {
+            "hand_a_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "head_attachment": {
+              "pixel_xy": [
+                591,
+                120
+              ],
+              "millimeter_xy": null,
+              "method": "manual_approximate_attachment_location",
+              "validated_error_mm": null
+            },
+            "hand_b_attachment": {
+              "pixel_xy": [
+                535,
+                173
+              ],
+              "millimeter_xy": null,
+              "method": "manual_approximate_attachment_location",
+              "validated_error_mm": null
+            },
+            "tiger_head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_foot_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "stage": 1,
+      "command_sequence": 5597,
+      "command_pulse_us": [
+        1537,
+        1492,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "actual_shaft_angles_deg": null,
+      "board_monotonic_seconds": 78727.898787638,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-110934-238113",
+          "host_unix_ns": 1791963354284662300,
+          "jpeg_sha256": "7628717289086d2ec76c919a4c9dfe9e2ab741d30aa98570875162408019cdff",
+          "image_size_px": [
+            640,
+            360
+          ],
+          "points": {
+            "hand_a_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "hand_b_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_foot_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            }
+          }
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-239007",
+          "host_unix_ns": 1791963354283161300,
+          "jpeg_sha256": "64c8c447e3284e24435499721cc76b21ecb9e039f954f31b353378a4956c0f57",
+          "image_size_px": [
+            960,
+            540
+          ],
+          "points": {
+            "hand_a_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "head_attachment": {
+              "pixel_xy": [
+                591,
+                120
+              ],
+              "millimeter_xy": null,
+              "method": "manual_approximate_attachment_location",
+              "validated_error_mm": null
+            },
+            "hand_b_attachment": {
+              "pixel_xy": [
+                535,
+                173
+              ],
+              "millimeter_xy": null,
+              "method": "manual_approximate_attachment_location",
+              "validated_error_mm": null
+            },
+            "tiger_head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_foot_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "stage": 2,
+      "command_sequence": 5621,
+      "command_pulse_us": [
+        1577,
+        1492,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "actual_shaft_angles_deg": null,
+      "board_monotonic_seconds": 78761.439636782,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-110934-238613",
+          "host_unix_ns": 1791963387801389100,
+          "jpeg_sha256": "a5f26dcd79c6d3c9931b4325c9db7e657951e551f986fef02769ded0591855cb",
+          "image_size_px": [
+            640,
+            360
+          ],
+          "points": {
+            "hand_a_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "hand_b_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_foot_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            }
+          }
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-239510",
+          "host_unix_ns": 1791963387799037700,
+          "jpeg_sha256": "361c6694e6e51628f5b4e67f0472744d912f2f8994b7c2f9977f76d5df646c2e",
+          "image_size_px": [
+            960,
+            540
+          ],
+          "points": {
+            "hand_a_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "head_attachment": {
+              "pixel_xy": [
+                591,
+                120
+              ],
+              "millimeter_xy": null,
+              "method": "manual_approximate_attachment_location",
+              "validated_error_mm": null
+            },
+            "hand_b_attachment": {
+              "pixel_xy": [
+                535,
+                173
+              ],
+              "millimeter_xy": null,
+              "method": "manual_approximate_attachment_location",
+              "validated_error_mm": null
+            },
+            "tiger_head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_foot_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "stage": 3,
+      "command_sequence": 5645,
+      "command_pulse_us": [
+        1617,
+        1492,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "actual_shaft_angles_deg": null,
+      "board_monotonic_seconds": 78799.261374624,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-110934-239177",
+          "host_unix_ns": 1791963425628585100,
+          "jpeg_sha256": "d12d5260ce58b00c80f984eabe7e2c6edfeb5e7683eb0e68cfffcf7b163f783b",
+          "image_size_px": [
+            640,
+            360
+          ],
+          "points": {
+            "hand_a_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "hand_b_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_foot_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            }
+          }
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-240077",
+          "host_unix_ns": 1791963425618014200,
+          "jpeg_sha256": "bcd75de7c0a944a14457067059e27dc3f9af1354fa556df28f4f71eeb9afb705",
+          "image_size_px": [
+            960,
+            540
+          ],
+          "points": {
+            "hand_a_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "head_attachment": {
+              "pixel_xy": [
+                591,
+                120
+              ],
+              "millimeter_xy": null,
+              "method": "manual_approximate_attachment_location",
+              "validated_error_mm": null
+            },
+            "hand_b_attachment": {
+              "pixel_xy": [
+                535,
+                173
+              ],
+              "millimeter_xy": null,
+              "method": "manual_approximate_attachment_location",
+              "validated_error_mm": null
+            },
+            "tiger_head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_foot_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "stage": 4,
+      "command_sequence": 5669,
+      "command_pulse_us": [
+        1577,
+        1492,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "actual_shaft_angles_deg": null,
+      "board_monotonic_seconds": 78875.460827386,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-110934-240313",
+          "host_unix_ns": 1791963501816304500,
+          "jpeg_sha256": "5ef36b0390140fa6f0c7bce1b2c273e945a20e954938b62e547eb54d3c9743c1",
+          "image_size_px": [
+            640,
+            360
+          ],
+          "points": {
+            "hand_a_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "hand_b_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_foot_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            }
+          }
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-241220",
+          "host_unix_ns": 1791963501824818000,
+          "jpeg_sha256": "08700470da51fde6a21187e17d46fbd1bb3bd279652fe40e4b897cba5c9b9341",
+          "image_size_px": [
+            960,
+            540
+          ],
+          "points": {
+            "hand_a_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "head_attachment": {
+              "pixel_xy": [
+                591,
+                120
+              ],
+              "millimeter_xy": null,
+              "method": "manual_approximate_attachment_location",
+              "validated_error_mm": null
+            },
+            "hand_b_attachment": {
+              "pixel_xy": [
+                535,
+                173
+              ],
+              "millimeter_xy": null,
+              "method": "manual_approximate_attachment_location",
+              "validated_error_mm": null
+            },
+            "tiger_head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_foot_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "stage": 5,
+      "command_sequence": 5693,
+      "command_pulse_us": [
+        1537,
+        1492,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "actual_shaft_angles_deg": null,
+      "board_monotonic_seconds": 78895.341997659,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-110934-240609",
+          "host_unix_ns": 1791963521712781000,
+          "jpeg_sha256": "8265cbbe0a6c118d9404e926521a671ff85a1e3ad0be84384d15653cf50f86ce",
+          "image_size_px": [
+            640,
+            360
+          ],
+          "points": {
+            "hand_a_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "hand_b_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_foot_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            }
+          }
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-241518",
+          "host_unix_ns": 1791963521711276600,
+          "jpeg_sha256": "acf133f0152036b63cf174e31f2acb6cb8f020ea055b777f558852ae7d65254a",
+          "image_size_px": [
+            960,
+            540
+          ],
+          "points": {
+            "hand_a_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "head_attachment": {
+              "pixel_xy": [
+                591,
+                120
+              ],
+              "millimeter_xy": null,
+              "method": "manual_approximate_attachment_location",
+              "validated_error_mm": null
+            },
+            "hand_b_attachment": {
+              "pixel_xy": [
+                535,
+                173
+              ],
+              "millimeter_xy": null,
+              "method": "manual_approximate_attachment_location",
+              "validated_error_mm": null
+            },
+            "tiger_head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_foot_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "stage": 6,
+      "command_sequence": 5856,
+      "command_pulse_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "actual_shaft_angles_deg": null,
+      "board_monotonic_seconds": 78917.982220851,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-110934-240947",
+          "host_unix_ns": 1791963544361485700,
+          "jpeg_sha256": "9a5652315e34b1ce5ec8a16392c640df99df183a95d5f84cf9ee7c8d6eddbb57",
+          "image_size_px": [
+            640,
+            360
+          ],
+          "points": {
+            "hand_a_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "hand_b_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_foot_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            }
+          }
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-241858",
+          "host_unix_ns": 1791963544360728800,
+          "jpeg_sha256": "66565f098db137c023de91dc1c64772ed8f2dea41c5808d80dbb6d12a9d8c89d",
+          "image_size_px": [
+            960,
+            540
+          ],
+          "points": {
+            "hand_a_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "head_attachment": {
+              "pixel_xy": [
+                591,
+                120
+              ],
+              "millimeter_xy": null,
+              "method": "manual_approximate_attachment_location",
+              "validated_error_mm": null
+            },
+            "hand_b_attachment": {
+              "pixel_xy": [
+                535,
+                173
+              ],
+              "millimeter_xy": null,
+              "method": "manual_approximate_attachment_location",
+              "validated_error_mm": null
+            },
+            "tiger_head_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            },
+            "tiger_foot_attachment": {
+              "pixel_xy": null,
+              "millimeter_xy": null,
+              "method": "not_measured",
+              "validated_error_mm": null
+            }
+          }
+        }
+      }
+    }
+  ],
+  "visual_findings": [
+    "Wider Camo framing shows the high hand attachment, head attachment, whole active rod and rod tail. Camera framing epoch differs from the prior K trial.",
+    "Direct 280-us lift at the original body-support pulse visibly raises the hand and turns/translates the figure; the high hand attachment lies above the head in oblique projection. This alone does not prove whole-arm clearance.",
+    "At the high pose, yaw +40 then +80 us and their return show no clear independent lateral response in the paired front/oblique images. Crossing and both-hands-on-one-side have not been achieved.",
+    "After pitch return the 900-ms snapshot differs from the initial posture. A later fresh dual-view check while still holding the original pulses shows recovery toward the initial posture; do not assume immediate mechanical settlement from a commit acknowledgement.",
+    "No obvious rod interference seen in visible regions. Normal OFF at the original commands; no force, shaft-angle or three-dimensional clearance feedback."
+  ],
+  "diagnostic_execution_completed": true,
+  "automatic_replay_allowed": false,
+  "overhead_crossing_completed": false,
+  "reuse_requirements": [
+    "unchanged mechanical connections and reference verified",
+    "same camera framing or new image calibration",
+    "current attended authorization and unchanged incident locks"
+  ],
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 5857,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  }
+}
