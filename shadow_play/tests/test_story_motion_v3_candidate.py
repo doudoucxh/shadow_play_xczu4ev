@@ -20,11 +20,34 @@ class CandidateTests(unittest.TestCase):
     def test_command_envelope_and_step_bound(self):
         result=s.check_envelope()
         self.assertLessEqual(result['peak_20ms_step_us'],22)
+        self.assertLessEqual(result['certified_any_phase_25ms_step_us'],22)
         self.assertEqual(s.sample(0),s.START)
         self.assertEqual(s.sample(s.DURATION),s.START)
         for track in (s.HUMAN,s.TIGER):
             self.assertTrue(all(a[0]<b[0] for a,b in zip(track,track[1:])))
             self.assertTrue(all(0<=t<=s.DURATION for t,_,_ in track))
+
+    def test_scheduler_217_and_25ms_at_shifted_phases(self):
+        # Simulate observed board cadence, not just the nominal 20 ms grid.
+        for period in (.0217,.025):
+            for phase in (0,.001,.007,.013,.019):
+                with self.subTest(period=period,phase=phase):
+                    t=phase;previous=s.sample(t)
+                    while t<s.DURATION:
+                        t=min(t+period,s.DURATION);current=s.sample(t)
+                        self.assertLessEqual(max(abs(x-y) for x,y in zip(previous,current)),22)
+                        previous=current
+
+    def test_bp_failure_edge_and_cross_keyframe_windows(self):
+        # Dense phase sweep of the failed 445 us rise, including either join.
+        for i in range(1601):
+            t=36.9+i*.0005
+            self.assertLessEqual(max(abs(x-y) for x,y in zip(s.sample(t),s.sample(t+.025))),22)
+        for tr in (s.HUMAN,s.TIGER):
+            for t,pose,_ in tr:
+                self.assertEqual(s.sample_track(tr,t),pose)
+                for dt in (.001,.007,.013,.024):
+                    self.assertLessEqual(max(abs(x-y) for x,y in zip(s.sample(t-dt),s.sample(t-dt+.025))),22)
 
     def test_roar_followed_by_bite_and_no_false_completion(self):
         high=[i for i,(_,q,_) in enumerate(s.TIGER) if q==s.TO]

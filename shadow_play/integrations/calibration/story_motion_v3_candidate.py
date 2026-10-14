@@ -15,6 +15,10 @@ DURATION = 2959360 / 44100
 MOTOR_READY = False
 AUTOMATIC_REPLAY_ALLOWED = False
 STATUS = 'offline_candidate_not_executed'
+# Flatten the cosine velocity peak without moving audio accents. Acceleration
+# and deceleration each occupy 18% of an edge; velocity is continuous at joins.
+RAMP_FRACTION = .18
+INTERPOLATION = 'trapezoidal_velocity_quadratic_ramps_18_percent_v1'
 START = trial.START[:]
 HITS = [46.38, 47.78, 50.21, 51.68, 53.35, 54.56, 56.82, 57.44]
 H0 = START[:6]
@@ -139,7 +143,10 @@ def sample_track(track,t):
     if t>=track[-1][0]:return track[-1][1][:]
     i=bisect.bisect_right([row[0] for row in track],t)-1
     a,b=track[i:i+2]
-    u=.5-.5*math.cos(math.pi*(t-a[0])/(b[0]-a[0]))
+    x=(t-a[0])/(b[0]-a[0]);r=RAMP_FRACTION
+    if x<r:u=x*x/(2*r*(1-r))
+    elif x>1-r:u=1-(1-x)*(1-x)/(2*r*(1-r))
+    else:u=(x-r/2)/(1-r)
     return blend(a[1],b[1],u)
 
 
@@ -155,9 +162,19 @@ def check_envelope():
     assert all(lo<=v<=hi for q in rows for v,lo,hi in zip(q,lower,upper))
     peak=max(abs(x-y) for a,b in zip(rows,rows[1:]) for x,y in zip(a,b))
     if peak>22:raise ValueError('20 ms step exceeds 22 us: '+str(peak))
+    # Global Lipschitz bound covers every phase, including intervals crossing
+    # keyframes. Two nearest-integer roundings add less than one microsecond.
+    velocity=max(max(abs(x-y) for x,y in zip(a[1],b[1]))/
+                 ((b[0]-a[0])*(1-RAMP_FRACTION))
+                 for track in (HUMAN,TIGER) for a,b in zip(track,track[1:]))
+    certified_25ms=math.ceil(velocity*.025+1)
+    if certified_25ms>22:raise ValueError('Any-phase 25 ms bound exceeds 22 us')
     return {'status':STATUS,'motor_ready':False,'automatic_replay_allowed':False,
             'duration_s':DURATION,'peak_20ms_step_us':peak,'lower_us':lower,'upper_us':upper,
-            'route_sha256':hashlib.sha256(json.dumps([HUMAN,TIGER],separators=(',',':')).encode()).hexdigest(),
+            'maximum_continuous_velocity_us_per_s':velocity,
+            'certified_any_phase_25ms_step_us':certified_25ms,
+            'interpolation':INTERPOLATION,
+            'route_sha256':hashlib.sha256(json.dumps([INTERPOLATION,RAMP_FRACTION,HUMAN,TIGER],separators=(',',':')).encode()).hexdigest(),
             'loaded_clearance_proven':False,'feet_at_bottom_verified':False}
 
 
