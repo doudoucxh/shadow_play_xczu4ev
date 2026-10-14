@@ -1,0 +1,633 @@
+{
+  "date": "2026-10-14",
+  "session_id": "tiger-operator-leap-bite-20261014-ah",
+  "status": "completed_operator_attended_trial",
+  "plan": {
+    "approval": "attended-fixed-puppet-choreography-20261012",
+    "session_id": "tiger-operator-leap-bite-20261014-ah",
+    "profile": "tiger-operator-leap-bite",
+    "expected_sequence": 20438,
+    "expected_pulses_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "observer_ready": true,
+    "operator_hardware_unmoved": true,
+    "dual_view_pose_reviewed": true,
+    "reviewed_at_unix_ms": 1791975717610,
+    "duration_seconds": 120,
+    "tempo_step_us": 8,
+    "repetitions": 1,
+    "boot_id": "7eea2c53-e104-45cf-88fe-439f1821e5d4",
+    "restore_after_power_cycle": false,
+    "baseline_source": {
+      "path": "/tmp/puppet-choreography-person-operator-tiger-directed-20261014-ag.jsonl",
+      "sha256": "454731253c877d745c8b755ee2d323764eacc9204b5a4cd4edbff051ec27c488"
+    },
+    "execution_mode": "operator-attended-one-arc-trial",
+    "tiger_hardware_unchanged": true,
+    "static_reference_review_required": true,
+    "historical_tiger_reference": {
+      "path": "/tmp/tiger_duet_reference_20261012.json",
+      "sha256": "3f8547793801264ad92c4007aabfef321f6e92277f8f0662af719e3230fbd5f4"
+    }
+  },
+  "full_board_log_sha256": "a285185a1f0b2175390d91be50fadc8c6c748e9723b2b7a0bfd5f5e485413159",
+  "continuous_selection_sha256": "b938c0ab2ba072849edb971a8c2bb971d9800e82371d6867d4d4754bf21fb331",
+  "normal_frame_stop": true,
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 20557,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "visual_findings": [
+    "已执行一次蓄势、前跃、低头扑咬、收势，约3.54秒。",
+    "阶段图可见向武松方向前移并抬升，随后虎头压低；当前效果是短促扑咬，不是大跨度腾跃。",
+    "关键轴指令偏移扩大至60微秒，未见明显杆件相顶；并不构成全工作空间无碰撞验证。",
+    "人物六路始终未启用，老虎参考恢复单独静态观察后才启动动作；实际轴角未知。"
+  ],
+  "automatic_replay_allowed": false,
+  "overhead_crossing_completed": false,
+  "continuous_trial_seconds": 3.5377268160082167,
+  "events": [
+    {
+      "event": "reference_held",
+      "profile": "tiger-operator-leap-bite",
+      "route_sha256": "1d49c195563140cde027b15825fa099b87f7baac22a7b1f4e04e65245f13e478",
+      "tempo_step_us": 8,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 20439,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "position_feedback": null,
+      "startup_is_not_rate_limited": true,
+      "incident_locks_removed": false,
+      "board_monotonic_seconds": 91108.462559624
+    },
+    {
+      "event": "operator_trial_started",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 20439,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "static_reference_visually_reviewed": true,
+      "board_monotonic_seconds": 91132.967885357
+    },
+    {
+      "event": "probe_started",
+      "axis": 1,
+      "target_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1520,
+        1480,
+        1520,
+        1520
+      ],
+      "steps": 12,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 20439,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 91132.969541884
+    },
+    {
+      "event": "probe_complete",
+      "axis": 1,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 20451,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1520,
+          1480,
+          1520,
+          1520
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 91133.223451253
+    },
+    {
+      "event": "probe_started",
+      "axis": 2,
+      "target_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1440,
+        1560,
+        1440,
+        1440
+      ],
+      "steps": 18,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 20451,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1520,
+          1480,
+          1520,
+          1520
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 91133.475318381
+    },
+    {
+      "event": "probe_complete",
+      "axis": 2,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 20469,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1440,
+          1560,
+          1440,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 91133.8642249
+    },
+    {
+      "event": "probe_started",
+      "axis": 3,
+      "target_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1440,
+        1440,
+        1440,
+        1470
+      ],
+      "steps": 27,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 20469,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1440,
+          1560,
+          1440,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 91133.985776606
+    },
+    {
+      "event": "probe_complete",
+      "axis": 3,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 20496,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1440,
+          1440,
+          1440,
+          1470
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 91134.563156649
+    },
+    {
+      "event": "probe_started",
+      "axis": 4,
+      "target_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1440,
+        1480,
+        1440,
+        1480
+      ],
+      "steps": 24,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 20496,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1440,
+          1440,
+          1440,
+          1470
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 91134.864674964
+    },
+    {
+      "event": "probe_complete",
+      "axis": 4,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 20520,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1440,
+          1480,
+          1440,
+          1480
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 91135.363495652
+    },
+    {
+      "event": "probe_started",
+      "axis": 5,
+      "target_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1470,
+        1500,
+        1470,
+        1500
+      ],
+      "steps": 18,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 20520,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1440,
+          1480,
+          1440,
+          1480
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 91135.514980187
+    },
+    {
+      "event": "probe_complete",
+      "axis": 5,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 20538,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1470,
+          1500,
+          1470,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 91135.90431355
+    },
+    {
+      "event": "probe_started",
+      "axis": 6,
+      "target_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "steps": 18,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 20538,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1470,
+          1500,
+          1470,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 91136.025809425
+    },
+    {
+      "event": "probe_complete",
+      "axis": 6,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 20556,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 91136.404824935
+    },
+    {
+      "event": "operator_trial_complete",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 20556,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "automatic_replay_allowed": false,
+      "board_monotonic_seconds": 91136.505612173
+    },
+    {
+      "event": "outputs_off",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 20557,
+        "pending": false,
+        "pulse_us": [
+          1537,
+          1212,
+          1537,
+          1514,
+          1508,
+          1740,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "normal_frame_stop": true,
+      "incident_locks_removed": false,
+      "board_monotonic_seconds": 91136.522240469
+    }
+  ],
+  "operator_authorization": "User requested a stronger tiger forward jump followed by downward bite; confirmed no mechanical changes since successful tiger show. Static reference visually checked before a single trial.",
+  "local_video": "camera_liveview/output/hand-overhead-test-20261014/operator_ah/continuous_original_speed.mp4",
+  "expected_pose_count": 7,
+  "head_down_bite_observed": true,
+  "leap_bite_cycle_count": 1,
+  "performance_quality": "short_pounce_and_head_dip_visible_large_leap_not_yet_demonstrated",
+  "stage_names": [
+    "reference",
+    "crouch",
+    "forward_leap",
+    "head_down_bite",
+    "recover_head",
+    "settle",
+    "reference"
+  ],
+  "command_audit": {
+    "person_axes_never_enabled": true,
+    "maximum_frame_step_us": 8,
+    "all_stages_completed": true,
+    "final_sequence": 20557
+  }
+}
