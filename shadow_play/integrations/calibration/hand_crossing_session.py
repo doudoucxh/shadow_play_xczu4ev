@@ -53,6 +53,9 @@ ROUTES={
  # Operator requested less lift and more rightward travel after the first trial.
  'person-overhead-operator-low-arc-trial':(ZERO,(0,180,0,0,0,0),(320,180,0,0,0,0),
      (320,70,0,0,0,0),(320,180,0,0,0,0),(0,180,0,0,0,0),ZERO),
+ # Reduce lateral pull after the operator observed excessive body rotation.
+ 'person-overhead-operator-balanced-arc-trial':(ZERO,(0,180,0,0,0,0),(200,180,0,0,0,0),
+     (200,70,0,0,0,0),(200,180,0,0,0,0),(0,180,0,0,0,0),ZERO),
  'person-overhead-high-map-positive':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
      (60,210,0,-40,0,0),(0,210,0,-40,0,0),(0,0,0,-40,0,0),ZERO),
  'person-overhead-high-map-negative':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
@@ -101,7 +104,8 @@ OVERHEAD_BODY_PROFILES=frozenset(('person-overhead-body-clearance-probe',))
 OVERHEAD_APPROACH_PROFILES=frozenset(('person-overhead-high280-yaw80-probe',))
 OVERHEAD_WIDER_PROFILES=frozenset(('person-overhead-high280-yaw160-probe',))
 OVERHEAD_ARC_PROFILES=frozenset(('person-overhead-arc-entry-probe',))
-OPERATOR_ARC_PROFILES=frozenset(('person-overhead-operator-arc-trial','person-overhead-operator-low-arc-trial'))
+OPERATOR_ARC_PROFILES=frozenset(('person-overhead-operator-arc-trial','person-overhead-operator-low-arc-trial',
+                              'person-overhead-operator-balanced-arc-trial'))
 SLOW_DIAGNOSTIC_PROFILES=HAND_B_DIAGNOSTIC_PROFILES|SLOW_YAW_PROFILES|OVERHEAD_LIFT_PROFILES|OVERHEAD_BODY_PROFILES|OVERHEAD_APPROACH_PROFILES|OVERHEAD_WIDER_PROFILES|OVERHEAD_ARC_PROFILES
 FAST_GESTURE_PROFILES=frozenset(('person-script-hand-b-strike-probe','person-script-double-hit-probe',
                                'person-script-double-drop-sync-probe','person-reference-guard-counter-probe'))
