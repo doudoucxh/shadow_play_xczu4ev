@@ -3,7 +3,7 @@
   "motor_commands_sent": false,
   "user_reports_no_manual_movement": true,
   "observer_available": true,
-  "servo_power_last_report": "off",
+  "servo_power_last_report": "on_after_user_reported_reconnection",
   "board_sequence": 34017,
   "enabled_mask": 0,
   "actual_axis_feedback": null,
@@ -31,10 +31,12 @@
     "Possible loss-of-holding-torque drift is an inference, not a confirmed mechanical diagnosis."
   ],
   "automatic_recovery_allowed": false,
-  "next_step": "Power remains off; await released linkage and clearance review before establishing a new commanded reference. No automatic replay.",
+  "next_step": "No motor action by scheduled checks. Resolve actual starting pose or released-linkage recovery conditions before authoring a new one-use recovery session.",
   "user_visual_inspection": {
     "pose_shift_confirmed": true,
     "loose_connections_reported": false,
     "jam_reported": false
-  }
+  },
+  "linkage_release_confirmed": false,
+  "latest_user_clarification": "User subsequently states long rods need not be separated and requests direct recovery; earlier release report cannot be used as confirmed release."
 }

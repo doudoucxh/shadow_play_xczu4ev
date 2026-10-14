@@ -17,7 +17,7 @@
   },
   "direction_frame": "Sony正面：人物左下、老虎右下",
   "initial_composition": {
-    "human": "左下低手、脚底接近有效幕面底边；不悬挂在高位手点",
+    "human": "沿用用户已接受的BN人物起势；本轮不继续追求脚触底，不将其列为排练前置条件。",
     "tiger": "右下树下，后端控制点降低且与头拉开距离",
     "center": "开场中间留白",
     "verified": false,
@@ -28,7 +28,8 @@
     "latest_evidence": [
       "../../config/stage_bn_result.20261014.json",
       "../../config/stage_bl_result.20261014.json"
-    ]
+    ],
+    "user_accepted_person_pose": true
   },
   "geometry": {
     "head_rod_change_mm": -5,
@@ -597,5 +598,14 @@
     "millimeter_coordinates": null,
     "actual_axis_feedback": null,
     "completion": "指令完成不等于动作效果通过；本文件没有执行证据"
+  },
+  "execution_progress": {
+    "prior_candidate_trial": "../../config/story_full_bp_result.20261014.json",
+    "prior_candidate_stopped_at_s": 37.315736730990466,
+    "corrected_candidate_cadence_review": "../../config/bp_corrected_cadence_review.20261014.json",
+    "corrected_candidate_executed": false,
+    "full_show_effect_verified": false,
+    "current_hardware_pose_unknown_after_poweroff": true,
+    "motor_commands_allowed_by_this_document": false
   }
 }
