@@ -1,0 +1,25 @@
+音频与老虎真实动作联调：AU（2026-10-14）
+
+本轮执行了原音频27–34秒，7秒片段，由Zynq的Jieli USB音响输出。
+片段来自67.105668934秒版本的task1.wav；原文件未修改。
+准备音频播放2秒后，执行既有FAST固定路线一次，保持原幅度、步进与阶段停顿；人物六轴未启用。
+
+程序
+integrations/calibration/tiger_audio_segment.py作为既有tiger_leap_session r12的运行封装。
+Windows启动器显式增加-WithTigerAudioSegment，并仅允许FAST路线与现场固定动作模式。
+音频启动以/proc/asound/card1/pcm0p/sub0/status首次观察到RUNNING为近似原点；随后用板端单调时钟等待2秒，不依赖Windows两条命令的发送间隔。
+这不是麦克风实测声音起点，USB缓冲、观察间隔和相机时间对齐仍有误差，不能宣称0.5毫秒的真实声画精度。
+音频退出失败、相机租约中断和原运动看门狗均终止动作；清理先关闭PWM，再终止音频进程。未解除动作锁。
+
+实机结果
+近似音频29.000505秒开始动作，31.904238秒返回起点，动作耗时2.903728秒。
+播放器完整输出336000帧/48000Hz=7秒，进程报告耗时7.003秒。
+正常结束，十路输出关闭，sequence=22149，faults=0，pending=false，armed=false。
+最后指令微秒：[1537,1212,1537,1514,1508,1740,1730,1275,1730,1500]。
+两路阶段画面已关联到config/tiger_audio_segment_au_result.20261014.json；图中可见头部上跃、后端跟随、下压及返回。人物未参加联动，本轮不是完整剧情验证。
+
+本地复查视频
+camera_liveview/output/hand-overhead-test-20261014/operator_au/audio_segment_reconstruction.mp4
+视频由实际正面采集帧按估计时间重建，并配入原片段音轨；不是现场麦克风录音。
+原始板端完整日志与双视角帧在.review_work/hand_cross_side_test_20261014/operator_arc_au，媒体不进入Git。
+下一步为人物闪避/出拳和老虎联动分段验证；完整67秒时间轴仍未实机执行。
