@@ -50,6 +50,9 @@ ROUTES={
  # is not represented as a calibrated semicircle or an automatically reusable path.
  'person-overhead-operator-arc-trial':(ZERO,(0,280,0,0,0,0),(240,280,0,0,0,0),
      (240,140,0,0,0,0),(240,280,0,0,0,0),(0,280,0,0,0,0),ZERO),
+ # Operator requested less lift and more rightward travel after the first trial.
+ 'person-overhead-operator-low-arc-trial':(ZERO,(0,180,0,0,0,0),(320,180,0,0,0,0),
+     (320,70,0,0,0,0),(320,180,0,0,0,0),(0,180,0,0,0,0),ZERO),
  'person-overhead-high-map-positive':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
      (60,210,0,-40,0,0),(0,210,0,-40,0,0),(0,0,0,-40,0,0),ZERO),
  'person-overhead-high-map-negative':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
@@ -98,7 +101,7 @@ OVERHEAD_BODY_PROFILES=frozenset(('person-overhead-body-clearance-probe',))
 OVERHEAD_APPROACH_PROFILES=frozenset(('person-overhead-high280-yaw80-probe',))
 OVERHEAD_WIDER_PROFILES=frozenset(('person-overhead-high280-yaw160-probe',))
 OVERHEAD_ARC_PROFILES=frozenset(('person-overhead-arc-entry-probe',))
-OPERATOR_ARC_PROFILES=frozenset(('person-overhead-operator-arc-trial',))
+OPERATOR_ARC_PROFILES=frozenset(('person-overhead-operator-arc-trial','person-overhead-operator-low-arc-trial'))
 SLOW_DIAGNOSTIC_PROFILES=HAND_B_DIAGNOSTIC_PROFILES|SLOW_YAW_PROFILES|OVERHEAD_LIFT_PROFILES|OVERHEAD_BODY_PROFILES|OVERHEAD_APPROACH_PROFILES|OVERHEAD_WIDER_PROFILES|OVERHEAD_ARC_PROFILES
 FAST_GESTURE_PROFILES=frozenset(('person-script-hand-b-strike-probe','person-script-double-hit-probe',
                                'person-script-double-drop-sync-probe','person-reference-guard-counter-probe'))
@@ -123,6 +126,32 @@ def reference_sequence(p,rows,read=None):
                 or not state['armed'] or state['pending'] or state['faults']):
             raise ValueError('Static hold continuity is inconsistent')
     return sequence
+
+def closed_operator_reference(rows):
+    """A closed attended trial is a command reference, not a calibrated path."""
+    first,last=rows[0],rows[-1]
+    if first.get('profile') not in OPERATOR_ARC_PROFILES:return False
+    if (first.get('event')!='reference_held' or first.get('route_sha256')!=digest(first['profile'])
+            or first.get('execution_mode')!='operator-attended-one-arc-trial' or first.get('tempo_step_us')!=8
+            or sum(r.get('event')=='operator_trial_started' for r in rows)!=1
+            or sum(r.get('event')=='operator_trial_complete' for r in rows)!=1
+            or [r['axis'] for r in rows if r.get('event')=='probe_complete']!=list(range(1,7))
+            or last.get('event')!='outputs_off' or not last.get('normal_frame_stop')
+            or first['state']['pulse_us']!=BASE or last['state']['pulse_us']!=BASE):
+        raise ValueError('Attended trial reference must be complete and normally closed')
+    previous=first['state']
+    for row in rows:
+        if 'state' not in row:continue
+        state=row['state'];off=row['event']=='outputs_off'
+        if (state['faults'] or state['pending'] or state['enabled_mask']!=(0 if off else 63)
+                or state['armed'] is not (not off)
+                or any(state['pulse_us'][i]!=BASE[i] for i in range(2,10))
+                or state['sequence'] not in (previous['sequence'],(previous['sequence']+1)%2**32)
+                or max(abs(a-b) for a,b in zip(state['pulse_us'],previous['pulse_us']))>8
+                or (state['sequence']==previous['sequence'] and state['pulse_us']!=previous['pulse_us'])):
+            raise ValueError('Attended trial command continuity is inconsistent')
+        previous=state
+    return True
 
 def checked_reviews(p,rows,read=None,wall=None):
     reviewed={r['axis'] for r in rows if r['event']=='path_reviewed'}
@@ -232,6 +261,7 @@ def validate_plan(p,read=None,wall=None):
     rows=c.checked_log(p['baseline_source'],read)
     expected_reference_sequence=reference_sequence(p,rows,read)
     reviewed=checked_reviews(p,rows,read,wall)
+    operator_closed=trial and reviewed!=set(range(1,7)) and closed_operator_reference(rows)
     first=next(r for r in rows if r['event']=='reference_held')
     final=rows[-1]
     if (final['event']!='outputs_off' or final.get('normal_frame_stop') is not True
@@ -246,7 +276,7 @@ def validate_plan(p,read=None,wall=None):
             raise ValueError('Power-cycle restoration needs the completed original duet and fresh reset state')
     elif (first.get('profile') not in ROUTES or first.get('route_sha256')!=digest(first['profile'])
             or (not resume and (p['expected_pulses_us']!=BASE or p['expected_sequence']!=expected_reference_sequence))
-            or reviewed!=set(range(1,7))):
+            or (reviewed!=set(range(1,7)) and not operator_closed)):
         raise ValueError('Continuation requires the complete reviewed mapping route')
     if resume:audit_support_prefix(p,final['state'],read)
     if p['profile']=='person-script-hand-b-inward-80-probe' and first.get('profile') not in HAND_B_YAW_PROFILES:

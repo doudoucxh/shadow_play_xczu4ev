@@ -350,6 +350,27 @@ class CrossingTests(unittest.TestCase):
         bad=copy.deepcopy(holds);bad[0]['state']['pulse_us'][0]+=8
         with self.assertRaises(ValueError):h.reference_sequence(self.p,rows,bind(bad))
 
+    def test_closed_operator_trial_can_continue_lower_without_fabricating_reviews(self):
+        self.prepare_fast('person-overhead-operator-arc-trial');events=[]
+        h.run_operator_arc_trial(self.device(),events.append,self.sleep)
+        self.assertTrue(h.closed_operator_reference(events))
+        for defect in ('missing_stage','other_axis','fault'):
+            bad=copy.deepcopy(events)
+            if defect=='missing_stage':bad=[r for r in bad if not (r['event']=='probe_complete' and r['axis']==3)]
+            elif defect=='other_axis':bad[2]['state']['pulse_us'][4]+=1
+            else:bad[-1]['state']['faults']=2
+            with self.assertRaises(ValueError):h.closed_operator_reference(bad)
+        self.raw='\n'.join(json.dumps(r) for r in events).encode()
+        self.p.update(profile='person-overhead-operator-low-arc-trial',expected_sequence=events[-1]['state']['sequence'])
+        self.p['baseline_source']['sha256']=hashlib.sha256(self.raw).hexdigest()
+        lower_events=[];h.run_operator_arc_trial(self.device(),lower_events.append,self.sleep)
+        lower=h.ROUTES[self.p['profile']]
+        self.assertEqual(max(v[1] for v in lower),180)
+        self.assertEqual(max(v[0] for v in lower),320)
+        self.assertFalse(any(r['event']=='path_reviewed' for r in lower_events))
+        self.assertEqual(lower_events[-1]['state']['pulse_us'],h.BASE)
+        self.assertEqual(lower_events[-1]['state']['enabled_mask'],0)
+
     def test_only_new_frontal_gesture_after_slow_and_fast_review_can_present_once(self):
         self.prepare_fast('person-reference-guard-counter-probe');d=self.device()
         d.adopt(h.BASE[:]);events=[]
