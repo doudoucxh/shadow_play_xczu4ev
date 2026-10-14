@@ -104,6 +104,14 @@ ROUTES={
      (200,-20,20,-40,-40,-100),(100,70,-20,-20,60,-160),
      (200,-20,20,-40,-40,-100),(100,70,-20,-20,60,-160),
      (100,70,0,-20,-40,-100),(0,160,0,0,20,-80),(-80,80,0,0,0,-40),ZERO),
+ 'person-operator-tiger-directed-combo':(ZERO,(0,180,0,0,0,0),(180,90,0,0,0,0),
+     (100,70,10,5,-40,-100),
+     (200,-20,20,10,-40,-100),(100,70,10,5,60,-160),
+     (200,-20,20,10,-40,-100),(100,70,10,5,60,-160),
+     (200,-20,20,10,-40,-100),(100,70,10,5,60,-160),
+     (100,70,10,5,-40,-100),(0,160,0,0,20,-80),(-80,80,0,0,0,-40),ZERO),
+ 'person-operator-head-direction-probe':(ZERO,(0,0,20,0,0,0),ZERO,
+     (0,0,-20,0,0,0),ZERO,(0,0,0,15,0,0),ZERO),
  'person-overhead-high-map-positive':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
      (60,210,0,-40,0,0),(0,210,0,-40,0,0),(0,0,0,-40,0,0),ZERO),
  'person-overhead-high-map-negative':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
@@ -166,12 +174,18 @@ FOCUSED_SLOW_STAGES={'person-overhead-operator-jump-slow-trial':(3,4,6),
                      'person-operator-alternating-guard-combo':(2,3,11,12,13)}
 SLOW_DIAGNOSTIC_PROFILES=HAND_B_DIAGNOSTIC_PROFILES|SLOW_YAW_PROFILES|OVERHEAD_LIFT_PROFILES|OVERHEAD_BODY_PROFILES|OVERHEAD_APPROACH_PROFILES|OVERHEAD_WIDER_PROFILES|OVERHEAD_ARC_PROFILES
 BODY_GUARD_PROFILE='person-operator-body-guard-combo'
-OPERATOR_ARC_PROFILES=OPERATOR_ARC_PROFILES|frozenset((BODY_GUARD_PROFILE,))
+TIGER_DIRECTED_PROFILE='person-operator-tiger-directed-combo'
+BODY_GUARD_PROFILES=frozenset((BODY_GUARD_PROFILE,TIGER_DIRECTED_PROFILE))
+HEAD_DIRECTION_PROFILE='person-operator-head-direction-probe'
+OPERATOR_ARC_PROFILES=OPERATOR_ARC_PROFILES|frozenset((HEAD_DIRECTION_PROFILE,))
+FOCUSED_SLOW_STAGES[HEAD_DIRECTION_PROFILE]=tuple(range(1,7))
+OPERATOR_ARC_PROFILES=OPERATOR_ARC_PROFILES|BODY_GUARD_PROFILES
 FOCUSED_SLOW_STAGES[BODY_GUARD_PROFILE]=(2,3,11,12,13)
+FOCUSED_SLOW_STAGES[TIGER_DIRECTED_PROFILE]=(2,3,11,12,13)
 
 def operator_stage_step(profile,stage):
     if stage in FOCUSED_SLOW_STAGES.get(profile,()):return 1
-    if profile==BODY_GUARD_PROFILE and 4<=stage<=9:return 12
+    if profile in BODY_GUARD_PROFILES and 4<=stage<=9:return 12
     return 8
 
 FAST_GESTURE_PROFILES=frozenset(('person-script-hand-b-strike-probe','person-script-double-hit-probe',
@@ -218,7 +232,7 @@ def closed_operator_reference(rows):
         if 'state' not in row:continue
         state=row['state'];off=row['event']=='outputs_off'
         step_limit=8
-        if first['profile']==BODY_GUARD_PROFILE:
+        if first['profile'] in BODY_GUARD_PROFILES:
             step_limit=operator_stage_step(first['profile'],active_stage)
             if row.get('event')=='probe_step' and row.get('axis')!=active_stage:
                 raise ValueError('Body combo step does not belong to the active stage')
@@ -422,7 +436,7 @@ class CrossingSession(c.ChoreographySession):
         return super().check()
 
     def advance(self,stage,emit,sleep):
-        if self.plan['profile']==BODY_GUARD_PROFILE:
+        if self.plan['profile'] in BODY_GUARD_PROFILES:
             original=self.plan['tempo_step_us']
             self.plan['tempo_step_us']=operator_stage_step(self.plan['profile'],stage)
             try:
@@ -468,7 +482,8 @@ def run_operator_arc_trial(d,emit,sleep=time.sleep):
             d.advance(stage,emit,sleep)
             hold=4.0 if d.plan['profile'] in ('person-overhead-operator-double-punch-trial','person-overhead-operator-punch-hold-trial','person-overhead-operator-punch-level-trial','person-overhead-operator-punch-extend-trial') and stage in (2,3,4) else .12
             if d.plan['profile'] in ('person-operator-alternating-punch-combo','person-operator-alternating-guard-combo'):hold=.06 if 4<=stage<=9 else .12
-            if d.plan['profile']==BODY_GUARD_PROFILE:hold=.02 if 4<=stage<=9 else .12
+            if d.plan['profile'] in BODY_GUARD_PROFILES:hold=.02 if 4<=stage<=9 else .12
+            if d.plan['profile']==HEAD_DIRECTION_PROFILE:hold=1.0
             d.wait(hold,sleep)
             if hold>1:emit(dict(event='inspection_hold_complete',axis=stage,state=d.status()))
         emit(dict(event='operator_trial_complete',state=d.status(),visual_reviews_performed=False,

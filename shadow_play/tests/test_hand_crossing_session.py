@@ -509,6 +509,35 @@ class CrossingTests(unittest.TestCase):
         self.assertFalse(events[-1]['normal_frame_stop'])
         self.assertEqual(self.lock.read_text(),'incident')
 
+    def test_tiger_directed_combo_never_reverses_head_behind_reference(self):
+        self.prepare_fast(h.TIGER_DIRECTED_PROFILE);events=[]
+        h.run_operator_arc_trial(self.device(),events.append,self.sleep)
+        self.assertTrue(h.closed_operator_reference(events));prior=h.BASE[:]
+        for r in events:
+            if r['event']!='probe_step':continue
+            p=r['state']['pulse_us']
+            self.assertTrue(1537<=p[2]<=1557 and 1514<=p[3]<=1524)
+            self.assertLessEqual(max(abs(a-b) for a,b in zip(prior,p)),h.operator_stage_step(h.TIGER_DIRECTED_PROFILE,r['axis']))
+            self.assertEqual(p[6:],h.BASE[6:]);prior=p
+        attacks=[r['state']['pulse_us'][2:4] for r in events if r['event']=='probe_complete' and 4<=r['axis']<=9]
+        self.assertEqual(attacks,[[1557,1524],[1547,1519]]*3)
+        self.assertEqual(events[-1]['state']['pulse_us'],h.BASE)
+        self.assertEqual(events[-1]['state']['enabled_mask'],0)
+
+    def test_head_direction_isolates_each_axis_and_closes(self):
+        self.prepare_fast(h.HEAD_DIRECTION_PROFILE);events=[]
+        h.run_operator_arc_trial(self.device(),events.append,self.sleep)
+        self.assertTrue(h.closed_operator_reference(events));prior=h.BASE[:]
+        for r in events:
+            if r['event']!='probe_step':continue
+            p=r['state']['pulse_us']
+            self.assertLessEqual(max(abs(a-b) for a,b in zip(prior,p)),1)
+            for i in (0,1,4,5,6,7,8,9):self.assertEqual(p[i],h.BASE[i])
+            self.assertFalse(p[2]!=h.BASE[2] and p[3]!=h.BASE[3])
+            prior=p
+        self.assertEqual(events[-1]['state']['pulse_us'],h.BASE)
+        self.assertEqual(events[-1]['state']['enabled_mask'],0)
+
     def test_reference_sequence_exception_only_accepts_an_unchanged_static_hold(self):
         self.prepare_fast('person-overhead-operator-arc-trial')
         rows=[json.loads(r) for r in self.raw.splitlines()]
