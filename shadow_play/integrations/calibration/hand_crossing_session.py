@@ -110,6 +110,8 @@ def validate_plan(p,read=None,wall=None):
             or p['expected_pulses_us']!=BASE or p['expected_sequence']!=final['state']['sequence']
             or {r['axis'] for r in rows if r['event']=='path_reviewed'}!=set(range(1,7))):
         raise ValueError('Continuation requires the complete reviewed mapping route')
+    if p['profile']=='person-script-hand-b-inward-80-probe' and first.get('profile') not in SLOW_YAW_PROFILES:
+        raise ValueError('Second inward level requires the completed local hand-B yaw review')
 
 
 class CrossingSession(c.ChoreographySession):

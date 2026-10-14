@@ -158,6 +158,13 @@ class CrossingTests(unittest.TestCase):
             with self.assertRaises(ValueError):self.device()
             self.assertEqual(self.r.writes,[])
 
+    def test_second_inward_level_requires_local_yaw_evidence(self):
+        self.prepare_fast('person-script-hand-b-strike-probe')
+        self.p.update(profile='person-script-hand-b-inward-80-probe',tempo_step_us=3)
+        del self.p['prior_slow_route_log']
+        with self.assertRaisesRegex(ValueError,'completed local hand-B yaw review'):self.device()
+        self.assertEqual(self.r.writes,[])
+
     def test_source_tamper_and_boot_change_reject_before_arm(self):
         self.raw+=b' '
         with self.assertRaises(ValueError):self.device()
