@@ -113,6 +113,23 @@ class TigerLeapTests(unittest.TestCase):
         self.assertEqual(ends[3][3],ends[2][3])
         self.assertTrue(all(e['state']['pulse_us'][:6]==t.BASE[:6] for e in events if 'state' in e))
 
+    def test_up_left_leap_crouches_rear_then_lifts_head_first(self):
+        f,p,args=self.setup_device();p.update(profile=t.UPLEFT,expected_pulses_us=t.BASE[:6]+[1730,1275,1730,1500])
+        for i,v in enumerate(p['expected_pulses_us']):f.r.values[0x80+4*i]=v
+        with patch.object(t,'validate'):d=t.TigerLeapSession(f.r,p,f.host,**args)
+        events=[]
+        def emit(r):
+            events.append(r)
+            if r['event']=='reference_held':f.host.action=('demo',r['state']['sequence'])
+        t.run(d,emit,f.sleep);self.assertTrue(t.closed_tiger_reference(events))
+        self.assertEqual(events[-1]['state']['pulse_us'],p['expected_pulses_us'])
+        ends=[e['state']['pulse_us'][6:] for e in events if e['event']=='probe_complete']
+        self.assertEqual(ends[0],[1720,1275,1720,1560])
+        self.assertEqual(ends[1][3],1560);self.assertEqual(ends[1][1]-ends[0][1],150)
+        self.assertLess(ends[2][3],ends[1][3]);self.assertGreater(ends[2][1],ends[1][1])
+        self.assertEqual(ends[3][3],ends[2][3]);self.assertLess(ends[3][1],ends[2][1])
+        self.assertTrue(all(e['state']['pulse_us'][:6]==t.BASE[:6] for e in events if 'state' in e))
+
     def test_staggered_right_start_waits_then_lifts_head_before_rear(self):
         f,p,args=self.setup_device();prior=[]
         def first(r):
