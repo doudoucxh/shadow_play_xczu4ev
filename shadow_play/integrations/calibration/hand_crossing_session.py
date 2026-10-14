@@ -40,6 +40,8 @@ ROUTES={
  # Each lateral edge is a separate attended review, not an approved crossing.
  'person-overhead-high280-yaw80-probe':(ZERO,(0,280,0,0,0,0),(40,280,0,0,0,0),
      (80,280,0,0,0,0),(40,280,0,0,0,0),(0,280,0,0,0,0),ZERO),
+ 'person-overhead-high280-yaw160-probe':(ZERO,(0,280,0,0,0,0),(80,280,0,0,0,0),
+     (160,280,0,0,0,0),(80,280,0,0,0,0),(0,280,0,0,0,0),ZERO),
  'person-overhead-high-map-positive':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
      (60,210,0,-40,0,0),(0,210,0,-40,0,0),(0,0,0,-40,0,0),ZERO),
  'person-overhead-high-map-negative':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
@@ -86,7 +88,8 @@ SLOW_YAW_PROFILES=HAND_B_YAW_PROFILES|HAND_A_YAW_PROFILES
 OVERHEAD_LIFT_PROFILES=frozenset(('person-overhead-lift-280-probe',))
 OVERHEAD_BODY_PROFILES=frozenset(('person-overhead-body-clearance-probe',))
 OVERHEAD_APPROACH_PROFILES=frozenset(('person-overhead-high280-yaw80-probe',))
-SLOW_DIAGNOSTIC_PROFILES=HAND_B_DIAGNOSTIC_PROFILES|SLOW_YAW_PROFILES|OVERHEAD_LIFT_PROFILES|OVERHEAD_BODY_PROFILES|OVERHEAD_APPROACH_PROFILES
+OVERHEAD_WIDER_PROFILES=frozenset(('person-overhead-high280-yaw160-probe',))
+SLOW_DIAGNOSTIC_PROFILES=HAND_B_DIAGNOSTIC_PROFILES|SLOW_YAW_PROFILES|OVERHEAD_LIFT_PROFILES|OVERHEAD_BODY_PROFILES|OVERHEAD_APPROACH_PROFILES|OVERHEAD_WIDER_PROFILES
 FAST_GESTURE_PROFILES=frozenset(('person-script-hand-b-strike-probe','person-script-double-hit-probe',
                                'person-script-double-drop-sync-probe','person-reference-guard-counter-probe'))
 CONTINUOUS_PRESENTATION_PROFILES=frozenset(('person-reference-guard-counter-probe',))
@@ -127,7 +130,7 @@ def validate_plan(p,read=None,wall=None):
     fields={'approval','session_id','profile','expected_sequence','expected_pulses_us',
      'observer_ready','operator_hardware_unmoved','dual_view_pose_reviewed','reviewed_at_unix_ms',
      'duration_seconds','tempo_step_us','repetitions','boot_id','restore_after_power_cycle','baseline_source'}
-    if (not isinstance(p,dict) or not fields<=set(p) or set(p)-fields-{'prior_slow_route_log','resume_waypoint','resume_route_log'}
+    if (not isinstance(p,dict) or not fields<=set(p) or set(p)-fields-{'prior_slow_route_log','prior_high_route_log','resume_waypoint','resume_route_log'}
             or p['approval']!=c.APPROVAL or p['profile'] not in ROUTES
             or not c.re.fullmatch('[a-z0-9-]{1,80}',p['session_id'])
             or type(p['expected_sequence']) is not int or not 0<=p['expected_sequence']<2**32
@@ -195,6 +198,19 @@ def validate_plan(p,read=None,wall=None):
         raise ValueError('Overhead body coupling requires the completed 280-us lift review')
     if p['profile'] in OVERHEAD_APPROACH_PROFILES and first.get('profile') not in (OVERHEAD_APPROACH_PROFILES|OVERHEAD_BODY_PROFILES):
         raise ValueError('High lateral approach requires the completed overhead body review')
+    if ('prior_high_route_log' in p)!=(p['profile'] in OVERHEAD_WIDER_PROFILES):
+        raise ValueError('Wider high approach requires its explicit prior high-route receipt')
+    if p['profile'] in OVERHEAD_WIDER_PROFILES:
+        high=c.checked_log(p['prior_high_route_log'],read);hf,hl=high[0],high[-1]
+        if (first.get('profile') not in (HAND_A_YAW_PROFILES|OVERHEAD_WIDER_PROFILES)
+                or hf.get('event')!='reference_held' or hf.get('profile') not in (OVERHEAD_APPROACH_PROFILES|OVERHEAD_WIDER_PROFILES)
+                or hf.get('route_sha256')!=digest(hf['profile']) or hf.get('tempo_step_us')!=3
+                or [r['axis'] for r in high if r['event']=='probe_complete']!=list(range(1,7))
+                or {r['axis'] for r in high if r['event']=='path_reviewed'}!=set(range(1,7))
+                or hl['event']!='outputs_off' or hl.get('normal_frame_stop') is not True
+                or hl['state']['pulse_us']!=BASE or hl['state']['enabled_mask'] or hl['state']['armed']
+                or hl['state']['pending'] or hl['state']['faults']):
+            raise ValueError('Wider approach requires closed low-yaw and high-80 reviews')
 
 
 class CrossingSession(c.ChoreographySession):

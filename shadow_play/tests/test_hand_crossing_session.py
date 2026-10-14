@@ -46,6 +46,13 @@ class CrossingTests(unittest.TestCase):
         self.p.update(profile=profile,restore_after_power_cycle=False,tempo_step_us=8,
                       expected_sequence=100,expected_pulses_us=h.BASE[:],baseline_source=spec,
                       prior_slow_route_log=copy.deepcopy(spec))
+        self.p.pop('prior_high_route_log',None);self.reader=lambda path:self.raw
+        if profile in h.OVERHEAD_WIDER_PROFILES:
+            high=copy.deepcopy(rows);high[0].update(profile='person-overhead-high280-yaw80-probe',
+                                                 route_sha256=h.digest('person-overhead-high280-yaw80-probe'))
+            high_raw='\n'.join(json.dumps(r) for r in high).encode();high_path='/tmp/puppet-choreography-prior-high.jsonl'
+            self.p['prior_high_route_log']=dict(path=high_path,sha256=hashlib.sha256(high_raw).hexdigest())
+            self.reader=lambda path:high_raw if path==high_path else self.raw
         self.r.values[0x20]=100
         for i,v in enumerate(h.BASE):self.r.values[0x80+4*i]=v
 
@@ -143,6 +150,7 @@ class CrossingTests(unittest.TestCase):
             self.assertEqual(d.pulses,h.BASE)
 
     def set_restore_source(self):
+        self.p.pop('prior_high_route_log',None)
         off=dict(sequence=31666,pulse_us=h.BASE,enabled_mask=0,armed=False,pending=False,faults=0)
         rows=[dict(event='reference_held',profile='person-tiger-duet',route_sha256=h.DUET_SHA)]
         rows += [dict(event='path_reviewed',axis=i) for i in range(1,7)]
@@ -247,6 +255,24 @@ class CrossingTests(unittest.TestCase):
         d.completed=d.reviewed=set(range(1,7));d.demo_used=True
         with self.assertRaisesRegex(RuntimeError,'diagnostic-only'):d.check()
         self.assertEqual(self.lock.read_text(),'incident')
+
+    def test_wider_high_approach_needs_high_receipt_and_stays_diagnostic(self):
+        self.prepare_fast('person-overhead-high280-yaw160-probe')
+        self.p['tempo_step_us']=3;del self.p['prior_slow_route_log']
+        receipt=self.p.pop('prior_high_route_log')
+        with self.assertRaisesRegex(ValueError,'explicit prior high-route'):self.device()
+        self.assertEqual(self.r.writes,[])
+        self.p['prior_high_route_log']=dict(receipt,sha256='0'*64)
+        with self.assertRaises(ValueError):self.device()
+        self.assertEqual(self.r.writes,[])
+        self.p['prior_high_route_log']=receipt
+        d=self.device();d.adopt(h.BASE[:]);events=[]
+        for stage in range(1,7):d.advance(stage,events.append,self.sleep)
+        for event in events:
+            if event['event']=='probe_step':self.assertEqual(event['state']['pulse_us'][2:],h.BASE[2:])
+        self.assertEqual(d.pulses,h.BASE)
+        d.completed=d.reviewed=set(range(1,7));d.demo_used=True
+        with self.assertRaisesRegex(RuntimeError,'diagnostic-only'):d.check()
 
     def test_only_new_frontal_gesture_after_slow_and_fast_review_can_present_once(self):
         self.prepare_fast('person-reference-guard-counter-probe');d=self.device()
