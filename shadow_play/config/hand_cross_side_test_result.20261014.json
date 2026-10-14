@@ -1,0 +1,99 @@
+{
+  "date": "2026-10-14",
+  "goal": "Move a hand across to the other side of the body",
+  "status": "three_attended_diagnostic_routes_completed_crossing_not_verified",
+  "physical_trials": [
+    {
+      "file": "hand_b_local_yaw_result.20261014.json",
+      "sha256": "fd4aa5ed5e357ebcf282af0f13766151864ec3864d7e2b92de8018cec84329aa",
+      "session_id": "person-hand-b-yaw-20261014-a",
+      "final_sequence": 3052,
+      "full_board_log_sha256": "681fd879cafa1b2f3e77c68a4c50674d3f8cd7aebe8243efd3a23f571e91ba53"
+    },
+    {
+      "file": "hand_b_inward80_result.20261014.json",
+      "sha256": "7b9d0f330263f1d44755560e137b20951283c0eb3a682131926a28caa8546bd2",
+      "session_id": "person-hand-b-inward-20261014-b",
+      "final_sequence": 3198,
+      "full_board_log_sha256": "eeea7bc7e4d46f3712749a260de42e7599716e1ed6a16572bbf3710fe5ca1505"
+    },
+    {
+      "file": "hand_b_inward_fold_result.20261014.json",
+      "sha256": "6197f57504f738ad7777911ba945d10f6e02279af6e3482b6c4e8f996cdb8573",
+      "session_id": "person-hand-b-fold-20261014-c",
+      "final_sequence": 3366,
+      "full_board_log_sha256": "d415488a52d07677605e3b11db767920168f87b7834c74bb5564338b4bff66b5"
+    }
+  ],
+  "complete_crossing_verified": false,
+  "automatic_replay_allowed": false,
+  "full_loaded_workspace_calibrated": false,
+  "hand_b_occlusion_prevents_scoring": true,
+  "larger_yaw_turned_torso": true,
+  "clear_independent_hand_pitch_response_verified": false,
+  "exact_pose_repeatability_verified": false,
+  "head_yaw_compensation_tested": false,
+  "tiger_outputs_enabled": false,
+  "reviewer_quality_gate": {
+    "hand_visible_must_be_explicit": true,
+    "torso_projection_comparable_must_be_explicit": true,
+    "hidden_points_may_be_null": true,
+    "missing_or_false_declarations_result": "not_assessable",
+    "automatic_visibility_detection": false,
+    "unit_tests_passed": 10
+  },
+  "local_video": {
+    "file": "camera_liveview/output/hand-cross-side-test-20261014/hand_crossing_diagnostics_original_speed.mp4",
+    "sha256": "cb8f7f4653253576c83db008a4b75a7bcc4576abb1ee5aa385f020d2f44d2ecd",
+    "frames": 384,
+    "duration_seconds": 25.6,
+    "fps": 15,
+    "original_speed": true,
+    "review_waits_removed": true,
+    "continuous_performance": false,
+    "max_frame_timestamp_skew_seconds": 0.048813819885253906,
+    "encoded_representative_frames_visually_reviewed": true,
+    "raw_camera_media_committed": false
+  },
+  "final_board_readonly_check": {
+    "boot_id": "7eea2c53-e104-45cf-88fe-439f1821e5d4",
+    "uptime_seconds": 64237.59,
+    "image_marker_exists": true,
+    "mmio_read_performed": true,
+    "fpga_manager_state": "operating",
+    "image_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+    "pin_revision": "servo4_G13_20261010",
+    "pwm_state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 3366,
+      "pending": false,
+      "pulse_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "locks": {
+      "/run/shadow-pwm-motion-inhibit": "1ab30a79eb277e8e6fe4cc563634e0cc73d0417e8ea7b18b74e86bdbddcc74cf",
+      "/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration/.motion-inhibit": "1ab30a79eb277e8e6fe4cc563634e0cc73d0417e8ea7b18b74e86bdbddcc74cf"
+    },
+    "actor_exists": true
+  },
+  "actual_joint_angles": null,
+  "full_3d_clearance_mm": null,
+  "next_unresolved_measurement": "Distinguish repeatable actual servo-5/6 and rod endpoint response from joint slack, occlusion and torso rotation before compensation or further crossing.",
+  "progress_note": "shadow_play/planning/hand_cross_side_20261013/\u5b9e\u6d4b\u8fdb\u5c5520261014.txt"
+}

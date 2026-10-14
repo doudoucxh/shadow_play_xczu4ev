@@ -60,13 +60,40 @@ def compare(before,after,hand):
     if (before['camera']!=after['camera'] or before['mirror_state']!=after['mirror_state']
             or before['frame_id']==after['frame_id']):
         raise ValueError('Distinct frames with the same camera and mirror convention required')
-    def measure(frame):
-        return relative_hand(frame['neck_px'],frame['waist_px'],frame[hand+'_px'],
-                             frame['annotation_uncertainty_px'],frame.get('head_outline_px'))
-    a,b=measure(before),measure(after)
-    return {'hand':hand,'before':a,'after':b,
-            'endpoint_side_change_candidate':a['side']!='uncertain' and b['side']!='uncertain' and a['side']!=b['side'],
+    a,b=map(lambda f:assess_observation(f,hand),(before,after))
+    eligible=a['assessment_status']==b['assessment_status']=='assessable'
+    ma,mb=a['measurement'],b['measurement']
+    return {'hand':hand,'before':ma,'after':mb,
+            'assessment_status':'assessable' if eligible else 'not_assessable',
+            'ineligible_observations':{name:r['reasons'] for name,r in (('before',a),('after',b)) if r['reasons']},
+            'endpoint_side_change_candidate':bool(eligible and ma['side']!='uncertain' and mb['side']!='uncertain' and ma['side']!=mb['side']),
             'complete_crossing_verified':False,'automatic_motion_allowed':False}
+
+
+def assess_observation(frame,hand):
+    """Require explicit visual review; an estimated hidden wrist is not evidence.
+
+    A torso-relative 2D axis removes in-plane motion, but cannot remove torso
+    rotation out of the image plane. These flags are reviewer declarations,
+    not automatic visibility detection or a measured confidence score.
+    """
+    if hand not in ('hand_a','hand_b'):raise ValueError('Known physical hand required')
+    quality=frame.get('observation_quality',{})
+    if not isinstance(quality,dict):raise ValueError('Observation quality must be an object')
+    visible=quality.get(hand+'_visible')
+    comparable=quality.get('torso_projection_comparable')
+    if any(v is not None and type(v) is not bool for v in (visible,comparable)):
+        raise ValueError('Visibility and torso comparability declarations must be boolean')
+    reasons=[]
+    if visible is not True:reasons.append('hand_visibility_not_confirmed')
+    if comparable is not True:reasons.append('torso_projection_not_confirmed_comparable')
+    if frame.get(hand+'_px') is None:reasons.append('no_observed_hand_point')
+    measurement=None
+    if not reasons:
+        measurement=relative_hand(frame['neck_px'],frame['waist_px'],frame[hand+'_px'],
+                                  frame['annotation_uncertainty_px'],frame.get('head_outline_px'))
+    return {'assessment_status':'not_assessable' if reasons else 'assessable',
+            'reasons':reasons,'measurement':measurement}
 
 
 def review(spec):
@@ -82,16 +109,18 @@ def review(spec):
         with Image.open(s['image_file']) as im:
             im.load();size=list(im.size)
         if size!=s['image_size']:raise ValueError('Image coordinate convention changed')
-        landmarks=[s[k] for k in ('neck_px','waist_px','hand_a_px','hand_b_px')]+s['head_outline_px']
+        landmarks=[s[k] for k in ('neck_px','waist_px')]+[s[k] for k in ('hand_a_px','hand_b_px') if s.get(k) is not None]+s['head_outline_px']
         if any(not (0<=x<size[0] and 0<=y<size[1]) for x,y in map(point,landmarks)):
             raise ValueError('Landmarks must lie inside their referenced image')
         measures.append({'label':s['label'],'frame_id':s['frame_id'],
-                         'hand_a':relative_hand(s['neck_px'],s['waist_px'],s['hand_a_px'],s['annotation_uncertainty_px'],s['head_outline_px']),
-                         'hand_b':relative_hand(s['neck_px'],s['waist_px'],s['hand_b_px'],s['annotation_uncertainty_px'],s['head_outline_px'])})
+                         'hand_a':assess_observation(s,'hand_a'),
+                         'hand_b':assess_observation(s,'hand_b')})
     comparisons=[{'before_label':a['label'],'after_label':b['label'],
                   'hands':[compare(a,b,h) for h in ('hand_a','hand_b')]} for a,b in zip(samples,samples[1:])]
-    return {'schema_version':1,'method':'Torso-relative signed hand distance with conditional annotation-error bounds',
+    return {'schema_version':2,'input_schema_version':spec['schema_version'],
+            'method':'Explicitly visible, comparable torso projections followed by conditional 2D annotation-error bounds',
             'manual_image_estimates':True,'metric_coordinates_calibrated':False,'actual_angle_feedback':None,
+            'visibility_and_torso_comparability_are_reviewer_declarations':True,
             'automatic_motion_allowed':False,'complete_crossing_verified':False,
             'samples':measures,'comparisons':comparisons}
 
