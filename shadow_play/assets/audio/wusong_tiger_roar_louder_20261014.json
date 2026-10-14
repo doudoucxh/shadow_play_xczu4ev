@@ -1,0 +1,40 @@
+{
+  "source_name": "武松打虎（2）.wav",
+  "source_sha256": "950e52cc19d84877327e2a399ec5e078ed76daece6e358a61c0679af2114db5e",
+  "output_name": "wusong_tiger_roar_louder_20261014.wav",
+  "output_sha256": "f13c83c30d7482601d3441ee3ca4bca0b8c787104cdc11bacdd587550a29a760",
+  "interval_s": [
+    4.0,
+    7.0
+  ],
+  "boundary_fade_s": 0.1,
+  "profile": "louder",
+  "filter": "equalizer=f=180:t=q:w=0.8:g=2.5:precision=f64,equalizer=f=1300:t=q:w=1:g=1.5:precision=f64,acompressor=threshold=0.12:ratio=6:attack=0.1:release=10:makeup=6:knee=2.828:link=maximum:detection=peak,alimiter=limit=0.944060876:attack=1:release=5:level=false:latency=true",
+  "location_evidence": [
+    "planning/wusong_complete_20261014/score.json",
+    "integrations/calibration/tiger_shadow_roar.py"
+  ],
+  "sample_rate_hz": 44100,
+  "channels": 2,
+  "pcm_bits": 16,
+  "sample_frames": 2959360,
+  "duration_s": 67.10566893424036,
+  "before": {
+    "rms_dbfs": -10.300417418387447,
+    "peak_dbfs": -0.0007952533512092487,
+    "full_scale_samples": 0
+  },
+  "after": {
+    "rms_dbfs": -6.3520873064276975,
+    "peak_dbfs": -0.4999962920739653,
+    "full_scale_samples": 0
+  },
+  "rms_gain_db": 3.9483301119597494,
+  "samples_outside_interval_identical": true,
+  "source_preserved": true,
+  "notes": [
+    "Region-based enhancement of the existing mix; no source separation.",
+    "Original timeline and all samples outside 4–7 seconds are preserved.",
+    "No controller audio, motion configuration or board file is replaced."
+  ]
+}

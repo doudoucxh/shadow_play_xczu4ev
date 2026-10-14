@@ -15,13 +15,21 @@ import numpy as np
 
 SOURCE_SHA256 = '950e52cc19d84877327e2a399ec5e078ed76daece6e358a61c0679af2114db5e'
 START_S, END_S, FADE_S = 4.0, 7.0, 0.1
-FILTER = (
+STANDARD_FILTER = (
     'equalizer=f=180:t=q:w=0.8:g=2.5:precision=f64,'
     'equalizer=f=1300:t=q:w=1:g=1.5:precision=f64,'
     'acompressor=threshold=0.2:ratio=4:attack=0.2:release=25:makeup=3.2:'
     'knee=2.828:link=maximum:detection=peak,'
     'alimiter=limit=0.891250938:attack=3:release=20:level=false:latency=true'
 )
+LOUDER_FILTER = (
+    'equalizer=f=180:t=q:w=0.8:g=2.5:precision=f64,'
+    'equalizer=f=1300:t=q:w=1:g=1.5:precision=f64,'
+    'acompressor=threshold=0.12:ratio=6:attack=0.1:release=10:makeup=6:'
+    'knee=2.828:link=maximum:detection=peak,'
+    'alimiter=limit=0.944060876:attack=1:release=5:level=false:latency=true'
+)
+FILTERS = {'standard': STANDARD_FILTER, 'louder': LOUDER_FILTER}
 
 
 def sha256(path):
@@ -42,7 +50,9 @@ def main():
     parser.add_argument('source', type=Path)
     parser.add_argument('output', type=Path)
     parser.add_argument('report', type=Path)
+    parser.add_argument('--profile', choices=FILTERS, default='standard')
     args = parser.parse_args()
+    selected_filter = FILTERS[args.profile]
     if args.output.exists() or args.report.exists():
         parser.error('Output/report already exists; choose new names.')
     if sha256(args.source) != SOURCE_SHA256:
@@ -53,7 +63,7 @@ def main():
             parser.error('Expected 44.1 kHz stereo PCM16.')
         original = np.frombuffer(src.readframes(params.nframes), dtype='<i2').reshape(-1, 2)
     command = ['ffmpeg', '-nostdin', '-v', 'error', '-i', str(args.source),
-               '-af', FILTER, '-f', 'f64le', '-acodec', 'pcm_f64le', 'pipe:1']
+               '-af', selected_filter, '-f', 'f64le', '-acodec', 'pcm_f64le', 'pipe:1']
     processed = subprocess.run(command, check=True, stdout=subprocess.PIPE).stdout
     wet = np.frombuffer(processed, dtype='<f8').reshape(-1, 2)
     if wet.shape != original.shape or not np.isfinite(wet).all():
@@ -87,7 +97,8 @@ def main():
     report = dict(
         source_name=args.source.name, source_sha256=SOURCE_SHA256,
         output_name=args.output.name, output_sha256=sha256(args.output),
-        interval_s=[START_S, END_S], boundary_fade_s=FADE_S, filter=FILTER,
+        interval_s=[START_S, END_S], boundary_fade_s=FADE_S,
+        profile=args.profile, filter=selected_filter,
         location_evidence=['planning/wusong_complete_20261014/score.json',
                            'integrations/calibration/tiger_shadow_roar.py'],
         sample_rate_hz=params.framerate, channels=params.nchannels, pcm_bits=16,
