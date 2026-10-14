@@ -3,13 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f0e6">
+  <meta name="theme-color" content="#21160f">
   <meta name="description" content="影境 · 一方幕布，万般人间。经典传唱、指尖皮影、以身入戏，三种方式遇见皮影。">
   <title>影境 · 皮影互动体验</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23a33d2f'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-size='42' fill='%23f5f0e6'%3E影%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="heritage.css">
   <script src="rig.js" defer></script>
   <script src="art.js" defer></script>
+  <script src="transitions.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -17,12 +19,20 @@
   <header class="site-header">
     <a href="#home" class="brand" aria-label="影境首页"><span class="brand-seal">影</span><span class="brand-name">影境<small>SHADOW THEATRE</small></span></a>
     <nav class="main-nav" aria-label="主导航"><a href="#home" data-nav="home">戏台首页</a><a href="#modes" data-nav="modes">三种入戏方式</a><button type="button" id="about-open">关于皮影<span class="tiny-arrow">↗</span></button></nav>
-    <div class="header-end"><span class="prototype-tag"><i></i>交互概念版</span><button type="button" class="motion-toggle icon-button" id="motion-toggle" aria-label="暂停环境动画" aria-pressed="false" title="暂停环境动画">Ⅱ</button></div>
+    <div class="header-end"><span class="prototype-tag"><i></i>交互概念版</span><button type="button" class="motion-toggle icon-button" id="motion-toggle" aria-label="暂停界面动效" aria-pressed="false" title="暂停界面动效">Ⅱ</button></div>
   </header>
   <main id="main" tabindex="-1"></main>
   <footer class="site-footer"><span><b>一灯一影，一戏一生。</b><span class="footer-divider"> / </span>让古老的故事，拥有新的表达。</span><span>光影之间 · 你我入戏 <span class="footer-flower">✳</span></span></footer>
   <dialog id="about-dialog" aria-labelledby="about-title"><button type="button" class="dialog-close icon-button" aria-label="关闭介绍">×</button><span class="eyebrow">THE ART OF LIGHT & SHADOW</span><h2 id="about-title">灯亮，影生，故事开场。</h2><p>一方幕布、一盏灯、一双巧手，皮影以光为笔、以影为戏，让人物与故事在方寸之间鲜活起来。</p><p>「影境」想把这份操偶的乐趣交到你手中。你可以欣赏一出《武松打虎》，用指尖编排姿态，也可以让身体成为故事的一部分。</p><div class="dialog-note">当前为本地 UI 概念原型。所有动作均为屏幕动画，未连接皮影设备、摄像头或声音。</div><button class="primary-button dialog-done" type="button">好戏，现在开始 <span>↗</span></button></dialog>
   <div class="toast" id="toast" role="status"></div>
+  <div class="paper-turn" id="paper-turn" hidden aria-hidden="true">
+    <div class="paper-shadow"></div>
+    <div class="paper-leaf">
+      <div class="paper-binding"></div>
+      <div class="paper-inscription"><span class="paper-chapter"></span><span class="paper-title"></span><span class="paper-verse"></span><span class="paper-stamp">传<br>习</span></div>
+      <div class="paper-curl"></div>
+    </div>
+  </div>
   <noscript>请启用 JavaScript 以体验三个互动界面。</noscript>
 </body>
 </html>

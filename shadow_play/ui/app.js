@@ -139,6 +139,8 @@
     const hash = location.hash.slice(1) || 'home';
     if(hash==='main' && main.childElementCount) { main.focus({preventScroll:true}); main.scrollIntoView({behavior:'instant'}); return; }
     const next = ['classic','touch','pose'].includes(hash)?hash:'home';
+    const turnPage = main.childElementCount > 0 && next !== route && next !== 'home';
+    window.TheatrePageTurn.finish();
     // A modes anchor scroll should not replace the home DOM or lose focus.
     if(hash==='modes' && route==='home' && document.querySelector('#modes')) {document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav==='modes')a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});document.querySelector('#modes').scrollIntoView({behavior:motionPaused?'instant':'smooth',block:'start'});return;}
     route=next; play=false; elapsed=0; posePlaying=false; poseTime=0; poseStep=-1; dragging=null;
@@ -149,9 +151,10 @@
     document.querySelectorAll('[data-nav]').forEach(a=>{if(route==='home'&&a.dataset.nav===(hash==='modes'?'modes':'home'))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
     window.scrollTo({top:0,left:0,behavior:'instant'}); main.focus({preventScroll:true});
     if(hash==='modes')document.querySelector('#modes').scrollIntoView({block:'start'});
+    if(turnPage) window.TheatrePageTurn.play(next,motionPaused);
   }
-  function applyMotion() {document.body.classList.toggle('motion-paused',motionPaused);const b=document.querySelector('#motion-toggle');b.setAttribute('aria-pressed',String(motionPaused));b.setAttribute('aria-label',motionPaused?'开启环境动画':'暂停环境动画');b.title=motionPaused?'开启环境动画':'暂停环境动画';b.textContent=motionPaused?'▷':'Ⅱ';}
-  document.querySelector('#motion-toggle').onclick=()=>{motionPaused=!motionPaused;applyMotion();};
+  function applyMotion() {document.body.classList.toggle('motion-paused',motionPaused);const b=document.querySelector('#motion-toggle');b.setAttribute('aria-pressed',String(motionPaused));b.setAttribute('aria-label',motionPaused?'开启界面动效':'暂停界面动效');b.title=motionPaused?'开启界面动效':'暂停界面动效';b.textContent=motionPaused?'▷':'Ⅱ';}
+  document.querySelector('#motion-toggle').onclick=()=>{motionPaused=!motionPaused;if(motionPaused)window.TheatrePageTurn.finish();applyMotion();};
   const dialog=document.querySelector('#about-dialog');
   document.querySelector('#about-open').onclick=()=>dialog.showModal();
   dialog.querySelectorAll('.dialog-close,.dialog-done').forEach(b=>b.onclick=()=>dialog.close());

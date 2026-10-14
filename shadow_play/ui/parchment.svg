@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+  <defs>
+    <filter id="fibres" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".58 .24" numOctaves="3" seed="19" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <radialGradient id="paper"><stop stop-color="#d9bb7d"/><stop offset=".64" stop-color="#c6a168"/><stop offset="1" stop-color="#9d7441"/></radialGradient>
+    <radialGradient id="stain"><stop stop-color="#593315" stop-opacity=".25"/><stop offset="1" stop-color="#593315" stop-opacity="0"/></radialGradient>
+    <linearGradient id="fold"><stop stop-color="#f7dc9e" stop-opacity="0"/><stop offset=".48" stop-color="#51331d" stop-opacity=".035"/><stop offset=".5" stop-color="#51331d" stop-opacity=".14"/><stop offset=".52" stop-color="#f7dc9e" stop-opacity=".1"/><stop offset="1" stop-color="#f7dc9e" stop-opacity="0"/></linearGradient>
+  </defs>
+  <path fill="url(#paper)" d="M0 0h600v800H0z"/>
+  <ellipse cx="16" cy="90" rx="165" ry="160" fill="url(#stain)"/>
+  <ellipse cx="550" cy="690" rx="200" ry="220" fill="url(#stain)"/>
+  <ellipse cx="430" cy="120" rx="90" ry="150" fill="url(#stain)" opacity=".55"/>
+  <path fill="url(#fold)" d="M260 0h60v800h-60z"/>
+  <g fill="#694720" opacity=".13">
+    <circle cx="27" cy="75" r="2"/><circle cx="48" cy="61" r="1"/><circle cx="82" cy="720" r="3"/><circle cx="96" cy="732" r="1.8"/><circle cx="532" cy="183" r="2.2"/><circle cx="547" cy="192" r="1"/><circle cx="517" cy="241" r="1.3"/><circle cx="461" cy="677" r="2"/><circle cx="358" cy="62" r="1.2"/><circle cx="113" cy="395" r="1.7"/>
+  </g>
+  <g stroke="#5d3a19" opacity=".09" fill="none" stroke-width=".6">
+    <path d="m33 205 24-3m72 345 18 1m368-134 31-2M56 648l40-3m210-509 29 1M373 605l27 2M67 45l24 1M474 732l33-2"/>
+    <path d="m42 96 3 167m518 379-4 191M63 735l4 39m475-742-2 102"/>
+  </g>
+  <path fill="#3b2816" filter="url(#fibres)" opacity=".19" d="M0 0h600v800H0z" style="mix-blend-mode:multiply"/>
+</svg>
