@@ -1,0 +1,294 @@
+{
+  "profile": "duel-interaction-v1",
+  "route_sha256": "75edb3b1f1d8a0410b1c6860bb9c7d7290a4c99868e7f7d15e59d012a014d5d4",
+  "status": "offline_candidate_not_deployed_or_executed",
+  "baseline_sequence": 31900,
+  "baseline_pulses_us": [
+    1470,
+    1212,
+    1425,
+    1514,
+    1416,
+    1740,
+    1730,
+    1250,
+    1770,
+    1740
+  ],
+  "feet_at_bottom_verified": false,
+  "requires_fresh_geometry_review": true,
+  "automatic_replay_allowed": false,
+  "phrases": [
+    {
+      "name": "watch_and_feint",
+      "command_waypoints_us": [
+        [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        [
+          1470,
+          1276,
+          1465,
+          1542,
+          1460,
+          1660,
+          1690,
+          1335,
+          1730,
+          1700
+        ],
+        [
+          1470,
+          1252,
+          1465,
+          1562,
+          1460,
+          1640,
+          1710,
+          1280,
+          1750,
+          1720
+        ],
+        [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1360,
+          1730,
+          1700
+        ],
+        [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1730,
+          1250,
+          1770,
+          1740
+        ]
+      ]
+    },
+    {
+      "name": "shadow_roar_guard_pounce_counter",
+      "command_waypoints_us": [
+        [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1630,
+          1535,
+          1670,
+          1640
+        ],
+        [
+          1470,
+          1372,
+          1465,
+          1514,
+          1460,
+          1500,
+          1570,
+          1695,
+          1610,
+          1440
+        ],
+        [
+          1470,
+          1212,
+          1465,
+          1594,
+          1460,
+          1720,
+          1510,
+          1275,
+          1550,
+          1440
+        ],
+        [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1630,
+          1415,
+          1670,
+          1580
+        ],
+        [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1250,
+          1730,
+          1740
+        ]
+      ]
+    },
+    {
+      "name": "double_hammer_and_tiger_reaction",
+      "command_waypoints_us": [
+        [
+          1470,
+          1372,
+          1465,
+          1514,
+          1460,
+          1500,
+          1690,
+          1335,
+          1730,
+          1700
+        ],
+        [
+          1470,
+          1212,
+          1485,
+          1594,
+          1500,
+          1660,
+          1630,
+          1415,
+          1670,
+          1580
+        ],
+        [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1510,
+          1275,
+          1550,
+          1440
+        ],
+        [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1250,
+          1730,
+          1740
+        ]
+      ]
+    },
+    {
+      "name": "false_attack_recover_and_watch",
+      "command_waypoints_us": [
+        [
+          1530,
+          1292,
+          1485,
+          1542,
+          1440,
+          1650,
+          1690,
+          1335,
+          1730,
+          1700
+        ],
+        [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1630,
+          1535,
+          1670,
+          1640
+        ],
+        [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ]
+      ]
+    }
+  ],
+  "validation": [
+    "fixed phrase execution mock",
+    "interrupt stops without reverse",
+    "inset command envelope"
+  ],
+  "physical_clearance_proven": false,
+  "notes": [
+    "Initial low-hand feet-at-bottom pose remains unresolved.",
+    "Motion combinations and silhouette response are not proven by offline tests.",
+    "No electrical high-frequency chatter: bounded cosine movements with varied short pauses."
+  ]
+}

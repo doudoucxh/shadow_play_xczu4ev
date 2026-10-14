@@ -71,6 +71,7 @@ try {
             if ($taskReviewedPlan.profile -eq 'stage-right-low-v1') {$taskActor='/tmp/stage_right_low_extension_20261014.py'}
             if ($taskReviewedPlan.profile -eq 'person-left-low-v1') {$taskActor='/tmp/person_left_low_start_20261014.py'}
             if ($taskReviewedPlan.profile -eq 'person-hand-lower-v1') {$taskActor='/tmp/person_hand_lower_trial_20261014.py'}
+            if ($taskReviewedPlan.profile -eq 'duel-interaction-v1') {$taskActor='/tmp/duel_interaction_trial_20261014.py'}
             $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u '+$taskActor+' '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-fixed-choreography; echo RECOVERY_COMPLETE:$?; stty echo'
         } elseif ($AttendedTigerCentering) {
             $command='PYTHONPATH=/tmp:/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration python3 -u /tmp/tiger_center_session_20261012_r2.py '+$BoardPlan+' --expected-plan-sha256 '+$taskPlanHash+' --execute-attended-loaded-centering; echo RECOVERY_COMPLETE:$?; stty echo'
