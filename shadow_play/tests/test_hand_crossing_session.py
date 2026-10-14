@@ -334,6 +334,22 @@ class CrossingTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.device()
         self.assertEqual(len(self.r.writes),before)
 
+    def test_reference_sequence_exception_only_accepts_an_unchanged_static_hold(self):
+        self.prepare_fast('person-overhead-operator-arc-trial')
+        rows=[json.loads(r) for r in self.raw.splitlines()]
+        state=dict(rows[-1]['state'],sequence=101,enabled_mask=63,armed=True)
+        holds=[dict(event='reference_held',profile='person-overhead-operator-arc-trial',
+                    route_sha256=h.digest('person-overhead-operator-arc-trial'),state=state)]
+        def bind(values):
+            raw=json.dumps(values[0]).encode();path='/tmp/puppet-choreography-static-hold.jsonl'
+            self.p['held_reference_log']=dict(path=path,sha256=hashlib.sha256(raw).hexdigest())
+            return lambda p:raw if p==path else self.raw
+        self.assertEqual(h.reference_sequence(self.p,rows,bind(holds)),101)
+        bad=copy.deepcopy(holds);bad[0]['event']='probe_started'
+        with self.assertRaises(ValueError):h.reference_sequence(self.p,rows,bind(bad))
+        bad=copy.deepcopy(holds);bad[0]['state']['pulse_us'][0]+=8
+        with self.assertRaises(ValueError):h.reference_sequence(self.p,rows,bind(bad))
+
     def test_only_new_frontal_gesture_after_slow_and_fast_review_can_present_once(self):
         self.prepare_fast('person-reference-guard-counter-probe');d=self.device()
         d.adopt(h.BASE[:]);events=[]

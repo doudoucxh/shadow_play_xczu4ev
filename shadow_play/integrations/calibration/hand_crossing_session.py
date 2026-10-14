@@ -107,18 +107,36 @@ CONTINUOUS_PRESENTATION_PROFILES=frozenset(('person-reference-guard-counter-prob
 def digest(profile):
     return hashlib.sha256(json.dumps(ROUTES[profile],separators=(',',':')).encode()).hexdigest()
 
+def reference_sequence(p,rows,read=None):
+    sequence=rows[-1]['state']['sequence']
+    if 'held_reference_log' not in p:return sequence
+    holds=c.checked_log(p['held_reference_log'],read)
+    if (p['profile'] not in OPERATOR_ARC_PROFILES or p['restore_after_power_cycle']
+            or holds[0].get('event')!='reference_held' or holds[0].get('profile')!='person-overhead-operator-arc-trial'
+            or holds[0].get('route_sha256')!=digest('person-overhead-operator-arc-trial')
+            or any(r.get('event') not in ('reference_held','hold_alive') for r in holds)):
+        raise ValueError('Only a failed static hold without any trial movement may advance the reference sequence')
+    sequence=(sequence+1)%2**32
+    for row in holds:
+        state=row['state']
+        if (state['sequence']!=sequence or state['pulse_us']!=BASE or state['enabled_mask']!=63
+                or not state['armed'] or state['pending'] or state['faults']):
+            raise ValueError('Static hold continuity is inconsistent')
+    return sequence
+
 def checked_reviews(p,rows,read=None,wall=None):
     reviewed={r['axis'] for r in rows if r['event']=='path_reviewed'}
     if 'post_stop_closure_review' not in p:return reviewed
     proof=c.checked_log(p['post_stop_closure_review'],read)
     if len(proof)!=1:raise ValueError('Single post-stop closure review required')
     witness=proof[0];first,last=rows[0],rows[-1]
+    final_state=dict(last['state'],sequence=reference_sequence(p,rows,read))
     if (p['profile'] not in (OVERHEAD_ARC_PROFILES|OPERATOR_ARC_PROFILES) or p['restore_after_power_cycle'] or reviewed!=set(range(1,6))
             or first.get('profile')!='person-overhead-high280-yaw160-probe'
             or [r['axis'] for r in rows if r['event']=='probe_complete']!=list(range(1,7))
             or witness.get('event')!='post_stop_closure_review' or witness.get('reviewed_stage')!=6
             or witness.get('source_log_sha256')!=p['baseline_source']['sha256']
-            or witness.get('boot_id')!=p['boot_id'] or witness.get('state')!=last.get('state')
+            or witness.get('boot_id')!=p['boot_id'] or witness.get('state')!=final_state
             or witness.get('fresh_dual_view_reviewed') is not True
             or not isinstance(witness.get('views'),dict) or set(witness['views'])!={'front','top'}
             or any(not v.get('frame_id') or not c.re.fullmatch('[a-f0-9]{64}',v.get('jpeg_sha256','')) for v in witness['views'].values())):
@@ -168,7 +186,7 @@ def validate_plan(p,read=None,wall=None):
     fields={'approval','session_id','profile','expected_sequence','expected_pulses_us',
      'observer_ready','operator_hardware_unmoved','dual_view_pose_reviewed','reviewed_at_unix_ms',
      'duration_seconds','tempo_step_us','repetitions','boot_id','restore_after_power_cycle','baseline_source'}
-    if (not isinstance(p,dict) or not fields<=set(p) or set(p)-fields-{'prior_slow_route_log','prior_high_route_log','post_stop_closure_review','execution_mode','resume_waypoint','resume_route_log'}
+    if (not isinstance(p,dict) or not fields<=set(p) or set(p)-fields-{'prior_slow_route_log','prior_high_route_log','post_stop_closure_review','held_reference_log','execution_mode','resume_waypoint','resume_route_log'}
             or p['approval']!=c.APPROVAL or p['profile'] not in ROUTES
             or not c.re.fullmatch('[a-z0-9-]{1,80}',p['session_id'])
             or type(p['expected_sequence']) is not int or not 0<=p['expected_sequence']<2**32
@@ -212,6 +230,7 @@ def validate_plan(p,read=None,wall=None):
     if wall is not None and not 0<=wall()*1000-p['reviewed_at_unix_ms']<120000:
         raise ValueError('Fresh dual-view pose review required')
     rows=c.checked_log(p['baseline_source'],read)
+    expected_reference_sequence=reference_sequence(p,rows,read)
     reviewed=checked_reviews(p,rows,read,wall)
     first=next(r for r in rows if r['event']=='reference_held')
     final=rows[-1]
@@ -226,7 +245,7 @@ def validate_plan(p,read=None,wall=None):
                 or [r['cycle'] for r in rows if r['event']=='route_cycle_complete']!=[1,2,3]):
             raise ValueError('Power-cycle restoration needs the completed original duet and fresh reset state')
     elif (first.get('profile') not in ROUTES or first.get('route_sha256')!=digest(first['profile'])
-            or (not resume and (p['expected_pulses_us']!=BASE or p['expected_sequence']!=final['state']['sequence']))
+            or (not resume and (p['expected_pulses_us']!=BASE or p['expected_sequence']!=expected_reference_sequence))
             or reviewed!=set(range(1,7))):
         raise ValueError('Continuation requires the complete reviewed mapping route')
     if resume:audit_support_prefix(p,final['state'],read)
@@ -312,29 +331,22 @@ def run_operator_arc_trial(d,emit,sleep=time.sleep):
         raise ValueError('Explicit operator trial required')
     if getattr(d,'operator_trial_used',False):raise RuntimeError('Operator trial already used')
     d.operator_trial_used=True
+    normal=False
     try:
         state=d.adopt(d.plan['expected_pulses_us'][:])
         emit(dict(event='reference_held',profile=d.plan['profile'],route_sha256=d.route_sha256,
                   tempo_step_us=8,execution_mode=d.plan['execution_mode'],state=state,position_feedback=None,
                   incident_locks_removed=False))
-        last=d.clock()
-        while True:
-            d.check();action=d.host.action;d.host.action=None
-            if action:
-                name,seq=action
-                if name!='demo' or seq!=d.sequence:raise RuntimeError('Only one explicit trial trigger is allowed')
-                break
-            if d.clock()-last>=.5:
-                emit(dict(event='hold_alive',state=d.status()));last=d.clock()
-            sleep(.02)
+        d.wait(.25,sleep)
         emit(dict(event='operator_trial_started',state=d.status(),visual_reviews_performed=False))
         for stage in range(1,7):
-            d.advance(stage,emit,sleep);d.check();sleep(.12)
+            d.advance(stage,emit,sleep);d.wait(.12,sleep)
         emit(dict(event='operator_trial_complete',state=d.status(),visual_reviews_performed=False,
                   overhead_crossing_verified=False,automatic_replay_allowed=False))
+        normal=True
     finally:
-        state=d.stop_after_frame()
-        emit(dict(event='outputs_off',state=state,normal_frame_stop=True,incident_locks_removed=False))
+        state=d.stop_after_frame() if normal else d.off()
+        emit(dict(event='outputs_off',state=state,normal_frame_stop=normal,incident_locks_removed=False))
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('plan',type=Path)
