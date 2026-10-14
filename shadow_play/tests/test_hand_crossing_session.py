@@ -115,7 +115,7 @@ class CrossingTests(unittest.TestCase):
         for profile in h.ROUTES:
             self.now=0;self.r=FakeRegisters()
             for i in range(10):self.r.values[0x80+4*i]=1500
-            if profile in h.SLOW_DIAGNOSTIC_PROFILES:
+            if profile in (h.SLOW_DIAGNOSTIC_PROFILES|h.CONTINUOUS_PRESENTATION_PROFILES):
                 self.prepare_fast(profile);self.p['tempo_step_us']=3;del self.p['prior_slow_route_log']
                 d=self.device();d.adopt(h.BASE[:])
             else:
@@ -129,7 +129,7 @@ class CrossingTests(unittest.TestCase):
             for e in events:
                 if e['event']!='probe_step':continue
                 s=e['state'];self.assertEqual(s['enabled_mask'],63)
-                if profile.startswith('person-script-'):
+                if profile.startswith('person-script-') or profile in h.CONTINUOUS_PRESENTATION_PROFILES:
                     self.assertEqual(s['pulse_us'][6:],h.BASE[6:])
                     fixed=((1,2,4,5) if profile in h.HAND_A_YAW_PROFILES else
                            (0,1,2,5) if profile in h.SLOW_YAW_PROFILES else
@@ -188,6 +188,44 @@ class CrossingTests(unittest.TestCase):
         del self.p['prior_slow_route_log']
         with self.assertRaisesRegex(ValueError,'completed local hand-A yaw review'):self.device()
         self.assertEqual(self.r.writes,[])
+
+    def test_reference_presentation_has_fixed_yaw_and_explicit_phase_order(self):
+        route=h.ROUTES['person-reference-guard-counter-probe']
+        self.assertEqual(route[1],(0,0,0,-40,0,0))
+        self.assertEqual(route[2],(0,70,0,-40,0,0))
+        self.assertEqual(route[3],(0,140,0,-40,0,-240))
+        self.assertEqual(route[4],(0,0,0,-40,0,-120))
+        self.assertTrue(all(v[0]==v[2]==v[4]==0 for v in route))
+        self.prepare_fast('person-reference-guard-counter-probe')
+        self.p.update(tempo_step_us=3,restore_after_power_cycle=True)
+        del self.p['prior_slow_route_log']
+        with self.assertRaises(ValueError):self.device()
+        self.assertEqual(self.r.writes,[])
+
+    def test_only_new_frontal_gesture_after_slow_and_fast_review_can_present_once(self):
+        self.prepare_fast('person-reference-guard-counter-probe');d=self.device()
+        d.adopt(h.BASE[:]);events=[]
+        for stage in range(1,7):d.advance(stage,events.append,self.sleep)
+        # Completed movement alone is insufficient; visual reviews are distinct.
+        d.demo_used=True
+        with self.assertRaisesRegex(RuntimeError,'diagnostic-only'):d.check()
+        self.now=0;self.r=FakeRegisters();self.prepare_fast('person-reference-guard-counter-probe')
+        d=self.device();self.host.action=None;events=[]
+        def emit(row):
+            events.append(row)
+            event=row['event'];seq=row['state']['sequence']
+            if event=='reference_held':self.host.action=('probe_1',seq)
+            elif event=='probe_complete' and not d.demo_used:self.host.action=('review_'+str(row['axis']),seq)
+            elif event=='path_reviewed':
+                self.host.action=(('probe_'+str(row['axis']+1)) if row['axis']<6 else 'demo',seq)
+            elif event=='demo_complete':self.host.action=('finish',seq)
+        h.c.run_session(d,emit,sleep=self.sleep)
+        self.assertEqual(sum(e['event']=='demo_started' for e in events),1)
+        self.assertEqual(sum(e['event']=='demo_complete' for e in events),1)
+        self.assertEqual(events[-1]['event'],'outputs_off')
+        self.assertEqual(events[-1]['state']['enabled_mask'],0)
+        self.assertEqual(events[-1]['state']['pulse_us'],h.BASE)
+        self.assertEqual(self.lock.read_text(),'incident')
 
     def test_source_tamper_and_boot_change_reject_before_arm(self):
         self.raw+=b' '

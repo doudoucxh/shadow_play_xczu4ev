@@ -60,7 +60,12 @@ ROUTES={
  # The observed positive direction brings hand A inward. Revisit +40 first,
  # then inspect one additional +40 edge; unrelated yaw/pitch axes stay fixed.
  'person-script-hand-a-inward-80-probe':(ZERO,(0,0,0,-40,0,0),(40,0,0,-40,0,0),
-     (80,0,0,-40,0,0),(40,0,0,-40,0,0),(0,0,0,-40,0,0),ZERO)
+     (80,0,0,-40,0,0),(40,0,0,-40,0,0),(0,0,0,-40,0,0),ZERO),
+ # Reference-video-inspired phase order, not video-to-servo angle estimation:
+ # body support, leading hand guard, other hand counter, early leading-hand
+ # recovery, second hand recovery, then body. All yaw axes remain fixed.
+ 'person-reference-guard-counter-probe':(ZERO,(0,0,0,-40,0,0),(0,70,0,-40,0,0),
+     (0,140,0,-40,0,-240),(0,0,0,-40,0,-120),(0,0,0,-40,0,0),ZERO)
 }
 HAND_B_YAW_PROFILES=frozenset(('person-script-hand-b-local-yaw-probe','person-script-hand-b-inward-80-probe'))
 HAND_B_DIAGNOSTIC_PROFILES=HAND_B_YAW_PROFILES|frozenset(('person-script-hand-b-inward-fold-probe',))
@@ -68,7 +73,8 @@ HAND_A_YAW_PROFILES=frozenset(('person-script-hand-a-local-yaw-probe','person-sc
 SLOW_YAW_PROFILES=HAND_B_YAW_PROFILES|HAND_A_YAW_PROFILES
 SLOW_DIAGNOSTIC_PROFILES=HAND_B_DIAGNOSTIC_PROFILES|SLOW_YAW_PROFILES
 FAST_GESTURE_PROFILES=frozenset(('person-script-hand-b-strike-probe','person-script-double-hit-probe',
-                               'person-script-double-drop-sync-probe'))
+                               'person-script-double-drop-sync-probe','person-reference-guard-counter-probe'))
+CONTINUOUS_PRESENTATION_PROFILES=frozenset(('person-reference-guard-counter-probe',))
 
 def digest(profile):
     return hashlib.sha256(json.dumps(ROUTES[profile],separators=(',',':')).encode()).hexdigest()
@@ -90,7 +96,7 @@ def validate_plan(p,read=None,wall=None):
         raise ValueError('Exact attended overhead mapping plan required')
     if p['tempo_step_us']==3 and 'prior_slow_route_log' in p:
         raise ValueError('Slow diagnostic cannot include a fast-route receipt')
-    if p['profile'] in SLOW_DIAGNOSTIC_PROFILES and p['restore_after_power_cycle']:
+    if p['profile'] in (SLOW_DIAGNOSTIC_PROFILES|CONTINUOUS_PRESENTATION_PROFILES) and p['restore_after_power_cycle']:
         raise ValueError('Local hand yaw review requires the current-boot closed reference')
     if p['tempo_step_us']==8:
         if (p['profile'] not in FAST_GESTURE_PROFILES or p['restore_after_power_cycle']
@@ -159,7 +165,10 @@ class CrossingSession(c.ChoreographySession):
         if self.boot_id_path.read_text().strip()!=self.plan['boot_id']:
             raise RuntimeError('Boot changed; do not rearm')
         if self.demo_used:
-            raise RuntimeError('Overhead mapping is diagnostic-only; path review does not validate motion response or authorize replay')
+            if (self.plan['profile'] not in CONTINUOUS_PRESENTATION_PROFILES
+                    or self.plan['tempo_step_us']!=8
+                    or self.reviewed!=set(range(1,7)) or self.completed!=set(range(1,7))):
+                raise RuntimeError('Overhead mapping is diagnostic-only; only the specific slow-and-fast-reviewed frontal presentation may run once')
         return super().check()
 
     def adopt(self,pulses):

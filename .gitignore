@@ -64,6 +64,9 @@ Shadow_ultra_platform/
 *.log.*
 *.zip
 
+# Downloaded motion-reference videos stay local; record their hashes instead.
+/*.flv
+
 # Private/raw captures, runtime logs and caches
 /shadow_play/logs/
 /shadow_play/docs/servo_capture_evidence_20261008/dual-camera-preview.png
