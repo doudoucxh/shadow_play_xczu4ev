@@ -131,7 +131,7 @@ class CrossingTests(unittest.TestCase):
                 s=e['state'];self.assertEqual(s['enabled_mask'],63)
                 if profile.startswith('person-script-'):
                     self.assertEqual(s['pulse_us'][6:],h.BASE[6:])
-                    fixed=((1,2,4,5) if profile=='person-script-hand-a-local-yaw-probe' else
+                    fixed=((1,2,4,5) if profile in h.HAND_A_YAW_PROFILES else
                            (0,1,2,5) if profile in h.SLOW_YAW_PROFILES else
                            ((0,1,2) if profile in h.SLOW_DIAGNOSTIC_PROFILES else (0,2,4)))
                     for i in fixed:self.assertEqual(s['pulse_us'][i],h.BASE[i])
@@ -181,6 +181,13 @@ class CrossingTests(unittest.TestCase):
             del self.p['prior_slow_route_log']
             with self.assertRaisesRegex(ValueError,'completed local hand-B yaw review'):self.device()
             self.assertEqual(self.r.writes,[])
+
+    def test_hand_a_second_level_cannot_use_hand_b_motion_receipt(self):
+        self.prepare_fast('person-script-hand-b-local-yaw-probe')
+        self.p.update(profile='person-script-hand-a-inward-80-probe',tempo_step_us=3)
+        del self.p['prior_slow_route_log']
+        with self.assertRaisesRegex(ValueError,'completed local hand-A yaw review'):self.device()
+        self.assertEqual(self.r.writes,[])
 
     def test_source_tamper_and_boot_change_reject_before_arm(self):
         self.raw+=b' '

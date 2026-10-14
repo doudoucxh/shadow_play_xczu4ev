@@ -56,11 +56,16 @@ ROUTES={
  # Identify the other hand's own low-pose yaw response. Do not mirror the
  # observed direction of hand B or infer the same global mounting orientation.
  'person-script-hand-a-local-yaw-probe':(ZERO,(0,0,0,-40,0,0),(40,0,0,-40,0,0),
-     (0,0,0,-40,0,0),(-40,0,0,-40,0,0),(0,0,0,-40,0,0),ZERO)
+     (0,0,0,-40,0,0),(-40,0,0,-40,0,0),(0,0,0,-40,0,0),ZERO),
+ # The observed positive direction brings hand A inward. Revisit +40 first,
+ # then inspect one additional +40 edge; unrelated yaw/pitch axes stay fixed.
+ 'person-script-hand-a-inward-80-probe':(ZERO,(0,0,0,-40,0,0),(40,0,0,-40,0,0),
+     (80,0,0,-40,0,0),(40,0,0,-40,0,0),(0,0,0,-40,0,0),ZERO)
 }
 HAND_B_YAW_PROFILES=frozenset(('person-script-hand-b-local-yaw-probe','person-script-hand-b-inward-80-probe'))
 HAND_B_DIAGNOSTIC_PROFILES=HAND_B_YAW_PROFILES|frozenset(('person-script-hand-b-inward-fold-probe',))
-SLOW_YAW_PROFILES=HAND_B_YAW_PROFILES|frozenset(('person-script-hand-a-local-yaw-probe',))
+HAND_A_YAW_PROFILES=frozenset(('person-script-hand-a-local-yaw-probe','person-script-hand-a-inward-80-probe'))
+SLOW_YAW_PROFILES=HAND_B_YAW_PROFILES|HAND_A_YAW_PROFILES
 SLOW_DIAGNOSTIC_PROFILES=HAND_B_DIAGNOSTIC_PROFILES|SLOW_YAW_PROFILES
 FAST_GESTURE_PROFILES=frozenset(('person-script-hand-b-strike-probe','person-script-double-hit-probe',
                                'person-script-double-drop-sync-probe'))
@@ -125,6 +130,8 @@ def validate_plan(p,read=None,wall=None):
         raise ValueError('Second inward level requires the completed local hand-B yaw review')
     if p['profile']=='person-script-hand-b-inward-fold-probe' and first.get('profile') not in HAND_B_DIAGNOSTIC_PROFILES:
         raise ValueError('Combined hand pitch review requires the completed local hand-B yaw review')
+    if p['profile']=='person-script-hand-a-inward-80-probe' and first.get('profile') not in HAND_A_YAW_PROFILES:
+        raise ValueError('Second inward level requires the completed local hand-A yaw review')
 
 
 class CrossingSession(c.ChoreographySession):
