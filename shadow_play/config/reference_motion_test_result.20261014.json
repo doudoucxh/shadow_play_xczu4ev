@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-14",
+  "status": "reference_video_analyzed_slow_fast_and_one_continuous_frontal_gesture_completed",
+  "source_reference_sha256": "572b355e04ba2f31bc942b5ff529b716b5d51172037d615c1de55c4dc0845ea2",
+  "visual_model_training_performed": false,
+  "video_to_servo_inverse_map_calibrated": false,
+  "actual_visible_sequence": [
+    "body support",
+    "leading hand rise",
+    "both hands rise",
+    "leading hand drop",
+    "other hand drop",
+    "body return"
+  ],
+  "clear_forward_punch_verified": false,
+  "cross_body_or_head_top_crossing_verified": false,
+  "elbow_flip_verified": false,
+  "high_pose_body_turn_still_observed": true,
+  "tiger_contact_verified": false,
+  "tiger_enabled": false,
+  "rail_motion_enabled": false,
+  "slow_movement_command_seconds_excluding_review_holds": 8.144931565999286,
+  "fast_movement_command_seconds_excluding_review_holds": 3.075090000013006,
+  "continuous_trial_seconds": 3.6919037280022167,
+  "continuous_cycles": 1,
+  "exact_mechanical_phase_synchronization_verified": false,
+  "records": [
+    "reference_guard_counter_prefix_result.20261014.json",
+    "reference_guard_counter_slow_result.20261014.json",
+    "reference_guard_counter_fast_result.20261014.json"
+  ],
+  "local_video": {
+    "file": "camera_liveview/output/reference-motion-20261014/guard_counter_continuous_original_speed.mp4",
+    "sha256": "59bc7eca5917f3a6d4c78e8346e9e5fc7e48ebce67e00d78c20e4125b2ae52e4",
+    "frames": 62,
+    "fps": 15,
+    "duration_seconds": 4.133333333333334,
+    "original_speed": true,
+    "continuous_single_trial": true,
+    "no_waits_cut_inside_trial": true,
+    "max_frame_timestamp_skew_seconds": 0.03043055534362793,
+    "encoded_frames_visually_reviewed": 6,
+    "media_committed": false
+  },
+  "final_board_readonly_check": {
+    "boot_id": "7eea2c53-e104-45cf-88fe-439f1821e5d4",
+    "uptime_seconds": 75644.31,
+    "image_marker_exists": true,
+    "mmio_read_performed": true,
+    "fpga_manager_state": "operating",
+    "image_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+    "pin_revision": "servo4_G13_20261010",
+    "pwm_state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 4335,
+      "pending": false,
+      "pulse_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "locks": {
+      "/run/shadow-pwm-motion-inhibit": "1ab30a79eb277e8e6fe4cc563634e0cc73d0417e8ea7b18b74e86bdbddcc74cf",
+      "/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration/.motion-inhibit": "1ab30a79eb277e8e6fe4cc563634e0cc73d0417e8ea7b18b74e86bdbddcc74cf"
+    },
+    "actor_exists": true
+  },
+  "actual_joint_angle_feedback": null,
+  "full_loaded_workspace_calibrated": false,
+  "validation": {
+    "session_tests_passed": 16,
+    "launcher_syntax_passed": true,
+    "board_actor_hash_and_compile_passed": true
+  },
+  "automatic_replay_after_camera_restart_or_stop": false,
+  "next_motion_problem": "Separate arm rise from torso rotation and establish a clear forward strike with body support; video does not supply servo angles for this mechanism."
+}
