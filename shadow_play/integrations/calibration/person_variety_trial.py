@@ -9,7 +9,7 @@ import re
 import signal
 import time
 
-PROFILE = 'person-body-double-smash-v2'
+PROFILE = 'person-body-double-smash-v3'
 START = [1515,1372,1515,1514,1506,1660,1510,1275,1550,1640]
 HUMAN_POSES = [
     START[:6],
@@ -18,9 +18,9 @@ HUMAN_POSES = [
     [1515,1212,1535,1594,1546,1660],  # double drop with body following tiger
     [1575,1272,1535,1574,1486,1650],  # candidate guard
     [1575,1372,1535,1574,1486,1650],  # lift before crossing the head
-    [1715,1372,1535,1574,1486,1650],  # cross above the head
-    [1715,1232,1555,1589,1586,1580],  # candidate double strike
-    [1715,1372,1535,1574,1486,1650],  # lift before crossing back
+    [1815,1372,1535,1574,1486,1650],  # cross above the head
+    [1815,1232,1555,1589,1586,1580],  # candidate double strike
+    [1815,1372,1535,1574,1486,1650],  # lift before crossing back
     [1575,1372,1535,1574,1486,1650],
     [1575,1272,1535,1574,1486,1650],
     [1515,1252,1515,1594,1506,1720],
@@ -55,6 +55,10 @@ def validate(p,rows,wall=None):
     elif rows[0].get('profile')==PROFILE:
         if rows[0].get('route_sha256')!=ROUTE_SHA or not any(r['event']=='person_variety_complete' and r['state']['pulse_us']==START for r in rows):
             raise ValueError('Completed person variety with recorded return required')
+    elif rows[0].get('profile')=='person-body-double-smash-v2':
+        if rows[0].get('route_sha256')!='580017ca3670e50f46fb223ed3717aa706e844d6a2da325cd8c35eaf25a57c3b' or not any(
+            r['event']=='person_variety_complete' and r.get('highest_stage')==7 and r['state']['pulse_us']==START for r in rows):
+            raise ValueError('Observed BC seven-stage return required')
     elif rows[0].get('profile')=='person-body-double-smash-v1':
         if rows[0].get('route_sha256')!='2de4bebe62c3112e73f4429963e0c259a596ed7867d493cccea6976e2025fd6b' or not any(
             r['event']=='person_variety_complete' and r.get('highest_stage')==4 and r['state']['pulse_us']==START for r in rows):
