@@ -1,4 +1,16 @@
 @charset "UTF-8";
+.anchor-ring { fill: #f7edda; stroke: #8c713c; stroke-width: 1.2; opacity: .35; }
+.anchor-core { fill: #e5c67c; stroke: #73572f; stroke-width: 1; }
+.anchor-label { display: none; fill: #764532; font: 12px "Microsoft YaHei", sans-serif; paint-order: stroke; stroke: #f5ebd8; stroke-width: 4; stroke-linejoin: round; }
+.show-anchors .anchor-ring { opacity: 1; fill: #a33d2f15; stroke: #a33d2f; }
+.show-anchors .anchor-core { fill: #a33d2f; stroke: #f5ebd8; }
+.show-anchors .anchor-label { display: block; }
+.joint-label { font: 10px "Microsoft YaHei", sans-serif; fill: #876b54; pointer-events: none; paint-order: stroke; stroke: #f0f0e7; stroke-width: 3px; }
+[data-control="wusong_neck"] .joint-handle { fill: #62744f; }
+[data-control="wusong_neck"] .handle-halo { fill: #62744f; }
+[data-rod="wusong_neck"] .anchor-ring { stroke: #62744f; }
+.show-anchors [data-rod="wusong_neck"] .anchor-core { fill: #62744f; }
+.joint-legend > span:nth-child(2) i { background: #62744f; }
 :root{
   --paper:#f6f1e8;
   --ink:#302f29;
@@ -70,6 +82,7 @@ button{
   display:none!important
 }
 .skip-link{
+  opacity:0;
   position:fixed;
   top:-100px;
   left:20px;
@@ -79,6 +92,7 @@ button{
   padding:10px 20px
 }
 .skip-link:focus{
+  opacity:1;
   top:10px
 }
 .site-header{

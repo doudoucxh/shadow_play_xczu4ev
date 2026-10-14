@@ -1,6 +1,7 @@
 /* UI-only prototype: no device APIs, camera capture, network calls or motion data. */
 (() => {
   const {stage, setPose, icon} = window.TheatreArt;
+  const {rods, humanIds, resolveHuman, projectHuman} = window.TheatreRig;
   const main = document.querySelector('#main');
   const DURATION = 67.10566893424036;
   const chapters = [
@@ -12,10 +13,10 @@
     {time: 61, name: '英雄收势', line: '山林渐静，好汉收势，一段传奇留在光影里。'}
   ];
   const presets = [
-    {name: '起势', left: [65, 184], right: [235, 184], body: [150, 238]},
-    {name: '双手举起', left: [63, 66], right: [237, 66], body: [150, 230]},
-    {name: '抱拳', left: [143, 145], right: [168, 135], body: [150, 238]},
-    {name: '侧身', left: [59, 133], right: [233, 99], body: [168, 236]}
+    {name: '起势', wusong_right: [65, 184], wusong_left: [235, 184], wusong_neck: [150, 136]},
+    {name: '双手举起', wusong_right: [63, 66], wusong_left: [237, 66], wusong_neck: [150, 128]},
+    {name: '抱拳', wusong_right: [138, 194], wusong_left: [164, 194], wusong_neck: [150, 136]},
+    {name: '侧身', wusong_right: [59, 133], wusong_left: [233, 99], wusong_neck: [168, 134]}
   ];
   let route = 'home', play = false, elapsed = 0, lastTime = 0, posePlaying = false, poseTime = 0, poseStep = -1;
   let motionPaused = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -33,7 +34,7 @@
     setPose(main);
   }
   function classic() {
-    main.innerHTML = `${modeHeading('01','经典传唱','灯影照山林，好汉上景阳。一起看一出《武松打虎》。')}<div class="classic-layout"><section class="screen-panel"><div class="panel-bar"><span><i class="red-dot"></i>光影戏台</span><span>《武松打虎》 / 动画概念预演</span></div><div class="performance-stage" id="performance-stage">${stage()}<div class="stage-subtitle" id="stage-subtitle">山风起，猛虎现。</div><button class="stage-play" id="stage-play" aria-label="开始动画预演">${icon('play')}</button></div><div class="player"><div class="seek-row"><span id="current-time">00:00</span><input id="timeline" aria-label="剧情进度" type="range" min="0" max="${DURATION}" step="any" value="0"><span>01:07</span></div><div class="player-bottom"><div class="player-buttons"><button type="button" class="primary-button compact" id="play-button">${icon('play')}<span>开始预演</span></button><button type="button" class="text-button" id="restart-button">${icon('reset')}从头开始</button></div><span class="audio-note">动画演示 · 音轨待接入</span></div></div></section><aside class="story-panel"><span class="eyebrow">本日剧目 / REPERTOIRE</span><h2>武松打虎</h2><p class="story-intro">一段景阳冈上的英雄传奇，<br>一场皮影幕后的匠心演绎。</p><div class="story-meta"><span>传统经典</span><span>时长 01:07</span></div><div class="chapter-title"><span>剧情篇章</span><span>六幕光影</span></div><ol class="chapters">${chapters.map((c,i)=>`<li><button type="button" data-chapter="${i}" class="${i===0?'active':''}" ${i===0?'aria-current="step"':''}><span class="chapter-index">${String(i+1).padStart(2,'0')}</span><span>${c.name}</span><time>${fmt(c.time)}</time><span class="chapter-dot"></span></button></li>`).join('')}</ol><div class="story-quote">「好戏不怕旧，光影自有声。」</div></aside></div>`;
+    main.innerHTML = `${modeHeading('01','经典传唱','灯影照山林，好汉上景阳。一起看一出《武松打虎》。')}<div class="classic-layout"><section class="screen-panel"><div class="panel-bar"><span><i class="red-dot"></i>光影戏台</span><span>《武松打虎》 / 动画概念预演</span></div><div class="performance-stage" id="performance-stage">${stage({points:true})}<div class="stage-subtitle" id="stage-subtitle">山风起，猛虎现。</div><button class="stage-play" id="stage-play" aria-label="开始动画预演">${icon('play')}</button></div><div class="player"><div class="seek-row"><span id="current-time">00:00</span><input id="timeline" aria-label="剧情进度" type="range" min="0" max="${DURATION}" step="any" value="0"><span>01:07</span></div><div class="player-bottom"><div class="player-buttons"><button type="button" class="primary-button compact" id="play-button">${icon('play')}<span>开始预演</span></button><button type="button" class="text-button" id="restart-button">${icon('reset')}从头开始</button></div><span class="audio-note">动画演示 · 音轨待接入</span></div></div></section><aside class="story-panel"><span class="eyebrow">本日剧目 / REPERTOIRE</span><h2>武松打虎</h2><p class="story-intro">一段景阳冈上的英雄传奇，<br>一场皮影幕后的匠心演绎。</p><div class="story-meta"><span>传统经典</span><span>时长 01:07</span></div><div class="chapter-title"><span>剧情篇章</span><span>六幕光影</span></div><ol class="chapters">${chapters.map((c,i)=>`<li><button type="button" data-chapter="${i}" class="${i===0?'active':''}" ${i===0?'aria-current="step"':''}><span class="chapter-index">${String(i+1).padStart(2,'0')}</span><span>${c.name}</span><time>${fmt(c.time)}</time><span class="chapter-dot"></span></button></li>`).join('')}</ol><div class="story-quote">武松：双手 · 颈部主杆<br>老虎：耳部头杆 · 尾部后端杆</div></aside></div>`;
     document.querySelector('#play-button').onclick = togglePlay;
     document.querySelector('#stage-play').onclick = togglePlay;
     document.querySelector('#restart-button').onclick = () => { elapsed = 0; play = false; updatePlayer(); };
@@ -55,30 +56,50 @@
     const tiger = main.querySelector('.puppet-tiger'); tiger.setAttribute('transform', `translate(0 ${-Math.abs(Math.sin(t*1.8))*32*intensity}) rotate(${Math.sin(t*1.8)*8*intensity})`);
   }
   function stickman(id, interactive = false) {
-    return `<svg id="${id}" class="stickman ${interactive?'interactive-stickman':''}" viewBox="0 0 300 330" ${interactive?'aria-label="火柴人操控区，拖动双手或身体圆点；也可聚焦圆点后使用方向键"':'role="img" aria-label="示范人体骨架"'}><defs><pattern id="${id}-grid" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="currentColor" opacity=".12"/></pattern></defs><rect width="300" height="330" fill="url(#${id}-grid)"/><ellipse cx="150" cy="301" rx="69" ry="8" class="body-shadow"/><g class="skeleton-lines" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="80" r="24"/><path class="body-line" d="M150 107V238M120 136H180M150 238L111 291M150 238L189 291"/><path class="left-line"/><path class="right-line"/></g><g class="skeleton-joints"><circle cx="120" cy="136" r="5"/><circle cx="180" cy="136" r="5"/><circle cx="111" cy="291" r="5"/><circle cx="189" cy="291" r="5"/></g>${['left','right','body'].map((key,i)=>`<g class="handle-group"><circle class="handle-halo" data-halo="${key}" r="22"/><circle class="joint-handle" data-joint="${key}" r="${interactive?12:7}" ${interactive?`tabindex="0" role="slider" aria-label="${['画面左手','画面右手','身体'][i]}位置" aria-valuemin="0" aria-valuemax="300" aria-valuenow="150"`:''}/></g>`).join('')}${interactive?'<text x="26" y="28" class="control-label">拖动圆点，赋予皮影姿态</text>':''}</svg>`;
+    return `<svg id="${id}" class="stickman ${interactive?'interactive-stickman':''}" viewBox="0 0 300 330" ${interactive?'aria-label="火柴人操控区，武松右手、左手和颈部主杆三个控制点"':'role="img" aria-label="示范人体骨架，双腕与双肩中点对应武松三根杆"'}>
+      <defs><pattern id="${id}-grid" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="currentColor" opacity=".12"/></pattern></defs>
+      <rect width="300" height="330" fill="url(#${id}-grid)"/><ellipse cx="150" cy="301" rx="69" ry="8" class="body-shadow"/>
+      <g class="skeleton-lines" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle class="skeleton-head" cx="150" cy="80" r="24"/><path class="body-line"/><path class="left-line"/><path class="right-line"/></g>
+      <g class="skeleton-joints"><circle class="shoulder-left" r="5"/><circle class="shoulder-right" r="5"/></g>
+      ${humanIds.map(key=>`<g class="handle-group" data-control="${key}"><circle class="handle-halo" data-halo="${key}" r="22"/><circle class="joint-handle" data-joint="${key}" r="${interactive?12:7}" ${interactive?`tabindex="0" role="slider" aria-label="武松${rods[key].label}位置" aria-valuemin="0" aria-valuemax="300" aria-valuenow="150"`:''}/><text class="joint-label" data-joint-label="${key}" text-anchor="${key==='wusong_neck'?'start':'middle'}">${rods[key].label}</text></g>`).join('')}
+      ${interactive?'<text x="26" y="25" class="control-label">正面示意 · 左右按角色自身</text>':''}
+    </svg>`;
   }
-  function drawStick(svg, state) {
-    const [bx,by] = state.body;
-    svg.querySelector('.body-line').setAttribute('d', `M150 107L${bx} ${by}M120 136H180M${bx} ${by}L111 291M${bx} ${by}L189 291`);
-    for (const [key, sx] of [['left',120],['right',180]]) {
-      const [x,y] = state[key], ex = (sx+x)/2+(key==='left'?-14:14), ey = (136+y)/2+20;
-      svg.querySelector('.'+key+'-line').setAttribute('d', `M${sx} 136L${ex} ${ey}L${x} ${y}`);
+  function drawStick(svg, points) {
+    const [nx,ny] = points.wusong_neck, by = ny + 102;
+    svg.querySelector('.skeleton-head').setAttribute('cx',nx);
+    svg.querySelector('.skeleton-head').setAttribute('cy',ny-56);
+    svg.querySelector('.body-line').setAttribute('d', `M${nx} ${ny-29}V${by}M${nx-30} ${ny}H${nx+30}M${nx} ${by}L${nx-39} 291M${nx} ${by}L${nx+39} 291`);
+    for (const key of humanIds.slice(0,2)) {
+      const side = rods[key].side, sx = nx + (side==='left'?-30:30);
+      const [x,y] = points[key], ex = (sx+x)/2+(side==='left'?-14:14), ey = (ny+y)/2+20;
+      svg.querySelector('.'+side+'-line').setAttribute('d', `M${sx} ${ny}L${ex} ${ey}L${x} ${y}`);
+      const shoulder = svg.querySelector('.shoulder-'+side); shoulder.setAttribute('cx',sx); shoulder.setAttribute('cy',ny);
     }
-    for (const key of ['left','right','body']) {
-      const [x,y] = state[key];
-      for(const selector of [`[data-joint="${key}"]`,`[data-halo="${key}"]`]) { const el = svg.querySelector(selector); el.setAttribute('cx',x); el.setAttribute('cy',y); }
-      const el = svg.querySelector(`[data-joint="${key}"]`);
-      if(el.getAttribute('role')==='slider') { el.setAttribute('aria-valuenow',Math.round(x)); el.setAttribute('aria-valuetext',`水平 ${Math.round(x)}，垂直 ${Math.round(y)}；方向键调整`); }
+    for (const key of humanIds) {
+      const [x,y] = points[key];
+      for(const selector of [`[data-joint="${key}"]`,`[data-halo="${key}"]`]) { const el=svg.querySelector(selector);el.setAttribute('cx',x);el.setAttribute('cy',y); }
+      const label=svg.querySelector(`[data-joint-label="${key}"]`);label.setAttribute('x',x+(key==='wusong_neck'?25:0));label.setAttribute('y',y+(key==='wusong_neck'?-10:-24));
+      const el=svg.querySelector(`[data-joint="${key}"]`);
+      if(el.getAttribute('role')==='slider') {el.setAttribute('aria-valuenow',Math.round(x));el.setAttribute('aria-valuetext',`水平 ${Math.round(x)}，垂直 ${Math.round(y)}；方向键调整`);}
     }
   }
-  function mapPuppet(root, state) { setPose(root,[(state.left[0]-150)*1.05,(state.left[1]-152)*1.05],[(state.right[0]-150)*1.05,(state.right[1]-152)*1.05],(state.body[0]-150)*.5); root.querySelectorAll('.puppet-person').forEach(p=>p.setAttribute('transform',`translate(0 ${(state.body[1]-238)*.65})`)); }
+  function mapPuppet(root, points) {
+    const {offset,hands}=projectHuman(points);
+    setPose(root,hands.left,hands.right,0);
+    root.querySelectorAll('.puppet-person').forEach(p=>p.setAttribute('transform',`translate(${offset[0]} ${offset[1]})`));
+  }
   function touchPage() {
-    touch = structuredClone(presets[0]);
-    main.innerHTML = `${modeHeading('02','指尖皮影','不必熟悉操偶的技法。轻轻拖动，让皮影听懂你的指尖。')}<div class="touch-layout"><section class="screen-panel touch-preview"><div class="panel-bar"><span><i class="red-dot"></i>你的光影舞台</span><span>角色 · 武松</span></div><div class="puppet-preview">${stage({single:true})}<span class="preview-corner">指尖一动，光影相随</span></div><div class="preview-bottom"><span>${icon('spark')}每一个姿态，都是你的创作。</span><span class="small-pill">屏幕内同步</span></div></section><section class="controller-panel"><div class="controller-heading"><div><h2>指尖操偶台</h2><p>拖动双手与身体的圆点</p></div><span class="touch-symbol">${icon('touch')}</span></div>${stickman('touch-controller',true)}<div class="joint-legend"><span><i></i>双手</span><span><i></i>身体</span><small>支持触摸 / 鼠标 / 方向键</small></div><div class="preset-heading">从一个姿态开始</div><div class="preset-buttons">${presets.map((p,i)=>`<button type="button" data-preset="${i}" aria-pressed="${i===0}" class="${i===0?'selected':''}">${p.name}</button>`).join('')}</div><button type="button" class="reset-pose text-button" id="reset-pose">${icon('reset')}恢复初始姿态</button></section></div><div class="interaction-tip"><span class="tip-index">小 窍 门</span><span>先试着举起一只手，再让另一只手加入。属于你的第一段皮影，就这样开始了。</span></div>`;
+    touch = resolveHuman(presets[0]);
+    main.innerHTML = `${modeHeading('02','指尖皮影','不必熟悉操偶的技法。轻轻拖动，让皮影听懂你的指尖。')}<div class="touch-layout"><section class="screen-panel touch-preview"><div class="panel-bar"><span><i class="red-dot"></i>你的光影舞台</span><span>角色 · 武松</span></div><div class="puppet-preview">${stage({single:true,points:true})}<span class="preview-corner">指尖一动，光影相随</span></div><div class="preview-bottom"><span>${icon('spark')}每一个姿态，都是你的创作。</span><span class="small-pill">屏幕内同步</span></div></section><section class="controller-panel"><div class="controller-heading"><div><h2>指尖操偶台</h2><p>拖动双手与颈部主杆的圆点</p></div><span class="touch-symbol">${icon('touch')}</span></div>${stickman('touch-controller',true)}<div class="joint-legend"><span><i></i>双手</span><span><i></i>颈部主杆</span><small>支持触摸 / 鼠标 / 方向键</small></div><div class="preset-heading">从一个姿态开始</div><div class="preset-buttons">${presets.map((p,i)=>`<button type="button" data-preset="${i}" aria-pressed="${i===0}" class="${i===0?'selected':''}">${p.name}</button>`).join('')}</div><button type="button" class="reset-pose text-button" id="reset-pose">${icon('reset')}恢复初始姿态</button></section></div><div class="interaction-tip"><span class="tip-index">小 窍 门</span><span>武松以双手和颈部三点操偶。左右按角色自身命名；腰部和双脚随身体联动。</span></div>`;
     const svg = document.querySelector('#touch-controller');
-    const update = () => { drawStick(svg,touch); mapPuppet(main,touch); };
-    function selectPreset(index) { touch = structuredClone(presets[index]); main.querySelectorAll('[data-preset]').forEach((b,i)=>{b.classList.toggle('selected',i===index);b.setAttribute('aria-pressed',String(i===index));}); update(); }
-    function moveJoint(key,x,y) { touch[key] = key==='body' ? [Math.max(125,Math.min(175,x)),Math.max(208,Math.min(252,y))] : [Math.max(28,Math.min(272,x)),Math.max(40,Math.min(260,y))]; main.querySelectorAll('[data-preset]').forEach(b=>{b.classList.remove('selected');b.setAttribute('aria-pressed','false');}); update(); }
+    const update = () => { touch=resolveHuman(touch); drawStick(svg,touch); mapPuppet(main,touch); };
+    function selectPreset(index) { touch = resolveHuman(presets[index]); main.querySelectorAll('[data-preset]').forEach((b,i)=>{b.classList.toggle('selected',i===index);b.setAttribute('aria-pressed',String(i===index));}); update(); }
+    function moveJoint(key,x,y) {
+      touch[key]=[x,y];
+      main.querySelectorAll('[data-preset]').forEach(b=>{b.classList.remove('selected');b.setAttribute('aria-pressed','false');});
+      update();
+    }
     svg.querySelectorAll('[data-joint]').forEach(handle => {
       // Include the halo in the hit area to make the joint easier to touch.
       const hitArea = handle.parentElement;
@@ -92,13 +113,13 @@
     document.querySelector('#reset-pose').onclick=()=>{selectPreset(0);announce('已恢复屏幕角色的初始姿态');}; update();
   }
   const poseSteps = [
-    {title:'向两侧展开双臂',detail:'身体舒展，皮影也跟着打开姿态。',left:[38,135],right:[262,135],body:[150,238]},
-    {title:'缓缓举起双手',detail:'举手投足之间，让影子替你表达。',left:[63,66],right:[237,66],body:[150,230]},
-    {title:'轻轻侧身，亮个相',detail:'让身体的变化，成为角色的神情。',left:[59,133],right:[233,99],body:[168,236]}
+    {title:'向两侧展开双臂',detail:'身体舒展，皮影也跟着打开姿态。',wusong_right:[38,135],wusong_left:[262,135],wusong_neck:[150,136]},
+    {title:'缓缓举起双手',detail:'举手投足之间，让影子替你表达。',wusong_right:[63,66],wusong_left:[237,66],wusong_neck:[150,128]},
+    {title:'轻轻侧身，亮个相',detail:'让身体的变化，成为角色的神情。',wusong_right:[59,133],wusong_left:[233,99],wusong_neck:[168,134]}
   ];
   function posePage() {
-    main.innerHTML = `${modeHeading('03','以身入戏','这一次，你就是执影人。让身体的语言，变成幕布上的故事。')}<div class="pose-layout"><section class="body-panel"><div class="panel-bar"><span><i class="sage-dot"></i>姿态体验区</span><span id="pose-status">示范待开始</span></div><div class="pose-view"><div class="capture-corner top-left"></div><div class="capture-corner top-right"></div><div class="capture-corner bottom-left"></div><div class="capture-corner bottom-right"></div><span class="pose-view-label">BODY AS A BRUSH</span>${stickman('pose-skeleton')}<div class="scan-line"></div><span class="pose-view-note">示范骨架 · 未启用摄像头</span></div><div class="body-caption"><span class="pose-status-dot"></span><span id="pose-instruction">站到光影之间，让身体讲一个故事。</span></div></section><div class="mapping-bridge" aria-hidden="true"><span>姿态</span>${icon('arrow')}<span>光影</span></div><section class="screen-panel pose-preview"><div class="panel-bar"><span><i class="red-dot"></i>你的皮影分身</span><span>角色 · 武松</span></div><div class="puppet-preview">${stage({single:true})}</div><div class="body-caption"><span>${icon('spark')}</span><span id="pose-detail">你的每一次表达，都会在光影中得到回应。</span></div></section></div><div class="pose-bottom"><div class="pose-steps">${['展开双臂','举起双手','侧身亮相'].map((s,i)=>`<div data-pose-step="${i}"><span>${String(i+1).padStart(2,'0')}</span><div>${s}<small>${['舒展身体','让影子跟随','进入你的角色'][i]}</small></div></div>`).join('')}</div><div class="pose-action"><button type="button" class="primary-button" id="pose-start">${icon('pose')}体验姿态演示</button><span>先看一遍，找到入戏的感觉</span></div></div>`;
-    drawStick(document.querySelector('#pose-skeleton'),presets[0]); mapPuppet(main,presets[0]);
+    main.innerHTML = `${modeHeading('03','以身入戏','这一次，你就是执影人。让身体的语言，变成幕布上的故事。')}<div class="pose-layout"><section class="body-panel"><div class="panel-bar"><span><i class="sage-dot"></i>姿态体验区</span><span id="pose-status">示范待开始</span></div><div class="pose-view"><div class="capture-corner top-left"></div><div class="capture-corner top-right"></div><div class="capture-corner bottom-left"></div><div class="capture-corner bottom-right"></div><span class="pose-view-label">BODY AS A BRUSH</span>${stickman('pose-skeleton')}<div class="scan-line"></div><span class="pose-view-note">颈点取双肩中点 · 示范骨架</span></div><div class="body-caption"><span class="pose-status-dot"></span><span id="pose-instruction">站到光影之间，让身体讲一个故事。</span></div></section><div class="mapping-bridge" aria-hidden="true"><span>姿态</span>${icon('arrow')}<span>光影</span></div><section class="screen-panel pose-preview"><div class="panel-bar"><span><i class="red-dot"></i>你的皮影分身</span><span>角色 · 武松</span></div><div class="puppet-preview">${stage({single:true,points:true})}</div><div class="body-caption"><span>${icon('spark')}</span><span id="pose-detail">你的每一次表达，都会在光影中得到回应。</span></div></section></div><div class="pose-bottom"><div class="pose-steps">${['展开双臂','举起双手','侧身亮相'].map((s,i)=>`<div data-pose-step="${i}"><span>${String(i+1).padStart(2,'0')}</span><div>${s}<small>${['舒展身体','让影子跟随','进入你的角色'][i]}</small></div></div>`).join('')}</div><div class="pose-action"><button type="button" class="primary-button" id="pose-start">${icon('pose')}体验姿态演示</button><span>先看一遍，找到入戏的感觉</span></div></div>`;
+    const initial=resolveHuman(presets[0]);drawStick(document.querySelector('#pose-skeleton'),initial);mapPuppet(main,initial);
     document.querySelector('#pose-start').onclick = () => { posePlaying=!posePlaying; if(poseTime>=12) {poseTime=0;poseStep=-1;} updatePose(); };
     updatePose();
   }
@@ -109,7 +130,7 @@
     document.querySelector('#pose-status').textContent = posePlaying ? '示范姿态播放中' : poseTime>=12?'示范已完成':poseTime>0?'示范已暂停':'示范待开始';
     main.querySelector('.pose-view').classList.toggle('is-demonstrating',posePlaying);
     if ((posePlaying || poseTime>0) && index!==poseStep) {
-      poseStep=index; const state = poseSteps[index]; drawStick(document.querySelector('#pose-skeleton'),state); mapPuppet(main,state);
+      poseStep=index; const state = poseSteps[index], points=resolveHuman(state);drawStick(document.querySelector('#pose-skeleton'),points);mapPuppet(main,points);
       document.querySelector('#pose-instruction').textContent=state.title; document.querySelector('#pose-detail').textContent=state.detail;
       main.querySelectorAll('[data-pose-step]').forEach((el,i)=>el.classList.toggle('active',index===i));
     }
