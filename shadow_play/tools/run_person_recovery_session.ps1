@@ -14,6 +14,7 @@ if ($AttendedUnchangedContinuation -or $AttendedLinkageComparison -or $AttendedT
     if ($BoardPlan -notmatch $taskPlanPattern) {throw 'Attended plan path required'}
     if (-not $HostPlan -or -not (Test-Path -LiteralPath $HostPlan -PathType Leaf)) {throw 'Local reviewed plan required'}
     $taskReviewedPlan=Get-Content -LiteralPath $HostPlan -Raw | ConvertFrom-Json
+    if ($taskReviewedPlan.profile -eq 'person-body-double-smash-v3') {throw 'BE route withdrawn after stage 7 folded the puppet. Preserve the stop; no replay or automatic reverse.'}
     $taskPlanHash=(Get-FileHash -LiteralPath $HostPlan -Algorithm SHA256).Hash.ToLowerInvariant()
     $taskApproval=if ($AttendedFixedChoreography) {'attended-fixed-puppet-choreography-20261012'} elseif ($AttendedTigerCentering) {'attended-loaded-tiger-centering-20261012'} elseif ($AttendedLinkageComparison) {'attended-person-linkage-comparison-20261012'} else {'attended-unchanged-person-continuation-20261012'}
     if ($taskReviewedPlan.approval -ne $taskApproval) {throw 'Wrong continuation approval'}

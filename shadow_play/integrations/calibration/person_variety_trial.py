@@ -33,6 +33,7 @@ ROAR_ROUTE_SHA = '2f67a14585a330f0afd549caa9be30e3c279dce0a79b8c2a3f0491c7e39041
 
 
 def validate(p,rows,wall=None):
+    raise RuntimeError('BE route withdrawn: stage 7 folded the puppet; do not replay or reverse automatically')
     required={'approval','session_id','profile','route_sha256','expected_sequence',
               'expected_pulses_us','observer_ready','operator_hardware_unmoved',
               'dual_view_pose_reviewed','reviewed_at_unix_ms','duration_seconds','boot_id','baseline_source'}
@@ -72,6 +73,7 @@ def validate(p,rows,wall=None):
 
 
 def run(d,emit,sleep=time.sleep):
+    raise RuntimeError('BE route withdrawn: stage 7 folded the puppet; no output permitted')
     normal=False
     try:
         emit(dict(event='reference_held',profile=PROFILE,route_sha256=ROUTE_SHA,

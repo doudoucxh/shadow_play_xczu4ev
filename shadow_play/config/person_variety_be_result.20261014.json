@@ -1,0 +1,249 @@
+{
+  "session_id": "person-variety-20261014-be",
+  "profile": "person-body-double-smash-v3",
+  "status": "user_emergency_stop_puppet_folded",
+  "route_replay_allowed": false,
+  "full_route_executed": false,
+  "effect_verified": false,
+  "last_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 27435,
+    "pending": false,
+    "pulse_us": [
+      1815,
+      1232,
+      1555,
+      1589,
+      1586,
+      1580,
+      1510,
+      1275,
+      1550,
+      1640
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": false,
+  "incident_locks_removed": false,
+  "user_observation": "落拳角度不对，人物已折叠；用户认可最开始的弯腰效果，可作为单独动作研究。",
+  "interpretation": "前倾弯腰与后续过度折叠必须分开；不将受阻程度或相互拉扯自动等同于可复用弯腰。",
+  "recovery": "保持停止，无自动回退。检查关节、连接与当前姿态后另行建立修订路线。",
+  "reusable_candidate": "前段弯腰仅保留画面证据，尚未独立验证连续复用。",
+  "stages": [
+    {
+      "level": 1,
+      "label": "lower_body",
+      "command_pulses_us": [
+        1515,
+        1252,
+        1515,
+        1594,
+        1506,
+        1720,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_be\\front_1791984119613883200.jpg",
+          "frame_id": "session-20261014-191050-117252",
+          "sha256": "ae5202c543f17751b7983817dc46bc7ea9de81eb185b29e42587ab62ba653074",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_be\\top_1791984119620909600.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-550487",
+          "sha256": "32dd3a70ae3ce79cca405e8713beb128cb05e6ef29ca2df1f954d263b7d4bd03",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 2,
+      "label": "double_lift",
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1554,
+        1506,
+        1500,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_be\\front_1791984120755816300.jpg",
+          "frame_id": "session-20261014-191050-117269",
+          "sha256": "186d767a58dbb4f7d5b1f20d2578d03cfdcba5e0d7f4dee3200e64d5ef3fe295",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_be\\top_1791984120743643400.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-550504",
+          "sha256": "6d343ccbb99446c0f36e342a58539846cd589f1bce4d8ae5de57bcad48bf3b20",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 3,
+      "label": "double_drop",
+      "command_pulses_us": [
+        1515,
+        1212,
+        1535,
+        1594,
+        1546,
+        1660,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_be\\front_1791984121620429700.jpg",
+          "frame_id": "session-20261014-191050-117282",
+          "sha256": "bc5ed3e7da9c721a2f2e82ad160e8bcd6b8a203baceaa5f3850d18c316f5942c",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_be\\top_1791984121618177900.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-550517",
+          "sha256": "9e3fc29c929c282a172d21677a85794e017fa98611d24b840472059d68f33aee",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 4,
+      "label": "guard",
+      "command_pulses_us": [
+        1575,
+        1272,
+        1535,
+        1574,
+        1486,
+        1650,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_be\\front_1791984121972196000.jpg",
+          "frame_id": "session-20261014-191050-117287",
+          "sha256": "4fe777813f4e945994a613a5b91cce28a3b7a1ec36935db313f6cd33aad36f56",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_be\\top_1791984122031244400.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-550523",
+          "sha256": "82f1bd04009740fbe1d97806e898d4ed6e1baa58c9d338aea991c4fde8800c05",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 5,
+      "label": "cross_lift",
+      "command_pulses_us": [
+        1575,
+        1372,
+        1535,
+        1574,
+        1486,
+        1650,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_be\\front_1791984143136737000.jpg",
+          "frame_id": "session-20261014-191050-117603",
+          "sha256": "952565102b2a3c6d904645b5c933544227e350c0a328b311d207bc4aeab76b28",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_be\\top_1791984143134474200.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-550840",
+          "sha256": "b33b375fde4a17d8b8e0de69c2ea0a32abdca78a0815eaa501edf1eb2da50384",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 6,
+      "label": "overhead_cross",
+      "command_pulses_us": [
+        1815,
+        1372,
+        1535,
+        1574,
+        1486,
+        1650,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_be\\front_1791984167347398300.jpg",
+          "frame_id": "session-20261014-191050-117964",
+          "sha256": "cad89ce0a711640f113eb8a0e9f5f4a05cdac3ab7d4fb557d1b9c61a2a2deb80",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_be\\top_1791984167344631800.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-551203",
+          "sha256": "6579e85ea7be052ff34e7af4f89069e84fb7f68468c4a7d976e7829feba3f9da",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 7,
+      "label": "double_strike",
+      "command_pulses_us": [
+        1815,
+        1232,
+        1555,
+        1589,
+        1586,
+        1580,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_be\\front_1791984190805512300.jpg",
+          "frame_id": "session-20261014-191050-118313",
+          "sha256": "4c74fd7c8b76d7378e27ad62ca023f3ba16e25dfba1668fa8a6ab8446c532c6d",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_be\\top_1791984190856318900.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-551556",
+          "sha256": "0f8cbf0aa3993aba57bbc3fb5c916e2bf28aa8f8a294752dc8271875ba5371ad",
+          "attachment_pixels": null
+        }
+      }
+    }
+  ]
+}
