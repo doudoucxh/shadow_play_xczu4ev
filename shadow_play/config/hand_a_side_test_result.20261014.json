@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-14",
+  "goal": "Test the other hand, physical servos 1/2 (hand A)",
+  "status": "two_attended_routes_reviewed_closed_and_stopped",
+  "physical_trials": [
+    {
+      "file": "hand_a_local_yaw_result.20261014.json",
+      "sha256": "5015c9d4acb75766c7d51da95c3e21c2327f232ce14488031c40ddaf811ca2d2",
+      "session_id": "person-hand-a-yaw-20261014-d",
+      "full_board_log_sha256": "46e422e1c9d6bd040e0f1d47ecb7e2017c5d54affa81b6b69d43e24aa79786c4",
+      "final_sequence": 3512
+    },
+    {
+      "file": "hand_a_inward80_result.20261014.json",
+      "sha256": "dc866d8ae757daffa8fcf2460bb28e31dc1635ee1042d7c93f83b7116eb603da",
+      "session_id": "person-hand-a-inward-20261014-e",
+      "full_board_log_sha256": "c1f8b57daee1fffc2d5804e9dda8371be8ce9038ee06f17d21eb1182333844b5",
+      "final_sequence": 3658
+    }
+  ],
+  "positive_servo_1_direction": "visually inward with body coupling",
+  "negative_servo_1_direction": "visually outward",
+  "actual_visible_hand_rod_body_response": true,
+  "actual_shaft_angle_feedback": null,
+  "scope_measurement_performed": false,
+  "servo_2_pitch_held_fixed_us": 1212,
+  "hand_a_inward_offset_us_reviewed": [
+    40,
+    80
+  ],
+  "actual_independent_wrist_inverse_map_calibrated": false,
+  "larger_yaw_turned_torso": true,
+  "complete_crossing_verified": false,
+  "exact_joint_repeatability_measured": false,
+  "full_loaded_workspace_calibrated": false,
+  "tiger_outputs_enabled": false,
+  "automatic_replay_allowed": false,
+  "no_obvious_rod_interference_in_dual_view_reviews": true,
+  "force_measured": false,
+  "full_3d_clearance_mm": null,
+  "unit_tests_passed": 13,
+  "launcher_syntax_check_passed": true,
+  "board_source_hash_and_compile_checked": true,
+  "local_video": {
+    "file": "camera_liveview/output/hand-a-side-test-20261014/hand_a_diagnostics_original_speed.mp4",
+    "sha256": "9b312714707d9576410fa95ba589eb2ded0fb21c3047993101d3603a40b9382f",
+    "frames": 248,
+    "duration_seconds": 16.533333333333335,
+    "fps": 15,
+    "original_speed": true,
+    "review_waits_removed": true,
+    "continuous_performance": false,
+    "max_frame_timestamp_skew_seconds": 0.03448033332824707,
+    "encoded_representative_frames_visually_reviewed": true,
+    "raw_media_committed": false
+  },
+  "final_board_readonly_check": {
+    "boot_id": "7eea2c53-e104-45cf-88fe-439f1821e5d4",
+    "uptime_seconds": 65153.55,
+    "image_marker_exists": true,
+    "mmio_read_performed": true,
+    "fpga_manager_state": "operating",
+    "image_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+    "pin_revision": "servo4_G13_20261010",
+    "pwm_state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 3658,
+      "pending": false,
+      "pulse_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "locks": {
+      "/run/shadow-pwm-motion-inhibit": "1ab30a79eb277e8e6fe4cc563634e0cc73d0417e8ea7b18b74e86bdbddcc74cf",
+      "/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration/.motion-inhibit": "1ab30a79eb277e8e6fe4cc563634e0cc73d0417e8ea7b18b74e86bdbddcc74cf"
+    },
+    "actor_exists": true
+  },
+  "next_unresolved_step": "Coordinate hand rod and body support while tracking passive elbow folding; no head compensation or opposite-side target was inferred from these yaw tests."
+}
