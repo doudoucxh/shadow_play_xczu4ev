@@ -274,6 +274,44 @@ class CrossingTests(unittest.TestCase):
         d.completed=d.reviewed=set(range(1,7));d.demo_used=True
         with self.assertRaisesRegex(RuntimeError,'diagnostic-only'):d.check()
 
+    def test_arc_entry_requires_high160_and_changes_only_pitch_at_its_new_edge(self):
+        self.prepare_fast('person-script-hand-a-local-yaw-probe')
+        self.p.update(profile='person-overhead-arc-entry-probe',tempo_step_us=3)
+        del self.p['prior_slow_route_log']
+        with self.assertRaisesRegex(ValueError,'completed high-160'):self.device()
+        self.assertEqual(self.r.writes,[])
+        route=h.ROUTES['person-overhead-arc-entry-probe']
+        self.assertEqual(route[2][0],route[3][0]);self.assertEqual(route[2][1]-route[3][1],70)
+        self.prepare_fast('person-overhead-arc-entry-probe');self.p['tempo_step_us']=3
+        del self.p['prior_slow_route_log'];d=self.device();d.adopt(h.BASE[:]);events=[]
+        for stage in range(1,7):d.advance(stage,events.append,self.sleep)
+        for event in events:
+            if event['event']=='probe_step':self.assertEqual(event['state']['pulse_us'][2:],h.BASE[2:])
+        self.assertEqual(d.pulses,h.BASE)
+        d.completed=d.reviewed=set(range(1,7));d.demo_used=True
+        with self.assertRaisesRegex(RuntimeError,'diagnostic-only'):d.check()
+
+    def test_expired_session_final_review_can_only_bind_completed_original_reference(self):
+        self.prepare_fast('person-overhead-high280-yaw160-probe')
+        self.p.update(profile='person-overhead-arc-entry-probe',tempo_step_us=3)
+        del self.p['prior_slow_route_log'];del self.p['prior_high_route_log']
+        rows=[json.loads(r) for r in self.raw.splitlines()]
+        rows=[r for r in rows if not (r['event']=='path_reviewed' and r['axis']==6)]
+        self.raw='\n'.join(json.dumps(r) for r in rows).encode()
+        self.p['baseline_source']['sha256']=hashlib.sha256(self.raw).hexdigest()
+        record=dict(event='post_stop_closure_review',reviewed_stage=6,source_log_sha256=self.p['baseline_source']['sha256'],
+                    boot_id=self.boot_id,state=rows[-1]['state'],fresh_dual_view_reviewed=True,reviewed_at_unix_ms=1000000,
+                    views={c:dict(frame_id=c+'-new',jpeg_sha256='a'*64) for c in ('front','top')})
+        def bind(value):
+            proof=json.dumps(value).encode();path='/tmp/puppet-choreography-closure.jsonl'
+            self.p['post_stop_closure_review']=dict(path=path,sha256=hashlib.sha256(proof).hexdigest())
+            self.reader=lambda p:proof if p==path else self.raw
+        bind(record);self.device();self.assertEqual(self.r.writes,[])
+        for key,value in (('reviewed_stage',5),('source_log_sha256','b'*64),('reviewed_at_unix_ms',800000),('fresh_dual_view_reviewed',False)):
+            bad=copy.deepcopy(record);bad[key]=value;bind(bad)
+            with self.assertRaises(ValueError):self.device()
+            self.assertEqual(self.r.writes,[])
+
     def test_only_new_frontal_gesture_after_slow_and_fast_review_can_present_once(self):
         self.prepare_fast('person-reference-guard-counter-probe');d=self.device()
         d.adopt(h.BASE[:]);events=[]

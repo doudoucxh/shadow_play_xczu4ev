@@ -42,6 +42,10 @@ ROUTES={
      (80,280,0,0,0,0),(40,280,0,0,0,0),(0,280,0,0,0,0),ZERO),
  'person-overhead-high280-yaw160-probe':(ZERO,(0,280,0,0,0,0),(80,280,0,0,0,0),
      (160,280,0,0,0,0),(80,280,0,0,0,0),(0,280,0,0,0,0),ZERO),
+ # A bounded two-axis arc entry: test one 70-us pitch edge at the reviewed
+ # inward yaw. This is an exploratory geometry, not an inferred semicircle.
+ 'person-overhead-arc-entry-probe':(ZERO,(0,280,0,0,0,0),(160,280,0,0,0,0),
+     (160,210,0,0,0,0),(160,280,0,0,0,0),(0,280,0,0,0,0),ZERO),
  'person-overhead-high-map-positive':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
      (60,210,0,-40,0,0),(0,210,0,-40,0,0),(0,0,0,-40,0,0),ZERO),
  'person-overhead-high-map-negative':(ZERO,(0,0,0,-40,0,0),(0,210,0,-40,0,0),
@@ -89,13 +93,35 @@ OVERHEAD_LIFT_PROFILES=frozenset(('person-overhead-lift-280-probe',))
 OVERHEAD_BODY_PROFILES=frozenset(('person-overhead-body-clearance-probe',))
 OVERHEAD_APPROACH_PROFILES=frozenset(('person-overhead-high280-yaw80-probe',))
 OVERHEAD_WIDER_PROFILES=frozenset(('person-overhead-high280-yaw160-probe',))
-SLOW_DIAGNOSTIC_PROFILES=HAND_B_DIAGNOSTIC_PROFILES|SLOW_YAW_PROFILES|OVERHEAD_LIFT_PROFILES|OVERHEAD_BODY_PROFILES|OVERHEAD_APPROACH_PROFILES|OVERHEAD_WIDER_PROFILES
+OVERHEAD_ARC_PROFILES=frozenset(('person-overhead-arc-entry-probe',))
+SLOW_DIAGNOSTIC_PROFILES=HAND_B_DIAGNOSTIC_PROFILES|SLOW_YAW_PROFILES|OVERHEAD_LIFT_PROFILES|OVERHEAD_BODY_PROFILES|OVERHEAD_APPROACH_PROFILES|OVERHEAD_WIDER_PROFILES|OVERHEAD_ARC_PROFILES
 FAST_GESTURE_PROFILES=frozenset(('person-script-hand-b-strike-probe','person-script-double-hit-probe',
                                'person-script-double-drop-sync-probe','person-reference-guard-counter-probe'))
 CONTINUOUS_PRESENTATION_PROFILES=frozenset(('person-reference-guard-counter-probe',))
 
 def digest(profile):
     return hashlib.sha256(json.dumps(ROUTES[profile],separators=(',',':')).encode()).hexdigest()
+
+def checked_reviews(p,rows,read=None,wall=None):
+    reviewed={r['axis'] for r in rows if r['event']=='path_reviewed'}
+    if 'post_stop_closure_review' not in p:return reviewed
+    proof=c.checked_log(p['post_stop_closure_review'],read)
+    if len(proof)!=1:raise ValueError('Single post-stop closure review required')
+    witness=proof[0];first,last=rows[0],rows[-1]
+    if (p['profile'] not in OVERHEAD_ARC_PROFILES or p['restore_after_power_cycle'] or reviewed!=set(range(1,6))
+            or first.get('profile')!='person-overhead-high280-yaw160-probe'
+            or [r['axis'] for r in rows if r['event']=='probe_complete']!=list(range(1,7))
+            or witness.get('event')!='post_stop_closure_review' or witness.get('reviewed_stage')!=6
+            or witness.get('source_log_sha256')!=p['baseline_source']['sha256']
+            or witness.get('boot_id')!=p['boot_id'] or witness.get('state')!=last.get('state')
+            or witness.get('fresh_dual_view_reviewed') is not True
+            or not isinstance(witness.get('views'),dict) or set(witness['views'])!={'front','top'}
+            or any(not v.get('frame_id') or not c.re.fullmatch('[a-f0-9]{64}',v.get('jpeg_sha256','')) for v in witness['views'].values())):
+        raise ValueError('Post-stop review must bind only the completed high-160 final reference')
+    now=(wall or time.time)()*1000
+    if type(witness.get('reviewed_at_unix_ms')) is not int or not 0<=now-witness['reviewed_at_unix_ms']<120000:
+        raise ValueError('Post-stop closure review expired')
+    return reviewed|{6}
 
 def audit_support_prefix(p,baseline,read=None):
     """Only the interrupted support edge of this frontal gesture may resume."""
@@ -130,7 +156,7 @@ def validate_plan(p,read=None,wall=None):
     fields={'approval','session_id','profile','expected_sequence','expected_pulses_us',
      'observer_ready','operator_hardware_unmoved','dual_view_pose_reviewed','reviewed_at_unix_ms',
      'duration_seconds','tempo_step_us','repetitions','boot_id','restore_after_power_cycle','baseline_source'}
-    if (not isinstance(p,dict) or not fields<=set(p) or set(p)-fields-{'prior_slow_route_log','prior_high_route_log','resume_waypoint','resume_route_log'}
+    if (not isinstance(p,dict) or not fields<=set(p) or set(p)-fields-{'prior_slow_route_log','prior_high_route_log','post_stop_closure_review','resume_waypoint','resume_route_log'}
             or p['approval']!=c.APPROVAL or p['profile'] not in ROUTES
             or not c.re.fullmatch('[a-z0-9-]{1,80}',p['session_id'])
             or type(p['expected_sequence']) is not int or not 0<=p['expected_sequence']<2**32
@@ -169,6 +195,7 @@ def validate_plan(p,read=None,wall=None):
     if wall is not None and not 0<=wall()*1000-p['reviewed_at_unix_ms']<120000:
         raise ValueError('Fresh dual-view pose review required')
     rows=c.checked_log(p['baseline_source'],read)
+    reviewed=checked_reviews(p,rows,read,wall)
     first=next(r for r in rows if r['event']=='reference_held')
     final=rows[-1]
     if (final['event']!='outputs_off' or final.get('normal_frame_stop') is not True
@@ -183,7 +210,7 @@ def validate_plan(p,read=None,wall=None):
             raise ValueError('Power-cycle restoration needs the completed original duet and fresh reset state')
     elif (first.get('profile') not in ROUTES or first.get('route_sha256')!=digest(first['profile'])
             or (not resume and (p['expected_pulses_us']!=BASE or p['expected_sequence']!=final['state']['sequence']))
-            or {r['axis'] for r in rows if r['event']=='path_reviewed'}!=set(range(1,7))):
+            or reviewed!=set(range(1,7))):
         raise ValueError('Continuation requires the complete reviewed mapping route')
     if resume:audit_support_prefix(p,final['state'],read)
     if p['profile']=='person-script-hand-b-inward-80-probe' and first.get('profile') not in HAND_B_YAW_PROFILES:
@@ -211,6 +238,8 @@ def validate_plan(p,read=None,wall=None):
                 or hl['state']['pulse_us']!=BASE or hl['state']['enabled_mask'] or hl['state']['armed']
                 or hl['state']['pending'] or hl['state']['faults']):
             raise ValueError('Wider approach requires closed low-yaw and high-80 reviews')
+    if p['profile'] in OVERHEAD_ARC_PROFILES and first.get('profile') not in (OVERHEAD_ARC_PROFILES|OVERHEAD_WIDER_PROFILES):
+        raise ValueError('Arc entry requires the completed high-160 review')
 
 
 class CrossingSession(c.ChoreographySession):

@@ -28,8 +28,14 @@ def export(result_path,session,annotations_path=None):
     if sha(raw)!=result['full_board_log_sha256']:
         raise ValueError('Board log does not match the result')
     events=[json.loads(line) for line in raw.read_bytes().splitlines()]
-    if {r['axis'] for r in events if r['event']=='path_reviewed'}!=set(range(1,7)):
-        raise ValueError('Six reviewed stages are required')
+    acknowledged={r['axis'] for r in events if r['event']=='path_reviewed'}
+    if acknowledged!=set(range(1,7)):
+        witness=result.get('post_stop_closure_review',{})
+        if (acknowledged!=set(range(1,6)) or witness.get('event')!='post_stop_closure_review'
+                or witness.get('reviewed_stage')!=6 or witness.get('source_log_sha256')!=result['full_board_log_sha256']
+                or witness.get('state')!=final or witness.get('fresh_dual_view_reviewed') is not True
+                or [r['axis'] for r in events if r['event']=='probe_complete']!=list(range(1,7))):
+            raise ValueError('Six reviewed stages or a bound final closure review are required')
     poses=[]
     for stage in range(7):
         review=session/f'review-{max(1,stage)}'/'selection.json'
@@ -58,6 +64,7 @@ def export(result_path,session,annotations_path=None):
             views[camera]={'frame_id':frame['frame_id'],'host_unix_ns':frame['host_unix_ns'],
                            'jpeg_sha256':sha(path),'image_size_px':[width,height],'points':points}
         poses.append({'stage':stage,'command_sequence':state['sequence'],'command_pulse_us':pulse,
+                      'controller_visual_review_acknowledged':stage in acknowledged if stage else None,
                       'actual_shaft_angles_deg':None,'board_monotonic_seconds':event['board_monotonic_seconds'],
                       'views':views})
     return {'schema_version':1,'action_id':result['session_id'],'profile':result['plan']['profile'],
@@ -69,6 +76,7 @@ def export(result_path,session,annotations_path=None):
             'servo_pins':['D14','D15','F13','G13','G14','G15','J14','E13','E14','E15'],
             'poses':poses,'visual_findings':result['visual_findings'],
             'diagnostic_execution_completed':True,'automatic_replay_allowed':False,'overhead_crossing_completed':False,
+            'post_stop_closure_review':result.get('post_stop_closure_review'),
             'reuse_requirements':['unchanged mechanical connections and reference verified',
                                  'same camera framing or new image calibration',
                                  'current attended authorization and unchanged incident locks'],
