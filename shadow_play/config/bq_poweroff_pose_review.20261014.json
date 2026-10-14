@@ -1,0 +1,35 @@
+{
+  "status": "recovery_withheld_pose_changed",
+  "motor_commands_sent": false,
+  "user_reports_no_manual_movement": true,
+  "observer_available": true,
+  "servo_power_last_report": "off",
+  "board_sequence": 34017,
+  "enabled_mask": 0,
+  "actual_axis_feedback": null,
+  "fresh_views": [
+    {
+      "camera": "front",
+      "frame_id": "session-20261014-191050-192162",
+      "age_ms": 30,
+      "host_unix_ns": 1791989145255887800,
+      "file": "front_1791989145255887800.jpg",
+      "sha256": "8646c59a60c5ea9d4114321410d6bee0d58f00d183d8ca5edae75b4d0451cd47"
+    },
+    {
+      "camera": "top",
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-625872",
+      "age_ms": 16,
+      "host_unix_ns": 1791989145253638200,
+      "file": "top_1791989145253638200.jpg",
+      "sha256": "ffbdff2a706c209338252de53d249ef57c6a01c9475e36193213781515788f77"
+    }
+  ],
+  "observations": [
+    "Person no longer visible within front stage; top view person and rods shifted toward right edge compared with BP last captured frames.",
+    "Tiger is further off screen plane with enlarged soft shadow.",
+    "Possible loss-of-holding-torque drift is an inference, not a confirmed mechanical diagnosis."
+  ],
+  "automatic_recovery_allowed": false,
+  "next_step": "Inspect connections and obstruction while power remains off; do not treat BP command register as actual pose."
+}
