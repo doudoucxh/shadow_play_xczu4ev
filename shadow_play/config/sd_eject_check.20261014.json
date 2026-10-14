@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-14",
+  "boot_id": "7eea2c53-e104-45cf-88fe-439f1821e5d4",
+  "board_rebooted": false,
+  "removal_uptime_seconds": 94692.598034,
+  "reinserted_uptime_seconds": 94694.176904,
+  "errors_at_removal": [
+    "Buffer I/O error",
+    "Journal aborted",
+    "Could not clean journal during unmount"
+  ],
+  "ext4_check": {
+    "device": "/dev/mmcblk0p2",
+    "unmounted_before_check": true,
+    "command": "e2fsck -f -n /dev/mmcblk0p2",
+    "exit_code": 0,
+    "all_five_passes_completed": true,
+    "repairs_performed": false,
+    "remounted_read_write": true
+  },
+  "fat_boot_partition": {
+    "device": "/dev/mmcblk0p1",
+    "unclean_unmount_warning": true,
+    "full_fsck_completed": false,
+    "reason": "FAT checker unavailable on board",
+    "files_read_completely": {
+      "BOOT.BIN": 9522192,
+      "image.ub": 131393412,
+      "boot.scr": 2777
+    }
+  },
+  "new_sd_io_errors_during_checks": false,
+  "pwm_off_before_checks": true,
+  "fpga_reload_performed": false,
+  "limitations": [
+    "Successful ext4 check and file reads do not constitute full FAT integrity verification."
+  ]
+}
