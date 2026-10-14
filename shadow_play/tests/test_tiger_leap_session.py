@@ -83,6 +83,19 @@ class TigerLeapTests(unittest.TestCase):
             self.assertEqual(q[6],q[8]);self.assertTrue(all(0<=prior[i]-q[i]<=2 for i in (6,7,8)));prior=q
         self.assertEqual(prior[6:],[1810,1349,1810,1500]);self.assertTrue(t.closed_tiger_reference(events))
 
+    def test_screen_approach_pauses_before_second_step(self):
+        f,p,args=self.setup_device();p.update(profile=t.SCREEN,expected_pulses_us=t.BASE[:6]+[1810,1349,1810,1500])
+        for i,v in enumerate(p['expected_pulses_us']):f.r.values[0x80+4*i]=v
+        with patch.object(t,'validate'):d=t.TigerLeapSession(f.r,p,f.host,**args)
+        events=[]
+        def emit(r):
+            events.append(r)
+            if r['event'] in ('reference_held','launch_position_held'):f.host.action=('demo',r['state']['sequence'])
+        t.run(d,emit,f.sleep)
+        self.assertEqual(sum(e['event']=='launch_position_held' for e in events),1)
+        self.assertEqual(events[-1]['state']['pulse_us'],t.BASE[:6]+[1730,1275,1730,1500])
+        self.assertTrue(t.closed_tiger_reference(events))
+
     def test_staggered_right_start_waits_then_lifts_head_before_rear(self):
         f,p,args=self.setup_device();prior=[]
         def first(r):

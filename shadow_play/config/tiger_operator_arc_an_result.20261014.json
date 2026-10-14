@@ -1,0 +1,164 @@
+{
+  "date": "2026-10-14",
+  "profile": "tiger-operator-screen-approach",
+  "status": "completed_attended_reposition",
+  "full_board_log_sha256": "602af91d2369f7527fa77329664b6903851af7e3b7a8695a4198b80b144b57d9",
+  "normal_frame_stop": true,
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 21127,
+    "pending": false,
+    "pulse_us": [
+      1537,
+      1212,
+      1537,
+      1514,
+      1508,
+      1740,
+      1730,
+      1275,
+      1730,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "automatic_replay_allowed": false,
+  "route": [
+    [
+      310,
+      -151,
+      310,
+      0
+    ],
+    [
+      270,
+      -188,
+      270,
+      0
+    ],
+    [
+      230,
+      -225,
+      230,
+      0
+    ]
+  ],
+  "poses": [
+    {
+      "stage": 0,
+      "command_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1810,
+        1349,
+        1810,
+        1500
+      ],
+      "actual_axis_angles": null,
+      "attachment_mm": null,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-191050-17898",
+          "sha256": "99c341ed1c7dc1406a3f05ebb56de27139ab2dbfcb3c0928c52eb2724848d3c8",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_an\\front_1791977452779747400.jpg",
+          "time_offset_ms": 2.747314453125,
+          "attachment_pixels": null
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-450484",
+          "sha256": "9c2a0950bc836673579e68699baaadd893690d9d9da9c24dd9bf43611bfec152",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_an\\top_1791977452777499000.jpg",
+          "time_offset_ms": 0.498779296875,
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "stage": 1,
+      "command_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1770,
+        1312,
+        1770,
+        1500
+      ],
+      "actual_axis_angles": null,
+      "attachment_mm": null,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-191050-18342",
+          "sha256": "e92b4c8b580e07c78a45792ab18ed84f57ecdf378a449c648749e49df631209d",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_an\\front_1791977482551937200.jpg",
+          "time_offset_ms": -1.062744140625,
+          "attachment_pixels": null
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-450931",
+          "sha256": "a8270cbaf7519eb7737174a2aac88270919d332571c39c4b8fbaece65005f61d",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_an\\top_1791977482541028500.jpg",
+          "time_offset_ms": -11.971435546875,
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "stage": 2,
+      "command_pulses_us": [
+        1537,
+        1212,
+        1537,
+        1514,
+        1508,
+        1740,
+        1730,
+        1275,
+        1730,
+        1500
+      ],
+      "actual_axis_angles": null,
+      "attachment_mm": null,
+      "views": {
+        "front": {
+          "frame_id": "session-20261014-191050-18678",
+          "sha256": "b40812b01adfa110adca16f8493e036889f84f127e863617359c7b13f0bfe972",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_an\\front_1791977505078483900.jpg",
+          "time_offset_ms": -16.51611328125,
+          "attachment_pixels": null
+        },
+        "top": {
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-451269",
+          "sha256": "428e282e69c98581207c8568c8ff7b92d0f5194ef73bb3091b140c9174ca52ca",
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_an\\top_1791977505065846400.jpg",
+          "time_offset_ms": -29.15380859375,
+          "attachment_pixels": null
+        }
+      }
+    }
+  ],
+  "visual_findings": [
+    "Stage 1 visibly sharpens head outline and body stripes compared with prior pose. Stage 2 retains clear head/body/tail outlines.",
+    "No obvious rod collision or screen deformation in inspected views; contact force and clearance are not measured.",
+    "This is a near-screen candidate start, not a validated full leap-bite trajectory."
+  ],
+  "future_motion_constraints": [
+    "Maintain screen proximity throughout motion, not merely at endpoints.",
+    "Coordinate both rods; raising head at the former far-right pose can increase distance to screen.",
+    "Do not infer an exact spherical geometry or millimeter clearance from uncalibrated views.",
+    "Avoid further downward extension of servo 8 without checking loaded clearance; current 1275 us is approximately 104.6 command degrees.",
+    "New leap must begin from this current command reference and be separately observed; no automatic replay of old routes."
+  ]
+}
