@@ -363,6 +363,71 @@ class CrossingTests(unittest.TestCase):
             self.assertEqual(row['state']['pulse_us'][2:],h.BASE[2:]);prior=row['state']['pulse_us']
         self.assertEqual(events[-1]['state']['pulse_us'],h.BASE);self.assertEqual(events[-1]['state']['enabled_mask'],0)
 
+    def test_cross_entry_limits_inward_lowering_and_preserves_support(self):
+        self.prepare_fast('person-overhead-operator-cross-entry-trial');events=[]
+        h.run_operator_arc_trial(self.device(),events.append,self.sleep)
+        prior=h.BASE[:]
+        for row in events:
+            if row['event']!='probe_step':continue
+            pulse=row['state']['pulse_us']
+            self.assertLessEqual(max(abs(a-b) for a,b in zip(prior,pulse)),1 if row['axis']>=2 else 8)
+            self.assertEqual(pulse[2:],h.BASE[2:])
+            self.assertLessEqual(pulse[0],h.BASE[0]+180)
+            prior=pulse
+        self.assertTrue(h.closed_operator_reference(events))
+        self.assertEqual(events[-1]['state']['enabled_mask'],0)
+
+    def test_double_punch_only_moves_two_hands_with_inspection_holds(self):
+        self.prepare_fast('person-overhead-operator-double-punch-trial');events=[]
+        h.run_operator_arc_trial(self.device(),events.append,self.sleep)
+        self.assertEqual([e['axis'] for e in events if e['event']=='inspection_hold_complete'],[2,3,4])
+        self.assertTrue(h.closed_operator_reference(events))
+        prior=h.BASE[:]
+        for row in events:
+            if row['event']!='probe_step':continue
+            pulse=row['state']['pulse_us']
+            for i in (2,3,4,6,7,8,9):self.assertEqual(pulse[i],h.BASE[i])
+            self.assertLessEqual(max(abs(a-b) for a,b in zip(prior,pulse)),1 if row['axis']>=2 else 8)
+            prior=pulse
+        bad=copy.deepcopy(events)
+        next(e for e in bad if e['event']=='probe_step')['state']['pulse_us'][3]+=1
+        with self.assertRaises(ValueError):h.closed_operator_reference(bad)
+        self.assertFalse(events[-1]['state']['armed'])
+        self.assertEqual(self.lock.read_text(),'incident')
+
+    def test_punch_hold_keeps_crossed_yaw_and_support_fixed(self):
+        self.check_punch_route('person-overhead-operator-punch-hold-trial')
+
+    def test_punch_level_keeps_crossed_yaw_and_support_fixed(self):
+        self.check_punch_route('person-overhead-operator-punch-level-trial')
+
+    def check_punch_route(self,profile):
+        self.prepare_fast(profile);events=[]
+        h.run_operator_arc_trial(self.device(),events.append,self.sleep)
+        self.assertTrue(h.closed_operator_reference(events))
+        steps=[r for r in events if r['event']=='probe_step' and r['axis']==3]
+        self.assertTrue(steps)
+        for row in steps:
+            pulse=row['state']['pulse_us']
+            self.assertEqual(pulse[0],h.BASE[0]+180)
+            self.assertEqual(pulse[2:4],h.BASE[2:4])
+            self.assertEqual(pulse[6:],h.BASE[6:])
+        self.assertEqual(events[-1]['state']['pulse_us'],h.BASE)
+        self.assertFalse(events[-1]['state']['armed'])
+
+    def test_punch_extension_stays_slow_and_returns_without_moving_head(self):
+        self.prepare_fast('person-overhead-operator-punch-extend-trial');events=[]
+        h.run_operator_arc_trial(self.device(),events.append,self.sleep)
+        self.assertTrue(h.closed_operator_reference(events));prior=h.BASE[:]
+        for row in events:
+            if row['event']!='probe_step':continue
+            pulse=row['state']['pulse_us']
+            self.assertEqual(pulse[2:4],h.BASE[2:4]);self.assertEqual(pulse[6:],h.BASE[6:])
+            self.assertLessEqual(max(abs(a-b) for a,b in zip(prior,pulse)),1 if row['axis']>=2 else 8)
+            prior=pulse
+        self.assertEqual(events[-1]['state']['pulse_us'],h.BASE)
+        self.assertFalse(events[-1]['state']['armed'])
+
     def test_reference_sequence_exception_only_accepts_an_unchanged_static_hold(self):
         self.prepare_fast('person-overhead-operator-arc-trial')
         rows=[json.loads(r) for r in self.raw.splitlines()]

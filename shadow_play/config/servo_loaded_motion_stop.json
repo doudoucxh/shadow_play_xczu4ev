@@ -320,5 +320,32 @@
     "overhead_crossing_completed": false,
     "automatic_replay_allowed": false,
     "result_file": "shadow_play/config/hand_operator_arc_w_result.20261014.json"
+  },
+  "operator_double_punch_20261014": {
+    "session_id": "person-operator-double-punch-20261014-y",
+    "outputs_off_confirmed": true,
+    "final_sequence": 12028,
+    "all_command_pulses_returned_to_reference": true,
+    "actual_shaft_angles_known": false,
+    "incident_locks_removed": false,
+    "double_straight_punch_completed": false,
+    "manual_intervention": true,
+    "baseline_reuse_allowed": false,
+    "automatic_replay_allowed": false,
+    "resume_requires": "Clarify operator rod intervention and check linkage and starting pose before any further movement",
+    "result_file": "shadow_play/config/hand_operator_arc_y_result.20261014.json"
+  },
+  "operator_punch_extension_20261014": {
+    "session_id": "person-operator-punch-extend-20261014-ab",
+    "outputs_off_confirmed": true,
+    "final_sequence": 15689,
+    "all_command_pulses_returned_to_reference": true,
+    "actual_shaft_angles_known": false,
+    "incident_locks_removed": false,
+    "same_side_punch_pose_observed": true,
+    "full_elbow_extension_measured": false,
+    "rod_geometry_revision": "hand_a_shortened_less_than_10mm_during_y",
+    "automatic_replay_allowed": false,
+    "result_file": "shadow_play/config/hand_operator_arc_ab_result.20261014.json"
   }
 }

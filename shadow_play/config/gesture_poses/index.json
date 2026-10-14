@@ -94,6 +94,48 @@
       "image_points_annotated": 0,
       "automatic_replay_allowed": false,
       "reported_anomaly": false
+    },
+    {
+      "title": "越头入口扩展试验",
+      "file": "operator_arc_x_20261014.json",
+      "pose_count": 7,
+      "image_points_annotated": 0,
+      "automatic_replay_allowed": false,
+      "reported_anomaly": false
+    },
+    {
+      "title": "同侧双拳候选，存在人工扶杆介入",
+      "file": "operator_arc_y_20261014.json",
+      "pose_count": 7,
+      "image_points_annotated": 0,
+      "automatic_replay_allowed": false,
+      "reported_anomaly": false,
+      "manual_intervention": true,
+      "rod_geometry_changed": true
+    },
+    {
+      "title": "保留右侧落点的双手出拳候选",
+      "file": "operator_arc_z_20261014.json",
+      "pose_count": 7,
+      "image_points_annotated": 0,
+      "automatic_replay_allowed": false,
+      "reported_anomaly": false
+    },
+    {
+      "title": "双手同侧降到出拳高度",
+      "file": "operator_arc_aa_20261014.json",
+      "pose_count": 7,
+      "image_points_annotated": 0,
+      "automatic_replay_allowed": false,
+      "reported_anomaly": false
+    },
+    {
+      "title": "同侧双拳小幅伸肘终点试验",
+      "file": "operator_arc_ab_20261014.json",
+      "pose_count": 7,
+      "image_points_annotated": 0,
+      "automatic_replay_allowed": false,
+      "reported_anomaly": false
     }
   ],
   "requested_overhead_crossing_completed": false,
@@ -105,7 +147,11 @@
   "video_is_continuous_performance": false,
   "video_review_waits_removed": true,
   "raw_images_and_video_in_git": false,
-  "latest_local_video": "camera_liveview/output/hand-overhead-test-20261014/operator_w/continuous_original_speed.mp4",
+  "latest_local_video": "camera_liveview/output/hand-overhead-test-20261014/operator_ab/continuous_original_speed.mp4",
   "latest_trial_reported_jump": null,
-  "automatic_replay_allowed": false
+  "automatic_replay_allowed": false,
+  "latest_same_side_punch_pose_observed": true,
+  "latest_full_elbow_extension_measured": false,
+  "latest_video_is_continuous_performance": true,
+  "latest_video_review_waits_removed": false
 }
