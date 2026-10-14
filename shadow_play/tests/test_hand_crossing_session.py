@@ -349,6 +349,20 @@ class CrossingTests(unittest.TestCase):
         self.assertEqual(events[-1]['state']['enabled_mask'],0)
         self.assertEqual(self.lock.read_text(),'incident')
 
+    def test_new_return_moves_outward_and_down_together_with_slow_steps(self):
+        self.prepare_fast('person-overhead-operator-return-arc-trial');events=[]
+        h.run_operator_arc_trial(self.device(),events.append,self.sleep)
+        route=h.ROUTES[self.p['profile']]
+        self.assertEqual(route[2][:2],(140,180));self.assertEqual(route[5][:2],(-80,80))
+        diagonal=[r for r in events if r['event']=='probe_step' and r['axis']==5]
+        self.assertTrue(any(r['state']['pulse_us'][0]<h.BASE[0] and r['state']['pulse_us'][1]<h.BASE[1]+160 for r in diagonal))
+        prior=h.BASE[:]
+        for row in events:
+            if row['event']!='probe_step':continue
+            self.assertLessEqual(max(abs(a-b) for a,b in zip(prior,row['state']['pulse_us'])),1 if row['axis'] in (3,4,5,6) else 8)
+            self.assertEqual(row['state']['pulse_us'][2:],h.BASE[2:]);prior=row['state']['pulse_us']
+        self.assertEqual(events[-1]['state']['pulse_us'],h.BASE);self.assertEqual(events[-1]['state']['enabled_mask'],0)
+
     def test_reference_sequence_exception_only_accepts_an_unchanged_static_hold(self):
         self.prepare_fast('person-overhead-operator-arc-trial')
         rows=[json.loads(r) for r in self.raw.splitlines()]
