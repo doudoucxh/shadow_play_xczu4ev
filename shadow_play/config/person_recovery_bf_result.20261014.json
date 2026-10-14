@@ -1,0 +1,364 @@
+{
+  "session_id": "person-recovery-20261014-bf",
+  "profile": "person-be-recovery-v1",
+  "status": "recovered_reference_normal_stop",
+  "route_sha256": "ffddfbf5cf2cef1d0cab1643ff4a7e55488a7199c6616707f37d582f5c1872a7",
+  "full_board_log_sha256": "8317294e1faf3ebc42d840d3ac306f81091746e85b623b737155ffac9c8fb761",
+  "full_board_log": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\full_board_motion.jsonl",
+  "recovered_reference": true,
+  "fold_visually_resolved": true,
+  "normal_frame_stop": true,
+  "last_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 27897,
+    "pending": false,
+    "pulse_us": [
+      1515,
+      1372,
+      1515,
+      1514,
+      1506,
+      1660,
+      1510,
+      1275,
+      1550,
+      1640
+    ],
+    "position_feedback": null
+  },
+  "incident_locks_removed": false,
+  "automatic_replay_allowed": false,
+  "actual_angle_feedback": null,
+  "observations": [
+    "撤回落拳四分之一至全部时，手抬高，但人物仍离幕。",
+    "高位横转撤到1575us后，人物展开、正面轮廓恢复。",
+    "第11阶段与恢复前基准指令相同，双视角确认展开后停止。"
+  ],
+  "operator_correction": "手曾到头后；下次先向Sony左侧拉开与头部分离，再抬高越头。此为待验证新路线，不保证仅二维分离就避免前后翻转。",
+  "stages": [
+    {
+      "level": 1,
+      "command_pulses_us": [
+        1815,
+        1267,
+        1550,
+        1585,
+        1561,
+        1598,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\front_1791984618057003500.jpg",
+          "frame_id": "session-20261014-191050-124680",
+          "sha256": "240cf62ffd8cf2e17820240e32702231ccd70de28f78f29a9be9e7565b890f44",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\top_1791984618055245800.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-557963",
+          "sha256": "a52a5b3871be7218f2912f363944e140075f5ecd7769d8c36172f9fd523849ff",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 2,
+      "command_pulses_us": [
+        1815,
+        1302,
+        1545,
+        1581,
+        1536,
+        1615,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\front_1791984641199242600.jpg",
+          "frame_id": "session-20261014-191050-125025",
+          "sha256": "35b91d7af202bb6d86fd08b23774caeeec114bc411ec086a1e02add0b3baf255",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\top_1791984641197483300.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-558310",
+          "sha256": "9566cb10f568919ea16b4f9d68dc544b0f7112ea191593393101b2b31f9de5ca",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 3,
+      "command_pulses_us": [
+        1815,
+        1337,
+        1540,
+        1578,
+        1511,
+        1632,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\front_1791984671229454100.jpg",
+          "frame_id": "session-20261014-191050-125472",
+          "sha256": "c53198ca870052e2fda18e677c3b3e3f2ad5184202fc115216fa699b599fd09d",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\top_1791984671227936800.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-558761",
+          "sha256": "0c1649b3ccef1cbdeadecf1cf3cd99e93d8c5b36a44f6bf1dbe511910b4d119d",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 4,
+      "command_pulses_us": [
+        1815,
+        1372,
+        1535,
+        1574,
+        1486,
+        1650,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\front_1791984695477690100.jpg",
+          "frame_id": "session-20261014-191050-125834",
+          "sha256": "d7dc49de6621cbd558c0c9f4135cf1b3c7469f8aeb59877453d7a0a45401c206",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\top_1791984695466312800.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-559125",
+          "sha256": "2788d5d596932451099cdcbcf3cba4e9f1f65d92a4f0ab0d1ad82c8db66ab110",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 5,
+      "command_pulses_us": [
+        1695,
+        1372,
+        1535,
+        1574,
+        1486,
+        1650,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\front_1791984724143775400.jpg",
+          "frame_id": "session-20261014-191050-126261",
+          "sha256": "b8738bf20efa3f2068664d42ba6b8f9e6e0ec73a5a6f349877279b32b5306a5c",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\top_1791984724143020200.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-559555",
+          "sha256": "6e77a699eafc5779770ade313299b955577a52a4d72940b66a5f86bf67946f0d",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 6,
+      "command_pulses_us": [
+        1575,
+        1372,
+        1535,
+        1574,
+        1486,
+        1650,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\front_1791984752257878200.jpg",
+          "frame_id": "session-20261014-191050-126680",
+          "sha256": "89251636a80db3243ffee5182a27ae6826a83d826d0170dc5a35c06cc2cd2700",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\top_1791984752253853500.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-559976",
+          "sha256": "94327312e31b6d6f048db1fcb6781d9c65c728bd6a949b2fec9617f65718e749",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 7,
+      "command_pulses_us": [
+        1575,
+        1272,
+        1535,
+        1574,
+        1486,
+        1650,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\front_1791984776072061900.jpg",
+          "frame_id": "session-20261014-191050-127035",
+          "sha256": "d603f06f6080675f45bd7cfd01f1f8993ab8c88e0157b1b8dcf0152a540b9363",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\top_1791984776070299300.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-560334",
+          "sha256": "cebf9026e6fd788975fc71577b3815c2f7b9c6bd85db17ae55bc0766a01da4b6",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 8,
+      "command_pulses_us": [
+        1515,
+        1212,
+        1535,
+        1594,
+        1546,
+        1660,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\front_1791984808925602800.jpg",
+          "frame_id": "session-20261014-191050-127525",
+          "sha256": "655582c71a7b3edf3eaddfa59fd7ba31a3aee7fb44adbd7479dd9e00d7ef79cd",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\top_1791984808923841600.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-560826",
+          "sha256": "1b7dc00f983716646d11aba22778f3559dda39e353eeb9c7e17097df9a43d69c",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 9,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1554,
+        1506,
+        1500,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\front_1791984835925814900.jpg",
+          "frame_id": "session-20261014-191050-127927",
+          "sha256": "e650822b44fd8aac69518149f7c186a0303a8570b3fef7bbdc74111f2d8e94ee",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\top_1791984835923555200.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-561232",
+          "sha256": "4ead78b70572b95057829cb7584adba267545d819f49736b8211e047dd1773de",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 10,
+      "command_pulses_us": [
+        1515,
+        1252,
+        1515,
+        1594,
+        1506,
+        1720,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\front_1791984860251512100.jpg",
+          "frame_id": "session-20261014-191050-128290",
+          "sha256": "5ee1e2cb9da831e76da08d7d434e4ff5cecdb7fa5c98b35c9e98c6fc3e87469f",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\top_1791984860249249300.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-561596",
+          "sha256": "ff6f156063913901a2da8ae41fa95903907ecf57989c83e5609afc4ba6a94ec8",
+          "attachment_pixels": null
+        }
+      }
+    },
+    {
+      "level": 11,
+      "command_pulses_us": [
+        1515,
+        1372,
+        1515,
+        1514,
+        1506,
+        1660,
+        1510,
+        1275,
+        1550,
+        1640
+      ],
+      "frames": {
+        "front": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\front_1791984898760984500.jpg",
+          "frame_id": "session-20261014-191050-128863",
+          "sha256": "02b1ab505198d5f11337f3cd488184c74e3248b61d453519f6d3b28c850706b0",
+          "attachment_pixels": null
+        },
+        "top": {
+          "file": ".review_work\\hand_cross_side_test_20261014\\operator_arc_bf\\top_1791984898813614700.jpg",
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-562175",
+          "sha256": "49a8b6cde1e19c2844f8419b6133503a95d2805874fb261eb21bc99ce59a9e84",
+          "attachment_pixels": null
+        }
+      }
+    }
+  ]
+}
