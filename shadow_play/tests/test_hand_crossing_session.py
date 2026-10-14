@@ -115,7 +115,7 @@ class CrossingTests(unittest.TestCase):
         for profile in h.ROUTES:
             self.now=0;self.r=FakeRegisters()
             for i in range(10):self.r.values[0x80+4*i]=1500
-            if profile=='person-script-hand-b-local-yaw-probe':
+            if profile in h.SLOW_YAW_PROFILES:
                 self.prepare_fast(profile);self.p['tempo_step_us']=3;del self.p['prior_slow_route_log']
                 d=self.device();d.adopt(h.BASE[:])
             else:
@@ -131,7 +131,7 @@ class CrossingTests(unittest.TestCase):
                 s=e['state'];self.assertEqual(s['enabled_mask'],63)
                 if profile.startswith('person-script-'):
                     self.assertEqual(s['pulse_us'][6:],h.BASE[6:])
-                    fixed=(0,1,2,5) if profile=='person-script-hand-b-local-yaw-probe' else (0,2,4)
+                    fixed=(0,1,2,5) if profile in h.SLOW_YAW_PROFILES else (0,2,4)
                     for i in fixed:self.assertEqual(s['pulse_us'][i],h.BASE[i])
                     if profile=='person-script-hand-b-strike-probe':
                         self.assertEqual(s['pulse_us'][1],h.BASE[1])
@@ -150,13 +150,13 @@ class CrossingTests(unittest.TestCase):
         self.p['baseline_source']=dict(path='/tmp/puppet-choreography-prior.jsonl',sha256=hashlib.sha256(self.raw).hexdigest())
 
     def test_local_hand_b_yaw_has_no_fast_or_power_cycle_mode(self):
-        profile='person-script-hand-b-local-yaw-probe'
-        self.prepare_fast(profile)
-        with self.assertRaises(ValueError):self.device()
-        self.p['tempo_step_us']=3;del self.p['prior_slow_route_log']
-        self.p['restore_after_power_cycle']=True
-        with self.assertRaises(ValueError):self.device()
-        self.assertEqual(self.r.writes,[])
+        for profile in h.SLOW_YAW_PROFILES:
+            self.prepare_fast(profile)
+            with self.assertRaises(ValueError):self.device()
+            self.p['tempo_step_us']=3;del self.p['prior_slow_route_log']
+            self.p['restore_after_power_cycle']=True
+            with self.assertRaises(ValueError):self.device()
+            self.assertEqual(self.r.writes,[])
 
     def test_source_tamper_and_boot_change_reject_before_arm(self):
         self.raw+=b' '
