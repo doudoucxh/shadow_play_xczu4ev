@@ -22,6 +22,7 @@ PRESS='tiger-operator-head-lower-at-tree'
 LOWER5='tiger-operator-head-lower-five'
 LOWER_LEFT='tiger-operator-head-lower-ten-left'
 SCREEN='tiger-operator-screen-approach'
+SCREEN_LEAP='tiger-operator-screen-leap-bite'
 INTERRUPTED_AI_SHA='b0fbd146897f875d15d0e96a7921c19aeea0fcdab309a7c217633cb63bf538e1'
 ROUTES={PROFILE:ROUTE,STAGGERED:((0,0,0,0),(40,0,40,0),(40,-20,40,20),
     (10,80,10,20),(-30,80,-30,-80),(-60,-60,-60,-80),
@@ -31,8 +32,9 @@ ROUTES[PRESS]=((340,0,340,0),(340,-20,340,0),(340,-40,340,0))
 ROUTES[LOWER5]=((340,-40,340,0),(340,-77,340,0))
 ROUTES[LOWER_LEFT]=((340,-77,340,0),(310,-151,310,0))
 ROUTES[SCREEN]=((310,-151,310,0),(270,-188,270,0),(230,-225,230,0))
-STEP_TABLE={SCREEN:(0,2,2),LOWER_LEFT:(0,2),LOWER5:(0,2),PRESS:(0,2,2),PARK:(0,3,3,3,3),PROFILE:STEPS,STAGGERED:(0,3,3,12,12,12,3,3,3)}
-HOLD_TABLE={SCREEN:(0,.4,.4),LOWER_LEFT:(0,.5),LOWER5:(0,.5),PRESS:(0,.3,.3),PARK:(0,.2,.2,.2,.2),PROFILE:HOLDS,STAGGERED:(0,.2,.18,.02,.05,.25,.15,.2,.1)}
+ROUTES[SCREEN_LEAP]=((230,-225,230,0),(220,-225,220,20),(150,-135,150,20),(100,-115,100,-65),(40,-210,40,-65),(40,-200,40,-10),(140,-210,140,0),(230,-225,230,0))
+STEP_TABLE={SCREEN_LEAP:(0,3,10,10,10,5,5,5),SCREEN:(0,2,2),LOWER_LEFT:(0,2),LOWER5:(0,2),PRESS:(0,2,2),PARK:(0,3,3,3,3),PROFILE:STEPS,STAGGERED:(0,3,3,12,12,12,3,3,3)}
+HOLD_TABLE={SCREEN_LEAP:(0,.15,.06,.08,.2,.1,.05,.15),SCREEN:(0,.4,.4),LOWER_LEFT:(0,.5),LOWER5:(0,.5),PRESS:(0,.3,.3),PARK:(0,.2,.2,.2,.2),PROFILE:HOLDS,STAGGERED:(0,.2,.18,.02,.05,.25,.15,.2,.1)}
 def digest(profile=PROFILE):return hashlib.sha256(json.dumps(ROUTES[profile],separators=(',',':')).encode()).hexdigest()
 def closed_tiger_reference(rows):
     first,last=rows[0],rows[-1];profile=first.get('profile')
