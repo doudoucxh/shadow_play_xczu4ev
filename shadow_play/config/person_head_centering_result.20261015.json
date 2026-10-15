@@ -1,0 +1,154 @@
+{
+  "session": "person-head-lateral-20261015-k",
+  "status": "executed_neck_torso_alignment_improved_depth_unverified",
+  "source_log_sha256": "3f4d609bd7a387cc1cac2421b5e8062dbbbec48c105c8192e783fec10e69cb45",
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 63,
+    "armed": true,
+    "faults": 0,
+    "sequence": 41893,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1465,
+      1554,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 42094,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1545,
+      1554,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "board_log_sha256": "be95804a66f65fe15137079f9a8c92dceb2a84bcf1050c2c5f85a801f86bad9e",
+  "steps": 200,
+  "peak_command_step_us": 1,
+  "axis_changed": 3,
+  "pulse_us": [
+    1465,
+    1505,
+    1545
+  ],
+  "depth_calibrated": false,
+  "normal_frame_stop": true,
+  "automatic_replay_allowed": false,
+  "story_updated": false,
+  "observations": [
+    "Head continued Sony-right in both stages; torso moved less; left lean reduced.",
+    "At 1545 the neck is approximately over the torso in front view, not the center of the whole screen.",
+    "No obvious folding or rod collision in inspected dual views.",
+    "Camera focus also changed near final front frame; sharpness is not evidence of a measured cloth gap.",
+    "Static alignment trial only; no whole-score yaw offset applied."
+  ],
+  "evidence": [
+    {
+      "servo3_us": 1465,
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792071838789207900.jpg",
+          "host_unix_ns": 1792071838789207900,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-442921",
+          "age_ms": 32,
+          "sha256": "37432eb4cca193b1fc0a196312517a7b7490bc3f6a08285bec3b55de37c72ad8",
+          "head_connection_pixels": null,
+          "head_connection_mm": null,
+          "cloth_distance_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792071838777374000.jpg",
+          "host_unix_ns": 1792071838777374000,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1866214",
+          "age_ms": 47,
+          "sha256": "8d74d931b080dce7908ef71507c13c9a43e38f80d2557a3f805185d93b9c2cdc",
+          "head_connection_pixels": null,
+          "head_connection_mm": null,
+          "cloth_distance_mm": null
+        }
+      ]
+    },
+    {
+      "servo3_us": 1505,
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792071870419242500.jpg",
+          "host_unix_ns": 1792071870419242500,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-443393",
+          "age_ms": 13,
+          "sha256": "a34f7040b9ce6d5ec983223b14995dae0bbb488808d2b90cf9ed71aecec6d232",
+          "head_connection_pixels": null,
+          "head_connection_mm": null,
+          "cloth_distance_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792071870407680700.jpg",
+          "host_unix_ns": 1792071870407680700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1866689",
+          "age_ms": 0,
+          "sha256": "7a52f078d6c1c09caea28a9c3d4cbaf8a4336ed31403c3e1d7a3e9dec042dc5c",
+          "head_connection_pixels": null,
+          "head_connection_mm": null,
+          "cloth_distance_mm": null
+        }
+      ]
+    },
+    {
+      "servo3_us": 1545,
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792071910647202900.jpg",
+          "host_unix_ns": 1792071910647202900,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-443992",
+          "age_ms": 56,
+          "sha256": "543b1b7a1721f8bf79f354017c29bf66e2cc5a1eea1f5f753eb6873bd8d53242",
+          "head_connection_pixels": null,
+          "head_connection_mm": null,
+          "cloth_distance_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792071910645702900.jpg",
+          "host_unix_ns": 1792071910645702900,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1867292",
+          "age_ms": 32,
+          "sha256": "e9f4a6975a7a07b52be3275a8c9c9a8b41c1326cc626bf0768f18914ce3c490d",
+          "head_connection_pixels": null,
+          "head_connection_mm": null,
+          "cloth_distance_mm": null
+        }
+      ]
+    }
+  ]
+}

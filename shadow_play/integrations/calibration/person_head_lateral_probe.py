@@ -1,15 +1,15 @@
-"""Attended local head-yaw comparison from the completed pitch probe; no depth claim."""
+"""Attended local head-yaw comparison from the completed lateral probe; no depth claim."""
 import argparse,hashlib,json,re,signal,sys,time
 from pathlib import Path
 import story_midpoint_session as m
 
-PROFILE='person-head-lateral-probe-v1'
-SOURCE='/tmp/puppet_choreography_head_contact_20261015_i.events.jsonl'
-SOURCE_SHA='3e0cdf9ff498c3f66d75ea4aae9aea183b8b8f94c8d43869926c25039162681e'
+PROFILE='person-head-lateral-probe-v2'
+SOURCE='/tmp/puppet_choreography_head_lateral_20261015_j.events.jsonl'
+SOURCE_SHA='3f4d609bd7a387cc1cac2421b5e8062dbbbec48c105c8192e783fec10e69cb45'
 BOOT='7eea2c53-e104-45cf-88fe-439f1821e5d4'
-START=[1470,1212,1425,1554,1416,1740,1730,1250,1770,1740]
+START=[1470,1212,1465,1554,1416,1740,1730,1250,1770,1740]
 TARGETS=[START[:]]
-for v in (1465,):
+for v in (1505,1545):
     q=START[:];q[2]=v;TARGETS.append(q)
 FRAMES=[START[:]]+[q for a,b in zip(TARGETS,TARGETS[1:]) for q in m.transition_frames(a,b)]
 ROUTE_SHA=hashlib.sha256(json.dumps(TARGETS,separators=(',',':')).encode()).hexdigest()
@@ -17,20 +17,20 @@ ROUTE_SHA=hashlib.sha256(json.dumps(TARGETS,separators=(',',':')).encode()).hexd
 
 def validate(p,raw,wall=None):
     if (p.get('profile')!=PROFILE or p.get('approval')!=m.c.APPROVAL
-            or p.get('expected_sequence')!=41790 or p.get('expected_pulses_us')!=START
+            or p.get('expected_sequence')!=41892 or p.get('expected_pulses_us')!=START
             or p.get('source_sha256')!=SOURCE_SHA or p.get('route_sha256')!=ROUTE_SHA
             or p.get('boot_id')!=BOOT or p.get('duration_seconds')!=240
             or p.get('observer_ready') is not True or p.get('dual_view_pose_reviewed') is not True):
-        raise ValueError('Only the reviewed post-pitch local yaw comparison')
+        raise ValueError('Only the reviewed post-lateral local yaw comparison')
     stamp=p.get('reviewed_at_unix_ms')
     if type(stamp) is not int or stamp<=0 or (wall and not 0<=wall()*1000-stamp<120000):
         raise ValueError('Fresh host review required')
     if hashlib.sha256(raw).hexdigest()!=SOURCE_SHA:raise ValueError('Evidence changed')
     rows=[json.loads(line) for line in raw.splitlines()];last=rows[-1];s=last['state']
     if (last['event']!='outputs_off' or last.get('normal_frame_stop') is not True
-            or not any(r['event']=='head_pitch_comparison_complete' for r in rows)
-            or s['sequence']!=41790 or s['pulse_us']!=START or s['armed'] or s['enabled_mask']
-            or s['faults'] or s['pending']):raise ValueError('Not the completed pitch comparison endpoint')
+            or not any(r['event']=='head_lateral_comparison_complete' for r in rows)
+            or s['sequence']!=41892 or s['pulse_us']!=START or s['armed'] or s['enabled_mask']
+            or s['faults'] or s['pending']):raise ValueError('Not the completed lateral comparison endpoint')
     for q in FRAMES:
         if any(q[i]!=START[i] for i in range(10) if i!=2):raise ValueError('Only head yaw changes')
         if any(not 500+lo*2000/270<=q[i]<=500+hi*2000/270 for i,(lo,hi) in enumerate(m.DEGREE_LIMITS)):
@@ -43,7 +43,7 @@ class HeadProbe(m.MidpointSession):
         validate(p,source_raw,wall);m.c.PwmDevice.__init__(self,r,motion_inhibit_paths=motion_inhibit_paths)
         self.plan=dict(p,tempo_step_us=3);self.host=host;self.clock=clock;self.deadline=clock()+240
         self.cancel=Path(cancel_path);self.hashes=self.lock_hashes();self.pulses=START[:]
-        self.sequence=41790;self.mask=0;self.inside=False;self.failed=False
+        self.sequence=41892;self.mask=0;self.inside=False;self.failed=False
         self.last_start=None;self.next_command=None;self.phase='resume';self.own=63;self.cursor=0
         self.check()
     def adopt(self,q):
