@@ -1,0 +1,98 @@
+{
+  "session": "person-head-lateral-20261015-j",
+  "status": "executed_rightward_motion_confirmed_not_yet_centered",
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 63,
+    "armed": true,
+    "faults": 0,
+    "sequence": 41791,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1425,
+      1554,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 41892,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1465,
+      1554,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "board_log_sha256": "3f4d609bd7a387cc1cac2421b5e8062dbbbec48c105c8192e783fec10e69cb45",
+  "steps": 100,
+  "axis_changed": 3,
+  "pulse_us": [
+    1425,
+    1465
+  ],
+  "depth_calibrated": false,
+  "automatic_replay_allowed": false,
+  "story_updated": false,
+  "observations": [
+    "Head moved Sony-right; torso moved less; left lean reduced, head still left of torso.",
+    "No obvious rod collision in inspected dual views; actual cloth gap not measured."
+  ],
+  "evidence": [
+    {
+      "camera": "front",
+      "file": "front_1792071604499440300.jpg",
+      "host_unix_ns": 1792071604499440300,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-439428",
+      "age_ms": 47,
+      "sha256": "d28406d77f349b9a54612a358ef70d79fdaa26619e2e37a8cb4d5748aee2a21b"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792071604507616100.jpg",
+      "host_unix_ns": 1792071604507616100,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1862700",
+      "age_ms": 47,
+      "sha256": "b519b50fa712459fd728e7174a265e28bbd386b1c25a2c8c61288f5601b11703"
+    },
+    {
+      "camera": "front",
+      "file": "front_1792071629919823100.jpg",
+      "host_unix_ns": 1792071629919823100,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-439807",
+      "age_ms": 47,
+      "sha256": "e0c3328e2a385eff9576e9e93ebcb543564870963a6199b8dd8ba68ed52c3b96"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792071629918062900.jpg",
+      "host_unix_ns": 1792071629918062900,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1863081",
+      "age_ms": 47,
+      "sha256": "75dab7fbe4d2c61b7044209499afc81616b917d209f026bca729d74b690f7b2a"
+    }
+  ]
+}
