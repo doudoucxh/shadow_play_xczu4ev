@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-15",
+  "status": "offline_pipeline_ready_annotations_and_pairing_pending",
+  "source_records": [
+    "stage_bl_result.20261014.json",
+    "stage_bm_result.20261014.json",
+    "stage_bn_result.20261014.json",
+    "stage_bo_result.20261014.json"
+  ],
+  "candidate_sample_count": 30,
+  "resolved_dual_frame_count": 30,
+  "distinct_six_axis_commands": 15,
+  "centered_command_rank": 6,
+  "verified_three_point_samples": 0,
+  "trained_physical_model": null,
+  "deployment_ready": false,
+  "motor_commands_sent": false,
+  "incident_locks_removed": false,
+  "private_dataset": ".review_work/person_coordinate_mapping_20261015/candidates.json",
+  "remaining": [
+    "Annotate visible attachment centres and per-frame curtain reference",
+    "Verify assembly and camera context without mixing changed geometry",
+    "Verify command-to-image pairing and settling; moving samples are not automatically paired",
+    "Fit and evaluate only verified samples; collect missing coverage if necessary",
+    "Current unknown-angle cold-start recovery remains unresolved"
+  ]
+}
