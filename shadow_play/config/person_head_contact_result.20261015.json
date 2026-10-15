@@ -1,0 +1,131 @@
+{
+  "session": "person-head-contact-20261015-i",
+  "status": "first_pitch_comparison_executed_depth_fix_unverified",
+  "user_report": "Person head control point noticeably away from cloth, including at rest after show.",
+  "source_show_log_sha256": "8475b58d7ebfc40c1fdbffd20908fd227da1c45c22d230257d77ed18b36cde1c",
+  "board_log_sha256": "3e0cdf9ff498c3f66d75ea4aae9aea183b8b8f94c8d43869926c25039162681e",
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 63,
+    "armed": true,
+    "faults": 0,
+    "sequence": 41689,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1425,
+      1514,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 41790,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1425,
+      1554,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "steps": 100,
+  "peak_command_step_us": 1,
+  "normal_frame_stop": true,
+  "executed_head_servo4_us": [
+    1514,
+    1554
+  ],
+  "unexecuted_head_servo4_us": 1594,
+  "head_depth_fix_verified": false,
+  "cloth_distance_measured": false,
+  "story_updated": false,
+  "incident_locks_removed": false,
+  "automatic_replay_allowed": false,
+  "observations": [
+    "Only channel 4 changed; other person axes held, tiger outputs remained disabled.",
+    "Head, torso and feet descended; relative hand/body pose also changed.",
+    "Front head contour remains soft; no clear improvement in cloth contact or outline sharpness established.",
+    "Top image mixes height and depth; shadow displacement is not a physical gap measurement.",
+    "Ended normally with finish after first stage; did not execute second stage or automatically return.",
+    "Field observation of smaller/larger/unchanged gap requested; no answer yet at recording time."
+  ],
+  "next_step": "Use field gap comparison to distinguish pitch effect from yaw/depth coupling. Do not adopt 1554 as a corrected performance baseline without evidence.",
+  "evidence": [
+    {
+      "stage": "reference_1514",
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792070952361415800.jpg",
+          "host_unix_ns": 1792070952361415800,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-429707",
+          "age_ms": 56,
+          "sha256": "2a74f1a35e79ecd4cfd64b5943b7e85005fb899f4dc74258008b0a18c278fc6b",
+          "head_connection_pixels": null,
+          "head_connection_mm": null,
+          "cloth_distance_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792070952358647600.jpg",
+          "host_unix_ns": 1792070952358647600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1852918",
+          "age_ms": 14,
+          "sha256": "c8a1d199848ceec3283a294d3a5775dd26508d87bd79af5230dbf7ebb24de8af",
+          "head_connection_pixels": null,
+          "head_connection_mm": null,
+          "cloth_distance_mm": null
+        }
+      ]
+    },
+    {
+      "stage": "candidate_1554",
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792070990947748800.jpg",
+          "host_unix_ns": 1792070990947748800,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-430283",
+          "age_ms": 9,
+          "sha256": "13aef992a980f4c6f2969906ac32136eeff9662a6fb8fe65c1349e6870c3a522",
+          "head_connection_pixels": null,
+          "head_connection_mm": null,
+          "cloth_distance_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792070990943237000.jpg",
+          "host_unix_ns": 1792070990943237000,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1853497",
+          "age_ms": 16,
+          "sha256": "f78937bd8afe21eba86db2489c2982d6f3a496ed5b4657f1370ea72ae57b5653",
+          "head_connection_pixels": null,
+          "head_connection_mm": null,
+          "cloth_distance_mm": null
+        }
+      ]
+    }
+  ]
+}
