@@ -1,0 +1,31 @@
+{
+  "status": "classic_show_resume_preflight_incomplete",
+  "user_priority": "classic_script_performance; continuous_pose_follow_deferred",
+  "user_reports": {
+    "all_gimbals_manually_rotated": true,
+    "all_rods_connected": true,
+    "servo_8v_on": true,
+    "observer_present": true
+  },
+  "board_observed": {
+    "sequence": 34017,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "actual_axis_feedback": null
+  },
+  "camera": {
+    "sony_stream": "stopped_or_stale",
+    "probe_ip": "192.168.31.250",
+    "probe_result": "Connect_SSH_GetFingerprintFailed",
+    "host_wlan_ipv4": "192.168.31.161",
+    "fresh_dual_view_verified": false
+  },
+  "motor_commands_sent": false,
+  "old_commands_valid_as_current_pose": false,
+  "next_steps": [
+    "Restore fresh dual-view observation.",
+    "Establish actual joint reference after manual changes before enabling loaded motion.",
+    "Rehearse corrected 67-second classic score; retain existing motion and audio timing records."
+  ]
+}
