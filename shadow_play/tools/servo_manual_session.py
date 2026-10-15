@@ -28,6 +28,22 @@ def jog_pulse(pulse, delta_degrees):
     return angle_to_pulse(pulse_to_angle(pulse) + delta_degrees)
 
 
+def person_command_report(state):
+    """Export commands with output validity, never masquerading as feedback."""
+    pulses = state['pulse_us']
+    if len(pulses) != 10:
+        raise ValueError('需要十路完整指令快照')
+    lines = ['人物六路指令快照（不是实际轴角反馈）',
+             '序号：' + str(state['sequence'])]
+    for i, pulse in enumerate(pulses[:6]):
+        active = (state.get('armed') is True and
+                  bool(state.get('enabled_mask', 0) & (1 << i)) and
+                  not state.get('pending') and not state.get('faults'))
+        label = '正在输出' if active else '未确认输出；仅历史指令，不能作起点'
+        lines.append(f'{i+1}号：{validate_pulse(pulse)} μs / {pulse_to_angle(pulse):.3f}°；{label}')
+    return '\n'.join(lines)
+
+
 class ManualSession(CenterSession):
     service = 'unloaded-manual-v2'
     board_script = 'manual_servo_console.py'

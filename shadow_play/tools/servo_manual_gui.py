@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import ttk
 
 from servo_center_gui import App, Worker, PROJECT, PINS
-from servo_manual_session import ManualSession, angle_to_pulse, pulse_to_angle, jog_pulse, validate_pulse
+from servo_manual_session import ManualSession, angle_to_pulse, pulse_to_angle, jog_pulse, validate_pulse, person_command_report
 from servo_button_jog import load_button_limits, checked_target, next_button_pulse, INTERVAL_MS, STEP_US
 
 
@@ -31,6 +31,7 @@ class ManualApp(App):
 
     def __init__(self, root):
         self.latest = None
+        self.motion_blocked = False
         self.last_action = None
         self.observation_path = None
         self.holding_channel = None
@@ -99,6 +100,8 @@ class ManualApp(App):
         self.press_row.grid_remove()
         ttk.Label(box, textvariable=self.limit_text, foreground='#7a4512').grid(row=5, column=0, columnspan=5, sticky='w')
         ttk.Label(box, textvariable=self.adopted, foreground='#145577').grid(row=6, column=0, columnspan=5, sticky='w', pady=4)
+        self.copy_button = ttk.Button(box, text='复制人物六路指令（含输出状态）', command=self.copy_person_commands)
+        self.copy_button.grid(row=7, column=0, columnspan=5, sticky='w')
         self.angle.trace_add('write', lambda *_: self.preview_target())
         self.pulse.trace_add('write', lambda *_: self.preview_target())
         self.preview_target()
@@ -131,7 +134,17 @@ class ManualApp(App):
             self.adopted.set('上次采用的指令：未读取（实际角度没有反馈）')
             return
         pulse = self.latest['pulse_us'][self.number.get()-1]
-        self.adopted.set(f'该通道上次采用：{pulse} μs ≈ {pulse_to_angle(pulse):.3f}°；实际位置仍需现场观察。')
+        active = self.latest.get('armed') and self.latest.get('enabled_mask', 0) & (1 << (self.number.get()-1))
+        label = '输出中；不是角度反馈' if active else '输出关闭；历史指令不代表当前位置'
+        self.adopted.set(f'该通道上次采用：{pulse} μs ≈ {pulse_to_angle(pulse):.3f}°；{label}。')
+
+    def copy_person_commands(self):
+        if self.latest is None or not self.connected:
+            return
+        report = person_command_report(self.latest)
+        self.root.clipboard_clear()
+        self.root.clipboard_append(report)
+        self.log('已复制人物六路指令及输出状态；不是实际角度测量。')
 
     def selection_changed(self):
         self.release_press()
@@ -238,9 +251,13 @@ class ManualApp(App):
         can_record = not self.busy and not self.closing and self.last_action is not None
         for button in self.observation_buttons:
             button.configure(state='normal' if can_record else 'disabled')
+        self.copy_button.configure(state='normal' if self.connected and self.latest is not None else 'disabled')
+        if self.motion_blocked:
+            for button in [self.send_button, self.center_button, *self.jog_buttons, *self.press_buttons.values()]:
+                button.configure(state='disabled')
 
     def submit(self, pulse):
-        if not self.connected or self.busy or self.closing or not self.confirmed.get():
+        if not self.connected or self.busy or self.closing or not self.confirmed.get() or self.motion_blocked:
             return
         validate_pulse(pulse)
         if self.control_mode.get() == 'button':
@@ -300,6 +317,14 @@ class ManualApp(App):
             self.state.set('点动未发送：' + str(error))
 
     def on_event(self, event, value):
+        if event == 'motion_blocked':
+            self.release_press()
+            self.motion_blocked = True
+            self.holding_channel = None
+            self.last_action = None
+            self.stopping = False
+        elif event == 'connected':
+            self.motion_blocked = False
         if event in ('stopped', 'completed', 'disconnected', 'error'):
             self.release_press()
             self.holding_channel = None

@@ -9,7 +9,7 @@ import time
 import tkinter as tk
 from tkinter import ttk
 
-from servo_center_session import CenterSession, all_off
+from servo_center_session import CenterSession, all_off, MotionInhibitedError
 
 PROJECT = Path(__file__).resolve().parents[1]
 PINS = ('D14', 'D15', 'F13', 'G13', 'G14', 'G15', 'J14', 'E13', 'E14', 'E15')
@@ -94,6 +94,17 @@ class Worker(threading.Thread):
                         else:
                             self.events.put(('remaining', state.get('center_remaining_seconds', 0)))
             except Exception as error:
+                if isinstance(error, MotionInhibitedError) and self.session is not None:
+                    try:
+                        state = self.session.status()
+                        if not all_off(state):
+                            state = self.session.stop()
+                        self.active = None
+                        self.events.put(('snapshot', state))
+                        self.events.put(('motion_blocked', str(error)))
+                        continue
+                    except Exception as read_error:
+                        error = read_error
                 message = str(error)
                 try:
                     self.release()
@@ -272,6 +283,11 @@ class App:
                 self.confirmed.set(False)
                 self.state.set('连接/操作失败：' + value + ' 若刚才正在动作，请先断开舵机电源。')
                 self.log('错误：' + value)
+            elif event == 'motion_blocked':
+                self.busy = False
+                self.confirmed.set(False)
+                self.state.set('串口仍已连接；板端运动锁拒绝动作。可以读取指令和停止输出，不能据此确定实际角度。')
+                self.log('运动被拒绝（连接保留）：' + value)
             self.update_controls()
         self.root.after(80, self.receive)
 

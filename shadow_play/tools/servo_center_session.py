@@ -12,6 +12,10 @@ SERVICE = 'unloaded-center-v1'
 BOARD_DIR = '/run/media/mmcblk0p2/piying/servo-capture-20261008-r4'
 
 
+class MotionInhibitedError(RuntimeError):
+    """Explicit board rejection; transport and read-only operations still work."""
+
+
 def all_off(state):
     return (state.get('armed') is False and state.get('enabled_mask') == 0
             and state.get('pending') is False)
@@ -88,7 +92,10 @@ class CenterSession:
     def _request(self, operation, payload):
         ack = self.link.exchange(operation, payload)
         if ack.get('ok') is not True:
-            raise RuntimeError(ack.get('error', '板端拒绝请求'))
+            message = ack.get('error', '板端拒绝请求')
+            if str(message).startswith('PWM motion inhibited by '):
+                raise MotionInhibitedError(message)
+            raise RuntimeError(message)
         return ack['result']
 
     def status(self):
