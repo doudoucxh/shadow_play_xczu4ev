@@ -59,5 +59,34 @@ class HeightTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError,'view lost'):t.run(d,events.append)
         self.assertEqual(d.pulses,t.TARGETS[1]);self.assertTrue(d.stopped);self.assertFalse(d.normal)
 
+    def test_resume_exact_timeout_provenance_and_remaining_route(self):
+        states=[dict(sequence=37563+i*100,pulse_us=q,enabled_mask=960,armed=True,pending=False,faults=0)
+                for i,q in enumerate(t.TARGETS[1:5],1)]
+        states[-1]['sequence']=37963
+        rows=[dict(event='probe_complete',axis=i,state=s) for i,s in enumerate(states,1)]
+        rows.append(dict(event='hold_alive',awaiting='review_4',state=states[-1]))
+        rows.append(dict(event='outputs_off',normal_frame_stop=False,
+                         state=dict(states[-1],enabled_mask=0,armed=False)))
+        raw=('\n'.join(json.dumps(r) for r in rows)).encode();sha=hashlib.sha256(raw).hexdigest()
+        p=dict(self.p,profile=t.RESUME_PROFILE,expected_sequence=37963,expected_pulses_us=t.pitch(head=40),
+               source_sha256=sha,route_sha256=t.route_digest(t.RESUME_TARGETS))
+        with patch.object(t,'RESUME_SHA',sha):
+            t.validate(p,raw,lambda:1)
+            with self.assertRaises(ValueError):t.validate(dict(p,expected_sequence=37562),raw,lambda:1)
+            reg=FakeRegisters();reg.values[0x20]=37963
+            for i,v in enumerate(t.pitch(head=40)):reg.values[0x80+4*i]=v
+            with patch.object(t.HeightProbe,'lock_hashes',return_value=('lock',)):
+                d=t.HeightProbe(reg,p,Mock(),source_raw=raw,wall=lambda:1,cancel_path='__missing__')
+                with self.assertRaises(RuntimeError):d.adopt(t.START)
+                self.assertEqual(reg.writes,[])
+                self.assertEqual(d.adopt(t.pitch(head=40))['enabled_mask'],960);d.off()
+        d=Device('full');d.plan['profile']=t.RESUME_PROFILE;d.pulses=t.pitch(head=40)
+        events=[]
+        with patch.object(t.m,'await_action'):
+            t.run(d,events.append)
+        self.assertEqual(d.pulses,t.START)
+        self.assertEqual([r['state']['pulse_us'] for r in events if r['event']=='probe_complete'],t.RESUME_TARGETS[1:])
+        self.assertTrue(d.normal and d.stopped)
+
 
 if __name__=='__main__':unittest.main()

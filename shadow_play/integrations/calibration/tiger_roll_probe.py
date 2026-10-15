@@ -30,34 +30,66 @@ TARGETS=[START,pitch(rear=-40),pitch(rear=-80),START,
          pitch(head=40),pitch(head=80),START]
 ROUTE_SHA=hashlib.sha256(json.dumps(TARGETS,separators=(',',':')).encode()).hexdigest()
 FRAMES=[START[:]]+[q for a,b in zip(TARGETS,TARGETS[1:]) for q in m.transition_frames(a,b)]
+RESUME_PROFILE='tiger-roll-height-resume-v1'
+RESUME_SOURCE='/tmp/puppet_choreography_tiger_roll_20261015_a.events.jsonl'
+RESUME_SHA='56b67d16f3638104d4d443272e6b30c5f28bbf324e5a30bdfffd4d60c5f586aa'
+RESUME_TARGETS=[pitch(head=40),pitch(head=80),pitch(head=160),pitch(head=240),
+                pitch(head=160),pitch(head=80),START]
+
+
+def specification(profile):
+    if profile==PROFILE:
+        return SOURCE,SOURCE_SHA,37562,TARGETS
+    if profile==RESUME_PROFILE:
+        return RESUME_SOURCE,RESUME_SHA,37963,RESUME_TARGETS
+    raise ValueError('Unknown fixed height trial')
+
+
+def route_digest(targets):
+    return hashlib.sha256(json.dumps(targets,separators=(',',':')).encode()).hexdigest()
 
 
 def validate(p,raw,wall=None):
-    if (p.get('profile')!=PROFILE or p.get('approval')!=m.c.APPROVAL
-            or p.get('expected_sequence')!=37562 or p.get('expected_pulses_us')!=START
-            or p.get('boot_id')!=BOOT or p.get('source_sha256')!=SOURCE_SHA
-            or p.get('route_sha256')!=ROUTE_SHA or p.get('duration_seconds')!=240
+    source,sha,seq,targets=specification(p.get('profile'))
+    if (p.get('approval')!=m.c.APPROVAL
+            or p.get('expected_sequence')!=seq or p.get('expected_pulses_us')!=targets[0]
+            or p.get('boot_id')!=BOOT or p.get('source_sha256')!=sha
+            or p.get('route_sha256')!=route_digest(targets) or p.get('duration_seconds')!=240
             or any(p.get(k) is not True for k in ('observer_ready','dual_view_pose_reviewed','height_probe_only'))):
         raise ValueError('Only the reviewed post-show tiger height trial')
     stamp=p.get('reviewed_at_unix_ms')
     if type(stamp) is not int or stamp<=0 or (wall and not 0<=wall()*1000-stamp<120000):
         raise ValueError('Fresh host review required')
-    if hashlib.sha256(raw).hexdigest()!=SOURCE_SHA:
+    if hashlib.sha256(raw).hexdigest()!=sha:
         raise ValueError('Source evidence changed')
     rows=[json.loads(line) for line in raw.splitlines()]
     s=rows[-1]['state']
-    if (rows[-1]['event']!='outputs_off' or rows[-1].get('normal_frame_stop') is not True
-            or not any(r['event']=='story_complete' for r in rows)
-            or s['sequence']!=37562 or s['pulse_us']!=START or s['enabled_mask']
+    if (rows[-1]['event']!='outputs_off'
+            or s['sequence']!=seq or s['pulse_us']!=targets[0] or s['enabled_mask']
             or s['armed'] or s['pending'] or s['faults']):
-        raise ValueError('Prior show did not complete at this reference')
-    for q in FRAMES:
+        raise ValueError('Prior reference changed')
+    if p['profile']==PROFILE:
+        if rows[-1].get('normal_frame_stop') is not True or not any(r['event']=='story_complete' for r in rows):
+            raise ValueError('Prior show did not complete normally')
+    else:
+        # Exact completed four-edge prefix, stopped during static review, not
+        # a stalled movement. Fresh pose comparison remains a separate check.
+        completed=[r for r in rows if r['event']=='probe_complete']
+        if ([r['axis'] for r in completed]!=[1,2,3,4]
+                or [r['state']['pulse_us'] for r in completed]!=TARGETS[1:5]
+                or rows[-1].get('normal_frame_stop') is not False
+                or rows[-2].get('event')!='hold_alive' or rows[-2].get('awaiting')!='review_4'
+                or rows[-2]['state']['pulse_us']!=targets[0]
+                or rows[-2]['state']['sequence']!=seq):
+            raise ValueError('Not the recorded static-review timeout')
+    frames=[targets[0]]+[q for a,b in zip(targets,targets[1:]) for q in m.transition_frames(a,b)]
+    for q in frames:
         if any(q[i]!=START[i] for i in (0,1,2,3,4,5,6,8)):
             raise ValueError('Only tiger pitch axes may change')
         if any(not 500+lo*2000/270<=q[i]<=500+hi*2000/270
                for i,(lo,hi) in enumerate(m.DEGREE_LIMITS)):
             raise ValueError('Outside inset limits')
-    if any(max(abs(x-y) for x,y in zip(a,b))>3 for a,b in zip(FRAMES,FRAMES[1:])):
+    if any(max(abs(x-y) for x,y in zip(a,b))>3 for a,b in zip(frames,frames[1:])):
         raise ValueError('Step too large')
 
 
@@ -65,28 +97,32 @@ class HeightProbe(m.MidpointSession):
     def __init__(self,r,p,host,*,source_raw,clock=time.monotonic,wall=None,
                  motion_inhibit_paths=None,cancel_path='/run/shadow-pwm-recovery-cancel'):
         validate(p,source_raw,wall)
+        _,_,sequence,targets=specification(p['profile'])
         m.c.PwmDevice.__init__(self,r,motion_inhibit_paths=motion_inhibit_paths)
         self.plan=dict(p,tempo_step_us=3);self.host=host;self.clock=clock
         self.deadline=clock()+240;self.cancel=Path(cancel_path);self.hashes=self.lock_hashes()
-        self.pulses=START[:];self.sequence=37562;self.mask=0
+        self.pulses=targets[0][:];self.sequence=sequence;self.mask=0
         self.inside=False;self.failed=False;self.last_start=None;self.next_command=None
         self.phase='resume';self.own=960;self.frame_index=0
+        self.frames=[targets[0][:]]+[q for a,b in zip(targets,targets[1:]) for q in m.transition_frames(a,b)]
         self.check()
 
     def adopt(self,q):
-        if self.frame_index>=len(FRAMES) or q!=FRAMES[self.frame_index]:
+        if self.frame_index>=len(self.frames) or q!=self.frames[self.frame_index]:
             raise RuntimeError('Only the next fixed height frame, once')
         state=super().adopt(q);self.frame_index+=1
         return state
 
 
 def run(d,emit,sleep=time.sleep):
+    profile=d.plan.get('profile',PROFILE)
+    _,_,_,targets=specification(profile)
     normal=False
     try:
-        emit(dict(event='reference_held',profile=PROFILE,route_sha256=ROUTE_SHA,
-                  state=d.adopt(START[:]),position_feedback=None,full_rollover=False))
+        emit(dict(event='reference_held',profile=profile,route_sha256=route_digest(targets),
+                  state=d.adopt(targets[0][:]),position_feedback=None,full_rollover=False))
         d.phase='height_probe'
-        for edge,(a,b) in enumerate(zip(TARGETS,TARGETS[1:]),1):
+        for edge,(a,b) in enumerate(zip(targets,targets[1:]),1):
             m.await_action(d,emit,'probe_'+str(edge),sleep)
             for index,q in enumerate(m.transition_frames(a,b)):
                 d.wait(max(0,.02-(d.clock()-d.last_start)),sleep)
@@ -113,11 +149,12 @@ def main():
     args=parser.parse_args();raw=args.plan.read_bytes();p=json.loads(raw)
     if hashlib.sha256(raw).hexdigest()!=args.expected_plan_sha256:
         raise ValueError('Plan changed')
-    source=Path(SOURCE).read_bytes();validate(p,source)
+    source_path,_,_,targets=specification(p.get('profile'))
+    source=Path(source_path).read_bytes();validate(p,source)
     if not re.fullmatch('[a-z0-9-]{1,80}',p.get('session_id','')):
         raise ValueError('Invalid session identity')
     if not args.execute_attended_fixed_choreography:
-        print(json.dumps(dict(dry_run=True,targets=TARGETS,mask=960,full_rollover=False)));return
+        print(json.dumps(dict(dry_run=True,targets=targets,mask=960,full_rollover=False)));return
     if (Path('/proc/sys/kernel/random/boot_id').read_text().strip()!=BOOT
             or json.loads(Path('/run/shadow-pwm-loaded.json').read_text()).get('sha256')!=m.IMAGE_SHA):
         raise ValueError('Boot/image changed before MMIO')

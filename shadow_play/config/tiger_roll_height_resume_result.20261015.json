@@ -1,0 +1,162 @@
+{
+  "session": "tiger-roll-height-20261015-b",
+  "status": "partial_height_resume_stopped_on_session_deadline",
+  "cause": "The 240-second session was largely consumed by assistant-side waiting before probe_1. The board expired during static review_1; a host stop was requested near expiry. Not a collision-triggered stop.",
+  "source_log_sha256": "56b67d16f3638104d4d443272e6b30c5f28bbf324e5a30bdfffd4d60c5f586aa",
+  "board_log_sha256": "fb449f81ad5ff96406ebf380b3a5325fcd670c69ddcf0b8f70507a2c39dddb75",
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 960,
+    "armed": true,
+    "faults": 0,
+    "sequence": 37964,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1425,
+      1514,
+      1416,
+      1740,
+      1730,
+      1290,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "completed_edges": [
+    {
+      "event": "probe_complete",
+      "axis": 1,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38064,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1730,
+          1330,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 180764.298968308
+    }
+  ],
+  "reviewed_edges": [],
+  "visually_inspected_edges": [
+    1
+  ],
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 38064,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1425,
+      1514,
+      1416,
+      1740,
+      1730,
+      1330,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": false,
+  "steps": 100,
+  "peak_command_step_us": 1,
+  "full_rollover_verified": false,
+  "returned_to_trial_start": false,
+  "returned_to_show_start": false,
+  "unexecuted_edges": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "incident_locks_removed": false,
+  "automatic_replay_allowed": false,
+  "observations": [
+    "Head rose visibly from 1290 to 1330 us; rear command remained 1740 us.",
+    "Tiger body and both rods were visible in the inspected front/top pair; no gross folding or rod collision discerned.",
+    "Higher 1410/1490 us targets and return to 1250 us were NOT executed.",
+    "This is height-direction evidence, not a completed turnover or calibrated inverse model.",
+    "Pixel rod-end positions were not reliably annotated. No old homography or actual shaft-angle claim is used."
+  ],
+  "next_step": "Prepare the remaining route and review workflow before enabling output; independently inspect current pose before any subsequent session. Do not replay this consumed plan.",
+  "evidence": [
+    {
+      "stage": "held_1290",
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792065383782918700.jpg",
+          "host_unix_ns": 1792065383782918700,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-346708",
+          "age_ms": 5,
+          "sha256": "2a60818fe7fc217f601580a1cddf457fb181f88801b831c21bdf7ebc871bb00e",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792065383780655200.jpg",
+          "host_unix_ns": 1792065383780655200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1769389",
+          "age_ms": 47,
+          "sha256": "3d25ef85ea4c11c413218b145e0a1e1d54f71f7ff3ab22f43b77386ba146d7a3",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        }
+      ]
+    },
+    {
+      "stage": "head_1330",
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792065417796589500.jpg",
+          "host_unix_ns": 1792065417796589500,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-347214",
+          "age_ms": 54,
+          "sha256": "0fc7f5b00ea03eb177525bb43a343264faec029f041618b164dedaa7b60ee851",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792065417794817200.jpg",
+          "host_unix_ns": 1792065417794817200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1769899",
+          "age_ms": 63,
+          "sha256": "973ac73e8a821238f18766dba544d696b896615961c03d7d0f8ff108e5f0627b",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        }
+      ]
+    }
+  ]
+}
