@@ -51,9 +51,14 @@ def validate_plan(p):
 
 
 class HostControl:
-    def __init__(self,fd,clock=time.monotonic):
+    def __init__(self,fd,clock=time.monotonic,*,max_stage=6):
+        if type(max_stage) is not int or not 1<=max_stage<=8:
+            raise ValueError('Protocol stage count must be between one and eight')
         self.fd=fd;self.clock=clock;self.last=clock();self.received=False
         self.buffer=b'';self.action=None
+        self.action_pattern=re.compile((': # PERSON_RECOVERY_ACTION '
+            '(reconnected|probe_[1-%d]|review_[1-%d]|demo|finish) ([0-9]{1,10})'
+            %(max_stage,max_stage)).encode('ascii'))
 
     def check(self):
         if select.select([self.fd],[],[],0)[0]:
@@ -67,7 +72,7 @@ class HostControl:
                 elif line==b': # PERSON_RECOVERY_VIDEO_STOP':
                     raise ObservationLost('Video unavailable')
                 else:
-                    match=re.fullmatch(rb': # PERSON_RECOVERY_ACTION (reconnected|probe_[1-6]|review_[1-6]|demo|finish) ([0-9]{1,10})',line)
+                    match=self.action_pattern.fullmatch(line)
                     if not match or self.action is not None:raise RuntimeError('Unexpected or concurrent host action')
                     self.action=(match[1].decode(),int(match[2]))
             if len(self.buffer)>150:raise RuntimeError('Oversized host input')

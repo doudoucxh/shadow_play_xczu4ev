@@ -29,6 +29,8 @@ $taskSerial=[IO.Ports.SerialPort]::new($PortName,115200,[IO.Ports.Parity]::None,
 $taskSerial.DtrEnable=$false;$taskSerial.RtsEnable=$false;$taskSerial.WriteTimeout=500
 $taskOff=$false;$taskStarted=$false;$taskInterrupted=$false;$taskReason=$null
 $taskRaw=$null;$taskEvents=$null;$taskSeen=@{}
+$taskMaxStage=if ($AttendedFixedChoreography -and $taskReviewedPlan.profile -eq 'person-opening-components-v1') {8} else {6}
+$taskActionPattern='^(reconnected|probe_[1-'+$taskMaxStage+']|review_[1-'+$taskMaxStage+']|demo|finish)$'
 function Test-RecoveryViews {
     if ($taskCapture.HasExited -or (Test-Path -LiteralPath (Join-Path $OutputDirectory 'guard.error'))) {return $false}
     $taskLeaseDirectory=Join-Path $OutputDirectory 'leases'
@@ -66,6 +68,7 @@ try {
             if ($taskReviewedPlan.profile -eq 'story-replay-after-height-v1') {$taskActor='/tmp/story-midpoint-20261015/story_replay_from_height.py'}
             if ($taskReviewedPlan.profile -eq 'person-head-contact-probe-v1') {$taskActor='/tmp/story-midpoint-20261015/person_head_contact_probe.py'}
             if ($taskReviewedPlan.profile -eq 'person-head-lateral-probe-v3') {$taskActor='/tmp/story-midpoint-20261015/person_head_lateral_probe.py'}
+            if ($taskReviewedPlan.profile -eq 'person-opening-components-v1') {$taskActor='/tmp/story-midpoint-20261015/person_opening_probe.py'}
             if ($taskReviewedPlan.profile -in @('tiger-roll-height-probe-v1','tiger-roll-height-resume-v1','tiger-roll-height-finish-v1')) {$taskActor='/tmp/story-midpoint-20261015/tiger_roll_probe.py'}
             if ($taskReviewedPlan.profile -eq 'tiger-height-aw-v1') {$taskActor='/tmp/tiger_height_trial_20261014_r3.py'}
             if ($taskReviewedPlan.profile -eq 'tiger-shadow-roar-v1') {$taskActor='/tmp/tiger_shadow_roar_20261014.py'}
@@ -110,7 +113,7 @@ try {
             foreach ($file in @(Get-ChildItem -LiteralPath $OutputDirectory -Filter 'request-*.json' | Sort-Object Name)) {
                 if ($taskSeen.ContainsKey($file.Name)) {continue}
                 $request=Get-Content -LiteralPath $file.FullName -Raw|ConvertFrom-Json
-                if ($request.action -notmatch '^(reconnected|probe_[1-6]|review_[1-6]|demo|finish)$' -or
+                if ($request.action -notmatch $taskActionPattern -or
                     $request.sequence -notmatch '^\d{1,10}$' -or [decimal]$request.sequence -ge 4294967296) {throw 'Invalid session action'}
                 $taskSeen[$file.Name]=$true
                 $taskSerial.Write(": # PERSON_RECOVERY_ACTION $($request.action) $($request.sequence)`n")

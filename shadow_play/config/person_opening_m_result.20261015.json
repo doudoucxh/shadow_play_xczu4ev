@@ -1,0 +1,403 @@
+{
+  "session": "person-opening-20261015-m",
+  "status": "six_hand_stages_executed_then_host_protocol_stop",
+  "board_log_sha256": "3ed6bebe604cde2460db7c727f0b27d4c2e50d4f5895ada8bdb97a0d9044688e",
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 63,
+    "armed": true,
+    "faults": 0,
+    "sequence": 42197,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1565,
+      1554,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 42797,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1565,
+      1554,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": false,
+  "steps": 600,
+  "peak_command_step_us": 2,
+  "stages": [
+    {
+      "stage": 1,
+      "label": "left_hand_inward",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 42297,
+        "pending": false,
+        "pulse_us": [
+          1510,
+          1212,
+          1565,
+          1554,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "stage": 2,
+      "label": "right_raise",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 42397,
+        "pending": false,
+        "pulse_us": [
+          1510,
+          1212,
+          1565,
+          1554,
+          1460,
+          1660,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "stage": 3,
+      "label": "right_point",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 42497,
+        "pending": false,
+        "pulse_us": [
+          1510,
+          1212,
+          1565,
+          1554,
+          1500,
+          1580,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "stage": 4,
+      "label": "right_short_retract",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 42597,
+        "pending": false,
+        "pulse_us": [
+          1510,
+          1212,
+          1565,
+          1554,
+          1460,
+          1660,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "stage": 5,
+      "label": "right_lower",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 42697,
+        "pending": false,
+        "pulse_us": [
+          1510,
+          1212,
+          1565,
+          1554,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "stage": 6,
+      "label": "left_release",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 42797,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1565,
+          1554,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    }
+  ],
+  "unexecuted_stages": [
+    "hill_rise",
+    "hill_land"
+  ],
+  "automatic_replay_allowed": false,
+  "actual_angle_feedback": null,
+  "effects": {
+    "left_hip": "failed_user_review; inward motion did not form hand-on-hip",
+    "right_point": "upward/right gesture observed; exact dialogue timing not tested",
+    "body_rise": "not_executed",
+    "full_opening": "not_completed"
+  },
+  "stop_reason": "Host still allowed only probe_1..6; probe_7 rejected before dispatch. Finally sent interrupt; board log and subsequent read-only preflight confirm OFF42797.",
+  "continuation": "Stopped command matches L; this is not measured shaft feedback or unconditional restart authorization.",
+  "correction": "User requests arm extension first, then a quick continuous arc toward waist to bow the elbow. New arc is not yet executed.",
+  "evidence": [
+    {
+      "camera": "front",
+      "file": "front_1792073730165505600.jpg",
+      "host_unix_ns": 1792073730165505600,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-471121",
+      "age_ms": 50,
+      "phase": "reference",
+      "sha256": "83a899b16a4493c767aa8ab26c41a75168682d3435220db48f1d30383b055bb9",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual pose review only"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792073730163252600.jpg",
+      "host_unix_ns": 1792073730163252600,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1894585",
+      "age_ms": 46,
+      "phase": "reference",
+      "sha256": "38e4ca9fcb9d4c2e2582d5b7bbd1a7f3bb9e8cda7c098115ca07e82be4c6d93c",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual pose review only"
+    },
+    {
+      "camera": "front",
+      "file": "front_1792073758614453200.jpg",
+      "host_unix_ns": 1792073758614453200,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-471545",
+      "age_ms": 46,
+      "phase": "left_inward",
+      "sha256": "ccb62c8fafee68f5a8a72e7f93cc3e2b3fb56fee4d3ca20b06412300ce24e97f",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual pose review only"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792073758612953400.jpg",
+      "host_unix_ns": 1792073758612953400,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1895012",
+      "age_ms": 14,
+      "phase": "left_inward",
+      "sha256": "94e52fb444c63836a500e87f22c2cffe5a72a1c5b1ea8130162b666269ab5bc9",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual pose review only"
+    },
+    {
+      "camera": "front",
+      "file": "front_1792073796775027600.jpg",
+      "host_unix_ns": 1792073796775027600,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-472114",
+      "age_ms": 45,
+      "phase": "right_raise",
+      "sha256": "782000f8b6d217c2be70d4375db4bb4d6cfa171222e633fbdf6faf88e4872e1d",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual pose review only"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792073796773528700.jpg",
+      "host_unix_ns": 1792073796773528700,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1895584",
+      "age_ms": 47,
+      "phase": "right_raise",
+      "sha256": "0c07da8ba4aa1a81380f862a6dc9068c7e80bea4ef294f9591bfe45e05dbeea6",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual pose review only"
+    },
+    {
+      "camera": "front",
+      "file": "front_1792073828897367900.jpg",
+      "host_unix_ns": 1792073828897367900,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-472593",
+      "age_ms": 54,
+      "phase": "right_point",
+      "sha256": "fe6c94c322ef287a1f308abcc8ff87b02267ec7db60cf38a31e6592ed741e8dd",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual pose review only"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792073828895100900.jpg",
+      "host_unix_ns": 1792073828895100900,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1896066",
+      "age_ms": 32,
+      "phase": "right_point",
+      "sha256": "62536aad4fd57c2f9e3554ef5006ffebfe792b50f789722371c245baae612d90",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual pose review only"
+    },
+    {
+      "camera": "front",
+      "file": "front_1792073859811302700.jpg",
+      "host_unix_ns": 1792073859811302700,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-473054",
+      "age_ms": 47,
+      "phase": "right_retract",
+      "sha256": "efe05a8672a4fe8eba4d4c71643b21533aa288e868fad73025702ccb777d3eae",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual pose review only"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792073859819424400.jpg",
+      "host_unix_ns": 1792073859819424400,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1896530",
+      "age_ms": 31,
+      "phase": "right_retract",
+      "sha256": "253b516ee1e2af7d7839448bfdb4507d416d2d3613e8270946cb4a41357a4c96",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual pose review only"
+    },
+    {
+      "camera": "front",
+      "file": "front_1792073886437323700.jpg",
+      "host_unix_ns": 1792073886437323700,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-473451",
+      "age_ms": 54,
+      "phase": "right_lower",
+      "sha256": "a5129c3ad36179c4d75678867a7e9816f7bcf28696d6ec3eee73e36a843f7b80",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual pose review only"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792073886435564300.jpg",
+      "host_unix_ns": 1792073886435564300,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1896929",
+      "age_ms": 30,
+      "phase": "right_lower",
+      "sha256": "0e6dac11a09c2da1c71bc04bd94ccfaa2bddc3edd89d56d963b260508b0800d1",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual pose review only"
+    },
+    {
+      "camera": "front",
+      "file": "front_1792073924072062500.jpg",
+      "host_unix_ns": 1792073924072062500,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-474013",
+      "age_ms": 4,
+      "phase": "left_release",
+      "sha256": "77bad698420556396179ac84a6e2b711940fdf6a4562406a17b402c03bc0df8f",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual pose review only"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792073924059459300.jpg",
+      "host_unix_ns": 1792073924059459300,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1897493",
+      "age_ms": 62,
+      "phase": "left_release",
+      "sha256": "863390f95ac6e963db68526f769f207563a38404a0f320b95564345203097b16",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual pose review only"
+    }
+  ]
+}

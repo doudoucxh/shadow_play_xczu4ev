@@ -282,8 +282,110 @@
       ]
     },
     {
-      "time_s": 17,
-      "action": "左手收向腰侧，右手准备说话",
+      "time_s": 16.8,
+      "action": "左手向外伸展，使手臂先展开；不是拉身体",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.8200000000000001,
+        0.42000000000000004
+      ],
+      "right_hand": [
+        0.3,
+        0.45
+      ]
+    },
+    {
+      "time_s": 16.9,
+      "action": "左手连续快速圆弧收腰，途中不停顿，观察肘部外拱",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.8048667532505231,
+        0.4004993280705642
+      ],
+      "right_hand": [
+        0.3,
+        0.45
+      ]
+    },
+    {
+      "time_s": 17.0,
+      "action": "左手连续快速圆弧收腰，途中不停顿，观察肘部外拱",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.7216469482585779,
+        0.3124604594265482
+      ],
+      "right_hand": [
+        0.3,
+        0.45
+      ]
+    },
+    {
+      "time_s": 17.1,
+      "action": "左手连续快速圆弧收腰，途中不停顿，观察肘部外拱",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.5554101966249648,
+        0.1991796067500613
+      ],
+      "right_hand": [
+        0.3,
+        0.45
+      ]
+    },
+    {
+      "time_s": 17.2,
+      "action": "左手连续快速圆弧收腰，途中不停顿，观察肘部外拱",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.3650434635036146,
+        0.13415871704906657
+      ],
+      "right_hand": [
+        0.3,
+        0.45
+      ]
+    },
+    {
+      "time_s": 17.3,
+      "action": "左手连续快速圆弧收腰，途中不停顿，观察肘部外拱",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.24468048559323471,
+        0.12040619424192
+      ],
+      "right_hand": [
+        0.3,
+        0.45
+      ]
+    },
+    {
+      "time_s": 17.4,
+      "action": "手到腰侧，圆弧末端减速；确认肘外拱再保持",
       "body_lift": 0,
       "head": [
         0,
@@ -708,9 +810,38 @@
     }
   ],
   "servo_keyframes_us": null,
+  "hip_entry": {
+    "status": "planned_not_executed",
+    "correction": "M直接内收不是叉腰；先伸展，再快速圆弧收腰使肘外拱",
+    "phases": [
+      "16.0–16.8 向外伸展",
+      "16.8–17.4 连续圆弧收腰",
+      "17.4–17.6 减速定势"
+    ],
+    "arc": {
+      "start_s": 16.8,
+      "end_s": 17.4,
+      "center": [
+        -0.22,
+        0.87
+      ],
+      "radius": 0.75,
+      "start_angle_rad": -2.498091544796509,
+      "end_angle_rad": -1.5707963267948966
+    },
+    "interpolation": "analytic_circle_quintic_time_no_interior_stops",
+    "duration_status": "候选节奏，尚非实机验证速度",
+    "fixed_during_arc": [
+      "head",
+      "right_hand"
+    ],
+    "elbow_control": "被动关节；腕点圆弧不能保证肘部翻向，必须观察",
+    "pwm_route": null,
+    "evidence": "../../config/person_opening_m_result.20261015.json"
+  },
   "component_command_candidates": {
-    "status": "offline_unexecuted_not_inverse_solution",
-    "note": "独立试姿候选，不绑定上方时间轴；组合与叉腰/指点效果均未实测",
+    "status": "partial_experiment_M; hip_rejected; rise_not_executed",
+    "note": "M已执行前三种手部指令；叉腰未通过，右手抬举可见；身体起伏未执行。不是新圆弧路线。",
     "head_yaw_fixed_us": 1565,
     "poses": [
       {
@@ -723,7 +854,7 @@
           1416,
           1740
         ],
-        "executed": false
+        "executed": true
       },
       {
         "id": "right_hand_raise_prepare",
@@ -735,7 +866,7 @@
           1460,
           1660
         ],
-        "executed": false
+        "executed": true
       },
       {
         "id": "right_hand_point_candidate",
@@ -747,7 +878,7 @@
           1500,
           1580
         ],
-        "executed": false
+        "executed": true
       },
       {
         "id": "hill_step_rise_candidate",
@@ -770,7 +901,8 @@
       "1号增加曾使低位手向内，未证明腕已在腰侧",
       "右手候选借用旧分量，Sony右上方向及组合须重看",
       "2号下点维持1212，不再往名义下限压；以上抬再回落表现落步"
-    ]
+    ],
+    "execution_evidence": "../../config/person_opening_m_result.20261015.json"
   },
   "slide_rail": {
     "enabled": false,
@@ -802,5 +934,29 @@
     "old_motor_route_unchanged": true,
     "automatic_splice": false,
     "requirement": "逐段核对头部居中及三杆联动后才生成完整新PWM路线；不全局加140μs"
-  }
+  },
+  "latest_observed_command_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 42797,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1565,
+      1554,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "latest_observed_command_state_note": "M停止指令，非实际轴角；不自动重启"
 }

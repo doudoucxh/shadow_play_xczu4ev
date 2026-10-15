@@ -3,10 +3,23 @@ import bisect
 import argparse
 import copy
 import json
+import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'planning/wusong_complete_20261014'
+
+# Artistic task-space candidate only; neither shoulder geometry nor PWM inverse.
+HIP_ARC = dict(start_s=16.8, end_s=17.4, center=[-.22,.87], radius=.75,
+               start_angle_rad=math.atan2(-.45,-.60), end_angle_rad=-math.pi/2)
+
+
+def hip_arc_point(t):
+    u=max(0,min(1,(t-HIP_ARC['start_s'])/(HIP_ARC['end_s']-HIP_ARC['start_s'])))
+    u=u*u*u*(10+u*(-15+6*u))
+    a=HIP_ARC['start_angle_rad']+(HIP_ARC['end_angle_rad']-HIP_ARC['start_angle_rad'])*u
+    return [HIP_ARC['center'][0]+HIP_ARC['radius']*math.cos(a),
+            HIP_ARC['center'][1]+HIP_ARC['radius']*math.sin(a)]
 
 
 def keyframes():
@@ -26,7 +39,10 @@ def keyframes():
         put(start+period*.78,0,(-.24,.20),(.26,.31),'落步回到基准')
         put(start+period,0,low_l,low_r,'落步回弹')
     put(16,0,(-.25,.28),(.28,.35),'减速停步、环顾')
-    put(17,0,hip,(.30,.45),'左手收向腰侧，右手准备说话')
+    put(16.8,0,hip_arc_point(16.8),(.30,.45),'左手向外伸展，使手臂先展开；不是拉身体')
+    for t in (16.9,17.0,17.1,17.2,17.3):
+        put(t,0,hip_arc_point(t),(.30,.45),'左手连续快速圆弧收腰，途中不停顿，观察肘部外拱')
+    put(17.4,0,hip,(.30,.45),'手到腰侧，圆弧末端减速；确认肘外拱再保持')
     put(17.6,.03,hip,(.55,.90),'挺身起语，左肘外展')
     for up, down, reach, height in [(18.15,18.65,.72,1.18),
                                   (19.6,20.15,.80,1.28),
@@ -53,11 +69,14 @@ def sample(rows, t):
     a,b=rows[i:i+2]
     x=(t-a['time_s'])/(b['time_s']-a['time_s'])
     u=x*x*x*(10+x*(-15+6*x))
-    return {k:[p+(q-p)*u for p,q in zip(a[k],b[k])]
+    result={k:[p+(q-p)*u for p,q in zip(a[k],b[k])]
             for k in ('head','left_hand','right_hand')}
+    if HIP_ARC['start_s']<=t<=HIP_ARC['end_s']:
+        result['left_hand']=hip_arc_point(t)
+    return result
 
 
-def build(base, observed):
+def build(base, observed, component_result=None):
     rows=keyframes()
     revision=dict(schema='opening_task_space_v4',status='planned_not_executed',
         motor_ready=False,automatic_replay_allowed=False,
@@ -78,6 +97,14 @@ def build(base, observed):
             accent_times_s=[18.15,19.6,21.15],
             timing_status='编舞候选重音；不是逐词听审结果'),
         keyframes=rows,servo_keyframes_us=None,
+        hip_entry=dict(status='planned_not_executed',
+            correction='M直接内收不是叉腰；先伸展，再快速圆弧收腰使肘外拱',
+            phases=['16.0–16.8 向外伸展','16.8–17.4 连续圆弧收腰','17.4–17.6 减速定势'],
+            arc=HIP_ARC, interpolation='analytic_circle_quintic_time_no_interior_stops',
+            duration_status='候选节奏，尚非实机验证速度',
+            fixed_during_arc=['head','right_hand'],
+            elbow_control='被动关节；腕点圆弧不能保证肘部翻向，必须观察',
+            pwm_route=None, evidence='../../config/person_opening_m_result.20261015.json'),
         component_command_candidates=dict(status='offline_unexecuted_not_inverse_solution',
             note='独立试姿候选，不绑定上方时间轴；组合与叉腰/指点效果均未实测',
             head_yaw_fixed_us=1565,
@@ -103,6 +130,16 @@ def build(base, observed):
         continuation=dict(after_s=29,reference='interaction_revision_v3.json',
             old_motor_route_unchanged=True,automatic_splice=False,
             requirement='逐段核对头部居中及三杆联动后才生成完整新PWM路线；不全局加140μs'))
+    if component_result is not None:
+        c=revision['component_command_candidates']
+        c['status']='partial_experiment_M; hip_rejected; rise_not_executed'
+        c['note']='M已执行前三种手部指令；叉腰未通过，右手抬举可见；身体起伏未执行。不是新圆弧路线。'
+        c['execution_evidence']='../../config/person_opening_m_result.20261015.json'
+        executed=[s['state']['pulse_us'][:6] for s in component_result['stages']]
+        for p in c['poses']:
+            p['executed']=p['person_us'] in executed
+        revision['latest_observed_command_state']=component_result['final_state']
+        revision['latest_observed_command_state_note']='M停止指令，非实际轴角；不自动重启'
     score=copy.deepcopy(base)
     score['title']='武松打虎 · 开场叉腰指点与山路步态 v4（编排预览）'
     score['latest_revision']='opening_revision_v4.json'
@@ -111,8 +148,8 @@ def build(base, observed):
     edits={
         'S06':('低手入场','头在躯干上方，落定后轻提身；双手低位随动'),
         'S07':('山路迈步与环顾','三次抬身—落步—回弹，步幅不等，手臂随身摆动'),
-        'S08':('收步起语','减速站稳，左手收向腰侧，右手准备指点'),
-        'S09':('叉腰指点酒家','左手叉腰；右手向Sony右上方三次指指点点；第二次较重，末尾收势'),
+        'S08':('收步起语','减速站稳，左手先向外伸展，准备圆弧收腰；右手准备指点'),
+        'S09':('叉腰指点酒家','左手先沿快速圆弧收腰、肘外拱后保持；右手向Sony右上方三次指点；第二次较重'),
         'S10':('山路起伏前行','放下指点手，四次抬身落步；三杆协调起伏，末尾收护迎虎；滑轨留待接入')}
     for scene in score['scenes']:
         if scene['id'] in edits:
@@ -135,7 +172,9 @@ def main():
     args=parser.parse_args()
     base=json.loads((OUT/'score.json').read_text(encoding='utf-8'))
     observed=json.loads((ROOT/'config/person_head_centering_fine_result.20261015.json').read_text())
-    revision,score=build(base,observed)
+    result_path=ROOT/'config/person_opening_m_result.20261015.json'
+    result=json.loads(result_path.read_text(encoding='utf-8')) if result_path.exists() else None
+    revision,score=build(base,observed,result)
     for name,value in [('opening_revision_v4.json',revision),('score.opening_v4.json',score)]:
         (OUT/name).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     if args.preview:
