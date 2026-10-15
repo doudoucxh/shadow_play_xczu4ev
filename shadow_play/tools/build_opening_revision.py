@@ -76,7 +76,7 @@ def sample(rows, t):
     return result
 
 
-def build(base, observed, component_result=None, extension_result=None):
+def build(base, observed, component_result=None, extension_result=None, application_results=()):
     rows=keyframes()
     revision=dict(schema='opening_task_space_v4',status='planned_not_executed',
         motor_ready=False,automatic_replay_allowed=False,
@@ -147,6 +147,13 @@ def build(base, observed, component_result=None, extension_result=None):
             evidence='../../config/person_hip_extension_n_result.20261015.json',
             status='extension_and_return_executed; full_arc_not_executed',
             observation='手臂向外展开；身体也随动，固定头部指令不代表身体固定')
+    if application_results:
+        revision['hip_entry']['application_trials']=[dict(session=r['session'],status=r['status'],
+            final_sequence=r['final_state']['sequence'],automatic_replay_allowed=False) for r in application_results]
+        revision['hip_entry']['status']='partial_trials_executed_hip_not_achieved'
+        revision['hip_entry']['remaining']='横向靠腰与贴幕需组合修正；不能单纯继续抬身'
+        revision['latest_observed_command_state']=application_results[-1]['final_state']
+        revision['latest_observed_command_state_note']='P第二档后正常停止；已非L/N基准，不自动启用旧剧本'
     score=copy.deepcopy(base)
     score['title']='武松打虎 · 开场叉腰指点与山路步态 v4（编排预览）'
     score['latest_revision']='opening_revision_v4.json'
@@ -183,7 +190,11 @@ def main():
     result=json.loads(result_path.read_text(encoding='utf-8')) if result_path.exists() else None
     extension_path=ROOT/'config/person_hip_extension_n_result.20261015.json'
     extension=json.loads(extension_path.read_text(encoding='utf-8')) if extension_path.exists() else None
-    revision,score=build(base,observed,result,extension)
+    applications=[]
+    for name in ('person_hip_arc_o_result.20261015.json','person_hip_support_p_result.20261015.json'):
+        path=ROOT/'config'/name
+        if path.exists():applications.append(json.loads(path.read_text(encoding='utf-8')))
+    revision,score=build(base,observed,result,extension,applications)
     for name,value in [('opening_revision_v4.json',revision),('score.opening_v4.json',score)]:
         (OUT/name).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     if args.preview:

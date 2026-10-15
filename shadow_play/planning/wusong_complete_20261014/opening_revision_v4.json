@@ -811,7 +811,7 @@
   ],
   "servo_keyframes_us": null,
   "hip_entry": {
-    "status": "planned_not_executed",
+    "status": "partial_trials_executed_hip_not_achieved",
     "correction": "M直接内收不是叉腰；先伸展，再快速圆弧收腰使肘外拱",
     "phases": [
       "16.0–16.8 向外伸展",
@@ -842,7 +842,22 @@
       "evidence": "../../config/person_hip_extension_n_result.20261015.json",
       "status": "extension_and_return_executed; full_arc_not_executed",
       "observation": "手臂向外展开；身体也随动，固定头部指令不代表身体固定"
-    }
+    },
+    "application_trials": [
+      {
+        "session": "person-hip-arc-20261015-o",
+        "status": "extension_and_curve_executed_hip_not_achieved",
+        "final_sequence": 43181,
+        "automatic_replay_allowed": false
+      },
+      {
+        "session": "person-hip-support-20261015-p",
+        "status": "two_support_levels_executed_hip_not_achieved",
+        "final_sequence": 43383,
+        "automatic_replay_allowed": false
+      }
+    ],
+    "remaining": "横向靠腰与贴幕需组合修正；不能单纯继续抬身"
   },
   "component_command_candidates": {
     "status": "partial_experiment_M; hip_rejected; rise_not_executed",
@@ -947,15 +962,15 @@
     "enabled_mask": 0,
     "armed": false,
     "faults": 0,
-    "sequence": 42999,
+    "sequence": 43383,
     "pending": false,
     "pulse_us": [
-      1470,
+      1510,
       1212,
       1565,
-      1554,
+      1414,
       1416,
-      1740,
+      1600,
       1730,
       1250,
       1770,
@@ -963,5 +978,5 @@
     ],
     "position_feedback": null
   },
-  "latest_observed_command_state_note": "N正常停止指令，非实际轴角；不自动重启"
+  "latest_observed_command_state_note": "P第二档后正常停止；已非L/N基准，不自动启用旧剧本"
 }

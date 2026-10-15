@@ -78,5 +78,12 @@ class OpeningTests(unittest.TestCase):
         self.assertEqual(rev['latest_observed_command_state']['sequence'],42999)
         self.assertIsNone(rev['hip_entry']['pwm_route'])
         self.assertEqual(rev['hip_entry']['status'],'planned_not_executed')
+    def test_application_records_replace_old_start_without_motor_enable(self):
+        results=[json.loads((ROOT/'config'/name).read_text(encoding='utf-8')) for name in
+                 ('person_hip_arc_o_result.20261015.json','person_hip_support_p_result.20261015.json')]
+        rev,score=s.build(self.base,self.observed,application_results=results)
+        self.assertEqual(rev['latest_observed_command_state']['sequence'],43383)
+        self.assertEqual(rev['hip_entry']['status'],'partial_trials_executed_hip_not_achieved')
+        self.assertIsNone(rev['hip_entry']['pwm_route']);self.assertFalse(score['motor_ready'])
 
 if __name__=='__main__':unittest.main()

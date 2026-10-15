@@ -1,0 +1,201 @@
+{
+  "session": "person-hip-support-20261015-p",
+  "status": "two_support_levels_executed_hip_not_achieved",
+  "board_log_sha256": "3c2e9766004a9940a9c361d11489b4966b8ad63f4919c1ef77000769a9c661df",
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 63,
+    "armed": true,
+    "faults": 0,
+    "sequence": 43182,
+    "pending": false,
+    "pulse_us": [
+      1510,
+      1212,
+      1565,
+      1534,
+      1416,
+      1720,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 43383,
+    "pending": false,
+    "pulse_us": [
+      1510,
+      1212,
+      1565,
+      1414,
+      1416,
+      1600,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": true,
+  "steps": 200,
+  "peak_command_step_us": 1,
+  "stages": [
+    {
+      "stage": 1,
+      "label": "support_rise_60",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 43282,
+        "pending": false,
+        "pulse_us": [
+          1510,
+          1212,
+          1565,
+          1474,
+          1416,
+          1660,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "stage": 2,
+      "label": "support_rise_120",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 43382,
+        "pending": false,
+        "pulse_us": [
+          1510,
+          1212,
+          1565,
+          1414,
+          1416,
+          1600,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    }
+  ],
+  "unexecuted_stages": [
+    "support_rise_180",
+    "support_return_120",
+    "support_return_60",
+    "support_return_start"
+  ],
+  "automatic_replay_allowed": false,
+  "actual_angle_feedback": null,
+  "observations": [
+    "Servo4 and6 reduced together by60 then120us; other targets including left wrist stayed fixed.",
+    "Body rose visibly; wrist-to-waist vertical gap reduced.",
+    "At second level wrist remained outside torso, elbow was not a verified hip pose.",
+    "Front became diffuse and top view showed shadow separation consistent with moving away from cloth; no depth distance measured.",
+    "No obvious rod collision or folding in reviewed endpoint views.",
+    "Stopped at second level; did not execute third rise or return. This is not the original opening baseline."
+  ],
+  "next_step": "Resolve horizontal wrist approach and cloth proximity before assigning this pose to dialogue; do not auto-replay old opening.",
+  "evidence": [
+    {
+      "camera": "front",
+      "file": "front_1792075626983387800.jpg",
+      "host_unix_ns": 1792075626983387800,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-499403",
+      "age_ms": 61,
+      "phase": "reference",
+      "sha256": "9bcd093c715601e295afcb37eababfa9eee2839bcb65f7d3de2500cdb86da6cb",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual relative-height assessment"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792075626980390500.jpg",
+      "host_unix_ns": 1792075626980390500,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1923037",
+      "age_ms": 46,
+      "phase": "reference",
+      "sha256": "6c2318f3a8083a574d520b8fd33f719de99b0d297b30961c4772a44b81e363a1",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual relative-height assessment"
+    },
+    {
+      "camera": "front",
+      "file": "front_1792075656290425800.jpg",
+      "host_unix_ns": 1792075656290425800,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-499840",
+      "age_ms": 63,
+      "phase": "support_60",
+      "sha256": "33693c255694b88070ac494d41cfea37ef64b3305965c2bc93ab33c909486f97",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual relative-height assessment"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792075656297460800.jpg",
+      "host_unix_ns": 1792075656297460800,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1923477",
+      "age_ms": 30,
+      "phase": "support_60",
+      "sha256": "5caf7b671c5e65c31961cc1c81c6767df7237baed4c32170712c54f910bdaf3d",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual relative-height assessment"
+    },
+    {
+      "camera": "front",
+      "file": "front_1792075714261350700.jpg",
+      "host_unix_ns": 1792075714261350700,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-500704",
+      "age_ms": 46,
+      "phase": "support_120",
+      "sha256": "1736e64c2b1b7b30fa9ce80e330c550cdeeae8dda569a54e85103c515ae5cfc2",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual relative-height assessment"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792075714259092200.jpg",
+      "host_unix_ns": 1792075714259092200,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1924347",
+      "age_ms": 0,
+      "phase": "support_120",
+      "sha256": "925f91c4e0524806a2b4be0eb637b37eccfb307ca24deb2bc71a45a8836e9ce5",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; visual relative-height assessment"
+    }
+  ]
+}

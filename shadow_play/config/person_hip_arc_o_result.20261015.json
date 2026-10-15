@@ -1,0 +1,197 @@
+{
+  "session": "person-hip-arc-20261015-o",
+  "status": "extension_and_curve_executed_hip_not_achieved",
+  "board_log_sha256": "c2cab7177ac2ec669d21d010c77e26953e2fda54b8d4852aa5630e7f38f43b5f",
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 63,
+    "armed": true,
+    "faults": 0,
+    "sequence": 43000,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1565,
+      1554,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 43181,
+    "pending": false,
+    "pulse_us": [
+      1510,
+      1212,
+      1565,
+      1534,
+      1416,
+      1720,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": true,
+  "steps": 180,
+  "peak_command_step_us": 3,
+  "stages": [
+    {
+      "stage": 1,
+      "label": "arm_extension",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 43100,
+        "pending": false,
+        "pulse_us": [
+          1430,
+          1212,
+          1565,
+          1554,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "stage": 2,
+      "label": "continuous_hip_entry_candidate",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 43180,
+        "pending": false,
+        "pulse_us": [
+          1510,
+          1212,
+          1565,
+          1534,
+          1416,
+          1720,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    }
+  ],
+  "unexecuted_stages": [
+    "reverse_curve",
+    "return_reference"
+  ],
+  "automatic_replay_allowed": false,
+  "actual_angle_feedback": null,
+  "observations": [
+    "Continuous candidate curve executed over80frames/1.6seconds, without interior review stops.",
+    "Elbow flexion is more visible, but wrist remains near shoulder height instead of waist.",
+    "Head/body rose slightly with support movement. No obvious folding or rod collision in inspected endpoints.",
+    "PWM-space hump is only a candidate, not evidence of a calibrated image-space circle.",
+    "Stopped by finish after stage2; no reverse or full dialogue replay."
+  ],
+  "evidence": [
+    {
+      "camera": "front",
+      "file": "front_1792075289198158400.jpg",
+      "host_unix_ns": 1792075289198158400,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-494368",
+      "age_ms": 19,
+      "phase": "reference",
+      "sha256": "8c19441146f68c82eade24f6b50773e58f148d87b1be5c868ef7aaa0238fd97a",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792075289195644700.jpg",
+      "host_unix_ns": 1792075289195644700,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1917971",
+      "age_ms": 16,
+      "phase": "reference",
+      "sha256": "9d045deb7501c1f92ed4428bc86752f2776d4f954f149da6bb59f088142bca61",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized"
+    },
+    {
+      "camera": "front",
+      "file": "front_1792075319555081100.jpg",
+      "host_unix_ns": 1792075319555081100,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-494820",
+      "age_ms": 54,
+      "phase": "extension",
+      "sha256": "68aadf00c81404a24d7a8554926c91b1736f7d90f5a53ce968f4ec45c794a98b",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792075319551830700.jpg",
+      "host_unix_ns": 1792075319551830700,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1918426",
+      "age_ms": 15,
+      "phase": "extension",
+      "sha256": "57e1e60e81632c3c6221090a7b8e1296cea4c2cc8bbb1cb24f0052d00b22236a",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized"
+    },
+    {
+      "camera": "front",
+      "file": "front_1792075368193360300.jpg",
+      "host_unix_ns": 1792075368193360300,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-495545",
+      "age_ms": 61,
+      "phase": "arc_end",
+      "sha256": "4a0597c602d30ce2d27c1f028a4c0f52091f713098e5b28674bb9fe4e7ad70e9",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792075368191108800.jpg",
+      "host_unix_ns": 1792075368191108800,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1919155",
+      "age_ms": 62,
+      "phase": "arc_end",
+      "sha256": "30555ddf670c045eede4a3f0ad5401911557d13419de64ef2455abff6042663b",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized"
+    }
+  ]
+}
