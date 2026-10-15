@@ -1,0 +1,280 @@
+{
+  "session": "person-hip-inside-lift-20261015-r",
+  "status": "three_stages_executed_elbow_up_not_verified_timeout_off",
+  "board_log_sha256": "d7d0380090e603bbcf3e0d4e348280438f39098ac1913bc5d58cfa29af549ba5",
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 63,
+    "armed": true,
+    "faults": 0,
+    "sequence": 43385,
+    "pending": false,
+    "pulse_us": [
+      1510,
+      1212,
+      1565,
+      1414,
+      1416,
+      1600,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 43685,
+    "pending": false,
+    "pulse_us": [
+      1570,
+      1242,
+      1565,
+      1414,
+      1416,
+      1600,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": false,
+  "stop_reason": "Session expired at 240 seconds while awaiting review_3; board log RuntimeError verified.",
+  "steps": 300,
+  "peak_command_step_us": 1,
+  "stages": [
+    {
+      "stage": 1,
+      "label": "wrist_inward_30",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 43485,
+        "pending": false,
+        "pulse_us": [
+          1540,
+          1212,
+          1565,
+          1414,
+          1416,
+          1600,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "stage": 2,
+      "label": "wrist_inward_60",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 43585,
+        "pending": false,
+        "pulse_us": [
+          1570,
+          1212,
+          1565,
+          1414,
+          1416,
+          1600,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "stage": 3,
+      "label": "wrist_inside_up_30",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 43685,
+        "pending": false,
+        "pulse_us": [
+          1570,
+          1242,
+          1565,
+          1414,
+          1416,
+          1600,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    }
+  ],
+  "unexecuted_stages": [
+    "wrist_inside_up_60"
+  ],
+  "automatic_replay_allowed": false,
+  "actual_angle_feedback": null,
+  "observations": [
+    "Wrist visibly moved inward toward torso with servo1 1510->1540->1570 us.",
+    "Servo2 1212->1242 us raised the wrist while yaw remained at1570 us. Head and other hand targets stayed fixed.",
+    "Body did not show obvious large translation in reviewed endpoint frames; no obvious folding or rod collision seen.",
+    "Elbow-up hip pose not established; diffuse front silhouette does not resolve passive elbow branch reliably.",
+    "Tiger mask remained disabled throughout. No automatic return and no fourth-stage lift."
+  ],
+  "user_correction": {
+    "required": "Wrist must be very close to torso horizontally, then approach elbow from inside and lift until elbow points upward.",
+    "rejected": "Calling any elbow bend or outward arch a successful hip pose."
+  },
+  "evidence": [
+    {
+      "camera": "front",
+      "file": "front_1792076647855070100.jpg",
+      "host_unix_ns": 1792076647855070100,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-514624",
+      "age_ms": 60,
+      "phase": "reference",
+      "sha256": "03354466bae9a428004e1fc23dea51469cb8094f25fd5d0903bc2f259d95201f",
+      "visible_hand_connection_pixel_estimate": [
+        187,
+        159
+      ],
+      "pixel_method": "manual approximate center from 640x360 front frame; diffuse silhouette, not automated calibrated tracking",
+      "pixel_uncertainty_px": 5,
+      "elbow_pixel": null,
+      "connection_mm": null
+    },
+    {
+      "camera": "top",
+      "file": "top_1792076647851024100.jpg",
+      "host_unix_ns": 1792076647851024100,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1938350",
+      "age_ms": 62,
+      "phase": "reference",
+      "sha256": "866ddd43dc22b57c479562088f54aacdf71cee5926b9ff2df35fa504a11e49f5",
+      "visible_hand_connection_pixel_estimate": null,
+      "pixel_method": "not digitized",
+      "pixel_uncertainty_px": null,
+      "elbow_pixel": null,
+      "connection_mm": null
+    },
+    {
+      "camera": "front",
+      "file": "front_1792076673279454700.jpg",
+      "host_unix_ns": 1792076673279454700,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-515003",
+      "age_ms": 52,
+      "phase": "inward_30",
+      "sha256": "2608fda4f127cd661ad778a1f09b21d3c898aa77a8c23a564fa19f0630b856d8",
+      "visible_hand_connection_pixel_estimate": [
+        205,
+        163
+      ],
+      "pixel_method": "manual approximate center from 640x360 front frame; diffuse silhouette, not automated calibrated tracking",
+      "pixel_uncertainty_px": 5,
+      "elbow_pixel": null,
+      "connection_mm": null
+    },
+    {
+      "camera": "top",
+      "file": "top_1792076673277949000.jpg",
+      "host_unix_ns": 1792076673277949000,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1938732",
+      "age_ms": 15,
+      "phase": "inward_30",
+      "sha256": "65c41d3eb20b2de96577d6f0a1477070bf25fa1a76893bf02fda6df5af15039a",
+      "visible_hand_connection_pixel_estimate": null,
+      "pixel_method": "not digitized",
+      "pixel_uncertainty_px": null,
+      "elbow_pixel": null,
+      "connection_mm": null
+    },
+    {
+      "camera": "front",
+      "file": "front_1792076720018066300.jpg",
+      "host_unix_ns": 1792076720018066300,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-515700",
+      "age_ms": 53,
+      "phase": "inward_60",
+      "sha256": "c4e006852ee108ab0940aefa7c814ff4c7679cf7c60d45d384008d91dc166eca",
+      "visible_hand_connection_pixel_estimate": [
+        222,
+        166
+      ],
+      "pixel_method": "manual approximate center from 640x360 front frame; diffuse silhouette, not automated calibrated tracking",
+      "pixel_uncertainty_px": 5,
+      "elbow_pixel": null,
+      "connection_mm": null
+    },
+    {
+      "camera": "top",
+      "file": "top_1792076720024325700.jpg",
+      "host_unix_ns": 1792076720024325700,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1939433",
+      "age_ms": 31,
+      "phase": "inward_60",
+      "sha256": "7318cbfe229c9085dccc8175a8e139abaa050f0780b5b0e954a8478a39008ce1",
+      "visible_hand_connection_pixel_estimate": null,
+      "pixel_method": "not digitized",
+      "pixel_uncertainty_px": null,
+      "elbow_pixel": null,
+      "connection_mm": null
+    },
+    {
+      "camera": "front",
+      "file": "front_1792076759971993100.jpg",
+      "host_unix_ns": 1792076759971993100,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-516296",
+      "age_ms": 52,
+      "phase": "inside_up_30",
+      "sha256": "dd9b41f15962f318e5be790c29eeb8fb7d582d8c471c41b26b936a77c2cc78c2",
+      "visible_hand_connection_pixel_estimate": [
+        223,
+        153
+      ],
+      "pixel_method": "manual approximate center from 640x360 front frame; diffuse silhouette, not automated calibrated tracking",
+      "pixel_uncertainty_px": 5,
+      "elbow_pixel": null,
+      "connection_mm": null
+    },
+    {
+      "camera": "top",
+      "file": "top_1792076759970486500.jpg",
+      "host_unix_ns": 1792076759970486500,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1940032",
+      "age_ms": 47,
+      "phase": "inside_up_30",
+      "sha256": "799a3b818f0d0e46c85d18f4037811a6d37e4acf7c657e3c6a05fe7bb818c5e7",
+      "visible_hand_connection_pixel_estimate": null,
+      "pixel_method": "not digitized",
+      "pixel_uncertainty_px": null,
+      "elbow_pixel": null,
+      "connection_mm": null
+    }
+  ]
+}

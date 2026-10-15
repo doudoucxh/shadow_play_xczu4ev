@@ -153,7 +153,11 @@ def build(base, observed, component_result=None, extension_result=None, applicat
         revision['hip_entry']['status']='partial_trials_executed_hip_not_achieved'
         revision['hip_entry']['remaining']='横向靠腰与贴幕需组合修正；不能单纯继续抬身'
         revision['latest_observed_command_state']=application_results[-1]['final_state']
-        revision['latest_observed_command_state_note']='P第二档后正常停止；已非L/N基准，不自动启用旧剧本'
+        revision['latest_observed_command_state_note']='最新实测停止指令，非实际轴角；以对应记录的停止原因和已执行段为准，不自动启用旧剧本'
+        if application_results[-1].get('user_correction'):
+            revision['hip_entry']['latest_user_correction']=application_results[-1]['user_correction']
+            revision['hip_entry']['legacy_arc_status']='superseded_hip_target_not_verified'
+            revision['hip_entry']['remaining']='腕点要横向非常贴近身侧，再从内侧向上靠近肘；须观察肘朝上，不能将外拱等同叉腰。旧比例圆弧保留作历史候选，不代表新指令路线。'
     score=copy.deepcopy(base)
     score['title']='武松打虎 · 开场叉腰指点与山路步态 v4（编排预览）'
     score['latest_revision']='opening_revision_v4.json'
@@ -172,6 +176,11 @@ def build(base, observed, component_result=None, extension_result=None, applicat
             scene['title'],scene['human']=edits[scene['id']]
             scene['execution_status']='planned_not_executed'
             scene['revision']='opening_v4'
+    if revision['hip_entry'].get('latest_user_correction'):
+        score['hip_trajectory_status']='legacy_preview_superseded_new_elbow_up_route_unverified'
+        for scene in score['scenes']:
+            if scene['id']=='S09':
+                scene['human']='左腕横向收至紧贴身侧，再从内侧上提靠近肘，使肘朝上；叉腰仍待验证。右手指点保留为后续组合。'
     score['head_alignment_policy']=revision['acceptance'][0]
     score['opening_keyframes']=rows
     score['rehearsal_order']=['17–23秒：叉腰与右上指点', '10–16及23–29秒：三杆山路起伏',
@@ -191,7 +200,8 @@ def main():
     extension_path=ROOT/'config/person_hip_extension_n_result.20261015.json'
     extension=json.loads(extension_path.read_text(encoding='utf-8')) if extension_path.exists() else None
     applications=[]
-    for name in ('person_hip_arc_o_result.20261015.json','person_hip_support_p_result.20261015.json'):
+    for name in ('person_hip_arc_o_result.20261015.json','person_hip_support_p_result.20261015.json',
+                 'person_hip_inside_q_result.20261015.json','person_hip_inside_lift_r_result.20261015.json'):
         path=ROOT/'config'/name
         if path.exists():applications.append(json.loads(path.read_text(encoding='utf-8')))
     revision,score=build(base,observed,result,extension,applications)

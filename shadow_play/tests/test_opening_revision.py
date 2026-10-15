@@ -86,4 +86,12 @@ class OpeningTests(unittest.TestCase):
         self.assertEqual(rev['hip_entry']['status'],'partial_trials_executed_hip_not_achieved')
         self.assertIsNone(rev['hip_entry']['pwm_route']);self.assertFalse(score['motor_ready'])
 
+    def test_inside_lift_receipt_supersedes_arc_without_claiming_hip_success(self):
+        result=json.loads((ROOT/'config/person_hip_inside_lift_r_result.20261015.json').read_text(encoding='utf-8'))
+        rev,score=s.build(self.base,self.observed,application_results=[result])
+        self.assertEqual(rev['latest_observed_command_state']['sequence'],43685)
+        self.assertEqual(rev['hip_entry']['legacy_arc_status'],'superseded_hip_target_not_verified')
+        self.assertFalse(score['motor_ready']);self.assertIsNone(rev['hip_entry']['pwm_route'])
+        self.assertIn('肘朝上',next(x for x in score['scenes'] if x['id']=='S09')['human'])
+
 if __name__=='__main__':unittest.main()

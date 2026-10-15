@@ -855,9 +855,26 @@
         "status": "two_support_levels_executed_hip_not_achieved",
         "final_sequence": 43383,
         "automatic_replay_allowed": false
+      },
+      {
+        "session": "person-hip-inside-20261015-q",
+        "status": "static_hold_only_stopped_for_user_route_correction",
+        "final_sequence": 43384,
+        "automatic_replay_allowed": false
+      },
+      {
+        "session": "person-hip-inside-lift-20261015-r",
+        "status": "three_stages_executed_elbow_up_not_verified_timeout_off",
+        "final_sequence": 43685,
+        "automatic_replay_allowed": false
       }
     ],
-    "remaining": "横向靠腰与贴幕需组合修正；不能单纯继续抬身"
+    "remaining": "腕点要横向非常贴近身侧，再从内侧向上靠近肘；须观察肘朝上，不能将外拱等同叉腰。旧比例圆弧保留作历史候选，不代表新指令路线。",
+    "latest_user_correction": {
+      "required": "Wrist must be very close to torso horizontally, then approach elbow from inside and lift until elbow points upward.",
+      "rejected": "Calling any elbow bend or outward arch a successful hip pose."
+    },
+    "legacy_arc_status": "superseded_hip_target_not_verified"
   },
   "component_command_candidates": {
     "status": "partial_experiment_M; hip_rejected; rise_not_executed",
@@ -962,11 +979,11 @@
     "enabled_mask": 0,
     "armed": false,
     "faults": 0,
-    "sequence": 43383,
+    "sequence": 43685,
     "pending": false,
     "pulse_us": [
-      1510,
-      1212,
+      1570,
+      1242,
       1565,
       1414,
       1416,
@@ -978,5 +995,5 @@
     ],
     "position_feedback": null
   },
-  "latest_observed_command_state_note": "P第二档后正常停止；已非L/N基准，不自动启用旧剧本"
+  "latest_observed_command_state_note": "最新实测停止指令，非实际轴角；以对应记录的停止原因和已执行段为准，不自动启用旧剧本"
 }

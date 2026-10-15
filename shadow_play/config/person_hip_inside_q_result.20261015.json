@@ -1,0 +1,60 @@
+{
+  "session": "person-hip-inside-20261015-q",
+  "status": "static_hold_only_stopped_for_user_route_correction",
+  "board_log_sha256": "17d3c66f8acc138e818110810f71b50ea8a0e944ec95baed1a4e8a6009f29ef6",
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 63,
+    "armed": true,
+    "faults": 0,
+    "sequence": 43384,
+    "pending": false,
+    "pulse_us": [
+      1510,
+      1212,
+      1565,
+      1414,
+      1416,
+      1600,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 43384,
+    "pending": false,
+    "pulse_us": [
+      1510,
+      1212,
+      1565,
+      1414,
+      1416,
+      1600,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": false,
+  "steps": 0,
+  "stages": [],
+  "automatic_replay_allowed": false,
+  "actual_angle_feedback": null,
+  "observations": [
+    "No probe_step or probe_complete occurred. Same-value static hold only.",
+    "Host stop requested before first stage when user changed the requested direction; no inward movement executed."
+  ]
+}
