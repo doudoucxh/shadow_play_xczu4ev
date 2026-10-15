@@ -1,0 +1,100 @@
+{
+  "status": "angle_verification_incomplete",
+  "motor_commands_sent": false,
+  "user_confirmed_all_servo_axes_manually_turned": true,
+  "frames": [
+    {
+      "camera": "front",
+      "frame_id": "session-2026-10-15T04-17-06-407Z-7929",
+      "age_ms": 39,
+      "host_unix_ns": 1792038361076685700,
+      "file": "front_1792038361076685700.jpg",
+      "sha256": "804cf2e07565cef3f1bcceb3b6283497414340e2cccc99887d186e67ab2a53fd"
+    },
+    {
+      "camera": "top",
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1364049",
+      "age_ms": 16,
+      "host_unix_ns": 1792038361074434100,
+      "file": "top_1792038361074434100.jpg",
+      "sha256": "8c42c400e39c69a951c38638a9cb20fe42a105de75a5a9e33854b999087aaa87"
+    }
+  ],
+  "cad_reference": "cad/servo_reference_20261010/reference_inspection.json",
+  "findings": [
+    "Front image observes puppet silhouettes, not servo axes.",
+    "Top overview does not resolve pivot centres and fixed/moving bracket reference edges sufficiently for a calibrated estimate.",
+    "CAD angles are relative mechanical angles; CAD report explicitly excludes PWM mapping.",
+    "Previous command/image samples are evidence of response, not measured joint-angle feedback."
+  ],
+  "axes": [
+    {
+      "servo": 1,
+      "measured_angle_deg": null,
+      "uncertainty_deg": null,
+      "validated_pwm_us": null
+    },
+    {
+      "servo": 2,
+      "measured_angle_deg": null,
+      "uncertainty_deg": null,
+      "validated_pwm_us": null
+    },
+    {
+      "servo": 3,
+      "measured_angle_deg": null,
+      "uncertainty_deg": null,
+      "validated_pwm_us": null
+    },
+    {
+      "servo": 4,
+      "measured_angle_deg": null,
+      "uncertainty_deg": null,
+      "validated_pwm_us": null
+    },
+    {
+      "servo": 5,
+      "measured_angle_deg": null,
+      "uncertainty_deg": null,
+      "validated_pwm_us": null
+    },
+    {
+      "servo": 6,
+      "measured_angle_deg": null,
+      "uncertainty_deg": null,
+      "validated_pwm_us": null
+    },
+    {
+      "servo": 7,
+      "measured_angle_deg": null,
+      "uncertainty_deg": null,
+      "validated_pwm_us": null
+    },
+    {
+      "servo": 8,
+      "measured_angle_deg": null,
+      "uncertainty_deg": null,
+      "validated_pwm_us": null
+    },
+    {
+      "servo": 9,
+      "measured_angle_deg": null,
+      "uncertainty_deg": null,
+      "validated_pwm_us": null
+    },
+    {
+      "servo": 10,
+      "measured_angle_deg": null,
+      "uncertainty_deg": null,
+      "validated_pwm_us": null
+    }
+  ],
+  "next_capture": {
+    "group": "person_left_hand_1_2",
+    "yaw": "Near overhead close view showing fixed base and upper rotating frame.",
+    "pitch": "Side view approximately along pitch axis showing pivot and fixed/moving bracket.",
+    "preserve": "Do not move mechanism; keep Sony fixed.",
+    "reference_needed": "Verified installed reference orientation for the same group; mechanical angle alone does not establish absolute servo command."
+  },
+  "automatic_recovery_allowed": false
+}
