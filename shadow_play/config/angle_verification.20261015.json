@@ -96,5 +96,29 @@
     "preserve": "Do not move mechanism; keep Sony fixed.",
     "reference_needed": "Verified installed reference orientation for the same group; mechanical angle alone does not establish absolute servo command."
   },
-  "automatic_recovery_allowed": false
+  "automatic_recovery_allowed": false,
+  "close_view_review": {
+    "current_top": ".review_work/hand_cross_side_test_20261014/angle_close_20261015/top_1792038481639267800.jpg",
+    "historical_top": [
+      ".review_work/hand_crossing_20261013/close_positive/top_1791890532757426800.jpg",
+      ".review_work/hand_crossing_20261013/close_positive/top_1791890536402839600.jpg"
+    ],
+    "historical_command_servo2_us": [
+      1212,
+      1422
+    ],
+    "observed_response": "Historical U-frame and rod rise as servo 2 pulse increases; local direction only, not measured angular displacement.",
+    "visible_features": [
+      "Fixed silver plate edges and partial screws",
+      "Upper U-frame edge",
+      "Partial circular side axis end"
+    ],
+    "limitations": [
+      "Pivot centres and hole pattern partly occluded",
+      "Moving frame is above fixed plate: planar image registration does not remove its parallax",
+      "Historical servo 1 command change did not establish a clear yaw-angle response",
+      "Installed absolute zero and current actual shaft angles remain unverified"
+    ],
+    "conclusion": "No validated numerical starting angles or PWM recovered. No motion sent."
+  }
 }
