@@ -42,3 +42,19 @@ python shadow_play/integrations/calibration/fit_person_coordinates.py verified-c
 `verified-context.json` 是按相同装配与机位筛选、完成标注和时间配对核准后的数据，不是简单改名或批量修改布尔字段。输出始终 `deployment_ready=false`；拟合程序不读取串口、不开 PWM、不解除动作锁，也不向已有控制器注入参数。
 
 下一项实质工作是逐帧补上可辨认的三个连接点，并检查静态保持阶段的指令配对。若剩下的可信历史数据不足以保持六维覆盖，就需要补采缺失方向；不能用拟合自身生成的数据替代实测。未知起点恢复仍是独立未解决项。
+
+## 逐帧复查与持续指令窗口
+
+继续复查发现，BO 的20条检查点发生在连续动作中，不能直接作为已稳定的静态样本。BL/BM/BN的10条保持记录只有6组不同的人物指令，中心化秩为4，单靠这些记录不能辨识六维模型。头部接头与人物重叠，一些可见竹杆末端后仍有细连接段；不能把竹杆主体的终点直接当作皮影连接中心。
+
+首批未核验像素候选已记录在 `config/person_coordinate_observations.20261015.json`：包含7帧顶视竹杆末端区域及当前双视角的候选区域，均注明人工估计范围；当前观察没有对应的已知指令，不进入训练。
+
+新增 `extract_held_coordinate_frames.py` 读取原始 `events.jsonl` 与 `frames.jsonl`，从相同十路指令持续输出的窗口内选图。窗口开始后留2秒、下一变化前留0.5秒；输出关闭会截断窗口。按接收时间减去帧龄估计取景时间，从窗口中心附近选择双视角帧对并解码。接收时间不是板端实际动作时间，选图通过也不证明机构已经稳定。
+
+对BK/BL/BM/BN/BO运行，得到21段候选窗口、10组不同人物指令，中心化秩为6。完整三连接点核准数量仍为0；即使这10组全部合格，也未达到当前拟合器的14组最低数量，更不代表完成实物验收。原始选图结果在 `.review_work/person_coordinate_mapping_20261015/held_frames.json`。
+
+```powershell
+python shadow_play/integrations/calibration/extract_held_coordinate_frames.py .review_work/hand_cross_side_test_20261014/operator_arc_bn --output held-bn.json
+```
+
+提取器新增9项离线测试：相同指令状态不重置计时、短窗口排除、OFF截断、重复帧与负帧龄排除、非法事件拒绝、JPEG损坏回退及按需解码。没有串口访问和运动输出。后续应补采清晰、可确认三接点的持续保持样本；不能仅把现有布尔字段改成true来生成模型。

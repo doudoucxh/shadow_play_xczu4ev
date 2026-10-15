@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-15",
+  "type": "manual_visual_candidates_not_training_labels",
+  "coordinate_system": "image_pixels_origin_top_left",
+  "deployment_ready": false,
+  "motor_commands_sent": false,
+  "historical_review": {
+    "front_frames_reviewed": "BL 0-3, BM 0-2, BN 0-2, BO 0-19",
+    "held_result_candidates": 10,
+    "held_result_distinct_commands": 6,
+    "held_result_centered_command_rank": 4,
+    "continuous_checkpoint_candidates_excluded_from_static_fit": 20,
+    "continuous_reason": "BO emits checkpoints while continuously advancing; no observed settling established at those checkpoints. Phrase 1 front frames also visibly defocused.",
+    "verified_complete_three_point_samples": 0,
+    "top_candidate_definition": "Visible bamboo-body terminal region, not confirmed attachment centre. A/B/C ordered by top-image x; no automatic servo identity assignment.",
+    "top_candidates": [
+      {"sample_id":"stage_bl_result.20261014:0","A":[543,188],"B":[615,134],"C":[641,134],"estimated_radius_px":[6,5,6]},
+      {"sample_id":"stage_bl_result.20261014:1","A":[542,188],"B":[615,134],"C":[641,134],"estimated_radius_px":[6,5,6]},
+      {"sample_id":"stage_bl_result.20261014:2","A":[542,188],"B":[615,134],"C":[641,134],"estimated_radius_px":[6,5,6]},
+      {"sample_id":"stage_bl_result.20261014:3","A":[543,187],"B":[619,126],"C":[632,155],"estimated_radius_px":[7,5,7]},
+      {"sample_id":"stage_bm_result.20261014:0","A":[543,185],"B":[619,126],"C":[632,155],"estimated_radius_px":[7,5,7]},
+      {"sample_id":"stage_bm_result.20261014:1","A":[559,191],"B":[633,132],"C":[654,156],"estimated_radius_px":[7,6,7]},
+      {"sample_id":"stage_bm_result.20261014:2","A":[577,199],"B":[650,143],"C":[681,160],"estimated_radius_px":[8,7,8]}
+    ],
+    "front_cloth_boundary_candidate_tl_tr_br_bl": [[30,59],[439,63],[431,324],[36,330]],
+    "front_boundary_estimated_radius_px": 8,
+    "front_boundary_physical_inner_corners_verified": false,
+    "limitations": [
+      "Head attachment centre overlaps puppet and cannot be separated from silhouette reliably.",
+      "Thin connectors extend beyond some visible bamboo ends; bamboo end is not necessarily puppet attachment.",
+      "Cloth folds and frame corner geometry prevent using the visible cloth envelope as verified physical corners.",
+      "Historical point identity and geometry are not silently transferred to the present camera view."
+    ]
+  },
+  "current_observation": {
+    "front_file": "front_1792045379432093500.jpg",
+    "top_file": "top_1792045379439314400.jpg",
+    "private_directory": ".review_work/hand_cross_side_test_20261014/coordinate_current_points_20261015_c",
+    "front_frame_id": "session-2026-10-15T05-28-15-269Z-48883",
+    "top_frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1469324",
+    "four_advancing_decodable_frames_per_camera_checked": true,
+    "selected_frame_age_ms": {"front":60,"top":46},
+    "candidate_points": {
+      "wusong_left": {"front_px":[174,126],"top_px":[641,48],"estimated_radius_px":6},
+      "wusong_neck": {"front_px":[212,137],"top_px":[573,74],"estimated_radius_px":7},
+      "wusong_right": {"front_px":[251,186],"top_px":[503,127],"estimated_radius_px":5}
+    },
+    "annotation_verified": false,
+    "point_identity_verified": false,
+    "command_us": null,
+    "actual_axis_feedback": null,
+    "training_eligible": false,
+    "note": "Manual visible endpoint-region candidates only; no contemporaneous known command pose. These observations cannot infer current servo angles."
+  }
+}
