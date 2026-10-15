@@ -1,0 +1,128 @@
+{
+  "session": "midpoint-first-edge-20261015-d",
+  "status": "first_edge_executed_normal_off",
+  "reference_source": "user_confirmed_ten_axes_midpoint_and_board_OFF34027",
+  "reference_not_actual_angle_feedback": true,
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 1023,
+    "armed": true,
+    "faults": 0,
+    "sequence": 34028,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 34129,
+    "pending": false,
+    "pulse_us": [
+      1492,
+      1428,
+      1481,
+      1504,
+      1479,
+      1560,
+      1558,
+      1438,
+      1568,
+      1560
+    ],
+    "position_feedback": null
+  },
+  "steps": 100,
+  "peak_step_us": 2,
+  "transition_observed_log_duration_s": 2.0997731359966565,
+  "board_log_sha256": "88a1d553fd41c27313fe93b0e494ab53dd30746ebdad0ddc6f2279f72a6662e1",
+  "frames": [
+    {
+      "camera": "front",
+      "file": "front_1792060784162868400.jpg",
+      "host_unix_ns": 1792060784162868400,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-278184",
+      "age_ms": 52,
+      "sha256": "a09ab94e2b1677a421646814414781232ee72d7533b9c0f1a3b33fb926c28856",
+      "control_points_px": null,
+      "control_points_mm": null
+    },
+    {
+      "camera": "top",
+      "file": "top_1792060784160225600.jpg",
+      "host_unix_ns": 1792060784160225600,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1700395",
+      "age_ms": 47,
+      "sha256": "69ab96a6432d6d7060a39320c2edfd318aad8d93f151662d5ae5bc3890a756b1",
+      "control_points_px": null,
+      "control_points_mm": null
+    },
+    {
+      "camera": "front",
+      "file": "front_1792060809446416500.jpg",
+      "host_unix_ns": 1792060809446416500,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-278561",
+      "age_ms": 4,
+      "sha256": "0c82a4e2ebd40d3060e8963b5a214fed2571e77db517a45c47ed6099a02dfbfe",
+      "control_points_px": null,
+      "control_points_mm": null
+    },
+    {
+      "camera": "top",
+      "file": "top_1792060809442404600.jpg",
+      "host_unix_ns": 1792060809442404600,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1700774",
+      "age_ms": 62,
+      "sha256": "b05f6fe4bc250a967d3ee19a1abc23e3eb4c839485b453cd3346d59fa7d4a76c",
+      "control_points_px": null,
+      "control_points_mm": null
+    },
+    {
+      "camera": "front",
+      "file": "front_1792060811316257000.jpg",
+      "host_unix_ns": 1792060811316257000,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-278588",
+      "age_ms": 63,
+      "sha256": "a8897d5c9bf49c705042bdc64e076fc7d6e5d883b1215a2e0d6ea817106a90e8",
+      "control_points_px": null,
+      "control_points_mm": null
+    },
+    {
+      "camera": "top",
+      "file": "top_1792060811302329200.jpg",
+      "host_unix_ns": 1792060811302329200,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1700802",
+      "age_ms": 62,
+      "sha256": "7b5147626275bb498aaf90734808c3f24da5f0400d5293854ed6a84d2678ae7b",
+      "control_points_px": null,
+      "control_points_mm": null
+    }
+  ],
+  "observations": [
+    "Inspected start, mid-transition and end dual views: no gross folding or sudden jump discerned.",
+    "Tiger moved down/right in the Sony view; human weapon hand remains high, not yet low opening.",
+    "Rod-end coordinates were not annotated; no millimeter or shaft-angle claims."
+  ],
+  "audio_started": false,
+  "full_show_executed": false,
+  "second_edge_executed": false,
+  "automatic_replay_allowed": false,
+  "incident_locks_removed": false
+}
