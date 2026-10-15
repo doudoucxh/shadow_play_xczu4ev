@@ -9,15 +9,15 @@ from test_story_audio_session import Device
 class HeadTests(unittest.TestCase):
     def setUp(self):
         self.raw='\n'.join(json.dumps(r) for r in [dict(event='head_lateral_comparison_complete'),dict(event='outputs_off',
-            normal_frame_stop=True,state=dict(sequence=41892,pulse_us=s.START,enabled_mask=0,armed=False,faults=0,pending=False))]).encode()
+            normal_frame_stop=True,state=dict(sequence=42094,pulse_us=s.START,enabled_mask=0,armed=False,faults=0,pending=False))]).encode()
         sha=hashlib.sha256(self.raw).hexdigest();p=patch.object(s,'SOURCE_SHA',sha);p.start();self.addCleanup(p.stop)
-        self.plan=dict(profile=s.PROFILE,approval=s.m.c.APPROVAL,expected_sequence=41892,
+        self.plan=dict(profile=s.PROFILE,approval=s.m.c.APPROVAL,expected_sequence=42094,
             expected_pulses_us=s.START,source_sha256=sha,route_sha256=s.ROUTE_SHA,boot_id=s.BOOT,
             duration_seconds=240,observer_ready=True,dual_view_pose_reviewed=True,reviewed_at_unix_ms=1000)
     def test_validation_and_person_only_enable(self):
         s.validate(self.plan,self.raw,lambda:1)
-        with self.assertRaises(ValueError):s.validate(dict(self.plan,expected_sequence=41891),self.raw)
-        reg=FakeRegisters();reg.values[0x20]=41892
+        with self.assertRaises(ValueError):s.validate(dict(self.plan,expected_sequence=42093),self.raw)
+        reg=FakeRegisters();reg.values[0x20]=42094
         for i,v in enumerate(s.START):reg.values[0x80+i*4]=v
         with patch.object(s.HeadProbe,'lock_hashes',return_value=('lock',)):
             d=s.HeadProbe(reg,self.plan,Mock(),source_raw=self.raw,cancel_path='__missing__')
@@ -31,8 +31,8 @@ class HeadTests(unittest.TestCase):
         self.assertEqual(d.pulses,s.TARGETS[1]);self.assertTrue(d.normal and d.stopped)
         self.assertEqual(len([r for r in events if r['event']=='probe_step']),100)
     def test_only_yaw_changes(self):
-        self.assertEqual(len(s.TARGETS),3)
-        self.assertEqual(s.TARGETS[1][2],1505)
+        self.assertEqual(len(s.TARGETS),2)
+        self.assertEqual(s.TARGETS[1][2],1565)
         for q in s.FRAMES:
             self.assertTrue(all(q[i]==s.START[i] for i in range(10) if i!=2))
         self.assertLessEqual(max(abs(b[2]-a[2]) for a,b in zip(s.FRAMES,s.FRAMES[1:])),1)

@@ -1,0 +1,110 @@
+{
+  "session": "person-head-lateral-20261015-l",
+  "status": "executed_user_requested_small_right_adjustment",
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 63,
+    "armed": true,
+    "faults": 0,
+    "sequence": 42095,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1545,
+      1554,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 42196,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1565,
+      1554,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "board_log_sha256": "d47fb50a948573628eb99d9d33ec6682f61f47128d34d2c623a228096d85a428",
+  "steps": 100,
+  "peak_command_step_us": 1,
+  "normal_frame_stop": true,
+  "axis_changed": 3,
+  "pulse_us": [
+    1545,
+    1565
+  ],
+  "depth_calibrated": false,
+  "automatic_replay_allowed": false,
+  "story_updated": false,
+  "observations": [
+    "User requested a little further Sony-right after K.",
+    "Head/neck moved slightly right and appears closer to torso centerline.",
+    "No obvious rod collision or folding in inspected dual views.",
+    "Front focus varied; no measured cloth distance or verified depth correction."
+  ],
+  "evidence": [
+    {
+      "camera": "front",
+      "file": "front_1792072136388517200.jpg",
+      "host_unix_ns": 1792072136388517200,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-447358",
+      "age_ms": 46,
+      "sha256": "7517e17d209c1f3f9d2e391b306f42771325ece01ca2a57d26e53fa9312ed96e",
+      "head_connection_pixels": null,
+      "head_connection_mm": null
+    },
+    {
+      "camera": "top",
+      "file": "top_1792072136387012400.jpg",
+      "host_unix_ns": 1792072136387012400,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1870678",
+      "age_ms": 62,
+      "sha256": "f7bf7f1a4c1be63b2780735a2321e4ecfd741168c70951d43c2e90f4c073b8f5",
+      "head_connection_pixels": null,
+      "head_connection_mm": null
+    },
+    {
+      "camera": "front",
+      "file": "front_1792072167409054600.jpg",
+      "host_unix_ns": 1792072167409054600,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-447821",
+      "age_ms": 5,
+      "sha256": "998a665c178fbdc3c08eb99e40b617b2c87f5f250633d7474ff221a47e7315dc",
+      "head_connection_pixels": null,
+      "head_connection_mm": null
+    },
+    {
+      "camera": "top",
+      "file": "top_1792072167406544100.jpg",
+      "host_unix_ns": 1792072167406544100,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1871144",
+      "age_ms": 14,
+      "sha256": "1d51184256dfcbc433acaa6c2b28caefbccb8de51980cc7508c9b4d716c94856",
+      "head_connection_pixels": null,
+      "head_connection_mm": null
+    }
+  ]
+}
