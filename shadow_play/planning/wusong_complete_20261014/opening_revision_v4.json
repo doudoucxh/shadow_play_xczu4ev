@@ -1,0 +1,806 @@
+{
+  "schema": "opening_task_space_v4",
+  "status": "planned_not_executed",
+  "motor_ready": false,
+  "automatic_replay_allowed": false,
+  "audio": {
+    "file": "audio/task1.wav",
+    "sha256": "950e52cc19d84877327e2a399ec5e078ed76daece6e358a61c0679af2114db5e",
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "pcm_bits": 16,
+    "sample_frames": 2959360,
+    "duration_s": 67.10566893424036,
+    "duration_ms": 67105.66893424036,
+    "edited_in_this_package": false
+  },
+  "coordinate_frame": {
+    "x": "Sony右为正",
+    "y": "向上为正",
+    "origin": "人物骨盆中点",
+    "unit": "计划中的骨盆至头部控制点距离=1；不是像素、毫米或舵机角度",
+    "purpose": "艺术目标，用于后续姿态采样，不是PWM逆解"
+  },
+  "hand_assignment": {
+    "left": {
+      "servos": [
+        1,
+        2
+      ],
+      "role": "叉腰"
+    },
+    "right": {
+      "servos": [
+        5,
+        6
+      ],
+      "role": "向Sony右上方指点"
+    },
+    "verification": "沿用项目人物左右手编号；实测时核对轮廓与持械关系"
+  },
+  "head_reference": {
+    "source": "../../config/person_head_centering_fine_result.20261015.json",
+    "last_command_us": [
+      1470,
+      1212,
+      1565,
+      1554,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "last_stop_sequence": 42196,
+    "meaning": "L静态居中观察基准，不是新的全场动作标定",
+    "startup_command": null,
+    "actual_angle_feedback": null,
+    "cloth_gap_verified": false
+  },
+  "dialogue": {
+    "window_s": [
+      17,
+      23
+    ],
+    "detected_voice_window_s": [
+      17.5,
+      22.9
+    ],
+    "intended_phrase": "酒家吓人",
+    "exact_word_timing_s": null,
+    "accent_times_s": [
+      18.15,
+      19.6,
+      21.15
+    ],
+    "timing_status": "编舞候选重音；不是逐词听审结果"
+  },
+  "keyframes": [
+    {
+      "time_s": 10,
+      "action": "低手亮相，头在躯干上方",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.28,
+        0.22
+      ],
+      "right_hand": [
+        0.28,
+        0.22
+      ]
+    },
+    {
+      "time_s": 10.8,
+      "action": "山路落步",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.28,
+        0.22
+      ],
+      "right_hand": [
+        0.28,
+        0.22
+      ]
+    },
+    {
+      "time_s": 11.367,
+      "action": "抬身迈步；双手随身",
+      "body_lift": 0.12,
+      "head": [
+        0,
+        1.12
+      ],
+      "left_hand": [
+        -0.35,
+        0.42
+      ],
+      "right_hand": [
+        0.35,
+        0.3
+      ]
+    },
+    {
+      "time_s": 11.853000000000002,
+      "action": "落步回到基准",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.24,
+        0.2
+      ],
+      "right_hand": [
+        0.26,
+        0.31
+      ]
+    },
+    {
+      "time_s": 12.15,
+      "action": "山路落步",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.28,
+        0.22
+      ],
+      "right_hand": [
+        0.28,
+        0.22
+      ]
+    },
+    {
+      "time_s": 12.759,
+      "action": "抬身迈步；双手随身",
+      "body_lift": 0.16,
+      "head": [
+        0,
+        1.16
+      ],
+      "left_hand": [
+        -0.35,
+        0.45999999999999996
+      ],
+      "right_hand": [
+        0.35,
+        0.33999999999999997
+      ]
+    },
+    {
+      "time_s": 13.281,
+      "action": "落步回到基准",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.24,
+        0.2
+      ],
+      "right_hand": [
+        0.26,
+        0.31
+      ]
+    },
+    {
+      "time_s": 13.6,
+      "action": "山路落步",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.28,
+        0.22
+      ],
+      "right_hand": [
+        0.28,
+        0.22
+      ]
+    },
+    {
+      "time_s": 14.23,
+      "action": "抬身迈步；双手随身",
+      "body_lift": 0.1,
+      "head": [
+        0,
+        1.1
+      ],
+      "left_hand": [
+        -0.35,
+        0.4
+      ],
+      "right_hand": [
+        0.35,
+        0.28
+      ]
+    },
+    {
+      "time_s": 14.77,
+      "action": "落步回到基准",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.24,
+        0.2
+      ],
+      "right_hand": [
+        0.26,
+        0.31
+      ]
+    },
+    {
+      "time_s": 15.1,
+      "action": "落步回弹",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.28,
+        0.22
+      ],
+      "right_hand": [
+        0.28,
+        0.22
+      ]
+    },
+    {
+      "time_s": 16,
+      "action": "减速停步、环顾",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.25,
+        0.28
+      ],
+      "right_hand": [
+        0.28,
+        0.35
+      ]
+    },
+    {
+      "time_s": 17,
+      "action": "左手收向腰侧，右手准备说话",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.22,
+        0.12
+      ],
+      "right_hand": [
+        0.3,
+        0.45
+      ]
+    },
+    {
+      "time_s": 17.6,
+      "action": "挺身起语，左肘外展",
+      "body_lift": 0.03,
+      "head": [
+        0,
+        1.03
+      ],
+      "left_hand": [
+        -0.22,
+        0.15
+      ],
+      "right_hand": [
+        0.55,
+        0.93
+      ]
+    },
+    {
+      "time_s": 18.15,
+      "action": "右上指点重音；左手叉腰目标",
+      "body_lift": 0.04,
+      "head": [
+        0,
+        1.04
+      ],
+      "left_hand": [
+        -0.22,
+        0.16
+      ],
+      "right_hand": [
+        0.72,
+        1.22
+      ]
+    },
+    {
+      "time_s": 18.65,
+      "action": "右手短收，左手留腰侧",
+      "body_lift": 0.01,
+      "head": [
+        0,
+        1.01
+      ],
+      "left_hand": [
+        -0.22,
+        0.13
+      ],
+      "right_hand": [
+        0.47,
+        0.77
+      ]
+    },
+    {
+      "time_s": 19.6,
+      "action": "右上指点重音；左手叉腰目标",
+      "body_lift": 0.04,
+      "head": [
+        0,
+        1.04
+      ],
+      "left_hand": [
+        -0.22,
+        0.16
+      ],
+      "right_hand": [
+        0.8,
+        1.32
+      ]
+    },
+    {
+      "time_s": 20.15,
+      "action": "右手短收，左手留腰侧",
+      "body_lift": 0.01,
+      "head": [
+        0,
+        1.01
+      ],
+      "left_hand": [
+        -0.22,
+        0.13
+      ],
+      "right_hand": [
+        0.47,
+        0.77
+      ]
+    },
+    {
+      "time_s": 21.15,
+      "action": "右上指点重音；左手叉腰目标",
+      "body_lift": 0.04,
+      "head": [
+        0,
+        1.04
+      ],
+      "left_hand": [
+        -0.22,
+        0.16
+      ],
+      "right_hand": [
+        0.74,
+        1.24
+      ]
+    },
+    {
+      "time_s": 21.85,
+      "action": "右手短收，左手留腰侧",
+      "body_lift": 0.01,
+      "head": [
+        0,
+        1.01
+      ],
+      "left_hand": [
+        -0.22,
+        0.13
+      ],
+      "right_hand": [
+        0.47,
+        0.77
+      ]
+    },
+    {
+      "time_s": 22.5,
+      "action": "对白收势；保留傲然姿态",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.22,
+        0.12
+      ],
+      "right_hand": [
+        0.32,
+        0.48
+      ]
+    },
+    {
+      "time_s": 23,
+      "action": "松开叉腰，重新迈步",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.28,
+        0.22
+      ],
+      "right_hand": [
+        0.28,
+        0.22
+      ]
+    },
+    {
+      "time_s": 23.2,
+      "action": "山路落步",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.28,
+        0.22
+      ],
+      "right_hand": [
+        0.28,
+        0.22
+      ]
+    },
+    {
+      "time_s": 23.64,
+      "action": "迈步上提；三点同向跟身",
+      "body_lift": 0.14,
+      "head": [
+        0,
+        1.1400000000000001
+      ],
+      "left_hand": [
+        -0.35,
+        0.45
+      ],
+      "right_hand": [
+        0.36,
+        0.32
+      ]
+    },
+    {
+      "time_s": 24.035999999999998,
+      "action": "落步吸收，双手换摆",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.24,
+        0.18
+      ],
+      "right_hand": [
+        0.27,
+        0.32
+      ]
+    },
+    {
+      "time_s": 24.3,
+      "action": "山路落步",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.28,
+        0.22
+      ],
+      "right_hand": [
+        0.28,
+        0.22
+      ]
+    },
+    {
+      "time_s": 24.78,
+      "action": "迈步上提；三点同向跟身",
+      "body_lift": 0.18,
+      "head": [
+        0,
+        1.18
+      ],
+      "left_hand": [
+        -0.35,
+        0.49
+      ],
+      "right_hand": [
+        0.36,
+        0.36
+      ]
+    },
+    {
+      "time_s": 25.212,
+      "action": "落步吸收，双手换摆",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.24,
+        0.18
+      ],
+      "right_hand": [
+        0.27,
+        0.32
+      ]
+    },
+    {
+      "time_s": 25.5,
+      "action": "山路落步",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.28,
+        0.22
+      ],
+      "right_hand": [
+        0.28,
+        0.22
+      ]
+    },
+    {
+      "time_s": 25.96,
+      "action": "迈步上提；三点同向跟身",
+      "body_lift": 0.15,
+      "head": [
+        0,
+        1.15
+      ],
+      "left_hand": [
+        -0.35,
+        0.45999999999999996
+      ],
+      "right_hand": [
+        0.36,
+        0.32999999999999996
+      ]
+    },
+    {
+      "time_s": 26.374,
+      "action": "落步吸收，双手换摆",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.24,
+        0.18
+      ],
+      "right_hand": [
+        0.27,
+        0.32
+      ]
+    },
+    {
+      "time_s": 26.65,
+      "action": "山路落步",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.28,
+        0.22
+      ],
+      "right_hand": [
+        0.28,
+        0.22
+      ]
+    },
+    {
+      "time_s": 27.11,
+      "action": "迈步上提；三点同向跟身",
+      "body_lift": 0.1,
+      "head": [
+        0,
+        1.1
+      ],
+      "left_hand": [
+        -0.35,
+        0.41000000000000003
+      ],
+      "right_hand": [
+        0.36,
+        0.28
+      ]
+    },
+    {
+      "time_s": 27.523999999999997,
+      "action": "落步吸收，双手换摆",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.24,
+        0.18
+      ],
+      "right_hand": [
+        0.27,
+        0.32
+      ]
+    },
+    {
+      "time_s": 27.799999999999997,
+      "action": "回弹",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.28,
+        0.22
+      ],
+      "right_hand": [
+        0.28,
+        0.22
+      ]
+    },
+    {
+      "time_s": 28.4,
+      "action": "察觉虎动，双手收护",
+      "body_lift": 0.02,
+      "head": [
+        0,
+        1.02
+      ],
+      "left_hand": [
+        -0.3,
+        0.66
+      ],
+      "right_hand": [
+        0.36,
+        0.72
+      ]
+    },
+    {
+      "time_s": 29,
+      "action": "停步迎接扑虎；后段衔接待实测",
+      "body_lift": 0,
+      "head": [
+        0,
+        1
+      ],
+      "left_hand": [
+        -0.3,
+        0.7
+      ],
+      "right_hand": [
+        0.38,
+        0.76
+      ]
+    }
+  ],
+  "servo_keyframes_us": null,
+  "component_command_candidates": {
+    "status": "offline_unexecuted_not_inverse_solution",
+    "note": "独立试姿候选，不绑定上方时间轴；组合与叉腰/指点效果均未实测",
+    "head_yaw_fixed_us": 1565,
+    "poses": [
+      {
+        "id": "left_hand_inward_prepare",
+        "person_us": [
+          1510,
+          1212,
+          1565,
+          1554,
+          1416,
+          1740
+        ],
+        "executed": false
+      },
+      {
+        "id": "right_hand_raise_prepare",
+        "person_us": [
+          1510,
+          1212,
+          1565,
+          1554,
+          1460,
+          1660
+        ],
+        "executed": false
+      },
+      {
+        "id": "right_hand_point_candidate",
+        "person_us": [
+          1510,
+          1212,
+          1565,
+          1554,
+          1500,
+          1580
+        ],
+        "executed": false
+      },
+      {
+        "id": "hill_step_rise_candidate",
+        "person_us": [
+          1470,
+          1252,
+          1565,
+          1534,
+          1416,
+          1700
+        ],
+        "executed": false
+      }
+    ],
+    "sources": [
+      "../../config/hand_a_low_yaw_recheck_result.20261014.json",
+      "../../integrations/calibration/duel_interaction_trial.py"
+    ],
+    "limitations": [
+      "1号增加曾使低位手向内，未证明腕已在腰侧",
+      "右手候选借用旧分量，Sony右上方向及组合须重看",
+      "2号下点维持1212，不再往名义下限压；以上抬再回落表现落步"
+    ]
+  },
+  "slide_rail": {
+    "enabled": false,
+    "step_landings_s": [
+      10.8,
+      12.15,
+      13.6,
+      23.2,
+      24.3,
+      25.5,
+      26.65
+    ],
+    "distance_mm": null,
+    "speed_mm_s": null,
+    "commands": null,
+    "future_sync": "抬身阶段推进，落步阶段减速；当前只原地表现走山路"
+  },
+  "acceptance": [
+    "头颈保持躯干上方，不随手势偏到一侧",
+    "左腕靠近腰侧且肘弯曲，不能用拉紧悬挂代替叉腰",
+    "右腕向右上连续三次指点，强弱有别且短收",
+    "走山路三杆共同起落，双手保持相对身体余量",
+    "不得把腰被双手固定后仅头杆上下拉动当作迈步",
+    "贴幕间隙另行观察，二维位置居中不代表深度已修正"
+  ],
+  "continuation": {
+    "after_s": 29,
+    "reference": "interaction_revision_v3.json",
+    "old_motor_route_unchanged": true,
+    "automatic_splice": false,
+    "requirement": "逐段核对头部居中及三杆联动后才生成完整新PWM路线；不全局加140μs"
+  }
+}
