@@ -1,9 +1,9 @@
-param([string]$PortName='COM3',[switch]$FirstEdgeOnly,[switch]$ContinuationOnly,[switch]$HeightProbeOnly,[switch]$ReplayOnly,[switch]$HeadProbeOnly,[switch]$HeadLateralOnly,[switch]$OpeningOnly,[switch]$HipInsideOnly,[switch]$HipInsideLiftOnly)
+param([string]$PortName='COM3',[switch]$FirstEdgeOnly,[switch]$ContinuationOnly,[switch]$HeightProbeOnly,[switch]$ReplayOnly,[switch]$HeadProbeOnly,[switch]$HeadLateralOnly,[switch]$OpeningOnly,[switch]$HipInsideOnly,[switch]$HipInsideLiftOnly,[switch]$OpeningShowOnly,[switch]$HipLowerOnly)
 $ErrorActionPreference='Stop'
 $taskProject=Split-Path -Parent $PSScriptRoot
 $taskSources=Join-Path $taskProject 'integrations\calibration'
 $taskPayload=@{}
-if (@(@($FirstEdgeOnly,$ContinuationOnly,$HeightProbeOnly,$ReplayOnly,$HeadProbeOnly,$HeadLateralOnly,$OpeningOnly,$HipInsideOnly,$HipInsideLiftOnly) | Where-Object {$_}).Count -gt 1) {throw 'Choose one installation scope'}
+if (@(@($FirstEdgeOnly,$ContinuationOnly,$HeightProbeOnly,$ReplayOnly,$HeadProbeOnly,$HeadLateralOnly,$OpeningOnly,$HipInsideOnly,$HipInsideLiftOnly,$OpeningShowOnly,$HipLowerOnly) | Where-Object {$_}).Count -gt 1) {throw 'Choose one installation scope'}
 $taskNames=if ($ContinuationOnly) {@('story_midpoint_continue.py','story_audio_session_v3.py')} elseif ($FirstEdgeOnly) {@('story_midpoint_first_edge.py')} else {@('story_midpoint_continue.py','story_midpoint_first_edge.py','story_midpoint_session.py','story_audio_session_v3.py','story_motion_v3_candidate.py','duel_interaction_trial.py','puppet_choreography_session.py','person_recovery_session.py','tiger_center_session.py','tiger_audio_segment.py')}
 if ($HeightProbeOnly) {$taskNames=@('tiger_roll_probe.py')}
 if ($ReplayOnly) {$taskNames=@('story_replay_from_height.py')}
@@ -12,6 +12,8 @@ if ($HeadLateralOnly) {$taskNames=@('person_head_lateral_probe.py')}
 if ($OpeningOnly) {$taskNames=@('person_opening_probe.py','person_hip_extension_probe.py','person_hip_arc_probe.py','person_hip_support_probe.py','person_recovery_session.py')}
 if ($HipInsideOnly) {$taskNames=@('person_hip_inside_probe.py')}
 if ($HipInsideLiftOnly) {$taskNames=@('person_hip_inside_lift_probe.py')}
+if ($HipLowerOnly) {$taskNames=@('person_hip_lower_probe.py')}
+if ($OpeningShowOnly) {$taskNames=@('story_opening_v4_session.py','story_motion_opening_v4.py')}
 foreach ($taskName in $taskNames) {
     $taskPayload[$taskName]=[Convert]::ToBase64String([IO.File]::ReadAllBytes((Join-Path $taskSources $taskName)))
 }
@@ -43,7 +45,7 @@ import base64,gzip,json,pathlib,py_compile
 src=pathlib.Path('UPLOAD')
 data=json.loads(gzip.decompress(base64.b64decode(src.read_bytes(),validate=True)))
 full={'story_midpoint_continue.py','story_midpoint_first_edge.py','story_midpoint_session.py','story_audio_session_v3.py','story_motion_v3_candidate.py','duel_interaction_trial.py','puppet_choreography_session.py','person_recovery_session.py','tiger_center_session.py','tiger_audio_segment.py'}
-assert set(data) in (full,{'story_midpoint_first_edge.py'},{'story_midpoint_continue.py','story_audio_session_v3.py'},{'tiger_roll_probe.py'},{'story_replay_from_height.py'},{'person_head_contact_probe.py'},{'person_head_lateral_probe.py'},{'person_hip_inside_probe.py'},{'person_hip_inside_lift_probe.py'},{'person_opening_probe.py','person_hip_extension_probe.py','person_hip_arc_probe.py','person_hip_support_probe.py','person_recovery_session.py'})
+assert set(data) in (full,{'story_midpoint_first_edge.py'},{'story_midpoint_continue.py','story_audio_session_v3.py'},{'tiger_roll_probe.py'},{'story_replay_from_height.py'},{'person_head_contact_probe.py'},{'person_head_lateral_probe.py'},{'person_hip_inside_probe.py'},{'person_hip_inside_lift_probe.py'},{'person_hip_lower_probe.py'},{'story_opening_v4_session.py','story_motion_opening_v4.py'},{'person_opening_probe.py','person_hip_extension_probe.py','person_hip_arc_probe.py','person_hip_support_probe.py','person_recovery_session.py'})
 allowed=set(data)
 root=pathlib.Path('/tmp/story-midpoint-20261015')
 root.mkdir(exist_ok=True)

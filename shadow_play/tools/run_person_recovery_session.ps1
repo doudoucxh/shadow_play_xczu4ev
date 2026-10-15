@@ -74,6 +74,8 @@ try {
             if ($taskReviewedPlan.profile -eq 'person-hip-support-v1') {$taskActor='/tmp/story-midpoint-20261015/person_hip_support_probe.py'}
             if ($taskReviewedPlan.profile -eq 'person-hip-inside-v1') {$taskActor='/tmp/story-midpoint-20261015/person_hip_inside_probe.py'}
             if ($taskReviewedPlan.profile -eq 'person-hip-inside-lift-v1') {$taskActor='/tmp/story-midpoint-20261015/person_hip_inside_lift_probe.py'}
+            if ($taskReviewedPlan.profile -eq 'person-hip-lower-v1') {$taskActor='/tmp/story-midpoint-20261015/person_hip_lower_probe.py'}
+            if ($taskReviewedPlan.profile -eq 'story-opening-v4-attended') {$taskActor='/tmp/story-midpoint-20261015/story_opening_v4_session.py'}
             if ($taskReviewedPlan.profile -in @('tiger-roll-height-probe-v1','tiger-roll-height-resume-v1','tiger-roll-height-finish-v1')) {$taskActor='/tmp/story-midpoint-20261015/tiger_roll_probe.py'}
             if ($taskReviewedPlan.profile -eq 'tiger-height-aw-v1') {$taskActor='/tmp/tiger_height_trial_20261014_r3.py'}
             if ($taskReviewedPlan.profile -eq 'tiger-shadow-roar-v1') {$taskActor='/tmp/tiger_shadow_roar_20261014.py'}

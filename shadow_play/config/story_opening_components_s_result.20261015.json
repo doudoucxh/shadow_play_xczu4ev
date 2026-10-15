@@ -1,0 +1,298 @@
+{
+  "session": "story-opening-components-20261015-s",
+  "status": "four_components_executed_full_show_not_started",
+  "board_log_sha256": "4cc34b1367110703851c478c42eeb8c8c734a474c58a26d8c96a9570b572dc92",
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 1023,
+    "armed": true,
+    "faults": 0,
+    "sequence": 43686,
+    "pending": false,
+    "pulse_us": [
+      1570,
+      1242,
+      1565,
+      1414,
+      1416,
+      1600,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 44087,
+    "pending": false,
+    "pulse_us": [
+      1570,
+      1242,
+      1565,
+      1474,
+      1540,
+      1660,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": true,
+  "stop_reason": "Host finish at review_4 after user requested lowering the head/body and bent arm; planned stage 5 and full audio show were not started.",
+  "steps": 400,
+  "peak_command_step_us": 3,
+  "stages": [
+    {
+      "stage": 1,
+      "label": "pointing",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 43786,
+        "pending": false,
+        "pulse_us": [
+          1570,
+          1242,
+          1565,
+          1414,
+          1500,
+          1580,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 192880.100175111,
+      "host_unix_ms": 1792077518315,
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": ".review_work/hand_cross_side_test_20261014/story_opening_s/front_1792077518322465600.jpg",
+          "host_unix_ns": 1792077518322465600,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-527603",
+          "age_ms": 46,
+          "sha256": "921206d78d7a137a126baf87004babb157b48b920f25b71068f67c1e9db69315",
+          "milliseconds_after_host_checkpoint": 7.4656,
+          "attachment_pixels": null,
+          "pixel_coordinates_status": "not_measured"
+        },
+        "top": {
+          "camera": "top",
+          "file": ".review_work/hand_cross_side_test_20261014/story_opening_s/top_1792077518329741600.jpg",
+          "host_unix_ns": 1792077518329741600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1951408",
+          "age_ms": 0,
+          "sha256": "16b0c270c88ea1a4144390d77500ff3aac93458eb0680ff3f1ed219bfe215b57",
+          "milliseconds_after_host_checkpoint": 14.7416,
+          "attachment_pixels": null,
+          "pixel_coordinates_status": "not_measured"
+        }
+      }
+    },
+    {
+      "stage": 2,
+      "label": "return_hip",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 43886,
+        "pending": false,
+        "pulse_us": [
+          1570,
+          1242,
+          1565,
+          1414,
+          1416,
+          1600,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 192928.700624075,
+      "host_unix_ms": 1792077566925,
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": ".review_work/hand_cross_side_test_20261014/story_opening_s/front_1792077566959856000.jpg",
+          "host_unix_ns": 1792077566959856000,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-528328",
+          "age_ms": 61,
+          "sha256": "b5eacb38a8aa5c249ba3fe37142867e100bc8872724692152951ba4cc684a7e9",
+          "milliseconds_after_host_checkpoint": 34.856,
+          "attachment_pixels": null,
+          "pixel_coordinates_status": "not_measured"
+        },
+        "top": {
+          "camera": "top",
+          "file": ".review_work/hand_cross_side_test_20261014/story_opening_s/top_1792077566957606600.jpg",
+          "host_unix_ns": 1792077566957606600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1952137",
+          "age_ms": 16,
+          "sha256": "746d7ba229acba5ea15d2000d8890fd02a1ae320f28f1c74607ed3be736e09c6",
+          "milliseconds_after_host_checkpoint": 32.6066,
+          "attachment_pixels": null,
+          "pixel_coordinates_status": "not_measured"
+        }
+      }
+    },
+    {
+      "stage": 3,
+      "label": "double_lift_candidate",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 43986,
+        "pending": false,
+        "pulse_us": [
+          1570,
+          1372,
+          1565,
+          1434,
+          1500,
+          1500,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 192970.981196553,
+      "host_unix_ms": 1792077609209,
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": ".review_work/hand_cross_side_test_20261014/story_opening_s/front_1792077609251485300.jpg",
+          "host_unix_ns": 1792077609251485300,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-528959",
+          "age_ms": 56,
+          "sha256": "5158ed797c38473d34cc7db6b327bb82d763e81762630651b292196cf592f4f9",
+          "milliseconds_after_host_checkpoint": 42.4853,
+          "attachment_pixels": null,
+          "pixel_coordinates_status": "not_measured"
+        },
+        "top": {
+          "camera": "top",
+          "file": ".review_work/hand_cross_side_test_20261014/story_opening_s/top_1792077609249245700.jpg",
+          "host_unix_ns": 1792077609249245700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1952771",
+          "age_ms": 46,
+          "sha256": "616f9d59e8a661750f85e621124905de0115cf13e7919e1803180c0d004d3573",
+          "milliseconds_after_host_checkpoint": 40.2457,
+          "attachment_pixels": null,
+          "pixel_coordinates_status": "not_measured"
+        }
+      }
+    },
+    {
+      "stage": 4,
+      "label": "same_side_hammer_candidate",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 44086,
+        "pending": false,
+        "pulse_us": [
+          1570,
+          1242,
+          1565,
+          1474,
+          1540,
+          1660,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 193019.103294813,
+      "host_unix_ms": 1792077657338,
+      "frames": {
+        "front": {
+          "camera": "front",
+          "file": ".review_work/hand_cross_side_test_20261014/story_opening_s/front_1792077657395975600.jpg",
+          "host_unix_ns": 1792077657395975600,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-529677",
+          "age_ms": 48,
+          "sha256": "c6932223af0c7fe19af39e986e12f3402ce5cba256280ff037a84f2bfef2edcc",
+          "milliseconds_after_host_checkpoint": 57.9756,
+          "attachment_pixels": null,
+          "pixel_coordinates_status": "not_measured"
+        },
+        "top": {
+          "camera": "top",
+          "file": ".review_work/hand_cross_side_test_20261014/story_opening_s/top_1792077657384186400.jpg",
+          "host_unix_ns": 1792077657384186400,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1953493",
+          "age_ms": 62,
+          "sha256": "5026ca8dcb6f24bb700476650089d118be630a93f974060e5f8aaea7284de89d",
+          "milliseconds_after_host_checkpoint": 46.1864,
+          "attachment_pixels": null,
+          "pixel_coordinates_status": "not_measured"
+        }
+      }
+    }
+  ],
+  "executed_stages": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "unexecuted_stages": [
+    5
+  ],
+  "full_show_executed": false,
+  "audio_started": false,
+  "same_side_double_high_hammer_verified": false,
+  "hand_on_hip_elbow_up_verified": false,
+  "automatic_replay_allowed": false,
+  "incident_locks_removed": false,
+  "position_feedback": null,
+  "millimetre_calibration_applied": false,
+  "observations": [
+    "右手指点有动作，但正面指向偏低。",
+    "高举候选中仅一手到头侧，另一手较低，不能声称双手同侧高位举砸通过。",
+    "第4阶段可见肘部弯曲，人物整体仍偏高；用户要求头部不要一直提得过高，肘弯后应向下移。",
+    "未执行第5阶段返回，未启用音频或整场表演。当前末态不是R起点，也不是旧剧本START。",
+    "帧证据按各阶段host时间选择最近后帧；没有测量杆端像素，坐标留空。"
+  ],
+  "new_operator_correction": {
+    "head_support": "不要一直提得太高，应下移人物头部/身体支撑。",
+    "bent_arm": "肘已经弯曲后手控制点应下移，不继续单纯上举。"
+  },
+  "frame_selection": "nearest frame at or after probe_complete host_unix_ms, separately for front and top"
+}

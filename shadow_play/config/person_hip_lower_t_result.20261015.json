@@ -1,0 +1,239 @@
+{
+  "session": "person-hip-lower-20261015-t",
+  "status": "wrist_and_body_lowering_executed_hip_not_achieved",
+  "board_log_sha256": "36bf907c2bfde0b53828806aa8d08e7992bbcbfbe1a28117f257d55e8322cb57",
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 63,
+    "armed": true,
+    "faults": 0,
+    "sequence": 44088,
+    "pending": false,
+    "pulse_us": [
+      1570,
+      1242,
+      1565,
+      1474,
+      1540,
+      1660,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 44389,
+    "pending": false,
+    "pulse_us": [
+      1570,
+      1212,
+      1565,
+      1554,
+      1540,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": true,
+  "steps": 300,
+  "peak_command_step_us": 1,
+  "stages": [
+    {
+      "stage": 1,
+      "label": "bent_wrist_lower",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 44188,
+        "pending": false,
+        "pulse_us": [
+          1570,
+          1212,
+          1565,
+          1474,
+          1540,
+          1660,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "stage": 2,
+      "label": "head_body_lower_40",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 44288,
+        "pending": false,
+        "pulse_us": [
+          1570,
+          1212,
+          1565,
+          1514,
+          1540,
+          1700,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "stage": 3,
+      "label": "head_body_lower_80",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 44388,
+        "pending": false,
+        "pulse_us": [
+          1570,
+          1212,
+          1565,
+          1554,
+          1540,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    }
+  ],
+  "actual_angle_feedback": null,
+  "automatic_replay_allowed": false,
+  "full_show_executed": false,
+  "observations": [
+    "Bent wrist lowered with servo2 1242->1212 us while other axes fixed.",
+    "Head support4 and other hand6 then increased40 and80 us; head/body visibly lowered.",
+    "Lowering the body did not put the held wrist at the waist; hand remains relatively high. Do not repeat body lowering as a hip-pose solution.",
+    "No obvious rod collision or gross folding in inspected endpoint views; actual depth/contact force unmeasured.",
+    "Current servo2=1212 us is near existing inset lower command bound ceil(500+95*2000/270)=1204 us.",
+    "Original requested full show not started; user corrected height during component review."
+  ],
+  "next_step": "Reassess wrist/waist task geometry; do not automatically replay the high-head S candidate.",
+  "evidence": [
+    {
+      "camera": "front",
+      "file": "front_1792077885341970300.jpg",
+      "host_unix_ns": 1792077885341970300,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-533077",
+      "age_ms": 5,
+      "phase": "reference",
+      "sha256": "db1f905b61470676fa9f0d15401351ca86834646435b805dbdb48376f0b45e60",
+      "connection_pixels": null,
+      "connection_mm": null
+    },
+    {
+      "camera": "top",
+      "file": "top_1792077885329421700.jpg",
+      "host_unix_ns": 1792077885329421700,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1956913",
+      "age_ms": 0,
+      "phase": "reference",
+      "sha256": "7fb90726d4e00018b8b2a4bc45df3830d5a6e1c28ab6f083a7bb411e9a720d55",
+      "connection_pixels": null,
+      "connection_mm": null
+    },
+    {
+      "camera": "front",
+      "file": "front_1792077911494732900.jpg",
+      "host_unix_ns": 1792077911494732900,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-533466",
+      "age_ms": 61,
+      "phase": "hand_down",
+      "sha256": "0d96bd795af81e5fa2423f41597f7b3dde55a9a968f9d2eed447c8f55c9bd1b2",
+      "connection_pixels": null,
+      "connection_mm": null
+    },
+    {
+      "camera": "top",
+      "file": "top_1792077911492968400.jpg",
+      "host_unix_ns": 1792077911492968400,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1957305",
+      "age_ms": 46,
+      "phase": "hand_down",
+      "sha256": "a7d65fcd7a92cb49e2e5d48b5863c9586270b307b74d7c62c7ae1a38a3178837",
+      "connection_pixels": null,
+      "connection_mm": null
+    },
+    {
+      "camera": "front",
+      "file": "front_1792077955169859500.jpg",
+      "host_unix_ns": 1792077955169859500,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-534117",
+      "age_ms": 65,
+      "phase": "body_down_40",
+      "sha256": "92147fcc95e365147f3448ca0a25b412317820db49e3edba894f7799ea8d2112",
+      "connection_pixels": null,
+      "connection_mm": null
+    },
+    {
+      "camera": "top",
+      "file": "top_1792077955166823700.jpg",
+      "host_unix_ns": 1792077955166823700,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1957960",
+      "age_ms": 46,
+      "phase": "body_down_40",
+      "sha256": "32ffe963606c7cbbbd591bb84d0dea3a26e8b604b448c2deae3616c50e4bbefc",
+      "connection_pixels": null,
+      "connection_mm": null
+    },
+    {
+      "camera": "front",
+      "file": "front_1792078010901902800.jpg",
+      "host_unix_ns": 1792078010901902800,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-534948",
+      "age_ms": 65,
+      "phase": "body_down_80",
+      "sha256": "dda023286c8a2aaa2d81aa2f33bdcd053b8f3729a7b10a98f9bb4e30f61bc3fe",
+      "connection_pixels": null,
+      "connection_mm": null
+    },
+    {
+      "camera": "top",
+      "file": "top_1792078010900148400.jpg",
+      "host_unix_ns": 1792078010900148400,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1958796",
+      "age_ms": 47,
+      "phase": "body_down_80",
+      "sha256": "cfd0ee9ae088c119ab9b612e77b8490a3129df874105c2687d701d249b132525",
+      "connection_pixels": null,
+      "connection_mm": null
+    }
+  ]
+}
