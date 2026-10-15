@@ -35,6 +35,10 @@ RESUME_SOURCE='/tmp/puppet_choreography_tiger_roll_20261015_a.events.jsonl'
 RESUME_SHA='56b67d16f3638104d4d443272e6b30c5f28bbf324e5a30bdfffd4d60c5f586aa'
 RESUME_TARGETS=[pitch(head=40),pitch(head=80),pitch(head=160),pitch(head=240),
                 pitch(head=160),pitch(head=80),START]
+FINISH_PROFILE='tiger-roll-height-finish-v1'
+FINISH_SOURCE='/tmp/puppet_choreography_tiger_roll_20261015_b.events.jsonl'
+FINISH_SHA='fb449f81ad5ff96406ebf380b3a5325fcd670c69ddcf0b8f70507a2c39dddb75'
+FINISH_TARGETS=RESUME_TARGETS[1:]
 
 
 def specification(profile):
@@ -42,6 +46,8 @@ def specification(profile):
         return SOURCE,SOURCE_SHA,37562,TARGETS
     if profile==RESUME_PROFILE:
         return RESUME_SOURCE,RESUME_SHA,37963,RESUME_TARGETS
+    if profile==FINISH_PROFILE:
+        return FINISH_SOURCE,FINISH_SHA,38064,FINISH_TARGETS
     raise ValueError('Unknown fixed height trial')
 
 
@@ -72,13 +78,16 @@ def validate(p,raw,wall=None):
         if rows[-1].get('normal_frame_stop') is not True or not any(r['event']=='story_complete' for r in rows):
             raise ValueError('Prior show did not complete normally')
     else:
-        # Exact completed four-edge prefix, stopped during static review, not
+        # Exact completed prefix, stopped during static review, not
         # a stalled movement. Fresh pose comparison remains a separate check.
         completed=[r for r in rows if r['event']=='probe_complete']
-        if ([r['axis'] for r in completed]!=[1,2,3,4]
-                or [r['state']['pulse_us'] for r in completed]!=TARGETS[1:5]
+        expected_edges=[1,2,3,4] if p['profile']==RESUME_PROFILE else [1]
+        expected_targets=TARGETS[1:5] if p['profile']==RESUME_PROFILE else RESUME_TARGETS[1:2]
+        if ([r['axis'] for r in completed]!=expected_edges
+                or [r['state']['pulse_us'] for r in completed]!=expected_targets
                 or rows[-1].get('normal_frame_stop') is not False
-                or rows[-2].get('event')!='hold_alive' or rows[-2].get('awaiting')!='review_4'
+                or rows[-2].get('event')!='hold_alive'
+                or rows[-2].get('awaiting')!='review_'+str(expected_edges[-1])
                 or rows[-2]['state']['pulse_us']!=targets[0]
                 or rows[-2]['state']['sequence']!=seq):
             raise ValueError('Not the recorded static-review timeout')

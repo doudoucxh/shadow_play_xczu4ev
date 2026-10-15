@@ -33,6 +33,15 @@
     "rear_target": "C - b * (cos(theta), sin(theta))",
     "note": "A two-dimensional geometric guide only. Not a calibrated servo inverse map, rigid-body model, depth clearance certificate, or executable path. Articulated endpoint separation cannot be forced from a single image."
   },
+  "latest_height_sweep": {
+    "result": "tiger_roll_height_finish_result.20261015.json",
+    "head_8_us": [1330, 1410, 1490, 1410, 1330],
+    "fixed_7_9_10_us": [1730, 1770, 1740],
+    "executed_frames": 400,
+    "finding": "Visible head rise and body inclination, with no head/rear left-right exchange. Height difference alone did not demonstrate a turnover.",
+    "unexecuted_final_head_8_us": 1250,
+    "next_measurement": "Coordinated endpoint arcing and rod front/back separation remain unverified. No executable inversion target is inferred from this pitch sweep."
+  },
   "inversion_pwm_targets": null,
   "full_rollover_verified": false,
   "automatic_replay_allowed": false
