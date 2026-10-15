@@ -57,12 +57,16 @@ def run(d,emit,audio,sleep=time.sleep):
         emit(dict(event='reference_held',profile=PROFILE,route_sha256=ROUTE_SHA,
                   state=d.adopt(score.START[:]),story_mode='full',candidate_trial=True,
                   position_feedback=None,incident_locks_removed=False))
+        report=0
         while True:
             d.check()
             if d.host.action is not None:
                 action,seq=d.host.action;d.host.action=None
                 if action!='demo' or seq!=d.sequence:raise RuntimeError('Fresh one-use review required')
                 break
+            if d.clock()>=report:
+                emit(dict(event='hold_alive',awaiting='demo',state=d.check()))
+                report=d.clock()+.5
             d.wait(.03,sleep)
         def guarded():
             audio.check()
