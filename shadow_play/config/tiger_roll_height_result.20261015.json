@@ -1,0 +1,317 @@
+{
+  "session": "tiger-roll-height-20261015-a",
+  "status": "partial_height_trial_stopped_on_session_deadline",
+  "cause": "Session expired while awaiting review_4 after waiting for front-view occlusion to clear; a host stop was also requested after observing renewed lower-frame occlusion.",
+  "source_show_sha256": "24f8c691bf227f727558fca7a548b488393e385c2a4f567fa83f5d895172b77f",
+  "board_log_sha256": "56b67d16f3638104d4d443272e6b30c5f28bbf324e5a30bdfffd4d60c5f586aa",
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 960,
+    "armed": true,
+    "faults": 0,
+    "sequence": 37563,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1425,
+      1514,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "completed_edges": [
+    {
+      "event": "probe_complete",
+      "axis": 1,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 37663,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1700
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 178182.993261344
+    },
+    {
+      "event": "probe_complete",
+      "axis": 2,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 37763,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1660
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 178217.455262769
+    },
+    {
+      "event": "probe_complete",
+      "axis": 3,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 37863,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 178260.175519193
+    },
+    {
+      "event": "probe_complete",
+      "axis": 4,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 960,
+        "armed": true,
+        "faults": 0,
+        "sequence": 37963,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1730,
+          1290,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 178365.27564461
+    }
+  ],
+  "reviewed_edges": [
+    1,
+    2,
+    3
+  ],
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 37963,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1425,
+      1514,
+      1416,
+      1740,
+      1730,
+      1290,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": false,
+  "steps": 400,
+  "peak_command_step_us": 2,
+  "full_rollover_verified": false,
+  "returned_to_trial_start": false,
+  "unexecuted_edges": [
+    5,
+    6
+  ],
+  "incident_locks_removed": false,
+  "automatic_replay_allowed": false,
+  "observations": [
+    "Rear -40/-80us produced only small visible posture change; no rollover demonstrated.",
+    "Rear returned to its starting command before the head trial.",
+    "Head +40us showed upward movement in both views; front lower body became occluded.",
+    "No gross folding or rod collision discerned in inspected visible regions; occluded regions are not certified.",
+    "Two-point depth and rod-end connection pixels were not reliably measured; no actual shaft angle claims."
+  ],
+  "evidence": [
+    {
+      "stage": "start",
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792062803940625000.jpg",
+          "host_unix_ns": 1792062803940625000,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-308265",
+          "age_ms": 33,
+          "sha256": "b2b888428da17f18a4065140c65bfd4d6886a44bd296a568dbda355c1860140a",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792062803937684800.jpg",
+          "host_unix_ns": 1792062803937684800,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1730692",
+          "age_ms": 31,
+          "sha256": "013df5e98b2a8e373a33f78cd1760926d81ef190c75a5865e2613d5df9edbec6",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        }
+      ]
+    },
+    {
+      "stage": "rear_minus_40",
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792062831390465700.jpg",
+          "host_unix_ns": 1792062831390465700,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-308674",
+          "age_ms": 51,
+          "sha256": "58d2d90e21318245ab3ca410885f7ecb18997b6c023dfce939e326663838bbcb",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792062831389134600.jpg",
+          "host_unix_ns": 1792062831389134600,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1731104",
+          "age_ms": 16,
+          "sha256": "37f520dfcdcdff14dd2a5c25c88cdbf611e7eeb99612fe24c249208a5f19c204",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        }
+      ]
+    },
+    {
+      "stage": "rear_minus_80",
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792062866057788100.jpg",
+          "host_unix_ns": 1792062866057788100,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-309190",
+          "age_ms": 55,
+          "sha256": "298af29b277039f1b34844dd758da142b91e7713e6e654406519bfaabd5b2896",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792062866046580400.jpg",
+          "host_unix_ns": 1792062866046580400,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1731623",
+          "age_ms": 78,
+          "sha256": "0e759b8ecc63051d878658691c1529d7a1190b0610f722f507c47b580e8840a7",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        }
+      ]
+    },
+    {
+      "stage": "rear_return",
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792062976603497900.jpg",
+          "host_unix_ns": 1792062976603497900,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-310837",
+          "age_ms": 41,
+          "sha256": "bfc41564470dc435d28b4f8fac23d5cf5ac5d27e9154c8bac0f3ab1ba8636631",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792062976600247200.jpg",
+          "host_unix_ns": 1792062976600247200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1733282",
+          "age_ms": 30,
+          "sha256": "1e173ac5b3aff2f201b30e29d6df83c5d702860de5219611a96c5e31220a1119",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        }
+      ]
+    },
+    {
+      "stage": "head_plus_40",
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792063013122081200.jpg",
+          "host_unix_ns": 1792063013122081200,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-311380",
+          "age_ms": 67,
+          "sha256": "ec3d702c39f7c10cb91ef2814af0af164ea634049c93611c208610b07d207dff",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792063013119563200.jpg",
+          "host_unix_ns": 1792063013119563200,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1733830",
+          "age_ms": 16,
+          "sha256": "33e8bb9d42131de44b4e466dad060be8650070ce0d4b4a9d812f1bc2467b7fac",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        }
+      ]
+    }
+  ]
+}

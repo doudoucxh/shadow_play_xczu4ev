@@ -1,0 +1,39 @@
+{
+  "status": "height_difference_research_not_full_rollover",
+  "view_convention": "Sony front view; screen left/right",
+  "intent": "Develop a readable tiger overturn using two control rods, with staged height difference and coordinated arcing",
+  "interpretations": {
+    "in_screen_overturn": "Head-to-rear vector rotates through near-vertical and the endpoints exchange left/right order",
+    "axial_side_roll": "Rotation about the head-to-rear line is not determined by two point positions alone; joint and attachment constraints require separate examination"
+  },
+  "established_local_directions": {
+    "servo_8_pulse_increase": "head endpoint rises",
+    "servo_10_pulse_decrease": "rear endpoint rises",
+    "servo_7_and_9_common_increase": "roughly Sony-right motion in prior local trials",
+    "sources": ["tiger_map_b_result.20261012.json", "tiger_height_ay_result.20261014.json", "tiger_height_az_result.20261014.json"]
+  },
+  "current_reference_7_to_10_us": [1730, 1250, 1770, 1740],
+  "new_probe_7_to_10_us": [
+    [1730,1250,1770,1740],
+    [1730,1250,1770,1700],
+    [1730,1250,1770,1660],
+    [1730,1250,1770,1740],
+    [1730,1290,1770,1740],
+    [1730,1330,1770,1740],
+    [1730,1250,1770,1740]
+  ],
+  "conceptual_stages_after_measurement": [
+    "Establish a visible height difference while observing body articulation and depth",
+    "Coordinate both endpoints around a shared moving centre without collapsing their separation",
+    "Inspect near-vertical configuration, rod crossing location and front/back layering before crossing it",
+    "Only after those stages are verified, exchange screen-left/right order and settle the tiger inverted"
+  ],
+  "conceptual_geometry": {
+    "head_target": "C + a * (cos(theta), sin(theta))",
+    "rear_target": "C - b * (cos(theta), sin(theta))",
+    "note": "A two-dimensional geometric guide only. Not a calibrated servo inverse map, rigid-body model, depth clearance certificate, or executable path. Articulated endpoint separation cannot be forced from a single image."
+  },
+  "inversion_pwm_targets": null,
+  "full_rollover_verified": false,
+  "automatic_replay_allowed": false
+}
