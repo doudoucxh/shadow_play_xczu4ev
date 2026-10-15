@@ -837,7 +837,12 @@
     ],
     "elbow_control": "被动关节；腕点圆弧不能保证肘部翻向，必须观察",
     "pwm_route": null,
-    "evidence": "../../config/person_opening_m_result.20261015.json"
+    "evidence": "../../config/person_opening_m_result.20261015.json",
+    "extension_trial": {
+      "evidence": "../../config/person_hip_extension_n_result.20261015.json",
+      "status": "extension_and_return_executed; full_arc_not_executed",
+      "observation": "手臂向外展开；身体也随动，固定头部指令不代表身体固定"
+    }
   },
   "component_command_candidates": {
     "status": "partial_experiment_M; hip_rejected; rise_not_executed",
@@ -942,7 +947,7 @@
     "enabled_mask": 0,
     "armed": false,
     "faults": 0,
-    "sequence": 42797,
+    "sequence": 42999,
     "pending": false,
     "pulse_us": [
       1470,
@@ -958,5 +963,5 @@
     ],
     "position_feedback": null
   },
-  "latest_observed_command_state_note": "M停止指令，非实际轴角；不自动重启"
+  "latest_observed_command_state_note": "N正常停止指令，非实际轴角；不自动重启"
 }

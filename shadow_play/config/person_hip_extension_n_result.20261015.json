@@ -1,0 +1,195 @@
+{
+  "session": "person-hip-extension-20261015-n",
+  "status": "extension_and_return_executed_not_hip_arc",
+  "board_log_sha256": "e58771397eb37a8962650ca95f1601470e1c530ad0797c7006638a4b720e1e15",
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 63,
+    "armed": true,
+    "faults": 0,
+    "sequence": 42798,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1565,
+      1554,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 42999,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1565,
+      1554,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "normal_frame_stop": true,
+  "steps": 200,
+  "peak_command_step_us": 1,
+  "stages": [
+    {
+      "stage": 1,
+      "label": "left_arm_outward_extension",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 42898,
+        "pending": false,
+        "pulse_us": [
+          1430,
+          1212,
+          1565,
+          1554,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "stage": 2,
+      "label": "return_from_extension",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 63,
+        "armed": true,
+        "faults": 0,
+        "sequence": 42998,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1565,
+          1554,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      }
+    }
+  ],
+  "automatic_replay_allowed": false,
+  "actual_angle_feedback": null,
+  "observations": [
+    "Only servo1 changed: 1470 to 1430 then 1470 microseconds; each edge 100 frames at 50Hz.",
+    "Sony-left hand extended outward; arm looked straighter.",
+    "Torso and head also followed left; fixed head command did not mean fixed body position.",
+    "Return looked close to reference; not an exact pixel reproduction claim.",
+    "No obvious rod collision or folding in reviewed dual-view endpoints.",
+    "Fast circular return to waist was not executed. Hand-on-hip not achieved."
+  ],
+  "next_step": "Determine reachable waist target and coupled body support before compiling continuous arc; do not lower servo2 below1212.",
+  "evidence": [
+    {
+      "camera": "front",
+      "file": "front_1792074711730873300.jpg",
+      "host_unix_ns": 1792074711730873300,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-485756",
+      "age_ms": 60,
+      "phase": "reference",
+      "sha256": "9b14a49801f9f91da3269d9e61f899d2126d36142052c85c72299ac54224fbef",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; no new coordinate calibration"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792074711728362400.jpg",
+      "host_unix_ns": 1792074711728362400,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1909309",
+      "age_ms": 14,
+      "phase": "reference",
+      "sha256": "72ca060eda89346a2c15079090ecb6646446b97d1d7f5f21bf231c6ce7854afa",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; no new coordinate calibration"
+    },
+    {
+      "camera": "front",
+      "file": "front_1792074737224719300.jpg",
+      "host_unix_ns": 1792074737224719300,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-486136",
+      "age_ms": 61,
+      "phase": "extension",
+      "sha256": "1ceaadbec0d04faac686de67ea5a1bf909574051aaac3b07bfa5e19cb87e8e4c",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; no new coordinate calibration"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792074737212507400.jpg",
+      "host_unix_ns": 1792074737212507400,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1909691",
+      "age_ms": 16,
+      "phase": "extension",
+      "sha256": "ca04527df5931aecc04f8706d6ab4e3e1c30d832564903345a019cb9f637d4a2",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; no new coordinate calibration"
+    },
+    {
+      "camera": "front",
+      "file": "front_1792074789301230300.jpg",
+      "host_unix_ns": 1792074789301230300,
+      "frame_id": "session-2026-10-15T05-28-15-269Z-486914",
+      "age_ms": 3,
+      "phase": "return",
+      "sha256": "63ff181ccc949acaadcc55a389d6da1f851b204b7d81936d171d98395d08cae8",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; no new coordinate calibration"
+    },
+    {
+      "camera": "top",
+      "file": "top_1792074789288063200.jpg",
+      "host_unix_ns": 1792074789288063200,
+      "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1910472",
+      "age_ms": 30,
+      "phase": "return",
+      "sha256": "e5139d1d6af1ee27ef8c9c37c74529c1935e12f1b39eff037c5e47efdc740950",
+      "connection_pixels": null,
+      "connection_mm": null,
+      "coordinate_status": "not_digitized; no new coordinate calibration"
+    }
+  ]
+}

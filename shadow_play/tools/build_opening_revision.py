@@ -76,7 +76,7 @@ def sample(rows, t):
     return result
 
 
-def build(base, observed, component_result=None):
+def build(base, observed, component_result=None, extension_result=None):
     rows=keyframes()
     revision=dict(schema='opening_task_space_v4',status='planned_not_executed',
         motor_ready=False,automatic_replay_allowed=False,
@@ -140,6 +140,13 @@ def build(base, observed, component_result=None):
             p['executed']=p['person_us'] in executed
         revision['latest_observed_command_state']=component_result['final_state']
         revision['latest_observed_command_state_note']='M停止指令，非实际轴角；不自动重启'
+    if extension_result is not None:
+        revision['latest_observed_command_state']=extension_result['final_state']
+        revision['latest_observed_command_state_note']='N正常停止指令，非实际轴角；不自动重启'
+        revision['hip_entry']['extension_trial']=dict(
+            evidence='../../config/person_hip_extension_n_result.20261015.json',
+            status='extension_and_return_executed; full_arc_not_executed',
+            observation='手臂向外展开；身体也随动，固定头部指令不代表身体固定')
     score=copy.deepcopy(base)
     score['title']='武松打虎 · 开场叉腰指点与山路步态 v4（编排预览）'
     score['latest_revision']='opening_revision_v4.json'
@@ -174,7 +181,9 @@ def main():
     observed=json.loads((ROOT/'config/person_head_centering_fine_result.20261015.json').read_text())
     result_path=ROOT/'config/person_opening_m_result.20261015.json'
     result=json.loads(result_path.read_text(encoding='utf-8')) if result_path.exists() else None
-    revision,score=build(base,observed,result)
+    extension_path=ROOT/'config/person_hip_extension_n_result.20261015.json'
+    extension=json.loads(extension_path.read_text(encoding='utf-8')) if extension_path.exists() else None
+    revision,score=build(base,observed,result,extension)
     for name,value in [('opening_revision_v4.json',revision),('score.opening_v4.json',score)]:
         (OUT/name).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     if args.preview:

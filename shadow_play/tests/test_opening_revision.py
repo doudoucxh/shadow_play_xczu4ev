@@ -72,5 +72,11 @@ class OpeningTests(unittest.TestCase):
         self.assertEqual([p['executed'] for p in rev['component_command_candidates']['poses']],[True,True,True,False])
         self.assertEqual(rev['hip_entry']['status'],'planned_not_executed')
         self.assertFalse(score['motor_ready'])
+    def test_extension_receipt_does_not_certify_full_arc(self):
+        result=json.loads((ROOT/'config/person_hip_extension_n_result.20261015.json').read_text(encoding='utf-8'))
+        rev,score=s.build(self.base,self.observed,extension_result=result)
+        self.assertEqual(rev['latest_observed_command_state']['sequence'],42999)
+        self.assertIsNone(rev['hip_entry']['pwm_route'])
+        self.assertEqual(rev['hip_entry']['status'],'planned_not_executed')
 
 if __name__=='__main__':unittest.main()

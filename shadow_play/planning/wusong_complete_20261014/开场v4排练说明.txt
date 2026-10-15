@@ -36,6 +36,10 @@ M实机试验完成六段手部指令往返；用户确认直接内收不算叉�
 在源码修正并通过离线测试，新圆弧和身体起伏仍未实机验证。
 详见config/person_opening_m_result.20261015.json。新圆弧保留空PWM映射，
 不可将比例坐标或在PWM空间画圆当作已经标定的实际腕点圆弧。
+随后N完成1号1470→1430→1470微秒展臂往返；手臂向外展开，但身体也
+随动。快速圆弧尚未执行，叉腰未完成。正常停止OFF42999；见
+config/person_hip_extension_n_result.20261015.json。开场协议修复已部署，
+本次只实测前两段，不把第7/8段或身体起伏标成实机通过。
 
 重建编排：python shadow_play/tools/build_opening_revision.py
 带原音频的预览可加 --preview <本地输出目录> --audio <原task1.wav路径>。

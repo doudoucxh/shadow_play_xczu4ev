@@ -9,7 +9,7 @@ if ($HeightProbeOnly) {$taskNames=@('tiger_roll_probe.py')}
 if ($ReplayOnly) {$taskNames=@('story_replay_from_height.py')}
 if ($HeadProbeOnly) {$taskNames=@('person_head_contact_probe.py')}
 if ($HeadLateralOnly) {$taskNames=@('person_head_lateral_probe.py')}
-if ($OpeningOnly) {$taskNames=@('person_opening_probe.py','person_recovery_session.py')}
+if ($OpeningOnly) {$taskNames=@('person_opening_probe.py','person_hip_extension_probe.py','person_recovery_session.py')}
 foreach ($taskName in $taskNames) {
     $taskPayload[$taskName]=[Convert]::ToBase64String([IO.File]::ReadAllBytes((Join-Path $taskSources $taskName)))
 }
@@ -41,7 +41,7 @@ import base64,gzip,json,pathlib,py_compile
 src=pathlib.Path('UPLOAD')
 data=json.loads(gzip.decompress(base64.b64decode(src.read_bytes(),validate=True)))
 full={'story_midpoint_continue.py','story_midpoint_first_edge.py','story_midpoint_session.py','story_audio_session_v3.py','story_motion_v3_candidate.py','duel_interaction_trial.py','puppet_choreography_session.py','person_recovery_session.py','tiger_center_session.py','tiger_audio_segment.py'}
-assert set(data) in (full,{'story_midpoint_first_edge.py'},{'story_midpoint_continue.py','story_audio_session_v3.py'},{'tiger_roll_probe.py'},{'story_replay_from_height.py'},{'person_head_contact_probe.py'},{'person_head_lateral_probe.py'},{'person_opening_probe.py','person_recovery_session.py'})
+assert set(data) in (full,{'story_midpoint_first_edge.py'},{'story_midpoint_continue.py','story_audio_session_v3.py'},{'tiger_roll_probe.py'},{'story_replay_from_height.py'},{'person_head_contact_probe.py'},{'person_head_lateral_probe.py'},{'person_opening_probe.py','person_hip_extension_probe.py','person_recovery_session.py'})
 allowed=set(data)
 root=pathlib.Path('/tmp/story-midpoint-20261015')
 root.mkdir(exist_ok=True)

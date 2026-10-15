@@ -69,6 +69,7 @@ try {
             if ($taskReviewedPlan.profile -eq 'person-head-contact-probe-v1') {$taskActor='/tmp/story-midpoint-20261015/person_head_contact_probe.py'}
             if ($taskReviewedPlan.profile -eq 'person-head-lateral-probe-v3') {$taskActor='/tmp/story-midpoint-20261015/person_head_lateral_probe.py'}
             if ($taskReviewedPlan.profile -eq 'person-opening-components-v1') {$taskActor='/tmp/story-midpoint-20261015/person_opening_probe.py'}
+            if ($taskReviewedPlan.profile -eq 'person-hip-extension-v1') {$taskActor='/tmp/story-midpoint-20261015/person_hip_extension_probe.py'}
             if ($taskReviewedPlan.profile -in @('tiger-roll-height-probe-v1','tiger-roll-height-resume-v1','tiger-roll-height-finish-v1')) {$taskActor='/tmp/story-midpoint-20261015/tiger_roll_probe.py'}
             if ($taskReviewedPlan.profile -eq 'tiger-height-aw-v1') {$taskActor='/tmp/tiger_height_trial_20261014_r3.py'}
             if ($taskReviewedPlan.profile -eq 'tiger-shadow-roar-v1') {$taskActor='/tmp/tiger_shadow_roar_20261014.py'}
