@@ -1,11 +1,12 @@
-param([string]$PortName='COM3',[switch]$FirstEdgeOnly,[switch]$ContinuationOnly,[switch]$HeightProbeOnly)
+param([string]$PortName='COM3',[switch]$FirstEdgeOnly,[switch]$ContinuationOnly,[switch]$HeightProbeOnly,[switch]$ReplayOnly)
 $ErrorActionPreference='Stop'
 $taskProject=Split-Path -Parent $PSScriptRoot
 $taskSources=Join-Path $taskProject 'integrations\calibration'
 $taskPayload=@{}
-if (@(@($FirstEdgeOnly,$ContinuationOnly,$HeightProbeOnly) | Where-Object {$_}).Count -gt 1) {throw 'Choose one installation scope'}
+if (@(@($FirstEdgeOnly,$ContinuationOnly,$HeightProbeOnly,$ReplayOnly) | Where-Object {$_}).Count -gt 1) {throw 'Choose one installation scope'}
 $taskNames=if ($ContinuationOnly) {@('story_midpoint_continue.py','story_audio_session_v3.py')} elseif ($FirstEdgeOnly) {@('story_midpoint_first_edge.py')} else {@('story_midpoint_continue.py','story_midpoint_first_edge.py','story_midpoint_session.py','story_audio_session_v3.py','story_motion_v3_candidate.py','duel_interaction_trial.py','puppet_choreography_session.py','person_recovery_session.py','tiger_center_session.py','tiger_audio_segment.py')}
 if ($HeightProbeOnly) {$taskNames=@('tiger_roll_probe.py')}
+if ($ReplayOnly) {$taskNames=@('story_replay_from_height.py')}
 foreach ($taskName in $taskNames) {
     $taskPayload[$taskName]=[Convert]::ToBase64String([IO.File]::ReadAllBytes((Join-Path $taskSources $taskName)))
 }
@@ -37,7 +38,7 @@ import base64,gzip,json,pathlib,py_compile
 src=pathlib.Path('UPLOAD')
 data=json.loads(gzip.decompress(base64.b64decode(src.read_bytes(),validate=True)))
 full={'story_midpoint_continue.py','story_midpoint_first_edge.py','story_midpoint_session.py','story_audio_session_v3.py','story_motion_v3_candidate.py','duel_interaction_trial.py','puppet_choreography_session.py','person_recovery_session.py','tiger_center_session.py','tiger_audio_segment.py'}
-assert set(data) in (full,{'story_midpoint_first_edge.py'},{'story_midpoint_continue.py','story_audio_session_v3.py'},{'tiger_roll_probe.py'})
+assert set(data) in (full,{'story_midpoint_first_edge.py'},{'story_midpoint_continue.py','story_audio_session_v3.py'},{'tiger_roll_probe.py'},{'story_replay_from_height.py'})
 allowed=set(data)
 root=pathlib.Path('/tmp/story-midpoint-20261015')
 root.mkdir(exist_ok=True)

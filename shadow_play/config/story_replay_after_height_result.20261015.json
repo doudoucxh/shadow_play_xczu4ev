@@ -1,0 +1,5204 @@
+{
+  "session": "story-replay-after-height-20261015-h",
+  "status": "full_audio_and_commands_completed_normal_off",
+  "source_height_log_sha256": "48ce4387e4a84485606ca61c027b271f8e0aba5d53ba4340cba12ca0097d97c4",
+  "source_show_log_sha256": "24f8c691bf227f727558fca7a548b488393e385c2a4f567fa83f5d895172b77f",
+  "board_log_sha256": "8475b58d7ebfc40c1fdbffd20908fd227da1c45c22d230257d77ed18b36cde1c",
+  "initial_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 1023,
+    "armed": true,
+    "faults": 0,
+    "sequence": 38466,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1425,
+      1514,
+      1416,
+      1740,
+      1730,
+      1330,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "final_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 41688,
+    "pending": false,
+    "pulse_us": [
+      1470,
+      1212,
+      1425,
+      1514,
+      1416,
+      1740,
+      1730,
+      1250,
+      1770,
+      1740
+    ],
+    "position_feedback": null
+  },
+  "entry_steps": 100,
+  "timeline_steps": 3120,
+  "peak_command_step_us": 20,
+  "audio_duration_seconds": 67.10566893424036,
+  "audio_player_report": "DECODE_OK frames=3221073 duration=67.105688 rate=48000 channels=2\nPLAY_START card=1 device=0 gain=0.750\nPLAY_COMPLETE frames=3221073 elapsed=67.099\n",
+  "full_show_executed": true,
+  "normal_frame_stop": true,
+  "actual_stage_effect_verified": false,
+  "tiger_rollover_added": false,
+  "incident_locks_removed": false,
+  "automatic_replay_allowed": false,
+  "observations": [
+    "100-frame entry changed only tiger head 1330 -> 1250 us, followed by fresh review and one demo request while outputs remained active.",
+    "Full original 67-second audio and fixed timeline completed; no timeout or step-limit interruption.",
+    "Inspected dual views show human arm/body changes and tiger lift/drop, with no obvious gross folding or rod collision in inspected frames.",
+    "Completion verifies execution, not approval of every artistic effect. No new rollover was included.",
+    "Final command returned to score START before normal OFF. Commands are not actual shaft feedback; no old millimetre calibration applied."
+  ],
+  "checkpoints": [
+    {
+      "event": "probe_complete",
+      "axis": 1,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38566,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184472.497638309
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 0,
+      "target_audio_time_s": 0,
+      "audio_time_s": 0.001943000010214746,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38568,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184514.317185467
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 1,
+      "target_audio_time_s": 1.0,
+      "audio_time_s": 1.0099227790196892,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38615,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184515.315610421
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 2,
+      "target_audio_time_s": 1.5,
+      "audio_time_s": 1.5048865090066101,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38638,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1221,
+          1434,
+          1523,
+          1426,
+          1722,
+          1710,
+          1292,
+          1750,
+          1720
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184515.817450909
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 3,
+      "target_audio_time_s": 1.8,
+      "audio_time_s": 1.8055361050064676,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38652,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1226,
+          1439,
+          1528,
+          1431,
+          1712,
+          1720,
+          1271,
+          1760,
+          1730
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184516.115721062
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 4,
+      "target_audio_time_s": 2.1,
+      "audio_time_s": 2.10642438402283,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38666,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1221,
+          1434,
+          1523,
+          1426,
+          1722,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184516.416521589
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 5,
+      "target_audio_time_s": 2.6,
+      "audio_time_s": 2.604986019025091,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38689,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1693,
+          1328,
+          1733,
+          1703
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184516.915490749
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 6,
+      "target_audio_time_s": 2.7,
+      "audio_time_s": 2.7112100009981077,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38694,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1213,
+          1426,
+          1515,
+          1417,
+          1738,
+          1690,
+          1335,
+          1730,
+          1700
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184517.016689051
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 7,
+      "target_audio_time_s": 3.2,
+      "audio_time_s": 3.205684876011219,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38717,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1228,
+          1441,
+          1530,
+          1433,
+          1709,
+          1716,
+          1280,
+          1756,
+          1726
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184517.515843252
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 8,
+      "target_audio_time_s": 3.5,
+      "audio_time_s": 3.5062679020047653,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38731,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1234,
+          1447,
+          1536,
+          1440,
+          1696,
+          1710,
+          1292,
+          1750,
+          1720
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184517.816497559
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 9,
+      "target_audio_time_s": 3.8,
+      "audio_time_s": 3.8086969960131682,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38745,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1240,
+          1453,
+          1542,
+          1447,
+          1683,
+          1718,
+          1276,
+          1758,
+          1728
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184518.116450398
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 10,
+      "target_audio_time_s": 4.3,
+      "audio_time_s": 4.30375213600928,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38768,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1630,
+          1535,
+          1670,
+          1640
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184518.616350197
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 11,
+      "target_audio_time_s": 5.1,
+      "audio_time_s": 5.100085079000564,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38805,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1570,
+          1695,
+          1610,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184519.417811631
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 12,
+      "target_audio_time_s": 5.4,
+      "audio_time_s": 5.402397952013416,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38819,
+        "pending": false,
+        "pulse_us": [
+          1512,
+          1254,
+          1479,
+          1566,
+          1446,
+          1671,
+          1570,
+          1695,
+          1610,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184519.717371616
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 13,
+      "target_audio_time_s": 6.0,
+      "audio_time_s": 6.00482797602308,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38847,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1465,
+          1594,
+          1460,
+          1720,
+          1514,
+          1301,
+          1554,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184520.317431527
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 14,
+      "target_audio_time_s": 6.1,
+      "audio_time_s": 6.111162179004168,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38852,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1214,
+          1466,
+          1592,
+          1464,
+          1713,
+          1510,
+          1275,
+          1550,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184520.416507128
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 15,
+      "target_audio_time_s": 6.8,
+      "audio_time_s": 6.80146086201421,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38884,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1250,
+          1484,
+          1556,
+          1537,
+          1586,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184521.116528007
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 16,
+      "target_audio_time_s": 6.9,
+      "audio_time_s": 6.907670054002665,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38889,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1690,
+          1254,
+          1730,
+          1738
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184521.21580911
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 17,
+      "target_audio_time_s": 7.7,
+      "audio_time_s": 7.705456182011403,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38926,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1690,
+          1335,
+          1730,
+          1700
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184522.015898211
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 18,
+      "target_audio_time_s": 8.5,
+      "audio_time_s": 8.503236279007979,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38963,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1240,
+          1465,
+          1566,
+          1460,
+          1677,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184522.81583878
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 19,
+      "target_audio_time_s": 8.6,
+      "audio_time_s": 8.60954813202261,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38968,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1240,
+          1465,
+          1566,
+          1460,
+          1678,
+          1729,
+          1251,
+          1769,
+          1739
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184522.917348125
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 20,
+      "target_audio_time_s": 9.2,
+      "audio_time_s": 9.211248789011734,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 38996,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1214,
+          1427,
+          1517,
+          1418,
+          1737,
+          1722,
+          1267,
+          1762,
+          1732
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184523.516630097
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 21,
+      "target_audio_time_s": 9.3,
+      "audio_time_s": 9.320886355009861,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39001,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1723,
+          1266,
+          1763,
+          1733
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184523.635945971
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 22,
+      "target_audio_time_s": 10,
+      "audio_time_s": 10.008790564024821,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39033,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184524.316609577
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 23,
+      "target_audio_time_s": 10.8,
+      "audio_time_s": 10.804980676010018,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39070,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1695,
+          1324,
+          1735,
+          1705
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184525.117834819
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 24,
+      "target_audio_time_s": 11,
+      "audio_time_s": 11.020862233999651,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39080,
+        "pending": false,
+        "pulse_us": [
+          1480,
+          1255,
+          1468,
+          1554,
+          1457,
+          1658,
+          1690,
+          1335,
+          1730,
+          1700
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184525.335889359
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 25,
+      "target_audio_time_s": 11.8,
+      "audio_time_s": 11.813766713021323,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39117,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1725,
+          1260,
+          1765,
+          1735
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184526.136069901
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 26,
+      "target_audio_time_s": 12,
+      "audio_time_s": 12.007397169014439,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39126,
+        "pending": false,
+        "pulse_us": [
+          1521,
+          1269,
+          1482,
+          1554,
+          1443,
+          1651,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184526.317547445
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 27,
+      "target_audio_time_s": 12.8,
+      "audio_time_s": 12.80370521201985,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39163,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1713,
+          1287,
+          1753,
+          1723
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184527.116260132
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 28,
+      "target_audio_time_s": 13,
+      "audio_time_s": 13.019037404999835,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39173,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1261,
+          1465,
+          1551,
+          1460,
+          1647,
+          1710,
+          1292,
+          1750,
+          1720
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184527.336442924
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 29,
+      "target_audio_time_s": 13.4,
+      "audio_time_s": 13.40430812802515,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39191,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1290,
+          1465,
+          1541,
+          1460,
+          1610,
+          1718,
+          1276,
+          1758,
+          1728
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184527.716866648
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 30,
+      "target_audio_time_s": 13.8,
+      "audio_time_s": 13.811071845004335,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39210,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1312,
+          1465,
+          1534,
+          1460,
+          1580,
+          1706,
+          1301,
+          1746,
+          1716
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184528.116454684
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 31,
+      "target_audio_time_s": 14.5,
+      "audio_time_s": 14.52025424700696,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39243,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1235,
+          1465,
+          1580,
+          1460,
+          1688,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184528.837677076
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 32,
+      "target_audio_time_s": 14.8,
+      "audio_time_s": 14.801144266006304,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39256,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1465,
+          1594,
+          1460,
+          1720,
+          1725,
+          1261,
+          1765,
+          1735
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184529.11617142
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 33,
+      "target_audio_time_s": 16,
+      "audio_time_s": 16.00643301801756,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39312,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1335,
+          1730,
+          1700
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184530.316672875
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 34,
+      "target_audio_time_s": 17,
+      "audio_time_s": 17.019747961021494,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39359,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184531.33726463
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 35,
+      "target_audio_time_s": 18,
+      "audio_time_s": 18.00660008902196,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39405,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1720,
+          1271,
+          1760,
+          1730
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184532.317064468
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 36,
+      "target_audio_time_s": 19,
+      "audio_time_s": 19.020185334025882,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39452,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184533.337902196
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 37,
+      "target_audio_time_s": 20,
+      "audio_time_s": 20.007607408013428,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39498,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1312,
+          1465,
+          1534,
+          1460,
+          1580,
+          1712,
+          1288,
+          1752,
+          1722
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184534.315667563
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 38,
+      "target_audio_time_s": 21,
+      "audio_time_s": 21.020049372018548,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39545,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1465,
+          1594,
+          1460,
+          1720,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184535.337522211
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 39,
+      "target_audio_time_s": 22,
+      "audio_time_s": 22.00807313201949,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39591,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1335,
+          1730,
+          1700
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184536.315798394
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 40,
+      "target_audio_time_s": 23,
+      "audio_time_s": 23.002583826018963,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39637,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184537.317546391
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 41,
+      "target_audio_time_s": 24,
+      "audio_time_s": 24.010747568012448,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39684,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1465,
+          1594,
+          1460,
+          1720,
+          1690,
+          1335,
+          1730,
+          1700
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184538.316082946
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 42,
+      "target_audio_time_s": 25,
+      "audio_time_s": 25.00242731400067,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39730,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184539.317359908
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 43,
+      "target_audio_time_s": 26,
+      "audio_time_s": 26.012027140008286,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39777,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1690,
+          1335,
+          1730,
+          1700
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184540.317350727
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 44,
+      "target_audio_time_s": 27,
+      "audio_time_s": 27.003766767011257,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39823,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1465,
+          1594,
+          1460,
+          1720,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184541.316355167
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 45,
+      "target_audio_time_s": 28,
+      "audio_time_s": 28.012023749004584,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39870,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184542.317376197
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 46,
+      "target_audio_time_s": 29,
+      "audio_time_s": 29.003918027010513,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39916,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184543.316456537
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 47,
+      "target_audio_time_s": 29.65,
+      "audio_time_s": 29.6691927400243,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39947,
+        "pending": false,
+        "pulse_us": [
+          1475,
+          1363,
+          1467,
+          1518,
+          1458,
+          1514,
+          1630,
+          1536,
+          1670,
+          1638
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184543.976904681
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 48,
+      "target_audio_time_s": 29.8,
+      "audio_time_s": 29.80161634401884,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39953,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1372,
+          1465,
+          1514,
+          1460,
+          1500,
+          1609,
+          1591,
+          1649,
+          1570
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184544.116626759
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 49,
+      "target_audio_time_s": 30.05,
+      "audio_time_s": 30.060218360013096,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39965,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1326,
+          1465,
+          1537,
+          1460,
+          1563,
+          1570,
+          1695,
+          1610,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184544.377666959
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 50,
+      "target_audio_time_s": 30.6,
+      "audio_time_s": 30.617367071012268,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39991,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1465,
+          1594,
+          1460,
+          1720,
+          1513,
+          1298,
+          1553,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184544.937296635
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 51,
+      "target_audio_time_s": 30.7,
+      "audio_time_s": 30.703420052013826,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 39995,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1215,
+          1466,
+          1591,
+          1466,
+          1710,
+          1510,
+          1275,
+          1550,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184545.015979142
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 52,
+      "target_audio_time_s": 31.3,
+      "audio_time_s": 31.30647771200165,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40023,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1687,
+          1250,
+          1727,
+          1735
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184545.616730349
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 53,
+      "target_audio_time_s": 31.35,
+      "audio_time_s": 31.370284750009887,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40026,
+        "pending": false,
+        "pulse_us": [
+          1472,
+          1253,
+          1485,
+          1554,
+          1537,
+          1582,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184545.676177353
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 54,
+      "target_audio_time_s": 32,
+      "audio_time_s": 32.01699965700391,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40056,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184546.33687951
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 55,
+      "target_audio_time_s": 32.6,
+      "audio_time_s": 32.61926044902066,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40084,
+        "pending": false,
+        "pulse_us": [
+          1491,
+          1259,
+          1472,
+          1554,
+          1453,
+          1656,
+          1690,
+          1335,
+          1730,
+          1700
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184546.936693478
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 56,
+      "target_audio_time_s": 33,
+      "audio_time_s": 33.00646532099927,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40102,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1715,
+          1283,
+          1755,
+          1725
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184547.316643767
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 57,
+      "target_audio_time_s": 33.1,
+      "audio_time_s": 33.11278155402397,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40107,
+        "pending": false,
+        "pulse_us": [
+          1473,
+          1253,
+          1466,
+          1554,
+          1459,
+          1660,
+          1718,
+          1276,
+          1758,
+          1728
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184547.416044091
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 58,
+      "target_audio_time_s": 33.4,
+      "audio_time_s": 33.41335285000969,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40121,
+        "pending": false,
+        "pulse_us": [
+          1494,
+          1260,
+          1473,
+          1554,
+          1452,
+          1656,
+          1710,
+          1292,
+          1750,
+          1720
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184547.736287634
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 59,
+      "target_audio_time_s": 33.7,
+      "audio_time_s": 33.71730220899917,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40135,
+        "pending": false,
+        "pulse_us": [
+          1516,
+          1267,
+          1480,
+          1554,
+          1445,
+          1652,
+          1718,
+          1276,
+          1758,
+          1728
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184548.037216323
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 60,
+      "target_audio_time_s": 34,
+      "audio_time_s": 34.017384230013704,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40149,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1723,
+          1264,
+          1763,
+          1733
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184548.337424135
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 61,
+      "target_audio_time_s": 34.4,
+      "audio_time_s": 34.40284671401605,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40167,
+        "pending": false,
+        "pulse_us": [
+          1507,
+          1264,
+          1477,
+          1554,
+          1448,
+          1654,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184548.715810658
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 62,
+      "target_audio_time_s": 35,
+      "audio_time_s": 35.00428597800783,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40195,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1674,
+          1410,
+          1714,
+          1684
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184549.31695247
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 63,
+      "target_audio_time_s": 35.5,
+      "audio_time_s": 35.50103061602567,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40218,
+        "pending": false,
+        "pulse_us": [
+          1494,
+          1260,
+          1473,
+          1554,
+          1452,
+          1656,
+          1630,
+          1535,
+          1670,
+          1640
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184549.816084741
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 64,
+      "target_audio_time_s": 36.2,
+      "audio_time_s": 36.20899755501887,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40251,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1510,
+          1275,
+          1550,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184550.516717807
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 65,
+      "target_audio_time_s": 37,
+      "audio_time_s": 37.00646864902228,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40288,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184551.316684326
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 66,
+      "target_audio_time_s": 37.65,
+      "audio_time_s": 37.650383388012415,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40318,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1225,
+          1465,
+          1581,
+          1460,
+          1701,
+          1570,
+          1695,
+          1610,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184551.95605237
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 67,
+      "target_audio_time_s": 38.0,
+      "audio_time_s": 38.017258856998524,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40335,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1465,
+          1594,
+          1460,
+          1720,
+          1541,
+          1490,
+          1581,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184552.337285412
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 68,
+      "target_audio_time_s": 38.4,
+      "audio_time_s": 38.40271369100083,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40353,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1240,
+          1479,
+          1566,
+          1517,
+          1621,
+          1510,
+          1275,
+          1550,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184552.717726536
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 69,
+      "target_audio_time_s": 38.6,
+      "audio_time_s": 38.61754976899829,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40363,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1539,
+          1309,
+          1579,
+          1474
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184552.937465863
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 70,
+      "target_audio_time_s": 39.15,
+      "audio_time_s": 39.15307243401185,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40388,
+        "pending": false,
+        "pulse_us": [
+          1514,
+          1267,
+          1485,
+          1554,
+          1467,
+          1631,
+          1630,
+          1415,
+          1670,
+          1580
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184553.477756506
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 71,
+      "target_audio_time_s": 39.4,
+      "audio_time_s": 39.41286225200747,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40400,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1657,
+          1371,
+          1697,
+          1623
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184553.71614021
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 72,
+      "target_audio_time_s": 40,
+      "audio_time_s": 40.0170967640006,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40428,
+        "pending": false,
+        "pulse_us": [
+          1491,
+          1336,
+          1472,
+          1528,
+          1453,
+          1554,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184554.336936537
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 73,
+      "target_audio_time_s": 40.4,
+      "audio_time_s": 40.40325426601339,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40446,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1372,
+          1465,
+          1514,
+          1460,
+          1500,
+          1702,
+          1310,
+          1742,
+          1712
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184554.715864266
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 74,
+      "target_audio_time_s": 40.6,
+      "audio_time_s": 40.61914041402633,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40456,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1328,
+          1470,
+          1536,
+          1471,
+          1544,
+          1690,
+          1335,
+          1730,
+          1700
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184554.936567173
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 75,
+      "target_audio_time_s": 41.1,
+      "audio_time_s": 41.110890602023574,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40479,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1485,
+          1594,
+          1500,
+          1660,
+          1634,
+          1409,
+          1674,
+          1589
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184555.41625724
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 76,
+      "target_audio_time_s": 41.2,
+      "audio_time_s": 41.22052672802238,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40484,
+        "pending": false,
+        "pulse_us": [
+          1475,
+          1217,
+          1485,
+          1591,
+          1495,
+          1659,
+          1630,
+          1415,
+          1670,
+          1580
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184555.535873656
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 77,
+      "target_audio_time_s": 41.9,
+      "audio_time_s": 41.90692210200359,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40516,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1630,
+          1535,
+          1670,
+          1640
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184556.217122958
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 78,
+      "target_audio_time_s": 42.6,
+      "audio_time_s": 42.619493427017005,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40549,
+        "pending": false,
+        "pulse_us": [
+          1472,
+          1214,
+          1466,
+          1593,
+          1459,
+          1718,
+          1510,
+          1275,
+          1550,
+          1440
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184556.936958526
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 79,
+      "target_audio_time_s": 42.7,
+      "audio_time_s": 42.70444971701363,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40553,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1465,
+          1594,
+          1460,
+          1720,
+          1519,
+          1286,
+          1559,
+          1451
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184557.017037817
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 80,
+      "target_audio_time_s": 43.3,
+      "audio_time_s": 43.30712691301596,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40581,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1245,
+          1481,
+          1561,
+          1525,
+          1606,
+          1630,
+          1415,
+          1670,
+          1580
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184557.617271909
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 81,
+      "target_audio_time_s": 43.5,
+      "audio_time_s": 43.50176228900091,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40590,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1645,
+          1375,
+          1685,
+          1619
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184557.816779364
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 82,
+      "target_audio_time_s": 44,
+      "audio_time_s": 44.01722678402439,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40614,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1469,
+          1554,
+          1477,
+          1643,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184558.337080717
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 83,
+      "target_audio_time_s": 44.2,
+      "audio_time_s": 44.209300975024235,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40623,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1696,
+          1250,
+          1736,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184558.517026476
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 84,
+      "target_audio_time_s": 45,
+      "audio_time_s": 45.006673458003206,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40660,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184559.316829854
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 85,
+      "target_audio_time_s": 45.8,
+      "audio_time_s": 45.802180193015374,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40697,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1372,
+          1465,
+          1514,
+          1460,
+          1500,
+          1700,
+          1250,
+          1740,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184560.117246828
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 86,
+      "target_audio_time_s": 46.08,
+      "audio_time_s": 46.08190425002249,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40710,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1372,
+          1465,
+          1514,
+          1460,
+          1500,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184560.396977785
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 87,
+      "target_audio_time_s": 46.13,
+      "audio_time_s": 46.14565668700379,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40713,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1347,
+          1468,
+          1527,
+          1466,
+          1525,
+          1690,
+          1251,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184560.456201557
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 88,
+      "target_audio_time_s": 46.38,
+      "audio_time_s": 46.384018671000376,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40724,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1485,
+          1594,
+          1500,
+          1660,
+          1659,
+          1335,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184560.696570261
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 89,
+      "target_audio_time_s": 46.44,
+      "audio_time_s": 46.4477717380214,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40727,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1485,
+          1594,
+          1500,
+          1660,
+          1655,
+          1346,
+          1730,
+          1739
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184560.757924564
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 90,
+      "target_audio_time_s": 46.46,
+      "audio_time_s": 46.469001511024544,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40728,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1485,
+          1594,
+          1500,
+          1660,
+          1655,
+          1346,
+          1725,
+          1727
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184560.776764423
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 91,
+      "target_audio_time_s": 46.58,
+      "audio_time_s": 46.59985228901496,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40734,
+        "pending": false,
+        "pulse_us": [
+          1506,
+          1248,
+          1485,
+          1570,
+          1464,
+          1654,
+          1657,
+          1341,
+          1697,
+          1652
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184560.917373489
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 92,
+      "target_audio_time_s": 46.7,
+      "audio_time_s": 46.7060514310142,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40739,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1685,
+          1264,
+          1725,
+          1726
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184561.016334278
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 93,
+      "target_audio_time_s": 46.74,
+      "audio_time_s": 46.74853836602415,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40741,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184561.056330648
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 94,
+      "target_audio_time_s": 47.48,
+      "audio_time_s": 47.48209754101117,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40775,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184561.797162466
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 95,
+      "target_audio_time_s": 47.53,
+      "audio_time_s": 47.54587739901035,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40778,
+        "pending": false,
+        "pulse_us": [
+          1521,
+          1269,
+          1485,
+          1554,
+          1456,
+          1639,
+          1690,
+          1251,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184561.856110356
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 96,
+      "target_audio_time_s": 47.78,
+      "audio_time_s": 47.78313351102406,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40789,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1662,
+          1329,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184562.096151366
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 97,
+      "target_audio_time_s": 47.84,
+      "audio_time_s": 47.84689038901706,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40792,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1658,
+          1339,
+          1730,
+          1739
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184562.157083505
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 98,
+      "target_audio_time_s": 47.86,
+      "audio_time_s": 47.86811851101811,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40793,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1658,
+          1339,
+          1726,
+          1728
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184562.176241067
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 99,
+      "target_audio_time_s": 47.98,
+      "audio_time_s": 48.000233142025536,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40799,
+        "pending": false,
+        "pulse_us": [
+          1506,
+          1264,
+          1485,
+          1554,
+          1480,
+          1622,
+          1660,
+          1334,
+          1700,
+          1659
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184562.317628641
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 100,
+      "target_audio_time_s": 48.1,
+      "audio_time_s": 48.10649825501605,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40804,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1685,
+          1263,
+          1725,
+          1727
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184562.416661731
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 101,
+      "target_audio_time_s": 48.14,
+      "audio_time_s": 48.14896226901328,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40806,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184562.456714262
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 102,
+      "target_audio_time_s": 49.05,
+      "audio_time_s": 49.05145922402153,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40848,
+        "pending": false,
+        "pulse_us": [
+          1498,
+          1325,
+          1474,
+          1533,
+          1451,
+          1570,
+          1690,
+          1271,
+          1730,
+          1730
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184563.356800962
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 103,
+      "target_audio_time_s": 49.91,
+      "audio_time_s": 49.91193925900734,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40888,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1372,
+          1465,
+          1514,
+          1460,
+          1500,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184564.217269356
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 104,
+      "target_audio_time_s": 49.96,
+      "audio_time_s": 49.980352843005676,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40891,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1344,
+          1469,
+          1528,
+          1467,
+          1528,
+          1690,
+          1251,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184564.297785302
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 105,
+      "target_audio_time_s": 50.21,
+      "audio_time_s": 50.21408173002419,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40902,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1485,
+          1594,
+          1500,
+          1660,
+          1663,
+          1323,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184564.536371417
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 106,
+      "target_audio_time_s": 50.27,
+      "audio_time_s": 50.28097573900595,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40905,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1485,
+          1594,
+          1500,
+          1660,
+          1660,
+          1332,
+          1729,
+          1738
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184564.596063524
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 107,
+      "target_audio_time_s": 50.29,
+      "audio_time_s": 50.302223361009965,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40906,
+        "pending": false,
+        "pulse_us": [
+          1471,
+          1213,
+          1485,
+          1594,
+          1499,
+          1660,
+          1660,
+          1332,
+          1725,
+          1726
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184564.617466458
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 108,
+      "target_audio_time_s": 50.41,
+      "audio_time_s": 50.42973234600504,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40912,
+        "pending": false,
+        "pulse_us": [
+          1506,
+          1248,
+          1485,
+          1570,
+          1464,
+          1654,
+          1662,
+          1328,
+          1702,
+          1664
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184564.737477918
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 109,
+      "target_audio_time_s": 50.53,
+      "audio_time_s": 50.539495674020145,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40917,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1686,
+          1260,
+          1726,
+          1730
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184564.856965843
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 110,
+      "target_audio_time_s": 50.57,
+      "audio_time_s": 50.58199853901169,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40919,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184564.896970583
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 111,
+      "target_audio_time_s": 51.38,
+      "audio_time_s": 51.38109498901758,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40956,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184565.696148365
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 112,
+      "target_audio_time_s": 51.43,
+      "audio_time_s": 51.44485921700834,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40959,
+        "pending": false,
+        "pulse_us": [
+          1521,
+          1269,
+          1485,
+          1554,
+          1455,
+          1639,
+          1690,
+          1251,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184565.757467118
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 113,
+      "target_audio_time_s": 51.68,
+      "audio_time_s": 51.68183473701356,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40970,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1666,
+          1317,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184565.996931822
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 114,
+      "target_audio_time_s": 51.74,
+      "audio_time_s": 51.74555348401191,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40973,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1663,
+          1326,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184566.056130964
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 115,
+      "target_audio_time_s": 51.76,
+      "audio_time_s": 51.766787816013675,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40974,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1663,
+          1326,
+          1727,
+          1731
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184566.077085334
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 116,
+      "target_audio_time_s": 51.88,
+      "audio_time_s": 51.89431876101298,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40980,
+        "pending": false,
+        "pulse_us": [
+          1504,
+          1263,
+          1485,
+          1554,
+          1483,
+          1620,
+          1664,
+          1324,
+          1704,
+          1669
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184566.216610159
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 117,
+      "target_audio_time_s": 52.0,
+      "audio_time_s": 52.003744316025404,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40985,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1686,
+          1263,
+          1726,
+          1728
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184566.316421037
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 118,
+      "target_audio_time_s": 52.04,
+      "audio_time_s": 52.046260831004474,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 40987,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184566.356464267
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 119,
+      "target_audio_time_s": 52.57,
+      "audio_time_s": 52.58547665301012,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41012,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1271,
+          1730,
+          1730
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184566.895996413
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 120,
+      "target_audio_time_s": 53.05,
+      "audio_time_s": 53.060902837023605,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41034,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184567.376332356
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 121,
+      "target_audio_time_s": 53.1,
+      "audio_time_s": 53.10349795300863,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41036,
+        "pending": false,
+        "pulse_us": [
+          1524,
+          1270,
+          1485,
+          1554,
+          1451,
+          1642,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184567.416132374
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 122,
+      "target_audio_time_s": 53.35,
+      "audio_time_s": 53.36200966802426,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41048,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1667,
+          1313,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184567.677307575
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 123,
+      "target_audio_time_s": 53.41,
+      "audio_time_s": 53.42577023501508,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41051,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1665,
+          1319,
+          1729,
+          1737
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184567.735973162
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 124,
+      "target_audio_time_s": 53.43,
+      "audio_time_s": 53.447004148009,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41052,
+        "pending": false,
+        "pulse_us": [
+          1471,
+          1252,
+          1485,
+          1554,
+          1538,
+          1581,
+          1665,
+          1319,
+          1725,
+          1726
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184567.757215204
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 125,
+      "target_audio_time_s": 53.55,
+      "audio_time_s": 53.553315911005484,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41057,
+        "pending": false,
+        "pulse_us": [
+          1501,
+          1262,
+          1485,
+          1554,
+          1488,
+          1616,
+          1665,
+          1319,
+          1705,
+          1673
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184567.877998662
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 126,
+      "target_audio_time_s": 53.67,
+      "audio_time_s": 53.68552213301882,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41063,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1688,
+          1255,
+          1728,
+          1735
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184567.998066643
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 127,
+      "target_audio_time_s": 53.71,
+      "audio_time_s": 53.728016838023905,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41065,
+        "pending": false,
+        "pulse_us": [
+          1528,
+          1270,
+          1484,
+          1555,
+          1441,
+          1652,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184568.036175694
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 128,
+      "target_audio_time_s": 54.26,
+      "audio_time_s": 54.267137109010946,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41090,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1465,
+          1594,
+          1460,
+          1720,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184568.577288705
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 129,
+      "target_audio_time_s": 54.31,
+      "audio_time_s": 54.330881446017884,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41093,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1219,
+          1469,
+          1587,
+          1474,
+          1695,
+          1690,
+          1251,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184568.636219524
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 130,
+      "target_audio_time_s": 54.56,
+      "audio_time_s": 54.56851682200795,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41104,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1669,
+          1306,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184568.876285795
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 131,
+      "target_audio_time_s": 54.62,
+      "audio_time_s": 54.63231489001191,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41107,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1667,
+          1312,
+          1729,
+          1738
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184568.937680779
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 132,
+      "target_audio_time_s": 54.64,
+      "audio_time_s": 54.653599743003724,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41108,
+        "pending": false,
+        "pulse_us": [
+          1471,
+          1252,
+          1485,
+          1554,
+          1539,
+          1581,
+          1667,
+          1312,
+          1726,
+          1729
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184568.976281025
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 133,
+      "target_audio_time_s": 54.76,
+      "audio_time_s": 54.763378401024966,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41113,
+        "pending": false,
+        "pulse_us": [
+          1501,
+          1262,
+          1485,
+          1554,
+          1488,
+          1616,
+          1667,
+          1312,
+          1707,
+          1680
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184569.076366585
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 134,
+      "target_audio_time_s": 54.88,
+      "audio_time_s": 54.89089596600388,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41119,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1687,
+          1257,
+          1727,
+          1733
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184569.196484156
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 135,
+      "target_audio_time_s": 54.92,
+      "audio_time_s": 54.93341671102098,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41121,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1649,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184569.256091063
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 136,
+      "target_audio_time_s": 55.745,
+      "audio_time_s": 55.75225257902639,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41159,
+        "pending": false,
+        "pulse_us": [
+          1498,
+          1326,
+          1474,
+          1532,
+          1451,
+          1569,
+          1690,
+          1271,
+          1730,
+          1730
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184570.057624978
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 137,
+      "target_audio_time_s": 56.52,
+      "audio_time_s": 56.53043333100504,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41195,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1371,
+          1465,
+          1514,
+          1460,
+          1501,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184570.836151632
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 138,
+      "target_audio_time_s": 56.57,
+      "audio_time_s": 56.57300765599939,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41197,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1355,
+          1467,
+          1522,
+          1464,
+          1517,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184570.876352064
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 139,
+      "target_audio_time_s": 56.82,
+      "audio_time_s": 56.831295719021,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41209,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1485,
+          1594,
+          1500,
+          1660,
+          1672,
+          1301,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184571.136705648
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 140,
+      "target_audio_time_s": 56.88,
+      "audio_time_s": 56.8973681400239,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41212,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1485,
+          1594,
+          1500,
+          1660,
+          1670,
+          1306,
+          1729,
+          1737
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184571.217261703
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 141,
+      "target_audio_time_s": 56.9,
+      "audio_time_s": 56.91950917101349,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41213,
+        "pending": false,
+        "pulse_us": [
+          1471,
+          1213,
+          1485,
+          1593,
+          1499,
+          1660,
+          1670,
+          1306,
+          1725,
+          1727
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184571.237179713
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 142,
+      "target_audio_time_s": 57.02,
+      "audio_time_s": 57.02582402402186,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41218,
+        "pending": false,
+        "pulse_us": [
+          1502,
+          1244,
+          1485,
+          1573,
+          1468,
+          1655,
+          1670,
+          1306,
+          1710,
+          1686
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184571.336081672
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 143,
+      "target_audio_time_s": 57.14,
+      "audio_time_s": 57.1533176790108,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41224,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1441,
+          1650,
+          1688,
+          1255,
+          1728,
+          1735
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184571.478025841
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 144,
+      "target_audio_time_s": 57.18,
+      "audio_time_s": 57.200582942023175,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41226,
+        "pending": false,
+        "pulse_us": [
+          1522,
+          1269,
+          1485,
+          1554,
+          1454,
+          1640,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184571.518014261
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 145,
+      "target_audio_time_s": 57.19,
+      "audio_time_s": 57.200582942023175,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41226,
+        "pending": false,
+        "pulse_us": [
+          1522,
+          1269,
+          1485,
+          1554,
+          1454,
+          1640,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184571.518127392
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 146,
+      "target_audio_time_s": 57.44,
+      "audio_time_s": 57.46059161200537,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41238,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1673,
+          1296,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184571.778109092
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 147,
+      "target_audio_time_s": 57.5,
+      "audio_time_s": 57.50315396700171,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41240,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1672,
+          1299,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184571.816203563
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 148,
+      "target_audio_time_s": 57.52,
+      "audio_time_s": 57.52442642999813,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41241,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1485,
+          1554,
+          1540,
+          1580,
+          1672,
+          1299,
+          1728,
+          1735
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184571.837112872
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 149,
+      "target_audio_time_s": 57.64,
+      "audio_time_s": 57.65212687701569,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41247,
+        "pending": false,
+        "pulse_us": [
+          1504,
+          1263,
+          1485,
+          1554,
+          1484,
+          1619,
+          1672,
+          1298,
+          1712,
+          1694
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184571.957526756
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 150,
+      "target_audio_time_s": 57.76,
+      "audio_time_s": 57.76176657300675,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41252,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1687,
+          1259,
+          1727,
+          1731
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184572.076847549
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 151,
+      "target_audio_time_s": 57.8,
+      "audio_time_s": 57.804238718003035,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41254,
+        "pending": false,
+        "pulse_us": [
+          1528,
+          1271,
+          1484,
+          1554,
+          1441,
+          1650,
+          1690,
+          1250,
+          1730,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184572.116824659
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 152,
+      "target_audio_time_s": 58.2,
+      "audio_time_s": 58.21106771600898,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41273,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1721,
+          1250,
+          1761,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184572.516447735
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 153,
+      "target_audio_time_s": 58.36,
+      "audio_time_s": 58.36322338800528,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41280,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1248,
+          1465,
+          1558,
+          1460,
+          1665,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184572.676154752
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 154,
+      "target_audio_time_s": 59.2,
+      "audio_time_s": 59.20478196302429,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41319,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1465,
+          1594,
+          1460,
+          1720,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184573.517366193
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 155,
+      "target_audio_time_s": 60.1,
+      "audio_time_s": 60.106170316023054,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41361,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1252,
+          1465,
+          1554,
+          1460,
+          1660,
+          1726,
+          1258,
+          1766,
+          1736
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184574.416384733
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 156,
+      "target_audio_time_s": 61,
+      "audio_time_s": 61.01050145900808,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41403,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1465,
+          1594,
+          1460,
+          1720,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184575.316350863
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 157,
+      "target_audio_time_s": 62.4,
+      "audio_time_s": 62.408924853021745,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41468,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1724,
+          1263,
+          1764,
+          1734
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184576.716619905
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 158,
+      "target_audio_time_s": 63.2,
+      "audio_time_s": 63.204471698001726,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41505,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1465,
+          1594,
+          1460,
+          1720,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184577.517018398
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 159,
+      "target_audio_time_s": 64.3,
+      "audio_time_s": 64.30070720001822,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41556,
+        "pending": false,
+        "pulse_us": [
+          1530,
+          1272,
+          1485,
+          1554,
+          1440,
+          1650,
+          1726,
+          1258,
+          1766,
+          1736
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184578.618133479
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 160,
+      "target_audio_time_s": 65.2,
+      "audio_time_s": 65.20083899100428,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41598,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1465,
+          1594,
+          1460,
+          1720,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184579.516180759
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 161,
+      "target_audio_time_s": 66.5,
+      "audio_time_s": 66.50953526701778,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41659,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184580.817259959
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 162,
+      "target_audio_time_s": 67.10566893,
+      "audio_time_s": 67.10566893424036,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41687,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184581.41738212
+    },
+    {
+      "event": "timeline_checkpoint",
+      "index": 163,
+      "target_audio_time_s": 67.10566893424036,
+      "audio_time_s": 67.10566893424036,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41687,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184581.417497201
+    },
+    {
+      "event": "story_complete",
+      "mode": "full",
+      "full_show_executed": true,
+      "actual_stage_effect_verified": false,
+      "candidate_trial": true,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 1023,
+        "armed": true,
+        "faults": 0,
+        "sequence": 41687,
+        "pending": false,
+        "pulse_us": [
+          1470,
+          1212,
+          1425,
+          1514,
+          1416,
+          1740,
+          1730,
+          1250,
+          1770,
+          1740
+        ],
+        "position_feedback": null
+      },
+      "board_monotonic_seconds": 184581.463754544
+    }
+  ],
+  "evidence": [
+    {
+      "stage": "reference",
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792069090667249100.jpg",
+          "host_unix_ns": 1792069090667249100,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-401957",
+          "age_ms": 7,
+          "sha256": "6fed85b70e7ac646e9428939b0f9c7f62ac78f3136471bfd247b85ccb95dea8a",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792069090664475700.jpg",
+          "host_unix_ns": 1792069090664475700,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1824992",
+          "age_ms": 78,
+          "sha256": "f143e496f6bf60c51b98343bfe485657118b4ce60db2cff25552479f6a09ea72",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        }
+      ]
+    },
+    {
+      "stage": "opening",
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792069125678411100.jpg",
+          "host_unix_ns": 1792069125678411100,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-402478",
+          "age_ms": 60,
+          "sha256": "9cd6d3a92a2253f984e54d768255c975f5090108c0dc5468da5a0e5e1cd0a527",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792069125684636000.jpg",
+          "host_unix_ns": 1792069125684636000,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1825518",
+          "age_ms": 14,
+          "sha256": "63fd747e7d0bc001900d248432f99b0b6c46793803534b6d1e8a019785501ff1",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        }
+      ]
+    },
+    {
+      "stage": "show_early",
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792069165913717900.jpg",
+          "host_unix_ns": 1792069165913717900,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-403078",
+          "age_ms": 10,
+          "sha256": "6480dc5581ec586bdb4cfac9801565127524713a0d93dc1f59e523b22677b085",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792069165901520500.jpg",
+          "host_unix_ns": 1792069165901520500,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1826121",
+          "age_ms": 31,
+          "sha256": "beee1786f87c1f275529ae1499b541f5a94f22d37e40d352d21976438c447d1d",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        }
+      ]
+    },
+    {
+      "stage": "show_middle",
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792069187311410200.jpg",
+          "host_unix_ns": 1792069187311410200,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-403396",
+          "age_ms": 67,
+          "sha256": "a09f555cc359ae743296b658141509796909105c6e8255be224bf26c07cb4d04",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792069187296381300.jpg",
+          "host_unix_ns": 1792069187296381300,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1826442",
+          "age_ms": 31,
+          "sha256": "3a308d29692142bbe8f12a3f644004592b45c23cc946f263145d2283d5ec2e2c",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        }
+      ]
+    },
+    {
+      "stage": "show_late",
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792069202873557200.jpg",
+          "host_unix_ns": 1792069202873557200,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-403628",
+          "age_ms": 52,
+          "sha256": "aa94f7b67ac4db16bf1ad38f5ea5d676fda3a045372aa923926ecd62c0504ccb",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792069202869724400.jpg",
+          "host_unix_ns": 1792069202869724400,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1826675",
+          "age_ms": 62,
+          "sha256": "1e77b8d8ac46f938c348c3f99299edebcf57a577b05639d22b259f4dc92b3241",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        }
+      ]
+    },
+    {
+      "stage": "completed",
+      "frames": [
+        {
+          "camera": "front",
+          "file": "front_1792069219181604400.jpg",
+          "host_unix_ns": 1792069219181604400,
+          "frame_id": "session-2026-10-15T05-28-15-269Z-403871",
+          "age_ms": 46,
+          "sha256": "4114b2fd94c0f3d42a6f6beebfedc4a0aae5475354b2e2ac90d95f21e851b173",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        },
+        {
+          "camera": "top",
+          "file": "top_1792069219179347300.jpg",
+          "host_unix_ns": 1792069219179347300,
+          "frame_id": "a12db6ca948f4f99b74328bd5c5aea9f-1826920",
+          "age_ms": 46,
+          "sha256": "7cb7b2125b0f8acc9d6ee5efd45cbabc364e8e7ab87c43cfd55212e18ba2636e",
+          "rod_end_pixels": null,
+          "rod_end_mm": null
+        }
+      ]
+    }
+  ]
+}
