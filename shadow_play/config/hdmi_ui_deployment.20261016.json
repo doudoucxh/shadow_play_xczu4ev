@@ -1,0 +1,107 @@
+{
+  "date_local": "2026-10-16",
+  "timezone": "Asia/Shanghai",
+  "serial_port": "COM12",
+  "board_boot_id": "9a7ffd4a-5ae9-47c1-b30e-a01f8fb9dd19",
+  "board_clock_note": "Board wall clock is 2023-03-17; use host date and monotonic frame ages, not board wall clock for chronology.",
+  "release": "shadow-theatre-board-20261016-r3-runtime",
+  "archive_sha256": "a4e32a16395fdfff0219a23345274456a57f7617ab8806c2fbf1bf3be9a3f4d0",
+  "installed_path": "/run/media/mmcblk0p2/piying/shadow-theatre-board-20261016-r3-runtime",
+  "verified_installed_files": 17,
+  "ui_sha256": "b5b17bec51872762491505b008a1af1f6a03ef088ea7fee0889ed79d3567ed6e",
+  "service": {
+    "unit": "shadow-theatre-ui-r3.service",
+    "state": "active/running",
+    "bind": "127.0.0.1:8765",
+    "transient": true,
+    "boot_autostart": false
+  },
+  "camera": {
+    "device": "/dev/video0",
+    "name": "icspring camera",
+    "input": [
+      1280,
+      720
+    ],
+    "preview": [
+      640,
+      360
+    ],
+    "fourcc": "MJPG",
+    "usb_rotation": 0,
+    "mirror": false,
+    "test_stopped": true,
+    "frames": [
+      {
+        "sequence": 26,
+        "session_id": "8b86690e3a6f4be1ae6fc9c38f97e092",
+        "age_ms": 178.5,
+        "pose": {},
+        "jpeg_sha256": "39ef588303493adcde27db11d278fb80495ee551767264b16a3766d483f1473c"
+      },
+      {
+        "sequence": 34,
+        "session_id": "8b86690e3a6f4be1ae6fc9c38f97e092",
+        "age_ms": 87.3,
+        "pose": {},
+        "jpeg_sha256": "4a6de071b9058df034d108bfa7cadb6207808716878f5f936743df84cf7a89a4"
+      },
+      {
+        "sequence": 36,
+        "session_id": "8b86690e3a6f4be1ae6fc9c38f97e092",
+        "age_ms": 170.1,
+        "pose": {},
+        "jpeg_sha256": "a897913e9153d973941c1f94dbdb093e51558a023bf381f270d9f35cef2b5626"
+      }
+    ]
+  },
+  "dpu": {
+    "fingerprint": "0x101000056010407",
+    "verified": true,
+    "observed_inference_fps": 14.96,
+    "observed_dpu_ms": 14.76,
+    "sending": false
+  },
+  "touch": {
+    "name": "OpenWare Multi-Touch-V5000",
+    "devices": [
+      "/dev/input/event10",
+      "/dev/input/event11",
+      "/dev/input/event12"
+    ],
+    "enumerated": true,
+    "touch_to_ui_verified": false
+  },
+  "display": {
+    "hdmi_ui_visible": false,
+    "browser_found": false,
+    "display_server_found": false,
+    "drm_framebuffer_found": false,
+    "pl_renderer_implemented": false
+  },
+  "motion": {
+    "enabled": false,
+    "api_rejection_status": 409,
+    "current_servo_position_known": false,
+    "rail_driver_configured": false,
+    "puppet_inverse_validated": false
+  },
+  "transfer": {
+    "full_archive_first_attempt": "failed: UART input overrun during USB hotplug; not installed",
+    "runtime_retry": "verified per-chunk SHA256 acknowledgements and whole-file SHA256"
+  },
+  "hardware_changes": {
+    "fpga_reconfigured": false,
+    "boot_files_modified": false,
+    "motor_commands_sent": false
+  },
+  "evidence_logs": {
+    "inspect.log": "81f9e06de5c71fd0235dd1b4a5a23a5971840c30c26089ee75d4af145907e048",
+    "devices.log": "4370ac0a8951dd35f132c61ca3e866786933bb4c2f0e35366214580a5805906e",
+    "install.log": "86c804c727f43b7b353807d49f877343e586a67d525fa594d52d2771ab3766ac",
+    "start.log": "a65b51dbc73c9e5e060bbfc3386319e2663d7affb3459a161193eb24667d38d2",
+    "camera.log": "cf4fec3f3afe3db38a8b0d01ee5fbacf481f286b76af2ac722e2461dc99a8e47",
+    "postcheck.log": "c1f1e523a4e01e661be3ce2a40cd4f9894a9e8318590b77f2175f25529ffd4e6"
+  },
+  "raw_camera_images_committed": false
+}
