@@ -1,0 +1,140 @@
+{
+  "passed": true,
+  "date": "2026-10-16",
+  "scope": "Frozen source and the actual embedded deployment recognizer. Deterministic synthetic replay and known development regressions only; not independent human handwriting accuracy.",
+  "releasePublishedAt": "2026-10-16T13:30:26.331256+00:00",
+  "model": "ShadowSketch-MLP-48-agent-ui20-v2",
+  "topology": "ShadowSketchTopology-15-KNN3-agent-ui20-body-cross-v2",
+  "verifiedRuntimeSha256": {
+    "sketch-geometry.js": "dd3f738562c82533f7301418976b59f9858f6f15ca2a9259e1ca0b527daa541e",
+    "sketch-topology.js": "f7aab4fc9a71857193ddb363f108974fe202773c86a15008319a6d0281e099c8",
+    "sketch-model.js": "29077d2ccabf7ca10399a5c92c0020b8374c5aaa4c16d6fe8670b2783d9582b9"
+  },
+  "canonicalActions": [
+    {
+      "id": "canonical-neutral",
+      "expected": "neutral",
+      "actual": "neutral",
+      "accepted": true
+    },
+    {
+      "id": "canonical-open",
+      "expected": "open",
+      "actual": "open",
+      "accepted": true
+    },
+    {
+      "id": "canonical-raise",
+      "expected": "raise",
+      "actual": "raise",
+      "accepted": true
+    },
+    {
+      "id": "canonical-strike",
+      "expected": "strike",
+      "actual": "strike",
+      "accepted": true
+    },
+    {
+      "id": "canonical-left_raise",
+      "expected": "left_raise",
+      "actual": "left_raise",
+      "accepted": true
+    },
+    {
+      "id": "canonical-right_raise",
+      "expected": "right_raise",
+      "actual": "right_raise",
+      "accepted": true
+    },
+    {
+      "id": "canonical-guard",
+      "expected": "guard",
+      "actual": "guard",
+      "accepted": true
+    },
+    {
+      "id": "canonical-akimbo",
+      "expected": "akimbo",
+      "actual": "akimbo",
+      "accepted": true
+    },
+    {
+      "id": "canonical-salute",
+      "expected": "salute",
+      "actual": "salute",
+      "accepted": true
+    },
+    {
+      "id": "canonical-point",
+      "expected": "point",
+      "actual": "point",
+      "accepted": true
+    },
+    {
+      "id": "canonical-left_point",
+      "expected": "left_point",
+      "actual": "left_point",
+      "accepted": true
+    },
+    {
+      "id": "canonical-left_strike",
+      "expected": "left_strike",
+      "actual": "left_strike",
+      "accepted": true
+    },
+    {
+      "id": "canonical-diagonal",
+      "expected": "diagonal",
+      "actual": "diagonal",
+      "accepted": true
+    },
+    {
+      "id": "canonical-down_open",
+      "expected": "down_open",
+      "actual": "down_open",
+      "accepted": true
+    },
+    {
+      "id": "canonical-palms",
+      "expected": "palms",
+      "actual": "palms",
+      "accepted": true
+    },
+    {
+      "id": "canonical-cross_chest",
+      "expected": "cross_chest",
+      "actual": "cross_chest",
+      "accepted": true
+    },
+    {
+      "id": "canonical-left_diagonal",
+      "expected": "left_diagonal",
+      "actual": "left_diagonal",
+      "accepted": true
+    },
+    {
+      "id": "canonical-right_diagonal",
+      "expected": "right_diagonal",
+      "actual": "right_diagonal",
+      "accepted": true
+    },
+    {
+      "id": "canonical-both_left",
+      "expected": "both_left",
+      "actual": "both_left",
+      "accepted": true
+    },
+    {
+      "id": "canonical-both_right",
+      "expected": "both_right",
+      "actual": "both_right",
+      "accepted": true
+    }
+  ],
+  "frozenSyntheticReplays": 600,
+  "sameSideRestoredDraftAndMirrorCases": 20,
+  "contrastRegressions": 12,
+  "exactSourceVsEmbeddedParityCases": 652,
+  "boardTested": false
+}

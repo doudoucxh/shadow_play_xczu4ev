@@ -1,0 +1,338 @@
+<!-- BRUSH_FONT_STYLE -->
+<div id="shadow-theatre-preview">
+  <div class="shadow-app" data-page="home" data-menu-open="false" aria-label="皮影戏台">
+    <canvas class="shadow-embers" id="shadow-embers" aria-hidden="true"></canvas>
+    <main class="shadow-home" data-screen="home">
+      <div class="shadow-book-corners" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      <div class="shadow-binding" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      <section class="shadow-hero">
+        <div class="shadow-hero-copy"><div class="shadow-cover-kicker">一卷传承 · 三种入戏</div><h1>翻开旧事<br>光影<span>入戏</span></h1><p class="shadow-cover-poem">旧纸藏风骨，灯火照乾坤。<br>翻开这一卷，赴一场皮影之约。</p><span class="shadow-cover-seal">光影<br>传书</span></div>
+        <div class="shadow-hero-scene"><canvas class="shadow-art" data-art="home" role="img" aria-label="武松打虎皮影画面"></canvas><div class="shadow-scene-cap"><span>光影旧事 · 英雄登场</span><span>《武松打虎》</span></div><div class="shadow-hero-art-title"><span>景阳冈</span><small>一腔豪气 · 一段传奇</small></div></div>
+      </section>
+      <div class="shadow-menu-reveal" aria-hidden="true" inert>
+        <nav class="shadow-mode-list" aria-label="选择模式">
+          <button type="button" class="shadow-mode-card cursor-interaction" data-page="classic"><span class="shadow-card-index">壹</span><span class="shadow-card-copy"><span class="shadow-card-volume">第一卷 · 赏经典</span><strong>经典表演</strong><small>重现经典《武松打虎》</small></span></button>
+          <button type="button" class="shadow-mode-card cursor-interaction" data-page="touch"><span class="shadow-card-index">贰</span><span class="shadow-card-copy"><span class="shadow-card-volume">第二卷 · 绘新影</span><strong>笔墨成戏</strong><small>画出动作，皮影随心</small></span></button>
+          <button type="button" class="shadow-mode-card cursor-interaction" data-page="body"><span class="shadow-card-index">叁</span><span class="shadow-card-copy"><span class="shadow-card-volume">第三卷 · 化身法</span><strong>以身入戏</strong><small>识别人体姿态，动作映入戏台</small></span></button>
+        </nav>
+      </div>
+      <button type="button" class="shadow-home-trigger cursor-interaction" data-action="open-menu" aria-label="轻触屏幕，展开三个模式入口"><span>轻触入戏</span></button>
+    </main>
+
+    <main class="shadow-mode-screen shadow-classic-screen" data-screen="classic" hidden>
+      <canvas class="shadow-mode-edge" aria-hidden="true"></canvas>
+      <div class="shadow-mode-heading"><h2>武松打虎</h2><button type="button" class="shadow-back cursor-interaction" data-page="home"><i data-lucide="arrow-left" aria-hidden="true"></i>返回主界面</button></div>
+      <div class="shadow-workspace shadow-classic-workspace">
+        <div class="shadow-classic-performance">
+          <div class="shadow-stage"><div class="shadow-stage-screen"><canvas class="shadow-art" data-art="classic" role="img" aria-label="武松打虎演出示意"></canvas></div></div>
+          <div class="shadow-classic-controls"><div class="shadow-play-controls"><button type="button" class="shadow-primary cursor-interaction" data-action="play" aria-pressed="false"><i data-lucide="play" aria-hidden="true"></i><span>开始表演</span></button><button type="button" class="shadow-secondary cursor-interaction" data-action="replay">重演</button></div></div>
+        </div>
+        <aside class="shadow-classic-sidebar" aria-label="演出进度与章节">
+          <div class="shadow-timeline"><label for="shadow-progress"><span data-classic-caption>第一幕 · 景阳冈</span><output id="shadow-progress-value" for="shadow-progress">0%</output></label><input id="shadow-progress" type="range" min="0" max="100" value="0" aria-label="演出进度"><nav class="shadow-chapters" aria-label="演出章节"><button type="button" data-chapter="0" class="cursor-interaction" aria-pressed="true">景阳冈</button><button type="button" data-chapter="1" class="cursor-interaction" aria-pressed="false">猛虎现身</button><button type="button" data-chapter="2" class="cursor-interaction" aria-pressed="false">赤手搏虎</button><button type="button" data-chapter="3" class="cursor-interaction" aria-pressed="false">英雄落幕</button></nav></div>
+        </aside>
+      </div>
+    </main>
+
+    <main class="shadow-mode-screen" data-screen="touch" hidden>
+      <canvas class="shadow-mode-edge" aria-hidden="true"></canvas>
+      <div class="shadow-mode-heading"><h2>笔墨成戏</h2><button type="button" class="shadow-back cursor-interaction" data-page="home"><i data-lucide="arrow-left" aria-hidden="true"></i>返回主界面</button></div>
+      <div class="shadow-workspace shadow-interactive-workspace">
+        <div class="shadow-touch-performance">
+          <div class="shadow-stage" data-stage-controller><div class="shadow-stage-screen"><canvas class="shadow-art shadow-touch-stage" data-art="touch" role="img" aria-label="点选武松或老虎，左右拖动角色"></canvas></div><span class="shadow-stage-hint">点选角色 · 左右拖动</span></div>
+          <div class="shadow-actor-position-rail"><label for="shadow-actor-position"><span data-position-label>丝杆位置</span><output for="shadow-actor-position" data-position-value>50%</output></label><input type="range" id="shadow-actor-position" min="0" max="100" step="1" value="50" aria-label="所选角色丝杆位置" disabled></div>
+          <section class="shadow-sequence" aria-label="已存动作序列">
+            <div class="shadow-sequence-toolbar"><span data-sequence-count>动作序列 · 0</span><button type="button" class="shadow-secondary cursor-interaction" data-action="play-sequence" disabled>顺序播放</button><button type="button" class="shadow-secondary cursor-interaction" data-action="delete-frame" disabled>删除</button></div>
+            <div class="shadow-sequence-frames" role="group" aria-label="依次存入的画面"><span data-sequence-empty>画好后存入动作，即可依次播放</span></div>
+          </section>
+        </div>
+        <aside class="shadow-controller" aria-label="绘画武松动作">
+          <strong class="shadow-controller-title shadow-sr-only" data-drawing-title>先选择角色</strong>
+          <div class="shadow-actor-picker shadow-actor-choices" role="group" aria-label="选择操控角色"><button type="button" class="shadow-secondary cursor-interaction" data-touch-actor="wusong" aria-pressed="false">武松</button><button type="button" class="shadow-secondary cursor-interaction" data-action="toggle-training" aria-pressed="false" aria-label="采集真实手绘训练样本" hidden>采集</button><a class="shadow-secondary cursor-interaction" data-batch-entry href="http://127.0.0.1:8780/" target="_blank" rel="noopener noreferrer" aria-label="打开连续采集，不逐张发消息">采集</a></div>
+          <div class="shadow-stick-wrap shadow-drawing-wrap"><canvas id="shadow-touch-stick" role="img" aria-label="画出武松动作，再点击识别" aria-disabled="true"></canvas></div>
+          <div class="shadow-live-hint" data-touch-caption aria-live="polite">画出武松动作，再点击识别</div>
+          <div class="shadow-drawing-actions"><button type="button" class="shadow-primary cursor-interaction" data-action="recognize-drawing" disabled>识别动作</button><button type="button" class="shadow-secondary cursor-interaction" data-action="save-frame">存入动作</button><button type="button" class="shadow-secondary cursor-interaction" data-action="clear-drawing" disabled>重画</button></div>
+        </aside>
+      </div>
+    </main>
+
+    <main class="shadow-mode-screen" data-screen="body" hidden>
+      <canvas class="shadow-mode-edge" aria-hidden="true"></canvas>
+      <div class="shadow-mode-heading"><h2>以身入戏</h2><button type="button" class="shadow-back cursor-interaction" data-page="home"><i data-lucide="arrow-left" aria-hidden="true"></i>返回主界面</button></div>
+      <div class="shadow-workspace shadow-interactive-workspace">
+        <section class="shadow-controller shadow-body-controller" aria-label="摄像头识别画面">
+          <div class="shadow-stick-wrap shadow-camera-view" data-camera-state="off"><video id="shadow-camera-video" autoplay muted playsinline hidden aria-label="实时摄像头画面"></video><canvas id="shadow-body-stick" role="img" aria-label="实际识别结果的关键点覆盖层"></canvas><div class="shadow-camera-empty" data-camera-empty><i data-lucide="camera" aria-hidden="true"></i><span data-camera-message>摄像头未开启</span></div></div>
+          <div class="shadow-camera-controls"><div><div class="shadow-live-hint" data-body-hint>开启摄像头后显示实时画面</div><div class="shadow-body-status" aria-live="polite"><span data-body-status>摄像头未开启</span></div></div><button type="button" class="shadow-primary cursor-interaction shadow-body-start" data-action="toggle-camera" aria-pressed="false">开启摄像头</button></div>
+        </section>
+      </div>
+      <span class="shadow-sr-only" data-body-caption>请站到镜头前，露出完整上半身</span>
+    </main>
+
+    <div class="shadow-sample-copy" role="dialog" aria-modal="true" aria-label="复制手绘样本" hidden><label for="shadow-sample-text">复制后粘贴到对话里</label><textarea id="shadow-sample-text" readonly spellcheck="false" aria-label="带题目标注的手绘样本"></textarea><span data-sample-copy-status aria-live="polite"></span><div><button type="button" class="shadow-primary cursor-interaction" data-action="copy-sample">复制样本</button><button type="button" class="shadow-secondary cursor-interaction" data-action="close-sample-copy">返回</button></div></div>
+    <div class="shadow-book-transition" id="shadow-book-transition" aria-hidden="true" hidden><canvas class="shadow-page-turn-canvas" id="shadow-page-turn"></canvas></div>
+    <div class="shadow-sr-only" aria-live="polite" id="shadow-announcement"></div>
+  </div>
+</div>
+
+<style>
+#shadow-theatre-preview{--sh-gold:#d6b477;--sh-gold-light:#f2d5a2;--sh-red:#a53832;--sh-text:#f2e5cf;--sh-muted:#c9b591;width:100%}
+#shadow-theatre-preview *{box-sizing:border-box}
+#shadow-theatre-preview [hidden]{display:none!important}
+#shadow-theatre-preview button,#shadow-theatre-preview input{font:inherit}
+#shadow-theatre-preview button{color:inherit;cursor:inherit}
+#shadow-theatre-preview button:focus-visible,#shadow-theatre-preview input:focus-visible{outline:2px solid var(--sh-gold-light);outline-offset:4px}
+#shadow-theatre-preview .shadow-app{position:relative;isolation:isolate;width:100%;aspect-ratio:128/75;display:grid;grid-template-rows:44px minmax(0,1fr);gap:14px;padding:20px 24px;overflow:hidden;color:var(--sh-text);background:radial-gradient(ellipse at 12% 105%,#62321c55,transparent 45%),radial-gradient(ellipse at 86% 0,#85512524,transparent 53%),repeating-linear-gradient(94deg,#201912 0,#19140f 2px,#1b1510 4px,#211a13 7px);font-family:"Microsoft YaHei","PingFang SC",sans-serif;font-size:16px;line-height:1.45}
+#shadow-theatre-preview .shadow-app::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 50% 30%,transparent 35%,#080705a6 100%)}
+#shadow-theatre-preview .shadow-header,#shadow-theatre-preview main{position:relative;z-index:1;min-height:0;min-width:0}
+#shadow-theatre-preview .shadow-header{display:flex;align-items:center;justify-content:space-between;padding-right:76px}
+#shadow-theatre-preview .shadow-brand{display:flex;gap:14px;align-items:center;border:0;padding:0;background:none}
+#shadow-theatre-preview .shadow-seal{display:grid;place-items:center;width:42px;height:44px;font-family:KaiTi,STKaiti,serif;font-size:29px;color:var(--sh-gold-light);background:#8e352a;border:1px solid #bf7056;box-shadow:inset 0 0 0 3px #8e352a,inset 0 0 0 4px #bd795b;border-radius:2px}
+#shadow-theatre-preview .shadow-brand strong{font-family:KaiTi,STKaiti,serif;font-size:26px;font-weight:400;letter-spacing:3px}
+#shadow-theatre-preview .shadow-back{display:flex;align-items:center;gap:8px;border:1px solid #80613a;background:#342619;padding:9px 15px;min-height:44px;border-radius:2px;font-size:16px}
+#shadow-theatre-preview .shadow-back svg{width:18px;height:18px}
+#shadow-theatre-preview .shadow-embers{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none;opacity:.83}
+#shadow-theatre-preview .shadow-home{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) 44px;row-gap:28px;padding:24px 28px 24px 42px;margin:0 12px 12px 0;border:2px solid #76532d;border-radius:4px 9px 6px 4px;background:radial-gradient(ellipse at 85% 2%,#99633326,transparent 55%),radial-gradient(ellipse at 2% 98%,#0a0807c9,transparent 50%),repeating-linear-gradient(2deg,#6c4d2b0d 0,#3e2d1d16 1px,#39291c11 3px),linear-gradient(110deg,#3d2b1d,#302217 40%,#3b2a1b 85%,#2b1d13);box-shadow:inset 0 0 0 4px #2c1c11,inset 0 0 0 5px #8c6b3d70,inset 15px 0 25px #090706cc,2px 3px 0 #d6bc8c,4px 5px 0 #755535,5px 8px 0 #b29768,7px 10px 0 #48331d,8px 12px 0 #ae9160;transition:grid-template-rows 480ms cubic-bezier(.22,.72,.26,1),row-gap 480ms cubic-bezier(.22,.72,.26,1)}
+#shadow-theatre-preview .shadow-home::before{content:"";position:absolute;inset:11px 12px 11px 27px;border:1px solid #a9894a50;box-shadow:inset 0 0 0 3px #281a101a,inset 0 0 0 4px #91734426;pointer-events:none}
+#shadow-theatre-preview .shadow-home::after{content:"";position:absolute;top:8px;bottom:-8px;right:-9px;width:7px;background:repeating-linear-gradient(0deg,#4b3421 0,#ccb080 1px,#ad8c58 2px,#dec99f 3px,#6a4b2b 4px);transform:skewY(30deg);transform-origin:left top;border-right:1px solid #d8ba8b;z-index:-1}
+#shadow-theatre-preview .shadow-book-corners{position:absolute;inset:12px 13px 12px 27px;pointer-events:none}
+#shadow-theatre-preview .shadow-book-corners span{position:absolute;width:25px;height:25px;border:3px solid #ad8950;border-right:0;border-bottom:0;box-shadow:inset 2px 2px #d5b47d70,-1px -1px #191008}
+#shadow-theatre-preview .shadow-book-corners span:nth-child(1){left:-3px;top:-3px}
+#shadow-theatre-preview .shadow-book-corners span:nth-child(2){right:-3px;top:-3px;transform:rotate(90deg)}
+#shadow-theatre-preview .shadow-book-corners span:nth-child(3){right:-3px;bottom:-3px;transform:rotate(180deg)}
+#shadow-theatre-preview .shadow-book-corners span:nth-child(4){left:-3px;bottom:-3px;transform:rotate(270deg)}
+#shadow-theatre-preview .shadow-binding{position:absolute;left:4px;top:13%;bottom:13%;width:16px;display:flex;flex-direction:column;justify-content:space-around;border-left:1px solid #bd946341;background:linear-gradient(90deg,#160f0a,#6b492c66,#21160f)}
+#shadow-theatre-preview .shadow-binding span{height:22px;width:21px;border:2px solid #c2a570;border-right:0;border-radius:50% 0 0 50%;transform:rotate(-12deg);box-shadow:0 2px 3px #0e0908;opacity:.65}
+#shadow-theatre-preview .shadow-hero{grid-area:1/1;display:grid;grid-template-columns:.58fr 1.42fr;align-items:stretch;gap:30px;min-height:0;min-width:0}
+#shadow-theatre-preview .shadow-hero-copy{display:grid;place-items:center;min-height:0}
+#shadow-theatre-preview h1{margin:0;font-family:KaiTi,STKaiti,"Songti SC",serif;font-size:64px;font-weight:400;line-height:1.3;letter-spacing:9px;color:#e4c895;text-shadow:0 2px 1px #080503}
+#shadow-theatre-preview h1 span{color:#cda264}
+#shadow-theatre-preview .shadow-hero-scene{position:relative;min-height:0;min-width:0;overflow:hidden;border:2px solid #ac8b55;background:#c3a16a;box-shadow:0 3px 0 #7a5a34,0 5px 4px #0c070555}
+#shadow-theatre-preview .shadow-hero-scene::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 15px 6px #61361361;background:radial-gradient(ellipse at 5% 3%,#6a3b1b4d,transparent 23%),radial-gradient(ellipse at 98% 98%,#5f351b66,transparent 25%)}
+#shadow-theatre-preview .shadow-art{position:absolute;inset:0;width:100%;height:100%;display:block}
+#shadow-theatre-preview .shadow-hero-scene canvas{filter:sepia(.5) saturate(.65) brightness(.84) contrast(1.08)}
+#shadow-theatre-preview .shadow-menu-reveal{grid-area:2/1;overflow:hidden;min-height:0;height:0;padding:0 1px;pointer-events:none}
+#shadow-theatre-preview .shadow-mode-list{height:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding:7px 6px}
+#shadow-theatre-preview .shadow-mode-card{min-width:0;display:grid;place-items:center;visibility:hidden;opacity:0;transform:translateY(110%);background:linear-gradient(100deg,#6b4d2b36,#8b69332e 70%,#1c130d6e);border:1px solid #a98148;border-radius:2px;box-shadow:inset 0 0 0 3px #1c120e4d,inset 0 0 0 4px #8d6c3433;font-family:KaiTi,STKaiti,serif;font-size:28px;letter-spacing:4px;transition:transform 440ms cubic-bezier(.16,.74,.23,1),opacity 320ms ease,border-color 160ms ease}
+#shadow-theatre-preview .shadow-mode-card:hover{background:linear-gradient(100deg,#875e335c,#99753e40,#392315aa);border-color:#e0bc78}
+#shadow-theatre-preview .shadow-home-trigger{grid-area:2/1;background:transparent;border:0;display:flex;align-items:center;justify-content:center;padding:0;z-index:3}
+#shadow-theatre-preview .shadow-home-trigger span{font-family:KaiTi,STKaiti,serif;font-size:19px;letter-spacing:7px;color:#f0d4a4;background:#302115d9;border:1px solid #8f704370;padding:9px 26px}
+#shadow-theatre-preview .shadow-app[data-menu-open="true"] .shadow-home{grid-template-rows:minmax(0,1fr) 96px;row-gap:32px}
+#shadow-theatre-preview .shadow-app[data-menu-open="true"] .shadow-menu-reveal{height:100%;pointer-events:auto}
+#shadow-theatre-preview .shadow-app[data-menu-open="true"] .shadow-mode-card{visibility:visible;opacity:1;transform:translateY(0)}
+#shadow-theatre-preview .shadow-app[data-menu-open="true"] .shadow-mode-card:nth-child(2){transition-delay:45ms,45ms,0ms}
+#shadow-theatre-preview .shadow-app[data-menu-open="true"] .shadow-mode-card:nth-child(3){transition-delay:90ms,90ms,0ms}
+#shadow-theatre-preview .shadow-app[data-menu-open="true"] .shadow-home-trigger{display:none}
+#shadow-theatre-preview .shadow-mode-screen{display:grid;grid-template-rows:36px minmax(0,1fr);gap:12px}
+#shadow-theatre-preview .shadow-classic-screen{grid-template-rows:36px minmax(0,1fr) 84px}
+#shadow-theatre-preview .shadow-mode-heading{display:flex;align-items:center}
+#shadow-theatre-preview h2{font-family:KaiTi,STKaiti,serif;font-size:28px;letter-spacing:3px;line-height:1.25;font-weight:400;margin:0}
+#shadow-theatre-preview .shadow-workspace{min-height:0;min-width:0;display:grid;gap:20px}
+#shadow-theatre-preview .shadow-interactive-workspace{grid-template-columns:minmax(0,1fr) 250px}
+#shadow-theatre-preview .shadow-stage{min-height:0;min-width:0;padding:10px;background:#7c2d27;border:1px solid #aa5a43;box-shadow:inset 0 0 0 3px #5d241d;border-radius:2px}
+#shadow-theatre-preview .shadow-stage-screen{position:relative;height:100%;min-height:0;border:1px solid #c39b61;background:#dbba83;overflow:hidden}
+#shadow-theatre-preview .shadow-controller{display:flex;flex-direction:column;gap:10px;min-height:0;min-width:0;padding:14px;background:#242019;border:1px solid #82613a;border-radius:2px}
+#shadow-theatre-preview .shadow-controller-title{font-family:KaiTi,STKaiti,serif;font-size:21px;font-weight:400;line-height:1.3;text-align:center;flex-shrink:0}
+#shadow-theatre-preview .shadow-stick-wrap{position:relative;flex:1;min-height:0}
+#shadow-theatre-preview .shadow-stick-wrap canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+#shadow-theatre-preview .shadow-live-hint{font-size:14px;color:var(--sh-muted);text-align:center;min-height:21px;flex-shrink:0}
+#shadow-theatre-preview .shadow-primary,#shadow-theatre-preview .shadow-secondary{min-height:44px;padding:9px 15px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #695033;border-radius:2px;white-space:nowrap;font-size:16px;flex-shrink:0}
+#shadow-theatre-preview .shadow-primary{background:var(--sh-red);border-color:#b45d43}
+#shadow-theatre-preview .shadow-primary:hover{background:#b54335}
+#shadow-theatre-preview .shadow-primary svg{width:18px;height:18px}
+#shadow-theatre-preview .shadow-secondary{background:#34291d;color:var(--sh-gold-light)}
+#shadow-theatre-preview .shadow-secondary:hover{background:#493622}
+#shadow-theatre-preview .shadow-pose-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;flex-shrink:0}
+#shadow-theatre-preview .shadow-pose-buttons button{min-height:44px;padding:6px 2px;background:#33271c;border:1px solid #795b36;border-radius:2px;color:var(--sh-gold-light);font-size:16px}
+#shadow-theatre-preview .shadow-pose-buttons button[aria-pressed="true"],#shadow-theatre-preview .shadow-pose-buttons button:hover{background:#62422d;border-color:#c49c61}
+#shadow-theatre-preview .shadow-body-status{text-align:center;color:var(--sh-gold-light);font-size:14px;min-height:21px;flex-shrink:0}
+#shadow-theatre-preview .shadow-classic-controls{display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;align-items:center;min-height:0}
+#shadow-theatre-preview .shadow-play-controls{display:flex;gap:10px}
+#shadow-theatre-preview .shadow-timeline{min-width:0;display:grid;grid-template-rows:20px 20px 32px;gap:3px}
+#shadow-theatre-preview .shadow-timeline label{display:flex;justify-content:space-between;font-size:14px;color:var(--sh-muted)}
+#shadow-theatre-preview .shadow-timeline input{width:100%;margin:0;accent-color:var(--sh-gold);min-width:0}
+#shadow-theatre-preview .shadow-chapters{display:flex;justify-content:space-between;gap:4px}
+#shadow-theatre-preview .shadow-chapters button{border:0;background:none;color:var(--sh-muted);padding:3px;font-size:14px;white-space:nowrap}
+#shadow-theatre-preview .shadow-chapters button[aria-pressed="true"]{color:var(--sh-gold-light)}
+#shadow-theatre-preview .shadow-book-transition{position:absolute;inset:0;z-index:20;overflow:hidden;pointer-events:auto}
+#shadow-theatre-preview .shadow-page-turn-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+#shadow-theatre-preview .shadow-sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(min-width:1400px){#shadow-theatre-preview .shadow-app{padding:30px 36px;grid-template-rows:60px minmax(0,1fr);gap:20px;font-size:20px}#shadow-theatre-preview .shadow-brand strong{font-size:34px}#shadow-theatre-preview .shadow-seal{width:54px;height:60px;font-size:39px}#shadow-theatre-preview h1{font-size:92px}#shadow-theatre-preview .shadow-home{padding:36px 42px 36px 60px}#shadow-theatre-preview .shadow-app[data-menu-open="true"] .shadow-home{grid-template-rows:minmax(0,1fr) 120px;row-gap:38px}#shadow-theatre-preview .shadow-mode-card{font-size:38px}#shadow-theatre-preview .shadow-hero{gap:50px}#shadow-theatre-preview .shadow-interactive-workspace{grid-template-columns:minmax(0,1fr) 330px}#shadow-theatre-preview .shadow-mode-screen{grid-template-rows:48px minmax(0,1fr)}#shadow-theatre-preview .shadow-classic-screen{grid-template-rows:48px minmax(0,1fr) 96px}#shadow-theatre-preview h2{font-size:36px}#shadow-theatre-preview .shadow-controller{padding:20px;gap:16px}#shadow-theatre-preview .shadow-controller-title{font-size:28px}#shadow-theatre-preview .shadow-primary,#shadow-theatre-preview .shadow-secondary,#shadow-theatre-preview .shadow-pose-buttons button{font-size:20px;min-height:52px}#shadow-theatre-preview .shadow-live-hint,#shadow-theatre-preview .shadow-body-status,#shadow-theatre-preview .shadow-timeline label,#shadow-theatre-preview .shadow-chapters button{font-size:18px}#shadow-theatre-preview .shadow-classic-controls{grid-template-columns:280px minmax(0,1fr)}#shadow-theatre-preview .shadow-timeline{grid-template-rows:26px 24px 38px}#shadow-theatre-preview .shadow-back{font-size:20px}}
+@media(max-width:899px){#shadow-theatre-preview .shadow-app{aspect-ratio:auto;grid-template-rows:44px auto;padding:18px;min-height:560px}#shadow-theatre-preview .shadow-home{min-height:450px;grid-template-rows:minmax(340px,1fr) 0px;padding:23px 22px 23px 36px}#shadow-theatre-preview .shadow-app[data-menu-open="true"] .shadow-home{grid-template-rows:minmax(260px,1fr) 88px;min-height:460px}#shadow-theatre-preview .shadow-hero{grid-template-columns:.55fr 1.45fr;gap:18px}#shadow-theatre-preview h1{font-size:50px;letter-spacing:4px}#shadow-theatre-preview .shadow-mode-card{font-size:24px;letter-spacing:2px}#shadow-theatre-preview .shadow-mode-list{gap:12px}#shadow-theatre-preview .shadow-mode-screen{grid-template-rows:36px auto;min-height:480px}#shadow-theatre-preview .shadow-classic-screen{grid-template-rows:36px minmax(300px,1fr) 110px}#shadow-theatre-preview .shadow-interactive-workspace{grid-template-columns:minmax(0,1fr) 230px;min-height:400px}#shadow-theatre-preview .shadow-classic-controls{grid-template-columns:200px minmax(0,1fr);gap:16px}#shadow-theatre-preview .shadow-back{padding:8px 10px}}
+@media(max-width:640px){#shadow-theatre-preview .shadow-header{padding-right:36px}#shadow-theatre-preview .shadow-brand{gap:9px}#shadow-theatre-preview .shadow-brand strong{font-size:23px;letter-spacing:1px}#shadow-theatre-preview .shadow-back{font-size:14px;gap:4px}#shadow-theatre-preview .shadow-back svg{display:none}#shadow-theatre-preview .shadow-home{padding:22px 18px 22px 32px;min-height:480px}#shadow-theatre-preview .shadow-hero{grid-template-columns:1fr;grid-template-rows:auto minmax(220px,1fr);gap:16px}#shadow-theatre-preview h1{font-size:42px;line-height:1.1;letter-spacing:8px;text-align:center}#shadow-theatre-preview h1 br{display:none}#shadow-theatre-preview .shadow-mode-list{grid-template-columns:1fr;gap:10px;padding:6px}#shadow-theatre-preview .shadow-app[data-menu-open="true"] .shadow-home{grid-template-rows:minmax(300px,1fr) 210px;min-height:590px;row-gap:28px}#shadow-theatre-preview .shadow-mode-card{font-size:24px}#shadow-theatre-preview .shadow-home-trigger{padding-bottom:15px}#shadow-theatre-preview .shadow-home-trigger span{font-size:18px}#shadow-theatre-preview .shadow-interactive-workspace{grid-template-columns:1fr;grid-template-rows:285px 390px;gap:22px}#shadow-theatre-preview .shadow-classic-screen{grid-template-rows:36px 290px 136px}#shadow-theatre-preview .shadow-classic-controls{grid-template-columns:1fr;grid-template-rows:44px 80px;gap:10px}#shadow-theatre-preview .shadow-timeline{grid-template-rows:20px 20px 32px}#shadow-theatre-preview .shadow-chapters button{font-size:13px}#shadow-theatre-preview .shadow-play-controls{justify-content:center}#shadow-theatre-preview .shadow-controller{padding:14px}#shadow-theatre-preview h2{font-size:26px}}
+@media(max-width:380px){#shadow-theatre-preview .shadow-app{padding:14px 12px}#shadow-theatre-preview .shadow-header{padding-right:0}#shadow-theatre-preview .shadow-brand strong{font-size:21px}#shadow-theatre-preview .shadow-back{font-size:13px;padding:8px}#shadow-theatre-preview h1{font-size:36px;letter-spacing:5px}#shadow-theatre-preview .shadow-home{padding-left:28px;padding-right:16px}#shadow-theatre-preview .shadow-hero{grid-template-rows:auto minmax(200px,1fr)}}
+@media(max-width:899px){#shadow-theatre-preview .shadow-app[data-menu-open="false"] .shadow-home{grid-template-rows:minmax(340px,1fr) 44px;row-gap:28px}#shadow-theatre-preview .shadow-home-trigger{padding:0}}
+@media(prefers-reduced-motion:reduce){#shadow-theatre-preview .shadow-home,#shadow-theatre-preview .shadow-mode-card{transition:none!important}}
+
+/* Retain the illustrated-book ornament while keeping a separate menu row. */
+#shadow-theatre-preview .shadow-hero-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+#shadow-theatre-preview .shadow-cover-kicker{font-family:KaiTi,STKaiti,serif;font-size:14px;letter-spacing:3px;color:#c8a974}
+#shadow-theatre-preview h1{font-size:46px;letter-spacing:4px;line-height:1.22;margin:11px 0 13px;white-space:nowrap}
+#shadow-theatre-preview .shadow-cover-poem{margin:0;font-family:KaiTi,STKaiti,serif;font-size:14px;line-height:1.85;letter-spacing:.3px;color:#d7ba87;white-space:nowrap}
+#shadow-theatre-preview .shadow-cover-seal{display:block;margin-top:14px;padding:4px 5px;border:2px solid #ad6442;color:#d2916c;font-family:KaiTi,STKaiti,serif;font-size:14px;line-height:1.06;transform:rotate(-8deg);box-shadow:inset 0 0 0 1px #412815}
+#shadow-theatre-preview .shadow-scene-cap{position:absolute;left:15px;right:15px;top:12px;display:flex;justify-content:space-between;gap:12px;pointer-events:none;font-family:KaiTi,STKaiti,serif;font-size:13px;letter-spacing:1px;color:#674b2b;z-index:1}
+#shadow-theatre-preview .shadow-hero-art-title{position:absolute;left:18px;bottom:13px;display:flex;flex-direction:column;gap:1px;pointer-events:none;font-family:KaiTi,STKaiti,serif;color:#74502c;z-index:1}
+#shadow-theatre-preview .shadow-hero-art-title>span{font-size:24px;letter-spacing:5px;line-height:1.2}
+#shadow-theatre-preview .shadow-hero-art-title small{font-size:13px;letter-spacing:1px;line-height:1.4}
+#shadow-theatre-preview .shadow-app[data-menu-open="true"] .shadow-home{grid-template-rows:minmax(0,1fr) 110px}
+#shadow-theatre-preview .shadow-mode-card{display:flex;align-items:center;justify-content:flex-start;gap:13px;padding:10px 16px;text-align:left;font-family:"Microsoft YaHei","PingFang SC",sans-serif;letter-spacing:0}
+#shadow-theatre-preview .shadow-card-index{flex-shrink:0;font-family:KaiTi,STKaiti,serif;font-size:34px;color:#c5a268;text-shadow:0 2px #160c05}
+#shadow-theatre-preview .shadow-card-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
+#shadow-theatre-preview .shadow-card-volume{font-family:KaiTi,STKaiti,serif;font-size:14px;line-height:1.25;color:#c7aa79;letter-spacing:1px}
+#shadow-theatre-preview .shadow-card-copy strong{font-family:KaiTi,STKaiti,serif;font-size:25px;font-weight:400;line-height:1.25;letter-spacing:2px;color:#eed5a5}
+#shadow-theatre-preview .shadow-card-copy small{font-family:KaiTi,STKaiti,serif;font-size:13px;line-height:1.35;color:#d6bc91;white-space:nowrap}
+@media(min-width:1400px){#shadow-theatre-preview h1{font-size:68px;margin:17px 0 20px}#shadow-theatre-preview .shadow-cover-kicker{font-size:20px}#shadow-theatre-preview .shadow-cover-poem{font-size:20px}#shadow-theatre-preview .shadow-cover-seal{font-size:20px;margin-top:22px}#shadow-theatre-preview .shadow-scene-cap{font-size:18px;top:20px;left:24px;right:24px}#shadow-theatre-preview .shadow-hero-art-title{left:26px;bottom:22px}#shadow-theatre-preview .shadow-hero-art-title>span{font-size:34px}#shadow-theatre-preview .shadow-hero-art-title small{font-size:18px}#shadow-theatre-preview .shadow-app[data-menu-open="true"] .shadow-home{grid-template-rows:minmax(0,1fr) 150px}#shadow-theatre-preview .shadow-mode-card{padding:14px 24px;gap:20px}#shadow-theatre-preview .shadow-card-index{font-size:46px}#shadow-theatre-preview .shadow-card-volume{font-size:18px}#shadow-theatre-preview .shadow-card-copy strong{font-size:34px}#shadow-theatre-preview .shadow-card-copy small{font-size:17px}}
+@media(min-width:900px) and (max-width:1050px){#shadow-theatre-preview .shadow-mode-card{padding:10px 12px;gap:10px}#shadow-theatre-preview .shadow-card-copy small{font-size:12px}#shadow-theatre-preview .shadow-card-copy strong{font-size:24px}}
+@media(max-width:899px){#shadow-theatre-preview h1{font-size:36px;letter-spacing:2px}#shadow-theatre-preview .shadow-cover-kicker{font-size:13px;letter-spacing:1px}#shadow-theatre-preview .shadow-cover-poem{font-size:12px;letter-spacing:0}#shadow-theatre-preview .shadow-cover-seal{font-size:13px;margin-top:11px}#shadow-theatre-preview .shadow-scene-cap{font-size:12px;left:11px;right:11px;letter-spacing:0}#shadow-theatre-preview .shadow-hero-art-title>span{font-size:21px}#shadow-theatre-preview .shadow-hero-art-title small{font-size:12px}#shadow-theatre-preview .shadow-mode-card{gap:9px;padding:9px}#shadow-theatre-preview .shadow-card-index{font-size:28px}#shadow-theatre-preview .shadow-card-volume{font-size:12px;letter-spacing:0}#shadow-theatre-preview .shadow-card-copy strong{font-size:21px;letter-spacing:1px}#shadow-theatre-preview .shadow-card-copy small{font-size:11px}}
+@media(max-width:640px){#shadow-theatre-preview .shadow-hero{grid-template-rows:auto minmax(220px,1fr)}#shadow-theatre-preview .shadow-hero-copy{align-items:flex-start;position:relative;min-height:180px;padding:0 0 0 4px}#shadow-theatre-preview h1{font-size:36px;text-align:left;margin:8px 0 9px;line-height:1.15;letter-spacing:2px}#shadow-theatre-preview h1 br{display:block}#shadow-theatre-preview .shadow-cover-kicker{font-size:12px}#shadow-theatre-preview .shadow-cover-poem{font-size:12px;line-height:1.7}#shadow-theatre-preview .shadow-cover-seal{position:absolute;right:5px;top:12px;margin:0;font-size:13px}#shadow-theatre-preview .shadow-app[data-menu-open="true"] .shadow-home{grid-template-rows:minmax(430px,1fr) 300px;min-height:820px}#shadow-theatre-preview .shadow-app[data-menu-open="false"] .shadow-home{grid-template-rows:minmax(430px,1fr) 44px;min-height:540px}#shadow-theatre-preview .shadow-mode-card{padding:10px 17px;gap:17px}#shadow-theatre-preview .shadow-card-index{font-size:34px}#shadow-theatre-preview .shadow-card-volume{font-size:13px}#shadow-theatre-preview .shadow-card-copy strong{font-size:25px}#shadow-theatre-preview .shadow-card-copy small{font-size:12px}}
+@media(max-width:380px){#shadow-theatre-preview h1{font-size:31px}#shadow-theatre-preview .shadow-cover-poem{font-size:11px;letter-spacing:0}#shadow-theatre-preview .shadow-cover-kicker{font-size:11px}#shadow-theatre-preview .shadow-card-copy strong{font-size:23px}#shadow-theatre-preview .shadow-card-copy small{font-size:11px}#shadow-theatre-preview .shadow-card-volume{font-size:12px}}
+@media(min-width:641px) and (max-width:899px){#shadow-theatre-preview .shadow-hero{grid-template-columns:.9fr 1.1fr}#shadow-theatre-preview .shadow-card-copy small{white-space:normal;line-height:1.3}}
+
+/* The classic performance keeps its chapter rail beside the full-height stage. */
+#shadow-theatre-preview .shadow-mode-screen.shadow-classic-screen{grid-template-rows:36px minmax(0,1fr)}
+#shadow-theatre-preview .shadow-classic-screen .shadow-classic-workspace{grid-template-columns:minmax(0,1fr) 180px;gap:18px;min-height:0;align-items:stretch}
+#shadow-theatre-preview .shadow-classic-performance{display:grid;grid-template-rows:minmax(0,1fr) 48px;gap:12px;min-width:0;min-height:0}
+#shadow-theatre-preview .shadow-classic-screen .shadow-classic-controls{display:flex;align-items:center;min-height:0;gap:10px}
+#shadow-theatre-preview .shadow-classic-screen .shadow-play-controls{justify-content:flex-start}
+#shadow-theatre-preview .shadow-classic-sidebar{min-width:0;min-height:0;padding:14px;background:linear-gradient(110deg,#2e2318,#211b14);border:1px solid #86613b;border-radius:2px;box-shadow:inset 0 0 0 3px #1a130d,inset 0 0 0 4px #6f53304a}
+#shadow-theatre-preview .shadow-classic-screen .shadow-timeline{display:grid;grid-template-rows:auto 24px minmax(0,1fr);gap:12px;height:100%;min-width:0;min-height:0}
+#shadow-theatre-preview .shadow-classic-screen .shadow-timeline label{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 8px;align-items:center;font-size:14px;line-height:1.5}
+#shadow-theatre-preview .shadow-classic-screen .shadow-timeline label>span{grid-column:1/-1;white-space:nowrap}
+#shadow-theatre-preview .shadow-classic-screen .shadow-timeline output{grid-column:2;text-align:right;color:var(--sh-gold-light);font-variant-numeric:tabular-nums}
+#shadow-theatre-preview .shadow-classic-screen .shadow-timeline input{height:24px}
+#shadow-theatre-preview .shadow-classic-screen .shadow-chapters{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(4,minmax(52px,1fr));justify-content:stretch;gap:10px;min-height:0}
+#shadow-theatre-preview .shadow-classic-screen .shadow-chapters button{display:flex;align-items:center;justify-content:center;width:100%;min-width:0;padding:10px 7px;border:1px solid #765936;border-radius:2px;background:linear-gradient(100deg,#35291c,#2a2118);color:#cdb388;font-family:KaiTi,STKaiti,serif;font-size:20px;letter-spacing:2px;line-height:1.25;white-space:nowrap}
+#shadow-theatre-preview .shadow-classic-screen .shadow-chapters button:hover{border-color:#b79258;background:#4a3522;color:var(--sh-gold-light)}
+#shadow-theatre-preview .shadow-classic-screen .shadow-chapters button[aria-pressed="true"]{border-color:#c5a06a;background:linear-gradient(100deg,#68472d,#463020);box-shadow:inset 3px 0 0 #d6b477;color:#f2d5a2}
+@media(min-width:1400px){#shadow-theatre-preview .shadow-mode-screen.shadow-classic-screen{grid-template-rows:48px minmax(0,1fr)}#shadow-theatre-preview .shadow-classic-screen .shadow-classic-workspace{grid-template-columns:minmax(0,1fr) 190px;gap:22px}#shadow-theatre-preview .shadow-classic-performance{grid-template-rows:minmax(0,1fr) 56px;gap:16px}#shadow-theatre-preview .shadow-classic-screen .shadow-timeline label{font-size:16px}#shadow-theatre-preview .shadow-classic-screen .shadow-chapters button{font-size:23px}}
+@media(min-width:641px) and (max-width:899px){#shadow-theatre-preview .shadow-mode-screen.shadow-classic-screen{grid-template-rows:36px auto}#shadow-theatre-preview .shadow-classic-screen .shadow-classic-workspace{min-height:400px;grid-template-columns:minmax(0,1fr) 170px;gap:14px}#shadow-theatre-preview .shadow-classic-sidebar{padding:12px}#shadow-theatre-preview .shadow-classic-screen .shadow-chapters button{font-size:18px}}
+@media(max-width:640px){#shadow-theatre-preview .shadow-mode-screen.shadow-classic-screen{grid-template-rows:36px auto}#shadow-theatre-preview .shadow-classic-screen .shadow-classic-workspace{grid-template-columns:minmax(0,1fr);gap:16px}#shadow-theatre-preview .shadow-classic-performance{grid-template-rows:280px 44px;gap:10px}#shadow-theatre-preview .shadow-classic-sidebar{min-height:334px;padding:12px}#shadow-theatre-preview .shadow-classic-screen .shadow-timeline{grid-template-rows:auto 24px auto;gap:10px}#shadow-theatre-preview .shadow-classic-screen .shadow-chapters{grid-template-rows:repeat(4,46px);gap:8px}#shadow-theatre-preview .shadow-classic-screen .shadow-chapters button{padding:8px;font-size:19px}#shadow-theatre-preview .shadow-classic-screen .shadow-play-controls{justify-content:flex-start}}
+
+/* The open volume fills the display; navigation stays inside its title row. */
+#shadow-theatre-preview .shadow-app{grid-template-rows:minmax(0,1fr);gap:0}
+#shadow-theatre-preview .shadow-mode-screen,
+#shadow-theatre-preview .shadow-mode-screen.shadow-classic-screen{isolation:isolate;grid-template-rows:44px minmax(0,1fr);gap:14px;padding:28px 32px 28px 34px;margin:0 8px 8px 0;border:2px solid #795632;border-radius:4px 8px 5px 4px;background:radial-gradient(ellipse at 87% 4%,#90603524,transparent 50%),repeating-linear-gradient(3deg,#7a563012 0,#30221816 2px,#261b140d 4px),linear-gradient(105deg,#25190f,#3a281b 4%,#302217 55%,#352418);box-shadow:inset 9px 0 14px #100a07a6,inset 0 0 0 4px #24170f,inset 0 0 0 5px #a17b444a,2px 3px 0 #c4a473,4px 5px 0 #64482c,6px 8px 0 #9d8054}
+#shadow-theatre-preview .shadow-mode-screen::before{content:"";position:absolute;inset:14px 15px 15px 18px;border:1px solid #a9884b5c;box-shadow:inset 0 0 0 3px #25180d80,inset 0 0 0 4px #9b754433;background:linear-gradient(#c4a16b,#c4a16b) top left/18px 2px no-repeat,linear-gradient(#c4a16b,#c4a16b) top left/2px 18px no-repeat,linear-gradient(#c4a16b,#c4a16b) bottom right/18px 2px no-repeat,linear-gradient(#c4a16b,#c4a16b) bottom right/2px 18px no-repeat;pointer-events:none;z-index:0}
+#shadow-theatre-preview .shadow-mode-screen::after{content:"";position:absolute;left:3px;right:-5px;bottom:-8px;height:6px;background:repeating-linear-gradient(0deg,#45301d 0,#ceb386 1px,#8e7048 2px,#d8be91 3px);border-bottom:1px solid #72502c;transform:skewX(20deg);transform-origin:left top;pointer-events:none;z-index:-1}
+#shadow-theatre-preview .shadow-mode-edge{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none;z-index:1;opacity:.9}
+#shadow-theatre-preview .shadow-mode-screen>.shadow-mode-heading,
+#shadow-theatre-preview .shadow-mode-screen>.shadow-workspace{position:relative;z-index:2}
+#shadow-theatre-preview .shadow-mode-heading{justify-content:space-between;gap:16px}
+#shadow-theatre-preview .shadow-mode-screen .shadow-back{flex-shrink:0}
+#shadow-theatre-preview .shadow-mode-screen .shadow-stage{background:linear-gradient(110deg,#68462b,#785039 50%,#4b3222);border-color:#ad8550;box-shadow:inset 0 0 0 3px #392618,inset 0 0 0 4px #bb95575c}
+#shadow-theatre-preview .shadow-mode-screen .shadow-controller{background:linear-gradient(110deg,#302419,#211b14);box-shadow:inset 0 0 0 3px #20160e,inset 0 0 0 4px #98713e22}
+#shadow-theatre-preview .shadow-drawing-wrap{overflow:hidden;border:1px solid #9c7c4e;border-radius:2px;background:radial-gradient(ellipse at 50% 30%,#ecdfc3,#d6c299);box-shadow:inset 0 0 14px #78553466}
+#shadow-theatre-preview .shadow-drawing-wrap canvas{cursor:crosshair}
+#shadow-theatre-preview .shadow-drawing-actions{display:grid;grid-template-columns:1.35fr 1fr;gap:8px;flex-shrink:0}
+#shadow-theatre-preview .shadow-drawing-actions button{padding:9px 6px;min-width:0}
+#shadow-theatre-preview [data-screen="touch"] .shadow-live-hint{min-height:42px;display:flex;align-items:center;justify-content:center;line-height:1.5}
+@media(min-width:1400px){#shadow-theatre-preview .shadow-mode-screen,#shadow-theatre-preview .shadow-mode-screen.shadow-classic-screen{grid-template-rows:56px minmax(0,1fr);padding:34px 38px 34px 42px;gap:20px}}
+@media(max-width:899px){#shadow-theatre-preview .shadow-mode-screen,#shadow-theatre-preview .shadow-mode-screen.shadow-classic-screen{grid-template-rows:44px auto;padding:26px 26px 28px 28px;margin-right:6px;min-height:510px}#shadow-theatre-preview .shadow-mode-heading{gap:10px}}
+@media(max-width:640px){#shadow-theatre-preview .shadow-mode-screen,#shadow-theatre-preview .shadow-mode-screen.shadow-classic-screen{padding:25px 23px 27px 25px;grid-template-rows:44px auto}#shadow-theatre-preview .shadow-mode-heading h2{font-size:23px;letter-spacing:1px}#shadow-theatre-preview .shadow-mode-heading .shadow-back{font-size:13px;padding:8px 7px;gap:3px}#shadow-theatre-preview .shadow-mode-heading .shadow-back svg{display:none}}
+
+/* The three open chapters share the illustrated cover's faded paper palette. */
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]){--sh-gold:#657257;--sh-gold-light:#46523c;--sh-red:#606b55;--sh-text:#44392b;--sh-muted:#6c604c;color:var(--sh-text);color-scheme:light;background:radial-gradient(ellipse at 12% 100%,#9ca78c26,transparent 50%),radial-gradient(ellipse at 88% 3%,#efefda5c,transparent 55%),repeating-linear-gradient(94deg,#a49b7f0b 0,#e1dfc816 2px,#b6ad8e0b 4px,#dbd7be16 7px),linear-gradient(110deg,#cfcab1,#dfdfc8 48%,#d2ceb2)}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"])::before{background:radial-gradient(ellipse at 50% 30%,transparent 40%,#937a473d 100%)}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"])>.shadow-embers{opacity:.72}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-mode-screen{color:#44392b;border-color:#9b9074;background:radial-gradient(ellipse at 88% 3%,#f0f0dc78,transparent 54%),radial-gradient(ellipse at 3% 95%,#919d7821,transparent 45%),repeating-linear-gradient(3deg,#998d6d09 0,#e4e2cb14 2px,#b0a78709 4px),linear-gradient(105deg,#c9bea0,#dad5ba 5%,#e0e1cb 55%,#d6d2b6);box-shadow:inset 9px 0 14px #80734f2b,inset 0 0 0 4px #cfc6a7,inset 0 0 0 5px #9387644d,2px 3px 0 #d6ccaa,4px 5px 0 #9b8e6c,6px 8px 0 #bfb38e}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-mode-screen::before{border-color:#9b866168;box-shadow:inset 0 0 0 3px #e8d9b780,inset 0 0 0 4px #a8926b4d;background:linear-gradient(#919b7b,#919b7b) top left/18px 2px no-repeat,linear-gradient(#919b7b,#919b7b) top left/2px 18px no-repeat,linear-gradient(#919b7b,#919b7b) bottom right/18px 2px no-repeat,linear-gradient(#919b7b,#919b7b) bottom right/2px 18px no-repeat}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-mode-screen::after{background:repeating-linear-gradient(0deg,#9d855f 0,#e4d3b0 1px,#baa17b 2px,#f0e2c0 3px);border-bottom-color:#ad956e}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-mode-edge{opacity:.78}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-mode-heading h2{color:#4b402e}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-stage{border-color:#a09675;background:linear-gradient(110deg,#bdb79a,#d7d3b5 50%,#b7ae8e);box-shadow:inset 0 0 0 3px #aaa07d,inset 0 0 0 4px #e4dfc380}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-stage-screen{border-color:#aaa07e;background:#d8d4bc}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-stage-screen canvas{filter:sepia(.5) saturate(.65) brightness(.84) contrast(1.08)}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-stage-screen::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 15px 6px #61361361;background:radial-gradient(ellipse at 5% 3%,#6a3b1b4d,transparent 23%),radial-gradient(ellipse at 98% 98%,#5f351b66,transparent 25%)}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-controller,
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-classic-sidebar{color:#4d422f;border-color:#a69c7c;background:radial-gradient(ellipse at 50% 5%,#ecebd799,transparent 70%),linear-gradient(110deg,#d4d1b9,#dedec7);box-shadow:inset 0 0 0 3px #c7c0a2,inset 0 0 0 4px #a096753d}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-controller-title{color:#4c4935}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-live-hint,
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-body-status,
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-timeline label,
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-timeline output{color:#62563f}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-drawing-wrap{border-color:#aba180;background:radial-gradient(ellipse at 50% 30%,#e8e6d2,#d7d4b9);box-shadow:inset 0 0 14px #988d633d}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-back,
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-secondary,
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-pose-buttons button,
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-chapters button{color:#514732;border-color:#a39879;background:linear-gradient(110deg,#dfddc4,#cecbaf);box-shadow:inset 0 1px 0 #f0efda80}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-back:hover,
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-secondary:hover,
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-pose-buttons button:hover,
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-chapters button:hover{color:#3d4934;border-color:#849171;background:linear-gradient(110deg,#d3d5ba,#c2c9ab)}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-primary,
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-pose-buttons button[aria-pressed="true"],
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-chapters button[aria-pressed="true"]{color:#f5eedc;border-color:#59664d;background:linear-gradient(110deg,#626e55,#56634b);box-shadow:inset 0 1px 0 #89947a80}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-chapters button[aria-pressed="true"]{box-shadow:inset 3px 0 0 #45523c,inset 0 1px 0 #89947a80}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-primary:hover,
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-pose-buttons button[aria-pressed="true"]:hover,
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-chapters button[aria-pressed="true"]:hover{color:#faf3e2;border-color:#46543c;background:linear-gradient(110deg,#59674e,#4d5b43)}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-primary:disabled{color:#f5eedc;border-color:#8a927d;background:#929b83;box-shadow:none}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) button:focus-visible,
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) input:focus-visible{outline-color:#4c604b}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) input[type="range"]{accent-color:#657257;color-scheme:light;background:transparent}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) input[type="range"]::-webkit-slider-runnable-track{background-color:#d2c7a7;border-color:#ad9873}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) input[type="range"]::-moz-range-track{background-color:#d2c7a7;border-color:#ad9873}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) input[type="range"]::-moz-range-progress{background-color:#657257}
+
+/* A selected puppet keeps its own drawing and its horizontal stage position. */
+#shadow-theatre-preview .shadow-touch-performance{display:grid;grid-template-rows:minmax(0,1fr) 54px;gap:10px;min-width:0;min-height:0}
+#shadow-theatre-preview .shadow-touch-performance>.shadow-stage{position:relative}
+#shadow-theatre-preview .shadow-touch-stage{touch-action:none;cursor:grab}
+#shadow-theatre-preview [data-stage-controller][data-dragging="true"] .shadow-touch-stage{cursor:grabbing}
+#shadow-theatre-preview .shadow-stage-hint{position:absolute;bottom:13px;left:50%;transform:translateX(-50%);padding:2px 10px;border:1px solid #a99b764d;border-radius:2px;background:#dedac0d9;color:#60563e;font-size:13px;line-height:1.4;white-space:nowrap;pointer-events:none;z-index:3}
+#shadow-theatre-preview .shadow-actor-position-rail{display:grid;grid-template-rows:18px 20px;gap:2px;align-content:center;min-width:0;min-height:0;padding:5px 10px;border:1px solid #a69c7c;border-radius:2px;background:linear-gradient(110deg,#dfddc6,#d3d0b5);box-shadow:inset 0 1px 0 #f1efda80}
+#shadow-theatre-preview .shadow-actor-position-rail label{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#62563f;font-size:13px;line-height:18px}
+#shadow-theatre-preview .shadow-actor-position-rail output{color:#49573f;font-variant-numeric:tabular-nums}
+#shadow-theatre-preview .shadow-actor-position-rail input{display:block;width:100%;min-width:0;height:20px;margin:0}
+#shadow-theatre-preview .shadow-actor-position-rail input:disabled{opacity:.48}
+#shadow-theatre-preview .shadow-actor-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;flex-shrink:0}
+#shadow-theatre-preview .shadow-actor-choices button{min-width:0;padding:8px 6px}
+#shadow-theatre-preview .shadow-drawing-wrap canvas[aria-disabled="true"]{pointer-events:none;cursor:default}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-actor-choices button[aria-pressed="true"]{color:#f5eedc;border-color:#59664d;background:linear-gradient(110deg,#626e55,#56634b);box-shadow:inset 0 1px 0 #89947a80}
+#shadow-theatre-preview .shadow-app[data-page]:not([data-page="home"]) .shadow-drawing-actions .shadow-secondary:disabled{color:#89816b;border-color:#b1a88a;background:#d5d0b8;box-shadow:none}
+@media(min-width:1400px){#shadow-theatre-preview .shadow-touch-performance{grid-template-rows:minmax(0,1fr) 64px;gap:14px}#shadow-theatre-preview .shadow-actor-position-rail{grid-template-rows:22px 24px;gap:3px}#shadow-theatre-preview .shadow-actor-position-rail label{font-size:16px;line-height:22px}#shadow-theatre-preview .shadow-actor-position-rail input{height:24px}#shadow-theatre-preview .shadow-stage-hint{font-size:16px;bottom:16px}}
+@media(max-width:640px){#shadow-theatre-preview [data-screen="touch"] .shadow-interactive-workspace{grid-template-rows:340px 460px}#shadow-theatre-preview .shadow-actor-choices{gap:8px}#shadow-theatre-preview .shadow-stage-hint{font-size:12px;padding:2px 6px}}
+
+/* Real camera pixels and externally supplied landmarks share the same crop. */
+#shadow-theatre-preview .shadow-camera-view{overflow:hidden;border:1px solid #aaa180;border-radius:2px;background:radial-gradient(ellipse at 50% 30%,#e5e2cd,#d1ceb4);box-shadow:inset 0 0 14px #988d633d}
+#shadow-theatre-preview .shadow-camera-view video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center;z-index:1}
+#shadow-theatre-preview .shadow-camera-view canvas{z-index:2;pointer-events:none}
+#shadow-theatre-preview .shadow-camera-view[data-camera-state="live"]{background:#23271e}
+#shadow-theatre-preview .shadow-camera-empty{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:16px;color:#726d54;font-size:14px;line-height:1.6;text-align:center;pointer-events:none}
+#shadow-theatre-preview .shadow-camera-empty svg{width:40px;height:32px;stroke:#7b846b;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+/* Give the touch drawing paper more room while keeping its controls compact. */
+#shadow-theatre-preview [data-screen="touch"] .shadow-interactive-workspace{grid-template-columns:minmax(0,1fr) 330px;gap:16px}
+#shadow-theatre-preview [data-screen="touch"] .shadow-controller{padding:8px 10px;gap:6px}
+#shadow-theatre-preview [data-screen="touch"] .shadow-controller button{touch-action:manipulation}
+#shadow-theatre-preview [data-screen="touch"] .shadow-controller-title{font-size:20px;line-height:24px}
+#shadow-theatre-preview [data-screen="touch"] .shadow-actor-choices,
+#shadow-theatre-preview [data-screen="touch"] .shadow-drawing-actions{gap:6px}
+#shadow-theatre-preview [data-screen="touch"] .shadow-actor-choices button{min-height:36px;padding:6px 8px;font-size:18px;line-height:22px}
+#shadow-theatre-preview [data-screen="touch"] .shadow-drawing-actions button{min-height:40px;padding:8px 10px;font-size:18px;line-height:22px}
+#shadow-theatre-preview [data-screen="touch"] .shadow-live-hint{min-height:24px;font-size:14px;line-height:20px}
+@media(min-width:1400px){#shadow-theatre-preview [data-screen="touch"] .shadow-interactive-workspace{grid-template-columns:minmax(0,1fr) 360px}}
+@media(min-width:641px) and (max-width:899px){#shadow-theatre-preview [data-screen="touch"] .shadow-interactive-workspace{grid-template-columns:minmax(0,1fr) 320px;min-height:448px}}
+@media(max-width:640px){#shadow-theatre-preview [data-screen="touch"] .shadow-interactive-workspace{grid-template-columns:minmax(0,1fr);grid-template-rows:340px 460px;gap:18px}#shadow-theatre-preview [data-screen="touch"] .shadow-controller{padding-left:8px;padding-right:8px}}
+</style>
+
+<style>
+/* Body mode presents the camera and measured landmarks as the primary view. */
+#shadow-theatre-preview [data-screen="body"] .shadow-interactive-workspace{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);gap:0}
+#shadow-theatre-preview .shadow-body-controller{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:12px;padding:12px}
+#shadow-theatre-preview .shadow-body-controller .shadow-camera-view{min-height:0;width:100%}
+#shadow-theatre-preview .shadow-body-controller .shadow-camera-view video{object-fit:contain}
+#shadow-theatre-preview .shadow-camera-controls{display:flex;align-items:center;justify-content:space-between;gap:16px}
+#shadow-theatre-preview .shadow-camera-controls>div{min-width:0}
+#shadow-theatre-preview .shadow-camera-controls .shadow-live-hint,#shadow-theatre-preview .shadow-camera-controls .shadow-body-status{text-align:left;min-height:0}
+#shadow-theatre-preview .shadow-camera-controls .shadow-body-start{width:auto;min-width:150px;margin:0}
+@media(max-width:640px){#shadow-theatre-preview [data-screen="body"] .shadow-interactive-workspace{min-height:430px}#shadow-theatre-preview .shadow-camera-controls{flex-wrap:wrap;gap:10px}#shadow-theatre-preview .shadow-camera-controls .shadow-body-start{min-width:120px}}
+</style>
+
+<!-- STAGE_ART_SCRIPT -->
+<!-- BOOK_EFFECTS_SCRIPT -->
+<!-- PAPER_BURN_SCRIPT -->
+<!-- PAGE_TURN_SCRIPT -->
+<!-- SKETCH_MODEL_SCRIPT -->
+
+<!-- BRUSH_INK_SCRIPT -->
+<!-- CAMERA_PREVIEW_SCRIPT -->
+<!-- APPLICATION_SCRIPT -->

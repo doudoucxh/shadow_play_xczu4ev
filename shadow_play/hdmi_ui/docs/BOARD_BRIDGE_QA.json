@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-16",
+  "release": "shadow-theatre-board-20261016-r3",
+  "environment": "Windows PC; local HTTP only",
+  "board_deployed": false,
+  "hardware_motion_tested": false,
+  "camera_dpu_tested": false,
+  "tests": {
+    "ui_frame_feed": 9,
+    "follow_sender_including_udp_loopback": 11,
+    "hdmi_board_service": 13,
+    "board_client_node": 5
+  },
+  "browser": {
+    "viewport": [
+      1024,
+      600
+    ],
+    "classic": "preview and real request separated; unavailable motion rejected",
+    "body": "ARM64 not connected error; no fabricated camera frame",
+    "console_errors": [],
+    "touch": "1024x600 layout checked; slider 28 to 29 percent stays preview with explicit unavailable warning"
+  },
+  "connection": {
+    "present_ports": "COM4 COM6 COM7 COM8 COM15 COM16: Bluetooth only",
+    "historical_uart": "USB-SERIAL CH340 COM3: not present",
+    "pnp_scan": "Windows denied access; no driver or device changes performed"
+  },
+  "limitations": [
+    "Rail driver, homing, limits and travel pending user data",
+    "Current servo pose pending user data",
+    "Validated multi-rod inverse mapping missing",
+    "Board HDMI browser/VDMA path still requires board inspection"
+  ]
+}

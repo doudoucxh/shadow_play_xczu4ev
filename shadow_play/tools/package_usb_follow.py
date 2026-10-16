@@ -10,10 +10,14 @@ import tarfile
 
 def package(destination):
     root = Path(__file__).resolve().parents[1]
+    # Includes ui_frame_feed.py, imported even when UI publishing is disabled.
     files = list((root/'integrations/follow').glob('*.py'))
+    if root/'integrations/follow/ui_frame_feed.py' not in files:
+        raise FileNotFoundError('Missing FOLLOW UI frame publisher dependency')
     files += [root/'integrations/calibration'/name for name in ('mmio32.py','libservo_mmio32.so')]
     files += [root/'tools'/name for name in ('usb_camera_probe.py','run_usb_follow.sh')]
-    files += [root/'tests/test_usb_camera.py']
+    files += [root/'tests'/name for name in
+              ('test_usb_camera.py', 'test_follow_sender.py', 'test_ui_frame_feed.py')]
     files += [root/'docs/usb_camera_migration.md']
     manifest = {str(p.relative_to(root)).replace('\\','/'): hashlib.sha256(p.read_bytes()).hexdigest()
                 for p in files}

@@ -1,0 +1,1285 @@
+{
+  "catalog_id": "wusong-twenty-separated-v1",
+  "actions": [
+    {
+      "id": "neutral",
+      "name": "站姿",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.32,
+          0.48
+        ],
+        "leftWrist": [
+          0.3,
+          0.64
+        ],
+        "rightElbow": [
+          0.68,
+          0.48
+        ],
+        "rightWrist": [
+          0.7,
+          0.64
+        ]
+      },
+      "instruction": "双臂自然下垂；双手在身体两侧，略低于腰。",
+      "distinguishing_instruction": "双手都低于肩；两臂贴近身体，不能展开成倒 V。"
+    },
+    {
+      "id": "open",
+      "name": "展臂",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.195,
+          0.32
+        ],
+        "leftWrist": [
+          0.05,
+          0.32
+        ],
+        "rightElbow": [
+          0.805,
+          0.32
+        ],
+        "rightWrist": [
+          0.95,
+          0.32
+        ]
+      },
+      "instruction": "双手向左右伸直，画成一条穿过肩部的水平长线。",
+      "distinguishing_instruction": "必须两边都有长直臂；肘部不要画出三角回折。"
+    },
+    {
+      "id": "raise",
+      "name": "双手上举",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.31,
+          0.1775
+        ],
+        "leftWrist": [
+          0.28,
+          0.035
+        ],
+        "rightElbow": [
+          0.69,
+          0.1775
+        ],
+        "rightWrist": [
+          0.72,
+          0.035
+        ]
+      },
+      "instruction": "双臂靠近竖直向上伸直，两只手都高于头顶。",
+      "distinguishing_instruction": "像两根向上的竖线；不要把两臂向左右张成宽 V。"
+    },
+    {
+      "id": "strike",
+      "name": "右出拳",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.23,
+          0.52
+        ],
+        "leftWrist": [
+          0.49,
+          0.38
+        ],
+        "rightElbow": [
+          0.805,
+          0.32
+        ],
+        "rightWrist": [
+          0.95,
+          0.32
+        ]
+      },
+      "instruction": "画面右手水平伸直出拳；左手收回胸前，左肘向外下折。",
+      "distinguishing_instruction": "右臂是一条直线，左臂是明显三角折线；与右指路的左臂下垂不同。"
+    },
+    {
+      "id": "left_raise",
+      "name": "左手上举",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.31,
+          0.1775
+        ],
+        "leftWrist": [
+          0.28,
+          0.035
+        ],
+        "rightElbow": [
+          0.68,
+          0.48
+        ],
+        "rightWrist": [
+          0.7,
+          0.64
+        ]
+      },
+      "instruction": "只把画面左手竖直举过头；右手自然下垂。",
+      "distinguishing_instruction": "左手在头顶上方，右手在腰附近；不能画成双手上举。"
+    },
+    {
+      "id": "right_raise",
+      "name": "右手上举",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.32,
+          0.48
+        ],
+        "leftWrist": [
+          0.3,
+          0.64
+        ],
+        "rightElbow": [
+          0.69,
+          0.1775
+        ],
+        "rightWrist": [
+          0.72,
+          0.035
+        ]
+      },
+      "instruction": "只把画面右手竖直举过头；左手自然下垂。",
+      "distinguishing_instruction": "右手在头顶上方，左手在腰附近；不能画成双手上举。"
+    },
+    {
+      "id": "guard",
+      "name": "护头",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.14,
+          0.39
+        ],
+        "leftWrist": [
+          0.33,
+          0.15
+        ],
+        "rightElbow": [
+          0.86,
+          0.39
+        ],
+        "rightWrist": [
+          0.67,
+          0.15
+        ]
+      },
+      "instruction": "双肘向左右撑开，双手收回头部两侧，画成护头的弯臂。",
+      "distinguishing_instruction": "手在头旁，肘比手低；不能画成两条竖直手臂。"
+    },
+    {
+      "id": "akimbo",
+      "name": "双手叉腰",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.12,
+          0.44
+        ],
+        "leftWrist": [
+          0.42,
+          0.62
+        ],
+        "rightElbow": [
+          0.88,
+          0.44
+        ],
+        "rightWrist": [
+          0.58,
+          0.62
+        ]
+      },
+      "instruction": "双肘向左右伸出，双手收回腰两侧，形成两个下尖三角。",
+      "distinguishing_instruction": "手在肘下方、靠近腰；与准备出拳的胸前双手明显分开。"
+    },
+    {
+      "id": "salute",
+      "name": "准备出拳",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.23,
+          0.55
+        ],
+        "leftWrist": [
+          0.47,
+          0.445
+        ],
+        "rightElbow": [
+          0.77,
+          0.55
+        ],
+        "rightWrist": [
+          0.53,
+          0.445
+        ]
+      },
+      "instruction": "双肘向左右下方折，双手收在胸前，双手之间留一点空隙。",
+      "distinguishing_instruction": "双手比肘高、但低于肩；双手不要抬到下巴，也不要放到腰。"
+    },
+    {
+      "id": "point",
+      "name": "右指路",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.32,
+          0.48
+        ],
+        "leftWrist": [
+          0.3,
+          0.64
+        ],
+        "rightElbow": [
+          0.805,
+          0.32
+        ],
+        "rightWrist": [
+          0.95,
+          0.32
+        ]
+      },
+      "instruction": "画面右手向右水平伸直；左手自然下垂。",
+      "distinguishing_instruction": "左手要画到腰附近；不能把左手折回胸前，否则是右出拳。"
+    },
+    {
+      "id": "left_point",
+      "name": "左指路",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.195,
+          0.32
+        ],
+        "leftWrist": [
+          0.05,
+          0.32
+        ],
+        "rightElbow": [
+          0.68,
+          0.48
+        ],
+        "rightWrist": [
+          0.7,
+          0.64
+        ]
+      },
+      "instruction": "画面左手向左水平伸直；右手自然下垂。",
+      "distinguishing_instruction": "右手要画到腰附近；不能把右手折回胸前，否则是左出拳。"
+    },
+    {
+      "id": "left_strike",
+      "name": "左出拳",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.195,
+          0.32
+        ],
+        "leftWrist": [
+          0.05,
+          0.32
+        ],
+        "rightElbow": [
+          0.77,
+          0.52
+        ],
+        "rightWrist": [
+          0.51,
+          0.38
+        ]
+      },
+      "instruction": "画面左手水平伸直出拳；右手收回胸前，右肘向外下折。",
+      "distinguishing_instruction": "左臂是一条直线，右臂是明显三角折线；与左指路的右臂下垂不同。"
+    },
+    {
+      "id": "diagonal",
+      "name": "斜上展臂",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.215,
+          0.195
+        ],
+        "leftWrist": [
+          0.09,
+          0.07
+        ],
+        "rightElbow": [
+          0.785,
+          0.195
+        ],
+        "rightWrist": [
+          0.91,
+          0.07
+        ]
+      },
+      "instruction": "双臂向左右斜上方伸直，画出一个很宽的 V。",
+      "distinguishing_instruction": "两只手必须远离头部左右两侧；与近竖直双手上举拉开宽度。"
+    },
+    {
+      "id": "down_open",
+      "name": "斜下展臂",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.205,
+          0.47
+        ],
+        "leftWrist": [
+          0.07,
+          0.62
+        ],
+        "rightElbow": [
+          0.795,
+          0.47
+        ],
+        "rightWrist": [
+          0.93,
+          0.62
+        ]
+      },
+      "instruction": "双臂向左右斜下方伸直，画出倒 V。",
+      "distinguishing_instruction": "双手要比站姿展开得更宽；不能把两只手收在身体旁。"
+    },
+    {
+      "id": "palms",
+      "name": "合掌",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.28,
+          0.48
+        ],
+        "leftWrist": [
+          0.49,
+          0.26
+        ],
+        "rightElbow": [
+          0.72,
+          0.48
+        ],
+        "rightWrist": [
+          0.51,
+          0.26
+        ]
+      },
+      "instruction": "双肘垂向两侧，双手在下巴前合在一起，画成上尖三角。",
+      "distinguishing_instruction": "双手在下巴，肘明显更低；与准备出拳相比双手至少高一个手掌。"
+    },
+    {
+      "id": "cross_chest",
+      "name": "交叉护胸",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.36,
+          0.46
+        ],
+        "leftWrist": [
+          0.7,
+          0.26
+        ],
+        "rightElbow": [
+          0.64,
+          0.46
+        ],
+        "rightWrist": [
+          0.3,
+          0.26
+        ]
+      },
+      "instruction": "双臂在胸前交叉，左手画到右肩旁，右手画到左肩旁。",
+      "distinguishing_instruction": "必须有清楚的 X；两只手越过身体中线，不能只在中间接触。"
+    },
+    {
+      "id": "left_diagonal",
+      "name": "左高右低",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.21,
+          0.19
+        ],
+        "leftWrist": [
+          0.08,
+          0.06
+        ],
+        "rightElbow": [
+          0.79,
+          0.48
+        ],
+        "rightWrist": [
+          0.92,
+          0.64
+        ]
+      },
+      "instruction": "左臂向左上方伸直，右臂向右下方伸直，像一条斜向长线。",
+      "distinguishing_instruction": "双手都远离身体；不能把高的一臂竖直，或把低的一臂贴身。"
+    },
+    {
+      "id": "right_diagonal",
+      "name": "右高左低",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.21,
+          0.48
+        ],
+        "leftWrist": [
+          0.08,
+          0.64
+        ],
+        "rightElbow": [
+          0.79,
+          0.19
+        ],
+        "rightWrist": [
+          0.92,
+          0.06
+        ]
+      },
+      "instruction": "右臂向右上方伸直，左臂向左下方伸直，像一条斜向长线。",
+      "distinguishing_instruction": "双手都远离身体；不能把高的一臂竖直，或把低的一臂贴身。"
+    },
+    {
+      "id": "both_left",
+      "name": "双手左推",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.195,
+          0.32
+        ],
+        "leftWrist": [
+          0.05,
+          0.32
+        ],
+        "rightElbow": [
+          0.45,
+          0.52
+        ],
+        "rightWrist": [
+          0.1,
+          0.52
+        ]
+      },
+      "instruction": "两只手都伸到画面左边；左手在肩高，右手低一层，画成分开的两条横向手臂。",
+      "distinguishing_instruction": "左边必须看得见两个分开的手端；不要画成一条重叠横线。"
+    },
+    {
+      "id": "both_right",
+      "name": "双手右推",
+      "pose": {
+        "head": [
+          0.5,
+          0.17
+        ],
+        "headRadius": [
+          0.055,
+          0.065
+        ],
+        "neck": [
+          0.5,
+          0.255
+        ],
+        "leftShoulder": [
+          0.34,
+          0.32
+        ],
+        "rightShoulder": [
+          0.66,
+          0.32
+        ],
+        "hip": [
+          0.5,
+          0.66
+        ],
+        "leftKnee": [
+          0.39,
+          0.79
+        ],
+        "rightKnee": [
+          0.61,
+          0.79
+        ],
+        "leftFoot": [
+          0.29,
+          0.93
+        ],
+        "rightFoot": [
+          0.71,
+          0.93
+        ],
+        "leftElbow": [
+          0.55,
+          0.52
+        ],
+        "leftWrist": [
+          0.9,
+          0.52
+        ],
+        "rightElbow": [
+          0.805,
+          0.32
+        ],
+        "rightWrist": [
+          0.95,
+          0.32
+        ]
+      },
+      "instruction": "两只手都伸到画面右边；右手在肩高，左手低一层，画成分开的两条横向手臂。",
+      "distinguishing_instruction": "右边必须看得见两个分开的手端；不要画成一条重叠横线。"
+    }
+  ]
+}

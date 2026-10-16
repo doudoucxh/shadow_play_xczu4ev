@@ -1,0 +1,46 @@
+{
+  "published_at": "2026-10-16T13:30:26.331256+00:00",
+  "scope": "Local drawing recognition and UI paper-coordinate repair",
+  "reviewed_geometry_topology_sha256": {
+    "sketch-geometry.js": "dd3f738562c82533f7301418976b59f9858f6f15ca2a9259e1ca0b527daa541e",
+    "sketch-topology.js": "f7aab4fc9a71857193ddb363f108974fe202773c86a15008319a6d0281e099c8"
+  },
+  "mlp_sha256": "29077d2ccabf7ca10399a5c92c0020b8374c5aaa4c16d6fe8670b2783d9582b9",
+  "dataset_sha256": "7fcdc7c7008f0de091fdf0bc7b0c728ee7831be497261e7afea4f518a041cfea",
+  "actual_draft_sha256": "a62c1ae050bd26da71e51a7af7e5e0f82d6c35e03e67bb6b992b726e27d25701",
+  "notes": [
+    "No human screenshot or current draft added to training.",
+    "Geometry and learned topology prototypes updated together.",
+    "Paper aspect is preserved across responsive canvas resize.",
+    "Recognizer identity invalidates stale labels while retaining ink and saved frames."
+  ],
+  "browser_checks": {
+    "actual_restored_draft": "both_right",
+    "viewport_sizes": [
+      [
+        1024,
+        600
+      ],
+      [
+        418,
+        956
+      ],
+      [
+        1024,
+        600
+      ]
+    ],
+    "result_after_each_recognition": "武松 · 双手右推",
+    "original_draft_retained": true,
+    "refresh_retained_correct_label": true
+  },
+  "final_sha256": {
+    "shadow_ui_preview\\sketch-geometry.js": "dd3f738562c82533f7301418976b59f9858f6f15ca2a9259e1ca0b527daa541e",
+    "shadow_ui_preview\\sketch-topology.js": "f7aab4fc9a71857193ddb363f108974fe202773c86a15008319a6d0281e099c8",
+    "shadow_ui_preview\\sketch-paper.js": "648bfc8287f3b13f5599a3be28ea9f7537e16cce47a8a0e4a860908d715aafee",
+    "shadow_ui_preview\\shadow-app.js": "3c69dd8b925eab861df2d20fc04a8531cd4db682f200febfa5b91ab4075e9b36",
+    "shadow_ui_preview\\build-preview.ps1": "a57c267020718354faf7c1ced3e420d3fb6d7bc87c1c90c4584080d9ce81f0f9",
+    "shadow_ui_preview\\agent-dataset-20\\repairs\\same-side\\final-build-verification.json": "4578cb948d2bb6a5c63c37afca02cb059e2c6481382647dc2163a269f4a95180",
+    "shadow_ui_preview\\agent-dataset-20\\repairs\\same-side\\repaired-current-ui.jpg": "57a854cbb4d436fc99ec183c7f969e8d5397e3814d5c718835c07ca29bce2524"
+  }
+}

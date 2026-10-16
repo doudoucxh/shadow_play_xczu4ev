@@ -32,6 +32,7 @@ from display_queue import DisplayQueue
 from pose_responsive import PoseStabilizer
 from pose_sender import PoseSender
 from usb_camera import add_usb_arguments, open_usb
+from ui_frame_feed import UiFrameFeed, validate_feed_options
 
 class Display:
     N = 1280 * 720 * 3
@@ -129,10 +130,13 @@ def main(default_camera='vdma'):
     parser.add_argument('--camera',choices=('vdma','usb'),default=default_camera)
     parser.add_argument('--display',choices=('hdmi','none'),default='hdmi')
     parser.add_argument('--no-send',action='store_true',help='test vision without publishing control input')
+    parser.add_argument('--ui-feed-file',help='volatile /tmp or /run JSON snapshot for local UI; requires USB, no display and no-send')
     add_usb_arguments(parser)
     args=parser.parse_args()
     if not 1 <= args.pose_port <= 65535:parser.error('--pose-port must be in [1, 65535]')
     if args.frames < 0:parser.error('--frames must be nonnegative')
+    try:validate_feed_options(args.camera,args.display,args.no_send,args.ui_feed_file)
+    except ValueError as error:parser.error(str(error))
     lock=open('/tmp/shadow-yolo-board-test.lock','w')
     fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     stopping=False
@@ -146,8 +150,9 @@ def main(default_camera='vdma'):
     reference_verified=False
     stabilizer=PoseStabilizer()
     count=0; report=time.monotonic(); last_count=0; last_presented=0; fps=0.
-    sender=None
+    sender=ui_feed=None
     try:
+        if args.ui_feed_file is not None:ui_feed=UiFrameFeed(args.ui_feed_file)
         if args.camera=='usb':
             producer=open_usb(args)
             # Validate the camera before initializing DPU or touching HDMI.
@@ -191,6 +196,7 @@ def main(default_camera='vdma'):
             # Final tracked pose, including None; do not reuse old coordinates.
             if time.monotonic()-captured>.25:raise RuntimeError('Refusing stale inference result')
             if sender is not None:sender.publish(pose,sequence,captured,stabilizer.track_id)
+            if ui_feed is not None:ui_feed.publish(frame,pose,sequence,captured,stabilizer.track_id)
             if pose is not None:
                 for a,b in EDGES:
                     if min(pose[a,2],pose[b,2])>=.25:
@@ -232,7 +238,10 @@ def main(default_camera='vdma'):
                 report=now;last_count=count
     finally:
         try:
-            if sender is not None:sender.close()
+            try:
+                if ui_feed is not None:ui_feed.close()
+            finally:
+                if sender is not None:sender.close()
         finally:
             renderer_stopped=renderer is None
             try:

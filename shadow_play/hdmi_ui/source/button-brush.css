@@ -1,0 +1,37 @@
+/* Clear brush lettering throughout the UI; cursive remains on the page-turn canvas. */
+#shadow-theatre-preview,#shadow-theatre-preview *{font-family:"ShadowInk","KaiTi","STKaiti",serif!important}
+#shadow-theatre-preview button,#shadow-theatre-preview button span,#shadow-theatre-preview button strong,#shadow-theatre-preview button small{font-weight:400}
+#shadow-theatre-preview .shadow-sample-copy textarea{font-family:Consolas,monospace!important}
+#shadow-theatre-preview .shadow-app .shadow-primary,
+#shadow-theatre-preview .shadow-app .shadow-secondary,
+#shadow-theatre-preview .shadow-app .shadow-back{font-size:20px;line-height:1.2}
+#shadow-theatre-preview .shadow-app [data-screen="touch"] .shadow-controller button{font-size:18px;line-height:22px}
+@media(max-width:640px){
+ #shadow-theatre-preview .shadow-app .shadow-mode-heading .shadow-back{font-size:16px;line-height:20px}
+}
+#shadow-theatre-preview [data-screen="touch"] .shadow-actor-choices{grid-template-columns:minmax(0,1fr) 54px}
+#shadow-theatre-preview [data-batch-entry]{display:flex;align-items:center;justify-content:center;min-height:36px;padding:6px 8px;font-size:18px;line-height:22px;text-decoration:none}
+#shadow-theatre-preview .shadow-sample-copy{position:absolute;inset:8%;z-index:12;display:flex;flex-direction:column;gap:12px;padding:24px;background:#e0ddc5;color:#4b402e;border:1px solid #a79a72;box-shadow:0 12px 40px #20191280}
+#shadow-theatre-preview .shadow-sample-copy textarea{flex:1;min-height:80px;min-width:0;resize:none;font:14px/1.5 monospace;background:#eeecd9;color:#3c3227;border:1px solid #a79a72;padding:12px}
+#shadow-theatre-preview .shadow-sample-copy>div{display:flex;justify-content:flex-end;gap:12px}
+#shadow-theatre-preview .shadow-sample-copy button{font-size:20px;min-height:40px}
+@media(max-width:640px){#shadow-theatre-preview .shadow-sample-copy{padding:16px;inset:4%;gap:8px}}
+/* A compact filmstrip keeps the drawing canvas at its full previous height. */
+#shadow-theatre-preview [data-screen="touch"] .shadow-touch-performance{grid-template-rows:minmax(0,1fr) 54px 76px;gap:8px}
+#shadow-theatre-preview [data-screen="touch"] .shadow-drawing-actions{grid-template-columns:1.1fr 1.1fr .7fr}
+#shadow-theatre-preview [data-screen="touch"] .shadow-drawing-actions button{padding:6px 2px;font-size:17px}
+#shadow-theatre-preview [data-screen="touch"][data-collecting="true"] .shadow-touch-performance{grid-template-rows:minmax(0,1fr) 54px}
+#shadow-theatre-preview [data-screen="touch"][data-collecting="true"] .shadow-drawing-actions{grid-template-columns:1.35fr 1fr}
+#shadow-theatre-preview .shadow-sequence{min-width:0;min-height:0;padding:4px 8px;background:#dbd7be;border:1px solid #a69c7c;color:#62563f;display:grid;grid-template-rows:28px minmax(0,1fr);gap:3px}
+#shadow-theatre-preview .shadow-sequence-toolbar{display:flex;align-items:center;gap:6px;min-width:0}
+#shadow-theatre-preview .shadow-sequence-toolbar>span{margin-right:auto;font-size:14px;white-space:nowrap}
+#shadow-theatre-preview .shadow-sequence button{min-height:28px;padding:2px 8px;font-size:15px;line-height:22px;white-space:nowrap}
+#shadow-theatre-preview .shadow-sequence-frames{display:flex;gap:5px;overflow-x:auto;align-items:start;min-width:0;scrollbar-width:thin}
+#shadow-theatre-preview .shadow-sequence-frames>span{font-size:13px;line-height:28px;white-space:nowrap}
+#shadow-theatre-preview .shadow-sequence-frames>button{flex:none}
+#shadow-theatre-preview .shadow-sequence-frames>button[aria-pressed="true"]{color:#f2e9cf;background:#58664c;border-color:#58664c}
+#shadow-theatre-preview .shadow-sequence[hidden],#shadow-theatre-preview [data-action="save-frame"][hidden]{display:none!important}
+#shadow-theatre-preview .shadow-app[data-turning="true"] .shadow-home,#shadow-theatre-preview .shadow-app[data-turning="true"] .shadow-mode-card{transition:none}
+#shadow-theatre-preview .shadow-app[data-turning="true"] .shadow-page-turn-canvas{will-change:opacity}
+#shadow-theatre-preview #shadow-book-transition[hidden]{display:block!important;visibility:hidden;pointer-events:none}
+@media(max-width:640px){#shadow-theatre-preview [data-screen="touch"] .shadow-interactive-workspace{grid-template-rows:390px 460px}#shadow-theatre-preview .shadow-sequence-toolbar{gap:3px}#shadow-theatre-preview .shadow-sequence-toolbar>span{font-size:13px}#shadow-theatre-preview .shadow-sequence button{padding:2px 5px;font-size:14px}}

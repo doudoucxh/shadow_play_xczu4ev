@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-16",
+  "environment": "Windows x64, local Chrome headless, viewport 1024x600",
+  "boardTested": false,
+  "cameraTest": "Chromium synthetic camera only; actual board camera untested",
+  "checks": [
+    {
+      "name": "Offline startup, art, embedded fonts and exact 1024x600 fit",
+      "passed": true,
+      "detail": {
+        "width": 1024,
+        "height": 600,
+        "scrollWidth": 1024,
+        "scrollHeight": 600,
+        "overflow": []
+      }
+    },
+    {
+      "name": "Home tap reveals and hides the three entrances",
+      "passed": true
+    },
+    {
+      "name": "Classic chapters and play control",
+      "passed": true
+    },
+    {
+      "name": "Drawing page fits, action guide opens offline, no collector navigation",
+      "passed": true
+    },
+    {
+      "name": "Mouse pointer strokes reach the drawing handler; 3 canonical actions recognized and saved",
+      "passed": true,
+      "detail": [
+        {
+          "input": "canonical open",
+          "expected": "展臂",
+          "actual": "武松 · 展臂"
+        },
+        {
+          "input": "canonical left_raise",
+          "expected": "左手上举",
+          "actual": "武松 · 左手上举"
+        },
+        {
+          "input": "canonical right_raise",
+          "expected": "右手上举",
+          "actual": "武松 · 右手上举"
+        }
+      ]
+    },
+    {
+      "name": "Saved sequence advances in order and pauses",
+      "passed": true
+    },
+    {
+      "name": "Local persistence restores sequence/draft; a fresh launch starts at home",
+      "passed": true
+    },
+    {
+      "name": "Delete selected saved action",
+      "passed": true
+    },
+    {
+      "name": "Closing transition prepares home beneath the opaque book cover",
+      "passed": true,
+      "detail": [
+        {
+          "ms": 839,
+          "covered": true
+        }
+      ]
+    },
+    {
+      "name": "Camera-only page uses a live MediaStream (synthetic test device), no puppet stage",
+      "passed": true
+    },
+    {
+      "name": "Leaving camera mode releases the camera stream",
+      "passed": true
+    },
+    {
+      "name": "No JavaScript errors, remote asset requests, or chat/collector requests",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "passed": true,
+  "packaging_checks": {
+    "python_syntax": "passed",
+    "powershell_syntax": "passed",
+    "posix_shell_syntax": "passed using bundled Git dash",
+    "linux_shell_line_endings": "LF",
+    "served_ui_sha256": "matches r2 runtime/web/index.html",
+    "linux_hardware_execution": "not performed"
+  }
+}
