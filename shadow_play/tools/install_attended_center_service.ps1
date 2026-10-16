@@ -3,7 +3,7 @@ $ErrorActionPreference='Stop'
 $taskProject=Split-Path -Parent $PSScriptRoot
 $taskSources=Join-Path $taskProject 'integrations\calibration'
 $taskPayload=@{}
-foreach ($taskName in @('attended_center_console.py')) {
+foreach ($taskName in @('attended_center_console.py','attended_angle_console.py','manual_servo_console.py')) {
     $taskPayload[$taskName]=[Convert]::ToBase64String([IO.File]::ReadAllBytes((Join-Path $taskSources $taskName)))
 }
 $taskBytes=[Text.Encoding]::UTF8.GetBytes(($taskPayload|ConvertTo-Json -Compress))
@@ -33,7 +33,7 @@ python3 - <<'PY'
 import base64,gzip,json,pathlib,py_compile
 src=pathlib.Path('UPLOAD')
 data=json.loads(gzip.decompress(base64.b64decode(src.read_bytes(),validate=True)))
-allowed={'attended_center_console.py'}
+allowed={'attended_center_console.py','attended_angle_console.py','manual_servo_console.py'}
 assert set(data)==allowed
 root=pathlib.Path('/run/media/mmcblk0p2/piying/servo-capture-20261008-r4/integrations/calibration')
 root.mkdir(exist_ok=True)
@@ -46,4 +46,4 @@ print('INSTALLED_NO_MOTOR_COMMANDS')
 PY
 '@
 Send-InstallCommand ($taskFinish.Replace('UPLOAD',$taskRemote))
-Write-Output 'Attended-center service files installed and syntax checked. No service or motor started.'
+Write-Output 'Attended-angle service files installed and syntax checked. No service or motor started.'

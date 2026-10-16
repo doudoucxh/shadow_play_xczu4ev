@@ -9,7 +9,7 @@ else { $env:PYTHONPATH = $serialDeps }
 if (-not (Test-Path -LiteralPath $runtimePythonW)) { throw 'Python runtime missing. Ask to update the launcher path.' }
 & $runtimePython -c 'import tkinter, serial'
 if ($LASTEXITCODE -ne 0) { throw 'tkinter or pyserial unavailable.' }
-$guiScript = Join-Path $PSScriptRoot 'attended_center_gui.py'
+$guiScript = Join-Path $PSScriptRoot 'attended_angle_gui.py'
 if ($SmokeTest) {
     & $runtimePython $guiScript --smoke-test
     if ($LASTEXITCODE -ne 0) { throw 'Attended center panel smoke test failed.' }
