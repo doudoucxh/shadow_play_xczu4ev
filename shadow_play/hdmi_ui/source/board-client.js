@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   function create({root, onStatus} = {}) {
-    let status = null, token = '', cameraQueue = Promise.resolve();
+    let status = null, token = '', cameraQueue = Promise.resolve(), audioQueue = Promise.resolve();
     const bar = document.createElement('div');
     bar.className = 'shadow-board-bar';
     const label = document.createElement('span'); label.setAttribute('role', 'status');
@@ -12,7 +12,7 @@
     async function request(path, payload, timeout = 4000) {
       const controller = new AbortController(), timer = setTimeout(() => controller.abort(), timeout);
       try {
-        const response = await fetch(path, {method: payload === undefined ? 'GET' : 'POST', credentials: 'same-origin', cache: 'no-store', signal: controller.signal, keepalive: path === '/api/camera/stop',
+        const response = await fetch(path, {method: payload === undefined ? 'GET' : 'POST', credentials: 'same-origin', cache: 'no-store', signal: controller.signal, keepalive: path.endsWith('/stop'),
           ...(payload === undefined ? {} : {headers: {'Content-Type': 'application/json', 'X-Shadow-Token': token}, body: JSON.stringify(payload)})});
         const data = await response.json();
         if (!response.ok || data.ok === false) throw new Error(data.error || '板端请求失败（' + response.status + '）');
@@ -54,7 +54,16 @@
     }
     button.addEventListener('click', check);
     message('正在检查板端连接…');
+    function audioCommand(action) {
+      audioQueue = audioQueue.catch(() => {}).then(async () => {
+        if(action === 'start' && !await check()) throw new Error('板端服务未连接');
+        if(!token) return;
+        return request('/api/audio/'+action, {});
+      });
+      return audioQueue;
+    }
     return {check, control, message, startCamera: () => cameraCommand('start'), stopCamera: () => cameraCommand('stop'),
+      startAudio: () => audioCommand('start'), stopAudio: () => audioCommand('stop'), audioStatus: () => request('/api/audio/status'),
       frame: () => request('/api/camera/frame'), get status() { return status; }};
   }
   window.ShadowBoardClient = {create};

@@ -189,8 +189,9 @@ class BoardCamera:
 
 
 class BoardBridge:
-    def __init__(self, camera):
+    def __init__(self, camera, audio=None):
         self.camera = camera
+        self.audio = audio
         self.token = secrets.token_urlsafe(32)
         self.closed = threading.Event()
         self.thread = threading.Thread(target=self.watch, daemon=True)
@@ -199,9 +200,11 @@ class BoardBridge:
     def watch(self):
         while not self.closed.wait(.5):
             self.camera.expire()
+            if self.audio: self.audio.expire()
 
     def status(self):
         return dict(app='shadow-theatre-board', token=self.token, camera=self.camera.status(),
+                    audio=self.audio.status() if self.audio else dict(configured=False),
                     motion=dict(ready=False, rails=False, puppet=False, classic=False,
                                 reason=MOTION_REASON, actual_position_known=False))
 
@@ -214,3 +217,4 @@ class BoardBridge:
         self.closed.set()
         self.thread.join(timeout=1)
         self.camera.stop()
+        if self.audio: self.audio.stop()

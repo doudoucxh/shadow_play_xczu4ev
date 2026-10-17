@@ -162,5 +162,22 @@ class HttpTests(unittest.TestCase):
             self.assertEqual(self.request('POST','/api/camera/start',body,self.authorized())[0],400)
         self.assertEqual(self.camera.starts,0)
 
+    def test_audio_requires_same_origin_and_does_not_start_camera(self):
+        class Audio:
+            def __init__(self): self.starts = self.stops = 0
+            def start(self): self.starts += 1
+            def stop(self): self.stops += 1
+            def expire(self): pass
+            def status(self, touch=False): return dict(running=self.starts > self.stops)
+        audio = Audio()
+        self.server.bridge.audio = audio
+        self.assertEqual(self.request('POST','/api/audio/start','{}')[0],403)
+        self.assertEqual(audio.starts,0)
+        self.assertEqual(self.request('POST','/api/audio/start','{}',self.authorized())[0],200)
+        self.assertTrue(self.request('GET','/api/audio/status')[1]['running'])
+        self.assertEqual(self.camera.starts,0)
+        self.assertEqual(self.request('POST','/api/audio/stop','{}',self.authorized())[0],200)
+        self.assertEqual(audio.stops,1)
+
 
 if __name__ == '__main__': unittest.main()

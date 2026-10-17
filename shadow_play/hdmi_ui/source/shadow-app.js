@@ -626,15 +626,52 @@
     try{if(await board?.control({kind:'classic',action:classicRequested?'stop':'start'})){classicRequested=!classicRequested;realPlay.textContent=classicRequested?'停止实机':'实机演出';}}
     finally{realPlay.disabled=false;}
   });
-  query('.shadow-play-controls').append(realPlay);
+  realPlay.disabled=true;realPlay.title='当前只部署界面、识别和音频，机构控制未启用';
+  const audioButton=document.createElement('button');audioButton.type='button';audioButton.className='shadow-secondary cursor-interaction';audioButton.textContent='播放原声';
+  let audioActive=false,audioRun=0,audioTimer=0;
+  function audioControls(active) {
+    audioActive=active;audioButton.textContent=active?'停止原声':'播放原声';
+    query('[data-action="play"]').disabled=active;
+    query('[data-action="replay"]').disabled=active;
+    query('#shadow-progress').disabled=active;
+    for(const button of all('[data-chapter]'))button.disabled=active;
+  }
+  function stopAudio() {
+    audioRun++;clearTimeout(audioTimer);
+    if(audioActive)board?.stopAudio().catch(error=>board.message(error.message,true));
+    audioControls(false);
+  }
+  async function pollAudio(run) {
+    try {
+      const current=await board.audioStatus();
+      if(run!==audioRun||!audioActive)return;
+      if(current.running||current.finished){state.progress=Math.min(100,100*current.elapsed_s/current.duration_s);renderProgress();scheduleDraw();}
+      if(!current.running){audioControls(false);announce(current.finished?'原声播放完成':current.error||'原声已停止');return;}
+    } catch(error) {if(run===audioRun){stopAudio();board?.message('原声连接中断，已请求停止',true);}return;}
+    audioTimer=setTimeout(()=>pollAudio(run),300);
+  }
+  audioButton.addEventListener('click',async()=>{
+    if(audioActive){stopAudio();return;}
+    if(state.page!=='classic'||turning)return;
+    const run=++audioRun;audioControls(true);state.playing=false;render();
+    try {
+      await board.startAudio();
+      if(run!==audioRun||state.page!=='classic')return;
+      pollAudio(run);announce('播放原声，机构控制保持关闭');
+    } catch(error){if(run===audioRun){stopAudio();board?.message(error.message,true);}}
+  });
+  // Separate explicit audio playback from the optional silent screen preview.
+  query('.shadow-play-controls').append(audioButton);
+  const pageObserver=new MutationObserver(()=>{if(state.page!=='classic')stopAudio();});
+  pageObserver.observe(query('.shadow-app'),{attributes:true,attributeFilter:['data-page']});
   const artworkObserver=new ResizeObserver(scheduleDraw);
   artworkObserver.observe(root);
   for(const el of all('.shadow-hero-scene,.shadow-stage-screen,.shadow-stick-wrap'))artworkObserver.observe(el);
   window.addEventListener('openai:set_globals',e=>{if(e.detail?.globals?.widgetState)load(e.detail.globals.widgetState);});
   window.addEventListener('shadow:art-ready',()=>{artworkEpoch++;scheduleDraw();});
   document.fonts?.load('18px "ShadowInk"').then(scheduleDraw).catch(()=>{});
-  document.addEventListener('visibilitychange',()=>{if(document.hidden && finishTurn)finishTurn();if(document.hidden){cameraPreview?.stop();stopSequence();renderSequence();}});
-  window.addEventListener('pagehide',()=>{cameraPreview?.destroy();stopSequence();});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden && finishTurn)finishTurn();if(document.hidden){cameraPreview?.stop();stopAudio();stopSequence();renderSequence();}});
+  window.addEventListener('pagehide',()=>{cameraPreview?.destroy();stopAudio();stopSequence();pageObserver.disconnect();});
   motionPreference.addEventListener('change',e=>{reduceMotion=e.matches;if(reduceMotion && finishTurn)finishTurn();});
   render();load(storage?.widgetState);board?.check();
   if(globalThis.Tweak) {

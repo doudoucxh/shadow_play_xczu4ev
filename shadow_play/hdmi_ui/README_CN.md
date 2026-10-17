@@ -1,6 +1,16 @@
 # 皮影戏台 HDMI 界面部署包
 
-> 本目录现为 r3 板端接入源码，基于用户提供的 r2 原包。新增同源 HTTP 服务与真实 USB/DPU 同帧数据接口，尚未板端部署或实机验收。当前说明见 [BOARD_BRIDGE_R3_CN.md](docs/BOARD_BRIDGE_R3_CN.md)，本次验证见 `docs/BOARD_BRIDGE_QA.json`。下文及旧 QA 报告保留原包背景；不能用旧桌面结果证明本版硬件可用。完整发布应保持外层 `shadow_play` 目录结构。
+> 当前源码为 r4 软件部署版，基于用户提供的 r2 原包，新增 Firefox 无桌面渲染/触摸桥及独立 USB 原声播放。真实 USB/DPU 接口沿用 r3；所有电机请求保持拒绝。r3 已在 10 月 16 日安装并验证相机/DPU，见 [安装记录](../docs/hdmi_ui_deployment_20261016.md)。r4 的 HDMI、触摸与音频以新的实板记录为准；源码与离线测试不能替代上屏验收。完整发布保持外层 `shadow_play` 目录结构。
+
+## r4 无桌面显示路径
+
+`runtime/browser_display.py` 以普通用户启动独立 Firefox，保留沙箱，通过本机 BiDi 连接渲染实际页面；`runtime/hdmi_sink.py` 只接收两秒内的新 JPEG，在既有审核通过的 PL HDMI 上输出。逻辑视口为 1024×600，按比例居中到既有 1280×720 时序；触摸坐标反向换算。过期画面清空，不用旧截图冒充正常界面。显示驱动仍要求本次启动的有效 FPGA 标记，安装器不会自动加载 FPGA。
+
+`tools/install_hdmi_software.py`（外层 shadow_play/tools）把校验后的运行包和 Firefox 安装到 SD 新目录，生成 HTTP、普通用户浏览器、HDMI 三个独立服务。`--activate` 只启动前两者。现有系统根目录是内存盘，`systemctl enable` 不能据此宣称重启自启；SD 中保留 `start-software.sh`，没有修改 BOOT.BIN、image.ub 或 uEnv。
+
+经典页新增“播放原声”，通过固定哈希播放器播放 67.105688 秒原音轨，增益 0.60，不调用编舞或机构代码。播放时进度来自播放器进程计时，不声称声学同步；离页、隐藏或十秒失去浏览器租约停止。第三模式继续按需启动真实摄像头/DPU，不填造缺失关键点。
+
+Firefox 158.0 ARM64 来自 Mozilla 官方包；私有目录内补充 Debian libasound2 1.2.8 的 ARM64 动态库与许可文件，不覆盖系统库。WebSocket 客户端为 1.9.0。二进制与音轨仅放入被忽略的构建包，源码和校验依据进入 Git。
 
 交接日期：2026-10-16。项目板卡：**正点原子 MPSoC-P4／XCZU4EV，板端 Linux**。
 目标屏幕：10 寸、**1024×600**，横屏、浏览器缩放 100%。

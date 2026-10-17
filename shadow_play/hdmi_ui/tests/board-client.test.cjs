@@ -65,6 +65,22 @@ test('camera stop follows an outstanding start rather than racing it', async () 
   assert.deepEqual(calls.filter(call=>call.options.method==='POST').map(call=>call.url),['/api/camera/start','/api/camera/stop']);
 });
 
+test('audio stop follows pending start without any motion request', async () => {
+  const calls=[],startResponse=deferred();
+  const client=boardHarness(async(url,options)=>{
+    calls.push({url,options});
+    if(url==='/api/status')return response(status(false));
+    if(url==='/api/audio/start')await startResponse.promise;
+    return response({ok:true});
+  });
+  const start=client.startAudio();
+  await until(()=>calls.some(call=>call.url==='/api/audio/start'));
+  const stop=client.stopAudio();
+  assert.equal(calls.filter(call=>call.url==='/api/audio/stop').length,0);
+  startResponse.resolve();await Promise.all([start,stop]);
+  assert.deepEqual(calls.filter(call=>call.options.method==='POST').map(call=>call.url),['/api/audio/start','/api/audio/stop']);
+});
+
 function cameraHarness(board) {
   const events={poses:[],states:[]},view={dataset:{}},screen={hidden:false,closest:()=>null};
   const image={hidden:true,removeAttribute(key){delete this[key];},remove(){}};

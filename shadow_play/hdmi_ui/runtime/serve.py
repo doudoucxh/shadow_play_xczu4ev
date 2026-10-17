@@ -10,6 +10,7 @@ import hmac
 import signal
 from urllib.parse import urlsplit
 from board_service import BoardBridge, BoardCamera, Unavailable
+from board_audio import BoardAudio
 
 APP = "shadow-theatre-hdmi"
 ROOT = Path(__file__).resolve().parent / "web"
@@ -46,6 +47,9 @@ class Handler(SimpleHTTPRequestHandler):
         route = urlsplit(self.path).path
         if route == '/api/status':
             return self.send_json(self.server.bridge.status())
+        if route == '/api/audio/status':
+            audio = self.server.bridge.audio
+            return self.send_json(audio.status(touch=True) if audio else dict(configured=False, running=False))
         if route == '/api/camera/frame':
             try:
                 return self.send_json(self.server.bridge.camera.frame())
@@ -90,6 +94,13 @@ class Handler(SimpleHTTPRequestHandler):
                 self.server.bridge.camera.stop()
             elif route == '/api/control':
                 self.server.bridge.control(body)
+            elif route in ('/api/audio/start', '/api/audio/stop'):
+                audio = self.server.bridge.audio
+                if not audio: raise Unavailable('原声播放器未配置')
+                try:
+                    audio.start() if route.endswith('/start') else audio.stop()
+                except (OSError, RuntimeError, ValueError) as error:
+                    raise Unavailable(str(error))
             else:
                 return self.send_json({'error': 'unknown API'}, 404)
             return self.send_json({'ok': True})
@@ -102,11 +113,12 @@ def main():
     parser.add_argument("--port", type=int, default=8765)
     parser.add_argument('--camera-runner', type=Path,
                         default=Path(__file__).resolve().parents[2] / 'tools/run_usb_follow.sh')
+    parser.add_argument('--audio-folder', type=Path, default=Path(__file__).resolve().parent/'audio')
     args = parser.parse_args()
     if not (ROOT / "index.html").is_file():
         parser.error("Missing runtime/web/index.html; extract the complete package first.")
     server = ThreadingHTTPServer((args.bind, args.port), partial(Handler, directory=str(ROOT)))
-    server.bridge = BoardBridge(BoardCamera(args.camera_runner))
+    server.bridge = BoardBridge(BoardCamera(args.camera_runner), BoardAudio(args.audio_folder))
     def terminate(signum, frame):
         raise SystemExit(0)
     signal.signal(signal.SIGTERM, terminate)
