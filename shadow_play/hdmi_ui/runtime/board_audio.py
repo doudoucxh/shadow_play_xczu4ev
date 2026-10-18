@@ -1,5 +1,6 @@
-"""Explicit playback of the fixed original soundtrack; no motion imports."""
+"""Explicit playback of the selected task-one soundtrack; no motion imports."""
 import hashlib
+import json
 import os
 from pathlib import Path
 import re
@@ -8,9 +9,10 @@ import tempfile
 import threading
 import time
 
-TRACK_SHA = 'e001fb858ab32e4d0217bd7c5262667f8f077025e12be19fb21b82a1a8bd13e7'
+TRACK = json.loads(Path(__file__).with_name('task1_audio.json').read_text(encoding='utf-8'))
+TRACK_SHA = TRACK['playback']['sha256']
 PLAYER_SHA = '8684834abfc45f2823c4f3992ccd15b8c5bf3150b2757d7000b7a462cd59866d'
-DURATION = 67.1056875
+DURATION = TRACK['playback']['decoded_frames'] / TRACK['playback']['sample_rate_hz']
 
 
 class BoardAudio:

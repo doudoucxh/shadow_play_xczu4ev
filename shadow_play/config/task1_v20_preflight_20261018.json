@@ -1,0 +1,289 @@
+{
+  "date": "2026-10-18",
+  "request": "Use 武松打虎8.wav for task one, then perform physical puppets following V20 fixed-rail guidance",
+  "operator_confirmed": {
+    "physical_puppets": true,
+    "mechanisms_connected": true,
+    "rails_fixed": true,
+    "onsite_power_cut_available": true
+  },
+  "source_audio": {
+    "filename": "武松打虎8.wav",
+    "sha256": "8b95f441e7f696213d1f175cb52caa2e07ea05bca4e0e8697e48647b96621ff8",
+    "byte_identical_to_v20": true,
+    "duration_s": 76.579410430839
+  },
+  "reference_folder": "任务一_V20_固定滑轨独立动作",
+  "reference_hashes": {
+    "actions.json": "29f4cb3f6468be29fe5bc1a4f5ec61611e51918a46d72d48b4ce6413f84fed9c",
+    "source\\full_plan.json": "b33d3239e52a2ee981989d3bc84de18016d486ad3c97265bf9aca2ee1e3367aa",
+    "V20最新动作补充.json": "837abce102c3c7e7866679f3c5f0c7cc82e16553eb0624618d2c8f3d731faa3e",
+    "双摄像头_五杆接口约定.json": "9fe27e275dea61407820646ae7858da774b8b8f6e702c17da51ac7d8c6acfa03",
+    "A01_老虎吼叫与扭动\\script.json": "45c621c8400c8981dca2efa2c5619d7b2cf3ca5e861ff359421371182a69aa9d",
+    "A01_老虎吼叫与扭动\\trajectory.jsonl": "f381e599e79789ed5e900c747e1329971b3470e0f60e44378aac4f4d317ce0f1",
+    "A02_武松水平换手转身\\script.json": "9c93af2d9b545bf3435e1e1a74b3510da3b5770a4c85e96400072837d0f9b112",
+    "A02_武松水平换手转身\\trajectory.jsonl": "c4feb92dfc0b6acdad2698a24c2f346a63e55021a6ffacf119b56a7e89ac5f4e",
+    "A03_武松抬手摆姿并停下\\script.json": "72624d76402bc1a7e3b1fd74a85aeb1ccaacabe1ab0ff994ef656c44814d3ddd",
+    "A03_武松抬手摆姿并停下\\trajectory.jsonl": "63ac2fbe622be6f1198fcd353032938503d12535eeb34249f3015d0791281f6a",
+    "A04_武松说话手势\\script.json": "25930bc6418d240a03e13815b4ff02eddceb5349030649c6b36c2aa7ff072ee5",
+    "A04_武松说话手势\\trajectory.jsonl": "b304c6932d6786cb65a3ab5ad3e8d75adc889e142ae87efe92f7344453f3cc07",
+    "A05_左手上绕蓄势\\script.json": "20d13364ff6d27cffb9784a50f1a568e32a58875954a5e0636aaa1d24f00cade",
+    "A05_左手上绕蓄势\\trajectory.jsonl": "02864baa87af08df893f6f99eb9d84d7e04554ee96ecdab08415cdedf6b26df7",
+    "A06_固定站位三连击\\script.json": "69d31828e3016947473164f355526eabbf42a1e951b72b69f5eebe0cd200c907",
+    "A06_固定站位三连击\\trajectory.jsonl": "5571f0e63f00e0576da62ea94790ee44bfb3883e12212b8eecc6d3c4c2554d45",
+    "A07_竖直提起下放子动作\\script.json": "eb0d4eafdab497df9a3a27da9afd177d196f708429a18e492cc55097e992abed",
+    "A07_竖直提起下放子动作\\trajectory.jsonl": "b60713e4645c6ec3058a8a9e6dbf56cba6b87f68265f9935fd9c9d649f52db26",
+    "A08_预置骑姿十一击与挣扎衰弱\\script.json": "c404fa22439aa1aef31248520a24b1a0f91030f079d021ac28516daa9baebc44",
+    "A08_预置骑姿十一击与挣扎衰弱\\trajectory.jsonl": "5d45677533e63d38484a847b3710e94043613cb9429569c053cc63ac895046b8",
+    "A09_老虎死亡低头\\script.json": "96f577526f542b808191af2959113d841c4ab1cc4bb3c49c7d50bd1912cde6ce",
+    "A09_老虎死亡低头\\trajectory.jsonl": "669565ff70d2d343f12b2cd928357f6db21876d27ed8cc6c41c532fef6a2bb99",
+    "A10_左手就近抓虎尾\\script.json": "f2a3b501709af2e2fb83ea0c7dce01acf272ed5a640864314395a344d9d5e5d6",
+    "A10_左手就近抓虎尾\\trajectory.jsonl": "81cac353273c1e273eeae921072fd7b61edac797b1f22c8a9485e0c03cb168fc",
+    "A11_右手直拳单练\\script.json": "b33d275a701a3dc47098bade23a29ccd8189aae9a0c78680f7563ee3b3890207",
+    "A11_右手直拳单练\\trajectory.jsonl": "c056c1fea2649a10a9dc9a4d2ce3ed81de3129531c44765757a160c0578a3edd",
+    "A12_左手下砸单练\\script.json": "3109bbd0c1498d71024635d5aa68e12849fff0400e6bbfa72d2f355f8a6c2156",
+    "A12_左手下砸单练\\trajectory.jsonl": "b965176249cb157ad51bc1f9457e554c6e413b695ceb11cd2c765cb21a4ae26f",
+    "A13_双手下砸单练\\script.json": "cb496a311c803a5d456aaadd35f40b013422b0d31e5b558fc2caf47dc0b21080",
+    "A13_双手下砸单练\\trajectory.jsonl": "23159c9906a866cbf69c1e5cbedfd8bff5a908fc821f3939ff6ac81787219a08",
+    "A14_虎头尾受击反应单练\\script.json": "1860359a0d2b2cce49bced486425ac5e6b3acd5d80182057e9900edaf0156418",
+    "A14_虎头尾受击反应单练\\trajectory.jsonl": "83c810e9720231e121318bde5eb914bf2449793e9cdcb36f8c707ccc29a56cc9"
+  },
+  "actions": [
+    {
+      "id": "A01",
+      "title": "老虎吼叫与扭动",
+      "duration_s": 6.3,
+      "frames": 158,
+      "motor_ready": false,
+      "all_five_rod_commands_null": true,
+      "fixed_rails_in_reference": true
+    },
+    {
+      "id": "A02",
+      "title": "武松水平换手转身",
+      "duration_s": 2.9000000000000004,
+      "frames": 73,
+      "motor_ready": false,
+      "all_five_rod_commands_null": true,
+      "fixed_rails_in_reference": true
+    },
+    {
+      "id": "A03",
+      "title": "武松抬手摆姿并停下",
+      "duration_s": 3.4000000000000004,
+      "frames": 86,
+      "motor_ready": false,
+      "all_five_rod_commands_null": true,
+      "fixed_rails_in_reference": true
+    },
+    {
+      "id": "A04",
+      "title": "武松说话手势",
+      "duration_s": 6.566666699999999,
+      "frames": 165,
+      "motor_ready": false,
+      "all_five_rod_commands_null": true,
+      "fixed_rails_in_reference": true
+    },
+    {
+      "id": "A05",
+      "title": "左手上绕蓄势",
+      "duration_s": 3.0,
+      "frames": 75,
+      "motor_ready": false,
+      "all_five_rod_commands_null": true,
+      "fixed_rails_in_reference": true
+    },
+    {
+      "id": "A06",
+      "title": "固定站位三连击",
+      "duration_s": 2.9666892999999988,
+      "frames": 75,
+      "motor_ready": false,
+      "all_five_rod_commands_null": true,
+      "fixed_rails_in_reference": true
+    },
+    {
+      "id": "A07",
+      "title": "竖直提起下放子动作",
+      "duration_s": 1.4699999999999989,
+      "frames": 37,
+      "motor_ready": false,
+      "all_five_rod_commands_null": true,
+      "fixed_rails_in_reference": true
+    },
+    {
+      "id": "A08",
+      "title": "预置骑姿十一击与挣扎衰弱",
+      "duration_s": 8.89,
+      "frames": 223,
+      "motor_ready": false,
+      "all_five_rod_commands_null": true,
+      "fixed_rails_in_reference": true
+    },
+    {
+      "id": "A09",
+      "title": "老虎死亡低头",
+      "duration_s": 1.9000000000000057,
+      "frames": 48,
+      "motor_ready": false,
+      "all_five_rod_commands_null": true,
+      "fixed_rails_in_reference": true
+    },
+    {
+      "id": "A10",
+      "title": "左手就近抓虎尾",
+      "duration_s": 1.5,
+      "frames": 38,
+      "motor_ready": false,
+      "all_five_rod_commands_null": true,
+      "fixed_rails_in_reference": true
+    },
+    {
+      "id": "A11",
+      "title": "右手直拳单练",
+      "duration_s": 1.0999999999999943,
+      "frames": 28,
+      "motor_ready": false,
+      "all_five_rod_commands_null": true,
+      "fixed_rails_in_reference": true
+    },
+    {
+      "id": "A12",
+      "title": "左手下砸单练",
+      "duration_s": 0.75,
+      "frames": 19,
+      "motor_ready": false,
+      "all_five_rod_commands_null": true,
+      "fixed_rails_in_reference": true
+    },
+    {
+      "id": "A13",
+      "title": "双手下砸单练",
+      "duration_s": 0.8166893000000002,
+      "frames": 21,
+      "motor_ready": false,
+      "all_five_rod_commands_null": true,
+      "fixed_rails_in_reference": true
+    },
+    {
+      "id": "A14",
+      "title": "虎头尾受击反应单练",
+      "duration_s": 2.9666892999999988,
+      "frames": 75,
+      "motor_ready": false,
+      "all_five_rod_commands_null": true,
+      "fixed_rails_in_reference": true
+    }
+  ],
+  "board_read_only": {
+    "boot_id": "9eaaaa1d-4bd5-49a2-a854-a430754f166a",
+    "sequence": 0,
+    "armed": false,
+    "enabled_mask": 0,
+    "faults": 0,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null,
+    "reset_values_are_not_measured_pose": true,
+    "motion_locks_present": true
+  },
+  "physical_performance": {
+    "executed": false,
+    "motor_commands_sent": false,
+    "reason": "Current actual pose unknown after reboot; V20 contains visual targets but no calibrated motor commands or verified loaded paths. Historical one-use routes are bound to previous boots and cannot establish this starting pose."
+  },
+  "required_next_work": [
+    "Establish and record a supervised current starting pose without treating reset registers as feedback",
+    "Confirm WH/WL/WR/TH/TT channel identity and acquire fresh usable front/rear views",
+    "Measure reachable attachment-point mapping and rod/line clearance for each independent start pose",
+    "Review short loaded paths and audio timing before performing each segment; independent clips cannot be concatenated without setting their distinct starting poses"
+  ],
+  "audio_deployment": {
+    "installed": true,
+    "runtime": "/run/media/mmcblk0p2/piying/shadow-theatre-board-20261017-r4-runtime",
+    "backup": "backups/task1-audio-v20-20261018",
+    "manifest_files": 65,
+    "playback_completed": true,
+    "decoded_frames": 3675812,
+    "duration_s": 76.57941666666666,
+    "player_elapsed_s": 76.571,
+    "card": 1,
+    "device": 0,
+    "gain": 0.6,
+    "exit_code": 0,
+    "microphone_verification": false,
+    "final_pcm_status": "closed",
+    "final_verification": {
+      "manifest_files": 65,
+      "boot_id": "9eaaaa1d-4bd5-49a2-a854-a430754f166a",
+      "pwm_sequence": 0,
+      "outputs_disabled": true,
+      "boot_hashes_unchanged": true,
+      "frame_advancing": true,
+      "frame_age_ms": 39.44,
+      "audio": {
+        "configured": true,
+        "running": false,
+        "playing": false,
+        "finished": false,
+        "duration_s": 76.57941666666666,
+        "elapsed_s": 0,
+        "timing": "player process clock; acoustic latency not measured",
+        "error": ""
+      },
+      "camera": {
+        "configured": true,
+        "running": false,
+        "live": false,
+        "error": ""
+      },
+      "motion": {
+        "ready": false,
+        "rails": false,
+        "puppet": false,
+        "classic": false,
+        "reason": "丝杆驱动、回零和行程未核验；皮影坐标映射未验收，动作锁保留",
+        "actual_position_known": false
+      }
+    }
+  },
+  "incident_locks_removed": false,
+  "boot_files_changed": false,
+  "verification": {
+    "audio_tests_passed": 5,
+    "release_package_manifest_entries": 27,
+    "release_package_hashes_valid": true,
+    "audio_patch_corruption_rejected": true,
+    "services_active": 3
+  },
+  "private_evidence": [
+    {
+      "path": ".board_work\\task1-v20-status.log",
+      "sha256": "c143158ac6492d97f1f6aa1178d811e8b05cac7780a0ddadb180096bcd41fdfa"
+    },
+    {
+      "path": ".board_work\\install-task1-v20.log",
+      "sha256": "bb8db791e69514ee4938d71d342803011818647c7b387d0f9a48993fe3e89905"
+    },
+    {
+      "path": ".board_work\\play-task1-v20.log",
+      "sha256": "9860f4382e523a0fc9019b7c731ee1302b937d8786f31165a9d38f19022aa6ec"
+    },
+    {
+      "path": ".board_work\\verify-task1-v20.log",
+      "sha256": "621d24669df33771756a437e388b62b1806b07a65bab80da6b4df9310b1b8bc0"
+    }
+  ]
+}

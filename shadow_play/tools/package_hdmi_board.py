@@ -30,9 +30,16 @@ def package(output, runtime_only=False, audio_bundle=None, websocket_wheel=None,
     extras = {}
     if audio_bundle:
         audio_bundle = Path(audio_bundle)
+        track = json.loads((ui/'runtime/task1_audio.json').read_text(encoding='utf-8'))
+        track_path = root/track['playback']['asset']
+        if not track_path.resolve().is_relative_to(root.resolve()) or track_path.is_symlink():
+            raise ValueError('Invalid task-one audio asset path')
+        track_data = track_path.read_bytes()
+        if hashlib.sha256(track_data).hexdigest() != track['playback']['sha256']:
+            raise ValueError('Task-one audio checksum mismatch')
+        extras['hdmi_ui/runtime/audio/wusong.mp3'] = track_data
         for source, target, expected in [
             ('usb_audio_play', 'usb_audio_play', '8684834abfc45f2823c4f3992ccd15b8c5bf3150b2757d7000b7a462cd59866d'),
-            ('wusong-2-48k.mp3', 'wusong.mp3', 'e001fb858ab32e4d0217bd7c5262667f8f077025e12be19fb21b82a1a8bd13e7'),
             ('tinyalsa/LICENSE', 'TinyALSA-LICENSE', None), ('tinyalsa/NOTICE', 'TinyALSA-NOTICE', None),
             ('minimp3/LICENSE', 'minimp3-LICENSE', None)]:
             data = (audio_bundle/source).read_bytes()
