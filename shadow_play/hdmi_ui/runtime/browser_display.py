@@ -61,18 +61,63 @@ def publish(path, jpeg, captured):
     os.replace(temporary, path)
 
 
-def read_packet(path, now):
-    with Path(path).open('rb') as handle:
-        raw = handle.read(MAX_JPEG+HEADER.size+1)
-    if len(raw) < HEADER.size:
+def packet_header(handle, now=None):
+    raw = handle.read(HEADER.size)
+    if len(raw) != HEADER.size:
         raise ValueError('Incomplete browser packet')
-    captured, length = HEADER.unpack(raw[:HEADER.size])
-    jpeg = raw[HEADER.size:]
-    if not 0 <= now-captured <= 2 or not 0 < length <= MAX_JPEG or length != len(jpeg):
+    captured, length = HEADER.unpack(raw)
+    # Read the clock after opening the atomically replaced packet. A timestamp
+    # sampled before open may precede a legitimate concurrently published frame.
+    if now is None:
+        now = time.monotonic()
+    if not 0 <= now-captured <= 2 or not 0 < length <= MAX_JPEG:
         raise ValueError('Stale/invalid browser packet')
+    return captured, length
+
+
+def packet_pixels(handle, length):
+    jpeg = handle.read(length+1)
+    if len(jpeg) != length:
+        raise ValueError('Incomplete/oversized browser packet')
     if not valid_image(jpeg):
         raise ValueError('Invalid display image')
+    return jpeg
+
+
+def read_packet(path, now=None):
+    with Path(path).open('rb', buffering=0) as handle:
+        captured, length = packet_header(handle, now)
+        jpeg = packet_pixels(handle, length)
     return captured, jpeg
+
+
+class PacketReader:
+    """Read pixels once per immutable published file, freshness on every poll.
+
+    The producer uses atomic replacement. Keep header and inode checks on the
+    same open file; a rename during a read must never pair two different frames.
+    A None payload denotes an already validated file, not a missing/stale frame.
+    """
+    def __init__(self, path):
+        self.path, self.identity = Path(path), None
+
+    def read(self, now=None):
+        try:
+            with self.path.open('rb', buffering=0) as handle:
+                captured, length = packet_header(handle, now)
+                info = os.fstat(handle.fileno())
+                if info.st_size != HEADER.size+length:
+                    raise ValueError('Invalid browser packet size')
+                identity = (info.st_dev, info.st_ino, info.st_mtime_ns,
+                            info.st_ctime_ns, info.st_size, captured, length)
+                if identity == self.identity:
+                    return captured, None
+                pixels = packet_pixels(handle, length)
+                self.identity = identity
+                return captured, pixels
+        except (OSError, ValueError):
+            self.identity = None
+            raise
 
 
 class Bidi:

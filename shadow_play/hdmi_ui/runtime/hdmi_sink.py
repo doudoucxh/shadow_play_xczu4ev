@@ -8,7 +8,7 @@ import signal
 import sys
 import time
 
-from browser_display import read_packet, decode_frame, VIEW, OUTPUT
+from browser_display import PacketReader, decode_frame, VIEW, OUTPUT
 
 
 def main():
@@ -32,6 +32,7 @@ def main():
     blank = np.full((OUTPUT[1], OUTPUT[0], 3), (15, 20, 25), dtype=np.uint8)
     cv2.putText(blank, 'Waiting for theatre UI...', (340, 360), cv2.FONT_HERSHEY_SIMPLEX, 1, (170, 190, 210), 2)
     current = previous = None
+    reader = PacketReader(args.packet)
     width = round(VIEW[0]*OUTPUT[1]/VIEW[1])
     left = (OUTPUT[0]-width)//2
     output = np.zeros_like(blank)
@@ -40,8 +41,8 @@ def main():
         display.start(blank)
         while not stopping:
             try:
-                captured, jpeg = read_packet(args.packet, time.monotonic())
-                if captured != current:
+                captured, jpeg = reader.read()
+                if jpeg is not None:
                     if jpeg != previous:
                         began = time.monotonic()
                         frame = decode_frame(jpeg)

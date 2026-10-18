@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-18",
+  "reason": "User reports UI remains very laggy after automatic boot deployment.",
+  "source_fix": "Skip duplicate framebuffer payload reads; validate freshness and file identity on every poll.",
+  "installed_on_board": false,
+  "board_performance_measured": false,
+  "blocker": "COM17 is at Linux authentication prompt; no command was sent.",
+  "offline_tests_passed": 9,
+  "integrity_entries_checked": 68,
+  "runtime_files": {
+    "runtime/browser_display.py": {
+      "before_sha256": "3ed6e8c9d849d95dc80998b286ba4a61f52bcba9b5d2a3f06bb8ab766d4175f0",
+      "after_sha256": "abd964a0c18eab3b0228c1ab9504b35dc03f8e1d628d3f20570f35a6ad3339b9"
+    },
+    "runtime/hdmi_sink.py": {
+      "before_sha256": "a78d400443d9d39a22ec49c6ff33d280edb953a9a0636ddb058140f3ce943d5a",
+      "after_sha256": "5876f8138630482b03ae1180d9a21c2365c30b85e2c69a33cec63428881a4eb4"
+    }
+  },
+  "ui_rendering_changed": false,
+  "boot_files_changed": false,
+  "motion_commands_sent": false,
+  "deployment_requirement": "Update runtime MANIFEST.json hashes with both files; preserve backups; measure on board."
+}
