@@ -23,3 +23,23 @@
   #shadow-theatre-preview .shadow-app[data-page="home"][data-menu-open="true"] .shadow-mode-card:nth-child(2){transition-delay:25ms,25ms,0ms}
   #shadow-theatre-preview .shadow-app[data-page="home"][data-menu-open="true"] .shadow-mode-card:nth-child(3){transition-delay:50ms,50ms,0ms}
 }
+
+/* The board software compositor cannot present this reveal smoothly.
+   Show all entries in the next paint; keep the separate paper page turn. */
+@media(min-width:900px){
+  #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-menu-reveal{contain:layout paint}
+  #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-mode-card{transition:none!important;transform:none!important;will-change:auto}
+}
+
+/* Frozen cover ornament: a single raster avoids software repainting its many
+   translucent gradients and inset shadows when the menu changes. */
+@media(min-width:900px) and (max-width:1399px){
+  #shadow-theatre-preview .shadow-app[data-page="home"]{background:#241a12 url("BOARD_COVER") center/100% 100% no-repeat}
+  #shadow-theatre-preview .shadow-app[data-page="home"]::before,
+  #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-home::before,
+  #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-home::after{display:none}
+  #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-home{background:none;box-shadow:none;border-color:transparent}
+  #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-book-corners,
+  #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-binding{visibility:hidden}
+  #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-hero-scene::after{box-shadow:none;background:url("BOARD_VIGNETTE") center/100% 100% no-repeat}
+}

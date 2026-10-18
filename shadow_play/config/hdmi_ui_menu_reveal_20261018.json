@@ -1,0 +1,206 @@
+{
+  "date": "2026-10-18",
+  "installed_on_board": true,
+  "user_confirmed": "明显顺畅了",
+  "boot_id": "d9356357-1e31-42cd-ab39-a59eafc4844f",
+  "port": "COM17",
+  "runtime": "/run/media/mmcblk0p2/piying/shadow-theatre-board-20261017-r4-runtime",
+  "backup": "backups/menu-reveal-20261018",
+  "changes": [
+    "Fixed home layout and menu-only state rendering",
+    "Show menu immediately on board; preserve separate paper page turn",
+    "Cache static book cover and scene vignette",
+    "Read each immutable frame payload once"
+  ],
+  "measurements": {
+    "method": "XTest open/close, 1.2 s observation, changed frame CRC timestamps; timestamps include cursor/hover and are not physical-panel latency or animation FPS",
+    "before": [
+      {
+        "iteration": 0,
+        "action": "open",
+        "packets": 36,
+        "visible_change_ms": [
+          40.8,
+          106.3,
+          779.2,
+          841.0
+        ]
+      },
+      {
+        "iteration": 1,
+        "action": "close",
+        "packets": 36,
+        "visible_change_ms": [
+          49.5,
+          259.6,
+          770.2,
+          794.7
+        ]
+      },
+      {
+        "iteration": 2,
+        "action": "open",
+        "packets": 35,
+        "visible_change_ms": [
+          50.3,
+          91.9,
+          639.2,
+          1029.7
+        ]
+      },
+      {
+        "iteration": 3,
+        "action": "close",
+        "packets": 36,
+        "visible_change_ms": [
+          60.9,
+          424.3,
+          946.7
+        ]
+      }
+    ],
+    "layout_only": [
+      {
+        "iteration": 0,
+        "action": "open",
+        "packets": 37,
+        "visible_change_ms": [
+          30.5,
+          198.6,
+          702.1
+        ]
+      },
+      {
+        "iteration": 1,
+        "action": "close",
+        "packets": 37,
+        "visible_change_ms": [
+          61.8,
+          91.6,
+          1020.9
+        ]
+      },
+      {
+        "iteration": 2,
+        "action": "open",
+        "packets": 36,
+        "visible_change_ms": [
+          42.1,
+          80.4,
+          543.3,
+          1055.7
+        ]
+      },
+      {
+        "iteration": 3,
+        "action": "close",
+        "packets": 36,
+        "visible_change_ms": [
+          42.2,
+          955.8
+        ]
+      }
+    ],
+    "immediate_without_cover_cache": [
+      {
+        "iteration": 0,
+        "action": "open",
+        "packets": 37,
+        "visible_change_ms": [
+          40.2,
+          737.5
+        ]
+      },
+      {
+        "iteration": 1,
+        "action": "close",
+        "packets": 37,
+        "visible_change_ms": [
+          56.8,
+          529.5,
+          552.7,
+          995.6
+        ]
+      },
+      {
+        "iteration": 2,
+        "action": "open",
+        "packets": 37,
+        "visible_change_ms": [
+          54.5,
+          523.8,
+          553.3
+        ]
+      },
+      {
+        "iteration": 3,
+        "action": "close",
+        "packets": 37,
+        "visible_change_ms": [
+          57.3,
+          543.2,
+          978.9
+        ]
+      }
+    ],
+    "final_with_cover_cache": [
+      {
+        "iteration": 0,
+        "action": "open",
+        "packets": 37,
+        "visible_change_ms": [
+          36.9,
+          300.3
+        ]
+      },
+      {
+        "iteration": 1,
+        "action": "close",
+        "packets": 36,
+        "visible_change_ms": [
+          57.0,
+          125.2,
+          154.3
+        ]
+      },
+      {
+        "iteration": 2,
+        "action": "open",
+        "packets": 36,
+        "visible_change_ms": [
+          51.5,
+          125.2
+        ]
+      },
+      {
+        "iteration": 3,
+        "action": "close",
+        "packets": 37,
+        "visible_change_ms": [
+          43.7,
+          112.5,
+          135.4
+        ]
+      }
+    ]
+  },
+  "verification": {
+    "sd_manifest_files": 64,
+    "services_active": 3,
+    "frame_age_ms": 20.7,
+    "desktop_layout_and_entry": true,
+    "ui_lifecycle_tests_passed": 6,
+    "packet_and_input_tests_previously_passed": 9,
+    "motion_commands_sent": false,
+    "camera_running": false,
+    "audio_running": false,
+    "boot_files_unchanged": true,
+    "reboot_this_round": false,
+    "temporary_browser_probes_removed": true
+  },
+  "runtime_hashes": {
+    "runtime/web/index.html": "90a42df6eaf3d0ed4c62cce6aecda8891683ced31ef145359a9203286c2c0fb9",
+    "runtime/browser_display.py": "abd964a0c18eab3b0228c1ab9504b35dc03f8e1d628d3f20570f35a6ad3339b9",
+    "runtime/hdmi_sink.py": "5876f8138630482b03ae1180d9a21c2365c30b85e2c69a33cec63428881a4eb4"
+  }
+}

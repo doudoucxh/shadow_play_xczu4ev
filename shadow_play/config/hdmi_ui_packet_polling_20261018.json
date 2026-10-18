@@ -2,9 +2,9 @@
   "date": "2026-10-18",
   "reason": "User reports UI remains very laggy after automatic boot deployment.",
   "source_fix": "Skip duplicate framebuffer payload reads; validate freshness and file identity on every poll.",
-  "installed_on_board": false,
-  "board_performance_measured": false,
-  "blocker": "COM17 is at Linux authentication prompt; no command was sent.",
+  "installed_on_board": true,
+  "board_performance_measured": true,
+  "blocker": null,
   "offline_tests_passed": 9,
   "integrity_entries_checked": 68,
   "runtime_files": {
@@ -20,5 +20,7 @@
   "ui_rendering_changed": false,
   "boot_files_changed": false,
   "motion_commands_sent": false,
-  "deployment_requirement": "Update runtime MANIFEST.json hashes with both files; preserve backups; measure on board."
+  "deployment_requirement": "Update runtime MANIFEST.json hashes with both files; preserve backups; measure on board.",
+  "deployment_record": "hdmi_ui_menu_reveal_20261018.json",
+  "measurement_scope": "Combined UI optimization; packet reader benefit not measured in isolation."
 }
