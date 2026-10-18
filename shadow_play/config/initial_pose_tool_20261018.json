@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-18",
+  "request": "Create an operator tool for one-click initial angles of all ten servos",
+  "entry": "一键设定舵机初始角度.cmd",
+  "default_nominal_angles_deg": [
+    135,
+    135,
+    135,
+    135,
+    135,
+    135,
+    135,
+    135,
+    135,
+    135
+  ],
+  "default_pulse_us": [
+    1500,
+    1500,
+    1500,
+    1500,
+    1500,
+    1500,
+    1500,
+    1500,
+    1500,
+    1500
+  ],
+  "actual_shaft_feedback": null,
+  "service": "attended-initial-pose-v1",
+  "installed_on_board": true,
+  "board_directory": "/run/media/mmcblk0p2/piying/servo-initial-pose-20261018",
+  "archive_sha256": "5e80e3c42e98081846b9501a75ddb7dffe1bd54f6b565176008b20a46ade3281",
+  "installed_manifest": {
+    "release": "servo-initial-pose-20261018",
+    "files": {
+      "integrations/calibration/initial_pose_console.py": "d0ce7f584d0903f647f398e5ec56bfda24fd084341e58ebee0b16954f7208c76",
+      "integrations/calibration/initial_pose_model.py": "645b63b44ba80988c122bab795e4590e2217edf8e35ece4fff4d5087322589d7",
+      "integrations/calibration/attended_center_console.py": "8dfa09ed0f1958a480b87348ead0ddc8731eb3f0904df5ec1a18b40e6da8345a",
+      "integrations/calibration/center_console.py": "f2fbecfd368a0997c7918a833f0e17c70eae31ded1f54859eab776fa506350eb",
+      "integrations/calibration/board_server.py": "36e39b269d7bdf36cb1ebb1ceb56c3c02d00255717ff91a277e4a9851cb03f63",
+      "integrations/calibration/tcp_bridge.py": "e5bd624fb1c2e3936c66af8b690ac6dd0f64839eb48d7ae277f41d7570edc24b",
+      "integrations/calibration/servo_pwm_device.py": "ee917182d4a7b38f97556fa5e663f2c5f1d787ebdb5337462b0fb8f9794fa408",
+      "integrations/calibration/mmio32.py": "53c37471f7156edff85664737c77446baf30e44efcb5421bbae07ccb8035298b",
+      "integrations/calibration/libservo_mmio32.so": "2f017fb4b6187609df80a860039d1bb958ca09d683b1ccb700d8e1c921c1e8c0",
+      "integrations/calibration/.motion-inhibit": "97675da2c682a72015e9b6046f1bbabe9d2fda4afa9c31534dcd613f95ab9285"
+    },
+    "autostart": false
+  },
+  "verification": {
+    "new_tests_passed": 12,
+    "existing_tests_passed": 17,
+    "tk_smoke_passed": true,
+    "serial_read_only_connection_passed": true,
+    "sequence": 0,
+    "armed": false,
+    "enabled_mask": 0,
+    "faults": 0,
+    "pending": false,
+    "owned_service_exited": true,
+    "initialize_command_sent": false,
+    "real_motion_tested": false
+  },
+  "private_evidence": {
+    "path": "shadow_play\\logs\\initial_pose_install\\readonly-20261018.jsonl",
+    "sha256": "82fd106f5ca1e691115e8a53e74fdce37a28e3e4a90ef830e1a2ad901d365f3b"
+  },
+  "incident_locks_removed": false,
+  "fpga_changed": false,
+  "boot_files_changed": false,
+  "board_rebooted": false
+}

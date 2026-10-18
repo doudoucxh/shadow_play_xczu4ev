@@ -49,6 +49,7 @@ def await_prompt(port, timeout=4, service=SERVICE):
 
 class CenterSession:
     service = SERVICE
+    board_dir = BOARD_DIR
     board_script = 'center_console.py'
     expected_hold_seconds = 5
 
@@ -71,7 +72,7 @@ class CenterSession:
                 self.port.write(b'stty -echo\r')
                 time.sleep(.15)
                 self.port.read_all()
-                self.port.write(('python3 -u ' + BOARD_DIR
+                self.port.write(('python3 -u ' + self.board_dir
                                  + '/integrations/calibration/' + self.board_script + '; stty echo\r').encode('ascii'))
                 self.started = True
                 if await_prompt(self.port, 6, service=self.service) != 'service':
