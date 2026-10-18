@@ -30,9 +30,17 @@ LARGER_ORDER=(3,6,1,2,4,5,7,9,10)
 LARGER_BOARD='/run/media/mmcblk0p2/piying/other-axes-40us-20261019'
 LARGER_LOG='/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-6-e70459d1760d405c9a988cbb2a285f1e.board.jsonl'
 LARGER_SHA='3bbc14d593a1c7654536a886616e2efb2f0f8713be2581c466fde73dd269a401'
+OPPOSITE_SCHEMA='attended-other-axes-opposite-v3'
+OPPOSITE_ORDER=(1,4,5,9,10,2,3,6,7)
+OPPOSITE_BOARD='/run/media/mmcblk0p2/piying/other-axes-direction-20261019'
+OPPOSITE_LOG='/run/media/mmcblk0p2/piying/other-axes-40us-20261019/axis-10-d6f3d88259e14590b4fbef767623d8a7.board.jsonl'
+OPPOSITE_SHA='e389518ce1b1e46312ab3ab2eaac908fb0aa4eddeb1a48becab74b8a209580d7'
 
 
-def profile(larger=False):
+def profile(larger=False,opposite=False):
+    if opposite:
+        return dict(schema=OPPOSITE_SCHEMA,order=OPPOSITE_ORDER,board=OPPOSITE_BOARD,first_log=OPPOSITE_LOG,
+                    first_sha=OPPOSITE_SHA,start_sequence=4691,frames=226,amplitude=40,ramp_s=3,hold_s=2,deadline_s=12)
     if larger:
         return dict(schema=LARGER_SCHEMA,order=LARGER_ORDER,board=LARGER_BOARD,first_log=LARGER_LOG,
                     first_sha=LARGER_SHA,start_sequence=2648,frames=226,amplitude=40,ramp_s=3,hold_s=2,deadline_s=12)
@@ -40,15 +48,15 @@ def profile(larger=False):
                 start_sequence=1280,frames=FRAME_COUNT,amplitude=24,ramp_s=2,hold_s=1,deadline_s=9)
 
 
-def route(channel,larger=False):
+def route(channel,larger=False,opposite=False):
     if type(channel) is not int or channel not in ORDER:
         raise ValueError('Only the requested other axes are allowed')
-    cfg=profile(larger);ramp=cfg['ramp_s'];turn=ramp+cfg['hold_s'];frames=[]
+    cfg=profile(larger,opposite);ramp=cfg['ramp_s'];turn=ramp+cfg['hold_s'];frames=[]
     for index in range(cfg['frames']):
         t=index*INTERVAL
         u=.5-.5*math.cos(math.pi*min(t,ramp)/ramp) if t<=turn else .5+.5*math.cos(math.pi*min(t-turn,ramp)/ramp)
         q=MIDPOINT[:]
-        q[channel-1]+=(-1 if channel==10 else 1)*int(math.floor(cfg['amplitude']*u+.5))
+        q[channel-1]+=(-1 if channel==10 else 1)*(-1 if opposite else 1)*int(math.floor(cfg['amplitude']*u+.5))
         frames.append(validate_pulses(q))
     return frames
 
@@ -57,14 +65,18 @@ def validate_plan(p):
     keys={'schema','session_id','new_request_id','boot_id','channel','expected_sequence',
           'expected_pulse_us','route_sha256','prior_log_path','prior_log_sha256',
           'camera_required','onsite_observer','new_hardware_request','mechanism_visible'}
-    if isinstance(p,dict) and p.get('schema')==LARGER_SCHEMA:
+    if isinstance(p,dict) and p.get('schema') in (LARGER_SCHEMA,OPPOSITE_SCHEMA):
         keys=keys|{'larger_amplitude_acknowledged'}
-    if not isinstance(p,dict) or set(p)!=keys or p['schema'] not in (SCHEMA,LARGER_SCHEMA):
+    if isinstance(p,dict) and p.get('schema')==OPPOSITE_SCHEMA:
+        keys=keys|{'continued_diagnostics_requested'}
+    if not isinstance(p,dict) or set(p)!=keys or p['schema'] not in (SCHEMA,LARGER_SCHEMA,OPPOSITE_SCHEMA):
         raise ValueError('Dedicated one-axis diagnostic plan required')
-    larger=p['schema']==LARGER_SCHEMA;cfg=profile(larger)
+    larger=p['schema'] in (LARGER_SCHEMA,OPPOSITE_SCHEMA);opposite=p['schema']==OPPOSITE_SCHEMA;cfg=profile(larger,opposite)
+    if opposite and p['continued_diagnostics_requested'] is not True:
+        raise ValueError('New request for continued diagnosis required')
     if larger and p['larger_amplitude_acknowledged'] is not True:
         raise ValueError('Explicit request for the 40us check required')
-    channel=p['channel'];frames=route(channel,larger);index=cfg['order'].index(channel)
+    channel=p['channel'];frames=route(channel,larger,opposite);index=cfg['order'].index(channel)
     if (p['boot_id']!=BOOT or type(p['expected_sequence']) is not int
             or p['expected_sequence']!=cfg['start_sequence']+index*(cfg['frames']+1)
             or p['expected_pulse_us']!=MIDPOINT or p['route_sha256']!=digest(frames)
@@ -90,9 +102,10 @@ def validate_prior(p,raw):
             or state['enabled_mask'] or state['pending'] or state['faults']
             or state['sequence']!=p['expected_sequence'] or state['pulse_us']!=MIDPOINT):
         raise ValueError('Prior route did not finish at the inspected OFF reference')
-    larger=p['schema']==LARGER_SCHEMA;cfg=profile(larger);index=cfg['order'].index(p['channel'])
+    larger=p['schema'] in (LARGER_SCHEMA,OPPOSITE_SCHEMA);opposite=p['schema']==OPPOSITE_SCHEMA
+    cfg=profile(larger,opposite);index=cfg['order'].index(p['channel'])
     if index:
-        previous=cfg['order'][index-1];expected=route(previous,larger)
+        previous=cfg['order'][index-1];expected=route(previous,larger,opposite)
         frames=[x for x in rows if x['event']=='frame']
         if (last.get('channel')!=previous or len(frames)!=cfg['frames']
                 or any(x['state']['pulse_us']!=q or x['state']['enabled_mask']!=1<<(previous-1)
@@ -112,8 +125,9 @@ class OtherAxesDevice(FirstDirectionDevice):
         self.plan=json.loads(json.dumps(plan));self.host=host;self.clock=clock
         self.used_path=Path(used_path);self.cancel=Path(cancel_path);self.hashes=self.lock_hashes()
         self.sequence=plan['expected_sequence'];self.pulses=MIDPOINT[:]
-        self.profile=profile(plan['schema']==LARGER_SCHEMA)
-        self.frames=route(plan['channel'],plan['schema']==LARGER_SCHEMA);self.target_mask=1<<(plan['channel']-1)
+        larger=plan['schema'] in (LARGER_SCHEMA,OPPOSITE_SCHEMA);opposite=plan['schema']==OPPOSITE_SCHEMA
+        self.profile=profile(larger,opposite)
+        self.frames=route(plan['channel'],larger,opposite);self.target_mask=1<<(plan['channel']-1)
         self.mask=self.index=0;self.inside=self.started=self.failed=False
         self.last_issue=self.deadline=None
         self.check()
@@ -164,7 +178,7 @@ def main():
     parser.add_argument('plan',type=Path);parser.add_argument('--execute-one-axis-check',action='store_true')
     args=parser.parse_args();plan=json.loads(args.plan.read_text());validate_plan(plan)
     if not args.execute_one_axis_check:
-        frames=route(plan['channel'],plan['schema']==LARGER_SCHEMA)
+        frames=route(plan['channel'],plan['schema'] in (LARGER_SCHEMA,OPPOSITE_SCHEMA),plan['schema']==OPPOSITE_SCHEMA)
         print(json.dumps(dict(dry_run=True,channel=plan['channel'],frames=len(frames),route_sha256=digest(frames))));return
     validate_prior(plan,Path(plan['prior_log_path']).read_bytes())
     def interrupt(signum,frame):raise KeyboardInterrupt()

@@ -13,6 +13,7 @@ from test_v20_first_direction import Clock
 from other_axes_check import (OtherAxesDevice,ORDER,BOOT,BOARD,FIRST_LOG,FIRST_SHA,
     SCHEMA,IMAGE,MIDPOINT,FRAME_COUNT,digest,route,run,validate_plan,validate_prior)
 from other_axes_check import LARGER_SCHEMA,LARGER_ORDER,LARGER_BOARD,LARGER_LOG,LARGER_SHA,profile
+from other_axes_check import OPPOSITE_SCHEMA,OPPOSITE_ORDER,OPPOSITE_BOARD,OPPOSITE_LOG,OPPOSITE_SHA
 
 
 class Tests(unittest.TestCase):
@@ -165,6 +166,49 @@ class Tests(unittest.TestCase):
     def test_24us_route_digests_remain_identical_to_executed_records(self):
         record=json.loads((ROOT/'config/other_axes_check_result_20261019.json').read_text(encoding='utf-8'))
         self.assertTrue(all(digest(route(c['channel']))==c['plan']['route_sha256'] for c in record['checks']))
+
+    def opposite_plan(self,channel):
+        index=OPPOSITE_ORDER.index(channel);p=self.larger_plan(channel)
+        p.update(schema=OPPOSITE_SCHEMA,continued_diagnostics_requested=True,
+                 expected_sequence=4691+index*227,route_sha256=digest(route(channel,True,True)),
+                 prior_log_path=OPPOSITE_LOG if index==0 else OPPOSITE_BOARD+'/axis-'+str(OPPOSITE_ORDER[index-1])+'-'+'c'*32+'.board.jsonl',
+                 prior_log_sha256=OPPOSITE_SHA if index==0 else 'd'*64)
+        return p
+
+    def test_opposite_single_axis_routes_and_exact_new_completion(self):
+        for channel in OPPOSITE_ORDER:
+            self.p=self.opposite_plan(channel);self.reg=FakeRegisters();self.clock=Clock()
+            self.reg.values[0x20]=self.p['expected_sequence'];rows=[]
+            run(self.device(used_path=self.path/('opposite-'+str(channel))),rows.append,sleep=self.clock.sleep)
+            self.assertEqual(len(rows[:-1]),226)
+            self.assertEqual(rows[100]['state']['pulse_us'][channel-1],1540 if channel==10 else 1460)
+            self.assertEqual({r['state']['enabled_mask'] for r in rows[:-1]},{1<<(channel-1)})
+            self.assertTrue(all(r['state']['pulse_us'][:channel-1]+r['state']['pulse_us'][channel:]==[1500]*9 for r in rows[:-1]))
+            self.assertEqual(rows[-1]['state']['sequence'],self.p['expected_sequence']+227)
+            self.assertFalse(rows[-1]['state']['armed'])
+            self.assertEqual(rows[-1]['state']['pulse_us'],MIDPOINT)
+
+    def test_opposite_cannot_reuse_previous_40us_authorization_or_source(self):
+        p=self.opposite_plan(1);validate_plan(p)
+        for key,value in [('continued_diagnostics_requested',False),('prior_log_path',LARGER_LOG),
+                          ('prior_log_sha256',LARGER_SHA),('expected_sequence',2648),('route_sha256',digest(route(1,True)))]:
+            changed=dict(p);changed[key]=value
+            with self.assertRaises(ValueError):validate_plan(changed)
+        self.assertEqual(self.reg.writes,[])
+
+    def test_opposite_prior_requires_complete_opposite_route(self):
+        self.p=self.opposite_plan(1);self.reg.values[0x20]=4691
+        rows=[];run(self.device(),rows.append,sleep=self.clock.sleep)
+        p=self.opposite_plan(4)
+        raw=('\n'.join(json.dumps(x) for x in rows)+'\n').encode();p['prior_log_sha256']=hashlib.sha256(raw).hexdigest()
+        validate_prior(p,raw)
+        rows[75]['state']['pulse_us'][0]=1540
+        raw=('\n'.join(json.dumps(x) for x in rows)+'\n').encode();p['prior_log_sha256']=hashlib.sha256(raw).hexdigest()
+        with self.assertRaises(ValueError):validate_prior(p,raw)
+
+    def test_previous_40us_digests_stay_identical(self):
+        record=json.loads((ROOT/'config/other_axes_40us_result_20261019.json').read_text(encoding='utf-8'))
+        self.assertTrue(all(digest(route(c['channel'],True))==c['plan']['route_sha256'] for c in record['checks']))
 
 
 if __name__=='__main__':unittest.main()

@@ -24,10 +24,14 @@ FILES=('other_axes_check.py','initial_pose_model.py','v20_first_direction.py','s
 WORK=ROOT/'.review_work/v20-other-axes-20261019'
 
 
-def prior_reference(channel,larger=False):
-    cfg=profile(larger);index=cfg['order'].index(channel)
-    work=ROOT/'.review_work/other-axes-40us-20261019' if larger else WORK
+def prior_reference(channel,larger=False,opposite=False):
+    cfg=profile(larger,opposite);index=cfg['order'].index(channel)
+    work=ROOT/'.review_work/other-axes-direction-20261019' if opposite else ROOT/'.review_work/other-axes-40us-20261019' if larger else WORK
     if index==0:
+        if opposite:
+            previous=json.loads((ROOT/'shadow_play/config/other_axes_40us_result_20261019.json').read_text(encoding='utf-8'))
+            return dict(route_complete=all(c['all_expected_frames'] for c in previous['checks']),state=previous['state'],boot_id=previous['boot_id'],
+                        source_log_path=previous['checks'][-1]['board_log'],board_log_sha256=previous['checks'][-1]['sha256'])
         if larger:
             previous=json.loads((ROOT/'shadow_play/config/other_axes_check_result_20261019.json').read_text(encoding='utf-8'))
             return dict(route_complete=previous['all_other_axes_checked'],state=previous['state'],boot_id=previous['boot_id'],
@@ -39,7 +43,7 @@ def prior_reference(channel,larger=False):
                 board_log_sha256=result['audit']['board_log_sha256'])
 
 
-def run(channel,output,execute=False,port_name='COM17',larger=False):
+def run(channel,output,execute=False,port_name='COM17',larger=False,opposite=False):
     import serial
     if channel not in ORDER:raise ValueError('Axis 8 is outside this request')
     output.mkdir(parents=True,exist_ok=False)
@@ -47,7 +51,8 @@ def run(channel,output,execute=False,port_name='COM17',larger=False):
     port=serial.Serial(None,115200,timeout=.05,write_timeout=.5)
     port.dtr=port.rts=False;port.port=port_name;pending=b''
     camera=PhoneCamera();captures=[];lock=threading.Lock()
-    cfg=profile(larger);board=cfg['board'];lib=board+'/integrations/calibration'
+    larger=larger or opposite
+    cfg=profile(larger,opposite);board=cfg['board'];lib=board+'/integrations/calibration'
     with (output/'serial.jsonl').open('x',encoding='utf-8') as log:
         def record(key,value):
             with lock:
@@ -86,21 +91,23 @@ def run(channel,output,execute=False,port_name='COM17',larger=False):
             (output/'inspection.json').write_text(json.dumps(inspected,indent=2),encoding='utf-8')
             print('READ_ONLY '+json.dumps(inspected),flush=True)
             if not execute:return inspected
-            valid_reference(inspected['state']);previous=prior_reference(channel,larger)
+            valid_reference(inspected['state']);previous=prior_reference(channel,larger,opposite)
             if (not previous['route_complete'] or previous['state']['sequence']!=inspected['state']['sequence']
                 or previous['state']['pulse_us']!=MIDPOINT or previous['boot_id']!=BOOT or inspected['boot_id']!=BOOT
                 or inspected['marker'].get('boot_id')!=BOOT or inspected['marker'].get('sha256')!=IMAGE):
                 raise RuntimeError('Current state differs from completed source')
             request=dict(request_id=uuid.uuid4().hex,user_request='Check the other servos, explicitly requested in this chat',
-                         channel=channel,excursion_us=(-1 if channel==10 else 1)*cfg['amplitude'],
+                         channel=channel,excursion_us=(-1 if channel==10 else 1)*(-1 if opposite else 1)*cfg['amplitude'],
                          other_nine_disabled=True,camera_source='phone_mechanism')
             if larger:request.update(user_request='Slightly larger test amplitude requested; user watching onsite',larger_amplitude_acknowledged=True)
+            if opposite:request.update(user_request='More tests requested; opposite direction at the existing 40us amplitude selected for diagnosis',continued_diagnostics_requested=True)
             plan=dict(schema=cfg['schema'],session_id=uuid.uuid4().hex,new_request_id=request['request_id'],boot_id=BOOT,
                 channel=channel,expected_sequence=inspected['state']['sequence'],expected_pulse_us=MIDPOINT,
-                route_sha256=digest(route(channel,larger)),prior_log_path=previous['source_log_path'],
+                route_sha256=digest(route(channel,larger,opposite)),prior_log_path=previous['source_log_path'],
                 prior_log_sha256=previous['board_log_sha256'],camera_required=True,onsite_observer=True,
                 new_hardware_request=True,mechanism_visible=True)
             if larger:plan['larger_amplitude_acknowledged']=True
+            if opposite:plan['continued_diagnostics_requested']=True
             validate_plan(plan)
             captures.append(dict(stage='before',**camera.sample(output/'camera-before.jpg')))
             (output/'plan.json').write_text(json.dumps(plan,indent=2),encoding='utf-8')
@@ -154,5 +161,6 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--channel',type=int,choices=ORDER,required=True)
     p.add_argument('--output',type=Path,required=True);p.add_argument('--port',default='COM17')
-    p.add_argument('--execute-checked-axis',action='store_true');p.add_argument('--larger-amplitude',action='store_true');a=p.parse_args()
-    run(a.channel,a.output,a.execute_checked_axis,a.port,a.larger_amplitude)
+    p.add_argument('--execute-checked-axis',action='store_true')
+    group=p.add_mutually_exclusive_group();group.add_argument('--larger-amplitude',action='store_true');group.add_argument('--opposite-direction',action='store_true');a=p.parse_args()
+    run(a.channel,a.output,a.execute_checked_axis,a.port,a.larger_amplitude,a.opposite_direction)

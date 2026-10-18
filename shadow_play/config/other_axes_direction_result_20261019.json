@@ -1,0 +1,2153 @@
+{
+  "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+  "state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 6734,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "checks": [
+    {
+      "channel": 1,
+      "frames": 226,
+      "elapsed_s": 9.611301589000504,
+      "start_sequence": 4691,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 4918,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-1-7aecd6c15a8b46239f420643df576205.board.jsonl",
+      "sha256": "13cfdb5a672321eed39549f39d7d7dd801900c3aef9a04058b0fcd512dba7421",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-opposite-v3",
+        "session_id": "7aecd6c15a8b46239f420643df576205",
+        "new_request_id": "c1a7aea2e72643319e40b5b87903fc47",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 1,
+        "expected_sequence": 4691,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "64f8225aded69a7fd5ad8a919e5a30b0ecd1c41e31c125c67ae39aafd3808782",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-40us-20261019/axis-10-d6f3d88259e14590b4fbef767623d8a7.board.jsonl",
+        "prior_log_sha256": "e389518ce1b1e46312ab3ab2eaac908fb0aa4eddeb1a48becab74b8a209580d7",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true,
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "request": {
+        "request_id": "c1a7aea2e72643319e40b5b87903fc47",
+        "user_request": "More tests requested; opposite direction at the existing 40us amplitude selected for diagnosis",
+        "channel": 1,
+        "excursion_us": -40,
+        "other_nine_disabled": true,
+        "camera_source": "phone_mechanism",
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-81918",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:35:57.928000+00:00",
+          "sha256": "0b418f81fd258806ad3921e643560699110717fea6dca8e12bbf7b779945d6a3",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-81933",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:35:58.926000+00:00",
+          "sha256": "0c08c6f26833d4fac544265e63d61f7eb6a67e4aa3dcf26f92aea87dee30dd48",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-81949",
+          "age_ms": 47,
+          "captured_utc": "2026-10-18T19:35:59.991000+00:00",
+          "sha256": "baeb9606971a5b2a16d72d9a9a817e85f73948405998ea35383cf47bda1b21d2",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-81965",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:36:01.056000+00:00",
+          "sha256": "35e7e2692115e377c3efde1ec0d19f5e486dc386720d26707585b9716cbc8801",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-81981",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:36:02.132000+00:00",
+          "sha256": "5ed59239e05c717acb9ffb576678e6cc7d9fd4c467e9655d5252bfc3c95c7da8",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-81997",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:36:03.197000+00:00",
+          "sha256": "9af74c24744d6bf871253afe1975d7e6eaa7aa90218ff22e1be67c0f1c8332bb",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82013",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:36:04.253000+00:00",
+          "sha256": "ad8e41d30109d800dc491ed555d9cdc7c5e0003c1776e3caa49961e6f4ce28da",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82029",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:36:05.323000+00:00",
+          "sha256": "635691a2ddeead31635ce2e77fa70d05810113a9b6e725c717a6e50b9ad41d6a",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_175",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82045",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:36:06.397000+00:00",
+          "sha256": "775e245bc6022e8272e69d6789d4a35fac9255fca1da4b4acaf01828d3557971",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_200",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82061",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:36:07.462000+00:00",
+          "sha256": "cf3a68c33bffa8bb176867b79e2434bdf517ce223fe856d1afdfab76f69c6c4d",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_225",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82078",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:36:08.587000+00:00",
+          "sha256": "1c7584cf16ab39cc121b74cad5cb84fedb9838d5d1e2258e69602a9252454232",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_100",
+          "frame_225"
+        ],
+        "clear_rod_response_visible": false,
+        "response_location": null,
+        "small_change_candidate": "Tiger-head side gimbal/rod; weaker than channel 2",
+        "returned_near_start_in_view": null,
+        "measured_shaft_angle": null,
+        "pixel_displacement_measured": false,
+        "classification": "Small visible change, insufficient to establish direction/health",
+        "magnified_comparison_reviewed": true
+      }
+    },
+    {
+      "channel": 4,
+      "frames": 226,
+      "elapsed_s": 9.602304438998544,
+      "start_sequence": 4918,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 5145,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-4-0c975a053bfb43988bb090ccf8139f0e.board.jsonl",
+      "sha256": "63f7b6b65c32d92e65e120a5011d8ce16affabd645d41148d91cdb49bd2918dc",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-opposite-v3",
+        "session_id": "0c975a053bfb43988bb090ccf8139f0e",
+        "new_request_id": "78f7e89dc027429db7739976f5de69c5",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 4,
+        "expected_sequence": 4918,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "7c996643cf26bfb84762bb6f7b726d90fee6a0ee9d23ddf48ecc0247bd8f2bc8",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-1-7aecd6c15a8b46239f420643df576205.board.jsonl",
+        "prior_log_sha256": "13cfdb5a672321eed39549f39d7d7dd801900c3aef9a04058b0fcd512dba7421",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true,
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "request": {
+        "request_id": "78f7e89dc027429db7739976f5de69c5",
+        "user_request": "More tests requested; opposite direction at the existing 40us amplitude selected for diagnosis",
+        "channel": 4,
+        "excursion_us": -40,
+        "other_nine_disabled": true,
+        "camera_source": "phone_mechanism",
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82693",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T19:36:49.587000+00:00",
+          "sha256": "4936544e71f09adea5499057c9b25bbda5957e5433f924405eab8b46b4bb634a",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82707",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:36:50.523000+00:00",
+          "sha256": "711ca855497297479afc2fb611bc11c63714a03401e0362b5505d594843b8991",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82723",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:36:51.603000+00:00",
+          "sha256": "a09247ed7ebc7f1f929f9e8a7df9b38db65e5c468884c95a424972c809884fb0",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82739",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:36:52.658000+00:00",
+          "sha256": "7e37b4a0f9a969711942d3412e09799de591d9d5e5b5b314ebc15535d76846ce",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82755",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:36:53.729000+00:00",
+          "sha256": "9f9b7a2f567e3b7e1c56f5fcdd78463f81172a2698b905bf76d3f33c0af57ea2",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82771",
+          "age_ms": 30,
+          "captured_utc": "2026-10-18T19:36:54.789000+00:00",
+          "sha256": "c51d8eb73ee7963fe638f51374a06a045d55118f9aa1576fab7c9483d22a3911",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82787",
+          "age_ms": 14,
+          "captured_utc": "2026-10-18T19:36:55.872000+00:00",
+          "sha256": "47f79b87d48685d7aeb7bbf97cfecde160884c89b0462e32fda2e2ef2e838deb",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82803",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:36:56.925000+00:00",
+          "sha256": "27709b223f95a0fce6c4c4c0ad0ba40a8a1c215677eccddb734a70cb2732bb90",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_175",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82819",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:36:57.993000+00:00",
+          "sha256": "eb707be157947fc473a30b224338b56cc823ace8c18041489a76e0502f41e18a",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_200",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82835",
+          "age_ms": 16,
+          "captured_utc": "2026-10-18T19:36:59.071000+00:00",
+          "sha256": "6628dc8ecc13c23140b8eefa665eb7551a09a7a85c405740a51790667e6c9dcc",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_225",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-82852",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:37:00.192000+00:00",
+          "sha256": "1a78912c1ec34db7e4f999ba868ce603458cc4681a9334da77d86be63ba408ad",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_100",
+          "frame_225"
+        ],
+        "clear_rod_response_visible": false,
+        "response_location": null,
+        "small_change_candidate": null,
+        "returned_near_start_in_view": null,
+        "measured_shaft_angle": null,
+        "pixel_displacement_measured": false,
+        "classification": "Response not resolved",
+        "magnified_comparison_reviewed": true
+      }
+    },
+    {
+      "channel": 5,
+      "frames": 226,
+      "elapsed_s": 9.599528961000033,
+      "start_sequence": 5145,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 5372,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-5-6e8c09610e734a099dc126f80ce1f3f0.board.jsonl",
+      "sha256": "faa4f808a5a9c626f732db743c115872922e1ac906834daf31cbef7ef605251e",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-opposite-v3",
+        "session_id": "6e8c09610e734a099dc126f80ce1f3f0",
+        "new_request_id": "0d7bab034a2445fabf75fb9edd0ea9d5",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 5,
+        "expected_sequence": 5145,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "55d214f727a1847bf17e167d03c7d8d914df030ee8e6ababdbbaf0d132fe8d8c",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-4-0c975a053bfb43988bb090ccf8139f0e.board.jsonl",
+        "prior_log_sha256": "63f7b6b65c32d92e65e120a5011d8ce16affabd645d41148d91cdb49bd2918dc",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true,
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "request": {
+        "request_id": "0d7bab034a2445fabf75fb9edd0ea9d5",
+        "user_request": "More tests requested; opposite direction at the existing 40us amplitude selected for diagnosis",
+        "channel": 5,
+        "excursion_us": -40,
+        "other_nine_disabled": true,
+        "camera_source": "phone_mechanism",
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83214",
+          "age_ms": 78,
+          "captured_utc": "2026-10-18T19:37:24.319000+00:00",
+          "sha256": "a2ab38dce138b40024c60e85cd66ff88d70707271803ee8bfb5a25f5942669f6",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83229",
+          "age_ms": 30,
+          "captured_utc": "2026-10-18T19:37:25.330000+00:00",
+          "sha256": "5fcacd0261e6c68638a1eae34d6f4ca4d1f888e4f99150f934872c14417bdcd1",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83245",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:37:26.397000+00:00",
+          "sha256": "6e4ac9b9472f36d70cb2679b9a9904b023935b8a16357b02ac652e10ddc43f12",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83261",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:37:27.454000+00:00",
+          "sha256": "ff5d4c7b0e91d12297e88f32ae651240b98168a4deeef894342884a4bb4aae62",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83277",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:37:28.525000+00:00",
+          "sha256": "7638d5ee1e73e4e9177547da86ad6ee274843a44cf726a288a1c12a948045063",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83293",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:37:29.599000+00:00",
+          "sha256": "23fe4de7bd959c671d3b90f49e100d52ffaa848548326d8e503fd30703ead864",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83309",
+          "age_ms": 30,
+          "captured_utc": "2026-10-18T19:37:30.660000+00:00",
+          "sha256": "4d3fbf1267518bd041b399c7699d001b91e0b95be12627dd1ded385e1ee375ea",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83325",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:37:31.723000+00:00",
+          "sha256": "b28a29cadca7b98229e991018e43280abcc0fe0b3c421eade66b5acfe42b8086",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_175",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83341",
+          "age_ms": 30,
+          "captured_utc": "2026-10-18T19:37:32.790000+00:00",
+          "sha256": "7ff88a737ce339c7de044e4e8b1494739260bb3b16d02814eb2d6831a68b747e",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_200",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83357",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:37:33.869000+00:00",
+          "sha256": "2cb91902e22148a03a7c984a71ce13c75417445f89960dabff81f925fc1d9194",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_225",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83374",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:37:34.992000+00:00",
+          "sha256": "0b05846437a234e4826ab52842ed412be0babec7b6a1f3d58eb29081c64e6e57",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_100",
+          "frame_225"
+        ],
+        "clear_rod_response_visible": false,
+        "response_location": null,
+        "small_change_candidate": null,
+        "returned_near_start_in_view": null,
+        "measured_shaft_angle": null,
+        "pixel_displacement_measured": false,
+        "classification": "Response not resolved",
+        "magnified_comparison_reviewed": true
+      }
+    },
+    {
+      "channel": 9,
+      "frames": 226,
+      "elapsed_s": 9.62692037600209,
+      "start_sequence": 5372,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 5599,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-9-e29b3e647b9a4eb08ba94159855b9041.board.jsonl",
+      "sha256": "81cb9aaad73727d67ad7d72295dd2c51295b2c167575ac1340fc4fc18e679457",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-opposite-v3",
+        "session_id": "e29b3e647b9a4eb08ba94159855b9041",
+        "new_request_id": "b180009d276c4a0d8843e504aa7d7172",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 9,
+        "expected_sequence": 5372,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "6ad963f21c68e41aee831462a311623796a4bd6b8560f4804e9773f997e17bff",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-5-6e8c09610e734a099dc126f80ce1f3f0.board.jsonl",
+        "prior_log_sha256": "faa4f808a5a9c626f732db743c115872922e1ac906834daf31cbef7ef605251e",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true,
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "request": {
+        "request_id": "b180009d276c4a0d8843e504aa7d7172",
+        "user_request": "More tests requested; opposite direction at the existing 40us amplitude selected for diagnosis",
+        "channel": 9,
+        "excursion_us": -40,
+        "other_nine_disabled": true,
+        "camera_source": "phone_mechanism",
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83728",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T19:37:58.603000+00:00",
+          "sha256": "9fb66e1c12b1db1c5b67b50b37d825bcbb0baf886cdec7cd27585f2c3398bc6a",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83742",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:37:59.521000+00:00",
+          "sha256": "bff46787507176644a80f338d805980d81eb0ca7840b8b11483a7a598b80654e",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83758",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:38:00.603000+00:00",
+          "sha256": "3410654be51d14724af196a13842cbe1d8e8fee154385079f301a127cf53c74f",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83774",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:38:01.661000+00:00",
+          "sha256": "09db5ec72343c54651945a750b3b3c43fb090c997146b6e0f881b28b2cf181fb",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83790",
+          "age_ms": 63,
+          "captured_utc": "2026-10-18T19:38:02.728000+00:00",
+          "sha256": "fa509464136be5507a91b85343fbe9f3af4cdb528bc982b62a75939ddf9b775c",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83806",
+          "age_ms": 62,
+          "captured_utc": "2026-10-18T19:38:03.809000+00:00",
+          "sha256": "2a3e2c971f50e09870b82fa18bff2ffbffe1e0e6ab5e9a4cceee296d86174aa2",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83823",
+          "age_ms": 15,
+          "captured_utc": "2026-10-18T19:38:04.927000+00:00",
+          "sha256": "19a0d951ccbc4dc76e910c5fac9013a258228e439f4a0ff3f3bc2b94ac99f239",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83839",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T19:38:05.989000+00:00",
+          "sha256": "d5bedb46395efac1abe4bee13d496ebfe396c37dd922331cc233564685d58bd1",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_175",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83854",
+          "age_ms": 47,
+          "captured_utc": "2026-10-18T19:38:06.989000+00:00",
+          "sha256": "b99943e0318aecc0481adbb8b3235ef846779f20b7a269b07866d8ddb376cbb3",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_200",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83870",
+          "age_ms": 63,
+          "captured_utc": "2026-10-18T19:38:08.070000+00:00",
+          "sha256": "7ece7aa52b6a6c264df2a6f91280da8eb5c23376ab4d2c352b5042b426eaf5a3",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_225",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-83888",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T19:38:09.257000+00:00",
+          "sha256": "b72d371e3d39e6d1922dc388a84f3a1982428b116be5269c0d99ddc859026cbc",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_100",
+          "frame_225"
+        ],
+        "clear_rod_response_visible": false,
+        "response_location": null,
+        "small_change_candidate": null,
+        "returned_near_start_in_view": null,
+        "measured_shaft_angle": null,
+        "pixel_displacement_measured": false,
+        "classification": "Response not resolved",
+        "magnified_comparison_reviewed": true
+      }
+    },
+    {
+      "channel": 10,
+      "frames": 226,
+      "elapsed_s": 9.61255299199911,
+      "start_sequence": 5599,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 5826,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-10-61b2c041f824422388009950cc129e33.board.jsonl",
+      "sha256": "605c1848a8245d0ad081807b8a5769e86d6f537bc9a80a870746a07708da8c09",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-opposite-v3",
+        "session_id": "61b2c041f824422388009950cc129e33",
+        "new_request_id": "a43c2d7093a24061bc566cd2b5bb2c6a",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 10,
+        "expected_sequence": 5599,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "b7a157ee9746d739420bf06220bf672ae0bc1c733f31a11c56381cd397446ea5",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-9-e29b3e647b9a4eb08ba94159855b9041.board.jsonl",
+        "prior_log_sha256": "81cb9aaad73727d67ad7d72295dd2c51295b2c167575ac1340fc4fc18e679457",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true,
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "request": {
+        "request_id": "a43c2d7093a24061bc566cd2b5bb2c6a",
+        "user_request": "More tests requested; opposite direction at the existing 40us amplitude selected for diagnosis",
+        "channel": 10,
+        "excursion_us": 40,
+        "other_nine_disabled": true,
+        "camera_source": "phone_mechanism",
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84258",
+          "age_ms": 15,
+          "captured_utc": "2026-10-18T19:38:33.933000+00:00",
+          "sha256": "88c66f5514fd9292a4dffc227c8b927d113b1564b688c9a83d4008d26e7dfc91",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84272",
+          "age_ms": 63,
+          "captured_utc": "2026-10-18T19:38:34.855000+00:00",
+          "sha256": "a71a84b20ff02785d30fb83d575652c78b3310a669ca92dd25dff46b7c7c5dfc",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84289",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T19:38:35.996000+00:00",
+          "sha256": "da943cfeca4f385ec0217748ca398e87ceda999bf0ae1c4137f5fe5f8c6c41c9",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84304",
+          "age_ms": 62,
+          "captured_utc": "2026-10-18T19:38:36.987000+00:00",
+          "sha256": "7991a3ee9c81e49e41e3df3586d1d7e64f0a113b323872360c2518f486d829c6",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84320",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:38:38.072000+00:00",
+          "sha256": "1059e1787613641d8b137deef2f05d3752e51f1b51187d2cea67db9e6342cb96",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84337",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T19:38:39.190000+00:00",
+          "sha256": "a0410627ddf48804b4de03e85f2a6ca8ffbd18776a9ecc57e8c62e9c67111720",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84352",
+          "age_ms": 63,
+          "captured_utc": "2026-10-18T19:38:40.195000+00:00",
+          "sha256": "0cd7b7818c73cdc80d8fe23413119adb0dfb96e037b7325dc4380a39c385cfd2",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84368",
+          "age_ms": 61,
+          "captured_utc": "2026-10-18T19:38:41.257000+00:00",
+          "sha256": "6a408c1116730ed0b0839c419b1eeb8f6a42ca71a5ef13fac4eeb320e14872c3",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_175",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84384",
+          "age_ms": 61,
+          "captured_utc": "2026-10-18T19:38:42.337000+00:00",
+          "sha256": "65654ca8fde4179225580919ee057cb7663f54bdab2210dec399d16438abd9fe",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_200",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84400",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:38:43.397000+00:00",
+          "sha256": "4ed232fec8853c8cdb1dc1ecee4c6236a944007705e0bcac19366d3534c8fb94",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_225",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84418",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T19:38:44.595000+00:00",
+          "sha256": "0e844625d070fa7ac2f6285f795a4902aeae0f95d230fabe09b6f621f7055698",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_100",
+          "frame_225"
+        ],
+        "clear_rod_response_visible": false,
+        "response_location": null,
+        "small_change_candidate": null,
+        "returned_near_start_in_view": null,
+        "measured_shaft_angle": null,
+        "pixel_displacement_measured": false,
+        "classification": "Response not resolved",
+        "magnified_comparison_reviewed": true
+      }
+    },
+    {
+      "channel": 2,
+      "frames": 226,
+      "elapsed_s": 9.612775204001082,
+      "start_sequence": 5826,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 6053,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-2-520ae319455e49dcbc25191bdb1286e4.board.jsonl",
+      "sha256": "62a7b57220a92ddb9025db84573ca6463f0e524bca7ba1aac0e704d0d41a5f10",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-opposite-v3",
+        "session_id": "520ae319455e49dcbc25191bdb1286e4",
+        "new_request_id": "60576a79ed92408a8d5f22da6901a0a1",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 2,
+        "expected_sequence": 5826,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "917ea83d0265eaf0ac9c9299dd51c9ddb05eaa654256bede4e7cd9fa04807a5e",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-10-61b2c041f824422388009950cc129e33.board.jsonl",
+        "prior_log_sha256": "605c1848a8245d0ad081807b8a5769e86d6f537bc9a80a870746a07708da8c09",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true,
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "request": {
+        "request_id": "60576a79ed92408a8d5f22da6901a0a1",
+        "user_request": "More tests requested; opposite direction at the existing 40us amplitude selected for diagnosis",
+        "channel": 2,
+        "excursion_us": -40,
+        "other_nine_disabled": true,
+        "camera_source": "phone_mechanism",
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84804",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:39:10.323000+00:00",
+          "sha256": "eda2e7c82099d89d7fe702bba4a3bd7956d84e644e5a2d778df53e0e7daef27a",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84819",
+          "age_ms": 16,
+          "captured_utc": "2026-10-18T19:39:11.320000+00:00",
+          "sha256": "9908f5caf137299e9aecaa227d9a93ea58fd17a68635e4dd45ef384692a321c4",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84835",
+          "age_ms": 16,
+          "captured_utc": "2026-10-18T19:39:12.397000+00:00",
+          "sha256": "80d50d9f32ebda999bfdbf9d5411a091edaf066a98579d6a831753bb4fa6e4d1",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84851",
+          "age_ms": 14,
+          "captured_utc": "2026-10-18T19:39:13.463000+00:00",
+          "sha256": "147d488a2b0bdf32f87efd76f64e6428bde73d97fe19c8ee2d2e1131018305a3",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84867",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:39:14.525000+00:00",
+          "sha256": "62735f76628a62461b24d8bae356ccf2b5331b49dd0770eb94076cec8e6bff9a",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84883",
+          "age_ms": 15,
+          "captured_utc": "2026-10-18T19:39:15.593000+00:00",
+          "sha256": "d944479ae6c1e7bb9c0cd390825badeebe0fcb0a906961add7473ac7a918ccdb",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84899",
+          "age_ms": 14,
+          "captured_utc": "2026-10-18T19:39:16.662000+00:00",
+          "sha256": "6877035bb7431f113efed599adcc2d95a0c37252cf5a147d880ce788833233bf",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84915",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:39:17.721000+00:00",
+          "sha256": "f912771bcf94c291dd33fe3a958b5c3a7ff8538db22e5d754443b4b39e47d9af",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_175",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84931",
+          "age_ms": 30,
+          "captured_utc": "2026-10-18T19:39:18.793000+00:00",
+          "sha256": "01192e8eefae1a89bca18a72e00c1d449b01073ecedcc6d24561e24265dcfc73",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_200",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84947",
+          "age_ms": 16,
+          "captured_utc": "2026-10-18T19:39:19.867000+00:00",
+          "sha256": "fca3ec8791f41a4a6f0f57a158a960b73dba20f84f218c07fb102ec1404d48f1",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_225",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-84964",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:39:20.990000+00:00",
+          "sha256": "9e9eff2222e28b39c0ab8a11414b0a00935d0521f047b316de3d0194699ac57f",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_100",
+          "frame_225"
+        ],
+        "clear_rod_response_visible": true,
+        "response_location": "Tiger-head side rod",
+        "small_change_candidate": null,
+        "returned_near_start_in_view": true,
+        "measured_shaft_angle": null,
+        "pixel_displacement_measured": false,
+        "classification": "Clear reverse rod response; physical channel identity unverified",
+        "magnified_comparison_reviewed": false
+      }
+    },
+    {
+      "channel": 3,
+      "frames": 226,
+      "elapsed_s": 9.629135537001275,
+      "start_sequence": 6053,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 6280,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-3-9bbfc657ac894270aebb2776c70c356a.board.jsonl",
+      "sha256": "5a3ad4de9451c8adaa98fe2fd2c78595122aee4206008c105f8387b265352a1f",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-opposite-v3",
+        "session_id": "9bbfc657ac894270aebb2776c70c356a",
+        "new_request_id": "3a3e7a2a275249a194eb602baf096dc6",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 3,
+        "expected_sequence": 6053,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "ec7b68812beedc3dbd877041bea66a2a4f2c020cff0511945307a7e0d4fbcf0b",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-2-520ae319455e49dcbc25191bdb1286e4.board.jsonl",
+        "prior_log_sha256": "62a7b57220a92ddb9025db84573ca6463f0e524bca7ba1aac0e704d0d41a5f10",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true,
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "request": {
+        "request_id": "3a3e7a2a275249a194eb602baf096dc6",
+        "user_request": "More tests requested; opposite direction at the existing 40us amplitude selected for diagnosis",
+        "channel": 3,
+        "excursion_us": -40,
+        "other_nine_disabled": true,
+        "camera_source": "phone_mechanism",
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-86770",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:41:21.395000+00:00",
+          "sha256": "2ec4884d21470125b6a606f7e042f0a249b90817b0e6274724bbdf84cf073dc2",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-86784",
+          "age_ms": 63,
+          "captured_utc": "2026-10-18T19:41:22.323000+00:00",
+          "sha256": "f7619b8934a0643ca8170edb505a60753d13fab22e8d041738862b2fc59a9d41",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-86801",
+          "age_ms": 14,
+          "captured_utc": "2026-10-18T19:41:23.458000+00:00",
+          "sha256": "febd9be70650083a8a75361b6d314dd021aaf927903e63b90b364a0389414e97",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-86816",
+          "age_ms": 78,
+          "captured_utc": "2026-10-18T19:41:24.455000+00:00",
+          "sha256": "ef32d73ecca99faae6a76a445cf69571de52a9bcaee26617d125790da1e2303c",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-86833",
+          "age_ms": 15,
+          "captured_utc": "2026-10-18T19:41:25.603000+00:00",
+          "sha256": "d0eb4fec43e98434fd9325da72e6159843fed13f3a46bdaadc6f80ed1596acd7",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-86849",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T19:41:26.659000+00:00",
+          "sha256": "c9cc6d3fb4cbc6d9bb1787b7d3093b5596dd1feeedd83517c427e066c35780cb",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-86865",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T19:41:27.721000+00:00",
+          "sha256": "89f02f36eee2e9c533f0dc7abad854be3972f9762aa12bf584004275f56c876f",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-86881",
+          "age_ms": 30,
+          "captured_utc": "2026-10-18T19:41:28.788000+00:00",
+          "sha256": "35b6a35cf86a27e5df8f63d8fb321ee3bc4d07a1c7cef0b1e731d346040402de",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_175",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-86897",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T19:41:29.859000+00:00",
+          "sha256": "0ac2d35ed34b01fda2885678f5e18f1e7e2bd0b18f40bf341c08dcb6f3b96677",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_200",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-86913",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T19:41:30.926000+00:00",
+          "sha256": "66cd041faf1227e8f9708fd292acbd0183d981fc84532b0b25966303a7a3a032",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_225",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-86930",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:41:32.054000+00:00",
+          "sha256": "1ec0dbcdfd6c754cfd1146009fa6e342409049c49909317d0a94a6143f08a8a3",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_100",
+          "frame_225"
+        ],
+        "clear_rod_response_visible": true,
+        "response_location": "Image-left person rod",
+        "small_change_candidate": null,
+        "returned_near_start_in_view": true,
+        "measured_shaft_angle": null,
+        "pixel_displacement_measured": false,
+        "classification": "Clear reverse rod response; physical channel identity unverified",
+        "magnified_comparison_reviewed": false
+      }
+    },
+    {
+      "channel": 6,
+      "frames": 226,
+      "elapsed_s": 9.606539250999049,
+      "start_sequence": 6280,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 6507,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-6-727d5200d41a40b5ab29c6835b5ba5e5.board.jsonl",
+      "sha256": "5aa19864423f8266bc083f8a21112095fdee374616e1bae9d74018dfb1cadbb8",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-opposite-v3",
+        "session_id": "727d5200d41a40b5ab29c6835b5ba5e5",
+        "new_request_id": "f0a76c6d4a244231987a9dcc0dc6ec05",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 6,
+        "expected_sequence": 6280,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "42d4f25039f95d6638efa4587127bb582ac7837ee1f6436e0a87fc6c05d87c8f",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-3-9bbfc657ac894270aebb2776c70c356a.board.jsonl",
+        "prior_log_sha256": "5a3ad4de9451c8adaa98fe2fd2c78595122aee4206008c105f8387b265352a1f",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true,
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "request": {
+        "request_id": "f0a76c6d4a244231987a9dcc0dc6ec05",
+        "user_request": "More tests requested; opposite direction at the existing 40us amplitude selected for diagnosis",
+        "channel": 6,
+        "excursion_us": -40,
+        "other_nine_disabled": true,
+        "camera_source": "phone_mechanism",
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87325",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T19:41:58.401000+00:00",
+          "sha256": "f0beee5f357f0efe81804b371585a4aceadb19fd6c4de0b6e7c56b155d515664",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87339",
+          "age_ms": 61,
+          "captured_utc": "2026-10-18T19:41:59.337000+00:00",
+          "sha256": "0c65d798f08deece911bf39cc76c0c6f0e220929940d6713016bdcef224c459f",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87355",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:42:00.394000+00:00",
+          "sha256": "b684feb42a34460e26ab18ba1ed5aeea7384a0ca0ab51527625b5a1cb123e6e1",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87371",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:42:01.463000+00:00",
+          "sha256": "108e58a1179cf5f3e2d4d16ea21320b5942afb9fa3b42460d19d0c8f9d63fb13",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87387",
+          "age_ms": 63,
+          "captured_utc": "2026-10-18T19:42:02.522000+00:00",
+          "sha256": "71212f29fef40865b23d010806ae9f487592f3b0d4cf043c826d058dd47bf7a4",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87403",
+          "age_ms": 63,
+          "captured_utc": "2026-10-18T19:42:03.599000+00:00",
+          "sha256": "d91c8a2254b4b70320d515978b92829d08ee11edc428c4b7ace909ab0cd5dd1b",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87419",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:42:04.665000+00:00",
+          "sha256": "a7fbc7cce81d66e3feb390017ef9fda909d2ba6c033c3cc18457df8b30e831cc",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87435",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:42:05.725000+00:00",
+          "sha256": "c8f5af18ce75802057892e818ac97a32998c35b7c650f2995fdbf1eae0c712ae",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_175",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87451",
+          "age_ms": 30,
+          "captured_utc": "2026-10-18T19:42:06.788000+00:00",
+          "sha256": "2aee862926a6cbebf7b072897db88a44eb61d20cc616968c04eb4ffca9c4ea67",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_200",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87467",
+          "age_ms": 63,
+          "captured_utc": "2026-10-18T19:42:07.853000+00:00",
+          "sha256": "d55350fa1382314326d0e7cb7319825dca4484b79325ed0e39ba9c43639c42c2",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_225",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87484",
+          "age_ms": 62,
+          "captured_utc": "2026-10-18T19:42:08.989000+00:00",
+          "sha256": "dd4c1f2b13fc51dd43b403e6e077c8176cf86c6bf6be6d92cf1dd01e1564201a",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_100",
+          "frame_225"
+        ],
+        "clear_rod_response_visible": true,
+        "response_location": "Image-centre person rod",
+        "small_change_candidate": null,
+        "returned_near_start_in_view": true,
+        "measured_shaft_angle": null,
+        "pixel_displacement_measured": false,
+        "classification": "Clear reverse rod response; physical channel identity unverified",
+        "magnified_comparison_reviewed": false
+      }
+    },
+    {
+      "channel": 7,
+      "frames": 226,
+      "elapsed_s": 9.611125307001203,
+      "start_sequence": 6507,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 6734,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-7-a3600ded9f9446cba8c2b0e0cb336048.board.jsonl",
+      "sha256": "56aa21719f0d55e16c7ddcab39740c0c2251126d6bafe1ebd5033a28c5edd286",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-opposite-v3",
+        "session_id": "a3600ded9f9446cba8c2b0e0cb336048",
+        "new_request_id": "08f31b63a6004e8dba5af90c26e5a67b",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 7,
+        "expected_sequence": 6507,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "262da0a179727828fbecb9f51dce8da4ba35bb1850ab5659a72b118f901f345a",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019/axis-6-727d5200d41a40b5ab29c6835b5ba5e5.board.jsonl",
+        "prior_log_sha256": "5aa19864423f8266bc083f8a21112095fdee374616e1bae9d74018dfb1cadbb8",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true,
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "request": {
+        "request_id": "08f31b63a6004e8dba5af90c26e5a67b",
+        "user_request": "More tests requested; opposite direction at the existing 40us amplitude selected for diagnosis",
+        "channel": 7,
+        "excursion_us": -40,
+        "other_nine_disabled": true,
+        "camera_source": "phone_mechanism",
+        "larger_amplitude_acknowledged": true,
+        "continued_diagnostics_requested": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87892",
+          "age_ms": 63,
+          "captured_utc": "2026-10-18T19:42:36.193000+00:00",
+          "sha256": "ac4b0854a8710b5c7f76c89cde8e6191e1a5fe2341a3a741f4a3c0835f440afb",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87907",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:42:37.197000+00:00",
+          "sha256": "5afaa3c3dc89b2ebaab409399c2aa5d37128b024e62a4009a3301464cf851b6c",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87923",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:42:38.260000+00:00",
+          "sha256": "efc90e2c0107c549ce93e530a2052183af5180c8bc6ee5dc1e310c5da7c750e8",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87939",
+          "age_ms": 30,
+          "captured_utc": "2026-10-18T19:42:39.335000+00:00",
+          "sha256": "9c7089604d1b968622e2f306ba14555bfde088df7724cc5cf0a70c54667c22be",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87955",
+          "age_ms": 16,
+          "captured_utc": "2026-10-18T19:42:40.391000+00:00",
+          "sha256": "77e089706e04714c8d7ac2e54e6c79da69305e8134622375a042d0800c5f0a88",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87971",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T19:42:41.459000+00:00",
+          "sha256": "95d42c1a1b8aff8bd8c762a5aa590a9fee9b649c1a32037e8e13bebd73d9d4a2",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-87987",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:42:42.521000+00:00",
+          "sha256": "039d8d6b5a5c017a71d6971e70219397c101fb6e1a85b50d6abc999eb4bb107e",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-88003",
+          "age_ms": 30,
+          "captured_utc": "2026-10-18T19:42:43.590000+00:00",
+          "sha256": "d3deccbd438918b39a59cb4ab7207a27dc02841bea8e03e0de5624ebd91a2062",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_175",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-88019",
+          "age_ms": 14,
+          "captured_utc": "2026-10-18T19:42:44.660000+00:00",
+          "sha256": "2f05b524a920ccc1898845e0c20817faa10726efe6691cccf42b46183564968c",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_200",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-88035",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:42:45.725000+00:00",
+          "sha256": "e14a3413916b4b732d620b4bb7a48ccfd0b6c7ac6cb8d5be767ff3a4dbb77ccc",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_225",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-88052",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T19:42:46.871000+00:00",
+          "sha256": "fb5f1abf394ae0b2ee9f70251d310913f26ac7a656683f56a65da9db8efd8e82",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_100",
+          "frame_225"
+        ],
+        "clear_rod_response_visible": true,
+        "response_location": "Image-right person rod",
+        "small_change_candidate": null,
+        "returned_near_start_in_view": true,
+        "measured_shaft_angle": null,
+        "pixel_displacement_measured": false,
+        "classification": "Clear reverse rod response; physical channel identity unverified",
+        "magnified_comparison_reviewed": false
+      }
+    }
+  ],
+  "manifest_files": {
+    "integrations/calibration/other_axes_check.py": "555c0615fde1f587b3ad0f79c22db1c0eb6a814b5a3398ca47f2a5923f87dc30",
+    "integrations/calibration/initial_pose_model.py": "645b63b44ba80988c122bab795e4590e2217edf8e35ece4fff4d5087322589d7",
+    "integrations/calibration/v20_first_direction.py": "95cb9c0ab5297a74089b10fa9802842a6f41b4aa0c65b84d33b41bcb33ffb5ed",
+    "integrations/calibration/servo_pwm_device.py": "ee917182d4a7b38f97556fa5e663f2c5f1d787ebdb5337462b0fb8f9794fa408",
+    "integrations/calibration/mmio32.py": "53c37471f7156edff85664737c77446baf30e44efcb5421bbae07ccb8035298b",
+    "integrations/calibration/libservo_mmio32.so": "2f017fb4b6187609df80a860039d1bb958ca09d683b1ccb700d8e1c921c1e8c0",
+    "integrations/calibration/.motion-inhibit": "fd9c43a43ca353e9e85c1d054838826b9df3d767fbc4745a52ccbeeefe12799b"
+  },
+  "manifest_entries": 7,
+  "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+  "persistent_lock_sha256": "fd9c43a43ca353e9e85c1d054838826b9df3d767fbc4745a52ccbeeefe12799b",
+  "schema": "other-axes-opposite-result-v3",
+  "source_completion_sequence": 4691,
+  "user_request": "Please try more; user suspects the issue is not contact",
+  "order": [
+    1,
+    4,
+    5,
+    9,
+    10,
+    2,
+    3,
+    6,
+    7
+  ],
+  "amplitude_us": 40,
+  "command_frame_count": 2034,
+  "total_command_duration_s": 86.51218365600289,
+  "camera_preflight": [
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-78312",
+      "age_ms": 30,
+      "captured_utc": "2026-10-18T19:31:57.540000+00:00",
+      "sha256": "a6d42f8e8a268b3a8dd2285d2a2be3983d63cab2804b52ae647f9f62f8aaf4b2",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-78318",
+      "age_ms": 31,
+      "captured_utc": "2026-10-18T19:31:57.926000+00:00",
+      "sha256": "2665cea72b6ea279f7b9324b0980a2ecb98beba9db2ae3dc35f8e9c1124328b2",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-78323",
+      "age_ms": 46,
+      "captured_utc": "2026-10-18T19:31:58.272000+00:00",
+      "sha256": "aacb2c5fef12a09e3bd5f9c5999205e09c28d98ecf6f757fda65acbbbd4a3d12",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-78329",
+      "age_ms": 30,
+      "captured_utc": "2026-10-18T19:31:58.663000+00:00",
+      "sha256": "ee7ca42f8f2e760bf6ce555942284ef4162ad2cbbf77143823492c1826bf0a6b",
+      "size": [
+        960,
+        540
+      ]
+    }
+  ],
+  "observed_clear_rod_response_channels": [
+    2,
+    3,
+    6,
+    7
+  ],
+  "small_change_candidate_channels": [
+    1
+  ],
+  "unresolved_response_channels": [
+    4,
+    5,
+    9,
+    10
+  ],
+  "full_healthy_axes_verified": [],
+  "channel_to_physical_servo_mapping_verified": false,
+  "expected_object_labels_match_response_locations": false,
+  "onsite_observation": "Prior authorization for attended tests persists; no new affirmative onsite motion/clearance report in this series.",
+  "onsite_response_confirmed": null,
+  "onsite_clearance_confirmed": null,
+  "interpretation": "Opposite-direction responses recur on channels 2,3,6,7. Channel 1 has a smaller visible change. Channel-to-object correspondence needs verification; no contact, supply, servo or live FPGA fault is diagnosed or excluded.",
+  "source_audit": {
+    "files": {
+      "shadow_play/integrations/calibration/initial_pose_model.py": "645b63b44ba80988c122bab795e4590e2217edf8e35ece4fff4d5087322589d7",
+      "shadow_play/integrations/calibration/servo_pwm_device.py": "ee917182d4a7b38f97556fa5e663f2c5f1d787ebdb5337462b0fb8f9794fa408",
+      "shadow_play/hardware/servo_pwm/servo_pwm_axi.v": "225a3d31ee42c774cd1ce43c6c1ff85cb82175ae285e3eaff886a168ee25b73d",
+      "shadow_play/hardware/servo_pwm/servo_pins.xdc": "1f13155c8e97d2ffc7f08ea5ca5a6f0051a159fae9db08fab5270b9af9315944"
+    },
+    "pins": [
+      "D14",
+      "D15",
+      "F13",
+      "G13",
+      "G14",
+      "G15",
+      "J14",
+      "E13",
+      "E14",
+      "E15"
+    ],
+    "software_index_chain_consistent": true,
+    "physical_connector_waveform_measured": false,
+    "loaded_netlist_connectivity_verified": false,
+    "hardware_mapping_changed": false
+  },
+  "installation": {
+    "directory": "/run/media/mmcblk0p2/piying/other-axes-direction-20261019",
+    "archive_sha256": "c8dfb5c2f658e38a38c947687521f1117bd1e2d29fddaf4ec9eb46d1d295ae9c",
+    "autostart": false
+  },
+  "software_tests_passed": 15,
+  "previous_24us_and_40us_routes_unchanged": true,
+  "axis8_not_repeated": true,
+  "incident_locks_removed": false,
+  "fpga_reloaded": false,
+  "boot_files_changed": false,
+  "rails_moved": false,
+  "audio_played": false,
+  "full_v20_performed": false,
+  "actual_position_feedback": null
+}
