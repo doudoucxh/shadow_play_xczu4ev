@@ -13,6 +13,7 @@ import tarfile
 
 RELEASE = 'shadow-theatre-board-20261017-r4-runtime'
 FIREFOX_SHA = 'ad647ee920828da7495de7a5f3eb5ddad457b107e4932b3fac49ce700bbbb2b2'
+XVFB_SHA = 'e4c94974631b3b0ad67726cea57dadb9e5e99eca999b9388e1a3a8569981eee0'
 BASE = Path('/run/media/mmcblk0p2/piying')
 
 
@@ -44,8 +45,9 @@ def extract_new(archive, folder, prefix):
                 target.chmod(0o755 if entry.mode & 0o111 else 0o644)
 
 
-def units(root, firefox):
+def units(root, firefox, xvfb=None):
     runtime = root/'shadow_play/hdmi_ui/runtime'
+    screen_argument = ' --xvfb '+str(xvfb/'bin/Xvfb') if xvfb else ''
     return {
         'shadow-theatre-ui-r4.service': f'''[Unit]
 Description=Shadow theatre UI, camera recognition and audio only
@@ -72,7 +74,7 @@ User=petalinux
 SupplementaryGroups=input
 RuntimeDirectory=shadow-ui
 RuntimeDirectoryMode=0750
-ExecStart=/usr/bin/python3 -u {runtime}/browser_display.py --firefox {firefox}/firefox
+ExecStart=/usr/bin/python3 -u {runtime}/browser_display.py --firefox {firefox}/firefox{screen_argument}
 Restart=on-failure
 RestartSec=3
 KillMode=control-group
@@ -98,12 +100,16 @@ def main():
     parser.add_argument('--ui-archive', type=Path, required=True)
     parser.add_argument('--ui-sha256', required=True)
     parser.add_argument('--firefox-archive', type=Path, required=True)
+    parser.add_argument('--xvfb-archive', type=Path, help='Verified private framebuffer dependency bundle')
+    parser.add_argument('--xvfb-sha256', default=XVFB_SHA, help='SHA256 printed by the private display packager')
     parser.add_argument('--activate', action='store_true')
     args = parser.parse_args()
     if os.geteuid() != 0: raise RuntimeError('Install requires root')
     if not BASE.is_dir() or not os.path.ismount(BASE.parent): raise RuntimeError('Persistent SD partition not mounted')
     if digest(args.ui_archive) != args.ui_sha256 or digest(args.firefox_archive) != FIREFOX_SHA:
         raise ValueError('Archive checksum mismatch')
+    if args.xvfb_archive and digest(args.xvfb_archive) != args.xvfb_sha256:
+        raise ValueError('Virtual display archive checksum mismatch')
     root, firefox = BASE/RELEASE, BASE/'firefox-158.0-arm64'
     extract_new(args.ui_archive, root, RELEASE)
     manifest = json.loads((root/'MANIFEST.json').read_text())
@@ -113,17 +119,42 @@ def main():
         path = root/'shadow_play'/name
         if not path.resolve().is_relative_to((root/'shadow_play').resolve()) or digest(path) != expected:
             raise ValueError('Installed file mismatch: '+name)
+    # The display loader may read the shared PL's reset status. Its bundled
+    # driver must remain inhibited in this software-only installation.
+    calibration = root/'shadow_play/integrations/calibration'
+    (calibration/'.motion-inhibit').write_text('Software-only UI deployment; actuators not installed.\n')
     extract_new(args.firefox_archive, firefox, 'firefox')
+    xvfb = None
+    if args.xvfb_archive:
+        xvfb = BASE/'xvfb-private-20261017'
+        extract_new(args.xvfb_archive, xvfb, 'xvfb-private-20261017')
+        # PetaLinux ships this exact bzip2 version under the .so.1 SONAME;
+        # Debian's Xfont dependency requests .so.1.0. Add only a private alias.
+        system_bzip = Path('/usr/lib/libbz2.so.1.0.8')
+        if not system_bzip.is_file(): raise RuntimeError('Expected system bzip2 1.0.8 is missing')
+        (xvfb/'lib/libbz2.so.1.0').symlink_to(system_bzip)
+        for name, expected in json.loads((xvfb/'MANIFEST.json').read_text())['files'].items():
+            path = xvfb/name
+            if not path.resolve().is_relative_to(xvfb.resolve()) or digest(path) != expected:
+                raise ValueError('Virtual display file mismatch: '+name)
     unit_folder = root/'units'
     unit_folder.mkdir()
-    for name, text in units(root, firefox).items():
+    for name, text in units(root, firefox, xvfb).items():
         (unit_folder/name).write_text(text)
     # /etc belongs to the RAM rootfs on this board. Keep a repeatable launcher
     # on SD; do not imply systemctl enable survives reboot or rewrite image.ub.
     launcher = root/'start-software.sh'
+    display_setup = ''
+    if xvfb:
+        display_setup = f'''mkdir -p /tmp/.X11-unix /usr/share/X11
+chown root:root /tmp/.X11-unix
+chmod 1777 /tmp/.X11-unix
+test -e /usr/bin/xkbcomp || ln -s "{xvfb}/bin/xkbcomp" /usr/bin/xkbcomp
+test -e /usr/share/X11/xkb || ln -s "{xvfb}/share/X11/xkb" /usr/share/X11/xkb
+'''
     launcher.write_text(f'''#!/bin/sh
 set -eu
-for name in shadow-theatre-ui-r4.service shadow-theatre-browser-r4.service shadow-theatre-hdmi-r4.service; do
+{display_setup}for name in shadow-theatre-ui-r4.service shadow-theatre-browser-r4.service shadow-theatre-hdmi-r4.service; do
   source="{unit_folder}/$name"
   target="/etc/systemd/system/$name"
   if test -e "$target" || test -L "$target"; then
@@ -143,9 +174,10 @@ fi
     launcher.chmod(0o755)
     result = dict(release=RELEASE, installed_files=len(manifest['files']), firefox_sha256=FIREFOX_SHA,
                   ui_archive_sha256=args.ui_sha256, motors_enabled=False, boot_files_changed=False,
-                  boot_autostart=False, hdmi_started=False)
+                  boot_autostart=False, hdmi_started=False, virtual_screen=bool(xvfb))
     if args.activate:
-        for name in units(root, firefox):
+        if display_setup: subprocess.run(['/bin/sh', '-ec', display_setup], check=True)
+        for name in units(root, firefox, xvfb):
             path = Path('/etc/systemd/system')/name
             if path.exists() or path.is_symlink(): raise FileExistsError(str(path))
             path.symlink_to(unit_folder/name)

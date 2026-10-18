@@ -236,10 +236,11 @@
     "source/sketch-paper.js": "648bfc8287f3b13f5599a3be28ea9f7537e16cce47a8a0e4a860908d715aafee",
     "source/sketch-recognition.js": "328eafd900c6e805ca89cb828760a37396470e87f35d314b89fdc0f2b6aa5010",
     "source/sketch-topology.js": "f7aab4fc9a71857193ddb363f108974fe202773c86a15008319a6d0281e099c8",
-    "source/stage-art.js": "a4a14b56fcc8a8ece51ab38bebc21b3511f30b07c96d5d8f5c77e40af85d62d9"
+    "source/stage-art.js": "a4a14b56fcc8a8ece51ab38bebc21b3511f30b07c96d5d8f5c77e40af85d62d9",
+    "source/assets/shadow-ink-board-font.css": "63c5c2249bfc2f4d0f547dcac3f1f3ce5515dd2310e9da2c60ab6b8b9e472ba0"
   },
-  "deployment_requirement": "Firefox ARM64 headless + reviewed PL HDMI sink, or an existing graphical browser session",
-  "board_tested": false,
+  "deployment_requirement": "Private Xvfb + sandboxed Firefox ARM64 + independently reviewed PL HDMI image",
+  "board_tested": true,
   "hardware_control_connected": false,
   "raw_training_drawings_included": false,
   "recognition_release": {
@@ -254,7 +255,7 @@
   },
   "supersedes": "shadow-theatre-board-20261016-r3",
   "model_validation_report": "docs/MODEL_QA.json",
-  "runtime_html_sha256": "598fb9f67bcfcb735ff50067219cfaa511dbee081439f4acccef3634b01978f6",
+  "runtime_html_sha256": "040c66188875ee0bb2254b634370e46fcac411131e899551a7b5951f7be03aab",
   "model_bundle_files": [
     "source/sketch-model.js",
     "source/sketch-topology.js",
@@ -267,5 +268,5 @@
   "upstream_release": "shadow-theatre-hdmi-1024x600-20261016-r2",
   "upstream_zip_sha256": "8659bd824a4abf9b672c126a551c56cb3e884a9ec9151c70e1886d230d6e634f",
   "upstream_validation_report": "docs/DESKTOP_QA.json",
-  "camera_dpu_integration": "r3 board pipeline verified on 2026-10-16; r4 verification pending"
+  "camera_dpu_integration": "r4 USB/DPU live preview verified on 2026-10-17; complete human keypoint acceptance pending"
 }

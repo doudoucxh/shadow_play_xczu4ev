@@ -11,7 +11,7 @@ import cv2
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'integrations/follow'))
-from ui_frame_feed import UiFrameFeed, validate_feed_options
+from ui_frame_feed import UiFrameFeed, drop_expired_preview, validate_feed_options
 
 
 class UiFrameFeedTests(unittest.TestCase):
@@ -32,6 +32,21 @@ class UiFrameFeedTests(unittest.TestCase):
 
     def read(self):
         return json.loads(self.path.read_text(encoding='utf-8'))
+
+    def test_expiry_drops_only_preview_and_preserves_control_rejection(self):
+        self.assertTrue(drop_expired_preview(10,10.3,True))
+        self.assertFalse(drop_expired_preview(10,10.2,True))
+        with self.assertRaises(RuntimeError):drop_expired_preview(10,10.3,False)
+        with self.assertRaises(RuntimeError):drop_expired_preview(11,10,True)
+        with self.assertRaises(RuntimeError):drop_expired_preview(float('nan'),10,True)
+
+    def test_invalidated_preview_can_publish_next_fresh_frame(self):
+        self.publish()
+        self.feed.invalidate()
+        self.assertFalse(self.path.exists())
+        self.now += .2
+        self.assertTrue(self.publish(sequence=2))
+        self.assertEqual(self.read()['sequence'],2)
 
     def test_pixels_and_pose_belong_to_same_input_and_survive_later_mutation(self):
         self.pose[0] = [320., 180., .9]

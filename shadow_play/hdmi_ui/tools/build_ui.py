@@ -9,7 +9,7 @@ def build(source,output):
     fonts=''
     for name,license_file in [('shadow-brush-font.css','ShadowBrush-OFL.txt'),('shadow-ink-font.css','ShadowInk-OFL.txt')]:
         fonts+='/*\n'+read('assets/'+license_file).replace('*/','* /')+'\n*/\n'+read('assets/'+name)
-    for name in ['shadow-ink-sequence-font.css','shadow-ink-twenty-font.css']:
+    for name in ['shadow-ink-sequence-font.css','shadow-ink-twenty-font.css','shadow-ink-board-font.css']:
         fonts+=read('assets/'+name)
     html=html.replace('<!-- BRUSH_FONT_STYLE -->','<style>'+fonts+'</style>')
     assets={}

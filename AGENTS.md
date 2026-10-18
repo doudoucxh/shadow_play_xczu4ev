@@ -1,5 +1,12 @@
 # 项目协作与 Git 备份规则
 
+## 2026-10-17 板端 UI 与软件部署
+
+- 用户确认 COM17 为 PS USB 调试串口，摄像头、触摸屏及 USB 扬声器接好，舵机和丝杆尚未安装；当前仅部署软件，不执行机构运动。
+- r4 实际界面已安装到 SD 的 `piying/shadow-theatre-board-20261017-r4-runtime`，普通用户 Firefox/Xvfb 输出到已审核的 HDMI；USB 原声完整播放 67 秒，真实 USB/DPU 画面已验证。完整人体关键点、现场手指触摸与机构联动不能因此宣称已验收。
+- 显示镜像仅加载到易失 PL，核对 armed=false、enabled_mask=0、sequence=0；复位的1500μs不是机械回中。原事故锁保留，新目录增加 `.motion-inhibit`，未发送运动指令。
+- 仅无输出 UI 识别路径允许丢弃过期结果并继续新帧；原控制路径仍拒绝过期结果。启动文件哈希不变，根文件系统是内存盘，SD 软件保留但没有开机自动上屏；重启需重新准备显示环境。详见 `shadow_play/docs/hdmi_ui_deployment_20261017.md`。
+
 ## 2026-10-16 机构联合手动标定面板
 
 - 用户要求制作十路舵机和双丝杆手动调试/测量面板，记录危险组合供后续防碰。入口 `机构手动调试与边界标定.cmd` / `shadow_play/tools/open_mechanism_calibration.cmd`，默认模拟，不自动连接或回放。

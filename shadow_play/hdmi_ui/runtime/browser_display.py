@@ -179,6 +179,7 @@ def find_input():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--firefox', type=Path, required=True)
+    parser.add_argument('--xvfb', type=Path, help='Private Xvfb binary for continuous framebuffer output')
     parser.add_argument('--work', type=Path, default=Path('/run/shadow-ui'))
     parser.add_argument('--fps', type=int, choices=range(1, 21), default=12)
     args = parser.parse_args()
@@ -190,6 +191,13 @@ def main():
     args.work.mkdir(parents=True, exist_ok=True)
     profile = args.work/'profile'
     profile.mkdir(exist_ok=True)
+    # Avoid speculative spare processes on the 2 GB board. Keep the browser's
+    # normal process sandbox and full-resolution screenshots.
+    (profile/'user.js').write_text('\n'.join([
+        'user_pref("remote.screenshot.use_readback", false);',
+        'user_pref("dom.ipc.processCount", 2);',
+        'user_pref("dom.ipc.processPrelaunch.enabled", false);',
+    ])+'\n')
     packet = args.work/'frame.bin'
     stopping = False
 
@@ -199,18 +207,26 @@ def main():
 
     signal.signal(signal.SIGTERM, stop)
     signal.signal(signal.SIGINT, stop)
-    process = connection = panel = None
+    process = connection = panel = screen = None
     try:
         environment = os.environ.copy()
         environment['LD_LIBRARY_PATH'] = str(Path(__file__).parent/'vendor/lib')
-        process = subprocess.Popen([str(args.firefox), '--headless', '--no-remote', '--profile', str(profile),
+        mode = '--headless'
+        if args.xvfb:
+            from virtual_screen import VirtualScreen
+            screen = VirtualScreen(args.xvfb, args.work)
+            screen.start()
+            environment.update(DISPLAY=screen.display, XAUTHORITY=str(screen.authority), MOZ_ENABLE_WAYLAND='0')
+            mode = '--kiosk'
+        process = subprocess.Popen([str(args.firefox), mode, '--no-remote', '--profile', str(profile),
                                     '--remote-debugging-port', '9222', '--width', '1024', '--height', '600', 'about:blank'], env=environment)
         for _ in range(100):
             if stopping or process.poll() is not None:
                 raise RuntimeError('Browser stopped during startup')
             try:
                 connection = websocket.create_connection('ws://127.0.0.1:9222/session', timeout=10,
-                                                          suppress_origin=True, http_no_proxy=['127.0.0.1'])
+                                                          suppress_origin=True, http_no_proxy=['127.0.0.1'],
+                                                          skip_utf8_validation=True)  # recv() still uses strict native UTF-8 decode.
                 break
             except (OSError, websocket.WebSocketException): time.sleep(.2)
         if connection is None: raise RuntimeError('Browser startup timed out')
@@ -219,7 +235,7 @@ def main():
         context = bidi.call('browsingContext.getTree', {})['contexts'][0]['context']
         bidi.call('browsingContext.setViewport', dict(context=context, viewport=dict(width=1024, height=600), devicePixelRatio=1))
         bidi.call('browsingContext.navigate', dict(context=context, url='http://127.0.0.1:8765/', wait='complete'))
-        frames, report, scan = 0, time.monotonic(), 0
+        frames, report, scan, health = 0, time.monotonic(), 0, 0
         while not stopping:
             started = time.monotonic()
             if process.poll() is not None: raise RuntimeError('Browser exited')
@@ -234,9 +250,18 @@ def main():
                     actions = [('cancel', None)]
                 for action, point in actions: bidi.pointer(context, action, point)
             captured = time.monotonic()
-            result = bidi.call('browsingContext.captureScreenshot', dict(context=context, origin='viewport',
+            if screen:
+                if captured >= health:
+                    result = bidi.call('script.evaluate', dict(expression='document.readyState',
+                        target=dict(context=context), awaitPromise=False))
+                    if result.get('type') != 'success': raise RuntimeError('Browser page is unresponsive')
+                    health = captured+1
+                jpeg = screen.jpeg()
+            else:
+                result = bidi.call('browsingContext.captureScreenshot', dict(context=context, origin='viewport',
                                format=dict(type='image/jpeg', quality=.88)))
-            publish(packet, base64.b64decode(result['data'], validate=True), captured)
+                jpeg = base64.b64decode(result['data'], validate=True)
+            publish(packet, jpeg, captured)
             frames += 1
             now = time.monotonic()
             if now-report >= 10:
@@ -250,6 +275,7 @@ def main():
             process.terminate()
             try: process.wait(timeout=8)
             except subprocess.TimeoutExpired: process.kill(); process.wait()
+        if screen: screen.close()
         packet.unlink(missing_ok=True)
 
 

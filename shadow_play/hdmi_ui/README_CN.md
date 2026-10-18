@@ -1,10 +1,10 @@
 # 皮影戏台 HDMI 界面部署包
 
-> 当前源码为 r4 软件部署版，基于用户提供的 r2 原包，新增 Firefox 无桌面渲染/触摸桥及独立 USB 原声播放。真实 USB/DPU 接口沿用 r3；所有电机请求保持拒绝。r3 已在 10 月 16 日安装并验证相机/DPU，见 [安装记录](../docs/hdmi_ui_deployment_20261016.md)。r4 的 HDMI、触摸与音频以新的实板记录为准；源码与离线测试不能替代上屏验收。完整发布保持外层 `shadow_play` 目录结构。
+> 当前源码为 r4 软件部署版，基于用户提供的 r2 原包。2026-10-17 已通过 COM17 安装到板端 SD，运行实际界面、USB 摄像头/DPU 和原声播放，见 [实板记录](../docs/hdmi_ui_deployment_20261017.md)。用户尚未安装舵机与丝杆，所有电机请求保持拒绝。完整发布保持外层 `shadow_play` 目录结构。
 
 ## r4 无桌面显示路径
 
-`runtime/browser_display.py` 以普通用户启动独立 Firefox，保留沙箱，通过本机 BiDi 连接渲染实际页面；`runtime/hdmi_sink.py` 只接收两秒内的新 JPEG，在既有审核通过的 PL HDMI 上输出。逻辑视口为 1024×600，按比例居中到既有 1280×720 时序；触摸坐标反向换算。过期画面清空，不用旧截图冒充正常界面。显示驱动仍要求本次启动的有效 FPGA 标记，安装器不会自动加载 FPGA。
+`runtime/browser_display.py` 以普通用户启动独立 Firefox，保留沙箱；最终板端使用带认证的私有 Xvfb 内存画面，BiDi 负责交互与页面存活检查。`runtime/hdmi_sink.py` 只接收两秒内的新 JPEG，在既有审核通过的 PL HDMI 上输出。逻辑视口为 1024×600，按比例居中到既有 1280×720 时序；触摸坐标反向换算。过期画面清空，不用旧截图冒充正常界面。显示驱动仍要求本次启动的有效 FPGA 标记，安装器不会自动加载 FPGA。
 
 `tools/install_hdmi_software.py`（外层 shadow_play/tools）把校验后的运行包和 Firefox 安装到 SD 新目录，生成 HTTP、普通用户浏览器、HDMI 三个独立服务。`--activate` 只启动前两者。现有系统根目录是内存盘，`systemctl enable` 不能据此宣称重启自启；SD 中保留 `start-software.sh`，没有修改 BOOT.BIN、image.ub 或 uEnv。
 
@@ -93,7 +93,7 @@ cp /opt/shadow-theatre-hdmi/runtime/shadow-theatre.desktop ~/.config/autostart/
 ```
 
 路径不同须先改模板的 Exec 和 Path。无图形会话时不要直接把模板换成开机 systemd 服务；浏览器仍然没有可用显示输出。
-本次未访问开发板、未安装桌面、未改原显示服务，也未验证实际 HDMI 冷启动。
+以上桌面模板属于原 r2 交付说明。当前 r4 使用上文的独立服务，尚未验证重启后自动上屏。
 
 ## 目录
 

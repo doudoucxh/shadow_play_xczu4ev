@@ -32,7 +32,7 @@ from display_queue import DisplayQueue
 from pose_responsive import PoseStabilizer
 from pose_sender import PoseSender
 from usb_camera import add_usb_arguments, open_usb
-from ui_frame_feed import UiFrameFeed, validate_feed_options
+from ui_frame_feed import UiFrameFeed, StaleUiFrame, drop_expired_preview, validate_feed_options
 
 class Display:
     N = 1280 * 720 * 3
@@ -194,9 +194,18 @@ def main(default_camera='vdma'):
             pose=stabilizer.update(boxes,scores,points,captured)
             stability_ms=(time.monotonic()-t_stable)*1000
             # Final tracked pose, including None; do not reuse old coordinates.
-            if time.monotonic()-captured>.25:raise RuntimeError('Refusing stale inference result')
+            if drop_expired_preview(captured, time.monotonic(), ui_feed is not None and sender is None and args.no_send):
+                ui_feed.invalidate()
+                stabilizer=PoseStabilizer()
+                print('UI_EXPIRED_FRAME_DROPPED',sequence,flush=True)
+                continue
             if sender is not None:sender.publish(pose,sequence,captured,stabilizer.track_id)
-            if ui_feed is not None:ui_feed.publish(frame,pose,sequence,captured,stabilizer.track_id)
+            if ui_feed is not None:
+                try:ui_feed.publish(frame,pose,sequence,captured,stabilizer.track_id)
+                except StaleUiFrame:
+                    ui_feed.invalidate()
+                    stabilizer=PoseStabilizer()
+                    continue
             if pose is not None:
                 for a,b in EDGES:
                     if min(pose[a,2],pose[b,2])>=.25:

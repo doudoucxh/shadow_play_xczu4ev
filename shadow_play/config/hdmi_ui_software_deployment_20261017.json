@@ -1,0 +1,215 @@
+{
+  "date": "2026-10-17",
+  "release": "shadow-theatre-board-20261017-r4-runtime",
+  "transport": "COM17 PS debug UART only",
+  "boot_id": "b7558875-c170-48f4-8991-e4194f278329",
+  "scope": "UI, camera/DPU, audio; actuators not installed",
+  "installed": true,
+  "software_only": true,
+  "boot_autostart": false,
+  "boot_files_changed": false,
+  "display": {
+    "viewport": [
+      1024,
+      600
+    ],
+    "timing": [
+      1280,
+      720
+    ],
+    "renderer": "sandboxed Firefox 158 + private authenticated Xvfb",
+    "output_fps": [
+      11.97,
+      11.98
+    ],
+    "hdmi": {
+      "control": 65537,
+      "status": 69632,
+      "height": 720,
+      "stride": 3840,
+      "park": 65537
+    }
+  },
+  "camera": {
+    "device": "icspring camera /dev/video0",
+    "frames": [
+      {
+        "sequence": 33,
+        "session": "aa8bf02e12184a068137c0e0c0f77b46",
+        "age_ms": 117.2,
+        "pose": {},
+        "sha256": "d3e5277387912d79e74b5570dde4426ef9004a291de572bd4b64b04c623d6f02"
+      },
+      {
+        "sequence": 37,
+        "session": "aa8bf02e12184a068137c0e0c0f77b46",
+        "age_ms": 164.6,
+        "pose": {},
+        "sha256": "7367f43eb8251f4d9dc477886f64fd6bc983ddc5b551d5631a8a7a17631780ce"
+      },
+      {
+        "sequence": 41,
+        "session": "aa8bf02e12184a068137c0e0c0f77b46",
+        "age_ms": 158.0,
+        "pose": {},
+        "sha256": "96e51eb0bb54811771763feb70d3c80c57bc28240ab6d04b9fdd6092c6916295"
+      }
+    ],
+    "ui_60s": [
+      {
+        "configured": true,
+        "running": true,
+        "live": true,
+        "error": ""
+      },
+      {
+        "configured": true,
+        "running": true,
+        "live": true,
+        "error": ""
+      },
+      {
+        "configured": true,
+        "running": true,
+        "live": true,
+        "error": ""
+      },
+      {
+        "configured": true,
+        "running": true,
+        "live": true,
+        "error": ""
+      },
+      {
+        "configured": true,
+        "running": true,
+        "live": true,
+        "error": ""
+      },
+      {
+        "configured": true,
+        "running": true,
+        "live": true,
+        "error": ""
+      },
+      {
+        "configured": true,
+        "running": true,
+        "live": true,
+        "error": ""
+      },
+      {
+        "configured": true,
+        "running": true,
+        "live": true,
+        "error": ""
+      },
+      {
+        "configured": true,
+        "running": true,
+        "live": true,
+        "error": ""
+      },
+      {
+        "configured": true,
+        "running": true,
+        "live": true,
+        "error": ""
+      },
+      {
+        "configured": true,
+        "running": true,
+        "live": true,
+        "error": ""
+      },
+      {
+        "configured": true,
+        "running": true,
+        "live": true,
+        "error": ""
+      }
+    ],
+    "complete_human_keypoints_accepted": false
+  },
+  "audio": {
+    "device": "Jieli Technology USB Composite Device",
+    "card": 1,
+    "pcm": 0,
+    "result": {
+      "configured": true,
+      "running": false,
+      "playing": false,
+      "finished": true,
+      "duration_s": 67.1056875,
+      "elapsed_s": 67.1056875,
+      "timing": "player process clock; acoustic latency not measured",
+      "error": ""
+    },
+    "audibility_observed": false
+  },
+  "touch": {
+    "device": "OpenWare Multi-Touch-V5000",
+    "event": "/dev/input/event10",
+    "interface_opened": true,
+    "physical_finger_tested": false
+  },
+  "motion": {
+    "armed": false,
+    "enabled_mask": 0,
+    "sequence": 0,
+    "faults": 0,
+    "pending": false,
+    "commands_sent": false,
+    "position_feedback": null,
+    "locks_preserved": true
+  },
+  "archives": {
+    "runtime_sha256": "71577f9322c0642b69bc76c01f46d662487d66457b4b83a322eaeb6897bb3318",
+    "firefox_sha256": "ad647ee920828da7495de7a5f3eb5ddad457b107e4932b3fac49ce700bbbb2b2",
+    "xvfb_sha256": "e4c94974631b3b0ad67726cea57dadb9e5e99eca999b9388e1a3a8569981eee0",
+    "display_patch_sha256": "fb4b576bb96b143efb00232af939b88fef56d3451eae2ec05c865cb744178877"
+  },
+  "runtime_html_sha256": "040c66188875ee0bb2254b634370e46fcac411131e899551a7b5951f7be03aab",
+  "final_build_sha256": "cc0d5be6e57b82573141c27aa8a5d2855b216b1328f7f30ffae908646fc325f6",
+  "expected_manifest_content_sha256": "6aea2d2bfbd6c4ce8fbc3b5260eada55cbe152f38d54bbf700925f587a23cc58",
+  "final_verification": {
+    "host_date": "2026-10-18",
+    "boot_id": "b7558875-c170-48f4-8991-e4194f278329",
+    "services": [
+      "active",
+      "active",
+      "active"
+    ],
+    "ui_audio_button_playing": true,
+    "return_home_audio_stopped": true,
+    "return_home_camera_stopped": true,
+    "manifest_files_verified": 64,
+    "manifest_content_sha256": "6aea2d2bfbd6c4ce8fbc3b5260eada55cbe152f38d54bbf700925f587a23cc58",
+    "motion_inhibit_present": true,
+    "output_status": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "physical_touch_tested": false,
+    "input_method": "authenticated private Xvfb XTest pointer"
+  }
+}

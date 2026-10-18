@@ -5,6 +5,7 @@ Only a single JSON snapshot is retained, atomically replaced after encoding.
 """
 import base64
 import json
+import math
 import os
 from pathlib import Path, PurePosixPath
 import tempfile
@@ -20,6 +21,21 @@ POINT_NAMES = {
     'right_elbow': 'rightElbow', 'left_wrist': 'leftWrist',
     'right_wrist': 'rightWrist',
 }
+
+
+class StaleUiFrame(ValueError):
+    """A preview frame expired; it must not be published."""
+
+
+def drop_expired_preview(captured, now, preview_only):
+    age = now-captured
+    if not math.isfinite(age) or age < 0:
+        raise RuntimeError('Invalid inference capture time')
+    if age <= .25:
+        return False
+    if preview_only:
+        return True
+    raise RuntimeError('Refusing stale inference result')
 
 
 def validate_feed_options(camera, display, no_send, feed_file):
@@ -60,7 +76,7 @@ class UiFrameFeed:
             raise ValueError('UI frame sequence must strictly increase')
         now = self._clock()
         if not 0 <= now - metadata['captured_s'] <= .25:
-            raise ValueError('Refusing stale or future UI frame')
+            raise StaleUiFrame('Refusing stale or future UI frame')
         import cv2
         import numpy as np
         if not isinstance(frame, np.ndarray) or frame.shape != (720, 1280, 3) or frame.dtype != np.uint8:
@@ -95,10 +111,8 @@ class UiFrameFeed:
         self._last_published = self._clock()
         return True
 
-    def close(self):
-        if self._closed:
-            return
-        self._closed = True
+    def invalidate(self):
+        """Remove only this publisher's old packet, while allowing fresh frames."""
         try:
             current = json.loads(self.path.read_text(encoding='utf-8'))
             if current.get('session_id') == self.session_id:
@@ -108,3 +122,8 @@ class UiFrameFeed:
         except (ValueError, UnicodeError):
             # An unknown/replaced file does not belong to this publisher.
             pass
+
+    def close(self):
+        if self._closed: return
+        self._closed = True
+        self.invalidate()
