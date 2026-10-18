@@ -1,0 +1,57 @@
+{
+  "original": {
+    "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+    "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+    "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+    "uEnv.txt": "c7c1db61b2dfac2bb6dad137a7d2f041345ff98eb76b4d594a1431918e800770"
+  },
+  "candidate": "image-ui-20261018.ub",
+  "candidate_sha256": "df660e3aa4d3262cbe61db2236910392b92dd554fa60e2672c2cdf8335cd0b9b",
+  "kernel_sha256": "29bbb9db5228855b3657f63cae0d17a641b4963c9f9f5c1e8f6b6119986813fa",
+  "fdt_sha256": "f380f2125ed3fd8ab2416ca0f22844074c32bb6532dd2d1b42406c1a49ec6e8b",
+  "launcher_sha256": "d2bab272ae0074268f0d9dcde7b1ef715cfa92d97cfb167ac31c20e63292199b",
+  "overlay_sha256": "e00cb557ad14272a70c3413a7461b7191be6e4fb841e8159dbe33fbae0837da2",
+  "new_uenv_sha256": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+  "installed": true,
+  "date": "2026-10-18",
+  "transport": "COM17 PS debug UART",
+  "boot_id_before": "b7558875-c170-48f4-8991-e4194f278329",
+  "boot_id_after": "ced01bb9-9579-4335-a4dd-2405d0d2b87b",
+  "verification": {
+    "normal_reboot": true,
+    "power_cycle": false,
+    "manual_login_or_start_required": false,
+    "fresh_consecutive_frames": true,
+    "ui_browser_hdmi_services_active": true,
+    "ready_linux_uptime_seconds": 52.2,
+    "browser_startup_retries_observed": 1,
+    "physical_screen_confirmation": null,
+    "camera_running": false,
+    "audio_running": false,
+    "motion_ready": false,
+    "post_load_pwm": {
+      "armed": false,
+      "enabled_mask": 0,
+      "sequence": 0,
+      "faults": 0,
+      "pending": false
+    }
+  },
+  "tests": {
+    "offline_tests_passed": 4,
+    "board_python_compile_passed": true,
+    "fit_components_verified": 3,
+    "systemd_analyze": "unavailable; real boot service succeeded"
+  },
+  "rollback": "/run/media/mmcblk0p1/uEnv-before-ui-20261018.txt",
+  "historical_backup_relocated": {
+    "path": "/run/media/mmcblk0p2/piying/boot-ui-20261018/image.ub.before-follow-20260923_174611",
+    "sha256": "cb5070b664ed64415fa2f79c95c449597f46b755399d0bd61640ba932379ef8d"
+  },
+  "evidence": {
+    "boot-install-v2.log": "13cce408853b95cc80acacea76a61f0b2476df1f5ff5638cdf7e07f8e8f55380",
+    "boot-pre-reboot.log": "226e51090443442fd77fcba0b6e70b1fd87623e6b54903e34962bde1b20049c4",
+    "ui-autoboot-console.log": "bef0b1c16d5ac425999b6b8f07f747d333621249d1f6a9731355a9f8422b7c98",
+    "boot-space.log": "fa6ba3d3b7649e19cf8df8d50ebfac4e5aec0d66c42948676fad60c46e4e7de5"
+  }
+}
