@@ -1,0 +1,505 @@
+{
+  "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+  "state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 978,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "loaded_marker": {
+    "image_kind": "servo10_vision",
+    "design_checks": "SERVO_IMAGE_DESIGN_CHECKS_PASS",
+    "bus_skew_check": "SERVO_BUS_SKEW_CHECK_PASS",
+    "register_base": 2684551168,
+    "pins": [
+      "D14",
+      "D15",
+      "F13",
+      "G13",
+      "G14",
+      "G15",
+      "J14",
+      "E13",
+      "E14",
+      "E15"
+    ],
+    "sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+    "wns_ns": 1.033,
+    "whs_ns": 0.008,
+    "wpws_ns": 0.151,
+    "part": "xczu4ev-sfvc784-2-i",
+    "clock_hz": 100000000,
+    "period_us": 20000,
+    "channels": 10,
+    "reset_outputs": "disabled",
+    "video_mmcm": {
+      "DIVCLK_DIVIDE": 1,
+      "CLKOUT0_DIVIDE_F": 15,
+      "CLKOUT1_DIVIDE": 6,
+      "CLKFBOUT_MULT_F": 11.25,
+      "CLKOUT2_DIVIDE": 3
+    },
+    "built_at": "2026-10-10T15:32:16.354825+08:00",
+    "scope": "volatile runtime image; motors remain off",
+    "pin_revision": "servo4_G13_20261010",
+    "previous_sha256": "26b553c4705984a748a138f24fe735ab0ba5343621fabd73c966db27b8e81f81",
+    "change": "Only servo_pwm[3] package pin H13 -> G13; other top-level pins preserved",
+    "loaded_unix": 1679217118.4409173,
+    "boot_hashes": {
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc"
+    },
+    "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9"
+  },
+  "fpga_manager_state": "operating",
+  "board_log_sha256": "bcf97fce41451cac943f089cd0905a5a8a0e71f13548c3b09f5b49f280858a53",
+  "frame_count": 301,
+  "elapsed_s": 12.805421559000024,
+  "only_channel_8_enabled": true,
+  "other_commands_unchanged": true,
+  "sequences_consecutive": true,
+  "maximum_adjacent_step_us": 1,
+  "command_range_us": [
+    1500,
+    1540
+  ],
+  "frame_interval_s": [
+    0.037198091999925964,
+    0.06177793799997744
+  ],
+  "selected_events": [
+    {
+      "event": "frame",
+      "index": 0,
+      "elapsed_s": 0.023663306000344164,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 128,
+        "armed": true,
+        "faults": 0,
+        "sequence": 677,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "frame",
+      "index": 50,
+      "elapsed_s": 2.144264602000476,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 128,
+        "armed": true,
+        "faults": 0,
+        "sequence": 727,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1520,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "frame",
+      "index": 100,
+      "elapsed_s": 4.283532983000441,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 128,
+        "armed": true,
+        "faults": 0,
+        "sequence": 777,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1540,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "frame",
+      "index": 150,
+      "elapsed_s": 6.405254549999881,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 128,
+        "armed": true,
+        "faults": 0,
+        "sequence": 827,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1540,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "frame",
+      "index": 200,
+      "elapsed_s": 8.545376619999843,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 128,
+        "armed": true,
+        "faults": 0,
+        "sequence": 877,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1520,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "frame",
+      "index": 250,
+      "elapsed_s": 10.664405118999639,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 128,
+        "armed": true,
+        "faults": 0,
+        "sequence": 927,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "frame",
+      "index": 300,
+      "elapsed_s": 12.805421559000024,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 128,
+        "armed": true,
+        "faults": 0,
+        "sequence": 977,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "outputs_off",
+      "route_complete": true,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 978,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "incident_locks_removed": false,
+      "position_feedback": null
+    }
+  ],
+  "manifest_entries": 6,
+  "manifest_files": {
+    "integrations/calibration/v20_head_lift.py": "0c9447effba73eddd7dfcd19bfd33c139ecbb0be4c0d8755d15a5b4bc2c10e4b",
+    "integrations/calibration/v20_first_direction.py": "95cb9c0ab5297a74089b10fa9802842a6f41b4aa0c65b84d33b41bcb33ffb5ed",
+    "integrations/calibration/servo_pwm_device.py": "ee917182d4a7b38f97556fa5e663f2c5f1d787ebdb5337462b0fb8f9794fa408",
+    "integrations/calibration/mmio32.py": "53c37471f7156edff85664737c77446baf30e44efcb5421bbae07ccb8035298b",
+    "integrations/calibration/libservo_mmio32.so": "2f017fb4b6187609df80a860039d1bb958ca09d683b1ccb700d8e1c921c1e8c0",
+    "integrations/calibration/.motion-inhibit": "26416a436affc9cadf45b9f3219ad93dff67a8bd5f251d2ec41017ca5b417b5e"
+  },
+  "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+  "persistent_lock_sha256": "26416a436affc9cadf45b9f3219ad93dff67a8bd5f251d2ec41017ca5b417b5e",
+  "schema": "v20-head-lift-result-v1",
+  "route_complete": true,
+  "request": {
+    "request_id": "c511f2cf9a0f418289410205ca801913",
+    "user_request": "Direct real-hardware operation requested in this chat",
+    "supersedes_prior_user_stop_for_this_one_check": true,
+    "channel": 8,
+    "pulse_range_us": [
+      1500,
+      1540
+    ],
+    "camera_required": true,
+    "full_show": false
+  },
+  "plan": {
+    "schema": "attended-v20-head-lift-v1",
+    "session_id": "0c451e645e15404780636d43ae828f20",
+    "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+    "expected_sequence": 676,
+    "expected_pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "route_sha256": "4feefbc5e250d3084572ae5435ef371d39659194dd9d3ae3c9291bd1b32e29c5",
+    "historical_source_sha256": "a0a7af4128b1eee714b62f7a87ed4b286eeb960b9f9468b06fa9188d176860ab",
+    "camera_required": true,
+    "onsite_observer": true,
+    "new_request_id": "c511f2cf9a0f418289410205ca801913",
+    "new_hardware_request": true,
+    "prior_log_path": "/run/media/mmcblk0p2/piying/v20-first-direction-20261018-r4/run-cf948d6895d345cd975a619eb69ec8b8.board.jsonl",
+    "prior_log_sha256": "1fe6ce2f6185ff1d26898ca103fb408424a984664dab64e82520e3ff50b9e3d3"
+  },
+  "source_log_path": "/run/media/mmcblk0p2/piying/v20-head-lift-20261018/run-0c451e645e15404780636d43ae828f20.board.jsonl",
+  "camera_captures": [
+    {
+      "stage": "before",
+      "frame": 29935,
+      "age_ms": 50.4130859375,
+      "updated_unix_ms": 1792335907074,
+      "sha256": "b82a9609bd4b1176a646118fdb122c5cbe332b0112574a20b6dde37266790021",
+      "size": [
+        640,
+        360
+      ]
+    },
+    {
+      "stage": "frame_0",
+      "frame": 29950,
+      "age_ms": 3.862060546875,
+      "updated_unix_ms": 1792335908079,
+      "sha256": "3ad8d4cc6fefd3566f99778764070897f4d78274ab7b29b814ff9e34ac4e5f3b",
+      "size": [
+        640,
+        360
+      ]
+    },
+    {
+      "stage": "frame_50",
+      "frame": 29981,
+      "age_ms": 46.017333984375,
+      "updated_unix_ms": 1792335910157,
+      "sha256": "98303444cf9c65d0a09afe25096750af3892a0d85e3f705c079a8332fdf2c4c5",
+      "size": [
+        640,
+        360
+      ]
+    },
+    {
+      "stage": "frame_100",
+      "frame": 30013,
+      "age_ms": 35.35888671875,
+      "updated_unix_ms": 1792335912303,
+      "sha256": "a54defb19fdd17b175b89d6f5f22080dbeff2bab5c5788595ae936b5baf1ba78",
+      "size": [
+        640,
+        360
+      ]
+    },
+    {
+      "stage": "frame_150",
+      "frame": 30045,
+      "age_ms": 7.49609375,
+      "updated_unix_ms": 1792335914453,
+      "sha256": "f736d8b3d9177af200a75110b3cd3cf9524e8e7174595e0488c509d8ad45a913",
+      "size": [
+        640,
+        360
+      ]
+    },
+    {
+      "stage": "frame_200",
+      "frame": 30077,
+      "age_ms": 3.890869140625,
+      "updated_unix_ms": 1792335916604,
+      "sha256": "ba6df3ac7cddc6df8adcfea10c92d23b395a165e5dc1a2d91a90742133200c43",
+      "size": [
+        640,
+        360
+      ]
+    },
+    {
+      "stage": "frame_250",
+      "frame": 30108,
+      "age_ms": 39.542724609375,
+      "updated_unix_ms": 1792335918684,
+      "sha256": "948325c3290cd66fc5aff5c8d0e1b9ff209db2e3cc0be29f88153edc3c3b4e1d",
+      "size": [
+        640,
+        360
+      ]
+    },
+    {
+      "stage": "frame_300",
+      "frame": 30141,
+      "age_ms": 28.054931640625,
+      "updated_unix_ms": 1792335920901,
+      "sha256": "dee2d299036085c8651ed1684f54076f83e1948827521d0b9c4818c1a50acf12",
+      "size": [
+        640,
+        360
+      ]
+    }
+  ],
+  "camera_review": {
+    "reviewed_stages": [
+      "before",
+      "frame_150",
+      "frame_300"
+    ],
+    "puppets_visible": true,
+    "servo_horn_visible": false,
+    "resolved_tiger_head_lift": false,
+    "pixel_measurement": null,
+    "interpretation": "No clear motion resolved in front view; actual shaft motion and root cause remain unknown."
+  },
+  "physical_motion_verified": false,
+  "direction_verified": false,
+  "position_feedback": null,
+  "wiring": {
+    "channel": 8,
+    "package_pin": "E13",
+    "connection": "Direct FPGA header",
+    "source": "User confirmation in current chat",
+    "electrical_measurement_performed": false
+  },
+  "onsite_measurement": {
+    "current_user_answer": "Unable to measure now",
+    "historical_scope_available": "shadow_play/docs/servo_loaded_recheck_20261011.md",
+    "historical_supply_and_common_ground": "shadow_play/docs/servo_capture_20261008.md",
+    "current_supply_voltage_verified": false,
+    "current_waveform_verified": false
+  },
+  "installation": {
+    "directory": "/run/media/mmcblk0p2/piying/v20-head-lift-20261018",
+    "archive_sha256": "db745b373220e5799b32e6bd29a708384e1af680fd20c1b3f7f7534e0fa71a38",
+    "autostart": false
+  },
+  "software_tests": {
+    "new_axis8": 10,
+    "existing_axis7": 22,
+    "total_passed": 32
+  },
+  "full_v20_performed": false,
+  "audio_played": false,
+  "rails_moved": false,
+  "fpga_reloaded": false,
+  "boot_files_changed": false,
+  "incident_locks_removed": false,
+  "next_step": "Observe actual axis-8 horn/linkage response or measure E13 PWM before interpreting this route as validated.",
+  "current_action": "Outputs remain off; no automatic replay or amplitude increase."
+}
