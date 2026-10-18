@@ -44,14 +44,24 @@
       "automatic_ui_restore_verified": true,
       "physical_display_restored": false,
       "hpd_edid_available": false,
-      "next_check": "Compare same screen and HDMI cable on computer; determine whether screen menu displays and whether power is independent",
+      "next_check": "Compare screen on a known-good independent 5V USB supply while retaining board HDMI",
       "fpga_reloaded": true,
       "motion_commands_sent": false,
       "hdmi_reseat_and_screen_power_cycle_restored": false,
       "fpga_reload_same_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
       "reload_output_mask": 0,
       "reload_boot_files_unchanged": true,
-      "same_image_reload_restored_display": false
+      "same_image_reload_restored_display": false,
+      "computer_comparison_available": false,
+      "screen_power_source": "board USB",
+      "screen_has_menu": false,
+      "usb_shared_hub_devices": [
+        "icSpring camera",
+        "Jieli speaker",
+        "wireless mouse receiver",
+        "OpenWare touch interface"
+      ],
+      "independent_5v_usb_test_result": null
     }
   },
   "camera": {
