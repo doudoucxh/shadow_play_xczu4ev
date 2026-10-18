@@ -1,0 +1,3574 @@
+{
+  "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+  "state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 2648,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "checks": [
+    {
+      "channel": 9,
+      "frames": 151,
+      "elapsed_s": 6.426786725001875,
+      "start_sequence": 1280,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 1432,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-9-98e31effb0de47208f906b6eb5d96df2.board.jsonl",
+      "sha256": "50bacc334ac00ffe9508a0af8e9d71b8ebdf7de678f90fb909e4587b2c8c5f7b",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-check-v1",
+        "session_id": "98e31effb0de47208f906b6eb5d96df2",
+        "new_request_id": "ad9b01dd219f4b14843fd6f9231414ef",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 9,
+        "expected_sequence": 1280,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "943b66097e55effd4d5131f8409cfb0bb0aedd0dac92700ff21d2545cedbd44b",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/v20-head-lift-phone-20261019/run-0d69eb9ed7534cd2988cbb99504c88de.board.jsonl",
+        "prior_log_sha256": "2ff83781741b200fe393edf3681c971fce2fb71a660bb3b896894e02ddc8d333",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-15518",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T18:22:11.276000+00:00",
+          "sha256": "eae4e301e9c734307603e5bdf5fe676f3bc086882aa70b03a9ad179cf833bec1",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-15533",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T18:22:12.261000+00:00",
+          "sha256": "12ee014e58ec633e017d16e0a811ad1355feb2679153d8143548c8b1978ccb21",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-15549",
+          "age_ms": 14,
+          "captured_utc": "2026-10-18T18:22:13.331000+00:00",
+          "sha256": "ad8a8d1e1a893e2e26409275550550c7cd73f1938462ff0fa4798c030734ead3",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-15565",
+          "age_ms": 16,
+          "captured_utc": "2026-10-18T18:22:14.394000+00:00",
+          "sha256": "4c00db79e76c20a87a245ab55d5c723afb45d5d6db97704e36eb692d3971074f",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-15581",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T18:22:15.476000+00:00",
+          "sha256": "b369b7857d529c6619f0e770998772e499c59b7417b49e4a7c1127a77335c5a0",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-15597",
+          "age_ms": 14,
+          "captured_utc": "2026-10-18T18:22:16.543000+00:00",
+          "sha256": "f2ec63df6087fbc7066e7a60367fedc34e6fa131873244c0aef4d3e19832da77",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-15613",
+          "age_ms": 15,
+          "captured_utc": "2026-10-18T18:22:17.600000+00:00",
+          "sha256": "5d7f33903ccad8f31fd4a963d8879e916057268a6ea8dd8742f7a586e8efac0b",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-15630",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T18:22:18.729000+00:00",
+          "sha256": "756961966c2cffd8514f8c3d6bd0f5f0ba2ab8fb61e4d4b7a7af5592896a5afd",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_75",
+          "frame_150"
+        ],
+        "motion_visually_resolved": false,
+        "classification": "Response not resolved",
+        "shaft_angle_feedback": null
+      },
+      "image_comparison": {
+        "tiger_mount_image_left": {
+          "roi_px": [
+            282,
+            268,
+            341,
+            350
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9976246161175283
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9974887556447743
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9971397028296726
+            }
+          ]
+        },
+        "tiger_mount_image_right": {
+          "roi_px": [
+            391,
+            260,
+            445,
+            344
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9982434752773544
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9980802474906014
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9980536199680391
+            }
+          ]
+        },
+        "tiger_rod_image_left": {
+          "roi_px": [
+            308,
+            172,
+            329,
+            269
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9984667849509914
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9985243688264605
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9982499409148877
+            }
+          ]
+        },
+        "tiger_rod_image_right": {
+          "roi_px": [
+            430,
+            134,
+            450,
+            247
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9972569370347071
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9970636230425003
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9966656724421293
+            }
+          ]
+        },
+        "fixed_frame": {
+          "roi_px": [
+            230,
+            350,
+            264,
+            458
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9981304994814163
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9982058117998688
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.998070252068684
+            }
+          ]
+        }
+      },
+      "position_feedback": null
+    },
+    {
+      "channel": 10,
+      "frames": 151,
+      "elapsed_s": 6.421152699000231,
+      "start_sequence": 1432,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 1584,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-10-65dd3a316720490d894264214a40b338.board.jsonl",
+      "sha256": "076487784ddba7e74d08cf3772e4ed5d402d896d25518830eaafeec6588278fe",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-check-v1",
+        "session_id": "65dd3a316720490d894264214a40b338",
+        "new_request_id": "92c3bfb9645e4384b9f23b4e4c96212a",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 10,
+        "expected_sequence": 1432,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "eac36691d397a8b3d6412720d2a59513a6c0d789c36a60c65096a0d8c9f9a952",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-9-98e31effb0de47208f906b6eb5d96df2.board.jsonl",
+        "prior_log_sha256": "50bacc334ac00ffe9508a0af8e9d71b8ebdf7de678f90fb909e4587b2c8c5f7b",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-15890",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T18:22:36.063000+00:00",
+          "sha256": "0e6c1e181b5cfadf8186049471390b15d53749dfc65fb054f982761d061fb50f",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-15904",
+          "age_ms": 62,
+          "captured_utc": "2026-10-18T18:22:36.993000+00:00",
+          "sha256": "6bd94a07c3711796f9a745caf48682cb7d76d70a041bcd87138a37f4c166dd48",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-15920",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T18:22:38.064000+00:00",
+          "sha256": "9b43e92afdeee3c9988bc6f6ddb5d5153aeae733a26247bf098a3807088329d8",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-15936",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T18:22:39.129000+00:00",
+          "sha256": "6ef95aed77e73cfb280edc10917d1742ca325cd16313f4b19eeefd6997937acc",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-15952",
+          "age_ms": 63,
+          "captured_utc": "2026-10-18T18:22:40.193000+00:00",
+          "sha256": "92f401e17e4b7883e09796104af33b8924b1388fcc0c275c066df80adac626ac",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-15968",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T18:22:41.268000+00:00",
+          "sha256": "66e7573d1a4531b7c9c5e837515f96ea26a9297b84ab96f1634abb054adaf21d",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-15985",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T18:22:42.397000+00:00",
+          "sha256": "11796b21623b6b728f221922d00ea854daab216aa4e91fa46e422b29a7741968",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16001",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T18:22:43.461000+00:00",
+          "sha256": "8f88131abf33ccf8a4cdfb7aa6e7e41e6b4a5b602ec1a482aa8ebe72ceb2b222",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_75",
+          "frame_150"
+        ],
+        "motion_visually_resolved": false,
+        "classification": "Response not resolved",
+        "shaft_angle_feedback": null
+      },
+      "image_comparison": {
+        "tiger_mount_image_left": {
+          "roi_px": [
+            282,
+            268,
+            341,
+            350
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9974619646810229
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9976071264592802
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9975868426299465
+            }
+          ]
+        },
+        "tiger_mount_image_right": {
+          "roi_px": [
+            391,
+            260,
+            445,
+            344
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9982478094253278
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9981457985955274
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9982225009806454
+            }
+          ]
+        },
+        "tiger_rod_image_left": {
+          "roi_px": [
+            308,
+            172,
+            329,
+            269
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9984263724344459
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9984452378622691
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9984142041730946
+            }
+          ]
+        },
+        "tiger_rod_image_right": {
+          "roi_px": [
+            430,
+            134,
+            450,
+            247
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9970137195243193
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9968067282777272
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9967186821593521
+            }
+          ]
+        },
+        "fixed_frame": {
+          "roi_px": [
+            230,
+            350,
+            264,
+            458
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9981654352725993
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9981606277837902
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9980368433502033
+            }
+          ]
+        }
+      },
+      "position_feedback": null
+    },
+    {
+      "channel": 7,
+      "frames": 151,
+      "elapsed_s": 6.423913206999714,
+      "start_sequence": 1584,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 1736,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-7-57b3e16af7a64f7e8bb09236c42f33ee.board.jsonl",
+      "sha256": "96a8a743daf88363c849f428a20673cc44b04d2024cd62f0850223079a1a0bd7",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-check-v1",
+        "session_id": "57b3e16af7a64f7e8bb09236c42f33ee",
+        "new_request_id": "ef810ee0ba9f4c3eb17f1e96d9ab30f8",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 7,
+        "expected_sequence": 1584,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "9ff8662db5d59053a4c6f58b66b44705f6a7a62c0a9a0e360d836ce220eefbd5",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-10-65dd3a316720490d894264214a40b338.board.jsonl",
+        "prior_log_sha256": "076487784ddba7e74d08cf3772e4ed5d402d896d25518830eaafeec6588278fe",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16266",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T18:23:01.132000+00:00",
+          "sha256": "3ced64bb6fb3cbedf45305caeaab6ecc52e5bb56ab8de52b742c1a0dd3b43c10",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16280",
+          "age_ms": 16,
+          "captured_utc": "2026-10-18T18:23:02.065000+00:00",
+          "sha256": "d6711b5f9a0156ac0261adbf9d8d008a63f06619037e0f265fb5e0cf25fb18ee",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16296",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T18:23:03.129000+00:00",
+          "sha256": "4f09f5f5084771ac47d399974d02683887c02e8a2d75047da74f403a7a66af93",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16312",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T18:23:04.193000+00:00",
+          "sha256": "d6596fd9afb3b41f9c8a659e9f24bbb4b69274f8d720b31b3b1ddffbc72d79a4",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16328",
+          "age_ms": 16,
+          "captured_utc": "2026-10-18T18:23:05.271000+00:00",
+          "sha256": "73b4f8f9fd04c5ab954683c203a103339b12b0d9d99a5fe44322a0b7ff45f561",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16344",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T18:23:06.335000+00:00",
+          "sha256": "1fe94e9d0aceb33ce3134a534ce44f5f278ca3232228bb25c3958dcc2531fb06",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16360",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T18:23:07.401000+00:00",
+          "sha256": "e4e295f093f6fead7b31096b52083021651ba1b9ad1ca67c87749dde2cea3924",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16377",
+          "age_ms": 61,
+          "captured_utc": "2026-10-18T18:23:08.537000+00:00",
+          "sha256": "b0202496bf57a5bd9d3f859c1763160d19b7331f17c639e8cebace2f8c1c02d1",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_75",
+          "frame_150"
+        ],
+        "motion_visually_resolved": false,
+        "classification": "Response not resolved",
+        "shaft_angle_feedback": null
+      },
+      "image_comparison": {
+        "tiger_mount_image_left": {
+          "roi_px": [
+            282,
+            268,
+            341,
+            350
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9972301763467923
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9970165228179685
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9971498596679742
+            }
+          ]
+        },
+        "tiger_mount_image_right": {
+          "roi_px": [
+            391,
+            260,
+            445,
+            344
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9980288613053937
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9980392208951369
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9980721620555436
+            }
+          ]
+        },
+        "tiger_rod_image_left": {
+          "roi_px": [
+            308,
+            172,
+            329,
+            269
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9982095819079599
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9983464218871361
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9981772528233029
+            }
+          ]
+        },
+        "tiger_rod_image_right": {
+          "roi_px": [
+            430,
+            134,
+            450,
+            247
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9965431041489363
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9964671895185926
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9970866126006294
+            }
+          ]
+        },
+        "fixed_frame": {
+          "roi_px": [
+            230,
+            350,
+            264,
+            458
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9979372910281981
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9980439742317704
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9976454526812127
+            }
+          ]
+        }
+      },
+      "position_feedback": null
+    },
+    {
+      "channel": 1,
+      "frames": 151,
+      "elapsed_s": 6.431628562997503,
+      "start_sequence": 1736,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 1888,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-1-51b5b40c1881412c91b43e8e37956387.board.jsonl",
+      "sha256": "7c1e9a6a70539914725f4dc4629d213bf47f19d40a78c4250058165c72b32a10",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-check-v1",
+        "session_id": "51b5b40c1881412c91b43e8e37956387",
+        "new_request_id": "f69ad23515b44d8e8cbf535ec8704270",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 1,
+        "expected_sequence": 1736,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "d86f6bbca23cefd1ee7ee4bb531e11fc58371cd57e0c1f07d9d8d21ac4b3e155",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-7-57b3e16af7a64f7e8bb09236c42f33ee.board.jsonl",
+        "prior_log_sha256": "96a8a743daf88363c849f428a20673cc44b04d2024cd62f0850223079a1a0bd7",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16667",
+          "age_ms": 16,
+          "captured_utc": "2026-10-18T18:23:27.863000+00:00",
+          "sha256": "c6ac91cf5e30e510c55946e44230a4db4b2c06c81acfaa2b2d7983615d439c4f",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16680",
+          "age_ms": 62,
+          "captured_utc": "2026-10-18T18:23:28.741000+00:00",
+          "sha256": "5a0fce05578ffb441e5edad5d018a910b5db45b6c9827b6d16da7ae234cdc85b",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16697",
+          "age_ms": 16,
+          "captured_utc": "2026-10-18T18:23:29.862000+00:00",
+          "sha256": "9794766cff7a49680fed548fc4f2b5392f4fe199adaaa606c4c81d5ecc907f60",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16713",
+          "age_ms": 15,
+          "captured_utc": "2026-10-18T18:23:30.931000+00:00",
+          "sha256": "f857e02312ba51b2090b425b34e9a9929b23ab691bb5a0e3386f074f1bceee97",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16729",
+          "age_ms": 16,
+          "captured_utc": "2026-10-18T18:23:31.995000+00:00",
+          "sha256": "47d2c72b51fc8f5e12186cfaa7656c31492710b3d1e77602545d0e4b3d572713",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16745",
+          "age_ms": 16,
+          "captured_utc": "2026-10-18T18:23:33.069000+00:00",
+          "sha256": "b05b6a00ce4fa03d5364bba87c3b183406834de0266d9bed770bda7378e14771",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16761",
+          "age_ms": 14,
+          "captured_utc": "2026-10-18T18:23:34.133000+00:00",
+          "sha256": "f663fc386409c7831896216dd476bf2f824a8110f7967f64a224b04bec66d78d",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-16778",
+          "age_ms": 61,
+          "captured_utc": "2026-10-18T18:23:35.259000+00:00",
+          "sha256": "15863508333e2f5f825309cdbc2791197a78e999bac0eff2722c2430fc326eeb",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_75",
+          "frame_150"
+        ],
+        "motion_visually_resolved": false,
+        "classification": "Response not resolved",
+        "shaft_angle_feedback": null
+      },
+      "image_comparison": {
+        "person_mount_image_left": {
+          "roi_px": [
+            553,
+            389,
+            628,
+            466
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9931071816672842
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9931322117549614
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9932026437433162
+            }
+          ]
+        },
+        "person_mount_image_centre": {
+          "roi_px": [
+            654,
+            336,
+            736,
+            413
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9903832964350896
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9908503814870583
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9908217806829795
+            }
+          ]
+        },
+        "person_mount_image_right": {
+          "roi_px": [
+            741,
+            430,
+            840,
+            503
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9959904928411791
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.995941892374357
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9958935285764129
+            }
+          ]
+        },
+        "person_rod_image_left": {
+          "roi_px": [
+            596,
+            166,
+            617,
+            362
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9971257019148663
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9971003567999052
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9972042932142665
+            }
+          ]
+        },
+        "person_rod_image_centre": {
+          "roi_px": [
+            678,
+            63,
+            708,
+            320
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9989597888747566
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.998875989959342
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9988824822484834
+            }
+          ]
+        },
+        "person_rod_image_right": {
+          "roi_px": [
+            727,
+            97,
+            819,
+            311
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9975274585841655
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9972675446038023
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9974060784398038
+            }
+          ]
+        },
+        "fixed_frame": {
+          "roi_px": [
+            230,
+            350,
+            264,
+            458
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9978860096405375
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.997926996445117
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9980415358702565
+            }
+          ]
+        }
+      },
+      "position_feedback": null
+    },
+    {
+      "channel": 2,
+      "frames": 151,
+      "elapsed_s": 6.406720904997201,
+      "start_sequence": 1888,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 2040,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-2-2b605104d8d64791824d797e9c7a9f7d.board.jsonl",
+      "sha256": "05a2e47cb16d29eff129a4ab30696d79b5fbd1c0b4e949d2bb657a03bfef9d5f",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-check-v1",
+        "session_id": "2b605104d8d64791824d797e9c7a9f7d",
+        "new_request_id": "d02970ecde124b1cbe9a6c9e2d5b01a2",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 2,
+        "expected_sequence": 1888,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "e5ab679bc7a5dc3cc9dbf4335c99c29344378181b401017094487d3a00f54d63",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-1-51b5b40c1881412c91b43e8e37956387.board.jsonl",
+        "prior_log_sha256": "7c1e9a6a70539914725f4dc4629d213bf47f19d40a78c4250058165c72b32a10",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17054",
+          "age_ms": 61,
+          "captured_utc": "2026-10-18T18:23:53.666000+00:00",
+          "sha256": "9f9ebad3025a467f59d85bcf087e7e2898f075eab185b0402217d85df525a651",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17069",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T18:23:54.663000+00:00",
+          "sha256": "ab573f947d0152192ede8867e326ce7bf2ee7745351dc115f86ab9217f949f63",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17084",
+          "age_ms": 61,
+          "captured_utc": "2026-10-18T18:23:55.658000+00:00",
+          "sha256": "5a09e2cc5d6cbef0a05815dc7fdbc73672695e2e8a642877bba308a71cc37814",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17100",
+          "age_ms": 47,
+          "captured_utc": "2026-10-18T18:23:56.743000+00:00",
+          "sha256": "74cf9eb915ee2f179618870025e88a5ca58b450140a81fb3bdb7f8c33fc58933",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17116",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T18:23:57.805000+00:00",
+          "sha256": "9047487969cab9a427130a824b48f118d811b551ecc98cbd5449717eccde52bf",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17132",
+          "age_ms": 62,
+          "captured_utc": "2026-10-18T18:23:58.868000+00:00",
+          "sha256": "4c8e968c0c57c261994a1ff5718217015cfdfc65bcf6293697f4c0428941bbff",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17148",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T18:23:59.943000+00:00",
+          "sha256": "05377b4a53625180e0bccea89f0406715e7f6756b0f27529eca4f9383aba02a4",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17165",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T18:24:01.070000+00:00",
+          "sha256": "85466b85c6999edc3509fefc9146be65a7f809288699dda0303a4ea52c1fd52c",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_75",
+          "frame_150"
+        ],
+        "motion_visually_resolved": false,
+        "classification": "Response not resolved",
+        "shaft_angle_feedback": null
+      },
+      "image_comparison": {
+        "person_mount_image_left": {
+          "roi_px": [
+            553,
+            389,
+            628,
+            466
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9927862032716342
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9933893421507979
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9929156386186448
+            }
+          ]
+        },
+        "person_mount_image_centre": {
+          "roi_px": [
+            654,
+            336,
+            736,
+            413
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.989709613290887
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9902434354206333
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9902163534641868
+            }
+          ]
+        },
+        "person_mount_image_right": {
+          "roi_px": [
+            741,
+            430,
+            840,
+            503
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9947470191918837
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9950418305107068
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9948245732330981
+            }
+          ]
+        },
+        "person_rod_image_left": {
+          "roi_px": [
+            596,
+            166,
+            617,
+            362
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9970477753003805
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9972714258420647
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9973618727790458
+            }
+          ]
+        },
+        "person_rod_image_centre": {
+          "roi_px": [
+            678,
+            63,
+            708,
+            320
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9987899234983724
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9988618037302215
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9988579391227159
+            }
+          ]
+        },
+        "person_rod_image_right": {
+          "roi_px": [
+            727,
+            97,
+            819,
+            311
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9971778052974415
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9974561990242147
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9975191594872851
+            }
+          ]
+        },
+        "fixed_frame": {
+          "roi_px": [
+            230,
+            350,
+            264,
+            458
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9975677546156873
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9979033362292591
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9979809595329021
+            }
+          ]
+        }
+      },
+      "position_feedback": null
+    },
+    {
+      "channel": 3,
+      "frames": 151,
+      "elapsed_s": 6.415969367000798,
+      "start_sequence": 2040,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 2192,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-3-4d04cd5268b54046ba00915eb7f4802f.board.jsonl",
+      "sha256": "3aeb21aff6d84459694e7bf3d21fb2fb17d87cd8668b8dec4f3e2f15751d0329",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-check-v1",
+        "session_id": "4d04cd5268b54046ba00915eb7f4802f",
+        "new_request_id": "a0737297f8d94fd6b14c471216d2b4b1",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 3,
+        "expected_sequence": 2040,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "ddbcb1d4905a475f3245ef5a54b4052127cbdccd7e1f47c1b17f3b8a284a250f",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-2-2b605104d8d64791824d797e9c7a9f7d.board.jsonl",
+        "prior_log_sha256": "05a2e47cb16d29eff129a4ab30696d79b5fbd1c0b4e949d2bb657a03bfef9d5f",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17407",
+          "age_ms": 16,
+          "captured_utc": "2026-10-18T18:24:17.199000+00:00",
+          "sha256": "d202845ac8707ba84ca3f46ed3a0a6b1ac6c5933d2c94a93563b3d3ae0760a22",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17421",
+          "age_ms": 14,
+          "captured_utc": "2026-10-18T18:24:18.134000+00:00",
+          "sha256": "c0d6dd74672ea3c71cf2c55829c2e4abdfa65aba63e5cc60324b2390ac90c90c",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17436",
+          "age_ms": 61,
+          "captured_utc": "2026-10-18T18:24:19.133000+00:00",
+          "sha256": "8d74f78c795c709db28d1ab794af98b7cf061be31cc94cab20addc3fcfe16285",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17452",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T18:24:20.211000+00:00",
+          "sha256": "90af86fa414312c11b187a15a5003446ec51aa8344333026242b9b6d0952973d",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17468",
+          "age_ms": 63,
+          "captured_utc": "2026-10-18T18:24:21.277000+00:00",
+          "sha256": "d6a341d953928ff65841fab46613b88fe0f7e3e12b75f17263d2b7f1366e391e",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17485",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T18:24:22.393000+00:00",
+          "sha256": "ca3c258502a348bd30f033185d22615c4302437b74ec7d0714c7dea89e7aed37",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17501",
+          "age_ms": 30,
+          "captured_utc": "2026-10-18T18:24:23.459000+00:00",
+          "sha256": "8303a5a775217895c82f087373207ec18830c314e8501cf9f41aae7610f65ed5",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17518",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T18:24:24.595000+00:00",
+          "sha256": "ec2a6c2cee4e1952611cb5e187ee9e7a148e7010a7ef1bc36480eb6d8c911ad1",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_75",
+          "frame_150"
+        ],
+        "motion_visually_resolved": true,
+        "classification": "Small rod response observed; wiring identity and full health unverified",
+        "shaft_angle_feedback": null
+      },
+      "image_comparison": {
+        "person_mount_image_left": {
+          "roi_px": [
+            553,
+            389,
+            628,
+            466
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9900517222900244
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.989503979748911
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9937763273961141
+            }
+          ]
+        },
+        "person_mount_image_centre": {
+          "roi_px": [
+            654,
+            336,
+            736,
+            413
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9906768095356691
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9913551728514245
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9910300805614288
+            }
+          ]
+        },
+        "person_mount_image_right": {
+          "roi_px": [
+            741,
+            430,
+            840,
+            503
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9954824030887631
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9959814314209132
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9958471198644561
+            }
+          ]
+        },
+        "person_rod_image_left": {
+          "roi_px": [
+            596,
+            166,
+            617,
+            362
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                -2,
+                0
+              ],
+              "ncc": 0.854826546362866
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                -2,
+                0
+              ],
+              "ncc": 0.8332542580937182
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9963360564638379
+            }
+          ]
+        },
+        "person_rod_image_centre": {
+          "roi_px": [
+            678,
+            63,
+            708,
+            320
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9984825721828104
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9988095540244524
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9988921492670031
+            }
+          ]
+        },
+        "person_rod_image_right": {
+          "roi_px": [
+            727,
+            97,
+            819,
+            311
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.99715746422755
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9974656741940879
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9975425934861116
+            }
+          ]
+        },
+        "fixed_frame": {
+          "roi_px": [
+            230,
+            350,
+            264,
+            458
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9977441755060892
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9981613738170738
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9978312545975715
+            }
+          ]
+        }
+      },
+      "position_feedback": null
+    },
+    {
+      "channel": 4,
+      "frames": 151,
+      "elapsed_s": 6.412279599997419,
+      "start_sequence": 2192,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 2344,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-4-175abfdb72a045a2b11c505a523ac3a0.board.jsonl",
+      "sha256": "7665f05419dd6cfb87fd4671df21918cc4dc05cb8f7da2e4f04502c8e002d93d",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-check-v1",
+        "session_id": "175abfdb72a045a2b11c505a523ac3a0",
+        "new_request_id": "e5e1fcc33fa8476691ac985a72c44b9a",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 4,
+        "expected_sequence": 2192,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "dfa720a63d44feec51acb5b49e707026e11a58d7502a4bac6730e7095c0fa4b0",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-3-4d04cd5268b54046ba00915eb7f4802f.board.jsonl",
+        "prior_log_sha256": "3aeb21aff6d84459694e7bf3d21fb2fb17d87cd8668b8dec4f3e2f15751d0329",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17793",
+          "age_ms": 15,
+          "captured_utc": "2026-10-18T18:24:42.931000+00:00",
+          "sha256": "e946b58bd54ea7910f1acedb63b74f44d05e4c13b9203ed69a6e9f610df335f6",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17807",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T18:24:43.866000+00:00",
+          "sha256": "4e348d25022410dec1a50eabac202fd332aafb9b13c18eb171653978af590ead",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17823",
+          "age_ms": 15,
+          "captured_utc": "2026-10-18T18:24:44.928000+00:00",
+          "sha256": "d5701854874cfd5c73d173a7e49c0e4c772d711b8f83991cdaebd3ba009ef730",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17839",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T18:24:46.008000+00:00",
+          "sha256": "b7733ca4db1d463785f3f473507a3e26921818b245a07bacb78616b17a02b38d",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17855",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T18:24:47.064000+00:00",
+          "sha256": "ac34007652e8c142b029d64c9613b43b70fb855d8e93f55f77775a3a3125d1df",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17871",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T18:24:48.127000+00:00",
+          "sha256": "7683ad092f316f4b6123dd96a6f441555fc89d632026734fd8234d8abcdde531",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17887",
+          "age_ms": 16,
+          "captured_utc": "2026-10-18T18:24:49.192000+00:00",
+          "sha256": "41bca30503e922dc54229d326987096a0cc0e1951409511a8dfad6eafbf6baf6",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-17903",
+          "age_ms": 78,
+          "captured_utc": "2026-10-18T18:24:50.258000+00:00",
+          "sha256": "28ccafaa664097880391765e7a2f9fa2a160a406aba865950aa405e5180e971b",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_75",
+          "frame_150"
+        ],
+        "motion_visually_resolved": false,
+        "classification": "Response not resolved",
+        "shaft_angle_feedback": null
+      },
+      "image_comparison": {
+        "person_mount_image_left": {
+          "roi_px": [
+            553,
+            389,
+            628,
+            466
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9841047761582015
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9886857112946055
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9874294721491108
+            }
+          ]
+        },
+        "person_mount_image_centre": {
+          "roi_px": [
+            654,
+            336,
+            736,
+            413
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.978194675539922
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.977398502342172
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9807085785141474
+            }
+          ]
+        },
+        "person_mount_image_right": {
+          "roi_px": [
+            741,
+            430,
+            840,
+            503
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9905967361551808
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9815690676042869
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9882078642189871
+            }
+          ]
+        },
+        "person_rod_image_left": {
+          "roi_px": [
+            596,
+            166,
+            617,
+            362
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9932079771412746
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9951374806436275
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9958128344026581
+            }
+          ]
+        },
+        "person_rod_image_centre": {
+          "roi_px": [
+            678,
+            63,
+            708,
+            320
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9955833770158955
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9954054313867561
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9985241112074025
+            }
+          ]
+        },
+        "person_rod_image_right": {
+          "roi_px": [
+            727,
+            97,
+            819,
+            311
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9922390955768412
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9940680057757758
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9969443069064555
+            }
+          ]
+        },
+        "fixed_frame": {
+          "roi_px": [
+            230,
+            350,
+            264,
+            458
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9962202232981503
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9976129126768477
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9974579480881582
+            }
+          ]
+        }
+      },
+      "position_feedback": null
+    },
+    {
+      "channel": 5,
+      "frames": 151,
+      "elapsed_s": 6.413220648999413,
+      "start_sequence": 2344,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 2496,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-5-e71108e3d0034a23b64ba29f1434869f.board.jsonl",
+      "sha256": "6b2b7d7d0e60ddfc53c1c2fbead3ee53b5de5054b3bbd308dad4debbc8d0487b",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-check-v1",
+        "session_id": "e71108e3d0034a23b64ba29f1434869f",
+        "new_request_id": "280772370da546eaae51ca21e87609b5",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 5,
+        "expected_sequence": 2344,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "a7e6663327a876d0ab1d42164805c3ae8f469fd77f4683eb727d983f479b16b3",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-4-175abfdb72a045a2b11c505a523ac3a0.board.jsonl",
+        "prior_log_sha256": "7665f05419dd6cfb87fd4671df21918cc4dc05cb8f7da2e4f04502c8e002d93d",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18164",
+          "age_ms": 14,
+          "captured_utc": "2026-10-18T18:25:07.664000+00:00",
+          "sha256": "2b1e6a166a24c0689a8088f4c0495d9c12697e2bbe0f50e590ee2f5f58e29544",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18178",
+          "age_ms": 15,
+          "captured_utc": "2026-10-18T18:25:08.597000+00:00",
+          "sha256": "b3d071fef51a8dd4c83fd8925e0f4d938f78aa20a276d7bf371766d1fc3e53e0",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18194",
+          "age_ms": 30,
+          "captured_utc": "2026-10-18T18:25:09.665000+00:00",
+          "sha256": "67ecb06a4d152326435e3dd5cb555e6eee522352cf6f4f8f4a9d0fb3b076d6c9",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18210",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T18:25:10.723000+00:00",
+          "sha256": "464deec33c44b673f32f5c131ab4551899fd6de4b6df45e0dc86ac20b2bbfebf",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18226",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T18:25:11.799000+00:00",
+          "sha256": "80cc52774859d1e836c7eeafc91110231ed82186d731f515503d26256b3292ed",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18242",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T18:25:12.863000+00:00",
+          "sha256": "6fc265cd07551b8de4dd37b98b650321294e7812ffb626494c663c081b00b8d3",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18258",
+          "age_ms": 31,
+          "captured_utc": "2026-10-18T18:25:13.931000+00:00",
+          "sha256": "6b91b3702658e8c98a252c56220591a750011d4682f5e8225bedade4fca8e336",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18275",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T18:25:15.071000+00:00",
+          "sha256": "0a0fb48a233b0211296c77f0e7acd90a4eb535db784fcdb2ab6d3e8c0b90708a",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_75",
+          "frame_150"
+        ],
+        "motion_visually_resolved": false,
+        "classification": "Response not resolved",
+        "shaft_angle_feedback": null
+      },
+      "image_comparison": {
+        "person_mount_image_left": {
+          "roi_px": [
+            553,
+            389,
+            628,
+            466
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.992981720112099
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9922873040484729
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9934913561436687
+            }
+          ]
+        },
+        "person_mount_image_centre": {
+          "roi_px": [
+            654,
+            336,
+            736,
+            413
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9894228370858238
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.989889175013753
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9900349764588475
+            }
+          ]
+        },
+        "person_mount_image_right": {
+          "roi_px": [
+            741,
+            430,
+            840,
+            503
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.995406149788719
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9951937692067866
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9958835883930901
+            }
+          ]
+        },
+        "person_rod_image_left": {
+          "roi_px": [
+            596,
+            166,
+            617,
+            362
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9965208742738321
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9965864131696063
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.99717679164071
+            }
+          ]
+        },
+        "person_rod_image_centre": {
+          "roi_px": [
+            678,
+            63,
+            708,
+            320
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9981179420644044
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9986702515596596
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.998715504120282
+            }
+          ]
+        },
+        "person_rod_image_right": {
+          "roi_px": [
+            727,
+            97,
+            819,
+            311
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9966094563872038
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9971871320615089
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.997000952840351
+            }
+          ]
+        },
+        "fixed_frame": {
+          "roi_px": [
+            230,
+            350,
+            264,
+            458
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.99790403912385
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9980425874465136
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9980645037481461
+            }
+          ]
+        }
+      },
+      "position_feedback": null
+    },
+    {
+      "channel": 6,
+      "frames": 151,
+      "elapsed_s": 6.435947947000386,
+      "start_sequence": 2496,
+      "end_state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 2648,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "board_log": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-6-e70459d1760d405c9a988cbb2a285f1e.board.jsonl",
+      "sha256": "3bbc14d593a1c7654536a886616e2efb2f0f8713be2581c466fde73dd269a401",
+      "maximum_adjacent_step_us": 1,
+      "all_expected_frames": true,
+      "plan": {
+        "schema": "attended-other-axes-check-v1",
+        "session_id": "e70459d1760d405c9a988cbb2a285f1e",
+        "new_request_id": "5673c3f15e3e44fe93ac870bf01392fa",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 6,
+        "expected_sequence": 2496,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "1279d2c05c242c4e294c6a1b86374b8d44b8c9328f726aaf2dbd6b7d5101e634",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-5-e71108e3d0034a23b64ba29f1434869f.board.jsonl",
+        "prior_log_sha256": "6b2b7d7d0e60ddfc53c1c2fbead3ee53b5de5054b3bbd308dad4debbc8d0487b",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18518",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T18:25:31.260000+00:00",
+          "sha256": "5b27171c5e4685bf7f524602422c751e25464426f36917a540e988240f3361f6",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_0",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18531",
+          "age_ms": 61,
+          "captured_utc": "2026-10-18T18:25:32.131000+00:00",
+          "sha256": "171ff451a95d93f855eaf29a039a8d26e3c3586e385b5a7d25ad6a6eb0a444ad",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_25",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18547",
+          "age_ms": 46,
+          "captured_utc": "2026-10-18T18:25:33.211000+00:00",
+          "sha256": "bc455aa5ef3cf1a9b63c67adc84199920e5983652630de3d35d3c883027fedcb",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_50",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18563",
+          "age_ms": 78,
+          "captured_utc": "2026-10-18T18:25:34.258000+00:00",
+          "sha256": "74253d469fcf75c235c636469d516280fa68b7b8ef46d07fc1714b1d67aeb6fd",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_75",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18580",
+          "age_ms": 16,
+          "captured_utc": "2026-10-18T18:25:35.391000+00:00",
+          "sha256": "0c56eaaa12c8419271766f4e7703c6c3bdec296b648c5fc562f13cd098351dbc",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_100",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18596",
+          "age_ms": 0,
+          "captured_utc": "2026-10-18T18:25:36.461000+00:00",
+          "sha256": "5fdfa3ca86d4ebe051cfc7fb6ee6f217897f731c9fac4aa61fa2c7cb2fbc909a",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_125",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18611",
+          "age_ms": 78,
+          "captured_utc": "2026-10-18T18:25:37.459000+00:00",
+          "sha256": "667cc1ca9c141a23a338c94aa455e391c7bb4c80d859a4c5dfdfcbcccba71047",
+          "size": [
+            960,
+            540
+          ]
+        },
+        {
+          "stage": "frame_150",
+          "source": "phone_mechanism",
+          "frame": "215fe2c22661410c98dda799b0e1974a-18629",
+          "age_ms": 30,
+          "captured_utc": "2026-10-18T18:25:38.658000+00:00",
+          "sha256": "e8ef508fc3ec9198b71af84523828b6723d0b9cd22f365b535d4c6d9d9eca94c",
+          "size": [
+            960,
+            540
+          ]
+        }
+      ],
+      "camera_review": {
+        "reviewed_stages": [
+          "before",
+          "frame_75",
+          "frame_150"
+        ],
+        "motion_visually_resolved": true,
+        "classification": "Small rod response observed; wiring identity and full health unverified",
+        "shaft_angle_feedback": null
+      },
+      "image_comparison": {
+        "person_mount_image_left": {
+          "roi_px": [
+            553,
+            389,
+            628,
+            466
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9939989698358669
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9934641318026185
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9934979170354787
+            }
+          ]
+        },
+        "person_mount_image_centre": {
+          "roi_px": [
+            654,
+            336,
+            736,
+            413
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9299011889880701
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9303750680529937
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9898893984260707
+            }
+          ]
+        },
+        "person_mount_image_right": {
+          "roi_px": [
+            741,
+            430,
+            840,
+            503
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9953805480791085
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9953764336986629
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9952289328269923
+            }
+          ]
+        },
+        "person_rod_image_left": {
+          "roi_px": [
+            596,
+            166,
+            617,
+            362
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9971966533335959
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9974042368848027
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9971836589760266
+            }
+          ]
+        },
+        "person_rod_image_centre": {
+          "roi_px": [
+            678,
+            63,
+            708,
+            320
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                -3,
+                1
+              ],
+              "ncc": 0.9483966233708941
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                -3,
+                1
+              ],
+              "ncc": 0.9472870231296877
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9964310248724276
+            }
+          ]
+        },
+        "person_rod_image_right": {
+          "roi_px": [
+            727,
+            97,
+            819,
+            311
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                -1,
+                0
+              ],
+              "ncc": 0.9898198561647772
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                -1,
+                0
+              ],
+              "ncc": 0.9883701973955172
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9930519901867788
+            }
+          ]
+        },
+        "fixed_frame": {
+          "roi_px": [
+            230,
+            350,
+            264,
+            458
+          ],
+          "samples": [
+            {
+              "stage": "frame_50",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9978888876538481
+            },
+            {
+              "stage": "frame_75",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9977151646815489
+            },
+            {
+              "stage": "frame_150",
+              "best_translation_px": [
+                0,
+                0
+              ],
+              "ncc": 0.9980552589773037
+            }
+          ]
+        }
+      },
+      "position_feedback": null
+    }
+  ],
+  "manifest_files": {
+    "integrations/calibration/other_axes_check.py": "79dc581fc17a80ba1b454dbc26ba3a3072538ad2045c0177cfd8baf515cf3d8e",
+    "integrations/calibration/initial_pose_model.py": "645b63b44ba80988c122bab795e4590e2217edf8e35ece4fff4d5087322589d7",
+    "integrations/calibration/v20_first_direction.py": "95cb9c0ab5297a74089b10fa9802842a6f41b4aa0c65b84d33b41bcb33ffb5ed",
+    "integrations/calibration/servo_pwm_device.py": "ee917182d4a7b38f97556fa5e663f2c5f1d787ebdb5337462b0fb8f9794fa408",
+    "integrations/calibration/mmio32.py": "53c37471f7156edff85664737c77446baf30e44efcb5421bbae07ccb8035298b",
+    "integrations/calibration/libservo_mmio32.so": "2f017fb4b6187609df80a860039d1bb958ca09d683b1ccb700d8e1c921c1e8c0",
+    "integrations/calibration/.motion-inhibit": "fd9c43a43ca353e9e85c1d054838826b9df3d767fbc4745a52ccbeeefe12799b"
+  },
+  "manifest_entries": 7,
+  "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+  "persistent_lock_sha256": "fd9c43a43ca353e9e85c1d054838826b9df3d767fbc4745a52ccbeeefe12799b",
+  "schema": "other-axes-check-result-v1",
+  "source_completion_sequence": 1280,
+  "order": [
+    9,
+    10,
+    7,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "motion_command_frames": 1359,
+  "user_request": "Check the other servos, explicitly requested in this chat",
+  "camera_adjusted_by_operator": true,
+  "all_other_axes_checked": true,
+  "healthy_axes_verified": [],
+  "small_rod_response_observed_axes": [
+    3,
+    6
+  ],
+  "response_unresolved_axes": [
+    1,
+    2,
+    4,
+    5,
+    7,
+    9,
+    10
+  ],
+  "unverified_axes": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    10
+  ],
+  "axis8_not_repeated": true,
+  "interpretation": "All nine command checks completed. Magnified review and matching show small return-correlated rod response during channel 3 (image-left person rod) and channel 6 (image-centre person rod) commands. Other seven responses remain unresolved. Actual channel-to-rod identity and power/signal wiring need checking; no failed servo or full healthy axis is diagnosed.",
+  "image_measurement_limit": "Integer translation only; not measured shaft angle, depth, millimetres, or a loaded safety calibration.",
+  "installation": {
+    "directory": "/run/media/mmcblk0p2/piying/other-axes-check-20261019",
+    "archive_sha256": "29b9fbcb15d0416ad4e2d78129cc1687ccb5ac732f4210f916db9fc360885904",
+    "autostart": false
+  },
+  "software_tests_passed": 7,
+  "incident_locks_removed": false,
+  "fpga_reloaded": false,
+  "audio_played": false,
+  "rails_moved": false,
+  "full_v20_performed": false,
+  "boot_files_changed": false
+}
