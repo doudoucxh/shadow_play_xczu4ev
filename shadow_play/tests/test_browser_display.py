@@ -5,10 +5,22 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).parents[1]/'hdmi_ui/runtime'))
-from browser_display import Bidi, HEADER, publish, read_packet, viewport_point
+from browser_display import Bidi, HEADER, PIXEL_BYTES, publish, read_packet, viewport_point, decode_frame
 
 
 class DisplayTests(unittest.TestCase):
+    def test_local_pixels_color_and_strict_size_and_freshness(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path=Path(folder)/'frame.bin'
+            pixels=b'BGRA'+bytes([12,34,56,255])*(PIXEL_BYTES//4)
+            publish(path,pixels,100)
+            frame=decode_frame(read_packet(path,100.5)[1])
+            self.assertEqual(frame.shape,(600,1024,3))
+            self.assertEqual(frame[20,30].tolist(),[12,34,56])
+            for bad in (pixels[:-1],pixels+b'x',b'BGRA'):
+                with self.assertRaises(ValueError):publish(path,bad,100)
+            with self.assertRaises(ValueError):read_packet(path,103)
+
     def test_letterbox_input(self):
         self.assertIsNone(viewport_point(0, .5))
         self.assertIsNone(viewport_point(1, .5))

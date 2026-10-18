@@ -29,8 +29,8 @@
       "stride": 3840,
       "park": 65537
     },
-    "physical_screen_accepted": false,
-    "user_report_20261018": "Backlight on, screen black; connected to the board HDMI output. Software framebuffer verification is not physical display acceptance.",
+    "physical_screen_accepted": true,
+    "user_report_20261018": "User subsequently confirmed screen now displays UI; exact recovery cause not established. Then requested performance improvement and removal of sparks.",
     "black_screen_diagnosis_20261018": {
       "same_screen_as_previous": true,
       "services_active": true,
@@ -63,7 +63,9 @@
       ],
       "independent_5v_usb_test_result": "solid blue screen without text; HDMI remains connected",
       "independent_supply_colorbar_visible": false
-    }
+    },
+    "performance_record": "hdmi_ui_performance_20261018.json",
+    "output_fps_note": "11.97–11.98 above is historical capture throughput, not image-change FPS; see performance record."
   },
   "camera": {
     "device": "icspring camera /dev/video0",

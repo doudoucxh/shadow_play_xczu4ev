@@ -8,6 +8,45 @@ import subprocess
 import time
 
 
+class X11Pointer:
+    """Send panel events directly to our authenticated display, without BiDi round trips."""
+    def __init__(self, display, authority):
+        import ctypes
+        self.x = ctypes.CDLL('/usr/lib/libX11.so.6')
+        self.t = ctypes.CDLL('/usr/lib/libXtst.so.6')
+        self.x.XOpenDisplay.argtypes = [ctypes.c_char_p]
+        self.x.XOpenDisplay.restype = ctypes.c_void_p
+        self.x.XFlush.argtypes = self.x.XCloseDisplay.argtypes = [ctypes.c_void_p]
+        self.t.XTestFakeMotionEvent.argtypes = [ctypes.c_void_p,ctypes.c_int,ctypes.c_int,ctypes.c_int,ctypes.c_ulong]
+        self.t.XTestFakeButtonEvent.argtypes = [ctypes.c_void_p,ctypes.c_uint,ctypes.c_int,ctypes.c_ulong]
+        previous = os.environ.get('XAUTHORITY')
+        try:
+            os.environ['XAUTHORITY'] = str(authority)
+            self.handle = self.x.XOpenDisplay(display.encode('ascii'))
+        finally:
+            if previous is None: os.environ.pop('XAUTHORITY', None)
+            else: os.environ['XAUTHORITY'] = previous
+        if not self.handle: raise RuntimeError('Cannot open private display for panel input')
+
+    def send(self, actions):
+        # Preserve every stroke point and every down/up edge in original order.
+        for action, point in actions:
+            if action not in ('move','down','up','cancel'): raise ValueError('Invalid pointer action')
+            if point is not None:
+                px, py = point
+                if not (0 <= px < 1024 and 0 <= py < 600): raise ValueError('Invalid pointer coordinate')
+                self.t.XTestFakeMotionEvent(self.handle,0,px,py,0)
+            if action in ('down','up','cancel'):
+                self.t.XTestFakeButtonEvent(self.handle,1,int(action=='down'),0)
+        if actions: self.x.XFlush(self.handle)
+
+    def close(self):
+        if self.handle:
+            self.send([('cancel',None)])
+            self.x.XCloseDisplay(self.handle)
+            self.handle = None
+
+
 def xwd_layout(header, file_size):
     if len(header) != 100:
         raise ValueError('Incomplete XWD header')
@@ -71,6 +110,12 @@ class VirtualScreen:
         ok, data = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 88])
         if not ok: raise RuntimeError('Framebuffer encoding failed')
         return data.tobytes()
+
+    def pixels(self):
+        if self.process.poll() is not None:
+            raise RuntimeError('Virtual display exited')
+        # Local tmpfs transport: avoid compressing and decoding every frame.
+        return b'BGRA'+self.mapping[self.offset:]
 
     def close(self):
         if self.mapping: self.mapping.close(); self.mapping = None

@@ -163,7 +163,9 @@
         if (run !== serial || destroyed || !boardActive) return;
         invalidateFrame(error.name === 'AbortError' ? '相机连接超时，等待恢复…' : '等待板端画面：' + error.message);
       }
-      if (run === serial && !destroyed && boardActive) frameTimer = win.setTimeout(() => pollBoard(run), 120);
+      // Include request/decode time in the interval; never stack another full
+      // delay on top of a slow board response, and never overlap requests.
+      if (run === serial && !destroyed && boardActive) frameTimer = win.setTimeout(() => pollBoard(run), Math.max(0, 1000/15 - (performance.now()-requestedAt)));
     }
     async function startBoard() {
       if (destroyed || !permittedScreen()) return false;

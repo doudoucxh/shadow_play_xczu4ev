@@ -107,6 +107,7 @@
       state = state || {};
       const time = Number.isFinite(seconds) ? seconds : 0;
       drawStatic(ctx);
+      if(globalThis.ShadowBoardDisplay)return;
       ctx.save();
       const inheritedAlpha = ctx.globalAlpha;
       embers.forEach(function (ember) {

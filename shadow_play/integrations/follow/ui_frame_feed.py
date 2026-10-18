@@ -82,7 +82,7 @@ class UiFrameFeed:
         if not isinstance(frame, np.ndarray) or frame.shape != (720, 1280, 3) or frame.dtype != np.uint8:
             raise ValueError('Expected the current upright 1280x720 uint8 BGR frame')
         self._last_sequence = metadata['seq']
-        if self._last_published is not None and now - self._last_published < .1:
+        if self._last_published is not None and now - self._last_published < 1/15:
             return False
         scaled = cv2.resize(frame, (640, 360), interpolation=cv2.INTER_AREA)
         success, encoded = cv2.imencode('.jpg', scaled, [cv2.IMWRITE_JPEG_QUALITY, 70])

@@ -1,0 +1,209 @@
+{
+  "date": "2026-10-18",
+  "scope": "Software/display only; actuators not installed",
+  "board_boot_id": "b7558875-c170-48f4-8991-e4194f278329",
+  "transport": "COM17 PS UART",
+  "physical_screen_user_confirmed_working": true,
+  "physical_screen_recovery_cause": null,
+  "user_feedback_first_optimization": "Improved, but still choppy",
+  "user_requested_sparks_removed": true,
+  "installed_html_sha256": "b9fd63b2a1edb638d5df400f2816bca97477940c5a0dbdd48d76b6c9baa06813",
+  "baseline": {
+    "seconds": 10.005,
+    "packets": 120,
+    "changed_images": 18,
+    "changed_fps": 1.8,
+    "page_not_confirmed": true
+  },
+  "final_ui_measurements": [
+    {
+      "page": "home_idle",
+      "seconds": 2.0081593610011623,
+      "packets": 61,
+      "changed_images": 1,
+      "max_change_gap": 0,
+      "changed_fps": 0.5
+    },
+    {
+      "page": "turn_open",
+      "seconds": 2.5265246740018483,
+      "packets": 60,
+      "changed_images": 21,
+      "max_change_gap": 0.6611347610014491,
+      "changed_fps": 8.31
+    },
+    {
+      "page": "classic",
+      "seconds": 8.002969785993628,
+      "packets": 210,
+      "changed_images": 124,
+      "max_change_gap": 0.17596711900114315,
+      "changed_fps": 15.49
+    },
+    {
+      "page": "turn_close",
+      "seconds": 2.0174904739978956,
+      "packets": 54,
+      "changed_images": 19,
+      "max_change_gap": 0.6238982080030837,
+      "changed_fps": 9.42
+    },
+    {
+      "page": "touch_idle",
+      "seconds": 2.004802176998055,
+      "packets": 60,
+      "changed_images": 4,
+      "max_change_gap": 0.09276854799827561,
+      "changed_fps": 2.0
+    },
+    {
+      "page": "body",
+      "seconds": 10.014567632002581,
+      "packets": 217,
+      "changed_images": 56,
+      "max_change_gap": 0.33410536099836463,
+      "changed_fps": 5.59
+    },
+    {
+      "page": "home_final",
+      "seconds": 2.026608585001668,
+      "packets": 61,
+      "changed_images": 1,
+      "max_change_gap": 0,
+      "changed_fps": 0.49
+    }
+  ],
+  "final_drag": {
+    "seconds": 5.015980317002686,
+    "packets": 130,
+    "changed_images": 117,
+    "max_change_gap": 0.10779509800340747,
+    "changed_fps": 23.33
+  },
+  "final_camera_display": {
+    "page": "body",
+    "seconds": 12.012708511996607,
+    "packets": 238,
+    "changed_images": 86,
+    "max_change_gap": 0.3282382920006057,
+    "changed_fps": 7.16
+  },
+  "camera_inference": [
+    {
+      "fps": 10.865713273716196,
+      "inference_fps": 10.865713273716196,
+      "frame_age_ms": 97.19761199812638,
+      "dpu_ms": 16.30045300407801
+    },
+    {
+      "fps": 10.26631168088523,
+      "inference_fps": 10.26631168088523,
+      "frame_age_ms": 92.27939299307764,
+      "dpu_ms": 15.535414997430053
+    },
+    {
+      "fps": 11.105513717597223,
+      "inference_fps": 11.105513717597223,
+      "frame_age_ms": 99.47631499380805,
+      "dpu_ms": 22.41841400245903
+    },
+    {
+      "fps": 10.729781912662636,
+      "inference_fps": 10.729781912662636,
+      "frame_age_ms": 93.59334499458782,
+      "dpu_ms": 15.49920500110602
+    },
+    {
+      "fps": 10.449777709992858,
+      "inference_fps": 10.449777709992858,
+      "frame_age_ms": 94.76296799402917,
+      "dpu_ms": 21.889209005166776
+    }
+  ],
+  "camera_freshness": [
+    {
+      "sequence": 204,
+      "captured_age_ms": 165.6,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "sequence": 207,
+      "captured_age_ms": 230.8,
+      "width": 640,
+      "height": 360
+    }
+  ],
+  "final_state": {
+    "camera": {
+      "configured": true,
+      "running": false,
+      "live": false,
+      "error": ""
+    },
+    "audio": {
+      "configured": true,
+      "running": false,
+      "playing": false,
+      "finished": false,
+      "duration_s": 67.1056875,
+      "elapsed_s": 0,
+      "timing": "player process clock; acoustic latency not measured",
+      "error": ""
+    },
+    "motion": {
+      "ready": false,
+      "rails": false,
+      "puppet": false,
+      "classic": false,
+      "reason": "丝杆驱动、回零和行程未核验；皮影坐标映射未验收，动作锁保留",
+      "actual_position_known": false
+    }
+  },
+  "motion_commands_sent": false,
+  "fpga_reconfigured": false,
+  "boot_files_changed": false,
+  "boot_autostart": false,
+  "physical_touch_acceptance": false,
+  "complete_human_pose_acceptance": false,
+  "tests": {
+    "windows_display_and_ui_feed": 17,
+    "linux_usb_regressions": 16,
+    "node_ui_lifecycle": 6
+  },
+  "measurement_notes": [
+    "CRC32 comparison of fresh Xvfb packets counts image changes, not optical panel FPS.",
+    "Static pages intentionally have no redraws; 30 Hz sampling is not 30 fps animation.",
+    "Page-turn samples include the intentional 600 ms title hold and the settled page; their average/max gap is not active-motion FPS.",
+    "Drag generated through private XTest at 30 Hz; this does not verify physical touchscreen latency.",
+    "Camera startup excluded by waiting for four successive live-status samples."
+  ],
+  "evidence_logs": {
+    "fps-baseline.log": "526206145c8c702379dd039cc2b336ca778de082046f1a500b4fe888367f92ac",
+    "verify-release-v2.log": "49f9910f97423f70a9a4f0989b4491962ddb0eb067191092e308cb812c626fd2",
+    "verify-camera-perf-final.log": "433e8fd6f84f1972a57d64e61bfc76b235d1399272c44d0416bf0786a6d549aa",
+    "perf-release-qa.log": "090314c1a40bdf387c88d6dd1194d95d5c5ec429afb73aaff86da42f3cf49bfc",
+    "perf-final-evidence.log": "5ded98d54f62c907d2a9db26748a45edcf3e450b1555b4249380118963d23df4"
+  },
+  "installed_manifest_files_verified": 64,
+  "installed_manifest_canonical_sha256": "5a185cbb600627a0fa6306cea0cbe4ec14ed50f62b2cba3431fec057ef8b6fa9",
+  "final_visual_review_passed": true,
+  "final_physical_smoothness_user_accepted": null,
+  "last_read_only_output_status": {
+    "armed": false,
+    "enabled_mask": 0,
+    "sequence": 0,
+    "faults": 0,
+    "pending": false,
+    "position_feedback": null
+  },
+  "changed_runtime_source_sha256": {
+    "hdmi_ui/runtime/web/index.html": "b9fd63b2a1edb638d5df400f2816bca97477940c5a0dbdd48d76b6c9baa06813",
+    "hdmi_ui/runtime/browser_display.py": "3ed6e8c9d849d95dc80998b286ba4a61f52bcba9b5d2a3f06bb8ab766d4175f0",
+    "hdmi_ui/runtime/virtual_screen.py": "5e6af4a3ef1916dad4b42ac6145d7f8c7d89260e24d520b9d83939d803aadb3b",
+    "hdmi_ui/runtime/hdmi_sink.py": "a78d400443d9d39a22ec49c6ff33d280edb953a9a0636ddb058140f3ce943d5a",
+    "integrations/follow/board_follow_with_sender.py": "090ff948081e4c4e2d8e39c7c482c85a012d0f145996ed8052e10a779d3c4b4d",
+    "integrations/follow/usb_camera.py": "1878857481e68750f04ff2d34fdb371f4f358b3dfa4bdcbdc2e6da3dc6b9a4cf",
+    "integrations/follow/ui_frame_feed.py": "99f4004f0984cc629d394e288ec50a897581a11650f6a889d8c4867edd003db6"
+  }
+}

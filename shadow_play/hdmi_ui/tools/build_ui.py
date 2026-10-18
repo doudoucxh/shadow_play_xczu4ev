@@ -33,8 +33,11 @@ def build(source,output):
     # The deployment uses the offline drawing guide instead of a collector link.
     html=html.replace('href="http://127.0.0.1:8780/"','href="#"')
     html+='\n<style>'+read('button-brush.css')+'</style>'
+    performance=read('board-performance.css')
+    for marker,filename in [('BOARD_PAPER','board-paper.png'),('BOARD_VIGNETTE','board-vignette.png')]:
+        performance=performance.replace(marker,'data:image/png;base64,'+base64.b64encode((source/'assets'/filename).read_bytes()).decode('ascii'))
     shell='html,body{margin:0;min-height:100%;background:#19140f}body{display:flex;align-items:center;justify-content:center;min-height:100vh}body>#shadow-theatre-preview{width:1024px;max-width:100%}'
-    document='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#19140f"><title>皮影戏台 · HDMI</title><style>'+shell+'</style></head><body><script>'+read('platform.js')+'</script>'+html+'</body></html>'
+    document='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#19140f"><title>皮影戏台 · HDMI</title><style>'+shell+'</style></head><body><script>'+read('platform.js')+'</script>'+html+'<style id="shadow-board-performance">'+performance+'</style></body></html>'
     output.parent.mkdir(parents=True,exist_ok=True)
     with output.open('w',encoding='utf-8',newline='\n') as handle:handle.write(document)
     print(str(output)+' ('+str(output.stat().st_size)+' bytes)')

@@ -4,7 +4,9 @@
 
 ## r4 无桌面显示路径
 
-`runtime/browser_display.py` 以普通用户启动独立 Firefox，保留沙箱；最终板端使用带认证的私有 Xvfb 内存画面，BiDi 负责交互与页面存活检查。`runtime/hdmi_sink.py` 只接收两秒内的新 JPEG，在既有审核通过的 PL HDMI 上输出。逻辑视口为 1024×600，按比例居中到既有 1280×720 时序；触摸坐标反向换算。过期画面清空，不用旧截图冒充正常界面。显示驱动仍要求本次启动的有效 FPGA 标记，安装器不会自动加载 FPGA。
+2026-10-18 性能修正：纸纹、暗边、角色调色与分片采用像素缓存，板内传输原始 BGRA，触摸直接送入 XTest。按用户要求去掉飘落/闪烁火星，保留烧焦边缘和翻页；翻页单独使用 75% 绘制尺寸，正文与操作界面仍为 1024×600。默认采样 30 fps，HDMI 跳过内容相同的新包但持续检查时间戳。采样率不能当作有效动画帧率；实测与限制见 [性能记录](../docs/hdmi_ui_performance_20261018.md)。
+
+`runtime/browser_display.py` 以普通用户启动独立 Firefox，保留沙箱；最终板端使用带认证的私有 Xvfb 内存画面，触摸轨迹通过本机 XTest 直接送入私有显示，BiDi 负责初始化与页面存活检查。`runtime/hdmi_sink.py` 只接收两秒内的新画面（私有 Xvfb 使用原始 BGRA 像素；无窗口后备路径仍支持 JPEG），在既有审核通过的 PL HDMI 上输出。逻辑视口为 1024×600，按比例居中到既有 1280×720 时序；触摸坐标反向换算。过期画面清空，不用旧截图冒充正常界面。显示驱动仍要求本次启动的有效 FPGA 标记，安装器不会自动加载 FPGA。
 
 `tools/install_hdmi_software.py`（外层 shadow_play/tools）把校验后的运行包和 Firefox 安装到 SD 新目录，生成 HTTP、普通用户浏览器、HDMI 三个独立服务。`--activate` 只启动前两者。现有系统根目录是内存盘，`systemctl enable` 不能据此宣称重启自启；SD 中保留 `start-software.sh`，没有修改 BOOT.BIN、image.ub 或 uEnv。
 

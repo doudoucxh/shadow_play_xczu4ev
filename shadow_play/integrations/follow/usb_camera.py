@@ -156,10 +156,10 @@ class LatestUsbCamera:
         if not self.process.is_alive():
             raise RuntimeError('USB capture process exited: {}'.format(self.process.exitcode))
 
-    def read(self):
+    def read(self, timeout=None):
         if self.closed:
             raise RuntimeError('USB camera is closed')
-        deadline = time.monotonic() + self.timeout
+        deadline = time.monotonic() + (self.timeout if timeout is None else timeout)
         while time.monotonic() < deadline:
             self._check()
             if self.mutex.acquire(timeout=.05):

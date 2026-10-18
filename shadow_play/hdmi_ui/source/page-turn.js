@@ -3,8 +3,8 @@
   'use strict';
   const W = 1000;
   const H = 550;
-  const STRIPS = 40;
-  const CLOSE_STRIPS = 24;
+  const STRIPS = globalThis.ShadowBoardDisplay ? 16 : 40;
+  const CLOSE_STRIPS = globalThis.ShadowBoardDisplay ? 12 : 24;
   const LEAVES = 2;
   const FLIP_END = 730;
   const READING_TIME = 600;
@@ -21,6 +21,11 @@
   const PI = Math.PI;
   const clamp = function (v) { return Math.max(0, Math.min(1, v)); };
   const smooth = function (v) { v = clamp(v); return v * v * (3 - 2 * v); };
+
+  function flatten(canvas) {
+    if(globalThis.ShadowBoardDisplay){const c=canvas.getContext('2d');c.putImageData(c.getImageData(0,0,canvas.width,canvas.height),0,0);}
+    return canvas;
+  }
 
   function paperTexture(doc, back) {
     const canvas = doc.createElement('canvas'); canvas.width = W; canvas.height = H;
@@ -67,7 +72,7 @@
       c.beginPath(); c.moveTo(x, 0); c.lineTo(x + random() * 2, 1 + random() * 6);
       c.moveTo(x, H); c.lineTo(x - random() * 2, H - 1 - random() * 6); c.stroke();
     }
-    return canvas;
+    return flatten(canvas);
   }
 
   function polygon(c, p) {
@@ -109,6 +114,7 @@
     for(const [x,y,sx,sy] of [[27,27,1,1],[PAGE_WIDTH-27,27,-1,1],[27,PAGE_HEIGHT-27,1,-1],[PAGE_WIDTH-27,PAGE_HEIGHT-27,-1,-1]]){
       coverCtx.strokeStyle='#c2a66c';coverCtx.lineWidth=3;coverCtx.beginPath();coverCtx.moveTo(x,y+sy*25);coverCtx.lineTo(x,y);coverCtx.lineTo(x+sx*25,y);coverCtx.stroke();
     }
+    flatten(cover);
     if(typeof win.createImageBitmap==='function')win.createImageBitmap(cover).then(function(bitmap){if(destroyed)bitmap.close();else coverImage=bitmap;}).catch(function(){});
     const burn = win.ShadowPaperBurn?.create({document:doc,width:W,height:H,pageTop:PAGE_TOP,pageHeight:PAGE_HEIGHT,hinge:HINGE,pageWidth:PAGE_WIDTH});
     canvas.style.pointerEvents = 'none'; canvas.style.width = '100%'; canvas.style.height = '100%';
@@ -138,7 +144,7 @@
       if (destroyed) return;
       const rect = sizeHost.getBoundingClientRect();
       if(rect.width<2||rect.height<2)return;
-      const w = rect.width, h = rect.height, r = 1;
+      const w = rect.width, h = rect.height, r = win.ShadowBoardDisplay ? .75 : 1;
       if (w === width && h === height && r === ratio) return;
       width = w; height = h; ratio = r;
       canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio);
@@ -173,6 +179,7 @@
       const destination = destinationBook.getContext('2d');
       destination.clearRect(0, 0, W, H); destination.drawImage(bookBase, 0, 0);
       destination.drawImage(titleLayer, HINGE, PAGE_TOP, PAGE_WIDTH, PAGE_HEIGHT);
+      flatten(destinationBook);
     }
 
     function geometry(progress, leaf, strips) {
@@ -581,7 +588,7 @@
         render(run.progress);if(current===run&&!run.done)raf=win.requestAnimationFrame(tick);return;
       }
       if (elapsed >= FLIP_END && elapsed < FLIP_END + READING_TIME) {
-        if (burn) {
+        if (burn && !win.ShadowBoardDisplay) {
           // The cached page and ink stay still; only edge embers need 30 fps.
           if (!run.readingLastDraw || now - run.readingLastDraw >= 1000 / 30) {
             render(run.progress); run.readingLastDraw = now;
@@ -608,6 +615,7 @@
     if (observer) observer.observe(sizeHost);
     win.addEventListener('resize', measure, { passive: true });
     prepareBookBase();
+    flatten(bookBase);
     measure();
     return {
       play: function (settings) {

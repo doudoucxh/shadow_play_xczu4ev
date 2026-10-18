@@ -91,6 +91,21 @@ class UsbTests(unittest.TestCase):
             with self.assertRaises(RuntimeError):
                 camera.read()
 
+    def test_startup_wait_does_not_relax_freshness_or_later_timeout(self):
+        camera = self.camera_stub(sequence=3)
+        clock = [0.]
+        def advance(delay):
+            clock[0] += delay
+            if clock[0] >= .04:
+                camera.sequence.value = 4
+                camera.timestamp.value = clock[0]
+        with patch.object(usb.time, 'monotonic', side_effect=lambda: clock[0]), patch.object(usb.time, 'sleep', side_effect=advance):
+            frame, sequence, _ = camera.read(timeout=.1)
+        self.assertEqual(sequence, 4)
+        self.assertEqual(camera.timeout, .02)
+        with self.assertRaises(RuntimeError):
+            self.camera_stub(age=1).read(timeout=10)
+
     def test_hung_driver_shutdown_is_bounded(self):
         camera = self.camera_stub()
         camera.stop, camera.info, camera.process = Mock(), Mock(), Mock()

@@ -193,6 +193,24 @@
     return t * t * (3 - 2 * t);
   }
 
+  // Flatten the grade once per source; animated joints only copy cached pixels.
+  function gradedImage(source) {
+    if (!globalThis.ShadowBoardDisplay) return source;
+    const canvas=document.createElement('canvas');
+    canvas.width=source.naturalWidth||source.width;canvas.height=source.naturalHeight||source.height;
+    const paint=canvas.getContext('2d');
+    paint.filter='sepia(.5) saturate(.65) brightness(.84) contrast(1.08)';
+    paint.drawImage(source,0,0);
+    const pixels=paint.getImageData(0,0,canvas.width,canvas.height);
+    paint.filter='none';paint.putImageData(pixels,0,0);
+    return canvas;
+  }
+
+  function flatten(canvas) {
+    if(globalThis.ShadowBoardDisplay){const ctx=canvas.getContext('2d'),pixels=ctx.getImageData(0,0,canvas.width,canvas.height);ctx.save();ctx.globalCompositeOperation='source-over';ctx.putImageData(pixels,0,0);ctx.restore();}
+    return canvas;
+  }
+
   // Only embedded data URIs are accepted. No remote or local-file request is made.
   function ensureAssets() {
     const supplied = window.ShadowPuppetAssets || {};
@@ -209,6 +227,7 @@
       img.onload = () => {
         if (record.image !== img) return;
         record.ready = img.naturalWidth > 0 && img.naturalHeight > 0;
+        if(record.ready && name!=='flag')record.image=gradedImage(img);
         if(name==='flag')scenery=null;
         if (record.ready) window.dispatchEvent(new CustomEvent('shadow:art-ready', {
           detail: { asset: name, ready: Object.keys(assetRecords).every(key => !assetRecords[key].source||assetRecords[key].ready) },
@@ -223,6 +242,7 @@
     if (!scenery) {
       scenery = document.createElement('canvas'); scenery.width = 1000; scenery.height = 550;
       background(scenery.getContext('2d'));
+      scenery=gradedImage(scenery);
     }
     c.drawImage(scenery, 0, 0);
   }
@@ -249,7 +269,7 @@
 
   function rigCanvas(image) {
     const canvas = document.createElement('canvas');
-    canvas.width = image.naturalWidth; canvas.height = image.naturalHeight;
+    canvas.width = (image.naturalWidth||image.width); canvas.height = (image.naturalHeight||image.height);
     return canvas;
   }
 
@@ -260,7 +280,7 @@
   }
 
   function prepareRig(image) {
-    const sx = image.naturalWidth / 214, sy = image.naturalHeight / 640;
+    const sx = (image.naturalWidth||image.width) / 214, sy = (image.naturalHeight||image.height) / 640;
     const parts = {};
     Object.keys(RIG).forEach(name => {
       const canvas = rigCanvas(image), c = canvas.getContext('2d');
@@ -298,6 +318,7 @@
       pc.drawImage(image,(pivot[0]-radius)*sx,(pivot[1]-radius)*sy,radius*2*sx,radius*2*sy,0,0,cap.width,cap.height);
       caps[name] = { canvas: cap, radius };
     }
+    for(const canvas of [body,...Object.values(parts),...Object.values(caps).map(cap=>cap.canvas)])flatten(canvas);
     return { image, body, parts, caps, sx, sy };
   }
 
@@ -479,9 +500,9 @@
     }
     const motion=motionFor(options);
     if (!puppetRig || puppetRig.image !== image) puppetRig = prepareRig(image);
-    const rig = puppetRig, height = placement ? placement.renderHeight : 384, scale = height / image.naturalHeight;
-    c.save(); c.translate((placement ? placement.originX : 335.4)+image.naturalWidth*scale,(placement ? placement.originY : 98)+motion.bounce); c.scale(-scale,scale);
-    c.shadowColor = 'rgba(65,43,18,.16)'; c.shadowBlur = 2; c.shadowOffsetX = 1; c.shadowOffsetY = 1;
+    const rig = puppetRig, height = placement ? placement.renderHeight : 384, scale = height / (image.naturalHeight||image.height);
+    c.save(); c.translate((placement ? placement.originX : 335.4)+(image.naturalWidth||image.width)*scale,(placement ? placement.originY : 98)+motion.bounce); c.scale(-scale,scale);
+    c.shadowColor = globalThis.ShadowBoardDisplay ? 'transparent' : 'rgba(65,43,18,.16)'; c.shadowBlur = 2; c.shadowOffsetX = 1; c.shadowOffsetY = 1;
     if(options.mode==='touch'){drawTouchPuppetRig(c,rig,options);c.restore();return;}
     function part(name, angle) {
       const p = RIG[name].pivot;
@@ -506,12 +527,12 @@
     const image = record.image;
     const active = mode === 'classic' || mode === 'home';
     const t = clamp(Number(time) || 0, 0, 1) * TAU;
-    const height = 218, width = height * image.naturalWidth / image.naturalHeight;
+    const height = 218, width = height * (image.naturalWidth||image.width) / (image.naturalHeight||image.height);
     const shift = active ? Math.sin(t) * 4 : 0;
     c.save();
     c.translate(517.6 + shift + width * .52, 482);
     c.rotate(active ? Math.sin(t * 2) * .012 : 0);
-    c.shadowColor = 'rgba(65,43,18,.16)'; c.shadowBlur = 3; c.shadowOffsetX = 1; c.shadowOffsetY = 1;
+    c.shadowColor = globalThis.ShadowBoardDisplay ? 'transparent' : 'rgba(65,43,18,.16)'; c.shadowBlur = 3; c.shadowOffsetX = 1; c.shadowOffsetY = 1;
     c.scale(-1,1);c.drawImage(image, -width * .48, -height, width, height);
     c.restore();
   }
@@ -548,7 +569,7 @@
   }
 
   function prepareTigerRig(image) {
-    const sx=image.naturalWidth/640,sy=image.naturalHeight/392,parts={};
+    const sx=(image.naturalWidth||image.width)/640,sy=(image.naturalHeight||image.height)/392,parts={};
     for(const name of Object.keys(TIGER_RIG)) {
       const canvas=rigCanvas(image),c=canvas.getContext('2d');c.drawImage(image,0,0);
       c.globalCompositeOperation='destination-in';rigPath(c,TIGER_RIG[name].polygon,sx,sy);c.fill();parts[name]=canvas;
@@ -558,6 +579,7 @@
     for(const name of Object.keys(TIGER_RIG)) {rigPath(c,TIGER_RIG[name].polygon,sx,sy);c.fill();c.lineWidth=.8*Math.max(sx,sy);c.stroke();}
     const hulls={};
     for(const name of ['frontNear','frontFar','rearNear','rearFar'])hulls[name]=photoHull(parts[name],sx,sy);
+    for(const canvas of [body,...Object.values(parts)])flatten(canvas);
     return {image,body,parts,sx,sy,hulls,motions:{}};
   }
 
@@ -692,9 +714,9 @@
   function touchTiger(c,placement,state) {
     const record=assetRecords.tiger;if(!record.ready)return;
     const image=record.image,action=state.action||'neutral';
-    const scale=placement.renderHeight/image.naturalHeight;
-    c.save();c.translate(placement.originX+image.naturalWidth*scale,placement.originY);c.scale(-scale,scale);
-    c.shadowColor='rgba(65,43,18,.16)';c.shadowBlur=2;c.shadowOffsetX=1;c.shadowOffsetY=1;
+    const scale=placement.renderHeight/(image.naturalHeight||image.height);
+    c.save();c.translate(placement.originX+(image.naturalWidth||image.width)*scale,placement.originY);c.scale(-scale,scale);
+    c.shadowColor=globalThis.ShadowBoardDisplay?'transparent':'rgba(65,43,18,.16)';c.shadowBlur=2;c.shadowOffsetX=1;c.shadowOffsetY=1;
     if(action==='neutral'||!TIGER_ACTIONS.includes(action)) {c.drawImage(image,0,0);c.restore();return;}
     if(!tigerRig||tigerRig.image!==image)tigerRig=prepareTigerRig(image);
     const rig=tigerRig,m=tigerMotion(action,tigerRig),sx=rig.sx,sy=rig.sy;

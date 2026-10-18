@@ -156,7 +156,10 @@ def main(default_camera='vdma'):
         if args.camera=='usb':
             producer=open_usb(args)
             # Validate the camera before initializing DPU or touching HDMI.
-            producer.read()  # Discard this validation frame; DPU startup may take time.
+            # Preview startup competes with the browser for CPU. Wait for a fresh
+            # first frame longer; keep the 250 ms age guard and normal read timeout.
+            if args.ui_feed_file is not None: producer.read(timeout=10)
+            else: producer.read()
             print('USB_CAMERA_READY '+json.dumps(producer.metadata),flush=True)
             check_hardware_fingerprint()
         else:

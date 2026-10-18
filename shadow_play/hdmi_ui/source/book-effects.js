@@ -18,7 +18,8 @@
     const win = doc.defaultView || window;
     const area = canvas.parentElement || root;
     const motionPreference = win.matchMedia('(prefers-reduced-motion: reduce)');
-    let reducedMotion = Boolean(options.reducedMotion) || motionPreference.matches;
+    const noSparks = Boolean(win.ShadowBoardDisplay);
+    let reducedMotion = noSparks || Boolean(options.reducedMotion) || motionPreference.matches;
     const originalPointerEvents = canvas.style.pointerEvents;
     canvas.style.pointerEvents = 'none';
     canvas.setAttribute('aria-hidden', 'true');
@@ -105,6 +106,7 @@
 
     function paintStatic() {
       clear();
+      if(noSparks){paintMode(0,true);return;}
       // Motion-sensitive viewers get a few stationary flecks, without a loop.
       const dots = [[.07, .19, 1.1], [.18, .74, .8], [.34, .1, .6], [.64, .83, .9], [.81, .28, 1.2], [.93, .64, .65]];
       dots.forEach(function (p, i) {
@@ -227,7 +229,7 @@
       else resume();
     }
     function onMotionPreference(event) {
-      reducedMotion = event.matches;
+      reducedMotion = noSparks || event.matches;
       stop(); clear(); resume();
     }
 

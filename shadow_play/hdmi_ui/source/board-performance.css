@@ -1,0 +1,15 @@
+/* Board software renderer: cache paper and soft edges as pixels. */
+#shadow-theatre-preview canvas{filter:none!important}
+#shadow-theatre-preview .shadow-app:not([data-page="home"]),
+#shadow-theatre-preview .shadow-app:not([data-page="home"]) *,
+#shadow-theatre-preview .shadow-app:not([data-page="home"]) *::before,
+#shadow-theatre-preview .shadow-app:not([data-page="home"]) *::after{box-shadow:none!important;background-image:none!important}
+#shadow-theatre-preview .shadow-app:not([data-page="home"]){background-color:#cfcab1!important}
+#shadow-theatre-preview .shadow-app:not([data-page="home"]) .shadow-mode-screen{background-image:url("BOARD_PAPER")!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-color:#dcdac1!important}
+#shadow-theatre-preview .shadow-app:not([data-page="home"]) .shadow-stage-screen::after{background-image:url("BOARD_VIGNETTE")!important;background-size:100% 100%!important;background-repeat:no-repeat!important}
+#shadow-theatre-preview .shadow-app:not([data-page="home"]) .shadow-controller,
+#shadow-theatre-preview .shadow-app:not([data-page="home"]) .shadow-classic-sidebar{background-color:#d9d6bd!important}
+#shadow-theatre-preview .shadow-app:not([data-page="home"]) .shadow-primary,
+#shadow-theatre-preview .shadow-app:not([data-page="home"]) .shadow-chapters button[aria-pressed="true"],
+#shadow-theatre-preview .shadow-app:not([data-page="home"]) .shadow-pose-buttons button[aria-pressed="true"]{background-color:#59664e!important;color:#f5eedc!important}
+#shadow-theatre-preview .shadow-app:not([data-page="home"]) .shadow-primary:disabled{background-color:#929b83!important}

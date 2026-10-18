@@ -8,12 +8,13 @@ import signal
 import sys
 import time
 
-from browser_display import read_packet, VIEW, OUTPUT
+from browser_display import read_packet, decode_frame, VIEW, OUTPUT
 
 
 def main():
     import cv2
     import numpy as np
+    cv2.setNumThreads(2)
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]/'integrations/follow'))
     from usb_hdmi import UsbHdmiDisplay
     parser = argparse.ArgumentParser(description=__doc__)
@@ -30,27 +31,42 @@ def main():
     display = UsbHdmiDisplay()  # Rejects an unreviewed/missing PL image marker.
     blank = np.full((OUTPUT[1], OUTPUT[0], 3), (15, 20, 25), dtype=np.uint8)
     cv2.putText(blank, 'Waiting for theatre UI...', (340, 360), cv2.FONT_HERSHEY_SIMPLEX, 1, (170, 190, 210), 2)
-    current = None
+    current = previous = None
+    width = round(VIEW[0]*OUTPUT[1]/VIEW[1])
+    left = (OUTPUT[0]-width)//2
+    output = np.zeros_like(blank)
+    frames, report, decode_ms, present_ms = 0, time.monotonic(), 0., 0.
     try:
         display.start(blank)
         while not stopping:
             try:
                 captured, jpeg = read_packet(args.packet, time.monotonic())
                 if captured != current:
-                    frame = cv2.imdecode(np.frombuffer(jpeg, np.uint8), cv2.IMREAD_COLOR)
-                    if frame is None or frame.shape != (VIEW[1], VIEW[0], 3):
-                        raise ValueError('Unexpected browser viewport')
-                    width = round(VIEW[0]*OUTPUT[1]/VIEW[1])
-                    output = np.zeros_like(blank)
-                    left = (OUTPUT[0]-width)//2
-                    output[:, left:left+width] = cv2.resize(frame, (width, OUTPUT[1]))
-                    display.present(output)
+                    if jpeg != previous:
+                        began = time.monotonic()
+                        frame = decode_frame(jpeg)
+                        if frame is None or frame.shape != (VIEW[1], VIEW[0], 3):
+                            raise ValueError('Unexpected browser viewport')
+                        cv2.resize(frame, (width, OUTPUT[1]), dst=output[:,left:left+width])
+                        prepared = time.monotonic()
+                        display.present(output)
+                        shown = time.monotonic()
+                        decode_ms += (prepared-began)*1000
+                        present_ms += (shown-prepared)*1000
+                        frames += 1
+                        previous = jpeg
                     current = captured
             except (OSError, ValueError):
                 if current is not None:
                     display.present(blank)
-                    current = None
-            time.sleep(.015)
+                    current = previous = None
+            now = time.monotonic()
+            if now-report >= 10:
+                import json
+                print(json.dumps(dict(event='hdmi_frames', fps=round(frames/(now-report),2),
+                    prepare_ms=round(decode_ms/max(frames,1),2), present_ms=round(present_ms/max(frames,1),2))),flush=True)
+                frames, report, decode_ms, present_ms = 0, now, 0., 0.
+            time.sleep(.003)
     finally:
         try: display.restore()
         finally: display.close()

@@ -1,5 +1,7 @@
 /* Deployment-only local persistence. No chat host, training API, or network. */
 (() => {
+  // Software-composited board: grade artwork once when loading its pixels.
+  globalThis.ShadowBoardDisplay=true;
   const key='shadow-theatre-hdmi-state-v1';
   let snapshot=null;
   try{snapshot=JSON.parse(localStorage.getItem(key)||'null');}catch{}

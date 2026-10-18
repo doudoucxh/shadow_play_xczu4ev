@@ -1,6 +1,6 @@
 """Render the real local page using Firefox BiDi; never opens motor devices.
 
-Runs as an ordinary user. The separate HDMI sink validates fresh JPEG packets.
+Runs as an ordinary user. The separate HDMI sink validates fresh image packets.
 Requires the bundled websocket-client; Firefox keeps its default sandbox.
 """
 import argparse
@@ -18,6 +18,24 @@ VIEW = (1024, 600)
 OUTPUT = (1280, 720)
 MAX_JPEG = 3000000
 HEADER = struct.Struct('!dI')
+PIXEL_MAGIC = b'BGRA'
+PIXEL_BYTES = VIEW[0]*VIEW[1]*4
+
+
+def valid_image(data):
+    if data.startswith(PIXEL_MAGIC):
+        return len(data) == PIXEL_BYTES+len(PIXEL_MAGIC)
+    return 0 < len(data) <= MAX_JPEG and data.startswith(b'\xff\xd8') and data.endswith(b'\xff\xd9')
+
+
+def decode_frame(data):
+    import cv2
+    import numpy as np
+    if not valid_image(data): raise ValueError('Invalid display image')
+    if data.startswith(PIXEL_MAGIC):
+        pixels = np.frombuffer(data, np.uint8, offset=4).reshape(VIEW[1],VIEW[0],4)
+        return cv2.cvtColor(pixels, cv2.COLOR_BGRA2BGR)
+    return cv2.imdecode(np.frombuffer(data,np.uint8),cv2.IMREAD_COLOR)
 
 
 def viewport_point(x, y):
@@ -34,8 +52,8 @@ def viewport_point(x, y):
 
 
 def publish(path, jpeg, captured):
-    if not 0 < len(jpeg) <= MAX_JPEG or not jpeg.startswith(b'\xff\xd8') or not jpeg.endswith(b'\xff\xd9'):
-        raise ValueError('Invalid browser JPEG')
+    if not valid_image(jpeg):
+        raise ValueError('Invalid browser image')
     temporary = path.with_suffix('.tmp')
     with temporary.open('wb') as output:
         output.write(HEADER.pack(captured, len(jpeg)))
@@ -52,8 +70,8 @@ def read_packet(path, now):
     jpeg = raw[HEADER.size:]
     if not 0 <= now-captured <= 2 or not 0 < length <= MAX_JPEG or length != len(jpeg):
         raise ValueError('Stale/invalid browser packet')
-    if not jpeg.startswith(b'\xff\xd8') or not jpeg.endswith(b'\xff\xd9'):
-        raise ValueError('Invalid JPEG')
+    if not valid_image(jpeg):
+        raise ValueError('Invalid display image')
     return captured, jpeg
 
 
@@ -181,13 +199,15 @@ def main():
     parser.add_argument('--firefox', type=Path, required=True)
     parser.add_argument('--xvfb', type=Path, help='Private Xvfb binary for continuous framebuffer output')
     parser.add_argument('--work', type=Path, default=Path('/run/shadow-ui'))
-    parser.add_argument('--fps', type=int, choices=range(1, 21), default=12)
+    parser.add_argument('--fps', type=int, choices=range(1, 31), default=30)
     args = parser.parse_args()
     if os.geteuid() == 0:
         raise RuntimeError('Run renderer as an ordinary user; keep the browser sandbox')
     # The deployment bundles only this fixed pure-Python client dependency.
     sys.path.insert(0, str(Path(__file__).parent/'vendor'))
     import websocket
+    import cv2
+    cv2.setNumThreads(1)
     args.work.mkdir(parents=True, exist_ok=True)
     profile = args.work/'profile'
     profile.mkdir(exist_ok=True)
@@ -207,15 +227,16 @@ def main():
 
     signal.signal(signal.SIGTERM, stop)
     signal.signal(signal.SIGINT, stop)
-    process = connection = panel = screen = None
+    process = connection = panel = screen = pointer = None
     try:
         environment = os.environ.copy()
         environment['LD_LIBRARY_PATH'] = str(Path(__file__).parent/'vendor/lib')
         mode = '--headless'
         if args.xvfb:
-            from virtual_screen import VirtualScreen
+            from virtual_screen import VirtualScreen, X11Pointer
             screen = VirtualScreen(args.xvfb, args.work)
             screen.start()
+            pointer = X11Pointer(screen.display, screen.authority)
             environment.update(DISPLAY=screen.display, XAUTHORITY=str(screen.authority), MOZ_ENABLE_WAYLAND='0')
             mode = '--kiosk'
         process = subprocess.Popen([str(args.firefox), mode, '--no-remote', '--profile', str(profile),
@@ -248,7 +269,9 @@ def main():
                 except OSError:
                     panel.close(); panel = None
                     actions = [('cancel', None)]
-                for action, point in actions: bidi.pointer(context, action, point)
+                if pointer: pointer.send(actions)
+                else:
+                    for action, point in actions: bidi.pointer(context, action, point)
             captured = time.monotonic()
             if screen:
                 if captured >= health:
@@ -256,7 +279,7 @@ def main():
                         target=dict(context=context), awaitPromise=False))
                     if result.get('type') != 'success': raise RuntimeError('Browser page is unresponsive')
                     health = captured+1
-                jpeg = screen.jpeg()
+                jpeg = screen.pixels()
             else:
                 result = bidi.call('browsingContext.captureScreenshot', dict(context=context, origin='viewport',
                                format=dict(type='image/jpeg', quality=.88)))
@@ -270,6 +293,7 @@ def main():
             time.sleep(max(0, 1/args.fps-(time.monotonic()-started)))
     finally:
         if panel: panel.close()
+        if pointer: pointer.close()
         if connection: connection.close()
         if process and process.poll() is None:
             process.terminate()
