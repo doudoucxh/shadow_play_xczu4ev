@@ -224,7 +224,7 @@
     "source/assets/ShadowInk-OFL.txt": "54107539e415cc21d97752b7b1738c3d152451863f65e2c4e51556d3ceab1ab9",
     "source/board-client.css": "0c3eb6bb81e15d6a1b8b615c2d7134af76dec7a67c4d6670c62b5627146f9b96",
     "source/board-client.js": "48dd5155f453cadf368de147095c9650d8e1fa4eda6dfdb3b2676b1326eb6132",
-    "source/board-performance.css": "309f228e991d8e5ed1a034dfa90f3a02810203acc277ed4b39afe1e0bcf7c92e",
+    "source/board-performance.css": "3e87a50ac0de0fd67977ff0eeca0a8bea8c760bd7ef472cfd64ae1a41708b0f3",
     "source/book-effects.js": "96313df382304963a366370f6f192bbd93ee7614662da4ff39303c17c4cc280c",
     "source/brush-ink.js": "6e66404927952adac20ced16abe1aac852cd8d024d1eda4e7b7ba776c00eca73",
     "source/button-brush.css": "fa15d0fd17152cf92d78c7ebcbb7dfb93394fa9146f1af095c104253de605168",
@@ -233,7 +233,7 @@
     "source/page-turn.js": "f5bf0db19ac015cf8868d77339d7849256a026cc7aa152c04b6eb0eba27c9d24",
     "source/paper-burn.js": "2545aa828275bc3a1eb646f0e58e1ec719d1c3c81a35a392702da6b4d38a09d1",
     "source/platform.js": "5f4622ade95ef45c2608248c9eb800ab55a36e5b27358c9337a240a49ad711c1",
-    "source/shadow-app.js": "86ef0ac9c4ca64a1bff5546ba95de333199f5da98b9253f94af076015e91dcba",
+    "source/shadow-app.js": "3892fd2ae4f17d7e10e7dfd769a428268e56eb15ea77d79447eaf2716b35a57f",
     "source/shadow-book-ui.html": "dce367ff457f1853f5fb8202ed0adf229e7254637848ac11a917495c3cb9a94d",
     "source/sketch-geometry.js": "596da94266fe261b982aa4d148695682ff66e79a3a60a0971aac6a1003924c6b",
     "source/sketch-model.js": "ebfb82defcf550d70100fae1bd0eb08e35c8fef6ffafb7c0cbdfdedfc796884c",
@@ -258,7 +258,7 @@
   },
   "supersedes": "shadow-theatre-board-20261016-r3",
   "model_validation_report": "docs/MODEL_QA.json",
-  "runtime_html_sha256": "b9fd63b2a1edb638d5df400f2816bca97477940c5a0dbdd48d76b6c9baa06813",
+  "runtime_html_sha256": "d09f32d3757cf31dedb675d213076531b6410c18af14e5f55234984c52f11827",
   "model_bundle_files": [
     "source/sketch-model.js",
     "source/sketch-topology.js",
@@ -272,5 +272,14 @@
   "upstream_zip_sha256": "8659bd824a4abf9b672c126a551c56cb3e884a9ec9151c70e1886d230d6e634f",
   "upstream_validation_report": "docs/DESKTOP_QA.json",
   "camera_dpu_integration": "r4 USB/DPU live preview verified on 2026-10-17; complete human keypoint acceptance pending",
-  "performance_update": "2026-10-18: raster caches, raw BGRA, native XTest, 30 Hz sampling, unchanged frames skipped, sparks removed at user request, cached 75% resolution page turn, preview startup/cadence fixes"
+  "performance_update": "2026-10-18: raster caches, raw BGRA, native XTest, 30 Hz sampling, unchanged frames skipped, sparks removed at user request, cached 75% resolution page turn, preview startup/cadence fixes",
+  "menu_reveal_update": {
+    "date": "2026-10-18",
+    "fixed_home_layout": true,
+    "menu_only_render": true,
+    "desktop_home_redraws_before": 75,
+    "desktop_home_redraws_after": 0,
+    "board_installed": false,
+    "board_measured": false
+  }
 }

@@ -13,3 +13,13 @@
 #shadow-theatre-preview .shadow-app:not([data-page="home"]) .shadow-chapters button[aria-pressed="true"],
 #shadow-theatre-preview .shadow-app:not([data-page="home"]) .shadow-pose-buttons button[aria-pressed="true"]{background-color:#59664e!important;color:#f5eedc!important}
 #shadow-theatre-preview .shadow-app:not([data-page="home"]) .shadow-primary:disabled{background-color:#929b83!important}
+/* Keep the cover artwork at one size when revealing the three entrances.
+   Animating grid tracks used to resize and repaint the puppet canvas each frame. */
+@media(min-width:900px){
+  #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-home{grid-template-rows:minmax(0,1fr) 110px!important;row-gap:32px!important;transition:none!important}
+  #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-menu-reveal{height:100%}
+  #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-mode-card{background:#493621;transform:translateY(22px);will-change:transform,opacity;transition:transform 280ms cubic-bezier(.16,.74,.23,1),opacity 220ms ease,border-color 160ms ease}
+  #shadow-theatre-preview .shadow-app[data-page="home"][data-menu-open="true"] .shadow-mode-card{transform:translateY(0)}
+  #shadow-theatre-preview .shadow-app[data-page="home"][data-menu-open="true"] .shadow-mode-card:nth-child(2){transition-delay:25ms,25ms,0ms}
+  #shadow-theatre-preview .shadow-app[data-page="home"][data-menu-open="true"] .shadow-mode-card:nth-child(3){transition-delay:50ms,50ms,0ms}
+}

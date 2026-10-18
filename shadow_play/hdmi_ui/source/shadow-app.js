@@ -408,14 +408,17 @@
     query('[data-body-hint]').textContent=cameraStatus==='live'?(cameraPose?'实际关键点 · '+(board?.status?.motion?.puppet?'实控通道已就绪':'实机跟随未就绪'):'未检测到人体关键点'):'完整上半身置于画面内';
     query('[data-body-caption]').textContent=cameraStatus==='live'?(board?'板端实拍画面':'本地预览 · 未接入姿态识别'):'等待摄像头画面';
   }
-  function render() {
-    query('.shadow-app').dataset.page=state.page;
+  function renderHomeMenu() {
     query('.shadow-app').dataset.menuOpen=String(state.menuOpen);
-    for(const back of all('.shadow-back'))back.hidden=state.page==='home';
     query('.shadow-menu-reveal').inert=!state.menuOpen || turning;
     query('.shadow-menu-reveal').setAttribute('aria-hidden',String(!state.menuOpen));
     query('[data-action="open-menu"]').setAttribute('aria-expanded',String(state.menuOpen));
     query('[data-action="open-menu"]').setAttribute('aria-label',state.menuOpen?'收起三个模式入口':'轻触屏幕，展开三个模式入口');
+  }
+  function render() {
+    query('.shadow-app').dataset.page=state.page;
+    renderHomeMenu();
+    for(const back of all('.shadow-back'))back.hidden=state.page==='home';
     for(const screen of all('[data-screen]')) screen.hidden=screen.dataset.screen!==state.page;
     bookEffects?.setPage(state.page,!turning);
     const play=query('[data-action="play"]');
@@ -432,7 +435,9 @@
   for(const button of all('button[data-page]'))button.addEventListener('click',event=>{event.stopPropagation();setPage(button.dataset.page);});
   function toggleHomeMenu(returnFocus=false) {
     if(turning || state.page!=='home')return;
-    state.menuOpen=!state.menuOpen;render();save();
+    state.menuOpen=!state.menuOpen;
+    if(globalThis.ShadowBoardDisplay)renderHomeMenu();else render();
+    save();
     announce(state.menuOpen?'已展开三个模式入口':'已收起三个模式入口');
     if(returnFocus && !state.menuOpen)query('[data-action="open-menu"]').focus({preventScroll:true});
   }
