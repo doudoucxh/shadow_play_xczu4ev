@@ -18,17 +18,16 @@
 @media(min-width:900px){
   #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-home{grid-template-rows:minmax(0,1fr) 110px!important;row-gap:32px!important;transition:none!important}
   #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-menu-reveal{height:100%}
-  #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-mode-card{background:#493621;transform:translateY(22px);will-change:transform,opacity;transition:transform 280ms cubic-bezier(.16,.74,.23,1),opacity 220ms ease,border-color 160ms ease}
+  #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-mode-card{background:#493621;transform:translateY(22px);will-change:transform,opacity;transition:transform 360ms cubic-bezier(.16,.74,.23,1),opacity 300ms ease,border-color 160ms ease}
   #shadow-theatre-preview .shadow-app[data-page="home"][data-menu-open="true"] .shadow-mode-card{transform:translateY(0)}
-  #shadow-theatre-preview .shadow-app[data-page="home"][data-menu-open="true"] .shadow-mode-card:nth-child(2){transition-delay:25ms,25ms,0ms}
-  #shadow-theatre-preview .shadow-app[data-page="home"][data-menu-open="true"] .shadow-mode-card:nth-child(3){transition-delay:50ms,50ms,0ms}
+  #shadow-theatre-preview .shadow-app[data-page="home"][data-menu-open="true"] .shadow-mode-card:nth-child(2){transition-delay:40ms,40ms,0ms}
+  #shadow-theatre-preview .shadow-app[data-page="home"][data-menu-open="true"] .shadow-mode-card:nth-child(3){transition-delay:80ms,80ms,0ms}
 }
 
-/* The board software compositor cannot present this reveal smoothly.
-   Show all entries in the next paint; keep the separate paper page turn. */
+/* Keep the small menu animation inside its own paint area.
+   The cached cover below avoids repainting the expensive book ornament. */
 @media(min-width:900px){
   #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-menu-reveal{contain:layout paint}
-  #shadow-theatre-preview .shadow-app[data-page="home"] .shadow-mode-card{transition:none!important;transform:none!important;will-change:auto}
 }
 
 /* Frozen cover ornament: a single raster avoids software repainting its many

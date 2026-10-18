@@ -224,7 +224,7 @@
     "source/assets/ShadowInk-OFL.txt": "54107539e415cc21d97752b7b1738c3d152451863f65e2c4e51556d3ceab1ab9",
     "source/board-client.css": "0c3eb6bb81e15d6a1b8b615c2d7134af76dec7a67c4d6670c62b5627146f9b96",
     "source/board-client.js": "48dd5155f453cadf368de147095c9650d8e1fa4eda6dfdb3b2676b1326eb6132",
-    "source/board-performance.css": "ed208336f46ac3ae5b584f21d882010ca17cd56c8fa2af1e5a580b874ec27d61",
+    "source/board-performance.css": "12c8e9a874c6c2b296ef1d87e3754fbeab7dc38850470b48df40f2093b4733fe",
     "source/book-effects.js": "96313df382304963a366370f6f192bbd93ee7614662da4ff39303c17c4cc280c",
     "source/brush-ink.js": "6e66404927952adac20ced16abe1aac852cd8d024d1eda4e7b7ba776c00eca73",
     "source/button-brush.css": "fa15d0fd17152cf92d78c7ebcbb7dfb93394fa9146f1af095c104253de605168",
@@ -259,7 +259,7 @@
   },
   "supersedes": "shadow-theatre-board-20261016-r3",
   "model_validation_report": "docs/MODEL_QA.json",
-  "runtime_html_sha256": "90a42df6eaf3d0ed4c62cce6aecda8891683ced31ef145359a9203286c2c0fb9",
+  "runtime_html_sha256": "3a7c61e0e4a747a6a27b5b0ff123ac67d57f9166434d1712ebb229a5e019a324",
   "model_bundle_files": [
     "source/sketch-model.js",
     "source/sketch-topology.js",
@@ -283,8 +283,22 @@
     "board_installed": true,
     "board_measured": true,
     "user_confirmed": true,
-    "immediate_reveal": true,
+    "immediate_reveal": false,
     "static_cover_cache": true,
-    "verification_record": "../config/hdmi_ui_menu_reveal_20261018.json"
+    "verification_record": "../config/hdmi_ui_menu_animation_20261018.json",
+    "animated_reveal": true,
+    "animation": {
+      "rise_px": 22,
+      "transform_duration_ms": 360,
+      "opacity_duration_ms": 300,
+      "card_delays_ms": [
+        0,
+        40,
+        80
+      ],
+      "fixed_hero_layout": true,
+      "cached_cover_retained": true,
+      "paper_page_turn_retained": true
+    }
   }
 }

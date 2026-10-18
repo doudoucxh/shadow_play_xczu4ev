@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-18",
+  "reason": "User wants the floating mode-entry reveal restored after performance optimization removed it.",
+  "installed_on_board": true,
+  "user_confirmed": "动画恢复了，流畅度可以",
+  "html_sha256": "3a7c61e0e4a747a6a27b5b0ff123ac67d57f9166434d1712ebb229a5e019a324",
+  "animation": {
+    "rise_px": 22,
+    "transform_duration_ms": 360,
+    "opacity_duration_ms": 300,
+    "card_delays_ms": [
+      0,
+      40,
+      80
+    ],
+    "fixed_hero_layout": true,
+    "cached_cover_retained": true,
+    "paper_page_turn_retained": true
+  },
+  "measurement_method": "XTest clicks and changed-frame CRC times in 1.2-second windows; includes cursor/hover, not physical-panel FPS or latency.",
+  "board_samples": [
+    {
+      "iteration": 0,
+      "action": "open",
+      "packets": 36,
+      "visible_change_ms": [
+        37.2,
+        166.6,
+        237.3,
+        390.8,
+        407.4,
+        455.9,
+        483.1,
+        543.1,
+        607.2,
+        704.9,
+        752.3,
+        777.9
+      ]
+    },
+    {
+      "iteration": 1,
+      "action": "close",
+      "packets": 37,
+      "visible_change_ms": [
+        39.0,
+        73.3,
+        147.5
+      ]
+    },
+    {
+      "iteration": 2,
+      "action": "open",
+      "packets": 37,
+      "visible_change_ms": [
+        43.2,
+        63.6,
+        112.5,
+        130.4,
+        191.5,
+        228.1,
+        313.9,
+        360.1,
+        424.6,
+        468.5,
+        559.1,
+        633.5,
+        678.9,
+        703.1
+      ]
+    },
+    {
+      "iteration": 3,
+      "action": "close",
+      "packets": 37,
+      "visible_change_ms": [
+        63.0,
+        152.7
+      ]
+    }
+  ],
+  "verification": {
+    "manifest_files": 64,
+    "frame_age_ms": 29.0,
+    "boot_id": "d9356357-1e31-42cd-ab39-a59eafc4844f"
+  },
+  "services_active": 3,
+  "desktop_checks": [
+    "Intermediate opacity and vertical translation on all 3 cards",
+    "Hero height unchanged at 354 px",
+    "All 3 cards finish fully visible and interactive",
+    "Escape, reopen and classic-mode entry pass"
+  ],
+  "backup": "/run/media/mmcblk0p2/piying/shadow-theatre-board-20261017-r4-runtime/backups/menu-animation-20261018",
+  "motion_commands_sent": false,
+  "boot_files_changed": false,
+  "board_rebooted": false
+}
