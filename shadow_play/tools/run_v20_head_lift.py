@@ -1,4 +1,4 @@
-"""Read-only by default; one new user-requested axis-8 check with Sony leases."""
+"""Read-only by default; one requested axis-8 check with Sony or phone leases."""
 import argparse
 import base64
 from datetime import datetime, timezone
@@ -9,11 +9,14 @@ import sys
 import threading
 import time
 import uuid
+import io
+import re
+import urllib.request
 
 ROOT = Path(__file__).resolve().parents[2]
 CAL = ROOT / 'shadow_play/integrations/calibration'
 sys.path.insert(0, str(CAL))
-from v20_head_lift import SCHEMA, SOURCE_SHA, FRAMES
+from v20_head_lift import SCHEMA, PHONE_SCHEMA, SOURCE_SHA, FRAMES
 from v20_first_direction import IMAGE, MIDPOINT, PREFIX, digest
 from run_v20_first_direction import FreshCamera, parse_event, valid_reference
 from servo_center_session import await_prompt
@@ -21,9 +24,48 @@ from servo_center_session import await_prompt
 BOARD = '/run/media/mmcblk0p2/piying/v20-head-lift-20261018'
 LIB = BOARD + '/integrations/calibration'
 FILES = ('v20_head_lift.py', 'v20_first_direction.py', 'servo_pwm_device.py', 'mmio32.py', 'libservo_mmio32.so')
+PHONE_BOARD = '/run/media/mmcblk0p2/piying/v20-head-lift-phone-20261019'
 
 
-def run(output, execute=False, port_name='COM17'):
+class PhoneCamera:
+    """Consume only the existing local Camo gateway; never start a camera or motor."""
+    def __init__(self, opener=urllib.request.urlopen, clock=time.time, monotonic=time.monotonic):
+        self.opener, self.clock, self.monotonic = opener, clock, monotonic
+        self.epoch = self.number = None
+        self.last_advance = monotonic()
+        self.lock = threading.Lock()
+
+    def sample(self, destination=None):
+        from camera_bridge import check_jpeg
+        from PIL import Image
+        with self.lock:
+            with self.opener('http://127.0.0.1:8765/top.jpg', timeout=.4) as response:
+                raw, headers = response.read(), response.headers
+            identity = headers['X-Frame-Id']
+            match = re.fullmatch('([a-f0-9]{32})-([0-9]+)', identity)
+            age = int(headers['X-Frame-Age-Ms'])
+            stamp = datetime.fromisoformat(headers['X-Frame-Read-At'])
+            if (match is None or stamp.tzinfo is None or not 0 <= age <= 1500
+                    or not -100 <= (self.clock() - stamp.timestamp()) * 1000 <= 1500):
+                raise RuntimeError('Phone frame stale or unidentified')
+            epoch, number = match[1], int(match[2])
+            if self.epoch is not None and (epoch != self.epoch or number < self.number):
+                raise RuntimeError('Phone capture restarted; no automatic continuation')
+            if number != self.number:
+                self.last_advance = self.monotonic()
+            elif self.monotonic() - self.last_advance > 1.5:
+                raise RuntimeError('Phone capture stalled')
+            check_jpeg(raw)
+            with Image.open(io.BytesIO(raw)) as im:
+                im.load(); size = list(im.size)
+            self.epoch, self.number = epoch, number
+            if destination is not None:
+                destination.write_bytes(raw)
+            return dict(source='phone_mechanism', frame=identity, age_ms=age,
+                        captured_utc=stamp.isoformat(), sha256=hashlib.sha256(raw).hexdigest(), size=size)
+
+
+def run(output, execute=False, port_name='COM17', phone_recheck=False):
     import serial
     output.mkdir(parents=True, exist_ok=False)
     stop = threading.Event()
@@ -35,7 +77,9 @@ def run(output, execute=False, port_name='COM17'):
     port.port = port_name
     pending = b''
     lock = threading.Lock()
-    camera = FreshCamera(ROOT / 'camera_liveview/output')
+    camera = PhoneCamera() if phone_recheck else FreshCamera(ROOT / 'camera_liveview/output')
+    board = PHONE_BOARD if phone_recheck else BOARD
+    lib = board + '/integrations/calibration'
     captures = []
     with (output / 'serial.jsonl').open('x', encoding='utf-8') as log:
         def record(key, value):
@@ -69,8 +113,11 @@ def run(output, execute=False, port_name='COM17'):
             if await_prompt(port, 6, service='attended-initial-pose-v1') != 'root':
                 raise RuntimeError('Terminal is owned by another manual session')
             send('stty -echo\r'); time.sleep(.2); port.read_all()
-            hashes = {n: hashlib.sha256((CAL / n).read_bytes()).hexdigest() for n in FILES}
-            python("import sys,json,hashlib;from pathlib import Path;p=Path('" + LIB + "');h=" + repr(hashes)
+            # Status inspection imports only the MMIO driver, so an immutable
+            # older route module need not match the newly extended local one.
+            checked_files = FILES if execute else ('servo_pwm_device.py', 'mmio32.py', 'libservo_mmio32.so')
+            hashes = {n: hashlib.sha256((CAL / n).read_bytes()).hexdigest() for n in checked_files}
+            python("import sys,json,hashlib;from pathlib import Path;p=Path('" + lib + "');h=" + repr(hashes)
                    + ";assert all(hashlib.sha256((p/n).read_bytes()).hexdigest()==v for n,v in h.items());"
                      "sys.path.insert(0,str(p));from servo_pwm_device import Registers,PwmDevice;"
                      "r=Registers();s=PwmDevice(r).status();r.close();"
@@ -81,7 +128,8 @@ def run(output, execute=False, port_name='COM17'):
             if not execute:
                 return inspected
             valid_reference(inspected['state'])
-            previous = json.loads((ROOT / 'shadow_play/config/v20_first_direction_result_20261018.json').read_text(encoding='utf-8'))
+            source_record = 'v20_head_lift_result_20261018.json' if phone_recheck else 'v20_first_direction_result_20261018.json'
+            previous = json.loads((ROOT / 'shadow_play/config' / source_record).read_text(encoding='utf-8'))
             # Preserve the old stop record. This entry needs a new explicit request
             # and its own fixed axis-8 permission; it never edits the axis-7 guard.
             if (not previous['route_complete'] or previous['state']['sequence'] != inspected['state']['sequence']
@@ -100,20 +148,25 @@ def run(output, execute=False, port_name='COM17'):
             request = dict(request_id=request_id, user_request='Direct real-hardware operation requested in this chat',
                            supersedes_prior_user_stop_for_this_one_check=True, channel=8,
                            pulse_range_us=[1500, 1540], camera_required=True, full_show=False)
+            if phone_recheck:
+                request.update(user_request='Phone mechanism view connected; continue debugging requested in this chat',
+                               camera_views=['phone_mechanism'], source_completion_sequence=978)
             (output / 'new-request.json').write_text(json.dumps(request, indent=2), encoding='utf-8')
-            plan = dict(schema=SCHEMA, session_id=uuid.uuid4().hex, boot_id=inspected['boot_id'],
+            plan = dict(schema=PHONE_SCHEMA if phone_recheck else SCHEMA, session_id=uuid.uuid4().hex, boot_id=inspected['boot_id'],
                         expected_sequence=inspected['state']['sequence'], expected_pulse_us=MIDPOINT,
                         route_sha256=digest(FRAMES), historical_source_sha256=SOURCE_SHA,
                         camera_required=True, onsite_observer=True, new_request_id=request_id,
                         new_hardware_request=True, prior_log_path=previous['source_log_path'],
                         prior_log_sha256=previous['board_log_sha256'])
+            if phone_recheck:
+                plan['camera_views'] = ['phone_mechanism']
             captures.append(dict(stage='before', **camera.sample(output / 'camera-before.jpg')))
             (output / 'plan.json').write_text(json.dumps(plan, indent=2), encoding='utf-8')
-            target_path = BOARD + '/run-' + plan['session_id'] + '.json'
+            target_path = board + '/run-' + plan['session_id'] + '.json'
             data = base64.b64encode(json.dumps(plan).encode()).decode()
             python("import base64,os;f=open('" + target_path + "','xb');f.write(base64.b64decode('" + data + "'));f.close();"
-                   "os.execv('/usr/bin/python3',['python3','-u','" + LIB + "/v20_head_lift.py','" + target_path + "','--execute-one-head-lift'])",
-                   prefix='PYTHONPATH=' + LIB + ' ')
+                   "os.execv('/usr/bin/python3',['python3','-u','" + lib + "/v20_head_lift.py','" + target_path + "','--execute-one-head-lift'])",
+                   prefix='PYTHONPATH=' + lib + ' ')
             ready = receive(parse_event, 8)
             if ready.get('event') != 'ready' or ready.get('session_id') != plan['session_id']:
                 raise RuntimeError('One-use ready response mismatch')
@@ -169,5 +222,6 @@ if __name__ == '__main__':
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--port', default='COM17')
     p.add_argument('--execute-new-hardware-request', action='store_true')
+    p.add_argument('--phone-recheck', action='store_true', help='Use the explicitly requested phone view and real OFF978 source')
     a = p.parse_args()
-    run(a.output, a.execute_new_hardware_request, a.port)
+    run(a.output, a.execute_new_hardware_request, a.port, a.phone_recheck)

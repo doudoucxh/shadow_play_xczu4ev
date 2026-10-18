@@ -1,5 +1,7 @@
 import hashlib
 import json
+import io
+from datetime import datetime, timezone
 from pathlib import Path
 import sys
 import tempfile
@@ -8,10 +10,13 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'integrations/calibration'))
 sys.path.insert(0, str(ROOT / 'tests'))
+sys.path.insert(0, str(ROOT / 'tools'))
 from test_servo_commissioning import FakeRegisters
 from test_v20_first_direction import Clock
 from v20_first_direction import validate_plan as validate_axis7
 from v20_head_lift import HeadLiftDevice, FRAMES, MASK, IMAGE, SCHEMA, SOURCE_SHA, digest, run, validate_plan, validate_prior
+from v20_head_lift import PHONE_SCHEMA, PHONE_LOG, PHONE_LOG_SHA
+from run_v20_head_lift import PhoneCamera
 
 
 class Tests(unittest.TestCase):
@@ -128,6 +133,80 @@ class Tests(unittest.TestCase):
         self.assertTrue(rows[-1]['route_complete'])
         self.assertGreater(self.clock.now,12.15)
         self.assertLess(self.clock.now,16)
+
+    def phone_plan(self):
+        self.p.update(schema=PHONE_SCHEMA, expected_sequence=978,
+                      prior_log_path=PHONE_LOG, prior_log_sha256=PHONE_LOG_SHA,
+                      camera_views=['phone_mechanism'])
+        self.reg.values[0x20] = 978
+
+    def test_phone_check_uses_new_completion_and_keeps_original_route(self):
+        self.phone_plan(); rows=[]
+        run(self.device(), rows.append, sleep=self.clock.sleep)
+        self.assertEqual(rows[-1]['state']['sequence'],1280)
+        self.assertTrue(rows[-1]['route_complete'])
+        self.assertTrue(all(r['state']['enabled_mask']==128 for r in rows[:-1]))
+
+    def test_phone_plan_cannot_use_old_or_fabricated_provenance(self):
+        self.phone_plan(); validate_plan(self.p)
+        for key,value in [('expected_sequence',676),('prior_log_sha256','e'*64),
+                          ('camera_views',['front']),('schema',SCHEMA),('prior_log_path',PHONE_LOG.replace('0c451','1c451'))]:
+            p=dict(self.p);p[key]=value
+            with self.assertRaises(ValueError):validate_plan(p)
+        self.assertEqual(self.reg.writes,[])
+
+
+class PhoneCameraTests(unittest.TestCase):
+    def setUp(self):
+        from PIL import Image, ImageDraw
+        image=Image.new('RGB',(80,40),'white')
+        ImageDraw.Draw(image).rectangle((0,0,30,30),fill='black')
+        buffer=io.BytesIO();image.save(buffer,format='JPEG');self.raw=buffer.getvalue()
+        self.now=100.;self.number=1;self.epoch='a'*32;self.age=20;self.stamp=100.
+        owner=self
+        class Response:
+            def __enter__(self):return self
+            def __exit__(self,*args):pass
+            @property
+            def headers(self):
+                return {'X-Frame-Id':owner.epoch+'-'+str(owner.number),
+                        'X-Frame-Age-Ms':str(owner.age),
+                        'X-Frame-Read-At':datetime.fromtimestamp(owner.stamp,timezone.utc).isoformat()}
+            def read(self):return owner.raw
+        self.camera=PhoneCamera(opener=lambda *a,**kw:Response(),clock=lambda:self.now,monotonic=lambda:self.now)
+
+    def test_valid_frames_advance_and_decode(self):
+        self.assertEqual(self.camera.sample()['size'],[80,40])
+        self.number=2
+        self.assertTrue(self.camera.sample()['frame'].endswith('-2'))
+
+    def test_old_timestamp_stale_report_and_bad_jpeg_reject(self):
+        self.stamp=98.
+        with self.assertRaises(RuntimeError):self.camera.sample()
+        self.stamp=100.;self.age=1501
+        with self.assertRaises(RuntimeError):self.camera.sample()
+        self.age=10;self.raw=b'not a JPEG'
+        with self.assertRaises(OSError):self.camera.sample()
+
+    def test_epoch_change_and_stalled_identity_reject(self):
+        self.camera.sample();self.epoch='b'*32
+        with self.assertRaises(RuntimeError):self.camera.sample()
+        self.epoch='a'*32;self.now=self.stamp=101.6
+        with self.assertRaises(RuntimeError):self.camera.sample()
+
+    def test_camera_loss_interrupts_active_route_without_return(self):
+        base=Tests('test_phone_check_uses_new_completion_and_keeps_original_route')
+        base.setUp();self.addCleanup(base.doCleanups);base.phone_plan()
+        device=base.device();rows=[]
+        def emit(row):
+            rows.append(row)
+            if row.get('event')=='frame' and row['index']==40:
+                self.age=1501
+                self.camera.sample()
+        with self.assertRaises(RuntimeError):run(device,emit,sleep=base.clock.sleep)
+        self.assertFalse(device.status()['armed'])
+        self.assertNotEqual(device.status()['pulse_us'][7],1500)
+        self.assertEqual(sum(a==0x10 for a,v in base.reg.writes),1)
 
 
 if __name__=='__main__':unittest.main()

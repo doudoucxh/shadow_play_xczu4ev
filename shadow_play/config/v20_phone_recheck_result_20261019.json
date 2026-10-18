@@ -1,0 +1,719 @@
+{
+  "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+  "state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 1280,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "loaded_marker": {
+    "image_kind": "servo10_vision",
+    "design_checks": "SERVO_IMAGE_DESIGN_CHECKS_PASS",
+    "bus_skew_check": "SERVO_BUS_SKEW_CHECK_PASS",
+    "register_base": 2684551168,
+    "pins": [
+      "D14",
+      "D15",
+      "F13",
+      "G13",
+      "G14",
+      "G15",
+      "J14",
+      "E13",
+      "E14",
+      "E15"
+    ],
+    "sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+    "wns_ns": 1.033,
+    "whs_ns": 0.008,
+    "wpws_ns": 0.151,
+    "part": "xczu4ev-sfvc784-2-i",
+    "clock_hz": 100000000,
+    "period_us": 20000,
+    "channels": 10,
+    "reset_outputs": "disabled",
+    "video_mmcm": {
+      "DIVCLK_DIVIDE": 1,
+      "CLKOUT0_DIVIDE_F": 15,
+      "CLKOUT1_DIVIDE": 6,
+      "CLKFBOUT_MULT_F": 11.25,
+      "CLKOUT2_DIVIDE": 3
+    },
+    "built_at": "2026-10-10T15:32:16.354825+08:00",
+    "scope": "volatile runtime image; motors remain off",
+    "pin_revision": "servo4_G13_20261010",
+    "previous_sha256": "26b553c4705984a748a138f24fe735ab0ba5343621fabd73c966db27b8e81f81",
+    "change": "Only servo_pwm[3] package pin H13 -> G13; other top-level pins preserved",
+    "loaded_unix": 1679217118.4409173,
+    "boot_hashes": {
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc"
+    },
+    "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9"
+  },
+  "fpga_manager_state": "operating",
+  "board_log_sha256": "2ff83781741b200fe393edf3681c971fce2fb71a660bb3b896894e02ddc8d333",
+  "frame_count": 301,
+  "elapsed_s": 12.803581099997245,
+  "only_channel_8_enabled": true,
+  "other_commands_unchanged": true,
+  "sequences_consecutive": true,
+  "maximum_adjacent_step_us": 1,
+  "command_range_us": [
+    1500,
+    1540
+  ],
+  "frame_interval_s": [
+    0.0378987190015323,
+    0.06208736100234091
+  ],
+  "selected_events": [
+    {
+      "event": "frame",
+      "index": 0,
+      "elapsed_s": 0.022284431997832144,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 128,
+        "armed": true,
+        "faults": 0,
+        "sequence": 979,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "frame",
+      "index": 50,
+      "elapsed_s": 2.142143519999081,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 128,
+        "armed": true,
+        "faults": 0,
+        "sequence": 1029,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1520,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "frame",
+      "index": 100,
+      "elapsed_s": 4.282015087999753,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 128,
+        "armed": true,
+        "faults": 0,
+        "sequence": 1079,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1540,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "frame",
+      "index": 150,
+      "elapsed_s": 6.422286769997299,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 128,
+        "armed": true,
+        "faults": 0,
+        "sequence": 1129,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1540,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "frame",
+      "index": 200,
+      "elapsed_s": 8.543435179999506,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 128,
+        "armed": true,
+        "faults": 0,
+        "sequence": 1179,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1520,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "frame",
+      "index": 250,
+      "elapsed_s": 10.68236284899831,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 128,
+        "armed": true,
+        "faults": 0,
+        "sequence": 1229,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "frame",
+      "index": 300,
+      "elapsed_s": 12.803581099997245,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 128,
+        "armed": true,
+        "faults": 0,
+        "sequence": 1279,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "outputs_off",
+      "route_complete": true,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 1280,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "incident_locks_removed": false,
+      "position_feedback": null
+    }
+  ],
+  "manifest_entries": 6,
+  "manifest_files": {
+    "integrations/calibration/v20_head_lift.py": "accc20d036cf49139d7b8da01d9c97cc3e98077c5c7670af7bff622d04e3d069",
+    "integrations/calibration/v20_first_direction.py": "95cb9c0ab5297a74089b10fa9802842a6f41b4aa0c65b84d33b41bcb33ffb5ed",
+    "integrations/calibration/servo_pwm_device.py": "ee917182d4a7b38f97556fa5e663f2c5f1d787ebdb5337462b0fb8f9794fa408",
+    "integrations/calibration/mmio32.py": "53c37471f7156edff85664737c77446baf30e44efcb5421bbae07ccb8035298b",
+    "integrations/calibration/libservo_mmio32.so": "2f017fb4b6187609df80a860039d1bb958ca09d683b1ccb700d8e1c921c1e8c0",
+    "integrations/calibration/.motion-inhibit": "26416a436affc9cadf45b9f3219ad93dff67a8bd5f251d2ec41017ca5b417b5e"
+  },
+  "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+  "persistent_lock_sha256": "26416a436affc9cadf45b9f3219ad93dff67a8bd5f251d2ec41017ca5b417b5e",
+  "schema": "v20-phone-recheck-result-v1",
+  "route_complete": true,
+  "request": {
+    "request_id": "42b49998b76e4263b13b7be803f753bf",
+    "user_request": "Phone mechanism view connected; continue debugging requested in this chat",
+    "supersedes_prior_user_stop_for_this_one_check": true,
+    "channel": 8,
+    "pulse_range_us": [
+      1500,
+      1540
+    ],
+    "camera_required": true,
+    "full_show": false,
+    "camera_views": [
+      "phone_mechanism"
+    ],
+    "source_completion_sequence": 978
+  },
+  "plan": {
+    "schema": "attended-v20-head-lift-phone-v2",
+    "session_id": "0d69eb9ed7534cd2988cbb99504c88de",
+    "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+    "expected_sequence": 978,
+    "expected_pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "route_sha256": "4feefbc5e250d3084572ae5435ef371d39659194dd9d3ae3c9291bd1b32e29c5",
+    "historical_source_sha256": "a0a7af4128b1eee714b62f7a87ed4b286eeb960b9f9468b06fa9188d176860ab",
+    "camera_required": true,
+    "onsite_observer": true,
+    "new_request_id": "42b49998b76e4263b13b7be803f753bf",
+    "new_hardware_request": true,
+    "prior_log_path": "/run/media/mmcblk0p2/piying/v20-head-lift-20261018/run-0c451e645e15404780636d43ae828f20.board.jsonl",
+    "prior_log_sha256": "bcf97fce41451cac943f089cd0905a5a8a0e71f13548c3b09f5b49f280858a53",
+    "camera_views": [
+      "phone_mechanism"
+    ]
+  },
+  "source_log_path": "/run/media/mmcblk0p2/piying/v20-head-lift-phone-20261019/run-0d69eb9ed7534cd2988cbb99504c88de.board.jsonl",
+  "camera_captures": [
+    {
+      "stage": "before",
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-4499",
+      "age_ms": 77,
+      "captured_utc": "2026-10-18T18:09:56.661000+00:00",
+      "sha256": "d4b7dd271334c960a92cd0a23ef121dea7d56d6ccbc39593fe30ea010de2334e",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "stage": "frame_0",
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-4514",
+      "age_ms": 0,
+      "captured_utc": "2026-10-18T18:09:57.661000+00:00",
+      "sha256": "1feb7b3a3c58eb003551996a67524fe929c42b71e99efe4d26dfcb30c147884c",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "stage": "frame_50",
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-4545",
+      "age_ms": 63,
+      "captured_utc": "2026-10-18T18:09:59.725000+00:00",
+      "sha256": "123dd35e0e56d254475137f50d10f33510a26d4e8bae3c6d511d183ccc7ea133",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "stage": "frame_100",
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-4577",
+      "age_ms": 62,
+      "captured_utc": "2026-10-18T18:10:01.867000+00:00",
+      "sha256": "4bcea1c96a272e63b0ce36e4dfafcf0100c56e46c276aa82c02f4f4a9391a981",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "stage": "frame_150",
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-4609",
+      "age_ms": 78,
+      "captured_utc": "2026-10-18T18:10:03.995000+00:00",
+      "sha256": "1a128e40be1f40213c03561c57cb1a3d17dbc4f4e8ebc3ae0e2ad473b4bf540a",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "stage": "frame_200",
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-4641",
+      "age_ms": 61,
+      "captured_utc": "2026-10-18T18:10:06.128000+00:00",
+      "sha256": "e9b52460f770b551f720e7d3fe6f98aca0a6d46df891af6047e2d16155c960dc",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "stage": "frame_250",
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-4673",
+      "age_ms": 61,
+      "captured_utc": "2026-10-18T18:10:08.260000+00:00",
+      "sha256": "7da86dfdd1c67a808c5b76b54c6bb743ce98be72f90e2d9b1e81d6ab7a6b2fb6",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "stage": "frame_300",
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-4706",
+      "age_ms": 61,
+      "captured_utc": "2026-10-18T18:10:10.459000+00:00",
+      "sha256": "eef170fa4c0e0c083ec64fbc1ac59c409925e903fed7879e8152b96a721a98cb",
+      "size": [
+        960,
+        540
+      ]
+    }
+  ],
+  "camera_preflight": [
+    {
+      "frame": "215fe2c22661410c98dda799b0e1974a-249",
+      "age_ms": 46,
+      "captured_utc": "2026-10-18T18:05:13.340+00:00",
+      "sha256": "889c0de5a2e2530378ed912df038e48a897be9d6cea5bd94edbdae260385e096",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "frame": "215fe2c22661410c98dda799b0e1974a-255",
+      "age_ms": 47,
+      "captured_utc": "2026-10-18T18:05:13.741+00:00",
+      "sha256": "40074b52c57764dd395c6ae59c03bceff56af2eab2a57e7f4568136600e54736",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "frame": "215fe2c22661410c98dda799b0e1974a-261",
+      "age_ms": 14,
+      "captured_utc": "2026-10-18T18:05:14.127+00:00",
+      "sha256": "ec6eec8a753c369760f5732988afbbce10f9f6c8c7a47fa42c2de5ae55558844",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "frame": "215fe2c22661410c98dda799b0e1974a-266",
+      "age_ms": 46,
+      "captured_utc": "2026-10-18T18:05:14.461+00:00",
+      "sha256": "225e93bd0c7fe58dfe0a1dc9e32d96b62bf193dc322957c8c4b787bb7aa251c2",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "frame": "215fe2c22661410c98dda799b0e1974a-272",
+      "age_ms": 0,
+      "captured_utc": "2026-10-18T18:05:14.861+00:00",
+      "sha256": "106f0444ebe714eebe288f6b08e0314ba02ee4629d003dcd95d56e8dff569f50",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "frame": "215fe2c22661410c98dda799b0e1974a-277",
+      "age_ms": 46,
+      "captured_utc": "2026-10-18T18:05:15.196+00:00",
+      "sha256": "c89877788661c5efc6779f21a2a50a91cc997d6d888487d1d9a10cd141e34838",
+      "size": [
+        960,
+        540
+      ]
+    }
+  ],
+  "camera_review": {
+    "source": "phone_mechanism",
+    "size": [
+      960,
+      540
+    ],
+    "mechanism_and_rods_visible": true,
+    "individual_shaft_angle_measured": false,
+    "reviewed_stages": [
+      "before",
+      "frame_150",
+      "frame_300"
+    ],
+    "resolved_tiger_head_motion": false,
+    "physical_response_verified": false,
+    "image_comparison": {
+      "head_gimbal": {
+        "roi_px": [
+          463,
+          219,
+          528,
+          302
+        ],
+        "comparisons": [
+          {
+            "stage": "frame_100",
+            "best_translation_px": [
+              0,
+              0
+            ],
+            "ncc": 0.9931842199576574
+          },
+          {
+            "stage": "frame_150",
+            "best_translation_px": [
+              0,
+              0
+            ],
+            "ncc": 0.9940769715787618
+          },
+          {
+            "stage": "frame_300",
+            "best_translation_px": [
+              0,
+              0
+            ],
+            "ncc": 0.9954191894486681
+          }
+        ]
+      },
+      "head_rod": {
+        "roi_px": [
+          529,
+          40,
+          555,
+          209
+        ],
+        "comparisons": [
+          {
+            "stage": "frame_100",
+            "best_translation_px": [
+              0,
+              0
+            ],
+            "ncc": 0.996560526476358
+          },
+          {
+            "stage": "frame_150",
+            "best_translation_px": [
+              0,
+              0
+            ],
+            "ncc": 0.9966108366080462
+          },
+          {
+            "stage": "frame_300",
+            "best_translation_px": [
+              0,
+              0
+            ],
+            "ncc": 0.9972177322551843
+          }
+        ]
+      },
+      "tiger_head": {
+        "roi_px": [
+          475,
+          46,
+          570,
+          111
+        ],
+        "comparisons": [
+          {
+            "stage": "frame_100",
+            "best_translation_px": [
+              0,
+              0
+            ],
+            "ncc": 0.996173308203256
+          },
+          {
+            "stage": "frame_150",
+            "best_translation_px": [
+              0,
+              0
+            ],
+            "ncc": 0.9962913223070753
+          },
+          {
+            "stage": "frame_300",
+            "best_translation_px": [
+              0,
+              0
+            ],
+            "ncc": 0.9970116542106879
+          }
+        ]
+      },
+      "fixed_frame": {
+        "roi_px": [
+          226,
+          168,
+          278,
+          348
+        ],
+        "comparisons": [
+          {
+            "stage": "frame_100",
+            "best_translation_px": [
+              0,
+              0
+            ],
+            "ncc": 0.978253765686302
+          },
+          {
+            "stage": "frame_150",
+            "best_translation_px": [
+              0,
+              0
+            ],
+            "ncc": 0.9798477810869446
+          },
+          {
+            "stage": "frame_300",
+            "best_translation_px": [
+              0,
+              0
+            ],
+            "ncc": 0.9829900186284615
+          }
+        ]
+      },
+      "interpretation": "Integer translation matching only; not shaft-angle feedback or an electrical fault diagnosis."
+    }
+  },
+  "sony": {
+    "reconnect_attempted": true,
+    "duration_seconds": 28800,
+    "frames": 0,
+    "error": "Connect_SSH_GetFingerprintFailed",
+    "used_for_motion_observation": false
+  },
+  "physical_motion_verified": false,
+  "direction_verified": false,
+  "position_feedback": null,
+  "electrical_waveform_measured": false,
+  "power_wiring_confirmation": "Awaiting present axis-8 supply positive/negative/common-ground connection information.",
+  "installation": {
+    "directory": "/run/media/mmcblk0p2/piying/v20-head-lift-phone-20261019",
+    "archive_sha256": "7704254f2f18636c468f410a317e90496e1b05d64bef15320e9f454b306e92c7",
+    "autostart": false
+  },
+  "tests": {
+    "axis8_and_camera": 16,
+    "existing_axis7": 22,
+    "total_passed": 38
+  },
+  "incident_locks_removed": false,
+  "fpga_reloaded": false,
+  "boot_files_changed": false,
+  "full_v20_performed": false,
+  "audio_played": false,
+  "rails_moved": false,
+  "current_action": "Outputs remain off at sequence 1280; do not increase amplitude to compensate for an unverified response."
+}

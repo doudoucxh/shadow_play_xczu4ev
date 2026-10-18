@@ -17,6 +17,9 @@ from servo_pwm_device import PwmDevice, Registers
 from v20_first_direction import FirstDirectionDevice, HostLease, IMAGE, MIDPOINT, digest, PREFIX
 
 SCHEMA = 'attended-v20-head-lift-v1'
+PHONE_SCHEMA = 'attended-v20-head-lift-phone-v2'
+PHONE_LOG = '/run/media/mmcblk0p2/piying/v20-head-lift-20261018/run-0c451e645e15404780636d43ae828f20.board.jsonl'
+PHONE_LOG_SHA = 'bcf97fce41451cac943f089cd0905a5a8a0e71f13548c3b09f5b49f280858a53'
 MASK = 128
 INTERVAL = .04
 SOURCE_SHA = 'a0a7af4128b1eee714b62f7a87ed4b286eeb960b9f9468b06fa9188d176860ab'
@@ -42,7 +45,12 @@ def validate_plan(p):
     required = {'schema', 'session_id', 'boot_id', 'expected_sequence', 'expected_pulse_us',
                 'route_sha256', 'historical_source_sha256', 'camera_required', 'onsite_observer',
                 'new_request_id', 'new_hardware_request', 'prior_log_path', 'prior_log_sha256'}
-    if not isinstance(p, dict) or set(p) != required or p['schema'] != SCHEMA:
+    if not isinstance(p, dict):
+        raise ValueError('Dedicated axis-8 plan required')
+    phone = p.get('schema') == PHONE_SCHEMA
+    if phone:
+        required = required | {'camera_views'}
+    if set(p) != required or p['schema'] not in (SCHEMA, PHONE_SCHEMA):
         raise ValueError('Dedicated axis-8 plan required')
     for key in ('session_id', 'new_request_id'):
         if not isinstance(p[key], str) or not re.fullmatch('[a-f0-9]{32}', p[key]):
@@ -55,7 +63,11 @@ def validate_plan(p):
             or p['historical_source_sha256'] != SOURCE_SHA
             or any(p[k] is not True for k in ('new_hardware_request', 'onsite_observer', 'camera_required'))):
         raise ValueError('Only a new attended axis-8 fixed route is allowed')
-    if (not re.fullmatch(re.escape(PRIOR_LOG) + '[a-f0-9]{32}\\.board\\.jsonl', p['prior_log_path'])
+    if phone:
+        if (p['camera_views'] != ['phone_mechanism'] or p['expected_sequence'] != 978
+                or p['prior_log_path'] != PHONE_LOG or p['prior_log_sha256'] != PHONE_LOG_SHA):
+            raise ValueError('Phone review must bind the actual OFF978 completion')
+    elif (not re.fullmatch(re.escape(PRIOR_LOG) + '[a-f0-9]{32}\\.board\\.jsonl', p['prior_log_path'])
             or not re.fullmatch('[a-f0-9]{64}', p['prior_log_sha256'])):
         raise ValueError('Original completed-run evidence required')
 
