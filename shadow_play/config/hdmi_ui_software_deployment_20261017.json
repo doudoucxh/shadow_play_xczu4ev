@@ -28,6 +28,30 @@
       "height": 720,
       "stride": 3840,
       "park": 65537
+    },
+    "physical_screen_accepted": false,
+    "user_report_20261018": "Backlight on, screen black; connected to the board HDMI output. Software framebuffer verification is not physical display acceptance.",
+    "black_screen_diagnosis_20261018": {
+      "same_screen_as_previous": true,
+      "services_active": true,
+      "fresh_browser_frames": true,
+      "mm2s_status": "0x11000",
+      "output_buffer_max": 252,
+      "output_buffer_mean": 91.38,
+      "sink_reinitialized": true,
+      "direct_colorbar_duration_s": 90,
+      "direct_colorbar_visible_user_report": false,
+      "automatic_ui_restore_verified": true,
+      "physical_display_restored": false,
+      "hpd_edid_available": false,
+      "next_check": "Compare same screen and HDMI cable on computer; determine whether screen menu displays and whether power is independent",
+      "fpga_reloaded": true,
+      "motion_commands_sent": false,
+      "hdmi_reseat_and_screen_power_cycle_restored": false,
+      "fpga_reload_same_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+      "reload_output_mask": 0,
+      "reload_boot_files_unchanged": true,
+      "same_image_reload_restored_display": false
     }
   },
   "camera": {
@@ -145,7 +169,8 @@
       "timing": "player process clock; acoustic latency not measured",
       "error": ""
     },
-    "audibility_observed": false
+    "audibility_observed": true,
+    "audibility_source": "User confirmed speaker works on 2026-10-18; loudness and acoustic latency not measured."
   },
   "touch": {
     "device": "OpenWare Multi-Touch-V5000",
