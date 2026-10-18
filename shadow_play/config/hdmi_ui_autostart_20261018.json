@@ -25,7 +25,7 @@
     "ui_browser_hdmi_services_active": true,
     "ready_linux_uptime_seconds": 52.2,
     "browser_startup_retries_observed": 1,
-    "physical_screen_confirmation": null,
+    "physical_screen_confirmation": true,
     "camera_running": false,
     "audio_running": false,
     "motion_ready": false,
@@ -35,6 +35,12 @@
       "sequence": 0,
       "faults": 0,
       "pending": false
+    },
+    "physical_screen_evidence": {
+      "source": "user confirmation",
+      "date": "2026-10-18",
+      "response": "已自动显示主页",
+      "scope": "normal reboot; not a power-cycle test"
     }
   },
   "tests": {
