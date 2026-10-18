@@ -1,7 +1,7 @@
 """One requested small single-axis check, with separate review between axes.
 
-This finite series starts only from the actual OFF1280 record. It cannot run
-axis 8, initialize all axes, change targets, or proceed to another axis itself.
+Each finite series starts from its actual completed source record. It cannot
+run axis 8, initialize all axes, change targets, or advance to another axis.
 """
 import argparse
 import hashlib
@@ -25,17 +25,30 @@ FIRST_LOG='/run/media/mmcblk0p2/piying/v20-head-lift-phone-20261019/run-0d69eb9e
 FIRST_SHA='2ff83781741b200fe393edf3681c971fce2fb71a660bb3b896894e02ddc8d333'
 INTERVAL=.04
 FRAME_COUNT=151
+LARGER_SCHEMA='attended-other-axes-40us-v2'
+LARGER_ORDER=(3,6,1,2,4,5,7,9,10)
+LARGER_BOARD='/run/media/mmcblk0p2/piying/other-axes-40us-20261019'
+LARGER_LOG='/run/media/mmcblk0p2/piying/other-axes-check-20261019/axis-6-e70459d1760d405c9a988cbb2a285f1e.board.jsonl'
+LARGER_SHA='3bbc14d593a1c7654536a886616e2efb2f0f8713be2581c466fde73dd269a401'
 
 
-def route(channel):
+def profile(larger=False):
+    if larger:
+        return dict(schema=LARGER_SCHEMA,order=LARGER_ORDER,board=LARGER_BOARD,first_log=LARGER_LOG,
+                    first_sha=LARGER_SHA,start_sequence=2648,frames=226,amplitude=40,ramp_s=3,hold_s=2,deadline_s=12)
+    return dict(schema=SCHEMA,order=ORDER,board=BOARD,first_log=FIRST_LOG,first_sha=FIRST_SHA,
+                start_sequence=1280,frames=FRAME_COUNT,amplitude=24,ramp_s=2,hold_s=1,deadline_s=9)
+
+
+def route(channel,larger=False):
     if type(channel) is not int or channel not in ORDER:
         raise ValueError('Only the requested other axes are allowed')
-    frames=[]
-    for index in range(FRAME_COUNT):
+    cfg=profile(larger);ramp=cfg['ramp_s'];turn=ramp+cfg['hold_s'];frames=[]
+    for index in range(cfg['frames']):
         t=index*INTERVAL
-        u=.5-.5*math.cos(math.pi*min(t,2)/2) if t<=3 else .5+.5*math.cos(math.pi*min(t-3,2)/2)
+        u=.5-.5*math.cos(math.pi*min(t,ramp)/ramp) if t<=turn else .5+.5*math.cos(math.pi*min(t-turn,ramp)/ramp)
         q=MIDPOINT[:]
-        q[channel-1]+=(-1 if channel==10 else 1)*int(math.floor(24*u+.5))
+        q[channel-1]+=(-1 if channel==10 else 1)*int(math.floor(cfg['amplitude']*u+.5))
         frames.append(validate_pulses(q))
     return frames
 
@@ -44,11 +57,16 @@ def validate_plan(p):
     keys={'schema','session_id','new_request_id','boot_id','channel','expected_sequence',
           'expected_pulse_us','route_sha256','prior_log_path','prior_log_sha256',
           'camera_required','onsite_observer','new_hardware_request','mechanism_visible'}
-    if not isinstance(p,dict) or set(p)!=keys or p['schema']!=SCHEMA:
+    if isinstance(p,dict) and p.get('schema')==LARGER_SCHEMA:
+        keys=keys|{'larger_amplitude_acknowledged'}
+    if not isinstance(p,dict) or set(p)!=keys or p['schema'] not in (SCHEMA,LARGER_SCHEMA):
         raise ValueError('Dedicated one-axis diagnostic plan required')
-    channel=p['channel']; frames=route(channel);index=ORDER.index(channel)
+    larger=p['schema']==LARGER_SCHEMA;cfg=profile(larger)
+    if larger and p['larger_amplitude_acknowledged'] is not True:
+        raise ValueError('Explicit request for the 40us check required')
+    channel=p['channel'];frames=route(channel,larger);index=cfg['order'].index(channel)
     if (p['boot_id']!=BOOT or type(p['expected_sequence']) is not int
-            or p['expected_sequence']!=1280+index*(FRAME_COUNT+1)
+            or p['expected_sequence']!=cfg['start_sequence']+index*(cfg['frames']+1)
             or p['expected_pulse_us']!=MIDPOINT or p['route_sha256']!=digest(frames)
             or any(p[k] is not True for k in ('camera_required','onsite_observer','new_hardware_request','mechanism_visible'))):
         raise ValueError('Inspected source, exact route and active observation required')
@@ -57,9 +75,9 @@ def validate_plan(p):
     if not isinstance(p['prior_log_sha256'],str) or not re.fullmatch('[a-f0-9]{64}',p['prior_log_sha256']):
         raise ValueError('Source hash required')
     if index==0:
-        if p['prior_log_path']!=FIRST_LOG or p['prior_log_sha256']!=FIRST_SHA:
-            raise ValueError('Original OFF1280 evidence required')
-    elif not re.fullmatch(re.escape(BOARD+'/axis-'+str(ORDER[index-1])+'-')+'[a-f0-9]{32}\\.board\\.jsonl',p['prior_log_path']):
+        if p['prior_log_path']!=cfg['first_log'] or p['prior_log_sha256']!=cfg['first_sha']:
+            raise ValueError('Original completed evidence required')
+    elif not re.fullmatch(re.escape(cfg['board']+'/axis-'+str(cfg['order'][index-1])+'-')+'[a-f0-9]{32}\\.board\\.jsonl',p['prior_log_path']):
         raise ValueError('Previous completed single-axis log required')
 
 
@@ -72,14 +90,14 @@ def validate_prior(p,raw):
             or state['enabled_mask'] or state['pending'] or state['faults']
             or state['sequence']!=p['expected_sequence'] or state['pulse_us']!=MIDPOINT):
         raise ValueError('Prior route did not finish at the inspected OFF reference')
-    index=ORDER.index(p['channel'])
+    larger=p['schema']==LARGER_SCHEMA;cfg=profile(larger);index=cfg['order'].index(p['channel'])
     if index:
-        previous=ORDER[index-1];expected=route(previous)
+        previous=cfg['order'][index-1];expected=route(previous,larger)
         frames=[x for x in rows if x['event']=='frame']
-        if (last.get('channel')!=previous or len(frames)!=FRAME_COUNT
+        if (last.get('channel')!=previous or len(frames)!=cfg['frames']
                 or any(x['state']['pulse_us']!=q or x['state']['enabled_mask']!=1<<(previous-1)
                     or not x['state']['armed'] or x['state']['faults'] or x['state']['pending']
-                    or x['state']['sequence']!=1281+(index-1)*(FRAME_COUNT+1)+j
+                    or x['state']['sequence']!=cfg['start_sequence']+1+(index-1)*(cfg['frames']+1)+j
                     for j,(x,q) in enumerate(zip(frames,expected)))):
             raise ValueError('Previous axis route incomplete or different')
 
@@ -94,13 +112,14 @@ class OtherAxesDevice(FirstDirectionDevice):
         self.plan=json.loads(json.dumps(plan));self.host=host;self.clock=clock
         self.used_path=Path(used_path);self.cancel=Path(cancel_path);self.hashes=self.lock_hashes()
         self.sequence=plan['expected_sequence'];self.pulses=MIDPOINT[:]
-        self.frames=route(plan['channel']);self.target_mask=1<<(plan['channel']-1)
+        self.profile=profile(plan['schema']==LARGER_SCHEMA)
+        self.frames=route(plan['channel'],plan['schema']==LARGER_SCHEMA);self.target_mask=1<<(plan['channel']-1)
         self.mask=self.index=0;self.inside=self.started=self.failed=False
         self.last_issue=self.deadline=None
         self.check()
 
     def begin(self):
-        super().begin();self.deadline=self.clock()+9
+        super().begin();self.deadline=self.clock()+self.profile['deadline_s']
 
     def commit(self,pulses,mask,allow_arm=False):
         self.check()
@@ -145,7 +164,8 @@ def main():
     parser.add_argument('plan',type=Path);parser.add_argument('--execute-one-axis-check',action='store_true')
     args=parser.parse_args();plan=json.loads(args.plan.read_text());validate_plan(plan)
     if not args.execute_one_axis_check:
-        print(json.dumps(dict(dry_run=True,channel=plan['channel'],frames=FRAME_COUNT,route_sha256=digest(route(plan['channel'])))));return
+        frames=route(plan['channel'],plan['schema']==LARGER_SCHEMA)
+        print(json.dumps(dict(dry_run=True,channel=plan['channel'],frames=len(frames),route_sha256=digest(frames))));return
     validate_prior(plan,Path(plan['prior_log_path']).read_bytes())
     def interrupt(signum,frame):raise KeyboardInterrupt()
     signal.signal(signal.SIGINT,interrupt);signal.signal(signal.SIGTERM,interrupt)

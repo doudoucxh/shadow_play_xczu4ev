@@ -13,7 +13,7 @@ import uuid
 ROOT=Path(__file__).resolve().parents[2]
 CAL=ROOT/'shadow_play/integrations/calibration'
 sys.path.insert(0,str(CAL))
-from other_axes_check import BOARD,BOOT,ORDER,SCHEMA,route,validate_plan
+from other_axes_check import BOARD,BOOT,ORDER,SCHEMA,route,validate_plan,profile
 from v20_first_direction import IMAGE,MIDPOINT,PREFIX,digest
 from run_v20_first_direction import parse_event,valid_reference
 from run_v20_head_lift import PhoneCamera
@@ -24,17 +24,22 @@ FILES=('other_axes_check.py','initial_pose_model.py','v20_first_direction.py','s
 WORK=ROOT/'.review_work/v20-other-axes-20261019'
 
 
-def prior_reference(channel):
-    index=ORDER.index(channel)
+def prior_reference(channel,larger=False):
+    cfg=profile(larger);index=cfg['order'].index(channel)
+    work=ROOT/'.review_work/other-axes-40us-20261019' if larger else WORK
     if index==0:
+        if larger:
+            previous=json.loads((ROOT/'shadow_play/config/other_axes_check_result_20261019.json').read_text(encoding='utf-8'))
+            return dict(route_complete=previous['all_other_axes_checked'],state=previous['state'],boot_id=previous['boot_id'],
+                        source_log_path=previous['checks'][-1]['board_log'],board_log_sha256=previous['checks'][-1]['sha256'])
         return json.loads((ROOT/'shadow_play/config/v20_phone_recheck_result_20261019.json').read_text(encoding='utf-8'))
-    result=json.loads((WORK/('axis-'+str(ORDER[index-1]))/'result.json').read_text(encoding='utf-8'))
+    result=json.loads((work/('axis-'+str(cfg['order'][index-1]))/'result.json').read_text(encoding='utf-8'))
     return dict(route_complete=result['result']['route_complete'],state=result['result']['state'],
                 boot_id=result['plan']['boot_id'],source_log_path=result['audit']['board_log'],
                 board_log_sha256=result['audit']['board_log_sha256'])
 
 
-def run(channel,output,execute=False,port_name='COM17'):
+def run(channel,output,execute=False,port_name='COM17',larger=False):
     import serial
     if channel not in ORDER:raise ValueError('Axis 8 is outside this request')
     output.mkdir(parents=True,exist_ok=False)
@@ -42,6 +47,7 @@ def run(channel,output,execute=False,port_name='COM17'):
     port=serial.Serial(None,115200,timeout=.05,write_timeout=.5)
     port.dtr=port.rts=False;port.port=port_name;pending=b''
     camera=PhoneCamera();captures=[];lock=threading.Lock()
+    cfg=profile(larger);board=cfg['board'];lib=board+'/integrations/calibration'
     with (output/'serial.jsonl').open('x',encoding='utf-8') as log:
         def record(key,value):
             with lock:
@@ -70,7 +76,7 @@ def run(channel,output,execute=False,port_name='COM17'):
             send('stty -echo\r');time.sleep(.2);port.read_all()
             names=FILES if execute else ('servo_pwm_device.py','mmio32.py','libservo_mmio32.so')
             hashes={n:hashlib.sha256((CAL/n).read_bytes()).hexdigest() for n in names}
-            python("import sys,json,hashlib;from pathlib import Path;p=Path('"+LIB+"');h="+repr(hashes)+
+            python("import sys,json,hashlib;from pathlib import Path;p=Path('"+lib+"');h="+repr(hashes)+
                 ";assert all(hashlib.sha256((p/n).read_bytes()).hexdigest()==v for n,v in h.items());"
                 "sys.path.insert(0,str(p));from servo_pwm_device import Registers,PwmDevice;"
                 "r=Registers();s=PwmDevice(r).status();r.close();"
@@ -80,27 +86,29 @@ def run(channel,output,execute=False,port_name='COM17'):
             (output/'inspection.json').write_text(json.dumps(inspected,indent=2),encoding='utf-8')
             print('READ_ONLY '+json.dumps(inspected),flush=True)
             if not execute:return inspected
-            valid_reference(inspected['state']);previous=prior_reference(channel)
+            valid_reference(inspected['state']);previous=prior_reference(channel,larger)
             if (not previous['route_complete'] or previous['state']['sequence']!=inspected['state']['sequence']
                 or previous['state']['pulse_us']!=MIDPOINT or previous['boot_id']!=BOOT or inspected['boot_id']!=BOOT
                 or inspected['marker'].get('boot_id')!=BOOT or inspected['marker'].get('sha256')!=IMAGE):
                 raise RuntimeError('Current state differs from completed source')
             request=dict(request_id=uuid.uuid4().hex,user_request='Check the other servos, explicitly requested in this chat',
-                         channel=channel,excursion_us=-24 if channel==10 else 24,
+                         channel=channel,excursion_us=(-1 if channel==10 else 1)*cfg['amplitude'],
                          other_nine_disabled=True,camera_source='phone_mechanism')
-            plan=dict(schema=SCHEMA,session_id=uuid.uuid4().hex,new_request_id=request['request_id'],boot_id=BOOT,
+            if larger:request.update(user_request='Slightly larger test amplitude requested; user watching onsite',larger_amplitude_acknowledged=True)
+            plan=dict(schema=cfg['schema'],session_id=uuid.uuid4().hex,new_request_id=request['request_id'],boot_id=BOOT,
                 channel=channel,expected_sequence=inspected['state']['sequence'],expected_pulse_us=MIDPOINT,
-                route_sha256=digest(route(channel)),prior_log_path=previous['source_log_path'],
+                route_sha256=digest(route(channel,larger)),prior_log_path=previous['source_log_path'],
                 prior_log_sha256=previous['board_log_sha256'],camera_required=True,onsite_observer=True,
                 new_hardware_request=True,mechanism_visible=True)
+            if larger:plan['larger_amplitude_acknowledged']=True
             validate_plan(plan)
             captures.append(dict(stage='before',**camera.sample(output/'camera-before.jpg')))
             (output/'plan.json').write_text(json.dumps(plan,indent=2),encoding='utf-8')
-            target=BOARD+'/axis-'+str(channel)+'-'+plan['session_id']+'.json'
+            target=board+'/axis-'+str(channel)+'-'+plan['session_id']+'.json'
             data=base64.b64encode(json.dumps(plan).encode()).decode()
             python("import base64,os;f=open('"+target+"','xb');f.write(base64.b64decode('"+data+"'));f.close();"
-                   "os.execv('/usr/bin/python3',['python3','-u','"+LIB+"/other_axes_check.py','"+target+"','--execute-one-axis-check'])",
-                   prefix='PYTHONPATH='+LIB+' ')
+                   "os.execv('/usr/bin/python3',['python3','-u','"+lib+"/other_axes_check.py','"+target+"','--execute-one-axis-check'])",
+                   prefix='PYTHONPATH='+lib+' ')
             ready=receive(parse_event,8)
             if ready.get('event')!='ready' or ready.get('session_id')!=plan['session_id']:
                 raise RuntimeError('Ready response mismatch')
@@ -146,5 +154,5 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--channel',type=int,choices=ORDER,required=True)
     p.add_argument('--output',type=Path,required=True);p.add_argument('--port',default='COM17')
-    p.add_argument('--execute-checked-axis',action='store_true');a=p.parse_args()
-    run(a.channel,a.output,a.execute_checked_axis,a.port)
+    p.add_argument('--execute-checked-axis',action='store_true');p.add_argument('--larger-amplitude',action='store_true');a=p.parse_args()
+    run(a.channel,a.output,a.execute_checked_axis,a.port,a.larger_amplitude)

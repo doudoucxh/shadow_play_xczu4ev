@@ -12,6 +12,7 @@ from test_servo_commissioning import FakeRegisters
 from test_v20_first_direction import Clock
 from other_axes_check import (OtherAxesDevice,ORDER,BOOT,BOARD,FIRST_LOG,FIRST_SHA,
     SCHEMA,IMAGE,MIDPOINT,FRAME_COUNT,digest,route,run,validate_plan,validate_prior)
+from other_axes_check import LARGER_SCHEMA,LARGER_ORDER,LARGER_BOARD,LARGER_LOG,LARGER_SHA,profile
 
 
 class Tests(unittest.TestCase):
@@ -124,6 +125,46 @@ class Tests(unittest.TestCase):
             else:changed[-1]['route_complete']=False
             raw=encode(changed);p['prior_log_sha256']=hashlib.sha256(raw).hexdigest()
             with self.assertRaises(ValueError):validate_prior(p,raw)
+
+    def larger_plan(self,channel):
+        cfg=profile(True);index=LARGER_ORDER.index(channel);p=self.plan(channel)
+        p.update(schema=LARGER_SCHEMA,larger_amplitude_acknowledged=True,
+                 expected_sequence=2648+index*227,route_sha256=digest(route(channel,True)),
+                 prior_log_path=LARGER_LOG if index==0 else LARGER_BOARD+'/axis-'+str(LARGER_ORDER[index-1])+'-'+'c'*32+'.board.jsonl',
+                 prior_log_sha256=LARGER_SHA if index==0 else 'd'*64)
+        return p
+
+    def test_40us_profile_has_exact_limits_and_new_source_on_each_axis(self):
+        for channel in LARGER_ORDER:
+            self.p=self.larger_plan(channel);self.reg=FakeRegisters();self.clock=Clock()
+            self.reg.values[0x20]=self.p['expected_sequence'];rows=[]
+            run(self.device(used_path=self.path/('large-'+str(channel))),rows.append,sleep=self.clock.sleep)
+            self.assertEqual(len(rows[:-1]),226)
+            self.assertEqual(max(abs(r['state']['pulse_us'][channel-1]-1500) for r in rows[:-1]),40)
+            self.assertLessEqual(max(abs(a[channel-1]-b[channel-1]) for a,b in zip(route(channel,True),route(channel,True)[1:])),1)
+            self.assertEqual(rows[-1]['state']['sequence'],self.p['expected_sequence']+227)
+            self.assertFalse(rows[-1]['state']['armed'])
+
+    def test_40us_requires_new_authorization_and_rejects_old_source(self):
+        p=self.larger_plan(3);validate_plan(p)
+        for key,value in [('larger_amplitude_acknowledged',False),('prior_log_path',FIRST_LOG),
+                          ('prior_log_sha256',FIRST_SHA),('expected_sequence',1280),('route_sha256',digest(route(3)))]:
+            changed=dict(p);changed[key]=value
+            with self.assertRaises(ValueError):validate_plan(changed)
+        self.assertEqual(self.reg.writes,[])
+
+    def test_40us_next_source_cannot_be_a_completed_24us_route(self):
+        self.p=self.larger_plan(3);self.reg.values[0x20]=2648
+        rows=[];run(self.device(),rows.append,sleep=self.clock.sleep)
+        p=self.larger_plan(6);raw=('\n'.join(json.dumps(x) for x in rows)+'\n').encode()
+        p['prior_log_sha256']=hashlib.sha256(raw).hexdigest();validate_prior(p,raw)
+        rows[40]['state']['pulse_us'][2]=1524
+        raw=('\n'.join(json.dumps(x) for x in rows)+'\n').encode();p['prior_log_sha256']=hashlib.sha256(raw).hexdigest()
+        with self.assertRaises(ValueError):validate_prior(p,raw)
+
+    def test_24us_route_digests_remain_identical_to_executed_records(self):
+        record=json.loads((ROOT/'config/other_axes_check_result_20261019.json').read_text(encoding='utf-8'))
+        self.assertTrue(all(digest(route(c['channel']))==c['plan']['route_sha256'] for c in record['checks']))
 
 
 if __name__=='__main__':unittest.main()
