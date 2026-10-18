@@ -1,0 +1,2865 @@
+{
+  "schema": "v20_performance_preparation_v1",
+  "title": "武松打虎 · V20固定轨表演准备",
+  "status": "offline_candidates_prepared_not_executed",
+  "motor_ready": false,
+  "automatic_replay_allowed": false,
+  "camera_use_requested": false,
+  "reference_checkpoint": {
+    "date": "2026-10-18",
+    "status": "operator_midpoint_reference_confirmed_v20_pwm_route_missing",
+    "operator_report": {
+      "all_ten_at_135_degrees": true,
+      "request": "Start physical performance",
+      "camera_use_requested": false,
+      "onsite_observer_and_fixed_rails_confirmed_earlier_in_session": true
+    },
+    "reference_source": "Current onsite midpoint report corroborated by uniform initialization command acknowledgements; not actual shaft-angle feedback",
+    "board": {
+      "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+      "marker_boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+      "image_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+      "uptime_s": "417.18",
+      "runtime_motion_lock": true,
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 2,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null,
+      "service": "attended-initial-pose-v1",
+      "center_hold_seconds": null,
+      "center_remaining_seconds": 0,
+      "group_initialization": true,
+      "hold_mode": "until_stopped",
+      "initial_pose_limits_deg": [
+        [
+          10,
+          260
+        ],
+        [
+          95,
+          260
+        ],
+        [
+          10,
+          260
+        ],
+        [
+          50,
+          170
+        ],
+        [
+          70,
+          260
+        ],
+        [
+          50,
+          170
+        ],
+        [
+          50,
+          190
+        ],
+        [
+          100,
+          190
+        ],
+        [
+          70,
+          200
+        ],
+        [
+          50,
+          170
+        ]
+      ],
+      "output_lost": false
+    },
+    "initialization_evidence": {
+      "path": "shadow_play\\logs\\servo_initial_pose\\serial_20261018_213419_616754.jsonl",
+      "sha256": "d20b4bddf184942090702d27489e721ddfd391af6729cf0839187433b43cdc3a",
+      "latest_successful_initialize": {
+        "sequence": 2,
+        "enabled_mask": 1023,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ]
+      },
+      "subsequently_off": true
+    },
+    "v20": {
+      "action_count": 14,
+      "all_motor_ready_false": true,
+      "all_start_motor_commands_null": true,
+      "calibrated_pwm_route_found": false,
+      "local_measurement_template_filled": false
+    },
+    "performance_executed": false,
+    "motor_commands_sent_this_turn": false,
+    "initialize_sent_this_turn": false,
+    "read_only_and_off_only": true,
+    "incident_locks_removed": false,
+    "camera": {
+      "old_session_expired": true,
+      "probe_before_user_waiver": "Get camera fingerprint: Connect_SSH_GetFingerprintFailed",
+      "fresh_frames_obtained": false,
+      "operations_after_user_waiver": false
+    },
+    "remaining_work": "Establish reachable V20 motor targets and loaded paths for each independent starting pose. Midpoint confirmation does not supply those trajectories."
+  },
+  "audio": {
+    "schema": "task1_audio_v1",
+    "title": "武松打虎8",
+    "source": {
+      "filename": "武松打虎8.wav",
+      "sha256": "8b95f441e7f696213d1f175cb52caa2e07ea05bca4e0e8697e48647b96621ff8",
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "sample_frames": 3377152
+    },
+    "playback": {
+      "asset": "assets/audio/wusong_task1_v20_20261018.mp3",
+      "runtime_filename": "wusong.mp3",
+      "sha256": "19a4cfe500ff555d27bd1b64261955fdddb62f774143ac42cade5c98207fe5fe",
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "decoded_frames": 3675812,
+      "encoding": "libmp3lame 128k; 48000 Hz stereo; metadata removed"
+    },
+    "reference_audio": {
+      "folder": "任务一_V20_固定滑轨独立动作",
+      "path": "source/full_audio.wav",
+      "byte_identical_to_source": true
+    }
+  },
+  "source_folder": "任务一_V20_固定滑轨独立动作",
+  "source_hashes": {
+    "actions.json": "29f4cb3f6468be29fe5bc1a4f5ec61611e51918a46d72d48b4ce6413f84fed9c",
+    "source/full_plan.json": "b33d3239e52a2ee981989d3bc84de18016d486ad3c97265bf9aca2ee1e3367aa",
+    "V20最新动作补充.json": "837abce102c3c7e7866679f3c5f0c7cc82e16553eb0624618d2c8f3d731faa3e",
+    "A01_老虎吼叫与扭动/script.json": "45c621c8400c8981dca2efa2c5619d7b2cf3ca5e861ff359421371182a69aa9d",
+    "A01_老虎吼叫与扭动/trajectory.jsonl": "f381e599e79789ed5e900c747e1329971b3470e0f60e44378aac4f4d317ce0f1",
+    "A02_武松水平换手转身/script.json": "9c93af2d9b545bf3435e1e1a74b3510da3b5770a4c85e96400072837d0f9b112",
+    "A02_武松水平换手转身/trajectory.jsonl": "c4feb92dfc0b6acdad2698a24c2f346a63e55021a6ffacf119b56a7e89ac5f4e",
+    "A03_武松抬手摆姿并停下/script.json": "72624d76402bc1a7e3b1fd74a85aeb1ccaacabe1ab0ff994ef656c44814d3ddd",
+    "A03_武松抬手摆姿并停下/trajectory.jsonl": "63ac2fbe622be6f1198fcd353032938503d12535eeb34249f3015d0791281f6a",
+    "A04_武松说话手势/script.json": "25930bc6418d240a03e13815b4ff02eddceb5349030649c6b36c2aa7ff072ee5",
+    "A04_武松说话手势/trajectory.jsonl": "b304c6932d6786cb65a3ab5ad3e8d75adc889e142ae87efe92f7344453f3cc07",
+    "A05_左手上绕蓄势/script.json": "20d13364ff6d27cffb9784a50f1a568e32a58875954a5e0636aaa1d24f00cade",
+    "A05_左手上绕蓄势/trajectory.jsonl": "02864baa87af08df893f6f99eb9d84d7e04554ee96ecdab08415cdedf6b26df7",
+    "A06_固定站位三连击/script.json": "69d31828e3016947473164f355526eabbf42a1e951b72b69f5eebe0cd200c907",
+    "A06_固定站位三连击/trajectory.jsonl": "5571f0e63f00e0576da62ea94790ee44bfb3883e12212b8eecc6d3c4c2554d45",
+    "A07_竖直提起下放子动作/script.json": "eb0d4eafdab497df9a3a27da9afd177d196f708429a18e492cc55097e992abed",
+    "A07_竖直提起下放子动作/trajectory.jsonl": "b60713e4645c6ec3058a8a9e6dbf56cba6b87f68265f9935fd9c9d649f52db26",
+    "A08_预置骑姿十一击与挣扎衰弱/script.json": "c404fa22439aa1aef31248520a24b1a0f91030f079d021ac28516daa9baebc44",
+    "A08_预置骑姿十一击与挣扎衰弱/trajectory.jsonl": "5d45677533e63d38484a847b3710e94043613cb9429569c053cc63ac895046b8",
+    "A09_老虎死亡低头/script.json": "96f577526f542b808191af2959113d841c4ab1cc4bb3c49c7d50bd1912cde6ce",
+    "A09_老虎死亡低头/trajectory.jsonl": "669565ff70d2d343f12b2cd928357f6db21876d27ed8cc6c41c532fef6a2bb99",
+    "A10_左手就近抓虎尾/script.json": "f2a3b501709af2e2fb83ea0c7dce01acf272ed5a640864314395a344d9d5e5d6",
+    "A10_左手就近抓虎尾/trajectory.jsonl": "81cac353273c1e273eeae921072fd7b61edac797b1f22c8a9485e0c03cb168fc",
+    "A11_右手直拳单练/script.json": "b33d275a701a3dc47098bade23a29ccd8189aae9a0c78680f7563ee3b3890207",
+    "A11_右手直拳单练/trajectory.jsonl": "c056c1fea2649a10a9dc9a4d2ce3ed81de3129531c44765757a160c0578a3edd",
+    "A12_左手下砸单练/script.json": "3109bbd0c1498d71024635d5aa68e12849fff0400e6bbfa72d2f355f8a6c2156",
+    "A12_左手下砸单练/trajectory.jsonl": "b965176249cb157ad51bc1f9457e554c6e413b695ceb11cd2c765cb21a4ae26f",
+    "A13_双手下砸单练/script.json": "cb496a311c803a5d456aaadd35f40b013422b0d31e5b558fc2caf47dc0b21080",
+    "A13_双手下砸单练/trajectory.jsonl": "23159c9906a866cbf69c1e5cbedfd8bff5a908fc821f3939ff6ac81787219a08",
+    "A14_虎头尾受击反应单练/script.json": "1860359a0d2b2cce49bced486425ac5e6b3acd5d80182057e9900edaf0156418",
+    "A14_虎头尾受击反应单练/trajectory.jsonl": "83c810e9720231e121318bde5eb914bf2449793e9cdcb36f8c707ccc29a56cc9"
+  },
+  "rod_channels": {
+    "mapping": {
+      "WH": [
+        3,
+        4
+      ],
+      "WL": [
+        1,
+        2
+      ],
+      "WR": [
+        5,
+        6
+      ],
+      "TH": [
+        7,
+        8
+      ],
+      "TT": [
+        9,
+        10
+      ]
+    },
+    "source": "config/capture.servos.real.template.json",
+    "meaning": "Existing project fixed identities; current attachment identity still to check onsite"
+  },
+  "position_groups": [
+    {
+      "id": "G1",
+      "reference_display_positions": [
+        20,
+        60
+      ],
+      "actual_mm": null,
+      "actions": [
+        "A01",
+        "A02",
+        "A03",
+        "A04"
+      ]
+    },
+    {
+      "id": "G2",
+      "reference_display_positions": [
+        20,
+        37
+      ],
+      "actual_mm": null,
+      "actions": [
+        "A05",
+        "A06",
+        "A11",
+        "A12",
+        "A13",
+        "A14"
+      ]
+    },
+    {
+      "id": "G3",
+      "reference_display_positions": [
+        33,
+        37
+      ],
+      "actual_mm": null,
+      "actions": [
+        "A07",
+        "A08",
+        "A09"
+      ]
+    },
+    {
+      "id": "G4",
+      "reference_display_positions": [
+        60,
+        37
+      ],
+      "actual_mm": null,
+      "actions": [
+        "A10"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "A01",
+      "title": "老虎吼叫与扭动",
+      "description": "TH抬头，TT配合上下摆动和小范围左右摆动；轨固定，身体运动由头尾鱼线带动。",
+      "preview_description": "TH抬头，TT配合上下和小范围横向摆动，带动虎身扭动；两条滑轨保持固定。",
+      "role": "main_independent_scene",
+      "source_audio_range_s": [
+        2.7,
+        9
+      ],
+      "duration_s": 6.3,
+      "position_group": "G1",
+      "start_condition": "先将滑块放到可达静态位置，匹配start_pose并确认五杆层次；播放时两轨不动。",
+      "start_attachment_reference": {
+        "WH": [
+          0.27563,
+          0.671215
+        ],
+        "WL": [
+          0.184079,
+          0.328057
+        ],
+        "WR": [
+          0.32217,
+          0.331627
+        ],
+        "TH": [
+          0.647006,
+          0.358791
+        ],
+        "TT": [
+          0.87125,
+          0.459216
+        ]
+      },
+      "reference_ranges": {
+        "WH": {
+          "x_range": [
+            0.27563,
+            0.27563
+          ],
+          "y_range": [
+            0.671215,
+            0.671215
+          ]
+        },
+        "WL": {
+          "x_range": [
+            0.184079,
+            0.184079
+          ],
+          "y_range": [
+            0.328057,
+            0.328057
+          ]
+        },
+        "WR": {
+          "x_range": [
+            0.32217,
+            0.32217
+          ],
+          "y_range": [
+            0.331627,
+            0.331627
+          ]
+        },
+        "TH": {
+          "x_range": [
+            0.602697,
+            0.691273
+          ],
+          "y_range": [
+            0.329343,
+            0.592365
+          ]
+        },
+        "TT": {
+          "x_range": [
+            0.826983,
+            0.915559
+          ],
+          "y_range": [
+            0.35209,
+            0.548773
+          ]
+        }
+      },
+      "reference_units": "normalized_screen_xy_not_mm_or_PWM",
+      "manual_start_pulse_us": null,
+      "measured_waypoints": null,
+      "onsite_review": null,
+      "motor_ready": false,
+      "events": [],
+      "source_directory": "任务一_V20_固定滑轨独立动作/A01_老虎吼叫与扭动",
+      "reference_frames": 158,
+      "end_policy": "Hold this segment end pose; prepare its next start separately"
+    },
+    {
+      "id": "A02",
+      "title": "武松水平换手转身",
+      "description": "WL先在左侧脖子高度，WR在右侧腰部高度，快速水平换位再换回；不是绕大圆弧。",
+      "preview_description": "WL在脖子高度、WR在腰部高度，快速水平换位再换回；保持固定左右手身份，不改成大圆弧。",
+      "role": "main_independent_scene",
+      "source_audio_range_s": [
+        11.5,
+        14.4
+      ],
+      "duration_s": 2.9000000000000004,
+      "position_group": "G1",
+      "start_condition": "先将滑块放到可达静态位置，匹配start_pose并确认五杆层次；播放时两轨不动。",
+      "start_attachment_reference": {
+        "WH": [
+          0.27563,
+          0.671215
+        ],
+        "WL": [
+          0.15,
+          0.286
+        ],
+        "WR": [
+          0.35,
+          0.286
+        ],
+        "TH": [
+          0.647006,
+          0.357127
+        ],
+        "TT": [
+          0.87125,
+          0.408
+        ]
+      },
+      "reference_ranges": {
+        "WH": {
+          "x_range": [
+            0.22437,
+            0.27563
+          ],
+          "y_range": [
+            0.671215,
+            0.673155
+          ]
+        },
+        "WL": {
+          "x_range": [
+            0.04,
+            0.46
+          ],
+          "y_range": [
+            0.286,
+            0.591
+          ]
+        },
+        "WR": {
+          "x_range": [
+            0.065,
+            0.435
+          ],
+          "y_range": [
+            0.286,
+            0.415
+          ]
+        },
+        "TH": {
+          "x_range": [
+            0.647006,
+            0.647006
+          ],
+          "y_range": [
+            0.357127,
+            0.357127
+          ]
+        },
+        "TT": {
+          "x_range": [
+            0.87125,
+            0.87125
+          ],
+          "y_range": [
+            0.408,
+            0.408
+          ]
+        }
+      },
+      "reference_units": "normalized_screen_xy_not_mm_or_PWM",
+      "manual_start_pulse_us": null,
+      "measured_waypoints": null,
+      "onsite_review": null,
+      "motor_ready": false,
+      "events": [],
+      "source_directory": "任务一_V20_固定滑轨独立动作/A02_武松水平换手转身",
+      "reference_frames": 73,
+      "end_policy": "Hold this segment end pose; prepare its next start separately"
+    },
+    {
+      "id": "A03",
+      "title": "武松抬手摆姿并停下",
+      "description": "保持身体位置，双手各自向外向上展开，锣鼓停时恢复斜垂。肘部被动。",
+      "preview_description": "身体位置保持，双手各自向外上方展开，锣鼓停时恢复自然斜垂；肘部被动，臂长不变。",
+      "role": "main_independent_scene",
+      "source_audio_range_s": [
+        14.4,
+        17.8
+      ],
+      "duration_s": 3.4000000000000004,
+      "position_group": "G1",
+      "start_condition": "先将滑块放到可达静态位置，匹配start_pose并确认五杆层次；播放时两轨不动。",
+      "start_attachment_reference": {
+        "WH": [
+          0.27563,
+          0.671215
+        ],
+        "WL": [
+          0.184079,
+          0.328057
+        ],
+        "WR": [
+          0.32217,
+          0.331627
+        ],
+        "TH": [
+          0.647006,
+          0.357127
+        ],
+        "TT": [
+          0.87125,
+          0.408
+        ]
+      },
+      "reference_ranges": {
+        "WH": {
+          "x_range": [
+            0.27563,
+            0.27563
+          ],
+          "y_range": [
+            0.671215,
+            0.671215
+          ]
+        },
+        "WL": {
+          "x_range": [
+            0.085201,
+            0.184079
+          ],
+          "y_range": [
+            0.328057,
+            0.585357
+          ]
+        },
+        "WR": {
+          "x_range": [
+            0.32217,
+            0.413871
+          ],
+          "y_range": [
+            0.331627,
+            0.578666
+          ]
+        },
+        "TH": {
+          "x_range": [
+            0.647006,
+            0.647006
+          ],
+          "y_range": [
+            0.357127,
+            0.357127
+          ]
+        },
+        "TT": {
+          "x_range": [
+            0.87125,
+            0.87125
+          ],
+          "y_range": [
+            0.408,
+            0.408
+          ]
+        }
+      },
+      "reference_units": "normalized_screen_xy_not_mm_or_PWM",
+      "manual_start_pulse_us": null,
+      "measured_waypoints": null,
+      "onsite_review": null,
+      "motor_ready": false,
+      "events": [],
+      "source_directory": "任务一_V20_固定滑轨独立动作/A03_武松抬手摆姿并停下",
+      "reference_frames": 86,
+      "end_policy": "Hold this segment end pose; prepare its next start separately"
+    },
+    {
+      "id": "A04",
+      "title": "武松说话手势",
+      "description": "双手在各自一侧大幅向外上方摆动，随后回到自然斜垂；不可靠拉长小臂完成。",
+      "preview_description": "双手在各自一侧大幅向外上方做说话手势，再恢复斜垂；不靠拉长前臂扩大幅度。",
+      "role": "main_independent_scene",
+      "source_audio_range_s": [
+        17.8,
+        24.3666667
+      ],
+      "duration_s": 6.566666699999999,
+      "position_group": "G1",
+      "start_condition": "先将滑块放到可达静态位置，匹配start_pose并确认五杆层次；播放时两轨不动。",
+      "start_attachment_reference": {
+        "WH": [
+          0.27563,
+          0.671215
+        ],
+        "WL": [
+          0.184079,
+          0.328057
+        ],
+        "WR": [
+          0.32217,
+          0.331627
+        ],
+        "TH": [
+          0.647006,
+          0.357127
+        ],
+        "TT": [
+          0.87125,
+          0.408
+        ]
+      },
+      "reference_ranges": {
+        "WH": {
+          "x_range": [
+            0.27563,
+            0.27563
+          ],
+          "y_range": [
+            0.671215,
+            0.671215
+          ]
+        },
+        "WL": {
+          "x_range": [
+            0.082374,
+            0.184079
+          ],
+          "y_range": [
+            0.328057,
+            0.605578
+          ]
+        },
+        "WR": {
+          "x_range": [
+            0.32217,
+            0.417642
+          ],
+          "y_range": [
+            0.331627,
+            0.616142
+          ]
+        },
+        "TH": {
+          "x_range": [
+            0.647006,
+            0.647006
+          ],
+          "y_range": [
+            0.357127,
+            0.357127
+          ]
+        },
+        "TT": {
+          "x_range": [
+            0.87125,
+            0.87125
+          ],
+          "y_range": [
+            0.408,
+            0.408
+          ]
+        }
+      },
+      "reference_units": "normalized_screen_xy_not_mm_or_PWM",
+      "manual_start_pulse_us": null,
+      "measured_waypoints": null,
+      "onsite_review": null,
+      "motor_ready": false,
+      "events": [],
+      "source_directory": "任务一_V20_固定滑轨独立动作/A04_武松说话手势",
+      "reference_frames": 165,
+      "end_policy": "Hold this segment end pose; prepare its next start separately"
+    },
+    {
+      "id": "A05",
+      "title": "左手上绕蓄势",
+      "description": "仅练左手从左侧上方到右侧额头附近，右手在低位准备；不含后撤或虎扑。 V18：三连击下砸与骑虎砸头的蓄力手明显外移、高举，远离躯干，不缩在头颈旁。站立时WL向右外上方高举，骑虎时WL向左外上方高举，保持固定杆身份。双手下砸仍左上右下。肘部被动，大小臂长度不变。 V19：站立打斗虎整体提高5个示意单位，使下巴接近武松腰部。P01/P06右手直拳击中下巴，固定预定命中点、水平出拳收拳，不追随虎头的摆动回弹。 每组三连击为右手直拳打下巴、左手向下砸虎头、双手一起砸虎头。两次踢腿以虎身为目标，不必踢头。 V20：武松蓄势时右手向身体右外侧伸展，低位外展，不缩在腰间。保持前臂及大臂原长，不靠拉长手臂扩大幅度。 所有下砸均用外展大圆弧：站立左手、双手下砸沿右外侧圆弧高举后砸头；骑虎左手沿左外侧圆弧砸头。手离身体更远，尽量沿可达外缘运动，再向命中点收拢。双手左上右下；肘仍是鱼线悬吊的被动关节。 右手直拳仍水平击打下巴；骑虎右手仍抓虎头。全部攻击时间、原音频、原剧本字段保留。V20补充优先于冲突旧描述。示意轨迹须经双摄像头和实机可达性/鱼线避让标定，不直接输出PWM。",
+      "preview_description": "站立左手沿身体右外侧大圆弧高举蓄势，离开头颈；右手向身体右外侧低位伸展。肘部被动，臂长不变。",
+      "role": "main_independent_scene",
+      "source_audio_range_s": [
+        33.3666893,
+        36.3666893
+      ],
+      "duration_s": 3.0,
+      "position_group": "G2",
+      "start_condition": "先将滑块放到可达静态位置，匹配start_pose并确认五杆层次；播放时两轨不动。",
+      "start_attachment_reference": {
+        "WH": [
+          0.27563,
+          0.671215
+        ],
+        "WL": [
+          0.184079,
+          0.328057
+        ],
+        "WR": [
+          0.37438,
+          0.402678
+        ],
+        "TH": [
+          0.359506,
+          0.357128
+        ],
+        "TT": [
+          0.58375,
+          0.408
+        ]
+      },
+      "reference_ranges": {
+        "WH": {
+          "x_range": [
+            0.27563,
+            0.27563
+          ],
+          "y_range": [
+            0.671215,
+            0.671215
+          ]
+        },
+        "WL": {
+          "x_range": [
+            0.080351,
+            0.377238
+          ],
+          "y_range": [
+            0.328057,
+            0.844949
+          ]
+        },
+        "WR": {
+          "x_range": [
+            0.37438,
+            0.37438
+          ],
+          "y_range": [
+            0.402678,
+            0.402678
+          ]
+        },
+        "TH": {
+          "x_range": [
+            0.3396,
+            0.377369
+          ],
+          "y_range": [
+            0.357128,
+            0.498944
+          ]
+        },
+        "TT": {
+          "x_range": [
+            0.565887,
+            0.603656
+          ],
+          "y_range": [
+            0.408,
+            0.554997
+          ]
+        }
+      },
+      "reference_units": "normalized_screen_xy_not_mm_or_PWM",
+      "manual_start_pulse_us": null,
+      "measured_waypoints": null,
+      "onsite_review": null,
+      "motor_ready": false,
+      "events": [],
+      "source_directory": "任务一_V20_固定滑轨独立动作/A05_左手上绕蓄势",
+      "reference_frames": 75,
+      "end_policy": "Hold this segment end pose; prepare its next start separately"
+    },
+    {
+      "id": "A06",
+      "title": "固定站位三连击",
+      "description": "事先站到相互可达位置。右手直拳、左手下砸、双手上抬后同砸；双手邻近左上右下。虎轨固定，虎头受击回缩由杆端完成。 V18：三连击下砸与骑虎砸头的蓄力手明显外移、高举，远离躯干，不缩在头颈旁。站立时WL向右外上方高举，骑虎时WL向左外上方高举，保持固定杆身份。双手下砸仍左上右下。肘部被动，大小臂长度不变。 V19：站立打斗虎整体提高5个示意单位，使下巴接近武松腰部。P01/P06右手直拳击中下巴，固定预定命中点、水平出拳收拳，不追随虎头的摆动回弹。 每组三连击为右手直拳打下巴、左手向下砸虎头、双手一起砸虎头。两次踢腿以虎身为目标，不必踢头。 V20：武松蓄势时右手向身体右外侧伸展，低位外展，不缩在腰间。保持前臂及大臂原长，不靠拉长手臂扩大幅度。 所有下砸均用外展大圆弧：站立左手、双手下砸沿右外侧圆弧高举后砸头；骑虎左手沿左外侧圆弧砸头。手离身体更远，尽量沿可达外缘运动，再向命中点收拢。双手左上右下；肘仍是鱼线悬吊的被动关节。 右手直拳仍水平击打下巴；骑虎右手仍抓虎头。全部攻击时间、原音频、原剧本字段保留。V20补充优先于冲突旧描述。示意轨迹须经双摄像头和实机可达性/鱼线避让标定，不直接输出PWM。",
+      "preview_description": "固定站位三连击：右手水平直拳打下巴，左手沿右外侧大圆弧砸虎头，再双手沿右外侧上绕后同砸，左上右下。",
+      "role": "main_independent_scene",
+      "source_audio_range_s": [
+        43.4,
+        46.3666893
+      ],
+      "duration_s": 2.9666892999999988,
+      "position_group": "G2",
+      "start_condition": "先将滑块放到可达静态位置，匹配start_pose并确认五杆层次；播放时两轨不动。",
+      "start_attachment_reference": {
+        "WH": [
+          0.27563,
+          0.625215
+        ],
+        "WL": [
+          0.377422,
+          0.700098
+        ],
+        "WR": [
+          0.37438,
+          0.356678
+        ],
+        "TH": [
+          0.36608,
+          0.603192
+        ],
+        "TT": [
+          0.58375,
+          0.508
+        ]
+      },
+      "reference_ranges": {
+        "WH": {
+          "x_range": [
+            0.27563,
+            0.27563
+          ],
+          "y_range": [
+            0.625215,
+            0.625215
+          ]
+        },
+        "WL": {
+          "x_range": [
+            0.294819,
+            0.417155
+          ],
+          "y_range": [
+            0.433047,
+            0.700098
+          ]
+        },
+        "WR": {
+          "x_range": [
+            0.212238,
+            0.421137
+          ],
+          "y_range": [
+            0.351603,
+            0.65512
+          ]
+        },
+        "TH": {
+          "x_range": [
+            0.350953,
+            0.407596
+          ],
+          "y_range": [
+            0.389768,
+            0.603192
+          ]
+        },
+        "TT": {
+          "x_range": [
+            0.57515,
+            0.606683
+          ],
+          "y_range": [
+            0.497124,
+            0.56944
+          ]
+        }
+      },
+      "reference_units": "normalized_screen_xy_not_mm_or_PWM",
+      "manual_start_pulse_us": null,
+      "measured_waypoints": null,
+      "onsite_review": null,
+      "motor_ready": false,
+      "events": [
+        {
+          "id": "P01",
+          "source_time_s": 44.34668934240363,
+          "local_time_s": 0.94668934240363
+        },
+        {
+          "id": "P02",
+          "source_time_s": 45.17668934240363,
+          "local_time_s": 1.7766893424036283
+        },
+        {
+          "id": "P03",
+          "source_time_s": 45.966689342403626,
+          "local_time_s": 2.5666893424036274
+        }
+      ],
+      "source_directory": "任务一_V20_固定滑轨独立动作/A06_固定站位三连击",
+      "reference_frames": 75,
+      "end_policy": "Hold this segment end pose; prepare its next start separately"
+    },
+    {
+      "id": "A07",
+      "title": "竖直提起下放子动作",
+      "description": "两轨固定，仅WH上提下放，两手同步跟随；不含横向上虎背或完整转移。",
+      "preview_description": "仅练额头点竖直提起下放，双手跟随；不包含横向跳上虎背，两轨固定。",
+      "role": "main_independent_scene",
+      "source_audio_range_s": [
+        50.7166893,
+        52.1866893
+      ],
+      "duration_s": 1.4699999999999989,
+      "position_group": "G3",
+      "start_condition": "先将滑块放到可达静态位置，匹配start_pose并确认五杆层次；播放时两轨不动。",
+      "start_attachment_reference": {
+        "WH": [
+          0.43813,
+          0.671215
+        ],
+        "WL": [
+          0.346579,
+          0.328057
+        ],
+        "WR": [
+          0.48467,
+          0.331627
+        ],
+        "TH": [
+          0.368055,
+          0.45702
+        ],
+        "TT": [
+          0.575201,
+          0.498222
+        ]
+      },
+      "reference_ranges": {
+        "WH": {
+          "x_range": [
+            0.43813,
+            0.43813
+          ],
+          "y_range": [
+            0.671215,
+            0.831133
+          ]
+        },
+        "WL": {
+          "x_range": [
+            0.346579,
+            0.346579
+          ],
+          "y_range": [
+            0.328057,
+            0.487975
+          ]
+        },
+        "WR": {
+          "x_range": [
+            0.48467,
+            0.48467
+          ],
+          "y_range": [
+            0.331627,
+            0.491545
+          ]
+        },
+        "TH": {
+          "x_range": [
+            0.332632,
+            0.386273
+          ],
+          "y_range": [
+            0.349094,
+            0.45702
+          ]
+        },
+        "TT": {
+          "x_range": [
+            0.556983,
+            0.610624
+          ],
+          "y_range": [
+            0.399299,
+            0.516067
+          ]
+        }
+      },
+      "reference_units": "normalized_screen_xy_not_mm_or_PWM",
+      "manual_start_pulse_us": null,
+      "measured_waypoints": null,
+      "onsite_review": null,
+      "motor_ready": false,
+      "events": [],
+      "source_directory": "任务一_V20_固定滑轨独立动作/A07_竖直提起下放子动作",
+      "reference_frames": 37,
+      "end_policy": "Hold this segment end pose; prepare its next start separately"
+    },
+    {
+      "id": "A08",
+      "title": "预置骑姿十一击与挣扎衰弱",
+      "description": "先静态摆成骑虎姿态；WR按虎头、WL连续11击，WH每击轻微左移；虎头尾挣扎从大到小，轨保持不动。末击恢复可在音频结束后保持观察。 V18：三连击下砸与骑虎砸头的蓄力手明显外移、高举，远离躯干，不缩在头颈旁。站立时WL向右外上方高举，骑虎时WL向左外上方高举，保持固定杆身份。双手下砸仍左上右下。肘部被动，大小臂长度不变。 V19：骑虎时右手抓虎头，左手从身体外侧沿大幅圆弧高举蓄力，绕圆砸向虎头，沿外侧回收。保持共同肩点与原大小臂长度；肘被动下垂。不是要求电机整圈旋转。 V20：武松蓄势时右手向身体右外侧伸展，低位外展，不缩在腰间。保持前臂及大臂原长，不靠拉长手臂扩大幅度。 所有下砸均用外展大圆弧：站立左手、双手下砸沿右外侧圆弧高举后砸头；骑虎左手沿左外侧圆弧砸头。手离身体更远，尽量沿可达外缘运动，再向命中点收拢。双手左上右下；肘仍是鱼线悬吊的被动关节。 右手直拳仍水平击打下巴；骑虎右手仍抓虎头。全部攻击时间、原音频、原剧本字段保留。V20补充优先于冲突旧描述。示意轨迹须经双摄像头和实机可达性/鱼线避让标定，不直接输出PWM。",
+      "preview_description": "先摆好骑姿。右手抓虎头，左手沿身体左外侧大圆弧高举、砸头、外侧回收，共11击；虎头尾挣扎逐渐衰弱。",
+      "role": "main_independent_scene",
+      "source_audio_range_s": [
+        52.1866893,
+        61.0766893
+      ],
+      "duration_s": 8.89,
+      "position_group": "G3",
+      "start_condition": "先将滑块放到可达静态位置，匹配start_pose并确认五杆层次；播放时两轨不动。",
+      "start_attachment_reference": {
+        "WH": [
+          0.38687,
+          0.651215
+        ],
+        "WL": [
+          0.29434,
+          0.737666
+        ],
+        "WR": [
+          0.394538,
+          0.388411
+        ],
+        "TH": [
+          0.354358,
+          0.372569
+        ],
+        "TT": [
+          0.588898,
+          0.439165
+        ]
+      },
+      "reference_ranges": {
+        "WH": {
+          "x_range": [
+            0.383034,
+            0.38687
+          ],
+          "y_range": [
+            0.602098,
+            0.651215
+          ]
+        },
+        "WL": {
+          "x_range": [
+            0.245264,
+            0.405232
+          ],
+          "y_range": [
+            0.294246,
+            0.737666
+          ]
+        },
+        "WR": {
+          "x_range": [
+            0.350146,
+            0.440237
+          ],
+          "y_range": [
+            0.282441,
+            0.421832
+          ]
+        },
+        "TH": {
+          "x_range": [
+            0.307846,
+            0.431625
+          ],
+          "y_range": [
+            0.2607,
+            0.396061
+          ]
+        },
+        "TT": {
+          "x_range": [
+            0.535369,
+            0.636527
+          ],
+          "y_range": [
+            0.158194,
+            0.494867
+          ]
+        }
+      },
+      "reference_units": "normalized_screen_xy_not_mm_or_PWM",
+      "manual_start_pulse_us": null,
+      "measured_waypoints": null,
+      "onsite_review": null,
+      "motor_ready": false,
+      "events": [
+        {
+          "id": "P09",
+          "source_time_s": 52.796689342403624,
+          "local_time_s": 0.6100000424036267
+        },
+        {
+          "id": "P10",
+          "source_time_s": 53.36668934240363,
+          "local_time_s": 1.180000042403634
+        },
+        {
+          "id": "P11",
+          "source_time_s": 54.26668934240362,
+          "local_time_s": 2.0800000424036256
+        },
+        {
+          "id": "P12",
+          "source_time_s": 55.296689342403624,
+          "local_time_s": 3.1100000424036267
+        },
+        {
+          "id": "P13",
+          "source_time_s": 56.08668934240363,
+          "local_time_s": 3.900000042403633
+        },
+        {
+          "id": "P15",
+          "source_time_s": 56.76668934240362,
+          "local_time_s": 4.580000042403626
+        },
+        {
+          "id": "P14",
+          "source_time_s": 57.31668934240362,
+          "local_time_s": 5.130000042403623
+        },
+        {
+          "id": "P16",
+          "source_time_s": 57.95668934240362,
+          "local_time_s": 5.770000042403623
+        },
+        {
+          "id": "P17",
+          "source_time_s": 59.27668934240363,
+          "local_time_s": 7.090000042403631
+        },
+        {
+          "id": "P18",
+          "source_time_s": 60.09668934240362,
+          "local_time_s": 7.910000042403624
+        },
+        {
+          "id": "P19",
+          "source_time_s": 61.01668934240362,
+          "local_time_s": 8.830000042403626
+        }
+      ],
+      "source_directory": "任务一_V20_固定滑轨独立动作/A08_预置骑姿十一击与挣扎衰弱",
+      "reference_frames": 223,
+      "end_policy": "Hold this segment end pose; prepare its next start separately"
+    },
+    {
+      "id": "A09",
+      "title": "老虎死亡低头",
+      "description": "TH逐渐降低，头和前身下沉，TT不再主动摆动；武松隐藏，仅观察虎头尾。",
+      "preview_description": "虎头逐渐低下，头与前身下沉，尾末不再主动摆动；本段只练虎头尾的死亡收势。",
+      "role": "main_independent_scene",
+      "source_audio_range_s": [
+        61.3,
+        63.2
+      ],
+      "duration_s": 1.9000000000000057,
+      "position_group": "G3",
+      "start_condition": "先将滑块放到可达静态位置，匹配start_pose并确认五杆层次；播放时两轨不动。",
+      "start_attachment_reference": {
+        "WH": [
+          0.38687,
+          0.606524
+        ],
+        "WL": [
+          0.300199,
+          0.581853
+        ],
+        "WR": [
+          0.386343,
+          0.237455
+        ],
+        "TH": [
+          0.352932,
+          0.264441
+        ],
+        "TT": [
+          0.58375,
+          0.158
+        ]
+      },
+      "reference_ranges": {
+        "WH": {
+          "x_range": [
+            0.38687,
+            0.43813
+          ],
+          "y_range": [
+            0.606524,
+            0.750051
+          ]
+        },
+        "WL": {
+          "x_range": [
+            0.2025,
+            0.420603
+          ],
+          "y_range": [
+            0.286,
+            0.591
+          ]
+        },
+        "WR": {
+          "x_range": [
+            0.386343,
+            0.5975
+          ],
+          "y_range": [
+            0.237455,
+            0.415101
+          ]
+        },
+        "TH": {
+          "x_range": [
+            0.352932,
+            0.352932
+          ],
+          "y_range": [
+            0.205063,
+            0.264441
+          ]
+        },
+        "TT": {
+          "x_range": [
+            0.58375,
+            0.58375
+          ],
+          "y_range": [
+            0.158,
+            0.158
+          ]
+        }
+      },
+      "reference_units": "normalized_screen_xy_not_mm_or_PWM",
+      "manual_start_pulse_us": null,
+      "measured_waypoints": null,
+      "onsite_review": null,
+      "motor_ready": false,
+      "events": [],
+      "source_directory": "任务一_V20_固定滑轨独立动作/A09_老虎死亡低头",
+      "reference_frames": 48,
+      "end_policy": "Hold this segment end pose; prepare its next start separately"
+    },
+    {
+      "id": "A10",
+      "title": "左手就近抓虎尾",
+      "description": "预先把武松放到虎尾右侧，WL在身体左侧直接找尾末，抓住后保持。轨固定，不做拖行。 V20：最后拖虎由左手在人物左侧远处抓虎尾，手臂向左外侧斜伸，不能贴腰。人物与尾末拉开明显距离后保持外展姿势同步右行；虎尾配合抬起以保持悬线张力。示意中手与躯干水平相隔约13个显示单位，非实测厘米，实际行程及避让须标定。",
+      "preview_description": "预先靠近虎尾，左手向人物左侧远处斜伸抓住尾末并保持外展；本固定轨片段不包含拖行。",
+      "role": "main_independent_scene",
+      "source_audio_range_s": [
+        65.5,
+        67.0
+      ],
+      "duration_s": 1.5,
+      "position_group": "G4",
+      "start_condition": "先将滑块放到可达静态位置，匹配start_pose并确认五杆层次；播放时两轨不动。",
+      "start_attachment_reference": {
+        "WH": [
+          0.77563,
+          0.615215
+        ],
+        "WL": [
+          0.684079,
+          0.272057
+        ],
+        "WR": [
+          0.82217,
+          0.275627
+        ],
+        "TH": [
+          0.352932,
+          0.205063
+        ],
+        "TT": [
+          0.58375,
+          0.158
+        ]
+      },
+      "reference_ranges": {
+        "WH": {
+          "x_range": [
+            0.77563,
+            0.77563
+          ],
+          "y_range": [
+            0.615215,
+            0.615215
+          ]
+        },
+        "WL": {
+          "x_range": [
+            0.626628,
+            0.684079
+          ],
+          "y_range": [
+            0.27184,
+            0.345677
+          ]
+        },
+        "WR": {
+          "x_range": [
+            0.82217,
+            0.82217
+          ],
+          "y_range": [
+            0.275627,
+            0.275627
+          ]
+        },
+        "TH": {
+          "x_range": [
+            0.352932,
+            0.352932
+          ],
+          "y_range": [
+            0.205063,
+            0.205063
+          ]
+        },
+        "TT": {
+          "x_range": [
+            0.58375,
+            0.58375
+          ],
+          "y_range": [
+            0.158,
+            0.338
+          ]
+        }
+      },
+      "reference_units": "normalized_screen_xy_not_mm_or_PWM",
+      "manual_start_pulse_us": null,
+      "measured_waypoints": null,
+      "onsite_review": null,
+      "motor_ready": false,
+      "events": [],
+      "source_directory": "任务一_V20_固定滑轨独立动作/A10_左手就近抓虎尾",
+      "reference_frames": 38,
+      "end_policy": "Hold this segment end pose; prepare its next start separately"
+    },
+    {
+      "id": "A11",
+      "title": "右手直拳单练",
+      "description": "右手朝虎头水平伸出并收回，WL保持额头附近蓄势；对应P01。 V18：三连击下砸与骑虎砸头的蓄力手明显外移、高举，远离躯干，不缩在头颈旁。站立时WL向右外上方高举，骑虎时WL向左外上方高举，保持固定杆身份。双手下砸仍左上右下。肘部被动，大小臂长度不变。 右手直拳先向低位后方拉开，再向虎头水平伸出；增加出拳行程，保持原命中时间。 V19：站立打斗虎整体提高5个示意单位，使下巴接近武松腰部。P01/P06右手直拳击中下巴，固定预定命中点、水平出拳收拳，不追随虎头的摆动回弹。 每组三连击为右手直拳打下巴、左手向下砸虎头、双手一起砸虎头。两次踢腿以虎身为目标，不必踢头。 V20：武松蓄势时右手向身体右外侧伸展，低位外展，不缩在腰间。保持前臂及大臂原长，不靠拉长手臂扩大幅度。 所有下砸均用外展大圆弧：站立左手、双手下砸沿右外侧圆弧高举后砸头；骑虎左手沿左外侧圆弧砸头。手离身体更远，尽量沿可达外缘运动，再向命中点收拢。双手左上右下；肘仍是鱼线悬吊的被动关节。 右手直拳仍水平击打下巴；骑虎右手仍抓虎头。全部攻击时间、原音频、原剧本字段保留。V20补充优先于冲突旧描述。示意轨迹须经双摄像头和实机可达性/鱼线避让标定，不直接输出PWM。",
+      "preview_description": "右手先向低位后方拉开，再水平伸出击打预定下巴点并收回；左手保持上方蓄势。对应P01单练。",
+      "role": "component_drill_not_an_extra_scene",
+      "source_audio_range_s": [
+        43.7,
+        44.8
+      ],
+      "duration_s": 1.0999999999999943,
+      "position_group": "G2",
+      "start_condition": "先将滑块放到可达静态位置，匹配start_pose并确认五杆层次；播放时两轨不动。",
+      "start_attachment_reference": {
+        "WH": [
+          0.27563,
+          0.625215
+        ],
+        "WL": [
+          0.377422,
+          0.700098
+        ],
+        "WR": [
+          0.37438,
+          0.356678
+        ],
+        "TH": [
+          0.36608,
+          0.603192
+        ],
+        "TT": [
+          0.58375,
+          0.508
+        ]
+      },
+      "reference_ranges": {
+        "WH": {
+          "x_range": [
+            0.27563,
+            0.27563
+          ],
+          "y_range": [
+            0.625215,
+            0.625215
+          ]
+        },
+        "WL": {
+          "x_range": [
+            0.377422,
+            0.377422
+          ],
+          "y_range": [
+            0.700098,
+            0.700098
+          ]
+        },
+        "WR": {
+          "x_range": [
+            0.212238,
+            0.37438
+          ],
+          "y_range": [
+            0.351603,
+            0.391747
+          ]
+        },
+        "TH": {
+          "x_range": [
+            0.359506,
+            0.399346
+          ],
+          "y_range": [
+            0.451035,
+            0.603192
+          ]
+        },
+        "TT": {
+          "x_range": [
+            0.576345,
+            0.604858
+          ],
+          "y_range": [
+            0.504312,
+            0.566131
+          ]
+        }
+      },
+      "reference_units": "normalized_screen_xy_not_mm_or_PWM",
+      "manual_start_pulse_us": null,
+      "measured_waypoints": null,
+      "onsite_review": null,
+      "motor_ready": false,
+      "events": [
+        {
+          "id": "P01",
+          "source_time_s": 44.34668934240363,
+          "local_time_s": 0.6466893424036257
+        }
+      ],
+      "source_directory": "任务一_V20_固定滑轨独立动作/A11_右手直拳单练",
+      "reference_frames": 28,
+      "end_policy": "Hold this segment end pose; prepare its next start separately"
+    },
+    {
+      "id": "A12",
+      "title": "左手下砸单练",
+      "description": "预置WL在上方，向虎头下砸并恢复；对应P02。 V18：三连击下砸与骑虎砸头的蓄力手明显外移、高举，远离躯干，不缩在头颈旁。站立时WL向右外上方高举，骑虎时WL向左外上方高举，保持固定杆身份。双手下砸仍左上右下。肘部被动，大小臂长度不变。 V19：站立打斗虎整体提高5个示意单位，使下巴接近武松腰部。P01/P06右手直拳击中下巴，固定预定命中点、水平出拳收拳，不追随虎头的摆动回弹。 每组三连击为右手直拳打下巴、左手向下砸虎头、双手一起砸虎头。两次踢腿以虎身为目标，不必踢头。 V20：武松蓄势时右手向身体右外侧伸展，低位外展，不缩在腰间。保持前臂及大臂原长，不靠拉长手臂扩大幅度。 所有下砸均用外展大圆弧：站立左手、双手下砸沿右外侧圆弧高举后砸头；骑虎左手沿左外侧圆弧砸头。手离身体更远，尽量沿可达外缘运动，再向命中点收拢。双手左上右下；肘仍是鱼线悬吊的被动关节。 右手直拳仍水平击打下巴；骑虎右手仍抓虎头。全部攻击时间、原音频、原剧本字段保留。V20补充优先于冲突旧描述。示意轨迹须经双摄像头和实机可达性/鱼线避让标定，不直接输出PWM。",
+      "preview_description": "左手沿身体右外侧大圆弧高举后砸虎头，再沿外侧回收；臂长不变，肘部被动。对应P02单练。",
+      "role": "component_drill_not_an_extra_scene",
+      "source_audio_range_s": [
+        44.8,
+        45.55
+      ],
+      "duration_s": 0.75,
+      "position_group": "G2",
+      "start_condition": "先将滑块放到可达静态位置，匹配start_pose并确认五杆层次；播放时两轨不动。",
+      "start_attachment_reference": {
+        "WH": [
+          0.27563,
+          0.625215
+        ],
+        "WL": [
+          0.377422,
+          0.700098
+        ],
+        "WR": [
+          0.37438,
+          0.356678
+        ],
+        "TH": [
+          0.367339,
+          0.453732
+        ],
+        "TT": [
+          0.575917,
+          0.513601
+        ]
+      },
+      "reference_ranges": {
+        "WH": {
+          "x_range": [
+            0.27563,
+            0.27563
+          ],
+          "y_range": [
+            0.625215,
+            0.625215
+          ]
+        },
+        "WL": {
+          "x_range": [
+            0.294819,
+            0.417155
+          ],
+          "y_range": [
+            0.433047,
+            0.700098
+          ]
+        },
+        "WR": {
+          "x_range": [
+            0.373911,
+            0.386859
+          ],
+          "y_range": [
+            0.356678,
+            0.499812
+          ]
+        },
+        "TH": {
+          "x_range": [
+            0.350953,
+            0.395809
+          ],
+          "y_range": [
+            0.389768,
+            0.463489
+          ]
+        },
+        "TT": {
+          "x_range": [
+            0.57515,
+            0.606683
+          ],
+          "y_range": [
+            0.497124,
+            0.56222
+          ]
+        }
+      },
+      "reference_units": "normalized_screen_xy_not_mm_or_PWM",
+      "manual_start_pulse_us": null,
+      "measured_waypoints": null,
+      "onsite_review": null,
+      "motor_ready": false,
+      "events": [
+        {
+          "id": "P02",
+          "source_time_s": 45.17668934240363,
+          "local_time_s": 0.3766893424036297
+        }
+      ],
+      "source_directory": "任务一_V20_固定滑轨独立动作/A12_左手下砸单练",
+      "reference_frames": 19,
+      "end_policy": "Hold this segment end pose; prepare its next start separately"
+    },
+    {
+      "id": "A13",
+      "title": "双手下砸单练",
+      "description": "双手预置身体右侧，左上右下抬至额头附近后同砸；对应P03。 V18：三连击下砸与骑虎砸头的蓄力手明显外移、高举，远离躯干，不缩在头颈旁。站立时WL向右外上方高举，骑虎时WL向左外上方高举，保持固定杆身份。双手下砸仍左上右下。肘部被动，大小臂长度不变。 V19：站立打斗虎整体提高5个示意单位，使下巴接近武松腰部。P01/P06右手直拳击中下巴，固定预定命中点、水平出拳收拳，不追随虎头的摆动回弹。 每组三连击为右手直拳打下巴、左手向下砸虎头、双手一起砸虎头。两次踢腿以虎身为目标，不必踢头。 V20：武松蓄势时右手向身体右外侧伸展，低位外展，不缩在腰间。保持前臂及大臂原长，不靠拉长手臂扩大幅度。 所有下砸均用外展大圆弧：站立左手、双手下砸沿右外侧圆弧高举后砸头；骑虎左手沿左外侧圆弧砸头。手离身体更远，尽量沿可达外缘运动，再向命中点收拢。双手左上右下；肘仍是鱼线悬吊的被动关节。 右手直拳仍水平击打下巴；骑虎右手仍抓虎头。全部攻击时间、原音频、原剧本字段保留。V20补充优先于冲突旧描述。示意轨迹须经双摄像头和实机可达性/鱼线避让标定，不直接输出PWM。",
+      "preview_description": "双手沿身体右外侧大圆弧上绕后同时砸头，始终左上右下；臂长不变。对应P03单练。",
+      "role": "component_drill_not_an_extra_scene",
+      "source_audio_range_s": [
+        45.55,
+        46.3666893
+      ],
+      "duration_s": 0.8166893000000002,
+      "position_group": "G2",
+      "start_condition": "先将滑块放到可达静态位置，匹配start_pose并确认五杆层次；播放时两轨不动。",
+      "start_attachment_reference": {
+        "WH": [
+          0.27563,
+          0.625215
+        ],
+        "WL": [
+          0.377422,
+          0.700098
+        ],
+        "WR": [
+          0.391197,
+          0.533214
+        ],
+        "TH": [
+          0.35189,
+          0.450729
+        ],
+        "TT": [
+          0.591366,
+          0.502856
+        ]
+      },
+      "reference_ranges": {
+        "WH": {
+          "x_range": [
+            0.27563,
+            0.27563
+          ],
+          "y_range": [
+            0.625215,
+            0.625215
+          ]
+        },
+        "WL": {
+          "x_range": [
+            0.302351,
+            0.416964
+          ],
+          "y_range": [
+            0.441318,
+            0.700098
+          ]
+        },
+        "WR": {
+          "x_range": [
+            0.307521,
+            0.421109
+          ],
+          "y_range": [
+            0.356678,
+            0.655115
+          ]
+        },
+        "TH": {
+          "x_range": [
+            0.35189,
+            0.407577
+          ],
+          "y_range": [
+            0.392321,
+            0.46311
+          ]
+        },
+        "TT": {
+          "x_range": [
+            0.576197,
+            0.594914
+          ],
+          "y_range": [
+            0.497192,
+            0.57018
+          ]
+        }
+      },
+      "reference_units": "normalized_screen_xy_not_mm_or_PWM",
+      "manual_start_pulse_us": null,
+      "measured_waypoints": null,
+      "onsite_review": null,
+      "motor_ready": false,
+      "events": [
+        {
+          "id": "P03",
+          "source_time_s": 45.966689342403626,
+          "local_time_s": 0.41668934240362887
+        }
+      ],
+      "source_directory": "任务一_V20_固定滑轨独立动作/A13_双手下砸单练",
+      "reference_frames": 21,
+      "end_policy": "Hold this segment end pose; prepare its next start separately"
+    },
+    {
+      "id": "A14",
+      "title": "虎头尾受击反应单练",
+      "description": "武松不显示，只练三次受击时TH回缩低头、TT配合，保持虎轨固定。 V19：站立打斗虎整体提高5个示意单位，使下巴接近武松腰部。P01/P06右手直拳击中下巴，固定预定命中点、水平出拳收拳，不追随虎头的摆动回弹。 每组三连击为右手直拳打下巴、左手向下砸虎头、双手一起砸虎头。两次踢腿以虎身为目标，不必踢头。",
+      "preview_description": "仅练三次受击反应：虎头回缩低头、尾末配合并保持悬线张力；虎轨固定，不用轨道平移替代。",
+      "role": "component_drill_not_an_extra_scene",
+      "source_audio_range_s": [
+        43.4,
+        46.3666893
+      ],
+      "duration_s": 2.9666892999999988,
+      "position_group": "G2",
+      "start_condition": "先将滑块放到可达静态位置，匹配start_pose并确认五杆层次；播放时两轨不动。",
+      "start_attachment_reference": {
+        "WH": [
+          0.27563,
+          0.625215
+        ],
+        "WL": [
+          0.377422,
+          0.700098
+        ],
+        "WR": [
+          0.37438,
+          0.356678
+        ],
+        "TH": [
+          0.36608,
+          0.603192
+        ],
+        "TT": [
+          0.58375,
+          0.508
+        ]
+      },
+      "reference_ranges": {
+        "WH": {
+          "x_range": [
+            0.27563,
+            0.27563
+          ],
+          "y_range": [
+            0.625215,
+            0.625215
+          ]
+        },
+        "WL": {
+          "x_range": [
+            0.294819,
+            0.417155
+          ],
+          "y_range": [
+            0.433047,
+            0.700098
+          ]
+        },
+        "WR": {
+          "x_range": [
+            0.212238,
+            0.421137
+          ],
+          "y_range": [
+            0.351603,
+            0.65512
+          ]
+        },
+        "TH": {
+          "x_range": [
+            0.350953,
+            0.407596
+          ],
+          "y_range": [
+            0.389768,
+            0.603192
+          ]
+        },
+        "TT": {
+          "x_range": [
+            0.57515,
+            0.606683
+          ],
+          "y_range": [
+            0.497124,
+            0.56944
+          ]
+        }
+      },
+      "reference_units": "normalized_screen_xy_not_mm_or_PWM",
+      "manual_start_pulse_us": null,
+      "measured_waypoints": null,
+      "onsite_review": null,
+      "motor_ready": false,
+      "events": [
+        {
+          "id": "P01",
+          "source_time_s": 44.34668934240363,
+          "local_time_s": 0.94668934240363
+        },
+        {
+          "id": "P02",
+          "source_time_s": 45.17668934240363,
+          "local_time_s": 1.7766893424036283
+        },
+        {
+          "id": "P03",
+          "source_time_s": 45.966689342403626,
+          "local_time_s": 2.5666893424036274
+        }
+      ],
+      "source_directory": "任务一_V20_固定滑轨独立动作/A14_虎头尾受击反应单练",
+      "reference_frames": 75,
+      "end_policy": "Hold this segment end pose; prepare its next start separately"
+    }
+  ],
+  "main_scene_order": [
+    "A01",
+    "A02",
+    "A03",
+    "A04",
+    "A05",
+    "A06",
+    "A07",
+    "A08",
+    "A09",
+    "A10"
+  ],
+  "separate_drills": [
+    "A11",
+    "A12",
+    "A13",
+    "A14"
+  ],
+  "audio_impact_coverage": [
+    {
+      "id": "P01",
+      "time_s": 44.34668934240363,
+      "attack_type": "punch",
+      "covered_by": [
+        "A06",
+        "A11",
+        "A14"
+      ]
+    },
+    {
+      "id": "P02",
+      "time_s": 45.17668934240363,
+      "attack_type": "punch",
+      "covered_by": [
+        "A06",
+        "A12",
+        "A14"
+      ]
+    },
+    {
+      "id": "P03",
+      "time_s": 45.966689342403626,
+      "attack_type": "punch",
+      "covered_by": [
+        "A06",
+        "A13",
+        "A14"
+      ]
+    },
+    {
+      "id": "P04",
+      "time_s": 47.296689342403624,
+      "attack_type": "kick",
+      "covered_by": []
+    },
+    {
+      "id": "P05",
+      "time_s": 48.01668934240362,
+      "attack_type": "kick",
+      "covered_by": []
+    },
+    {
+      "id": "P06",
+      "time_s": 48.616689342403625,
+      "attack_type": "punch",
+      "covered_by": []
+    },
+    {
+      "id": "P07",
+      "time_s": 49.296689342403624,
+      "attack_type": "punch",
+      "covered_by": []
+    },
+    {
+      "id": "P08",
+      "time_s": 50.116689342403625,
+      "attack_type": "punch",
+      "covered_by": []
+    },
+    {
+      "id": "P09",
+      "time_s": 52.796689342403624,
+      "attack_type": "punch",
+      "covered_by": [
+        "A08"
+      ]
+    },
+    {
+      "id": "P10",
+      "time_s": 53.36668934240363,
+      "attack_type": "punch",
+      "covered_by": [
+        "A08"
+      ]
+    },
+    {
+      "id": "P11",
+      "time_s": 54.26668934240362,
+      "attack_type": "punch",
+      "covered_by": [
+        "A08"
+      ]
+    },
+    {
+      "id": "P12",
+      "time_s": 55.296689342403624,
+      "attack_type": "punch",
+      "covered_by": [
+        "A08"
+      ]
+    },
+    {
+      "id": "P13",
+      "time_s": 56.08668934240363,
+      "attack_type": "punch",
+      "covered_by": [
+        "A08"
+      ]
+    },
+    {
+      "id": "P15",
+      "time_s": 56.76668934240362,
+      "attack_type": "punch",
+      "covered_by": [
+        "A08"
+      ]
+    },
+    {
+      "id": "P14",
+      "time_s": 57.31668934240362,
+      "attack_type": "punch",
+      "covered_by": [
+        "A08"
+      ]
+    },
+    {
+      "id": "P16",
+      "time_s": 57.95668934240362,
+      "attack_type": "punch",
+      "covered_by": [
+        "A08"
+      ]
+    },
+    {
+      "id": "P17",
+      "time_s": 59.27668934240363,
+      "attack_type": "punch",
+      "covered_by": [
+        "A08"
+      ]
+    },
+    {
+      "id": "P18",
+      "time_s": 60.09668934240362,
+      "attack_type": "punch",
+      "covered_by": [
+        "A08"
+      ]
+    },
+    {
+      "id": "P19",
+      "time_s": 61.01668934240362,
+      "attack_type": "punch",
+      "covered_by": [
+        "A08"
+      ]
+    }
+  ],
+  "uncovered_impact_ids": [
+    "P04",
+    "P05",
+    "P06",
+    "P07",
+    "P08"
+  ],
+  "continuous_full_show_available": false,
+  "continuity_requirements": [
+    "每个独立动作核对起始摆位；组间预置位置不同，固定轨运行不自动移动轨道",
+    "A11–A14是A06的部件单练，不应再拼成额外一轮攻击",
+    "P04–P08未被独立片段覆盖；其中两次踢腿依赖滑轨联动，保持缺项"
+  ],
+  "historical_target_hashes": {
+    "tiger_map_a_result.20261012.json": "a0a7af4128b1eee714b62f7a87ed4b286eeb960b9f9468b06fa9188d176860ab",
+    "tiger_map_b_result.20261012.json": "803bbade5eb0a6b267064a269781afdfe0978b9e37c9473482ce53f8220b93cd"
+  },
+  "historical_a01_poses": {
+    "midpoint": {
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "source": {
+        "kind": "operator_confirmed_midpoint"
+      },
+      "current_assembly_verified": true
+    },
+    "head_yaw": {
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1540,
+        1500,
+        1500,
+        1500
+      ],
+      "source": {
+        "path": "config/tiger_map_a_result.20261012.json",
+        "sha256": "a0a7af4128b1eee714b62f7a87ed4b286eeb960b9f9468b06fa9188d176860ab",
+        "event": "probe_complete",
+        "edge": 1,
+        "sequence": 28903
+      },
+      "current_assembly_verified": false
+    },
+    "head_lift": {
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1540,
+        1500,
+        1500
+      ],
+      "source": {
+        "path": "config/tiger_map_a_result.20261012.json",
+        "sha256": "a0a7af4128b1eee714b62f7a87ed4b286eeb960b9f9468b06fa9188d176860ab",
+        "event": "probe_complete",
+        "edge": 3,
+        "sequence": 28951
+      },
+      "current_assembly_verified": false
+    },
+    "tail_yaw": {
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1540,
+        1500
+      ],
+      "source": {
+        "path": "config/tiger_map_a_result.20261012.json",
+        "sha256": "a0a7af4128b1eee714b62f7a87ed4b286eeb960b9f9468b06fa9188d176860ab",
+        "event": "probe_complete",
+        "edge": 5,
+        "sequence": 28999
+      },
+      "current_assembly_verified": false
+    },
+    "tail_lift": {
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1460
+      ],
+      "source": {
+        "path": "config/tiger_map_b_result.20261012.json",
+        "sha256": "803bbade5eb0a6b267064a269781afdfe0978b9e37c9473482ce53f8220b93cd",
+        "event": "probe_complete",
+        "edge": 1,
+        "sequence": 29049
+      },
+      "current_assembly_verified": false
+    },
+    "both_yaw": {
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1540,
+        1500,
+        1540,
+        1500
+      ],
+      "source": {
+        "path": "config/tiger_map_b_result.20261012.json",
+        "sha256": "803bbade5eb0a6b267064a269781afdfe0978b9e37c9473482ce53f8220b93cd",
+        "event": "probe_complete",
+        "edge": 3,
+        "sequence": 29097
+      },
+      "current_assembly_verified": false
+    },
+    "both_lift": {
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1540,
+        1500,
+        1460
+      ],
+      "source": {
+        "path": "config/tiger_map_b_result.20261012.json",
+        "sha256": "803bbade5eb0a6b267064a269781afdfe0978b9e37c9473482ce53f8220b93cd",
+        "event": "probe_complete",
+        "edge": 5,
+        "sequence": 29145
+      },
+      "current_assembly_verified": false
+    }
+  },
+  "a01_candidate": {
+    "schema": "v20-a01-offline-candidate-v1",
+    "id": "A01",
+    "title": "老虎吼叫与扭动",
+    "status": "historical_targets_new_timing_not_executed",
+    "motor_ready": false,
+    "automatic_replay_allowed": false,
+    "source_audio_range_s": [
+      2.7,
+      9.0
+    ],
+    "duration_s": 6.3,
+    "enabled_mask": 960,
+    "reference_pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "interpolation": "cosine_zero_velocity_at_keyframes",
+    "keyframes": [
+      {
+        "time_s": 0.0,
+        "pose": "midpoint",
+        "label": "巡视起点",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ]
+      },
+      {
+        "time_s": 0.7,
+        "pose": "head_yaw",
+        "label": "小幅侧转候选",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1540,
+          1500,
+          1500,
+          1500
+        ]
+      },
+      {
+        "time_s": 1.4333106576,
+        "pose": "head_lift",
+        "label": "抬头进入虎啸",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1540,
+          1500,
+          1500
+        ]
+      },
+      {
+        "time_s": 2.1,
+        "pose": "both_lift",
+        "label": "虎头尾联动上提候选",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1540,
+          1500,
+          1460
+        ]
+      },
+      {
+        "time_s": 2.7,
+        "pose": "both_lift",
+        "label": "虎啸短停",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1540,
+          1500,
+          1460
+        ]
+      },
+      {
+        "time_s": 3.4333106576,
+        "pose": "midpoint",
+        "label": "回落进入扭动",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ]
+      },
+      {
+        "time_s": 4.3,
+        "pose": "both_yaw",
+        "label": "头尾同向横转候选",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1540,
+          1500,
+          1540,
+          1500
+        ]
+      },
+      {
+        "time_s": 5.3,
+        "pose": "midpoint",
+        "label": "收回",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ]
+      },
+      {
+        "time_s": 6.3,
+        "pose": "midpoint",
+        "label": "末姿保持",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ]
+      }
+    ],
+    "maximum_adjacent_step_us": 3,
+    "endpoint_source": "Recorded tiger map A/B adopted targets; no visual-coordinate-to-PWM conversion",
+    "still_unverified": [
+      "当前装配下的方向、鱼线张力与杆件避让",
+      "中位到各目标及新顺序的完整路径",
+      "V20五连接点轨迹匹配",
+      "真实音效命中时间与播放/机构延迟"
+    ],
+    "end_behavior": "Hold final scheduled midpoint target; no extra recenter after audio",
+    "execution_binding": null
+  },
+  "a01_direction_checks": [
+    {
+      "id": "head_yaw",
+      "title": "观察虎头横转方向和人物侧余量",
+      "motor_ready": false,
+      "reviewed": false,
+      "observer_note": null,
+      "keyframes": [
+        {
+          "time_s": 0.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 2.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1540,
+            1500,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 3.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1540,
+            1500,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 5.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 6.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        }
+      ],
+      "duration_s": 6.0,
+      "enabled_mask": 960,
+      "maximum_adjacent_step_us": 1,
+      "end_behavior": "Stop for onsite review after this isolated check; no automatic next check"
+    },
+    {
+      "id": "head_lift",
+      "title": "观察虎头是否上提及耳部悬线",
+      "motor_ready": false,
+      "reviewed": false,
+      "observer_note": null,
+      "keyframes": [
+        {
+          "time_s": 0.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 2.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1540,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 3.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1540,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 5.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 6.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        }
+      ],
+      "duration_s": 6.0,
+      "enabled_mask": 960,
+      "maximum_adjacent_step_us": 1,
+      "end_behavior": "Stop for onsite review after this isolated check; no automatic next check"
+    },
+    {
+      "id": "tail_yaw",
+      "title": "观察尾端横向方向及虎身扭动",
+      "motor_ready": false,
+      "reviewed": false,
+      "observer_note": null,
+      "keyframes": [
+        {
+          "time_s": 0.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 2.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1540,
+            1500
+          ]
+        },
+        {
+          "time_s": 3.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1540,
+            1500
+          ]
+        },
+        {
+          "time_s": 5.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 6.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        }
+      ],
+      "duration_s": 6.0,
+      "enabled_mask": 960,
+      "maximum_adjacent_step_us": 1,
+      "end_behavior": "Stop for onsite review after this isolated check; no automatic next check"
+    },
+    {
+      "id": "tail_lift",
+      "title": "观察尾端是否上提及悬线张力",
+      "motor_ready": false,
+      "reviewed": false,
+      "observer_note": null,
+      "keyframes": [
+        {
+          "time_s": 0.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 2.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1460
+          ]
+        },
+        {
+          "time_s": 3.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1460
+          ]
+        },
+        {
+          "time_s": 5.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 6.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        }
+      ],
+      "duration_s": 6.0,
+      "enabled_mask": 960,
+      "maximum_adjacent_step_us": 1,
+      "end_behavior": "Stop for onsite review after this isolated check; no automatic next check"
+    },
+    {
+      "id": "both_yaw",
+      "title": "观察头尾共同横转，不以轨移动代替",
+      "motor_ready": false,
+      "reviewed": false,
+      "observer_note": null,
+      "keyframes": [
+        {
+          "time_s": 0.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 2.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1540,
+            1500,
+            1540,
+            1500
+          ]
+        },
+        {
+          "time_s": 3.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1540,
+            1500,
+            1540,
+            1500
+          ]
+        },
+        {
+          "time_s": 5.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 6.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        }
+      ],
+      "duration_s": 6.0,
+      "enabled_mask": 960,
+      "maximum_adjacent_step_us": 1,
+      "end_behavior": "Stop for onsite review after this isolated check; no automatic next check"
+    },
+    {
+      "id": "both_lift",
+      "title": "观察虎头尾联动上提及两端间距",
+      "motor_ready": false,
+      "reviewed": false,
+      "observer_note": null,
+      "keyframes": [
+        {
+          "time_s": 0.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 2.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1540,
+            1500,
+            1460
+          ]
+        },
+        {
+          "time_s": 3.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1540,
+            1500,
+            1460
+          ]
+        },
+        {
+          "time_s": 5.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        },
+        {
+          "time_s": 6.0,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ]
+        }
+      ],
+      "duration_s": 6.0,
+      "enabled_mask": 960,
+      "maximum_adjacent_step_us": 1,
+      "end_behavior": "Stop for onsite review after this isolated check; no automatic next check"
+    }
+  ],
+  "offline_checks": {
+    "original": {
+      "frames": 316,
+      "duration_s": 6.3,
+      "peak_step_us": 2
+    },
+    "quarter_speed": {
+      "frames": 1261,
+      "duration_s": 25.2,
+      "peak_step_us": 1
+    },
+    "isolated_checks": [
+      {
+        "id": "head_yaw",
+        "frames": 301,
+        "duration_s": 6.0,
+        "peak_step_us": 1
+      },
+      {
+        "id": "head_lift",
+        "frames": 301,
+        "duration_s": 6.0,
+        "peak_step_us": 1
+      },
+      {
+        "id": "tail_yaw",
+        "frames": 301,
+        "duration_s": 6.0,
+        "peak_step_us": 1
+      },
+      {
+        "id": "tail_lift",
+        "frames": 301,
+        "duration_s": 6.0,
+        "peak_step_us": 1
+      },
+      {
+        "id": "both_yaw",
+        "frames": 301,
+        "duration_s": 6.0,
+        "peak_step_us": 1
+      },
+      {
+        "id": "both_lift",
+        "frames": 301,
+        "duration_s": 6.0,
+        "peak_step_us": 1
+      }
+    ],
+    "person_six_pulses_unchanged": true,
+    "rails_commanded": false
+  },
+  "runtime_gate": {
+    "execution_available": false,
+    "reasons": [
+      "Preparation tool has no hardware transport",
+      "Current assembly and loaded route not reviewed",
+      "No fresh boot/sequence one-use execution binding"
+    ],
+    "initial_reference": "Operator-confirmed midpoint, not measured shaft feedback",
+    "camera_required": false,
+    "onsite_review_required": true
+  },
+  "next_review": "现场逐个确认六项方向检查，再检查A01四分之一速；尚未执行这些步骤"
+}

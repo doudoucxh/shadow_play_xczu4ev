@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>V20 表演准备</title>
+<style>
+:root{color-scheme:light;--ink:#302a23;--paper:#f5f0e7;--line:#d9ccba;--red:#8e382b;--muted:#746b60}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.65 "Microsoft YaHei UI",sans-serif}
+main{max-width:1260px;margin:auto;padding:36px 26px 64px}header{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--ink);padding-bottom:20px}
+h1{font:34px/1.2 Georgia,"Microsoft YaHei UI",serif;margin:8px 0}h2{font-size:20px;margin:0 0 12px}h3{font-size:16px;margin:0 0 7px}p{margin:8px 0}.small,small{font-size:13px;color:var(--muted)}.tag{background:#eee0c9;border:1px solid #d9c2a1;padding:6px 12px;border-radius:20px;white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:22px 0}.stat{padding:15px 20px;background:#fffaf3;border:1px solid var(--line)}.stat strong{font-size:26px;margin-right:8px}
+.layout{display:grid;grid-template-columns:1.6fr 1fr;gap:20px}.panel{padding:22px;background:#fffaf3;border:1px solid var(--line);margin-bottom:20px;min-width:0}.wide{margin-top:20px}
+button,.link{border:1px solid #b7a58d;background:#fffaf3;color:var(--ink);padding:8px 12px;border-radius:4px;font:inherit;cursor:pointer;text-decoration:none;display:inline-block}button:hover,.link:hover{background:#eee1cc}button:disabled{opacity:.45;cursor:default}.primary{background:var(--red);color:white;border-color:var(--red)}.primary:hover{background:#703025}.buttons{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.selected{background:#e6d4b9!important;border-color:#8e6f45!important}
+svg{width:100%;height:auto;display:block}input[type=range]{width:100%;accent-color:var(--red)}.values{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.value{padding:8px;background:#f1e8da;border-top:3px solid var(--c)}.value b{display:block;font-size:20px}.value span{font-size:12px}
+video{width:100%;background:#17212a;max-height:340px}audio{width:100%;margin:8px 0}.note{padding:12px 15px;border-left:3px solid #b37538;background:#f3e7d3;margin:12px 0}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:10px 8px;vertical-align:top}tbody tr[data-action]{cursor:pointer}tbody tr[data-action]:hover{background:#f0e1cb}.group{font-size:12px;border:1px solid var(--line);padding:2px 6px;white-space:nowrap}
+textarea,input[type=text]{width:100%;padding:8px;border:1px solid #baa98f;background:white;font:inherit}.review-row{padding:10px 0;border-bottom:1px solid var(--line)}.review-row label{display:block}.review-row textarea{height:60px;resize:vertical;margin-top:5px}a{color:var(--red)}footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}main{padding:20px 12px}header{display:block}.tag{display:inline-block;margin-top:12px}.scroll{overflow-x:auto}.values{grid-template-columns:repeat(4,minmax(68px,1fr))}}
+</style>
+<main>
+<header><div><div class="small">武松打虎8 · 固定滑轨独立动作</div><h1>V20 表演准备</h1><div>从已确认的十路135°中位开始，逐段核验后再演出。</div></div><span class="tag">候选已整理 · 尚未试动</span></header>
+<div class="stats"><div class="stat"><strong>14</strong>独立动作</div><div class="stat"><strong>4</strong>预置站位组</div><div class="stat"><strong>76.58</strong>秒新音轨</div><div class="stat"><strong>6</strong>首段方向检查</div></div>
+<div class="layout">
+<section class="panel"><h2>首段 A01 · 老虎吼叫与扭动</h2><p class="small">候选端点取自历史虎四路试验；本次装配、时间顺序和鱼线路径还未核验。下面的曲线和播放只用于本地预览。</p>
+<div class="buttons" id="modes"><button data-mode="original" class="selected">原速候选 · 6.3秒</button><button data-mode="slow">四分之一速 · 25.2秒</button></div>
+<div class="buttons" id="checks"></div><h3 id="curve-title">虎头尾联动候选</h3>
+<svg id="chart" viewBox="0 0 900 260" role="img" aria-label="虎四路候选脉宽曲线"></svg>
+<label for="time">本地时间 <b id="local-time">0.00</b> 秒 <span class="small" id="source-time"></span></label><input id="time" type="range" min="0" max="6.3" step="0.02" value="0">
+<div class="values" id="values"></div><div class="buttons"><button class="primary" id="animate">播放曲线预览</button><button id="pause">暂停预览</button></div><p class="small" id="curve-note"></p>
+<div class="note">这张页面不连接板子、不启用舵机。14段不是可直接串行的整场；每段起始姿态需要单独准备，原音频中的 P04–P08 保留为未覆盖项。</div>
+</section>
+<section class="panel"><h2 id="guide-title">A01 动作指导</h2><video id="guide-video" controls preload="metadata"></video><p id="guide-description"></p>
+<div class="buttons"><button id="listen">听该段新音频</button><a class="link" id="open-guide">打开原动作指导</a></div><audio id="audio" controls preload="metadata"></audio><p class="small" id="audio-status">听音频或观看指导不会驱动机构。</p>
+<p class="small">历史参考只提供指令方向和候选端点。正常回执不等于实际轴角、五杆连接点匹配或避让通过。</p></section>
+</div>
+<section class="panel"><h2>六项现场核验记录</h2><p class="small">建议逐项检查、逐项记录；填写和导出不会执行动作。未核验项保持未勾选。</p><label>本次结构 / 杆长说明<input id="geometry" type="text" placeholder="填写本次实际装配，避免与旧记录混用"></label><div id="reviews"></div><div class="buttons"><button id="export">导出填写记录 JSON</button></div><p class="small" id="export-status">记录来自现场人工填写，没有相机或实际轴角反馈。</p></section>
+<section class="panel wide"><h2>动作顺序与交接</h2><p class="small">A01–A10 为独立场景，A11–A14 为部件单练。点击一行查看对应指导和新音频区间；G1–G4 是不同的预演静态站位组，其显示坐标不是实物毫米。</p><p id="groups" class="small"></p><div class="scroll"><table><thead><tr><th>动作</th><th>新音频区间</th><th>预置组</th><th>用途</th><th>实机配姿</th></tr></thead><tbody id="actions"></tbody></table></div></section>
+<footer>准备包保持全部动作未就绪。后续需要现场确认首段方向、杆件和鱼线余量，再核对慢放与音频时差；本页没有运动执行入口。</footer>
+</main>
+<script>
+'use strict';
+const DATA=/* PREPARATION_DATA */;
+const $=s=>document.querySelector(s), colors=['#b35c31','#3875a5','#39857c','#815d9c'];
+let selected=DATA.actions[0],kind='original',checkIndex=-1,localTime=0,timer=null,started=0,clipEnd=null;
+const audio=$('#audio'),video=$('#guide-video');audio.src=DATA.audio_url;
+function candidate(){return checkIndex<0?DATA.candidate:DATA.checks[checkIndex]}
+function speed(){return kind==='slow'?.25:1}
+function duration(){return candidate().duration_s/speed()}
+function values(t){
+ const c=candidate(),keys=c.keyframes,source=Math.min(c.duration_s,Math.max(0,t*speed()));
+ if(source<=0)return keys[0].pulse_us.slice();if(source>=c.duration_s)return keys.at(-1).pulse_us.slice();
+ let i=0;while(i+1<keys.length&&keys[i+1].time_s<=source)i++;
+ const a=keys[i],b=keys[i+1],u=.5-.5*Math.cos(Math.PI*(source-a.time_s)/(b.time_s-a.time_s));
+ return a.pulse_us.map((v,j)=>Math.floor(v+(b.pulse_us[j]-v)*u+.5));
+}
+function svgNode(tag,attrs,text){const n=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);if(text!==undefined)n.textContent=text;return n}
+function drawChart(){
+ const svg=$('#chart');svg.replaceChildren();const x=t=>62+t/duration()*810,y=p=>220-(p-1450)/100*190;
+ for(const pulse of [1460,1480,1500,1520,1540]){svg.append(svgNode('line',{x1:62,x2:872,y1:y(pulse),y2:y(pulse),stroke:'#ded1be'}));svg.append(svgNode('text',{x:8,y:y(pulse)+5,fill:'#756758','font-size':14},pulse+' μs'))}
+ for(let i=0;i<=4;i++){const t=duration()*i/4;svg.append(svgNode('text',{x:x(t)-12,y:247,fill:'#756758','font-size':14},t.toFixed(1)+'s'))}
+ for(let ch=6;ch<10;ch++){let d='';for(let i=0;i<=315;i++){const t=duration()*i/315;d+=(i?'L':'M')+x(t).toFixed(2)+','+y(values(t)[ch]).toFixed(2)+' '}svg.append(svgNode('path',{d,fill:'none',stroke:colors[ch-6],'stroke-width':2.4}))}
+ svg.append(svgNode('line',{id:'cursor',x1:x(0),x2:x(0),y1:20,y2:222,stroke:'#302a23','stroke-dasharray':'4 4'}));
+}
+function update(t){
+ localTime=Math.max(0,Math.min(duration(),t));$('#time').value=String(localTime);$('#local-time').textContent=localTime.toFixed(2);
+ $('#source-time').textContent=checkIndex<0?'对应原音频 '+(2.7+localTime*speed()).toFixed(2)+' 秒':'逐项方向检查，无音频同步';
+ const pulses=values(localTime);for(let i=6;i<10;i++)document.querySelector('[data-pulse="'+i+'"]').textContent=String(pulses[i]);
+ const x=62+localTime/duration()*810;$('#cursor').setAttribute('x1',x);$('#cursor').setAttribute('x2',x);
+}
+function pause(){if(timer!==null)cancelAnimationFrame(timer);timer=null;$('#animate').textContent='播放曲线预览'}
+function stopAudio(){const playing=!audio.paused;audio.pause();clipEnd=null;if(playing)$('#audio-status').textContent='本地试听已暂停，不会发送动作。'}
+function setMode(mode,index=-1){
+ pause();stopAudio();kind=mode;checkIndex=index;$('#time').max=String(duration());
+ document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('selected',index<0&&b.dataset.mode===mode));
+ document.querySelectorAll('[data-check]').forEach(b=>b.classList.toggle('selected',Number(b.dataset.check)===index));
+ $('#curve-title').textContent=index<0?'虎头尾联动候选':DATA.checks[index].title;
+ $('#curve-note').textContent=index<0?'人物六路指令固定1500 μs；虎四路候选端点均有历史来源。本次路线未试动。':'每项6秒：2秒到候选目标，1秒观察，2秒候选回程，1秒观察；完成一项后单独核验，不自动执行下一项。';
+ drawChart();update(0);
+}
+function choose(action){
+ stopAudio();video.pause();selected=action;$('#guide-title').textContent=action.id+' · '+action.title;
+ video.src=action.video_url;$('#guide-description').textContent=action.preview_description;$('#open-guide').href=action.guide_url;
+ document.querySelectorAll('[data-action]').forEach(r=>r.classList.toggle('selected',r.dataset.action===action.id));
+ $('#audio-status').textContent='该段原音频 '+action.source_audio_range_s.map(x=>x.toFixed(3)).join('–')+' 秒；保持原卡点。';
+}
+for(let i=6;i<10;i++){const n=document.createElement('div');n.className='value';n.style.setProperty('--c',colors[i-6]);const title=document.createElement('span');title.textContent=(i+1)+'号候选（μs）';const b=document.createElement('b');b.dataset.pulse=String(i);n.append(title,b);$('#values').append(n)}
+DATA.checks.forEach((c,i)=>{
+ const b=document.createElement('button');b.dataset.check=String(i);b.textContent=(i+1)+' · '+['虎头横转','虎头上提','虎尾横转','虎尾上提','头尾横转','头尾上提'][i];b.addEventListener('click',()=>setMode('check',i));$('#checks').append(b);
+ const row=document.createElement('div');row.className='review-row';const label=document.createElement('label');const tick=document.createElement('input');tick.type='checkbox';tick.dataset.review=c.id;label.append(tick,document.createTextNode(' '+(i+1)+'. '+c.title));const note=document.createElement('textarea');note.dataset.note=c.id;note.placeholder='填写实际方向、杆件/鱼线余量、回程和异常；未检查请留空';row.append(label,note);$('#reviews').append(row);
+});
+DATA.actions.forEach(a=>{const row=document.createElement('tr');row.dataset.action=a.id;const texts=[a.id+' '+a.title,a.source_audio_range_s.map(x=>x.toFixed(3)).join('–')+'s',a.position_group,a.role==='main_independent_scene'?'独立场景':'部件单练','待现场记录'];texts.forEach(t=>{const cell=document.createElement('td');cell.textContent=t;row.append(cell)});row.addEventListener('click',()=>choose(a));$('#actions').append(row)});
+$('#groups').textContent=DATA.groups.map(g=>g.id+'：武松'+g.reference_display_positions[0]+' / 老虎'+g.reference_display_positions[1]).join('；')+'（预演显示单位；实际位置待记录）';
+$('#modes').addEventListener('click',e=>{if(e.target.dataset.mode)setMode(e.target.dataset.mode)});
+$('#time').addEventListener('input',()=>{pause();update(Number($('#time').value))});
+$('#animate').addEventListener('click',()=>{pause();stopAudio();if(localTime>=duration())update(0);started=performance.now()-localTime*1000;$('#animate').textContent='正在预览曲线';function tick(now){update((now-started)/1000);if(localTime<duration())timer=requestAnimationFrame(tick);else pause()}timer=requestAnimationFrame(tick)});
+$('#pause').addEventListener('click',()=>{pause();stopAudio()});video.addEventListener('play',()=>{pause();stopAudio()});
+$('#listen').addEventListener('click',async()=>{try{pause();video.pause();if(audio.readyState===0)await new Promise((resolve,reject)=>{audio.addEventListener('loadedmetadata',resolve,{once:true});audio.addEventListener('error',reject,{once:true});audio.load()});const range=selected.source_audio_range_s;audio.currentTime=range[0];clipEnd=range[1];await audio.play();$('#audio-status').textContent='正在本地试听 '+selected.id+'，不会发送动作。'}catch(e){$('#audio-status').textContent='本地音频未能播放，请使用原音频文件。'}});
+audio.addEventListener('timeupdate',()=>{if(clipEnd!==null&&audio.currentTime>=clipEnd){audio.pause();clipEnd=null}if(selected.id==='A01'&&kind==='original'&&checkIndex<0&&!audio.paused)update(audio.currentTime-2.7)});
+$('#export').addEventListener('click',()=>{const data={schema:'v20-onsite-review-not-execution-v1',created_at:new Date().toISOString(),geometry_note:$('#geometry').value,camera_used:false,review_source:'onsite_operator_entries_not_shaft_feedback',motor_ready:false,execution_binding:null,checks:DATA.checks.map(c=>({id:c.id,checked:document.querySelector('[data-review="'+c.id+'"]').checked,note:document.querySelector('[data-note="'+c.id+'"]').value}))};const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='V20_A01_现场记录.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('#export-status').textContent='已导出填写内容，仍不作为自动执行许可。'});
+window.addEventListener('pagehide',()=>{pause();stopAudio();video.pause()});setMode('original');choose(DATA.actions[0]);
+</script>
+</html>

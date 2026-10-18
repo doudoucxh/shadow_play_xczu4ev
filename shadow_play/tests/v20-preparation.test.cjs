@@ -1,0 +1,58 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs/promises'),path=require('node:path');
+const {pathToFileURL}=require('node:url');
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
+const root=path.resolve(__dirname,'../..'),out=path.join(root,'.review_work/v20-preparation-20261018');
+(async()=>{
+ await fs.mkdir(out,{recursive:true});
+ const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_EXECUTABLE?{executablePath:process.env.CHROMIUM_EXECUTABLE}:{}),args:['--allow-file-access-from-files']});
+ try{
+  const context=await browser.newContext({viewport:{width:1280,height:1100},acceptDownloads:true});
+  const page=await context.newPage(),errors=[],network=[];
+  page.on('pageerror',error=>errors.push(String(error)));
+  page.on('request',request=>{if(/^https?:/.test(request.url()))network.push(request.url())});
+  await page.goto(pathToFileURL(path.join(root,'shadow_play/planning/wusong_v20_20261018/preview.html')).href);
+  assert.equal(await page.locator('[data-action]').count(),14);
+  assert.equal(await page.locator('[data-check]').count(),6);
+  assert.equal(await page.locator('[data-review]').count(),6);
+  assert.equal(await page.locator('#time').getAttribute('max'),'6.3');
+  assert.equal(await page.locator('#audio').evaluate(a=>a.paused),true);
+  assert.equal(await page.locator('#guide-video').evaluate(a=>a.paused),true);
+  await page.locator('[data-mode="slow"]').click();
+  assert.equal(await page.locator('#time').getAttribute('max'),'25.2');
+  await page.locator('[data-check="1"]').click();
+  await page.locator('#time').evaluate(input=>{input.value='2';input.dispatchEvent(new Event('input',{bubbles:true}))});
+  assert.equal(await page.locator('[data-pulse="7"]').textContent(),'1540');
+  assert.equal(await page.locator('[data-pulse="6"]').textContent(),'1500');
+  await page.locator('#animate').click();
+  await page.waitForFunction(()=>Number(document.querySelector('#time').value)>2.05);
+  await page.locator('#pause').click();
+  await page.locator('[data-action="A08"]').click();
+  assert.match(await page.locator('#guide-title').textContent(),/^A08/);
+  assert.match(await page.locator('#audio-status').textContent(),/52\.187/);
+  await page.locator('[data-action="A01"]').click();
+  await page.locator('[data-mode="original"]').click();
+  await page.waitForFunction(()=>document.querySelector('#audio').readyState>=1);
+  const duration=await page.locator('#audio').evaluate(a=>a.duration);
+  assert.ok(duration>76.5&&duration<76.8);
+  await page.locator('#audio').evaluate(a=>{a.muted=true});
+  await page.locator('#listen').click();
+  await page.waitForFunction(()=>{const a=document.querySelector('#audio');return !a.paused&&a.currentTime>2.7});
+  await page.locator('#pause').click();
+  assert.equal(await page.locator('#audio').evaluate(a=>a.paused),true);
+  await page.locator('#geometry').fill('Offline UI check; no onsite motion review');
+  const downloadPromise=page.waitForEvent('download');await page.locator('#export').click();
+  const download=await downloadPromise,target=path.join(out,'ui-export-check.json');await download.saveAs(target);
+  const record=JSON.parse(await fs.readFile(target,'utf8'));
+  assert.equal(record.motor_ready,false);assert.equal(record.camera_used,false);
+  assert.equal(record.execution_binding,null);assert.ok(record.checks.every(c=>c.checked===false));
+  await page.locator('header').scrollIntoViewIfNeeded();
+  await page.screenshot({path:path.join(out,'preview-desktop.png'),fullPage:false});
+  await page.setViewportSize({width:390,height:844});
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2));
+  await page.screenshot({path:path.join(out,'preview-mobile.png'),fullPage:false});
+  assert.deepEqual(errors,[]);assert.deepEqual(network,[]);
+  console.log(JSON.stringify({passed:true,actions:14,directionChecks:6,localAudioDuration:duration,
+    defaultMediaPaused:true,curvePlayback:true,reviewExportUnapproved:true,externalRequests:network.length,pageErrors:errors.length}));
+ }finally{await browser.close()}
+})().catch(error=>{console.error(error);process.exitCode=1});
