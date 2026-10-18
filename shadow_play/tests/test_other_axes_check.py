@@ -14,6 +14,7 @@ from other_axes_check import (OtherAxesDevice,ORDER,BOOT,BOARD,FIRST_LOG,FIRST_S
     SCHEMA,IMAGE,MIDPOINT,FRAME_COUNT,digest,route,run,validate_plan,validate_prior)
 from other_axes_check import LARGER_SCHEMA,LARGER_ORDER,LARGER_BOARD,LARGER_LOG,LARGER_SHA,profile
 from other_axes_check import OPPOSITE_SCHEMA,OPPOSITE_ORDER,OPPOSITE_BOARD,OPPOSITE_LOG,OPPOSITE_SHA
+from other_axes_check import EXTENDED_SCHEMA,EXTENDED_ORDER,EXTENDED_BOARD,EXTENDED_LOG,EXTENDED_SHA
 
 
 class Tests(unittest.TestCase):
@@ -209,6 +210,54 @@ class Tests(unittest.TestCase):
     def test_previous_40us_digests_stay_identical(self):
         record=json.loads((ROOT/'config/other_axes_40us_result_20261019.json').read_text(encoding='utf-8'))
         self.assertTrue(all(digest(route(c['channel'],True))==c['plan']['route_sha256'] for c in record['checks']))
+
+    def extended_plan(self,channel):
+        index=EXTENDED_ORDER.index(channel);p=self.larger_plan(channel)
+        p.update(schema=EXTENDED_SCHEMA,extended_amplitude_acknowledged=True,
+                 expected_sequence=6734+index*277,route_sha256=digest(route(channel,extended=True)),
+                 prior_log_path=EXTENDED_LOG if index==0 else EXTENDED_BOARD+'/axis-'+str(EXTENDED_ORDER[index-1])+'-'+'c'*32+'.board.jsonl',
+                 prior_log_sha256=EXTENDED_SHA if index==0 else 'd'*64)
+        return p
+
+    def test_extended_five_routes_bounded_independent_and_slow(self):
+        for channel in EXTENDED_ORDER:
+            self.p=self.extended_plan(channel);self.reg=FakeRegisters();self.clock=Clock()
+            self.reg.values[0x20]=self.p['expected_sequence'];rows=[]
+            d=self.device(used_path=self.path/('extended-'+str(channel)))
+            run(d,rows.append,sleep=self.clock.sleep)
+            frames=rows[:-1];self.assertEqual(len(frames),276)
+            self.assertEqual(frames[100]['state']['pulse_us'][channel-1],1556 if channel==10 else 1444)
+            self.assertEqual({r['state']['enabled_mask'] for r in frames},{1<<(channel-1)})
+            self.assertTrue(all(r['state']['pulse_us'][:channel-1]+r['state']['pulse_us'][channel:]==[1500]*9 for r in frames))
+            self.assertEqual(max(abs(a['state']['pulse_us'][channel-1]-b['state']['pulse_us'][channel-1]) for a,b in zip(frames,frames[1:])),1)
+            self.assertEqual(d.profile['deadline_s'],14)
+            self.assertEqual(rows[-1]['state']['sequence'],self.p['expected_sequence']+277)
+            self.assertFalse(rows[-1]['state']['armed']);self.assertEqual(rows[-1]['state']['pulse_us'],MIDPOINT)
+
+    def test_extended_rejects_other_channels_old_request_and_changed_route(self):
+        p=self.extended_plan(1);validate_plan(p)
+        for ch in (2,3,6,7,8):
+            with self.assertRaises(ValueError):route(ch,extended=True)
+        for key,value in [('extended_amplitude_acknowledged',False),('expected_sequence',4691),
+                          ('prior_log_path',OPPOSITE_LOG),('prior_log_sha256',OPPOSITE_SHA),
+                          ('route_sha256',digest(route(1,True,True)))]:
+            bad=dict(p);bad[key]=value
+            with self.assertRaises(ValueError):validate_plan(bad)
+        self.assertEqual(self.reg.writes,[])
+
+    def test_extended_prior_requires_all_276_frames(self):
+        self.p=self.extended_plan(1);self.reg.values[0x20]=6734
+        rows=[];run(self.device(),rows.append,sleep=self.clock.sleep)
+        p=self.extended_plan(4)
+        raw=('\n'.join(json.dumps(x) for x in rows)+'\n').encode();p['prior_log_sha256']=hashlib.sha256(raw).hexdigest()
+        validate_prior(p,raw)
+        del rows[100]
+        raw=('\n'.join(json.dumps(x) for x in rows)+'\n').encode();p['prior_log_sha256']=hashlib.sha256(raw).hexdigest()
+        with self.assertRaises(ValueError):validate_prior(p,raw)
+
+    def test_previous_opposite_route_digests_stay_identical(self):
+        record=json.loads((ROOT/'config/other_axes_direction_result_20261019.json').read_text(encoding='utf-8'))
+        self.assertTrue(all(digest(route(c['channel'],True,True))==c['plan']['route_sha256'] for c in record['checks']))
 
 
 if __name__=='__main__':unittest.main()
