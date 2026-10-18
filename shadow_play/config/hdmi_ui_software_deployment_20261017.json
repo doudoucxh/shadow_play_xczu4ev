@@ -44,7 +44,7 @@
       "automatic_ui_restore_verified": true,
       "physical_display_restored": false,
       "hpd_edid_available": false,
-      "next_check": "Compare screen on a known-good independent 5V USB supply while retaining board HDMI",
+      "next_check": "Identify screen model/input timings and compare a known-good HDMI cable or source",
       "fpga_reloaded": true,
       "motion_commands_sent": false,
       "hdmi_reseat_and_screen_power_cycle_restored": false,
@@ -61,7 +61,8 @@
         "wireless mouse receiver",
         "OpenWare touch interface"
       ],
-      "independent_5v_usb_test_result": null
+      "independent_5v_usb_test_result": "solid blue screen without text; HDMI remains connected",
+      "independent_supply_colorbar_visible": false
     }
   },
   "camera": {
