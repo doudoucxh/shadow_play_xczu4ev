@@ -7,6 +7,8 @@ shadow_play/boot_ui/*.service text eol=lf
 *.xdc text eol=lf
 *.dts text eol=lf
 shadow_play/hardware/usb/uEnv.usb.txt text eol=lf
+# Release hashes use canonical LF text across Windows and Linux.
+shadow_play/hdmi_ui/** text=auto eol=lf
 *.dtbo binary
 *.md text eol=lf
 *.json text eol=lf
