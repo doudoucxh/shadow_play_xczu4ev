@@ -1,0 +1,35 @@
+{
+  "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+  "state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 14,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1501,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "board_log_sha256": "072903723911f382bc61177471afd550aa082711375aee1ee042b256d6956332",
+  "used": true,
+  "status": "interrupted_first_direction_wait_timing_error",
+  "operator_report": "Operator confirmed after interruption: still near midpoint, no binding or pulling",
+  "onsite_midpoint_unchanged_and_clear": true,
+  "camera_used": false,
+  "route_complete": false,
+  "frames_executed": 12,
+  "full_execution_reference": false
+}

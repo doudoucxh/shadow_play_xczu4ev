@@ -1,5 +1,6 @@
-param([string]$CameraIP = '192.168.31.250', [ValidateRange(10,86400)][int]$Seconds = 28800,
-      [ValidateRange(1,15)][int]$FramesPerSecond = 15)
+﻿param([string]$CameraIP = '192.168.31.250', [ValidateRange(10,86400)][int]$Seconds = 28800,
+      [ValidateRange(1,15)][int]$FramesPerSecond = 15,
+      [System.Management.Automation.PSCredential]$CameraCredential)
 $ErrorActionPreference = 'Stop'
 $exe = Join-Path $PSScriptRoot 'build\sony_liveview.exe'
 if(-not (Test-Path -LiteralPath $exe)){ throw 'Run build.ps1 first.' }
@@ -10,8 +11,13 @@ if(Get-Process -Name Remote -ErrorAction SilentlyContinue){
 }
 $run = Join-Path $PSScriptRoot ('output\session-' + (Get-Date -Format 'yyyyMMdd-HHmmss-fff'))
 New-Item -ItemType Directory -Path $run -Force | Out-Null
-$userId = Read-Host 'Camera Access Authentication user name (not your Sony account)'
-$secret = Read-Host 'Camera Access Authentication password (input hidden)' -AsSecureString
+if ($CameraCredential) {
+    $userId = $CameraCredential.UserName
+    $secret = $CameraCredential.Password.Copy()
+} else {
+    $userId = Read-Host 'Camera Access Authentication user name (not your Sony account)'
+    $secret = Read-Host 'Camera Access Authentication password (input hidden)' -AsSecureString
+}
 $bstr = [IntPtr]::Zero
 $proc = [Diagnostics.Process]::new()
 $started = $false

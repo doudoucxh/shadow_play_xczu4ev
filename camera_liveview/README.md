@@ -32,6 +32,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "D:\Desktop\piying\camera_li
 
 ## 读取与停止
 
+需要本机密码遮挡窗口时，可运行 `powershell -NoProfile -STA -ExecutionPolicy Bypass -File "D:\Desktop\piying\camera_liveview\start_with_prompt.ps1"`。窗口读取相机访问认证，通过内存中的PSCredential交给原启动器，仍由stdin传给SDK，不存储凭据。默认8小时，不会操作舵机。脚本使用UTF-8 BOM以兼容Windows PowerShell 5.1的中文；窗口出现和网络probe成功均不代表已有新画面，仍按下述新鲜度检查核验。
+
 需要在浏览器中连续观看时，在 SDK 取景已经启动的前提下，使用装有 Pillow 的 Python 运行 `python camera_liveview/preview_server.py`，然后打开 <http://127.0.0.1:8766/>。页面约每秒刷新五次，可以暂停显示或全屏。它读取已有会话文件，普通预览不额外归档画面；下面的点选模式只在用户确认保存后写入参考图。不重复连接相机，也不控制舵机；关闭该预览服务不会停止 SDK 取景。服务固定监听本机回环地址，不对局域网开放。
 
 预览沿用网关的 JPEG 解码及 1.5 秒新鲜度检查；浏览器还检查连续帧号，画面过期或请求失败时隐藏旧图并提示。页面放大只便于观看，不能增加 SDK 原图分辨率。按 Ctrl+C 可停止预览服务。

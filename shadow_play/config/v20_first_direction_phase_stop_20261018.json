@@ -1,0 +1,226 @@
+{
+  "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+  "state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 72,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1524,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "board_log_sha256": "351c781eee9c705383b181f7666b8c08459d2cb121d1bbddf84af21067225880",
+  "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+  "used_sequence_2": true,
+  "used_sequence_14": true,
+  "date": "2026-10-18",
+  "status": "direction_check_interrupted_not_passed",
+  "route_complete": false,
+  "full_performance_started": false,
+  "camera_used": false,
+  "audio_played": false,
+  "rails_moved": false,
+  "hardware_image_changed": false,
+  "operator_direction_observation": "Operator did not see clearly; direction and clearance not accepted after this stop",
+  "observer_note": null,
+  "onsite_direction_verified": false,
+  "frames_executed": 58,
+  "maximum_adjacent_step_us": 1,
+  "last_frame_elapsed_s": 2.4448122570001942,
+  "last_frame_index": 57,
+  "plan": {
+    "schema": "attended-v20-first-direction-v2",
+    "session_id": "ea9fb1a0fd2147f59d0cc22fc3f9bce2",
+    "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+    "expected_sequence": 14,
+    "expected_pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1501,
+      1500,
+      1500,
+      1500
+    ],
+    "route_sha256": "6bd9125f64b6ec0da6d888b3e8839850557d7cd0f3cb82602dce5836e0fbe975",
+    "historical_source_sha256": "a0a7af4128b1eee714b62f7a87ed4b286eeb960b9f9468b06fa9188d176860ab",
+    "operator_midpoint_reference": true,
+    "onsite_observer": true,
+    "camera_required": false,
+    "enabled_mask": 64,
+    "interruption_reviewed": true
+  },
+  "selected_events": [
+    {
+      "event": "frame",
+      "index": 0,
+      "elapsed_s": 0.005014880000089761,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 64,
+        "armed": true,
+        "faults": 0,
+        "sequence": 15,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "frame",
+      "index": 50,
+      "elapsed_s": 2.1448388670000895,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 64,
+        "armed": true,
+        "faults": 0,
+        "sequence": 65,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1520,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "frame",
+      "index": 57,
+      "elapsed_s": 2.4448122570001942,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 64,
+        "armed": true,
+        "faults": 0,
+        "sequence": 72,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1524,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      }
+    },
+    {
+      "event": "outputs_off",
+      "route_complete": false,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 72,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1524,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "incident_locks_removed": false,
+      "position_feedback": null
+    }
+  ],
+  "stop_reason": "Cumulative phase-error guard exceeded 150 ms, despite nonaccelerated command spacing",
+  "previous_interruptions": [
+    {
+      "session_id": "a3961a0333104c3894023c6213b59847",
+      "started": false,
+      "reason": "Ready line merged with an unterminated shell prompt; no BEGIN sent"
+    },
+    {
+      "session_id": "02c74785894841a883e958797b582107",
+      "frames_executed": 12,
+      "off_sequence": 14,
+      "channel_7_us": 1501,
+      "reason": "Two clock reads crossed the wait deadline; negative sleep raised ValueError",
+      "operator_post_stop_clearance_confirmed": true
+    }
+  ],
+  "old_reference_replay_allowed": false,
+  "current_stop_requires_new_onsite_review": true,
+  "verification": {
+    "unit_tests": 18,
+    "passed": true,
+    "includes": [
+      "single-axis output mask",
+      "exact route and source",
+      "boot/sequence/adopted-state binding",
+      "one-use marker",
+      "host loss",
+      "lock change",
+      "logging failure",
+      "late step stop",
+      "unknown adoption no retry",
+      "ready after shell prompt",
+      "nonnegative sleep",
+      "accumulated delay without accelerated catchup"
+    ]
+  },
+  "source_log_path": "/run/media/mmcblk0p2/piying/v20-first-direction-20261018-r2/run-ea9fb1a0fd2147f59d0cc22fc3f9bce2.board.jsonl",
+  "observer_ready_for_next_first_check": true,
+  "current_rods_clear_for_next_first_check": true,
+  "next_step_operator_report": "Operator can watch continuously; current rods have no binding or pulling",
+  "next_step_reference": "New one-use OFF72 binding; first command stays at 1524 us. No old plan rebinding."
+}
