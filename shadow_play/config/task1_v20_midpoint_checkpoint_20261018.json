@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-18",
+  "status": "operator_midpoint_reference_confirmed_v20_pwm_route_missing",
+  "operator_report": {
+    "all_ten_at_135_degrees": true,
+    "request": "Start physical performance",
+    "camera_use_requested": false,
+    "onsite_observer_and_fixed_rails_confirmed_earlier_in_session": true
+  },
+  "reference_source": "Current onsite midpoint report corroborated by uniform initialization command acknowledgements; not actual shaft-angle feedback",
+  "board": {
+    "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+    "marker_boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+    "image_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+    "uptime_s": "417.18",
+    "runtime_motion_lock": true,
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 2,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null,
+    "service": "attended-initial-pose-v1",
+    "center_hold_seconds": null,
+    "center_remaining_seconds": 0,
+    "group_initialization": true,
+    "hold_mode": "until_stopped",
+    "initial_pose_limits_deg": [
+      [
+        10,
+        260
+      ],
+      [
+        95,
+        260
+      ],
+      [
+        10,
+        260
+      ],
+      [
+        50,
+        170
+      ],
+      [
+        70,
+        260
+      ],
+      [
+        50,
+        170
+      ],
+      [
+        50,
+        190
+      ],
+      [
+        100,
+        190
+      ],
+      [
+        70,
+        200
+      ],
+      [
+        50,
+        170
+      ]
+    ],
+    "output_lost": false
+  },
+  "initialization_evidence": {
+    "path": "shadow_play\\logs\\servo_initial_pose\\serial_20261018_213419_616754.jsonl",
+    "sha256": "d20b4bddf184942090702d27489e721ddfd391af6729cf0839187433b43cdc3a",
+    "latest_successful_initialize": {
+      "sequence": 2,
+      "enabled_mask": 1023,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ]
+    },
+    "subsequently_off": true
+  },
+  "v20": {
+    "action_count": 14,
+    "all_motor_ready_false": true,
+    "all_start_motor_commands_null": true,
+    "calibrated_pwm_route_found": false,
+    "local_measurement_template_filled": false
+  },
+  "performance_executed": false,
+  "motor_commands_sent_this_turn": false,
+  "initialize_sent_this_turn": false,
+  "read_only_and_off_only": true,
+  "incident_locks_removed": false,
+  "camera": {
+    "old_session_expired": true,
+    "probe_before_user_waiver": "Get camera fingerprint: Connect_SSH_GetFingerprintFailed",
+    "fresh_frames_obtained": false,
+    "operations_after_user_waiver": false
+  },
+  "remaining_work": "Establish reachable V20 motor targets and loaded paths for each independent starting pose. Midpoint confirmation does not supply those trajectories."
+}
