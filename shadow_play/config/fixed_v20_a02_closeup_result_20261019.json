@@ -1267,6 +1267,71 @@
     "release": "fixed-v20-a02-closeup-20261019",
     "manifest_entries": 9
   },
-  "waiting_for": "Onsite observation of horn motion/rod transfer for axes 1/5/6; not more automatic motion or increased amplitude",
-  "incident_locks_removed": false
+  "waiting_for": null,
+  "incident_locks_removed": false,
+  "operator_after_closeup_observation": {
+    "received_utc": "2026-10-19T13:07:35.206763+00:00",
+    "reply": "没看清",
+    "question_channels": [
+      1,
+      5,
+      6
+    ],
+    "actual_horn_motion_confirmed": null,
+    "jamming_or_pulling_report": null,
+    "interpretation": "No clear onsite observation; neither confirms nor rejects motion, direction, or absence of jamming."
+  },
+  "readonly_after_operator_reply": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 3420,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+    "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "local_source_hashes_match_loaded_marker": {
+      "shadow_play/hardware/servo_pwm/servo_pwm_axi.v": "225a3d31ee42c774cd1ce43c6c1ff85cb82175ae285e3eaff886a168ee25b73d",
+      "shadow_play/hardware/servo_pwm/servo_pins.xdc": "1f13155c8e97d2ffc7f08ea5ca5a6f0051a159fae9db08fab5270b9af9315944"
+    },
+    "source_log_sha256": "b1139be9f7235d29b9dc9ab3524e5cadbccbfc3fbbd8d2840c0cfe678b1a5b1a",
+    "register_writes": false,
+    "motion_commands_sent": false
+  },
+  "software_control_review": {
+    "sources": [
+      "shadow_play/integrations/calibration/initial_pose_console.py",
+      "shadow_play/integrations/calibration/other_axes_check.py",
+      "shadow_play/integrations/calibration/servo_pwm_device.py",
+      "shadow_play/hardware/servo_pwm/servo_pins.xdc"
+    ],
+    "common_commit_function": "PwmDevice.commit",
+    "pulse_unit": "microseconds",
+    "enable_mask": 1023,
+    "pins": {
+      "1": "D14",
+      "5": "G14",
+      "6": "G15"
+    },
+    "finding": "No skipped channel or pin index discrepancy found in reviewed source and previous adopted-frame logs; physical PWM waveform and actual shaft angles remain unmeasured."
+  },
+  "next_requirement": "A new directly observable horn/rod response or electrical output measurement is needed to distinguish actuation and transmission. No repeat, increased amplitude, hand crossing or new motion scheduled from the unclear observation.",
+  "motion_remains_stopped": true
 }
