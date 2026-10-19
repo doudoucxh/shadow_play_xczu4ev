@@ -1,0 +1,1565 @@
+{
+  "schema": "fixed-v20-a02-direction-results-v1",
+  "date": "2026-10-19",
+  "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+  "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+  "checks": [
+    {
+      "request": {
+        "request_id": "2e053845e64a4797b010ddd7b7c6c973",
+        "user_request": "Continue A02 after user completed full person framing; observer/fixed rails confirmation retained",
+        "channel": 1,
+        "excursion_us": 40,
+        "other_nine_held_at_midpoint": true,
+        "enabled_mask": 1023,
+        "camera_sources": [
+          "sony_front",
+          "phone_rear"
+        ],
+        "preparation_component_only": true,
+        "rails_moved": false
+      },
+      "plan": {
+        "schema": "attended-fixed-v20-a02-hand-directions-v1",
+        "session_id": "97870472d32e4f37a6ccb3262812cb6f",
+        "new_request_id": "2e053845e64a4797b010ddd7b7c6c973",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 1,
+        "expected_sequence": 1831,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "1a3d58b0bd7e8e9c93b4af3e44bf72316820bf376f67baec13d2048f77208996",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/fixed-v20-a01-audio-20261019/A01-ffedc978a84d43799d249481233c59fb.board.jsonl",
+        "prior_log_sha256": "9e27ae4c58d4b9e034c1d5672d7c6f0bfe3b402f07f2e80f007979a89649b7dd",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true
+      },
+      "result": {
+        "event": "outputs_off",
+        "channel": 1,
+        "route_complete": true,
+        "state": {
+          "identity": "SP10",
+          "period_us": 20000,
+          "clock_hz": 100000000,
+          "enabled_mask": 0,
+          "armed": false,
+          "faults": 0,
+          "sequence": 2058,
+          "pending": false,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ],
+          "position_feedback": null
+        },
+        "incident_locks_removed": false,
+        "position_feedback": null
+      },
+      "audit": {
+        "event": "audit",
+        "board_log": "/run/media/mmcblk0p2/piying/fixed-v20-a02-directions-20261019/axis-1-97870472d32e4f37a6ccb3262812cb6f.board.jsonl",
+        "board_log_sha256": "a04939f094ece12c8c12b4b69cd6d203aa5b98432c056ac0d0ae458aeb0d38f3"
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "front": {
+            "frame": 47987,
+            "age_ms": 7.604736328125,
+            "updated_unix_ms": 1792414497463,
+            "sha256": "60f73da0a87cf9a982005dfe07a853fe03a29732bae1c1f6b2e0aa2afeb0e66c",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017011",
+            "age_ms": 31,
+            "captured_utc": "2026-10-19T12:54:57.535000+00:00",
+            "sha256": "39162085ff5e3e93f73eae2ef6631241df5deb4d581d6ba1ea74ba60e07256b7",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_0",
+          "front": {
+            "frame": 48004,
+            "age_ms": 59.22509765625,
+            "updated_unix_ms": 1792414498604,
+            "sha256": "a46d859412d2e4e4b56fe1cb2cfb9dd321277c8b6a45c4d50fbbb64ffd9e2060",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017028",
+            "age_ms": 14,
+            "captured_utc": "2026-10-19T12:54:58.662000+00:00",
+            "sha256": "2cf06960fdafa50253703c9067270be61874ca494318df1547d953fad3801da7",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_25",
+          "front": {
+            "frame": 48020,
+            "age_ms": 43.0419921875,
+            "updated_unix_ms": 1792414499679,
+            "sha256": "632691c0b76e0f4105ff1d421adc13ac1fb82ba210f489a623d89c458b0cc17d",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017043",
+            "age_ms": 77,
+            "captured_utc": "2026-10-19T12:54:59.659000+00:00",
+            "sha256": "c5287e8d2a3fc81478fd25b73b381ba80a389c6e708734c3cb2a21f0017fbacc",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_50",
+          "front": {
+            "frame": 48036,
+            "age_ms": 50.984130859375,
+            "updated_unix_ms": 1792414500751,
+            "sha256": "304ceeb254e129d5bd2f7798f70914a3d32d3e460b6f9857ff6800ca3005cd08",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017060",
+            "age_ms": 16,
+            "captured_utc": "2026-10-19T12:55:00.799000+00:00",
+            "sha256": "d1a37b9fff5614c9933b9e27ccda151f53eb346621057d3e512f31561631c283",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_75",
+          "front": {
+            "frame": 48052,
+            "age_ms": 39.0185546875,
+            "updated_unix_ms": 1792414501825,
+            "sha256": "73e054b84da5218f5ba8b9cabbb9e74a7f47340a3aef503632075e4b4083ba5b",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017076",
+            "age_ms": 16,
+            "captured_utc": "2026-10-19T12:55:01.867000+00:00",
+            "sha256": "f7c4dca7e280b6622c3e1a0250e91f63a12384e16bf5091cf46f2ca77e9ceb56",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_100",
+          "front": {
+            "frame": 48068,
+            "age_ms": 46.596923828125,
+            "updated_unix_ms": 1792414502898,
+            "sha256": "398bca7c1fd60354dc9de6b2429adbb90fc9655e2035205411e84b14ec36cfce",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017092",
+            "age_ms": 31,
+            "captured_utc": "2026-10-19T12:55:02.927000+00:00",
+            "sha256": "55589b233a359c70fb4df4306b69694f4b073865707e39f57559a718c516f88c",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_125",
+          "front": {
+            "frame": 48084,
+            "age_ms": 34.57275390625,
+            "updated_unix_ms": 1792414503970,
+            "sha256": "f2cab76ba1bc42d9239a921dd572711c3fec2d18982f6b862c0e56835934afec",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017108",
+            "age_ms": 14,
+            "captured_utc": "2026-10-19T12:55:04.007000+00:00",
+            "sha256": "63a9a77db91dba1fe444cdf18872258052007c8f03db3557a450ce1c12e57bdf",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_150",
+          "front": {
+            "frame": 48100,
+            "age_ms": 21.1123046875,
+            "updated_unix_ms": 1792414505044,
+            "sha256": "e104609010f84c10afd432397137305da09316b2dec5dbf94fdf4b374fc3a58a",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017124",
+            "age_ms": 15,
+            "captured_utc": "2026-10-19T12:55:05.070000+00:00",
+            "sha256": "4790fd8ee0f9ef4e24e92a602c7d0aa2de9ba804006d98206bff5c318b286ccf",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_175",
+          "front": {
+            "frame": 48116,
+            "age_ms": 3.48095703125,
+            "updated_unix_ms": 1792414506119,
+            "sha256": "930e663ff1f8294e14ceb051fc1fc2b3d749a892006eccda8782a702215f7b84",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017139",
+            "age_ms": 62,
+            "captured_utc": "2026-10-19T12:55:06.070000+00:00",
+            "sha256": "bc67e24caad7a22135a9bcdf79cd0eefa552663546ac0fbecc390544f714c549",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_200",
+          "front": {
+            "frame": 48132,
+            "age_ms": 9.627197265625,
+            "updated_unix_ms": 1792414507193,
+            "sha256": "3ec895671db62a6e5f97a82d8668ec9c3c9aa50a1136dcfff9c56d27a04fc8fc",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017156",
+            "age_ms": 30,
+            "captured_utc": "2026-10-19T12:55:07.194000+00:00",
+            "sha256": "505d04e3cb622680283d47a7389919e34ce160ade88af302fd44eadf61b3864f",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_225",
+          "front": {
+            "frame": 48149,
+            "age_ms": 36.31494140625,
+            "updated_unix_ms": 1792414508334,
+            "sha256": "6fd347eed795f858535074ba71b19a0e3e0abfa791ca5522f1d412c90867f331",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017173",
+            "age_ms": 47,
+            "captured_utc": "2026-10-19T12:55:08.336000+00:00",
+            "sha256": "0279cb12e7725e1e3f84a28d21438222b75abac536b97c516fb1f78a4c5da4bc",
+            "size": [
+              960,
+              540
+            ]
+          }
+        }
+      ],
+      "assistant_visual_review": {
+        "continue_allowed": true,
+        "utc": "2026-10-19T12:55:33.845199+00:00",
+        "observation": "Both views inspected before/at target/after return. No obvious collision or displacement of assembly. Axis-1 movement/direction remains too small to confirm at this view; do not use as direction calibration. Independent axis-2 check may proceed at same bounded excursion.",
+        "motion_direction_confirmed": false
+      },
+      "independent_audit": {
+        "channel": 1,
+        "frames": 226,
+        "peak_step_us": 1,
+        "final_sequence": 2058,
+        "raw_log_sha256": "a04939f094ece12c8c12b4b69cd6d203aa5b98432c056ac0d0ae458aeb0d38f3",
+        "elapsed_s": 9.618266967998352
+      },
+      "camera_summary": {
+        "pairs": 11,
+        "max_front_age_ms": 59.22509765625,
+        "max_rear_age_ms": 77
+      }
+    },
+    {
+      "request": {
+        "request_id": "d296a39c74ab41b38179bf3b08eed433",
+        "user_request": "Continue A02 after user completed full person framing; observer/fixed rails confirmation retained",
+        "channel": 2,
+        "excursion_us": 40,
+        "other_nine_held_at_midpoint": true,
+        "enabled_mask": 1023,
+        "camera_sources": [
+          "sony_front",
+          "phone_rear"
+        ],
+        "preparation_component_only": true,
+        "rails_moved": false
+      },
+      "plan": {
+        "schema": "attended-fixed-v20-a02-hand-directions-v1",
+        "session_id": "150246d70b40476c9153369e068c3a27",
+        "new_request_id": "d296a39c74ab41b38179bf3b08eed433",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 2,
+        "expected_sequence": 2058,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "b09619e842765aceb2c4966ca3e4a38f066972fa1c6e1d7104efbd4c575fef06",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/fixed-v20-a02-directions-20261019/axis-1-97870472d32e4f37a6ccb3262812cb6f.board.jsonl",
+        "prior_log_sha256": "a04939f094ece12c8c12b4b69cd6d203aa5b98432c056ac0d0ae458aeb0d38f3",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true
+      },
+      "result": {
+        "event": "outputs_off",
+        "channel": 2,
+        "route_complete": true,
+        "state": {
+          "identity": "SP10",
+          "period_us": 20000,
+          "clock_hz": 100000000,
+          "enabled_mask": 0,
+          "armed": false,
+          "faults": 0,
+          "sequence": 2285,
+          "pending": false,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ],
+          "position_feedback": null
+        },
+        "incident_locks_removed": false,
+        "position_feedback": null
+      },
+      "audit": {
+        "event": "audit",
+        "board_log": "/run/media/mmcblk0p2/piying/fixed-v20-a02-directions-20261019/axis-2-150246d70b40476c9153369e068c3a27.board.jsonl",
+        "board_log_sha256": "a9ba4df6979a651efd6aa6c45151bd8713835378c8a8cf4ed50832d9144097ad"
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "front": {
+            "frame": 48547,
+            "age_ms": 29.225341796875,
+            "updated_unix_ms": 1792414535026,
+            "sha256": "1a741151d2ad11a3556f9a576207343d8a17901d303c026f2505b89864c87708",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017575",
+            "age_ms": 31,
+            "captured_utc": "2026-10-19T12:55:35.131000+00:00",
+            "sha256": "f652a5e1182d5c872c5b72fcf36027ae2ebce579465fd89743bf1399840ee2a5",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_0",
+          "front": {
+            "frame": 48563,
+            "age_ms": 5.496337890625,
+            "updated_unix_ms": 1792414536101,
+            "sha256": "0ef90b7dfb8aebe330ca757c4de9eba58b651561a01fe0fb727934d251cebf0b",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017589",
+            "age_ms": 62,
+            "captured_utc": "2026-10-19T12:55:36.067000+00:00",
+            "sha256": "7203095d8b37b9d7b43807943a1ba15081e26c37292a217703f0009183ccf4c6",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_25",
+          "front": {
+            "frame": 48578,
+            "age_ms": 59.97216796875,
+            "updated_unix_ms": 1792414537107,
+            "sha256": "ba3075dde8028073d56ca085ba1494efb0b976a84b6df977cdc22128f04f8632",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017605",
+            "age_ms": 46,
+            "captured_utc": "2026-10-19T12:55:37.135000+00:00",
+            "sha256": "ea84fa2208bd16ac7906dedc4581f285e3cc73d1f4cc93e3a6b6d84b9997821b",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_50",
+          "front": {
+            "frame": 48594,
+            "age_ms": 46.36376953125,
+            "updated_unix_ms": 1792414538179,
+            "sha256": "c3870fdc3e1718c1edbcbfb60a4747947c31cffb893119423254cbad1b8cc3f9",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017621",
+            "age_ms": 46,
+            "captured_utc": "2026-10-19T12:55:38.193000+00:00",
+            "sha256": "7d71e475b7769888d6f2f02ca0c574b195edc7ba00678fa1cb768e96d17a72bf",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_75",
+          "front": {
+            "frame": 48610,
+            "age_ms": 57.598876953125,
+            "updated_unix_ms": 1792414539250,
+            "sha256": "c66bb4d9d2b67ce45abaa5549286f7a7490339cc738e252f57e325ff4d301da4",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017637",
+            "age_ms": 47,
+            "captured_utc": "2026-10-19T12:55:39.273000+00:00",
+            "sha256": "de0fe1a86be29e5cc51897fa1c7e61e0b419be8122077398d278a353548b4795",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_100",
+          "front": {
+            "frame": 48626,
+            "age_ms": 40.19482421875,
+            "updated_unix_ms": 1792414540326,
+            "sha256": "55965546eba0bad2a5a86129425669f7ad0c4d3487acdb892deca7a5c279f6ac",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017653",
+            "age_ms": 47,
+            "captured_utc": "2026-10-19T12:55:40.334000+00:00",
+            "sha256": "2cc011cdc0b6790bf6ec8fa24fbec1aa42041e0a7c236e09e4a014c98489e02f",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_125",
+          "front": {
+            "frame": 48642,
+            "age_ms": 24.597900390625,
+            "updated_unix_ms": 1792414541403,
+            "sha256": "356b81ce308f8d25107024f084e0c72a48685192cf424193e3b724ed2dcfdfc8",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017669",
+            "age_ms": 31,
+            "captured_utc": "2026-10-19T12:55:41.394000+00:00",
+            "sha256": "3c848773cd61e732afdccbfeb2507bd996d262a4d99fe0e893de8019442ba6d8",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_150",
+          "front": {
+            "frame": 48658,
+            "age_ms": 8.285400390625,
+            "updated_unix_ms": 1792414542477,
+            "sha256": "967205a6ef302837d849d08e0071eee0b987d1fa922079c46c08bd439fa6e5c9",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017685",
+            "age_ms": 47,
+            "captured_utc": "2026-10-19T12:55:42.463000+00:00",
+            "sha256": "2d6caa75edc5171e54961fa4905d13e59b0d8712c36e639df7d6373561cc1856",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_175",
+          "front": {
+            "frame": 48673,
+            "age_ms": 63.43603515625,
+            "updated_unix_ms": 1792414543482,
+            "sha256": "8f51678be5b42837076d8f731350b36f822817cfafd110eeae07d1f21491ad81",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017701",
+            "age_ms": 31,
+            "captured_utc": "2026-10-19T12:55:43.539000+00:00",
+            "sha256": "94618b9d7972ff43ecbd78457c27f388e26336ce44c73c53a658fb43f78c5be2",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_200",
+          "front": {
+            "frame": 48690,
+            "age_ms": 6.798583984375,
+            "updated_unix_ms": 1792414544620,
+            "sha256": "c9a908ecea647ac52070ac0ddeb4a6337f9ae562630bdc03e670c82189c54a88",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017717",
+            "age_ms": 32,
+            "captured_utc": "2026-10-19T12:55:44.596000+00:00",
+            "sha256": "b5ac231d4bb1b9f9d5e23b904d92b8a273ca0522d3471b584997ad30c2978e5c",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_225",
+          "front": {
+            "frame": 48706,
+            "age_ms": 61.3701171875,
+            "updated_unix_ms": 1792414545695,
+            "sha256": "1cf118a1ca4a2405319487f31ca53197c408a7cd5c5f88f626c271e4f6417cbe",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1017734",
+            "age_ms": 47,
+            "captured_utc": "2026-10-19T12:55:45.726000+00:00",
+            "sha256": "c0ca29c367cbc43cd006e0b2bf77a2dd4189c14313ec6f45a8eb4467968a2206",
+            "size": [
+              960,
+              540
+            ]
+          }
+        }
+      ],
+      "assistant_visual_review": {
+        "continue_allowed": true,
+        "utc": "2026-10-19T12:56:14.164780+00:00",
+        "observation": "At +40us, far-right person rod tip shifts toward person on rear view; front person silhouette shifts laterally and narrows with torso coupling. Return is approximate with settling. No obvious rod collision. Does not establish independent hand height or actual angle.",
+        "motion_direction_confirmed": true,
+        "independent_hand_height_calibrated": false
+      },
+      "independent_audit": {
+        "channel": 2,
+        "frames": 226,
+        "peak_step_us": 1,
+        "final_sequence": 2285,
+        "raw_log_sha256": "a9ba4df6979a651efd6aa6c45151bd8713835378c8a8cf4ed50832d9144097ad",
+        "elapsed_s": 9.597541351002292
+      },
+      "camera_summary": {
+        "pairs": 11,
+        "max_front_age_ms": 63.43603515625,
+        "max_rear_age_ms": 62
+      }
+    },
+    {
+      "request": {
+        "request_id": "164191dc755c488b814fe52dd0a78ead",
+        "user_request": "Continue A02 after user completed full person framing; observer/fixed rails confirmation retained",
+        "channel": 5,
+        "excursion_us": 40,
+        "other_nine_held_at_midpoint": true,
+        "enabled_mask": 1023,
+        "camera_sources": [
+          "sony_front",
+          "phone_rear"
+        ],
+        "preparation_component_only": true,
+        "rails_moved": false
+      },
+      "plan": {
+        "schema": "attended-fixed-v20-a02-hand-directions-v1",
+        "session_id": "e89833455a024daaba9ef2f06c81f051",
+        "new_request_id": "164191dc755c488b814fe52dd0a78ead",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 5,
+        "expected_sequence": 2285,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "56fe7c1c20c21ba9bb57c3cd1665286473647ff18dc3ac231bec6e200841092b",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/fixed-v20-a02-directions-20261019/axis-2-150246d70b40476c9153369e068c3a27.board.jsonl",
+        "prior_log_sha256": "a9ba4df6979a651efd6aa6c45151bd8713835378c8a8cf4ed50832d9144097ad",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true
+      },
+      "result": {
+        "event": "outputs_off",
+        "channel": 5,
+        "route_complete": true,
+        "state": {
+          "identity": "SP10",
+          "period_us": 20000,
+          "clock_hz": 100000000,
+          "enabled_mask": 0,
+          "armed": false,
+          "faults": 0,
+          "sequence": 2512,
+          "pending": false,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ],
+          "position_feedback": null
+        },
+        "incident_locks_removed": false,
+        "position_feedback": null
+      },
+      "audit": {
+        "event": "audit",
+        "board_log": "/run/media/mmcblk0p2/piying/fixed-v20-a02-directions-20261019/axis-5-e89833455a024daaba9ef2f06c81f051.board.jsonl",
+        "board_log_sha256": "e368d034eac2ba9df3745d498e498dcace0d67d14082544bd5ac53f8634ebe59"
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "front": {
+            "frame": 49148,
+            "age_ms": 33.835693359375,
+            "updated_unix_ms": 1792414575353,
+            "sha256": "bcf77f0364db2b492fc266a594e6097abd23a2126eae6f9e366c61bbf3ca6156",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018180",
+            "age_ms": 31,
+            "captured_utc": "2026-10-19T12:56:15.463000+00:00",
+            "sha256": "7e21289f49642923b68bb559c6bd52b4928214ec6b72375c274b3714ba669d12",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_0",
+          "front": {
+            "frame": 49164,
+            "age_ms": 4.11669921875,
+            "updated_unix_ms": 1792414576427,
+            "sha256": "fd1a8de5074729bb88a2eb9fb3280f259e080e1c5755cf3732bab9490ea0ad8d",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018194",
+            "age_ms": 47,
+            "captured_utc": "2026-10-19T12:56:16.396000+00:00",
+            "sha256": "f3c5496b5cc3bf4e6391174e987ae7ef5ecb6e102352b4f5b17755dd381c7d78",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_25",
+          "front": {
+            "frame": 49179,
+            "age_ms": 58.380126953125,
+            "updated_unix_ms": 1792414577431,
+            "sha256": "b2aea0f7a6efd53779fbbc25c1e041cac0f7a605ceb8e741f2da60189453348f",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018210",
+            "age_ms": 32,
+            "captured_utc": "2026-10-19T12:56:17.476000+00:00",
+            "sha256": "a13f3f80a8654f17550cbf0dc5bbbaa04cc6c951b1cb15175908efcbf3bea8a7",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_50",
+          "front": {
+            "frame": 49195,
+            "age_ms": 63.10693359375,
+            "updated_unix_ms": 1792414578508,
+            "sha256": "3e9c624475447ba7cbd7a39c70a1248f0ffe20306f360164692228515dba3f01",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018226",
+            "age_ms": 62,
+            "captured_utc": "2026-10-19T12:56:18.526000+00:00",
+            "sha256": "c9f4c85d2942b994b01d0d2d3c14a05d060b33b6d3cdb2a737184d346e1dff4f",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_75",
+          "front": {
+            "frame": 49211,
+            "age_ms": 51.13427734375,
+            "updated_unix_ms": 1792414579580,
+            "sha256": "3cc2ef7161a0554b6abccd70f001e5826e6f1d38456dbf29483ccdd8e7524183",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018242",
+            "age_ms": 47,
+            "captured_utc": "2026-10-19T12:56:19.598000+00:00",
+            "sha256": "2da7f64c0627f7662d3cf333f9911333a7bc90f98207a765a15fbec52f8b53fd",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_100",
+          "front": {
+            "frame": 49227,
+            "age_ms": 38.29296875,
+            "updated_unix_ms": 1792414580651,
+            "sha256": "64bfd6f40b08819076aa569e478247df49acdb08827605f93b27c8e19517df66",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018258",
+            "age_ms": 46,
+            "captured_utc": "2026-10-19T12:56:20.663000+00:00",
+            "sha256": "1efa5abd5d5ebe39cc91864b4f66de8719a3a08abda3e8f6839562754a30be22",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_125",
+          "front": {
+            "frame": 49243,
+            "age_ms": 20.8115234375,
+            "updated_unix_ms": 1792414581728,
+            "sha256": "94f53213b1d66a396dd76b1c8e92e62cf1e2f508d4d7d04d870dcac8a819da73",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018274",
+            "age_ms": 47,
+            "captured_utc": "2026-10-19T12:56:21.727000+00:00",
+            "sha256": "f7475b5d0cf05b343590b2daa1345099da513d12dcd719e6023c78ba74b728f3",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_150",
+          "front": {
+            "frame": 49259,
+            "age_ms": 6.2939453125,
+            "updated_unix_ms": 1792414582802,
+            "sha256": "2eb61ea01317611e1cb80ef96a1e3199459d63e2f4eaa3f6e05027c25dc2f03d",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018290",
+            "age_ms": 16,
+            "captured_utc": "2026-10-19T12:56:22.807000+00:00",
+            "sha256": "08b5ec320d20cddc1c95af84e5f7eb61c6d40fa90967c7c2a50713bade8abc4a",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_175",
+          "front": {
+            "frame": 49275,
+            "age_ms": 14.586181640625,
+            "updated_unix_ms": 1792414583878,
+            "sha256": "111d588b881cce4523f1c8351ed81f0abf88da3e3f12e7bbd3d5ca1b7e06717a",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018306",
+            "age_ms": 31,
+            "captured_utc": "2026-10-19T12:56:23.862000+00:00",
+            "sha256": "3658d37b8bfe62cd31ff65b33202c92bd3cb0d5d470f538103978c07691322af",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_200",
+          "front": {
+            "frame": 49290,
+            "age_ms": 68.369384765625,
+            "updated_unix_ms": 1792414584882,
+            "sha256": "e2d1e37f83bee62dbb6dac3bb2697deaf7f4fce6c6c136052b0df9cd34bd2a6a",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018322",
+            "age_ms": 31,
+            "captured_utc": "2026-10-19T12:56:24.929000+00:00",
+            "sha256": "d2dc90308e408c7680b24132942bcd4cdbc3b7cd96acee7a6917464b57ca7937",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_225",
+          "front": {
+            "frame": 49307,
+            "age_ms": 49.5751953125,
+            "updated_unix_ms": 1792414586025,
+            "sha256": "7c2d790ac71a0a597ee8cb11012814f4bbd79d2e7f1111028998dd7f88c2ee66",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018339",
+            "age_ms": 15,
+            "captured_utc": "2026-10-19T12:56:26.069000+00:00",
+            "sha256": "643a8a49e8f126148930fe3241adc14d6eca06514f6f7ce5cc10bb6b9e97671b",
+            "size": [
+              960,
+              540
+            ]
+          }
+        }
+      ],
+      "assistant_visual_review": {
+        "continue_allowed": true,
+        "utc": "2026-10-19T12:56:44.144916+00:00",
+        "observation": "Both views inspected before/target/return. No obvious collision or assembly displacement; axis-5 movement/direction remains too small to confirm. Independent axis-6 same-bound check may proceed, no combined crossing justified.",
+        "motion_direction_confirmed": false
+      },
+      "independent_audit": {
+        "channel": 5,
+        "frames": 226,
+        "peak_step_us": 1,
+        "final_sequence": 2512,
+        "raw_log_sha256": "e368d034eac2ba9df3745d498e498dcace0d67d14082544bd5ac53f8634ebe59",
+        "elapsed_s": 9.593903544999193
+      },
+      "camera_summary": {
+        "pairs": 11,
+        "max_front_age_ms": 68.369384765625,
+        "max_rear_age_ms": 62
+      }
+    },
+    {
+      "request": {
+        "request_id": "0752cddbf7724e91ba1d1d26a14492d2",
+        "user_request": "Continue A02 after user completed full person framing; observer/fixed rails confirmation retained",
+        "channel": 6,
+        "excursion_us": 40,
+        "other_nine_held_at_midpoint": true,
+        "enabled_mask": 1023,
+        "camera_sources": [
+          "sony_front",
+          "phone_rear"
+        ],
+        "preparation_component_only": true,
+        "rails_moved": false
+      },
+      "plan": {
+        "schema": "attended-fixed-v20-a02-hand-directions-v1",
+        "session_id": "6d431dffcac44c4fadca108a310e503c",
+        "new_request_id": "0752cddbf7724e91ba1d1d26a14492d2",
+        "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+        "channel": 6,
+        "expected_sequence": 2512,
+        "expected_pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "route_sha256": "4d1f8dfc064278441ba17e7affb93b2baadb16c26140d36f84be9304c3351b67",
+        "prior_log_path": "/run/media/mmcblk0p2/piying/fixed-v20-a02-directions-20261019/axis-5-e89833455a024daaba9ef2f06c81f051.board.jsonl",
+        "prior_log_sha256": "e368d034eac2ba9df3745d498e498dcace0d67d14082544bd5ac53f8634ebe59",
+        "camera_required": true,
+        "onsite_observer": true,
+        "new_hardware_request": true,
+        "mechanism_visible": true
+      },
+      "result": {
+        "event": "outputs_off",
+        "channel": 6,
+        "route_complete": true,
+        "state": {
+          "identity": "SP10",
+          "period_us": 20000,
+          "clock_hz": 100000000,
+          "enabled_mask": 0,
+          "armed": false,
+          "faults": 0,
+          "sequence": 2739,
+          "pending": false,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ],
+          "position_feedback": null
+        },
+        "incident_locks_removed": false,
+        "position_feedback": null
+      },
+      "audit": {
+        "event": "audit",
+        "board_log": "/run/media/mmcblk0p2/piying/fixed-v20-a02-directions-20261019/axis-6-6d431dffcac44c4fadca108a310e503c.board.jsonl",
+        "board_log_sha256": "39a91b7619970415c521140a962e959506c1d4ab375907d296081e520d586b82"
+      },
+      "camera_captures": [
+        {
+          "stage": "before",
+          "front": {
+            "frame": 49595,
+            "age_ms": 19.456298828125,
+            "updated_unix_ms": 1792414605341,
+            "sha256": "86552a5e25a88eec946e9b705cc44e4449b2803c311f31f968ed30f36a9d4e9a",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018630",
+            "age_ms": 0,
+            "captured_utc": "2026-10-19T12:56:45.457000+00:00",
+            "sha256": "5c365f2244a1a303948b34cfb349ea91f6f49a9f3baa6b82bc7d842cb2514dd1",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_0",
+          "front": {
+            "frame": 49610,
+            "age_ms": 44.2431640625,
+            "updated_unix_ms": 1792414606347,
+            "sha256": "3d1e22e145668499b9b5cd7ce6818d5911696926569689f8b83d4bb01f3fd2b4",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018644",
+            "age_ms": 0,
+            "captured_utc": "2026-10-19T12:56:46.394000+00:00",
+            "sha256": "64103e9e070fd66dc5a40eef2f26b854f24acc03f2d5e2c842a46eef1589fa9a",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_25",
+          "front": {
+            "frame": 49626,
+            "age_ms": 54.005126953125,
+            "updated_unix_ms": 1792414607417,
+            "sha256": "085f65f0f9f9fcb625bdd4d70aa438155ded31a9f2ad24a630b69e77af4118c4",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018660",
+            "age_ms": 31,
+            "captured_utc": "2026-10-19T12:56:47.457000+00:00",
+            "sha256": "9b2c20ffd6cbc8db6cc13e4e5a2921f506a38b1d3e14cdc8010f19153d33129f",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_50",
+          "front": {
+            "frame": 49642,
+            "age_ms": 38.993408203125,
+            "updated_unix_ms": 1792414608494,
+            "sha256": "b943a89adac0cee91d1b2be8bfd533453257db5afeb3f3ab82ba0eb33feeaf8c",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018676",
+            "age_ms": 31,
+            "captured_utc": "2026-10-19T12:56:48.526000+00:00",
+            "sha256": "a919e6f38e4886750ddfec6f1ecb001d4c1d428b8d1be71344a6e360ece194a7",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_75",
+          "front": {
+            "frame": 49658,
+            "age_ms": 45.150146484375,
+            "updated_unix_ms": 1792414609566,
+            "sha256": "89e220d0735621d41057dd81297a24e6b64050f855bbb6d3513647e35d034e3f",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018692",
+            "age_ms": 32,
+            "captured_utc": "2026-10-19T12:56:49.604000+00:00",
+            "sha256": "45c398722561e8954a895077e081a2441ce3f1d8e03ea81797d6786b314a48eb",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_100",
+          "front": {
+            "frame": 49674,
+            "age_ms": 30.119873046875,
+            "updated_unix_ms": 1792414610641,
+            "sha256": "3c46401420b43f7518d81de7e4ada59b116f3d8b462819693b65b28daa62b364",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018708",
+            "age_ms": 31,
+            "captured_utc": "2026-10-19T12:56:50.657000+00:00",
+            "sha256": "19e1cee07cc042316d3a7c773dcd749cd5a5fb5294fbdc4f338d07540b54db82",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_125",
+          "front": {
+            "frame": 49690,
+            "age_ms": 17.296630859375,
+            "updated_unix_ms": 1792414611716,
+            "sha256": "3e9675f4a9e45dbdfba0d315c014e8c79dd8054a3afe74167c4da5faa769f8b2",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018724",
+            "age_ms": 32,
+            "captured_utc": "2026-10-19T12:56:51.726000+00:00",
+            "sha256": "1fbb11aef993d0043f4d579a79d83ae7f23d4b673c77253e2713475cc74763f9",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_150",
+          "front": {
+            "frame": 49705,
+            "age_ms": 67.27783203125,
+            "updated_unix_ms": 1792414612725,
+            "sha256": "90074ef52aa24564fe5d54795b403c5f695d4485519132360aefbcc19e965d93",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018739",
+            "age_ms": 78,
+            "captured_utc": "2026-10-19T12:56:52.730000+00:00",
+            "sha256": "34fc1b5abcac17bb93dc6aade8466c2d22ce62a7732d148bfb05d7fa88e98ef3",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_175",
+          "front": {
+            "frame": 49722,
+            "age_ms": 6.8486328125,
+            "updated_unix_ms": 1792414613867,
+            "sha256": "75599dd24764a54783d1bb5b386d3188c4f9a2e2637a0ff216f652a016541fa0",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018756",
+            "age_ms": 31,
+            "captured_utc": "2026-10-19T12:56:53.863000+00:00",
+            "sha256": "d4919fc226cc81e4db4a1a69df71aaa6eedd0423bb0f2e2285bd5f245f4386c0",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_200",
+          "front": {
+            "frame": 49737,
+            "age_ms": 60.378662109375,
+            "updated_unix_ms": 1792414614871,
+            "sha256": "4758a3c3cc1e5556f07d1a6ffca0fc469ea50025ce9779bd1a29cc802f654903",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018772",
+            "age_ms": 16,
+            "captured_utc": "2026-10-19T12:56:54.929000+00:00",
+            "sha256": "6cd0c6a266636fbaa54cf8744b514a40b94d20031e2d8012d3bb343de397cb25",
+            "size": [
+              960,
+              540
+            ]
+          }
+        },
+        {
+          "stage": "frame_225",
+          "front": {
+            "frame": 49755,
+            "age_ms": 18.2978515625,
+            "updated_unix_ms": 1792414616078,
+            "sha256": "bee1e9fbee2fd4fb3081ca0288c109bac6b7ae8073d2899f74bb19fe807941c8",
+            "size": [
+              640,
+              360
+            ]
+          },
+          "rear": {
+            "source": "phone_mechanism",
+            "frame": "215fe2c22661410c98dda799b0e1974a-1018789",
+            "age_ms": 46,
+            "captured_utc": "2026-10-19T12:56:56.070000+00:00",
+            "sha256": "92d4fd21d97ff0811a9a89aef928095ad5e95511393783936ce08cb06d4bcac3",
+            "size": [
+              960,
+              540
+            ]
+          }
+        }
+      ],
+      "assistant_visual_review": {
+        "continue_allowed": false,
+        "utc": "2026-10-19T12:59:54.965611+00:00",
+        "observation": "Both views inspected before/target/return. No obvious collision. Axis-6 movement/direction not sufficiently distinct in wide view. No crossing or combined A02 route established. User subsequently repositioned camera and requested continuation.",
+        "motion_direction_confirmed": false
+      },
+      "independent_audit": {
+        "channel": 6,
+        "frames": 226,
+        "peak_step_us": 1,
+        "final_sequence": 2739,
+        "raw_log_sha256": "39a91b7619970415c521140a962e959506c1d4ab375907d296081e520d586b82",
+        "elapsed_s": 9.60806401699665
+      },
+      "camera_summary": {
+        "pairs": 11,
+        "max_front_age_ms": 67.27783203125,
+        "max_rear_age_ms": 78
+      }
+    }
+  ],
+  "latest_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 2739,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "independent_audit": {
+    "checks": [
+      {
+        "channel": 1,
+        "frames": 226,
+        "peak_step_us": 1,
+        "final_sequence": 2058,
+        "raw_log_sha256": "a04939f094ece12c8c12b4b69cd6d203aa5b98432c056ac0d0ae458aeb0d38f3",
+        "elapsed_s": 9.618266967998352
+      },
+      {
+        "channel": 2,
+        "frames": 226,
+        "peak_step_us": 1,
+        "final_sequence": 2285,
+        "raw_log_sha256": "a9ba4df6979a651efd6aa6c45151bd8713835378c8a8cf4ed50832d9144097ad",
+        "elapsed_s": 9.597541351002292
+      },
+      {
+        "channel": 5,
+        "frames": 226,
+        "peak_step_us": 1,
+        "final_sequence": 2512,
+        "raw_log_sha256": "e368d034eac2ba9df3745d498e498dcace0d67d14082544bd5ac53f8634ebe59",
+        "elapsed_s": 9.593903544999193
+      },
+      {
+        "channel": 6,
+        "frames": 226,
+        "peak_step_us": 1,
+        "final_sequence": 2739,
+        "raw_log_sha256": "39a91b7619970415c521140a962e959506c1d4ab375907d296081e520d586b82",
+        "elapsed_s": 9.60806401699665
+      }
+    ],
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 2739,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "manifest_entries": 11,
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "register_writes": false,
+    "rail_commands_sent": false,
+    "audio_started": false
+  },
+  "offline_tests_passed": 4,
+  "a02_performance_complete": false,
+  "full_show_complete": false,
+  "rail_motion_sent": false,
+  "audio_started": false,
+  "fpga_reloaded": false,
+  "actual_angle_feedback": null,
+  "user_subsequently_repositioned_phone_and_requests_continue": true,
+  "wide_view_motion_confirmed_channels": [
+    2
+  ],
+  "wide_view_directions_unresolved_channels": [
+    1,
+    5,
+    6
+  ],
+  "next_requirement": "Inspect newly repositioned close view, then a new bounded source-bound check; no hand crossing or added amplitude inferred from these results."
+}
