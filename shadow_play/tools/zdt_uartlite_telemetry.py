@@ -31,9 +31,21 @@ class QueryPort:
         self.sleep = sleep
         self.used = False
         self.received = bytearray()
+        self.tx_bytes_queued = 0
+        self.phase = 'unused'
+        self.status_changes = []
+
+    def diagnostics(self):
+        return dict(phase=self.phase, tx_bytes_queued=self.tx_bytes_queued,
+                    uart_status_changes=self.status_changes,
+                    wire_tx_verified=False)
 
     def status(self):
         value = self.reg.read(8)
+        if not self.status_changes or value != self.status_changes[-1]:
+            # Bound diagnostics even if a faulty input oscillates continuously.
+            if len(self.status_changes) < 32:
+                self.status_changes.append(value)
         if value & 0xE0:
             raise TelemetryError('UART parity/framing/overrun error: 0x%02x' % value)
         if value & 0x10:
@@ -47,6 +59,7 @@ class QueryPort:
         if self.used:
             raise TelemetryError('One request per port instance; no automatic retry')
         self.used = True
+        self.phase = 'checking_idle'
         # A nonempty FIFO is evidence of another transaction, not data to drop.
         quiet_until = self.clock() + 0.020
         while True:
@@ -58,8 +71,11 @@ class QueryPort:
             self.sleep(0.0002)
         started = self.clock()
         # At idle a 16-byte TX FIFO has room for this complete 3-byte query.
+        self.phase = 'queueing_query'
         for value in packet:
             self.reg.write(4, value)
+            self.tx_bytes_queued += 1
+        self.phase = 'awaiting_reply'
         deadline = started + 0.350
         last_byte_at = None
         while self.clock() < deadline:
@@ -78,6 +94,7 @@ class QueryPort:
                               freshness_basis='RX empty for 20ms, bytes received after this sole query',
                               query_hex=packet.hex(), reply_hex=self.received.hex(),
                               elapsed_seconds=self.clock() - started)
+                self.phase = 'complete'
                 return result
             else:
                 self.sleep(0.0002)
@@ -135,7 +152,7 @@ def main():
                     except Exception as error:
                         print('RAIL_QUERY_ERROR ' + json.dumps(dict(
                             rail=args.rail, error=str(error), reply_hex=port.received.hex(),
-                            motion_sent=False)), flush=True)
+                            diagnostics=port.diagnostics(), motion_sent=False)), flush=True)
                         raise
                     finally:
                         words.close()
@@ -145,7 +162,7 @@ def main():
             if after != state:
                 raise TelemetryError('PWM state changed during query')
             print('RAIL_QUERY ' + json.dumps(dict(rail=args.rail, result=result,
-                  pwm_unchanged=True, motion_sent=False)), flush=True)
+                  diagnostics=port.diagnostics(), pwm_unchanged=True, motion_sent=False)), flush=True)
         finally:
             registers.close()
 

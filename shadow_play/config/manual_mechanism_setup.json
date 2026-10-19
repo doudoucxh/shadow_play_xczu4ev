@@ -16,16 +16,17 @@
         "fpga_tx_pin": "F15",
         "fpga_rx_pin": "H13"
       },
-      "motor_address": null,
+      "motor_address": 1,
       "microsteps": null,
       "endstop_configuration": null,
       "hardware_verified": false,
       "baud_rate": 115200,
       "ground_shared_operator_confirmed": true,
       "motor_address_candidate": 1,
-      "checksum_mode": null,
+      "checksum_mode": "fixed_6b",
       "checksum_mode_candidate": "fixed_6b",
-      "settings_source": "Operator report; address/checksum are reported unchanged defaults, not yet read back"
+      "settings_source": "Operator read both driver screens: UART, 115200, address 1, 0x6B; no validated protocol reply",
+      "serial_mode": "UART"
     },
     "rail2": {
       "character": "老虎",
@@ -41,23 +42,24 @@
         "fpga_tx_pin": "H14",
         "fpga_rx_pin": "L13"
       },
-      "motor_address": null,
+      "motor_address": 1,
       "microsteps": null,
       "endstop_configuration": null,
       "hardware_verified": false,
       "baud_rate": 115200,
       "ground_shared_operator_confirmed": true,
       "motor_address_candidate": 1,
-      "checksum_mode": null,
+      "checksum_mode": "fixed_6b",
       "checksum_mode_candidate": "fixed_6b",
-      "settings_source": "Operator report; address/checksum are reported unchanged defaults, not yet read back"
+      "settings_source": "Operator read both driver screens: UART, 115200, address 1, 0x6B; no validated protocol reply",
+      "serial_mode": "UART"
     }
   },
   "operator_connection_report": {
     "date": "2026-10-19",
     "motor_family": "张大头42步进电机",
     "both_rails_connected": true,
-    "source": "User: motor RX F15 / TX H13 for person, motor RX H14 / TX L13 for tiger; Emm TTL 115200, common GND, other settings probably default",
+    "source": "User: motor-side RX F15 / TX H13 for person, RX H14 / TX L13 for tiger; Emm TTL, common GND. Both menus read UART / 115200 / 1 / 0x6B",
     "handshake_verified": false,
     "post_install_servo_midpoint_135_confirmed": true,
     "post_install_no_binding_confirmed": true,
@@ -66,7 +68,7 @@
     "interface_settings_received": true,
     "dual_pl_uart_image_loaded": true,
     "handshake_attempted": true,
-    "telemetry_result": "Both independent address-1 fixed-6B version queries returned no bytes",
+    "telemetry_result": "Version and status queries to each independent port returned no bytes; diagnostic status requests showed TX FIFO 0x04->0x00->0x04",
     "bringup_record": "shadow_play/config/rail_uart_bringup_20261019.json"
   }
 }

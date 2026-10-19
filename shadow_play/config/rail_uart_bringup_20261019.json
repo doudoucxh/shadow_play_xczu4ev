@@ -24,12 +24,27 @@
     "servo_midpoint_135": true,
     "no_binding": true,
     "onsite_cut_power": true,
-    "other_settings": "probably default"
+    "other_settings": "Settings beyond reported screen fields remain unconfirmed",
+    "screen_settings": {
+      "person": {
+        "serial_mode": "UART",
+        "baud": 115200,
+        "address": 1,
+        "checksum": "0x6B"
+      },
+      "tiger": {
+        "serial_mode": "UART",
+        "baud": 115200,
+        "address": 1,
+        "checksum": "0x6B"
+      }
+    },
+    "rx_tx_labels_are_motor_side": true
   },
   "address_candidate": 1,
   "checksum_mode_candidate": "fixed_6b",
-  "actual_address_verified": false,
-  "actual_checksum_verified": false,
+  "actual_address_verified": true,
+  "actual_checksum_verified": true,
   "hardware_handshake_verified": false,
   "fpga_candidate_build": {
     "project": "shadow_play/hardware/rail_uart/create_project.tcl",
@@ -63,7 +78,7 @@
     }
   },
   "query_client": "shadow_play/tools/zdt_uartlite_telemetry.py",
-  "offline_tests_passed": 21,
+  "offline_tests_passed": 23,
   "motor_motion_sent": false,
   "boot_files_changed": false,
   "incident_locks_removed": false,
@@ -101,10 +116,10 @@
   "latest_camera_frames": [
     {
       "source": "phone_mechanism",
-      "frame": "215fe2c22661410c98dda799b0e1974a-908387",
-      "age_ms": 30,
-      "captured_utc": "2026-10-19T10:54:15.941000+00:00",
-      "sha256": "e0336910c0cac98fd444d931b3a9a924eaca5dc900ce25c87c2182bc9ed94c85",
+      "frame": "215fe2c22661410c98dda799b0e1974a-920340",
+      "age_ms": 16,
+      "captured_utc": "2026-10-19T11:07:32.800000+00:00",
+      "sha256": "a71e798fdbf5d4c26252869e4548aa692e48c0558514dfb3be75fabc11339102",
       "size": [
         960,
         540
@@ -112,10 +127,10 @@
     },
     {
       "source": "phone_mechanism",
-      "frame": "215fe2c22661410c98dda799b0e1974a-908393",
-      "age_ms": 47,
-      "captured_utc": "2026-10-19T10:54:16.338000+00:00",
-      "sha256": "42d000e27e10dfed743baea99a01d096cc1e2ca1348b4e4a97114940f731e480",
+      "frame": "215fe2c22661410c98dda799b0e1974a-920346",
+      "age_ms": 15,
+      "captured_utc": "2026-10-19T11:07:33.198000+00:00",
+      "sha256": "c5df5af3ea5dc7f04005ad32bb61ccb436edf9b6a8fe94d5b3c790ca87fe9328",
       "size": [
         960,
         540
@@ -123,10 +138,10 @@
     },
     {
       "source": "phone_mechanism",
-      "frame": "215fe2c22661410c98dda799b0e1974a-908399",
-      "age_ms": 0,
-      "captured_utc": "2026-10-19T10:54:16.737000+00:00",
-      "sha256": "ac9da7d2f605deb9509fe03996ecc38a3c8ad145f5b10e1e6d8523f5a6777b17",
+      "frame": "215fe2c22661410c98dda799b0e1974a-920351",
+      "age_ms": 46,
+      "captured_utc": "2026-10-19T11:07:33.538000+00:00",
+      "sha256": "78fa120bc9b18c8340c27361279d5e6a89ead126cec6cab9e4715f89647385e2",
       "size": [
         960,
         540
@@ -137,7 +152,7 @@
   "all_actuator_power_off_operator_confirmed": true,
   "physical_power_off_confirmation_needed_before_load": false,
   "offline_test_groups": {
-    "protocol_and_query_and_load_gates": 15,
+    "protocol_and_query_and_load_gates": 17,
     "file_receivers": 6
   },
   "rail_uart_packets_sent": true,
@@ -320,9 +335,61 @@
       },
       "interpretation": "Independent port; one version query, no reply bytes",
       "raw_log_sha256": "74a69d3e5f5939532dc7b2043550c23cdf6812f70f67f7b5a16c65b4b5d28f0d"
+    },
+    {
+      "rail": "person",
+      "query": "status",
+      "address": 1,
+      "checksum_mode": "fixed_6b",
+      "query_hex": "013a6b",
+      "tx_registers_written": true,
+      "wire_tx_verified": false,
+      "result": {
+        "rail": "person",
+        "error": "Reply timeout; no automatic resend",
+        "reply_hex": "",
+        "diagnostics": {
+          "phase": "awaiting_reply",
+          "tx_bytes_queued": 3,
+          "uart_status_changes": [
+            4,
+            0,
+            4
+          ],
+          "wire_tx_verified": false
+        },
+        "motion_sent": false
+      },
+      "raw_log_sha256": "8fd939a584f37abb424a2fb561cf34d80266571e60f9a731d7f0a6edea71820f"
+    },
+    {
+      "rail": "tiger",
+      "query": "status",
+      "address": 1,
+      "checksum_mode": "fixed_6b",
+      "query_hex": "013a6b",
+      "tx_registers_written": true,
+      "wire_tx_verified": false,
+      "result": {
+        "rail": "tiger",
+        "error": "Reply timeout; no automatic resend",
+        "reply_hex": "",
+        "diagnostics": {
+          "phase": "awaiting_reply",
+          "tx_bytes_queued": 3,
+          "uart_status_changes": [
+            4,
+            0,
+            4
+          ],
+          "wire_tx_verified": false
+        },
+        "motion_sent": false
+      },
+      "raw_log_sha256": "77c10ecfb87eae8413a41f65beea960369d3752fa1d2139e785362ca7745581a"
     }
   ],
-  "rail_uart_packets_note": "One 3-byte read-only version request was queued in each UART TX FIFO; wire waveform not measured. No motion packets.",
+  "rail_uart_packets_note": "One version and one status 3-byte read-only request were queued on each independent UART. Status requests showed TX FIFO drain; no line waveform or device reply verified. No motion packets.",
   "latest_board_readback": {
     "state": {
       "identity": "SP10",
@@ -359,8 +426,8 @@
     },
     "ui_frames": [
       {
-        "captured": 76854.071680378,
-        "age_ms": 1107.9,
+        "captured": 77581.282590216,
+        "age_ms": 1136.7,
         "shape": [
           600,
           1024,
@@ -368,8 +435,8 @@
         ]
       },
       {
-        "captured": 76855.30896628,
-        "age_ms": 29.5,
+        "captured": 77582.553359873,
+        "age_ms": 24.9,
         "shape": [
           600,
           1024,
@@ -377,8 +444,8 @@
         ]
       },
       {
-        "captured": 76855.476179102,
-        "age_ms": 21.4,
+        "captured": 77582.687106131,
+        "age_ms": 51.5,
         "shape": [
           600,
           1024,
@@ -388,7 +455,8 @@
     ],
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
     "register_writes": false,
-    "motor_packets_sent": false
+    "motor_packets_sent": false,
+    "pc_log_written_utc": "2026-10-19T11:06:26.340182+00:00"
   },
   "latest_camera_frames_before_load": [
     {
@@ -426,5 +494,68 @@
     }
   ],
   "camera_driver_screens_legible": false,
-  "waiting_for": "Actual displayed P_Serial, UartBaud, ID_Addr and Checksum for each driver; both version queries timed out"
+  "waiting_for": "Close view of driver communication socket and wire endpoints, or measured TX/RX signal evidence; settings and implemented FPGA directions match the operator report",
+  "actual_settings_verification_basis": "Operator read both driver menus; not a validated protocol reply",
+  "latest_validation": {
+    "protocol_tests_passed": 6,
+    "client_tests_passed": 7,
+    "added_tests": 2,
+    "scope": "Diagnostic counters and FIFO transitions; protocol and motion restrictions unchanged"
+  },
+  "diagnostic_client": {
+    "source": "shadow_play/tools/zdt_uartlite_telemetry.py",
+    "sha256": "ab0da079d73e6db8e9574164c8c1e32135f9492f13e57f09f6ef663c2b6e46c7",
+    "board_temporary_path": "/tmp/zdt-uartlite-diag-20261019.py",
+    "original_sd_bundle_modified": false
+  },
+  "direction_audit": {
+    "source": "Implemented Vivado I/O report, generated wrapper and exported BD connections",
+    "io_report_sha256": "bd8f9a720df317a6ba6eb4f66ed9d5275f91ac1e9caae81a7f905ebc04083645",
+    "fpga_outputs_to_motor_rx": [
+      "F15",
+      "H14"
+    ],
+    "fpga_inputs_from_motor_tx": [
+      "H13",
+      "L13"
+    ],
+    "matches_operator_motor_side_labels": true,
+    "physical_wire_endpoint_verification": false
+  },
+  "latest_camera_frames_before_status_queries": [
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-908387",
+      "age_ms": 30,
+      "captured_utc": "2026-10-19T10:54:15.941000+00:00",
+      "sha256": "e0336910c0cac98fd444d931b3a9a924eaca5dc900ce25c87c2182bc9ed94c85",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-908393",
+      "age_ms": 47,
+      "captured_utc": "2026-10-19T10:54:16.338000+00:00",
+      "sha256": "42d000e27e10dfed743baea99a01d096cc1e2ca1348b4e4a97114940f731e480",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-908399",
+      "age_ms": 0,
+      "captured_utc": "2026-10-19T10:54:16.737000+00:00",
+      "sha256": "ac9da7d2f605deb9509fe03996ecc38a3c8ad145f5b10e1e6d8523f5a6777b17",
+      "size": [
+        960,
+        540
+      ]
+    }
+  ],
+  "camera_view_note": "Fresh whole-rig view; driver communication terminal markings remain unreadable"
 }

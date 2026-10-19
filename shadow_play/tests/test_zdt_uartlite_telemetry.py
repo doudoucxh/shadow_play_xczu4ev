@@ -74,6 +74,33 @@ class Tests(unittest.TestCase):
                 request(f, kind, fw)
             self.assertEqual(f.writes, [])
 
+    def test_diagnostics_distinguish_pre_tx_rejection_from_reply_timeout(self):
+        for status, queued, phase in ((0x44, 0, 'checking_idle'), (4, 3, 'awaiting_reply')):
+            f = Fake(reply=b'', status=status)
+            p = QueryPort(f, clock=f.clock, sleep=f.sleep)
+            with self.assertRaises(TelemetryError):
+                p.request(1, 'version', checksum_mode='fixed_6b', firmware_kind='Emm')
+            d = p.diagnostics()
+            self.assertEqual(d['tx_bytes_queued'], queued)
+            self.assertEqual(d['phase'], phase)
+            self.assertEqual(d['uart_status_changes'], [status])
+            self.assertFalse(d['wire_tx_verified'])
+            self.assertEqual(len(f.writes), queued)
+
+    def test_diagnostics_capture_fifo_drain_without_claiming_pin_waveform(self):
+        class Drain(Fake):
+            def read(self, offset):
+                if offset == 8 and len(self.writes) == 3 and self.now < .021:
+                    return 0
+                return super().read(offset)
+        f = Drain(reply=b'')
+        p = QueryPort(f, clock=f.clock, sleep=f.sleep)
+        with self.assertRaises(TelemetryError):
+            p.request(1, 'status', checksum_mode='fixed_6b', firmware_kind='Emm')
+        self.assertEqual(p.diagnostics()['uart_status_changes'], [4, 0, 4])
+        self.assertFalse(p.diagnostics()['wire_tx_verified'])
+        self.assertEqual(f.writes, [(4, 1), (4, 0x3a), (4, 0x6b)])
+
 
 if __name__ == '__main__':
     unittest.main()
