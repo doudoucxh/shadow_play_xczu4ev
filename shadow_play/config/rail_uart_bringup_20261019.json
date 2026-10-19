@@ -398,7 +398,7 @@
       "enabled_mask": 0,
       "armed": false,
       "faults": 0,
-      "sequence": 0,
+      "sequence": 681,
       "pending": false,
       "pulse_us": [
         1500,
@@ -414,49 +414,11 @@
       ],
       "position_feedback": null
     },
-    "uart_status_samples": {
-      "person": [
-        4,
-        4
-      ],
-      "tiger": [
-        4,
-        4
-      ]
-    },
-    "ui_frames": [
-      {
-        "captured": 80407.910402916,
-        "age_ms": 1113.8,
-        "shape": [
-          600,
-          1024,
-          3
-        ]
-      },
-      {
-        "captured": 80409.147782389,
-        "age_ms": 35.3,
-        "shape": [
-          600,
-          1024,
-          3
-        ]
-      },
-      {
-        "captured": 80409.314994972,
-        "age_ms": 27.6,
-        "shape": [
-          600,
-          1024,
-          3
-        ]
-      }
-    ],
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
     "register_writes": false,
-    "motor_packets_sent": false,
-    "pc_log_written_utc": "2026-10-19T11:53:33.160784+00:00"
+    "rail_uart_samples": null,
+    "pc_log_written_utc": "2026-10-19T12:13:48.852798+00:00",
+    "source_record": "shadow_play/config/fixed_v20_components_result_20261019.json"
   },
   "latest_camera_frames_before_load": [
     {
@@ -494,7 +456,7 @@
     }
   ],
   "camera_driver_screens_legible": false,
-  "waiting_for": "User requested stop; isolated loopback not set up or executed; do not issue further queries automatically",
+  "waiting_for": "Rail debugging deferred by user; no rail motion/handshake accepted. Fixed-rail head preparation ended OFF681 with axis-8 physical response unresolved.",
   "actual_settings_verification_basis": "Operator read both driver menus; not a validated protocol reply",
   "latest_validation": {
     "protocol_tests_passed": 6,
@@ -726,5 +688,74 @@
     "physical_power_off_confirmed": false,
     "motor_signals_disconnected_confirmed": false,
     "f15_h13_loopback_link_confirmed": false
-  }
+  },
+  "board_readback_before_fixed_rail_component_request": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "uart_status_samples": {
+      "person": [
+        4,
+        4
+      ],
+      "tiger": [
+        4,
+        4
+      ]
+    },
+    "ui_frames": [
+      {
+        "captured": 80407.910402916,
+        "age_ms": 1113.8,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 80409.147782389,
+        "age_ms": 35.3,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 80409.314994972,
+        "age_ms": 27.6,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      }
+    ],
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "register_writes": false,
+    "motor_packets_sent": false,
+    "pc_log_written_utc": "2026-10-19T11:53:33.160784+00:00"
+  },
+  "later_fixed_rail_component_record": "shadow_play/config/fixed_v20_components_result_20261019.json"
 }
