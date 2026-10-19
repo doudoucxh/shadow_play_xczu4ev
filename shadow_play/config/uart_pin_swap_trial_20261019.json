@@ -1,0 +1,131 @@
+{
+  "schema": "uart-pin-swap-trial-v1",
+  "date": "2026-10-19",
+  "user_request": "Swap RX and TX for a trial",
+  "operator_confirms_labels_are_motor_side": true,
+  "operator_reports_no_series_resistors": true,
+  "operator_requests_proceed_after_output_contention_explanation": true,
+  "previous_image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+  "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+  "candidate_ports": {
+    "person": {
+      "base": 2684616704,
+      "tx_pin": "H13",
+      "rx_pin": "F15"
+    },
+    "tiger": {
+      "base": 2684682240,
+      "tx_pin": "L13",
+      "rx_pin": "H14"
+    }
+  },
+  "baud": 115200,
+  "format": "8N1",
+  "tx_drive_ma": 4,
+  "drive_setting_is_hard_current_limit": false,
+  "invalid_2ma_attempt": "Rejected offline by Vivado; no bitstream loaded",
+  "build_status": "all_design_checks_passed",
+  "loaded": false,
+  "sd_staged": true,
+  "physical_power_off_confirmation_received": false,
+  "offline_test_groups": {
+    "swapped_candidate_and_query_scope": 3,
+    "existing_query_transport": 7,
+    "existing_image_gates": 4,
+    "delta_data_integrity": 2
+  },
+  "offline_tests_passed": 16,
+  "latest_preload_state": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "uart_status_samples": {
+      "person": [
+        4,
+        4
+      ],
+      "tiger": [
+        4,
+        4
+      ]
+    },
+    "ui_frames": [
+      {
+        "captured": 78503.823119357,
+        "age_ms": 1120.8,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 78505.06041048,
+        "age_ms": 43.8,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 78505.227562581,
+        "age_ms": 35.1,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      }
+    ],
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "register_writes": false,
+    "motor_packets_sent": false
+  },
+  "motor_packets_sent": false,
+  "motion_sent": false,
+  "incident_locks_removed": false,
+  "boot_files_changed": false,
+  "next_step": "Fresh physical actuator power-off confirmation; keep existing wiring and Zynq powered, then load trial image",
+  "package": {
+    "result": "SWAPPED_UART_PACKAGED_NOT_LOADED",
+    "image_sha": "2a6f3675d13254225e4d41abcbdb1d48f347a2bcdba5dbb233abfd155450958e",
+    "archive_sha256": "060feeda8086f63fad5643ee023b3434043699c6574903582c943f3a5f62a731",
+    "archive_bytes": 26628,
+    "delta_bytes": 35191,
+    "wns_ns": 0.826,
+    "whs_ns": 0.01,
+    "wpws_ns": 0.163
+  },
+  "board_data_stage": {
+    "stage": "/run/media/mmcblk0p2/piying/uart-swap-query-20261019",
+    "files": 16,
+    "image_sha": "2a6f3675d13254225e4d41abcbdb1d48f347a2bcdba5dbb233abfd155450958e",
+    "hardware_access": false,
+    "motor_packets_sent": false
+  },
+  "image_sha256": "2a6f3675d13254225e4d41abcbdb1d48f347a2bcdba5dbb233abfd155450958e",
+  "board_offline_check_passed": true,
+  "exact_delta_reconstruction_verified": true,
+  "release_manifest": "shadow_play/hardware/rail_uart/release_swapped/servo10_uart_swapped.manifest.json"
+}

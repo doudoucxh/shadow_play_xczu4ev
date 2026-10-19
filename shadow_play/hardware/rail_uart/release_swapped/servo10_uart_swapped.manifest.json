@@ -1,0 +1,71 @@
+{
+  "image_kind": "servo10_vision",
+  "design_checks": "SERVO_IMAGE_DESIGN_CHECKS_PASS",
+  "bus_skew_check": "SERVO_BUS_SKEW_CHECK_PASS",
+  "register_base": 2684551168,
+  "pins": [
+    "D14",
+    "D15",
+    "F13",
+    "G13",
+    "G14",
+    "G15",
+    "J14",
+    "E13",
+    "E14",
+    "E15"
+  ],
+  "sha256": "2a6f3675d13254225e4d41abcbdb1d48f347a2bcdba5dbb233abfd155450958e",
+  "wns_ns": 0.826,
+  "whs_ns": 0.01,
+  "wpws_ns": 0.163,
+  "part": "xczu4ev-sfvc784-2-i",
+  "clock_hz": 100000000,
+  "period_us": 20000,
+  "channels": 10,
+  "reset_outputs": "disabled",
+  "previous_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+  "scope": "Explicit user-requested swapped-pin version-query trial; no motion",
+  "built_at": "2026-10-19T11:29:17.398469+00:00",
+  "rail_uart": {
+    "design_checks": "RAIL_UART_DESIGN_CHECKS_PASS",
+    "ports": {
+      "person": {
+        "base": 2684616704,
+        "tx_pin": "H13",
+        "rx_pin": "F15"
+      },
+      "tiger": {
+        "base": 2684682240,
+        "tx_pin": "L13",
+        "rx_pin": "H14"
+      }
+    },
+    "baud": 115200,
+    "format": "8N1",
+    "generated_clock_hz": {
+      "person": 99999281,
+      "tiger": 99999281
+    },
+    "reset_tx": "idle_high_no_bytes",
+    "pin_map": "swapped",
+    "tx_drive_ma": 4,
+    "swapped_design_checks": "RAIL_UART_SWAPPED_DESIGN_CHECKS_PASS"
+  },
+  "reports": {
+    "verified_timing.rpt": "917d809646a1a8ab6587ffde659e617111ce1f1814aac825081311868cee34a1",
+    "verified_drc.rpt": "6aa74222dd0b37c5b512647923f37191de20b823e585d33aac5bcb00f8876082",
+    "verified_io.rpt": "e5a26b9b0077c4daf509ee46788303de564fde20a82cf64a8da92c30eb92a449",
+    "verified_route.rpt": "5e8ac1ac61cb619cd14986f53d5e6c4b2bd6eea883ea0c35d2cca8854caa1fe1",
+    "verified_bus_skew.rpt": "3c8b7926c2c66ac098679defebaff069f609bd4f53192b8a7ef1d9085f3acf57"
+  },
+  "design_export_sha256": "5e04175c1aee72cf6c48de207d410c0944b65df3e2157938086f85e5bb265843",
+  "base_reference_io_sha256": "1ac388d3d49cf87ab08ad1740a811a393923851e157b8155b98861b17a7043f6",
+  "existing_ports_preserved": 178,
+  "source_inputs": {
+    "shadow_play/hardware/rail_uart/build_swapped_pins.tcl": "7e0093d56bd122c23f987468624dc8f59839c5de6a670db7058818953a2ead14",
+    "shadow_play/hardware/rail_uart/rail_uart_swapped_pins.xdc": "77154db3bc81646d6eddef1d227a08f39f66166992c8e1fb445c9692eb2b51bc",
+    "shadow_play/hardware/rail_uart/release/servo10_dual_uart.manifest.json": "b6bb630ee668855b6c06a0f4b0c039105af9bfcb612988b00638166e7ffe6e01"
+  },
+  "source_checkpoint_sha256": "55475ed4680c9f86e740bccab4f7173acf964c85d1c22acd122a76c890c0845a"
+}

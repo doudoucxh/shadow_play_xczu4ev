@@ -22,7 +22,7 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def verify_candidate(manifest, image_sha):
+def verify_candidate(manifest, image_sha, *, expected_ports=PORTS):
     rail = manifest.get('rail_uart', {})
     if (manifest.get('sha256') != image_sha or image_sha == BASE_SHA or
             len(image_sha) != 64 or manifest.get('image_kind') != 'servo10_vision' or
@@ -35,7 +35,7 @@ def verify_candidate(manifest, image_sha):
             not manifest.get('wns_ns', -1) >= 0 or not manifest.get('whs_ns', -1) >= 0 or
             not manifest.get('wpws_ns', -1) >= 0 or
             rail.get('design_checks') != 'RAIL_UART_DESIGN_CHECKS_PASS' or
-            rail.get('ports') != PORTS or rail.get('baud') != 115200 or rail.get('format') != '8N1'):
+            rail.get('ports') != expected_ports or rail.get('baud') != 115200 or rail.get('format') != '8N1'):
         raise ValueError('Unverified candidate image, timing, pins or UART map')
 
 

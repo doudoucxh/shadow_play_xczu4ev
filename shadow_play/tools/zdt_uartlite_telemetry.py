@@ -16,10 +16,25 @@ PORTS = {
     'person': {'base': 0xA0040000, 'tx_pin': 'F15', 'rx_pin': 'H13'},
     'tiger': {'base': 0xA0050000, 'tx_pin': 'H14', 'rx_pin': 'L13'},
 }
+SWAPPED_PORTS = {
+    'person': {'base': 0xA0040000, 'tx_pin': 'H13', 'rx_pin': 'F15'},
+    'tiger': {'base': 0xA0050000, 'tx_pin': 'L13', 'rx_pin': 'H14'},
+}
+PIN_MAPS = {'standard': PORTS, 'swapped': SWAPPED_PORTS}
 
 
 class TelemetryError(RuntimeError):
     pass
+
+
+def validate_pin_map(rail_info, name):
+    ports = PIN_MAPS[name]
+    if rail_info.get('ports') != ports:
+        raise TelemetryError('Selected pin map does not match the loaded image')
+    if name == 'swapped' and (rail_info.get('pin_map') != 'swapped' or
+                              rail_info.get('tx_drive_ma') != 4):
+        raise TelemetryError('Unverified swapped-pin test image')
+    return ports
 
 
 class QueryPort:
@@ -104,6 +119,7 @@ class QueryPort:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--rail', required=True, choices=PORTS)
+    parser.add_argument('--pin-map', choices=PIN_MAPS, default='standard')
     parser.add_argument('--address', required=True, type=int)
     parser.add_argument('--query', required=True, choices=('version', 'status', 'position'))
     parser.add_argument('--checksum-mode', required=True, choices=('fixed_6b',))
@@ -114,21 +130,24 @@ def main():
     parser.add_argument('--execute-query', action='store_true')
     args = parser.parse_args()
     packet = query(args.address, args.query, checksum_mode=args.checksum_mode)
+    if args.pin_map == 'swapped' and (args.query != 'version' or args.address != 1):
+        raise TelemetryError('Swapped-pin test is limited to one address-1 version query per rail')
+    ports = PIN_MAPS[args.pin_map]
     if not args.execute_query:
         print(json.dumps(dict(mode='OFFLINE_QUERY_DESCRIPTION', rail=args.rail,
-                              query_hex=packet.hex(), port=PORTS[args.rail])))
+                              query_hex=packet.hex(), pin_map=args.pin_map, port=ports[args.rail])))
         return
     import fcntl
     from mmio32 import WordAccess
     from servo_pwm_device import PwmDevice, Registers
     marker = json.loads(Path('/run/shadow-pwm-loaded.json').read_text())
     rail_info = marker.get('rail_uart', {})
+    validate_pin_map(rail_info, args.pin_map)
     if (Path('/proc/sys/kernel/random/boot_id').read_text().strip() != args.boot_id or
             marker.get('boot_id') != args.boot_id or marker.get('sha256') != args.image_sha or
             marker.get('design_checks') != 'SERVO_IMAGE_DESIGN_CHECKS_PASS' or
             rail_info.get('design_checks') != 'RAIL_UART_DESIGN_CHECKS_PASS' or
-            rail_info.get('baud') != 115200 or rail_info.get('format') != '8N1' or
-            rail_info.get('ports') != PORTS):
+            rail_info.get('baud') != 115200 or rail_info.get('format') != '8N1'):
         raise TelemetryError('Reviewed dual-UART boot/image/port manifest mismatch')
     # Hold the existing exclusive PWM lock so no servo client can arm concurrently.
     with open('/run/shadow-rail-uart.lock', 'a') as rail_lock:
@@ -139,10 +158,14 @@ def main():
             if (state['armed'] or state['enabled_mask'] or state['pending'] or state['faults'] or
                     state['sequence'] != args.expected_sequence):
                 raise TelemetryError('Expected stopped PWM state does not match')
+            if args.pin_map == 'swapped':
+                used = Path('/run/shadow-uart-swap-%s-%s.used' % (args.image_sha, args.rail))
+                with used.open('x') as record:
+                    record.write(json.dumps(dict(boot_id=args.boot_id, query_hex=packet.hex()))+'\n')
             fd = os.open('/dev/mem', os.O_RDWR | os.O_SYNC)
             try:
                 with mmap.mmap(fd, 4096, mmap.MAP_SHARED, mmap.PROT_READ | mmap.PROT_WRITE,
-                               offset=PORTS[args.rail]['base']) as memory:
+                               offset=ports[args.rail]['base']) as memory:
                     words = WordAccess(memory)
                     port = QueryPort(words)
                     try:
