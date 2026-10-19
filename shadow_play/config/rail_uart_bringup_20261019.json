@@ -116,10 +116,10 @@
   "latest_camera_frames": [
     {
       "source": "phone_mechanism",
-      "frame": "215fe2c22661410c98dda799b0e1974a-920340",
+      "frame": "215fe2c22661410c98dda799b0e1974a-950744",
       "age_ms": 16,
-      "captured_utc": "2026-10-19T11:07:32.800000+00:00",
-      "sha256": "a71e798fdbf5d4c26252869e4548aa692e48c0558514dfb3be75fabc11339102",
+      "captured_utc": "2026-10-19T11:41:19.737000+00:00",
+      "sha256": "a190a21768384874a812c6f07cbec9996b06f534f7e5ded981067eb287109985",
       "size": [
         960,
         540
@@ -127,10 +127,10 @@
     },
     {
       "source": "phone_mechanism",
-      "frame": "215fe2c22661410c98dda799b0e1974a-920346",
-      "age_ms": 15,
-      "captured_utc": "2026-10-19T11:07:33.198000+00:00",
-      "sha256": "c5df5af3ea5dc7f04005ad32bb61ccb436edf9b6a8fe94d5b3c790ca87fe9328",
+      "frame": "215fe2c22661410c98dda799b0e1974a-950750",
+      "age_ms": 16,
+      "captured_utc": "2026-10-19T11:41:20.151000+00:00",
+      "sha256": "bf8b963c1d2d8a2bb3d34291d5748bd223b5160c8957b32312ab28ad49efa158",
       "size": [
         960,
         540
@@ -138,10 +138,10 @@
     },
     {
       "source": "phone_mechanism",
-      "frame": "215fe2c22661410c98dda799b0e1974a-920351",
-      "age_ms": 46,
-      "captured_utc": "2026-10-19T11:07:33.538000+00:00",
-      "sha256": "78fa120bc9b18c8340c27361279d5e6a89ead126cec6cab9e4715f89647385e2",
+      "frame": "215fe2c22661410c98dda799b0e1974a-950755",
+      "age_ms": 47,
+      "captured_utc": "2026-10-19T11:41:20.475000+00:00",
+      "sha256": "b505b6072f8d771e23dfb261fa8955d04c334e78fbf03c1bdce028dd2b756b6e",
       "size": [
         960,
         540
@@ -426,8 +426,8 @@
     },
     "ui_frames": [
       {
-        "captured": 77581.282590216,
-        "age_ms": 1136.7,
+        "captured": 79616.839294233,
+        "age_ms": 1112.0,
         "shape": [
           600,
           1024,
@@ -435,8 +435,8 @@
         ]
       },
       {
-        "captured": 77582.553359873,
-        "age_ms": 24.9,
+        "captured": 79618.076575246,
+        "age_ms": 33.4,
         "shape": [
           600,
           1024,
@@ -444,8 +444,8 @@
         ]
       },
       {
-        "captured": 77582.687106131,
-        "age_ms": 51.5,
+        "captured": 79618.243760077,
+        "age_ms": 24.5,
         "shape": [
           600,
           1024,
@@ -456,7 +456,7 @@
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
     "register_writes": false,
     "motor_packets_sent": false,
-    "pc_log_written_utc": "2026-10-19T11:06:26.340182+00:00"
+    "pc_log_written_utc": "2026-10-19T11:40:22.021746+00:00"
   },
   "latest_camera_frames_before_load": [
     {
@@ -557,5 +557,44 @@
       ]
     }
   ],
-  "camera_view_note": "Fresh whole-rig view; driver communication terminal markings remain unreadable"
+  "camera_view_note": "Fresh whole-rig view, mechanism visible; terminal markings not legible; no actual position inferred",
+  "direction_swap_trial_record": "shadow_play/config/uart_pin_swap_trial_20261019.json",
+  "direction_swap_trial_result": "Both version queries returned no bytes; original standard image restored with all PWM off",
+  "current_display_service": "shadow-uart-restored-hdmi",
+  "current_actuator_supply_operator_report": "Off",
+  "latest_camera_frames_before_swap_trial": [
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-920340",
+      "age_ms": 16,
+      "captured_utc": "2026-10-19T11:07:32.800000+00:00",
+      "sha256": "a71e798fdbf5d4c26252869e4548aa692e48c0558514dfb3be75fabc11339102",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-920346",
+      "age_ms": 15,
+      "captured_utc": "2026-10-19T11:07:33.198000+00:00",
+      "sha256": "c5df5af3ea5dc7f04005ad32bb61ccb436edf9b6a8fe94d5b3c790ca87fe9328",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-920351",
+      "age_ms": 46,
+      "captured_utc": "2026-10-19T11:07:33.538000+00:00",
+      "sha256": "78fa120bc9b18c8340c27361279d5e6a89ead126cec6cab9e4715f89647385e2",
+      "size": [
+        960,
+        540
+      ]
+    }
+  ]
 }

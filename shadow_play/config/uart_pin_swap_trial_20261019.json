@@ -25,16 +25,17 @@
   "drive_setting_is_hard_current_limit": false,
   "invalid_2ma_attempt": "Rejected offline by Vivado; no bitstream loaded",
   "build_status": "all_design_checks_passed",
-  "loaded": false,
+  "loaded": true,
   "sd_staged": true,
-  "physical_power_off_confirmation_received": false,
+  "physical_power_off_confirmation_received": true,
   "offline_test_groups": {
     "swapped_candidate_and_query_scope": 3,
     "existing_query_transport": 7,
     "existing_image_gates": 4,
-    "delta_data_integrity": 2
+    "delta_data_integrity": 2,
+    "restore_identity_and_transient_display_lifecycle": 2
   },
-  "offline_tests_passed": 16,
+  "offline_tests_passed": 18,
   "latest_preload_state": {
     "state": {
       "identity": "SP10",
@@ -102,11 +103,11 @@
     "register_writes": false,
     "motor_packets_sent": false
   },
-  "motor_packets_sent": false,
+  "motor_packets_sent": true,
   "motion_sent": false,
   "incident_locks_removed": false,
   "boot_files_changed": false,
-  "next_step": "Fresh physical actuator power-off confirmation; keep existing wiring and Zynq powered, then load trial image",
+  "next_step": "Wire-level TX/RX measurements or an attended disconnected-motor UART loopback; no handshake or motion accepted",
   "package": {
     "result": "SWAPPED_UART_PACKAGED_NOT_LOADED",
     "image_sha": "2a6f3675d13254225e4d41abcbdb1d48f347a2bcdba5dbb233abfd155450958e",
@@ -127,5 +128,400 @@
   "image_sha256": "2a6f3675d13254225e4d41abcbdb1d48f347a2bcdba5dbb233abfd155450958e",
   "board_offline_check_passed": true,
   "exact_delta_reconstruction_verified": true,
-  "release_manifest": "shadow_play/hardware/rail_uart/release_swapped/servo10_uart_swapped.manifest.json"
+  "release_manifest": "shadow_play/hardware/rail_uart/release_swapped/servo10_uart_swapped.manifest.json",
+  "currently_loaded": false,
+  "trial_completed": true,
+  "load_result": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+    "image_sha": "2a6f3675d13254225e4d41abcbdb1d48f347a2bcdba5dbb233abfd155450958e",
+    "all_actuator_power_off_confirmed": true,
+    "incident_lock_unchanged": true,
+    "display_active": true,
+    "motor_packets_sent": false
+  },
+  "power_after_load": {
+    "operator_confirmed_shared_supply_on": true,
+    "no_spontaneous_motion_or_binding": true,
+    "onsite_cut_power": true
+  },
+  "powered_uart_idle": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "uart_status_samples": {
+      "person": [
+        4,
+        4
+      ],
+      "tiger": [
+        68,
+        4
+      ]
+    },
+    "ui_frames": [
+      {
+        "captured": 79274.173859255,
+        "age_ms": 1110.5,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 79275.411193278,
+        "age_ms": 32.3,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 79275.57838837,
+        "age_ms": 23.4,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      }
+    ],
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "register_writes": false,
+    "motor_packets_sent": false
+  },
+  "query_results": [
+    {
+      "rail": "person",
+      "query_hex": "011f6b",
+      "result": {
+        "rail": "person",
+        "error": "Reply timeout; no automatic resend",
+        "reply_hex": "",
+        "diagnostics": {
+          "phase": "awaiting_reply",
+          "tx_bytes_queued": 3,
+          "uart_status_changes": [
+            4,
+            0,
+            4
+          ],
+          "wire_tx_verified": false
+        },
+        "motion_sent": false
+      },
+      "raw_log_sha256": "68a10761a3966c5692eb1b1d5486cf73c2d6132eba8ccf1dd12438469e354c21"
+    },
+    {
+      "rail": "tiger",
+      "query_hex": "011f6b",
+      "result": {
+        "rail": "tiger",
+        "error": "Reply timeout; no automatic resend",
+        "reply_hex": "",
+        "diagnostics": {
+          "phase": "awaiting_reply",
+          "tx_bytes_queued": 3,
+          "uart_status_changes": [
+            4,
+            0,
+            4
+          ],
+          "wire_tx_verified": false
+        },
+        "motion_sent": false
+      },
+      "raw_log_sha256": "696ba9a163f56782c774652ee4f29489a5db3febb518dd5ecb59c750ba1607a6"
+    }
+  ],
+  "hardware_handshake_verified": false,
+  "trial_result": "Both swapped UART version requests timed out with zero received bytes",
+  "post_query_state": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "uart_status_samples": {
+      "person": [
+        4,
+        4
+      ],
+      "tiger": [
+        4,
+        4
+      ]
+    },
+    "ui_frames": [
+      {
+        "captured": 79410.590404483,
+        "age_ms": 1138.6,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 79411.861112879,
+        "age_ms": 29.2,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 79412.028299961,
+        "age_ms": 24.8,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      }
+    ],
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "register_writes": false,
+    "motor_packets_sent": false
+  },
+  "restoration": {
+    "operator_confirmed_actuator_power_off_again": true,
+    "wiring_unchanged": true,
+    "target_image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "hardware_restore_result": {
+      "result": "RUNTIME_IMAGE_LOADED_OUTPUTS_OFF",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 0,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "boot_hashes_unchanged": {
+        "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+        "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+        "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+        "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc"
+      }
+    },
+    "initial_display_error": "Stopped transient unit shadow-rail-query-hdmi was garbage-collected; systemctl start returned unit not found",
+    "display_repair": {
+      "active": true,
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 0,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null
+      },
+      "fpga_reloaded": false,
+      "motor_packets_sent": false
+    },
+    "display_service": "shadow-uart-restored-hdmi",
+    "extra_fpga_reload_for_display_repair": false,
+    "successful": true,
+    "old_restore_tool_sha256": "c0da00ae3d7eb5f8e275f2208fb938b75e5236db33153ce12726b463c0d7166c",
+    "corrected_restore_tool_sha256": "972f007c686e9efd2119dcc803c8306347d8c5ac77b53e793f5be91e4e21f880"
+  },
+  "final_board_readback": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "uart_status_samples": {
+      "person": [
+        4,
+        4
+      ],
+      "tiger": [
+        4,
+        4
+      ]
+    },
+    "ui_frames": [
+      {
+        "captured": 79616.839294233,
+        "age_ms": 1112.0,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 79618.076575246,
+        "age_ms": 33.4,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 79618.243760077,
+        "age_ms": 24.5,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      }
+    ],
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "register_writes": false,
+    "motor_packets_sent": false
+  },
+  "final_image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+  "final_actuator_supply_operator_report": "Off; Zynq and camera remain powered",
+  "final_readback_pc_log_utc": "2026-10-19T11:40:22.021746+00:00",
+  "final_camera_frames": [
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-950744",
+      "age_ms": 16,
+      "captured_utc": "2026-10-19T11:41:19.737000+00:00",
+      "sha256": "a190a21768384874a812c6f07cbec9996b06f534f7e5ded981067eb287109985",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-950750",
+      "age_ms": 16,
+      "captured_utc": "2026-10-19T11:41:20.151000+00:00",
+      "sha256": "bf8b963c1d2d8a2bb3d34291d5748bd223b5160c8957b32312ab28ad49efa158",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-950755",
+      "age_ms": 47,
+      "captured_utc": "2026-10-19T11:41:20.475000+00:00",
+      "sha256": "b505b6072f8d771e23dfb261fa8955d04c334e78fbf03c1bdce028dd2b756b6e",
+      "size": [
+        960,
+        540
+      ]
+    }
+  ],
+  "final_camera_review": "Fresh whole-rig view, mechanism visible; terminal markings not legible; no actual position inferred"
 }
