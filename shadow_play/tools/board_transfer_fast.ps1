@@ -2,7 +2,7 @@ param(
     [Parameter(Mandatory=$true)][string]$Source,
     [Parameter(Mandatory=$true)][string]$Target,
     [string]$PortName='COM17',
-    [ValidateSet(460800,921600)][int]$FastBaud=921600,
+    [ValidateSet(115200,460800,921600)][int]$FastBaud=921600,
     [string]$Receiver='/tmp/shadow-file-receiver-20261017-v2.py'
 )
 $ErrorActionPreference='Stop'

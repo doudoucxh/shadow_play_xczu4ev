@@ -8,13 +8,24 @@
       "nominal_travel_mm": 600,
       "lead_mm_per_rev": null,
       "lead_candidate_mm_per_rev": 5,
-      "firmware": null,
-      "transport": null,
-      "port_or_pins": null,
+      "firmware": "Emm",
+      "transport": "TTL_UART",
+      "port_or_pins": {
+        "motor_rx_fpga_pin": "F15",
+        "motor_tx_fpga_pin": "H13",
+        "fpga_tx_pin": "F15",
+        "fpga_rx_pin": "H13"
+      },
       "motor_address": null,
       "microsteps": null,
       "endstop_configuration": null,
-      "hardware_verified": false
+      "hardware_verified": false,
+      "baud_rate": 115200,
+      "ground_shared_operator_confirmed": true,
+      "motor_address_candidate": 1,
+      "checksum_mode": null,
+      "checksum_mode_candidate": "fixed_6b",
+      "settings_source": "Operator report; address/checksum are reported unchanged defaults, not yet read back"
     },
     "rail2": {
       "character": "老虎",
@@ -22,20 +33,36 @@
       "nominal_travel_mm": 500,
       "lead_mm_per_rev": null,
       "lead_candidate_mm_per_rev": 4,
-      "firmware": null,
-      "transport": null,
-      "port_or_pins": null,
+      "firmware": "Emm",
+      "transport": "TTL_UART",
+      "port_or_pins": {
+        "motor_rx_fpga_pin": "H14",
+        "motor_tx_fpga_pin": "L13",
+        "fpga_tx_pin": "H14",
+        "fpga_rx_pin": "L13"
+      },
       "motor_address": null,
       "microsteps": null,
       "endstop_configuration": null,
-      "hardware_verified": false
+      "hardware_verified": false,
+      "baud_rate": 115200,
+      "ground_shared_operator_confirmed": true,
+      "motor_address_candidate": 1,
+      "checksum_mode": null,
+      "checksum_mode_candidate": "fixed_6b",
+      "settings_source": "Operator report; address/checksum are reported unchanged defaults, not yet read back"
     }
   },
   "operator_connection_report": {
     "date": "2026-10-19",
     "motor_family": "张大头42步进电机",
     "both_rails_connected": true,
-    "source": "User returned and reports both motors connected; interface settings not yet provided",
-    "handshake_verified": false
+    "source": "User: motor RX F15 / TX H13 for person, motor RX H14 / TX L13 for tiger; Emm TTL 115200, common GND, other settings probably default",
+    "handshake_verified": false,
+    "post_install_servo_midpoint_135_confirmed": true,
+    "post_install_no_binding_confirmed": true,
+    "operator_can_cut_power": true,
+    "ground_shared_confirmed": true,
+    "interface_settings_received": true
   }
 }

@@ -1,0 +1,165 @@
+{
+  "schema": "dual-pl-uart-bringup-v1",
+  "date": "2026-10-19",
+  "prior_preflight": "shadow_play/config/rail_connection_preflight_20261019.json",
+  "owner_reports": {
+    "ports": {
+      "rail1": {
+        "motor_rx_fpga_pin": "F15",
+        "motor_tx_fpga_pin": "H13",
+        "fpga_tx_pin": "F15",
+        "fpga_rx_pin": "H13"
+      },
+      "rail2": {
+        "motor_rx_fpga_pin": "H14",
+        "motor_tx_fpga_pin": "L13",
+        "fpga_tx_pin": "H14",
+        "fpga_rx_pin": "L13"
+      }
+    },
+    "firmware": "Emm",
+    "transport": "TTL_UART",
+    "baud": 115200,
+    "ground_shared": true,
+    "servo_midpoint_135": true,
+    "no_binding": true,
+    "onsite_cut_power": true,
+    "other_settings": "probably default"
+  },
+  "address_candidate": 1,
+  "checksum_mode_candidate": "fixed_6b",
+  "actual_address_verified": false,
+  "actual_checksum_verified": false,
+  "hardware_handshake_verified": false,
+  "fpga_candidate_build": {
+    "project": "shadow_play/hardware/rail_uart/create_project.tcl",
+    "status": "design_verified",
+    "base_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+    "endpoints": {
+      "person": {
+        "base": 2684616704,
+        "tx_pin": "F15",
+        "rx_pin": "H13"
+      },
+      "tiger": {
+        "base": 2684682240,
+        "tx_pin": "H14",
+        "rx_pin": "L13"
+      }
+    },
+    "baud": 115200,
+    "format": "8N1",
+    "loaded": false,
+    "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "release_manifest": "shadow_play/hardware/rail_uart/release/servo10_dual_uart.manifest.json",
+    "wns_ns": 0.826,
+    "whs_ns": 0.01,
+    "wpws_ns": 0.163,
+    "original_ports_preserved": 178,
+    "new_uart_ports": 4,
+    "generated_uart_clock_hz": {
+      "person": 99999281,
+      "tiger": 99999281
+    }
+  },
+  "query_client": "shadow_play/tools/zdt_uartlite_telemetry.py",
+  "offline_tests_passed": 21,
+  "motor_motion_sent": false,
+  "boot_files_changed": false,
+  "incident_locks_removed": false,
+  "rail_zero_verified": false,
+  "rail_limits_verified": false,
+  "observed_loaded_positions": null,
+  "latest_preload_board": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 12665,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+    "image_sha": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
+  },
+  "latest_camera_frames": [
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-872688",
+      "age_ms": 46,
+      "captured_utc": "2026-10-19T10:14:36.003000+00:00",
+      "sha256": "becbce343f0563cbac28da3bf2342e77ef6153bbc1ac326877d435d334b92988",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-872694",
+      "age_ms": 77,
+      "captured_utc": "2026-10-19T10:14:36.401000+00:00",
+      "sha256": "54a2662fc59a91e066a3b872a74967a39ebfcdd5c05e8acb112f2fe8aafe23b7",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-872700",
+      "age_ms": 31,
+      "captured_utc": "2026-10-19T10:14:36.801000+00:00",
+      "sha256": "2e68139a9587fde3121b0c3db6220e904eed6f083d75c6b0b5dced18ba9210fc",
+      "size": [
+        960,
+        540
+      ]
+    }
+  ],
+  "latest_camera_view_reviewed": true,
+  "all_actuator_power_off_operator_confirmed": null,
+  "physical_power_off_confirmation_needed_before_load": true,
+  "offline_test_groups": {
+    "protocol_and_query_and_load_gates": 15,
+    "file_receivers": 6
+  },
+  "rail_uart_packets_sent": false,
+  "console_transfer": {
+    "first_attempt_baud": 460800,
+    "first_attempt_result": "ACK 11 timeout; console restored",
+    "resumed_prefix_verified_bytes": 360448,
+    "final_baud": 115200,
+    "archive_sha256": "f3d79476996e70f58e23c09b72ca505e9539751e68dafcca8a06113b0142c515",
+    "archive_bytes": 3206807,
+    "status": "complete_hash_verified"
+  },
+  "awaiting_before_first_load": "Physical servo and both rail power-off confirmation; Zynq remains powered",
+  "board_data_stage": {
+    "stage": "/run/media/mmcblk0p2/piying/rail-uart-query-20261019",
+    "files": 12,
+    "archive_sha256": "f3d79476996e70f58e23c09b72ca505e9539751e68dafcca8a06113b0142c515",
+    "image_sha": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "native_RAM_test": true,
+    "hardware_access": false,
+    "services_changed": false,
+    "motion_sent": false
+  },
+  "board_offline_candidate_check_passed": true
+}

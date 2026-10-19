@@ -1,0 +1,69 @@
+{
+  "image_kind": "servo10_vision",
+  "design_checks": "SERVO_IMAGE_DESIGN_CHECKS_PASS",
+  "bus_skew_check": "SERVO_BUS_SKEW_CHECK_PASS",
+  "register_base": 2684551168,
+  "pins": [
+    "D14",
+    "D15",
+    "F13",
+    "G13",
+    "G14",
+    "G15",
+    "J14",
+    "E13",
+    "E14",
+    "E15"
+  ],
+  "sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+  "wns_ns": 0.826,
+  "whs_ns": 0.01,
+  "wpws_ns": 0.163,
+  "part": "xczu4ev-sfvc784-2-i",
+  "clock_hz": 100000000,
+  "period_us": 20000,
+  "channels": 10,
+  "reset_outputs": "disabled",
+  "previous_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+  "scope": "Volatile UART telemetry commissioning; no boot changes or motion",
+  "built_at": "2026-10-19T10:38:55.946366+00:00",
+  "rail_uart": {
+    "design_checks": "RAIL_UART_DESIGN_CHECKS_PASS",
+    "ports": {
+      "person": {
+        "base": 2684616704,
+        "tx_pin": "F15",
+        "rx_pin": "H13"
+      },
+      "tiger": {
+        "base": 2684682240,
+        "tx_pin": "H14",
+        "rx_pin": "L13"
+      }
+    },
+    "baud": 115200,
+    "format": "8N1",
+    "generated_clock_hz": {
+      "person": 99999281,
+      "tiger": 99999281
+    },
+    "reset_tx": "idle_high_no_bytes"
+  },
+  "reports": {
+    "verified_timing.rpt": "361e767358280cd33bdeb85156216651c99caf13bc8303f3367396cd21fffb95",
+    "verified_drc.rpt": "3da7af4ae2c21cf588dfb50dcb498158e3b10ab435ddb4fa4ed5d8bd62b466bf",
+    "verified_io.rpt": "bd8f9a720df317a6ba6eb4f66ed9d5275f91ac1e9caae81a7f905ebc04083645",
+    "verified_route.rpt": "5e8ac1ac61cb619cd14986f53d5e6c4b2bd6eea883ea0c35d2cca8854caa1fe1",
+    "verified_bus_skew.rpt": "fd04ea59b360e70e7bc745c10f1d05cdad8c3f283d3aefc92f9f7cf793d252b2"
+  },
+  "design_export_sha256": "5e04175c1aee72cf6c48de207d410c0944b65df3e2157938086f85e5bb265843",
+  "base_reference_io_sha256": "1ac388d3d49cf87ab08ad1740a811a393923851e157b8155b98861b17a7043f6",
+  "existing_ports_preserved": 178,
+  "source_inputs": {
+    "shadow_play/hardware/rail_uart/create_project.tcl": "2329ec6865038723ac73a80e7a942cca69a27ca4fb38ff6cce140350efe652b6",
+    "shadow_play/hardware/rail_uart/build_project.tcl": "530ccf10dc211fdb878ef0e5425d0952cb882d312fa022caffbdbf17afcf6ffc",
+    "shadow_play/hardware/rail_uart/rail_uart_pins.xdc": "f1f8ba7d6c46bb9f516ee4e1a052cdbe653422a224867ba29529ae4fff6bf3a0",
+    "shadow_play/hardware/servo_pwm/servo_pwm_axi.v": "225a3d31ee42c774cd1ce43c6c1ff85cb82175ae285e3eaff886a168ee25b73d",
+    "shadow_play/hardware/servo_pwm/servo_pins.xdc": "1f13155c8e97d2ffc7f08ea5ca5a6f0051a159fae9db08fab5270b9af9315944"
+  }
+}

@@ -74,7 +74,7 @@ def main():
     parser.add_argument('target')
     parser.add_argument('size', type=int)
     parser.add_argument('sha256')
-    parser.add_argument('--baud', type=int, choices=[460800, 921600], default=921600)
+    parser.add_argument('--baud', type=int, choices=[115200, 460800, 921600], default=921600)
     parser.add_argument('--resume', action='store_true')
     args = parser.parse_args()
     if not re.fullmatch(r'/tmp/[A-Za-z0-9_-][A-Za-z0-9_.-]*', args.target):
