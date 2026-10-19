@@ -16,6 +16,7 @@ from other_axes_check import LARGER_SCHEMA,LARGER_ORDER,LARGER_BOARD,LARGER_LOG,
 from other_axes_check import OPPOSITE_SCHEMA,OPPOSITE_ORDER,OPPOSITE_BOARD,OPPOSITE_LOG,OPPOSITE_SHA
 from other_axes_check import EXTENDED_SCHEMA,EXTENDED_ORDER,EXTENDED_BOARD,EXTENDED_LOG,EXTENDED_SHA
 from other_axes_check import RECHECK_SCHEMA,RECHECK_ORDER,RECHECK_BOARD,RECHECK_LOG,RECHECK_SHA
+from other_axes_check import REWIRE_SCHEMA,REWIRE_ORDER,REWIRE_BOARD,REWIRE_LOG,REWIRE_SHA
 
 
 class Tests(unittest.TestCase):
@@ -295,6 +296,43 @@ class Tests(unittest.TestCase):
         self.assertEqual(hashlib.sha256(raw).hexdigest(),RECHECK_SHA);validate_prior(p,raw)
         source['operator_midpoint_reestablished']=False
         raw=(json.dumps(source,sort_keys=True)+'\n').encode();p['prior_log_sha256']=hashlib.sha256(raw).hexdigest()
+        with self.assertRaises(ValueError):validate_prior(p,raw)
+
+    def rewire_plan(self,channel):
+        index=REWIRE_ORDER.index(channel);p=self.recheck_plan(8)
+        p.update(schema=REWIRE_SCHEMA,rewiring_confirmed=True,channel=channel,
+                 expected_sequence=10395+index*227,route_sha256=digest(route(channel,rewire=True)),
+                 prior_log_path=REWIRE_LOG if index==0 else REWIRE_BOARD+'/axis-'+str(REWIRE_ORDER[index-1])+'-'+'c'*32+'.board.jsonl',
+                 prior_log_sha256=REWIRE_SHA if index==0 else 'd'*64)
+        return p
+
+    def test_rewired_ten_routes_are_independent_and_end_disabled(self):
+        for channel in REWIRE_ORDER:
+            self.p=self.rewire_plan(channel);self.reg=FakeRegisters();self.clock=Clock()
+            self.reg.values[0x20]=self.p['expected_sequence'];rows=[]
+            run(self.device(used_path=self.path/('rewire-'+str(channel))),rows.append,sleep=self.clock.sleep)
+            self.assertEqual(len(rows),227)
+            self.assertEqual({x['state']['enabled_mask'] for x in rows[:-1]},{1<<(channel-1)})
+            self.assertEqual(rows[-1]['state']['sequence'],self.p['expected_sequence']+227)
+            self.assertFalse(rows[-1]['state']['armed'])
+            self.assertEqual(rows[-1]['state']['pulse_us'],MIDPOINT)
+            self.assertEqual(max(abs(x['state']['pulse_us'][channel-1]-1500) for x in rows[:-1]),40)
+
+    def test_rewire_rejects_old_reference_sequence_and_missing_confirmation(self):
+        p=self.rewire_plan(8);validate_plan(p)
+        for key,value in [('rewiring_confirmed',False),('operator_midpoint_reestablished',False),
+                          ('post_operator_test_recheck_requested',False),('expected_sequence',10391),
+                          ('prior_log_sha256',RECHECK_SHA),('prior_log_path',RECHECK_LOG)]:
+            bad=dict(p);bad[key]=value
+            with self.assertRaises(ValueError):validate_plan(bad)
+        self.assertEqual(self.reg.writes,[])
+
+    def test_rewire_second_axis_requires_entire_first_route(self):
+        self.p=self.rewire_plan(8);self.reg.values[0x20]=10395;rows=[]
+        run(self.device(),rows.append,sleep=self.clock.sleep);p=self.rewire_plan(1)
+        raw=('\n'.join(json.dumps(x) for x in rows)+'\n').encode();p['prior_log_sha256']=hashlib.sha256(raw).hexdigest()
+        validate_prior(p,raw)
+        rows.pop(100);raw=('\n'.join(json.dumps(x) for x in rows)+'\n').encode();p['prior_log_sha256']=hashlib.sha256(raw).hexdigest()
         with self.assertRaises(ValueError):validate_prior(p,raw)
 
     def test_second_recheck_requires_full_axis8_route(self):

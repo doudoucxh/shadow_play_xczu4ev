@@ -1,0 +1,116 @@
+{
+  "reference": {
+    "schema": "operator-midpoint-read-reference-v1",
+    "request_id": "ea24643ced314e3d8049b13f81db7be7",
+    "operator_midpoint_reestablished": true,
+    "onsite_observer": true,
+    "rewiring_confirmed": true,
+    "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+    "image_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 10395,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "disabled_watchdog_reset_log": "/run/media/mmcblk0p2/piying/rewire-watchdog-reset-20261019.json",
+    "disabled_watchdog_reset_sha256": "ec4db45cd1693f5697396c2ee78b3995d9384a65fb199c1801b32c8cb44dc7f5"
+  },
+  "source_log_path": "/run/media/mmcblk0p2/piying/rewire-midpoint-reference-20261019.json",
+  "source_sha256": "e8501517a0cc136ee174a63d705fe47804bd0d8e46a8c18e2bf913922a6b66a8",
+  "reset": {
+    "before": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 2,
+      "sequence": 10395,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "after": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 10395,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "during": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": true,
+      "faults": 0,
+      "sequence": 10395,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "incident_lock_sha256": [
+      "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+      "fd9c43a43ca353e9e85c1d054838826b9df3d767fbc4745a52ccbeeefe12799b"
+    ],
+    "pwm_channels_enabled": false,
+    "position_feedback": null
+  }
+}

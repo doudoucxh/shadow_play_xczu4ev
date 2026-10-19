@@ -1,7 +1,7 @@
 """One requested small single-axis check, with separate review between axes.
 
-Each finite series starts from its own inspected source. The post-operator
-recheck alone includes axis 8. No series initializes all axes or advances itself.
+Each finite series starts from its own inspected source. Post-operator and
+rewiring rechecks include axis 8. No series initializes all axes or advances itself.
 """
 import argparse
 import hashlib
@@ -45,9 +45,17 @@ RECHECK_ORDER=(8,7,9,10,1,2,3,4,5,6)
 RECHECK_BOARD='/run/media/mmcblk0p2/piying/ten-axes-recheck-20261019'
 RECHECK_LOG='/run/media/mmcblk0p2/piying/operator-midpoint-reference-20261019.json'
 RECHECK_SHA='03615daffd01cb7c4299a72498d605711964143e22a02eab6b062fef46815672'
+REWIRE_SCHEMA='attended-rewired-axes-v6'
+REWIRE_ORDER=(8,1,9,10,2,3,4,5,6,7)
+REWIRE_BOARD='/run/media/mmcblk0p2/piying/rewired-axes-20261019'
+REWIRE_LOG='/run/media/mmcblk0p2/piying/rewire-midpoint-reference-20261019.json'
+REWIRE_SHA='e8501517a0cc136ee174a63d705fe47804bd0d8e46a8c18e2bf913922a6b66a8'
 
 
-def profile(larger=False,opposite=False,extended=False,recheck=False):
+def profile(larger=False,opposite=False,extended=False,recheck=False,rewire=False):
+    if rewire:
+        return dict(schema=REWIRE_SCHEMA,order=REWIRE_ORDER,board=REWIRE_BOARD,first_log=REWIRE_LOG,
+                    first_sha=REWIRE_SHA,start_sequence=10395,frames=226,amplitude=40,ramp_s=3,hold_s=2,deadline_s=12)
     if recheck:
         return dict(schema=RECHECK_SCHEMA,order=RECHECK_ORDER,board=RECHECK_BOARD,first_log=RECHECK_LOG,
                     first_sha=RECHECK_SHA,start_sequence=8121,frames=226,amplitude=40,ramp_s=3,hold_s=2,deadline_s=12)
@@ -64,8 +72,8 @@ def profile(larger=False,opposite=False,extended=False,recheck=False):
                 start_sequence=1280,frames=FRAME_COUNT,amplitude=24,ramp_s=2,hold_s=1,deadline_s=9)
 
 
-def route(channel,larger=False,opposite=False,extended=False,recheck=False):
-    cfg=profile(larger,opposite,extended,recheck)
+def route(channel,larger=False,opposite=False,extended=False,recheck=False,rewire=False):
+    cfg=profile(larger,opposite,extended,recheck,rewire)
     if type(channel) is not int or channel not in cfg['order']:
         raise ValueError('Only the requested other axes are allowed')
     ramp=cfg['ramp_s'];turn=ramp+cfg['hold_s'];frames=[]
@@ -88,13 +96,18 @@ def validate_plan(p):
         keys=keys|{'continued_diagnostics_requested'}
     if isinstance(p,dict) and p.get('schema')==EXTENDED_SCHEMA:
         keys=keys|{'extended_amplitude_acknowledged'}
-    if isinstance(p,dict) and p.get('schema')==RECHECK_SCHEMA:
+    if isinstance(p,dict) and p.get('schema') in (RECHECK_SCHEMA,REWIRE_SCHEMA):
         keys=keys|{'operator_midpoint_reestablished','post_operator_test_recheck_requested'}
-    if not isinstance(p,dict) or set(p)!=keys or p['schema'] not in (SCHEMA,LARGER_SCHEMA,OPPOSITE_SCHEMA,EXTENDED_SCHEMA,RECHECK_SCHEMA):
+    if isinstance(p,dict) and p.get('schema')==REWIRE_SCHEMA:
+        keys=keys|{'rewiring_confirmed'}
+    if not isinstance(p,dict) or set(p)!=keys or p['schema'] not in (SCHEMA,LARGER_SCHEMA,OPPOSITE_SCHEMA,EXTENDED_SCHEMA,RECHECK_SCHEMA,REWIRE_SCHEMA):
         raise ValueError('Dedicated one-axis diagnostic plan required')
     larger=p['schema'] in (LARGER_SCHEMA,OPPOSITE_SCHEMA,EXTENDED_SCHEMA);opposite=p['schema']==OPPOSITE_SCHEMA;extended=p['schema']==EXTENDED_SCHEMA;recheck=p['schema']==RECHECK_SCHEMA
-    cfg=profile(larger,opposite,extended,recheck)
-    if recheck and (p['operator_midpoint_reestablished'] is not True or p['post_operator_test_recheck_requested'] is not True):
+    rewire=p['schema']==REWIRE_SCHEMA
+    cfg=profile(larger,opposite,extended,recheck,rewire)
+    if rewire and p['rewiring_confirmed'] is not True:
+        raise ValueError('New wiring and physical midpoint inspection required')
+    if (recheck or rewire) and (p['operator_midpoint_reestablished'] is not True or p['post_operator_test_recheck_requested'] is not True):
         raise ValueError('New operator midpoint and real-test request required')
     if extended and p['extended_amplitude_acknowledged'] is not True:
         raise ValueError('New request for the 56us check required')
@@ -102,7 +115,7 @@ def validate_plan(p):
         raise ValueError('New request for continued diagnosis required')
     if larger and p['larger_amplitude_acknowledged'] is not True:
         raise ValueError('Explicit request for an increased-amplitude check required')
-    channel=p['channel'];frames=route(channel,larger,opposite,extended,recheck);index=cfg['order'].index(channel)
+    channel=p['channel'];frames=route(channel,larger,opposite,extended,recheck,rewire);index=cfg['order'].index(channel)
     if (p['boot_id']!=BOOT or type(p['expected_sequence']) is not int
             or p['expected_sequence']!=cfg['start_sequence']+index*(cfg['frames']+1)
             or p['expected_pulse_us']!=MIDPOINT or p['route_sha256']!=digest(frames)
@@ -122,8 +135,10 @@ def validate_plan(p):
 def validate_prior(p,raw):
     if hashlib.sha256(raw).hexdigest()!=p['prior_log_sha256']:
         raise ValueError('Prior evidence changed')
-    if p['schema']==RECHECK_SCHEMA and p['channel']==RECHECK_ORDER[0]:
+    if p['schema'] in (RECHECK_SCHEMA,REWIRE_SCHEMA) and p['channel']==8:
         ref=json.loads(raw);s=ref['state']
+        if p['schema']==REWIRE_SCHEMA and ref.get('rewiring_confirmed') is not True:
+            raise ValueError('New wiring inspection reference required')
         if (ref.get('schema')!='operator-midpoint-read-reference-v1'
                 or ref.get('operator_midpoint_reestablished') is not True or ref.get('onsite_observer') is not True
                 or ref.get('boot_id')!=BOOT or ref.get('image_sha256')!=IMAGE
@@ -139,9 +154,10 @@ def validate_prior(p,raw):
             or state['sequence']!=p['expected_sequence'] or state['pulse_us']!=MIDPOINT):
         raise ValueError('Prior route did not finish at the inspected OFF reference')
     larger=p['schema'] in (LARGER_SCHEMA,OPPOSITE_SCHEMA,EXTENDED_SCHEMA);opposite=p['schema']==OPPOSITE_SCHEMA;extended=p['schema']==EXTENDED_SCHEMA;recheck=p['schema']==RECHECK_SCHEMA
-    cfg=profile(larger,opposite,extended,recheck);index=cfg['order'].index(p['channel'])
+    rewire=p['schema']==REWIRE_SCHEMA
+    cfg=profile(larger,opposite,extended,recheck,rewire);index=cfg['order'].index(p['channel'])
     if index:
-        previous=cfg['order'][index-1];expected=route(previous,larger,opposite,extended,recheck)
+        previous=cfg['order'][index-1];expected=route(previous,larger,opposite,extended,recheck,rewire)
         frames=[x for x in rows if x['event']=='frame']
         if (last.get('channel')!=previous or len(frames)!=cfg['frames']
                 or any(x['state']['pulse_us']!=q or x['state']['enabled_mask']!=1<<(previous-1)
@@ -162,8 +178,9 @@ class OtherAxesDevice(FirstDirectionDevice):
         self.used_path=Path(used_path);self.cancel=Path(cancel_path);self.hashes=self.lock_hashes()
         self.sequence=plan['expected_sequence'];self.pulses=MIDPOINT[:]
         larger=plan['schema'] in (LARGER_SCHEMA,OPPOSITE_SCHEMA,EXTENDED_SCHEMA);opposite=plan['schema']==OPPOSITE_SCHEMA;extended=plan['schema']==EXTENDED_SCHEMA;recheck=plan['schema']==RECHECK_SCHEMA
-        self.profile=profile(larger,opposite,extended,recheck)
-        self.frames=route(plan['channel'],larger,opposite,extended,recheck);self.target_mask=1<<(plan['channel']-1)
+        rewire=plan['schema']==REWIRE_SCHEMA
+        self.profile=profile(larger,opposite,extended,recheck,rewire)
+        self.frames=route(plan['channel'],larger,opposite,extended,recheck,rewire);self.target_mask=1<<(plan['channel']-1)
         self.mask=self.index=0;self.inside=self.started=self.failed=False
         self.last_issue=self.deadline=None
         self.check()
@@ -214,7 +231,7 @@ def main():
     parser.add_argument('plan',type=Path);parser.add_argument('--execute-one-axis-check',action='store_true')
     args=parser.parse_args();plan=json.loads(args.plan.read_text());validate_plan(plan)
     if not args.execute_one_axis_check:
-        frames=route(plan['channel'],plan['schema'] in (LARGER_SCHEMA,OPPOSITE_SCHEMA,EXTENDED_SCHEMA),plan['schema']==OPPOSITE_SCHEMA,plan['schema']==EXTENDED_SCHEMA,plan['schema']==RECHECK_SCHEMA)
+        frames=route(plan['channel'],plan['schema'] in (LARGER_SCHEMA,OPPOSITE_SCHEMA,EXTENDED_SCHEMA),plan['schema']==OPPOSITE_SCHEMA,plan['schema']==EXTENDED_SCHEMA,plan['schema']==RECHECK_SCHEMA,plan['schema']==REWIRE_SCHEMA)
         print(json.dumps(dict(dry_run=True,channel=plan['channel'],frames=len(frames),route_sha256=digest(frames))));return
     validate_prior(plan,Path(plan['prior_log_path']).read_bytes())
     def interrupt(signum,frame):raise KeyboardInterrupt()
