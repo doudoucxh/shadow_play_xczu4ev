@@ -159,7 +159,7 @@ class App:
         self.refresh_button.pack(side='left')
         self.connect_button = ttk.Button(connection, text='连接板子', command=self.toggle_connection)
         self.connect_button.pack(side='right')
-        ttk.Label(body, text='连接前：关闭其他串口工具；板端已登录 root，且已加载十路 PWM 镜像。').pack(anchor='w', pady=(8, 14))
+        ttk.Label(body, text='连接前关闭其他串口工具；空闲调试服务可自动切换，正在输出时请先停止。').pack(anchor='w', pady=(8, 14))
         group = ttk.LabelFrame(body, text='选择一个舵机', padding=12)
         group.pack(fill='x')
         self.radios = []

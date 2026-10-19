@@ -10,6 +10,8 @@ from serial_gateway import SerialLink
 
 SERVICE = 'unloaded-center-v1'
 BOARD_DIR = '/run/media/mmcblk0p2/piying/servo-capture-20261008-r4'
+DEBUG_SERVICES = frozenset(('unloaded-center-v1', 'unloaded-manual-v2',
+    'attended-midpoint-v1', 'attended-angle-v1', 'attended-initial-pose-v1'))
 
 
 class MotionInhibitedError(RuntimeError):
@@ -21,7 +23,32 @@ def all_off(state):
             and state.get('pending') is False)
 
 
-def await_prompt(port, timeout=4, service=SERVICE):
+def clean_idle_debug_state(state):
+    pulses = state.get('pulse_us')
+    return (state.get('service') in DEBUG_SERVICES and state.get('identity') == 'SP10'
+            and state.get('period_us') == 20000 and state.get('clock_hz') == 100000000
+            and all_off(state) and type(state.get('enabled_mask')) is int
+            and type(state.get('faults')) is int and state['faults'] == 0
+            and type(state.get('sequence')) is int and 0 <= state['sequence'] <= 0xffffffff
+            and isinstance(pulses, list) and len(pulses) == 10
+            and all(type(x) is int and 500 <= x <= 2500 for x in pulses)
+            and not state.get('output_lost')
+            and state.get('manual_diagnostics_available', True) is True)
+
+
+def wait_for_root_after_idle_exit(port, timeout):
+    observed = b''
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        observed += port.read(4096)
+        if re.search(rb'shadowdpupetalinux:[^\r\n]*#\s*$', observed):
+            return 'root'
+        if re.search(rb'(?:password|login)\s*:\s*$', observed, re.I):
+            raise RuntimeError('旧服务已退出，但板端需要重新登录；未发送新服务启动命令。')
+    raise RuntimeError('未确认旧服务退出到 root；未启动新服务，也未发送动作。')
+
+
+def await_prompt(port, timeout=4, service=SERVICE, allow_idle_switch=False):
     observed = b''
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
@@ -36,7 +63,13 @@ def await_prompt(port, timeout=4, service=SERVICE):
                 if result.get('ready') is True:
                     state = result.get('state', {})
                     if state.get('service') != service:
-                        raise RuntimeError('板端运行的是其他服务。请退出旧服务、回到 root 提示符后再连接。')
+                        if (not allow_idle_switch or service not in DEBUG_SERVICES
+                                or not clean_idle_debug_state(state)):
+                            raise RuntimeError('板端是其他服务且不能自动切换；请先停止输出、关闭旧窗口并检查状态。')
+                        # Only stop a recognized, fault-free, already-OFF debug service.
+                        # Never send a target, ARM, or shell command before seeing root.
+                        port.write(b'\x03\r')
+                        return wait_for_root_after_idle_exit(port, max(.1, deadline-time.monotonic()))
                     if not all_off(state):
                         raise RuntimeError('板端输出未关闭；请先停止输出。')
                     return 'service'
@@ -67,7 +100,7 @@ class CenterSession:
             self.port.open()
             # User explicitly connects after logging in; never type a password.
             self.port.write(b'\r')
-            prompt = await_prompt(self.port, service=self.service)
+            prompt = await_prompt(self.port, service=self.service, allow_idle_switch=True)
             if prompt == 'root':
                 self.port.write(b'stty -echo\r')
                 time.sleep(.15)

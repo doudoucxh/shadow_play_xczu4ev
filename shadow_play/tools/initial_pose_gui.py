@@ -80,7 +80,7 @@ class App:
         self.port_box=ttk.Combobox(row,textvariable=self.port,width=12);self.port_box.pack(side='left',padx=8)
         self.refresh_button=ttk.Button(row,text='刷新串口',command=self.refresh_ports);self.refresh_button.pack(side='left')
         self.connect_button=ttk.Button(row,text='连接板子',command=self.connect);self.connect_button.pack(side='right')
-        ttk.Label(body,text='连接前：关闭其他串口工具，板端已登录 root；本窗口不保存登录密码。').pack(anchor='w',pady=(0,8))
+        ttk.Label(body,text='连接前关闭其他串口工具；空闲调试服务可自动切换，正在输出时请先停止。').pack(anchor='w',pady=(0,8))
         table=ttk.Frame(body);table.pack(fill='x')
         headers=('编号 / 引脚','控制部位','初始角度（°）','目标（μs）','填写范围（°）','板端指令（无实际角度反馈）')
         for col,text in enumerate(headers):ttk.Label(table,text=text).grid(row=0,column=col,padx=7,pady=7,sticky='w')

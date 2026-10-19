@@ -1,0 +1,283 @@
+{
+  "schema": "debug-service-handoff-v1",
+  "verified_utc": "2026-10-19T01:31:52.744234+00:00",
+  "source": "User screenshot of other-service connection error in ten-axis initial-angle GUI",
+  "before": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 8120,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null,
+    "service": "attended-angle-v1",
+    "center_hold_seconds": null,
+    "center_remaining_seconds": 0,
+    "manual_pulse_range_us": [
+      500,
+      2500
+    ],
+    "hold_mode": "until_stopped",
+    "same_channel_updates": true,
+    "manual_command_policy": "attended-single-axis",
+    "manual_diagnostics_available": true,
+    "incident_lock_retained": true,
+    "manual_channel_range": [
+      1,
+      10
+    ],
+    "manual_requires_observer": true
+  },
+  "checks": [
+    {
+      "check": "initial-1",
+      "service": "attended-initial-pose-v1",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 8120,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null,
+        "service": "attended-initial-pose-v1",
+        "center_hold_seconds": null,
+        "center_remaining_seconds": 0,
+        "group_initialization": true,
+        "hold_mode": "until_stopped",
+        "initial_pose_limits_deg": [
+          [
+            10,
+            260
+          ],
+          [
+            95,
+            260
+          ],
+          [
+            10,
+            260
+          ],
+          [
+            50,
+            170
+          ],
+          [
+            70,
+            260
+          ],
+          [
+            50,
+            170
+          ],
+          [
+            50,
+            190
+          ],
+          [
+            100,
+            190
+          ],
+          [
+            70,
+            200
+          ],
+          [
+            50,
+            170
+          ]
+        ],
+        "output_lost": false
+      },
+      "operations": [
+        "hello",
+        "status",
+        "status",
+        "off",
+        "off"
+      ]
+    },
+    {
+      "check": "angle",
+      "service": "attended-angle-v1",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 8120,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null,
+        "service": "attended-angle-v1",
+        "center_hold_seconds": null,
+        "center_remaining_seconds": 0,
+        "manual_pulse_range_us": [
+          500,
+          2500
+        ],
+        "hold_mode": "until_stopped",
+        "same_channel_updates": true,
+        "manual_command_policy": "attended-single-axis",
+        "manual_diagnostics_available": true,
+        "incident_lock_retained": true,
+        "manual_channel_range": [
+          1,
+          10
+        ],
+        "manual_requires_observer": true
+      },
+      "operations": [
+        "hello",
+        "status",
+        "status",
+        "off",
+        "off"
+      ]
+    },
+    {
+      "check": "initial-2",
+      "service": "attended-initial-pose-v1",
+      "state": {
+        "identity": "SP10",
+        "period_us": 20000,
+        "clock_hz": 100000000,
+        "enabled_mask": 0,
+        "armed": false,
+        "faults": 0,
+        "sequence": 8120,
+        "pending": false,
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ],
+        "position_feedback": null,
+        "service": "attended-initial-pose-v1",
+        "center_hold_seconds": null,
+        "center_remaining_seconds": 0,
+        "group_initialization": true,
+        "hold_mode": "until_stopped",
+        "initial_pose_limits_deg": [
+          [
+            10,
+            260
+          ],
+          [
+            95,
+            260
+          ],
+          [
+            10,
+            260
+          ],
+          [
+            50,
+            170
+          ],
+          [
+            70,
+            260
+          ],
+          [
+            50,
+            170
+          ],
+          [
+            50,
+            190
+          ],
+          [
+            100,
+            190
+          ],
+          [
+            70,
+            200
+          ],
+          [
+            50,
+            170
+          ]
+        ],
+        "output_lost": false
+      },
+      "operations": [
+        "hello",
+        "status",
+        "status",
+        "off",
+        "off"
+      ]
+    }
+  ],
+  "software_tests_passed": 32,
+  "gui_smoke_tests": [
+    "initial_pose_gui",
+    "attended_angle_gui"
+  ],
+  "known_idle_only": true,
+  "root_prompt_required_before_start": true,
+  "default_readonly_probes_switch": false,
+  "motion_targets_sent": false,
+  "incident_locks_removed": false,
+  "board_runtime_modified": false,
+  "fpga_reloaded": false,
+  "boot_files_changed": false,
+  "serial_port_released": true,
+  "actual_position_feedback": null,
+  "file_sha256": {
+    "shadow_play/tools/servo_center_session.py": "0db8c4f84f6a2b5844b2867b19ec7bf27ee83afcb853173690d23d45a26d23bd",
+    "shadow_play/tools/servo_center_gui.py": "cdd07ab0bb8a0a0ad2fd3feb1025fc1b1923d9a397be9d2842f3780ba5b6c6b5",
+    "shadow_play/tools/initial_pose_gui.py": "e3b51f215cb1d5f5928f6caad7bf0aab60b119cbbd13d68369e6e8cf2dd72c91",
+    "shadow_play/tests/test_debug_service_handoff.py": "4fa734642778ce7f66dcd0ef8810cb2ba29e877326edb7fe86e417eabd1dc935"
+  }
+}
