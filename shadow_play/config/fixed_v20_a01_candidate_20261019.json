@@ -1,0 +1,355 @@
+{
+  "schema": "fixed-v20-a01-source-data-v1",
+  "source_preparation_sha256": "462b5ffa61c9abc245600debb80d68a86a5c5d0b7d1b7cd8fafae9f766f42d0b",
+  "source_action_script_sha256": "45c621c8400c8981dca2efa2c5619d7b2cf3ca5e861ff359421371182a69aa9d",
+  "historical_target_hashes": {
+    "tiger_map_a_result.20261012.json": "a0a7af4128b1eee714b62f7a87ed4b286eeb960b9f9468b06fa9188d176860ab",
+    "tiger_map_b_result.20261012.json": "803bbade5eb0a6b267064a269781afdfe0978b9e37c9473482ce53f8220b93cd"
+  },
+  "historical_poses": {
+    "midpoint": {
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "source": {
+        "kind": "operator_confirmed_midpoint"
+      },
+      "current_assembly_verified": true
+    },
+    "head_yaw": {
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1540,
+        1500,
+        1500,
+        1500
+      ],
+      "source": {
+        "path": "config/tiger_map_a_result.20261012.json",
+        "sha256": "a0a7af4128b1eee714b62f7a87ed4b286eeb960b9f9468b06fa9188d176860ab",
+        "event": "probe_complete",
+        "edge": 1,
+        "sequence": 28903
+      },
+      "current_assembly_verified": false
+    },
+    "head_lift": {
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1540,
+        1500,
+        1500
+      ],
+      "source": {
+        "path": "config/tiger_map_a_result.20261012.json",
+        "sha256": "a0a7af4128b1eee714b62f7a87ed4b286eeb960b9f9468b06fa9188d176860ab",
+        "event": "probe_complete",
+        "edge": 3,
+        "sequence": 28951
+      },
+      "current_assembly_verified": false
+    },
+    "tail_yaw": {
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1540,
+        1500
+      ],
+      "source": {
+        "path": "config/tiger_map_a_result.20261012.json",
+        "sha256": "a0a7af4128b1eee714b62f7a87ed4b286eeb960b9f9468b06fa9188d176860ab",
+        "event": "probe_complete",
+        "edge": 5,
+        "sequence": 28999
+      },
+      "current_assembly_verified": false
+    },
+    "tail_lift": {
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1460
+      ],
+      "source": {
+        "path": "config/tiger_map_b_result.20261012.json",
+        "sha256": "803bbade5eb0a6b267064a269781afdfe0978b9e37c9473482ce53f8220b93cd",
+        "event": "probe_complete",
+        "edge": 1,
+        "sequence": 29049
+      },
+      "current_assembly_verified": false
+    },
+    "both_yaw": {
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1540,
+        1500,
+        1540,
+        1500
+      ],
+      "source": {
+        "path": "config/tiger_map_b_result.20261012.json",
+        "sha256": "803bbade5eb0a6b267064a269781afdfe0978b9e37c9473482ce53f8220b93cd",
+        "event": "probe_complete",
+        "edge": 3,
+        "sequence": 29097
+      },
+      "current_assembly_verified": false
+    },
+    "both_lift": {
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1540,
+        1500,
+        1460
+      ],
+      "source": {
+        "path": "config/tiger_map_b_result.20261012.json",
+        "sha256": "803bbade5eb0a6b267064a269781afdfe0978b9e37c9473482ce53f8220b93cd",
+        "event": "probe_complete",
+        "edge": 5,
+        "sequence": 29145
+      },
+      "current_assembly_verified": false
+    }
+  },
+  "candidate": {
+    "schema": "v20-a01-offline-candidate-v1",
+    "id": "A01",
+    "title": "老虎吼叫与扭动",
+    "status": "historical_targets_new_timing_not_executed",
+    "motor_ready": false,
+    "automatic_replay_allowed": false,
+    "source_audio_range_s": [
+      2.7,
+      9.0
+    ],
+    "duration_s": 6.3,
+    "enabled_mask": 960,
+    "reference_pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "interpolation": "cosine_zero_velocity_at_keyframes",
+    "keyframes": [
+      {
+        "time_s": 0.0,
+        "pose": "midpoint",
+        "label": "巡视起点",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ]
+      },
+      {
+        "time_s": 0.7,
+        "pose": "head_yaw",
+        "label": "小幅侧转候选",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1540,
+          1500,
+          1500,
+          1500
+        ]
+      },
+      {
+        "time_s": 1.4333106576,
+        "pose": "head_lift",
+        "label": "抬头进入虎啸",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1540,
+          1500,
+          1500
+        ]
+      },
+      {
+        "time_s": 2.1,
+        "pose": "both_lift",
+        "label": "虎头尾联动上提候选",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1540,
+          1500,
+          1460
+        ]
+      },
+      {
+        "time_s": 2.7,
+        "pose": "both_lift",
+        "label": "虎啸短停",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1540,
+          1500,
+          1460
+        ]
+      },
+      {
+        "time_s": 3.4333106576,
+        "pose": "midpoint",
+        "label": "回落进入扭动",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ]
+      },
+      {
+        "time_s": 4.3,
+        "pose": "both_yaw",
+        "label": "头尾同向横转候选",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1540,
+          1500,
+          1540,
+          1500
+        ]
+      },
+      {
+        "time_s": 5.3,
+        "pose": "midpoint",
+        "label": "收回",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ]
+      },
+      {
+        "time_s": 6.3,
+        "pose": "midpoint",
+        "label": "末姿保持",
+        "pulse_us": [
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500,
+          1500
+        ]
+      }
+    ],
+    "maximum_adjacent_step_us": 3,
+    "endpoint_source": "Recorded tiger map A/B adopted targets; no visual-coordinate-to-PWM conversion",
+    "still_unverified": [
+      "当前装配下的方向、鱼线张力与杆件避让",
+      "中位到各目标及新顺序的完整路径",
+      "V20五连接点轨迹匹配",
+      "真实音效命中时间与播放/机构延迟"
+    ],
+    "end_behavior": "Hold final scheduled midpoint target; no extra recenter after audio",
+    "execution_binding": null
+  },
+  "current_attachment_note": "Channels 9/10 retain user-confirmed tiger feet/lower-body identity; original TT tail attachment is not presumed verified",
+  "runtime_scope": "Quarter-speed, all-ten midpoint support, tiger four pulses only, no audio or rail commands; effect remains an unaccepted candidate"
+}

@@ -1,7 +1,8 @@
-"""Two separately reviewed head-axis checks for this fixed-rail V20 request.
+"""Separately reviewed head components for the current fixed-rail V20 request.
 
 This is a preparation component, not the A01 score or an automatic next-axis
 runner. The operator reference and each completed predecessor remain immutable.
+Supported mode reproduces the operator's all-ten midpoint hold, changing only 8.
 """
 import argparse
 import hashlib
@@ -24,6 +25,10 @@ REFERENCE_SHA='5ee811bb8cae411cec7050cdf9a1418cd60fdbc9f76a34430d9f411e750b06b8'
 SCHEMA='attended-fixed-v20-head-probes-v1'
 CLOSE_SCHEMA='attended-fixed-v20-head-closeup-v2'
 CLOSE_BOARD='/run/media/mmcblk0p2/piying/fixed-v20-closeup-20261019'
+SUPPORT_SCHEMA='attended-fixed-v20-supported-axis8-v3'
+SUPPORT_BOARD='/run/media/mmcblk0p2/piying/fixed-v20-supported-20261019'
+SUPPORT_REF=SUPPORT_BOARD+'/midpoint-reference.json'
+SUPPORT_SHA='2b878c4dc7aca7c25d456b5856d5e4178ef0251eecc8631776c8fe4d3986a727'
 
 
 def route(channel):
@@ -38,19 +43,24 @@ def validate_plan(p):
     fields={'schema','session_id','new_request_id','boot_id','channel','expected_sequence',
             'expected_pulse_us','route_sha256','prior_log_path','prior_log_sha256',
             'camera_required','onsite_observer','new_hardware_request','mechanism_visible'}
-    if not isinstance(p,dict) or set(p)!=fields or p['schema'] not in (SCHEMA,CLOSE_SCHEMA):
+    if not isinstance(p,dict) or set(p)!=fields or p['schema'] not in (SCHEMA,CLOSE_SCHEMA,SUPPORT_SCHEMA):
         raise ValueError('Exact fixed-V20 probe plan required')
     if any(not re.fullmatch('[a-f0-9]{32}',p[k]) for k in ('session_id','new_request_id')):
         raise ValueError('Unique request/session required')
     ch=p['channel'];frames=route(ch);close=p['schema']==CLOSE_SCHEMA
+    supported=p['schema']==SUPPORT_SCHEMA
+    if supported and ch!=8:raise ValueError('Supported mode can change only axis 8')
     if close and ch!=8:raise ValueError('Close view is solely the separately requested axis 8 recheck')
     if (p['boot_id']!=BOOT or type(p['expected_sequence']) is not int
-            or p['expected_sequence']!=(454 if close else {7:0,8:227}[ch]) or p['expected_pulse_us']!=MIDPOINT
+            or p['expected_sequence']!=(683 if supported else 454 if close else {7:0,8:227}[ch]) or p['expected_pulse_us']!=MIDPOINT
             or p['route_sha256']!=digest(frames)
             or any(p[k] is not True for k in ('camera_required','onsite_observer',
                                              'new_hardware_request','mechanism_visible'))):
         raise ValueError('Fresh attended midpoint and dual-camera binding required')
-    if close:
+    if supported:
+        if p['prior_log_path']!=SUPPORT_REF or p['prior_log_sha256']!=SUPPORT_SHA:
+            raise ValueError('New manual-initialization and stopped-state reference required')
+    elif close:
         if (p['prior_log_path']!=BOARD+'/axis-8-adf3ab8f37c5411ab624d3816346211c.board.jsonl'
                 or p['prior_log_sha256']!='0e077d447a09c1e7cf27dd932560f34e562589983107b64884035a4112cfe15b'):
             raise ValueError('Exact completed axis-8 record required for the new view')
@@ -65,6 +75,26 @@ def validate_plan(p):
 def validate_prior(p,raw):
     if hashlib.sha256(raw).hexdigest()!=p['prior_log_sha256']:
         raise ValueError('Original reference/evidence changed')
+    if p['schema']==SUPPORT_SCHEMA:
+        ref=json.loads(raw);s=ref['state']
+        if (ref.get('schema')!='fixed-v20-supported-reference-v1' or ref.get('boot_id')!=BOOT
+                or ref.get('image_sha256')!=IMAGE or ref.get('operator_requests_continue') is not True
+                or ref.get('operator_reports_axis8_center_program_normal') is not True
+                or ref.get('prior_observer_and_fixed_rails_confirmation_retained') is not True
+                or s['sequence']!=683 or s['pulse_us']!=MIDPOINT
+                or any(s[k] for k in ('armed','enabled_mask','faults','pending'))):
+            raise ValueError('Fresh stopped midpoint after operator test required')
+        initializations=ref['manual_initializations']
+        if len(initializations)!=2:raise ValueError('Original two manual test records required')
+        for index,row in enumerate(initializations):
+            request=row['request']['sent'];ack=row['acknowledgement']['received'];held=ack['result']
+            if (request['operation']!='initialize' or request['payload']['pulse_us']!=MIDPOINT
+                    or request['payload']['sequence']!=681+index or ack['ok'] is not True
+                    or ack['transport_id']!=request['transport_id'] or held['sequence']!=682+index
+                    or held['enabled_mask']!=1023 or held['pulse_us']!=MIDPOINT or not held['armed']
+                    or held['faults'] or held['pending']):
+                raise ValueError('Actual all-ten midpoint acknowledgements differ')
+        return
     close=p['schema']==CLOSE_SCHEMA
     if p['channel']==7 and not close:
         ref=json.loads(raw);s=ref['state']
@@ -104,7 +134,7 @@ class FixedV20ProbeDevice(OtherAxesDevice):
         self.used_path=Path(used_path);self.cancel=Path(cancel_path);self.hashes=self.lock_hashes()
         self.sequence=plan['expected_sequence'];self.pulses=MIDPOINT[:]
         self.profile={'deadline_s':12};self.frames=route(plan['channel'])
-        self.target_mask=1<<(plan['channel']-1)
+        self.target_mask=1023 if plan['schema']==SUPPORT_SCHEMA else 1<<(plan['channel']-1)
         self.mask=self.index=0;self.inside=self.started=self.failed=False
         self.last_issue=self.deadline=None
         self.check()

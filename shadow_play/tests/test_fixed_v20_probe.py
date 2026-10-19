@@ -15,6 +15,7 @@ from servo_pwm_device import PINS
 from test_servo_commissioning import FakeRegisters
 from test_v20_first_direction import Clock
 from run_fixed_v20_probe import DualCamera
+from fixed_v20_probe import SUPPORT_SCHEMA,SUPPORT_REF,SUPPORT_SHA
 
 
 def plan(channel=7):
@@ -124,6 +125,37 @@ class Tests(unittest.TestCase):
         self.assertEqual(rows[-1]['state']['sequence'],681)
         self.assertEqual({r['state']['enabled_mask'] for r in rows[:-1]},{128})
         self.assertFalse(rows[-1]['state']['armed'])
+
+    def supported_plan(self):
+        p=plan(8);p.update(schema=SUPPORT_SCHEMA,expected_sequence=683,
+            prior_log_path=SUPPORT_REF,prior_log_sha256=SUPPORT_SHA)
+        return p
+
+    def test_supported_mode_holds_other_nine_and_only_changes_axis8(self):
+        self.p=self.supported_plan();self.reg.values[0x20]=683
+        d=self.device();rows=[];run(d,rows.append,sleep=self.clock.sleep)
+        self.assertEqual({r['state']['enabled_mask'] for r in rows[:-1]},{1023})
+        self.assertTrue(all(r['state']['pulse_us'][:7]+r['state']['pulse_us'][8:]==[1500]*9 for r in rows[:-1]))
+        self.assertEqual(max(r['state']['pulse_us'][7] for r in rows[:-1]),1540)
+        self.assertEqual(rows[-1]['state']['sequence'],910)
+        self.assertEqual(rows[-1]['state']['pulse_us'],MIDPOINT)
+        self.assertFalse(rows[-1]['state']['armed'])
+
+    def test_supported_mode_requires_new_actual_manual_reference(self):
+        self.p=self.supported_plan()
+        validate_plan(self.p)
+        raw=(ROOT/'config/fixed_v20_supported_reference_20261019.json').read_bytes()
+        validate_prior(self.p,raw)
+        with self.assertRaises(ValueError):validate_prior(self.p,raw+b' ')
+        for key,value in [('expected_sequence',681),('channel',7),('prior_log_path',REFERENCE),
+                          ('prior_log_sha256',REFERENCE_SHA)]:
+            p=copy.deepcopy(self.p);p[key]=value
+            with self.assertRaises(ValueError):validate_plan(p)
+        self.reg.values[0x20]=683;d=self.device();d.begin()
+        with self.assertRaises(ValueError):d.commit(d.frames[0],128,allow_arm=True)
+        target=d.frames[0][:];target[0]=1510
+        with self.assertRaises(ValueError):d.commit(target,1023,allow_arm=True)
+        self.assertEqual(self.reg.writes,[])
 
 
 if __name__=='__main__':unittest.main()

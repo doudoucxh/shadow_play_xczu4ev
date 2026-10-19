@@ -1,0 +1,247 @@
+{
+  "schema": "fixed-v20-supported-reference-v1",
+  "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+  "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+  "state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 683,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "operator_reports_axis8_center_program_normal": true,
+  "operator_requests_continue": true,
+  "operator_statement": "那就是没问题了，请继续",
+  "prior_observer_and_fixed_rails_confirmation_retained": true,
+  "raw_manual_log_sha256": "17071619a20d80e5572cfedf2cf03958b1549fe72add432e8edf775b0313bb10",
+  "manual_initializations": [
+    {
+      "request": {
+        "logged_at": "2026-10-19T12:19:44.512691+00:00",
+        "sent": {
+          "transport_id": "9497c37373e14f8596f549f0be91c1f0",
+          "operation": "initialize",
+          "payload": {
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "sequence": 681,
+            "observer_confirmed": true,
+            "initial_jump_acknowledged": true
+          }
+        }
+      },
+      "acknowledgement": {
+        "logged_at": "2026-10-19T12:19:44.613169+00:00",
+        "received": {
+          "transport_id": "9497c37373e14f8596f549f0be91c1f0",
+          "ok": true,
+          "result": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 1023,
+            "armed": true,
+            "faults": 0,
+            "sequence": 682,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null,
+            "service": "attended-initial-pose-v1",
+            "center_hold_seconds": null,
+            "center_remaining_seconds": 0,
+            "group_initialization": true,
+            "hold_mode": "until_stopped",
+            "initial_pose_limits_deg": [
+              [
+                10,
+                260
+              ],
+              [
+                95,
+                260
+              ],
+              [
+                10,
+                260
+              ],
+              [
+                50,
+                170
+              ],
+              [
+                70,
+                260
+              ],
+              [
+                50,
+                170
+              ],
+              [
+                50,
+                190
+              ],
+              [
+                100,
+                190
+              ],
+              [
+                70,
+                200
+              ],
+              [
+                50,
+                170
+              ]
+            ],
+            "output_lost": false
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "logged_at": "2026-10-19T12:20:12.978206+00:00",
+        "sent": {
+          "transport_id": "bb400e33c89e492abe5b1807a4d82b96",
+          "operation": "initialize",
+          "payload": {
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "sequence": 682,
+            "observer_confirmed": true,
+            "initial_jump_acknowledged": true
+          }
+        }
+      },
+      "acknowledgement": {
+        "logged_at": "2026-10-19T12:20:13.076859+00:00",
+        "received": {
+          "transport_id": "bb400e33c89e492abe5b1807a4d82b96",
+          "ok": true,
+          "result": {
+            "identity": "SP10",
+            "period_us": 20000,
+            "clock_hz": 100000000,
+            "enabled_mask": 1023,
+            "armed": true,
+            "faults": 0,
+            "sequence": 683,
+            "pending": false,
+            "pulse_us": [
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500,
+              1500
+            ],
+            "position_feedback": null,
+            "service": "attended-initial-pose-v1",
+            "center_hold_seconds": null,
+            "center_remaining_seconds": 0,
+            "group_initialization": true,
+            "hold_mode": "until_stopped",
+            "initial_pose_limits_deg": [
+              [
+                10,
+                260
+              ],
+              [
+                95,
+                260
+              ],
+              [
+                10,
+                260
+              ],
+              [
+                50,
+                170
+              ],
+              [
+                70,
+                260
+              ],
+              [
+                50,
+                170
+              ],
+              [
+                50,
+                190
+              ],
+              [
+                100,
+                190
+              ],
+              [
+                70,
+                200
+              ],
+              [
+                50,
+                170
+              ]
+            ],
+            "output_lost": false
+          }
+        }
+      }
+    }
+  ],
+  "board_read_log_sha256": "a8ec9752c213b81dd7d30c0e90dfa5bfdb66a25bcf3013b399af7d3a9e48fd10",
+  "distinction": "Manual program held all ten channels; previous component enabled only channel 8. This does not prove that support ownership caused the unclear motion.",
+  "axis8_direction_from_manual_test": null,
+  "position_feedback": null
+}

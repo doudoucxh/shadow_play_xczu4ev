@@ -1335,5 +1335,10 @@
   "position_feedback": null,
   "held_off_due_to_unverified_axis8_response": true,
   "source_TT_is_tail_current_user_channels9_10_are_feet": true,
-  "next_requirement": "Directly resolve actual axis-8 horn/linked-rod response and establish reachable static action poses before combining A01; never replay consumed plans or substitute visual coordinates for PWM"
+  "next_requirement": "Directly resolve actual axis-8 horn/linked-rod response and establish reachable static action poses before combining A01; never replay consumed plans or substitute visual coordinates for PWM",
+  "later_operator_report_and_continuation": {
+    "operator_reports_axis8_center_program_normal": true,
+    "result": "shadow_play/config/fixed_v20_a01_result_20261019.json",
+    "note": "Original unclear observations retained; later supported check and A01 completed, latest OFF1831."
+  }
 }

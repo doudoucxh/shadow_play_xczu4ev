@@ -14,6 +14,7 @@ ROOT=Path(__file__).resolve().parents[2]
 CAL=ROOT/'shadow_play/integrations/calibration'
 sys.path.insert(0,str(CAL))
 from fixed_v20_probe import BOARD,BOOT,IMAGE,REFERENCE,REFERENCE_SHA,SCHEMA,CLOSE_SCHEMA,CLOSE_BOARD,route,validate_plan
+from fixed_v20_probe import SUPPORT_SCHEMA,SUPPORT_BOARD,SUPPORT_REF,SUPPORT_SHA
 from v20_first_direction import MIDPOINT,PREFIX,digest
 from run_v20_first_direction import parse_event,valid_reference,FreshCamera
 from run_v20_head_lift import PhoneCamera
@@ -24,7 +25,14 @@ FILES=('fixed_v20_probe.py','other_axes_check.py','initial_pose_model.py','v20_f
 WORK=ROOT/'.review_work/fixed-v20-return-20261019'
 
 
-def prior_reference(channel,closeup=False):
+def prior_reference(channel,closeup=False,supported=False):
+    if supported:
+        if channel!=8:raise ValueError('Supported mode changes only axis 8')
+        raw=(ROOT/'shadow_play/config/fixed_v20_supported_reference_20261019.json').read_bytes()
+        if hashlib.sha256(raw).hexdigest()!=SUPPORT_SHA:raise RuntimeError('Supported reference changed')
+        ref=json.loads(raw)
+        return dict(route_complete=True,state=ref['state'],boot_id=ref['boot_id'],
+                    source_log_path=SUPPORT_REF,board_log_sha256=SUPPORT_SHA)
     if closeup:
         if channel!=8:raise ValueError('Only head axis 8 for the new close view')
         previous=json.loads((WORK/'axis-8/result.json').read_text(encoding='utf-8'))
@@ -58,16 +66,17 @@ class DualCamera:
         return dict(front=self.front.sample(front),rear=self.rear.sample(rear))
 
 
-def run(channel,output,execute=False,port_name='COM17',closeup=False):
+def run(channel,output,execute=False,port_name='COM17',closeup=False,supported=False):
     import serial
     if type(channel) is not int or channel not in (7,8):raise ValueError('Only head axes 7/8')
     if closeup and channel!=8:raise ValueError('Only axis 8 for the close view')
+    if supported and (channel!=8 or closeup):raise ValueError('Supported mode changes only axis 8')
     output.mkdir(parents=True,exist_ok=False)
     stop=threading.Event();worker=None;started=False;final=audit=None
     port=serial.Serial(None,115200,timeout=.05,write_timeout=.5)
     port.dtr=port.rts=False;port.port=port_name;pending=b''
     camera=DualCamera();captures=[];lock=threading.Lock()
-    board=CLOSE_BOARD if closeup else BOARD;lib=board+'/integrations/calibration'
+    board=SUPPORT_BOARD if supported else CLOSE_BOARD if closeup else BOARD;lib=board+'/integrations/calibration'
     with (output/'serial.jsonl').open('x',encoding='utf-8') as log:
         def record(key,value):
             with lock:
@@ -106,7 +115,7 @@ def run(channel,output,execute=False,port_name='COM17',closeup=False):
             (output/'inspection.json').write_text(json.dumps(inspected,indent=2),encoding='utf-8')
             print('READ_ONLY '+json.dumps(inspected),flush=True)
             if not execute:return inspected
-            valid_reference(inspected['state']);previous=prior_reference(channel,closeup)
+            valid_reference(inspected['state']);previous=prior_reference(channel,closeup,supported)
             if (not previous['route_complete'] or previous['state']['sequence']!=inspected['state']['sequence']
                 or previous['state']['pulse_us']!=MIDPOINT or previous['boot_id']!=BOOT or inspected['boot_id']!=BOOT
                 or inspected['marker'].get('boot_id')!=BOOT or inspected['marker'].get('sha256')!=IMAGE):
@@ -116,7 +125,10 @@ def run(channel,output,execute=False,port_name='COM17',closeup=False):
                 channel=channel,excursion_us=40,other_nine_disabled=True,
                 camera_sources=['sony_front','phone_rear'],preparation_component_only=True,rails_moved=False)
             if closeup:request['user_request']='Phone adjusted to head mechanism; continue check explicitly requested'
-            plan=dict(schema=CLOSE_SCHEMA if closeup else SCHEMA,session_id=uuid.uuid4().hex,new_request_id=request['request_id'],boot_id=BOOT,
+            if supported:
+                request.update(user_request='Operator reports axis 8 normal with all-ten center program and explicitly requests continuation',
+                    other_nine_disabled=False,other_nine_held_at_midpoint=True,enabled_mask=1023)
+            plan=dict(schema=SUPPORT_SCHEMA if supported else CLOSE_SCHEMA if closeup else SCHEMA,session_id=uuid.uuid4().hex,new_request_id=request['request_id'],boot_id=BOOT,
                 channel=channel,expected_sequence=inspected['state']['sequence'],expected_pulse_us=MIDPOINT,
                 route_sha256=digest(route(channel)),prior_log_path=previous['source_log_path'],
                 prior_log_sha256=previous['board_log_sha256'],camera_required=True,onsite_observer=True,
@@ -175,6 +187,8 @@ if __name__=='__main__':
     p.add_argument('--channel',type=int,choices=(7,8),required=True)
     p.add_argument('--output',type=Path,required=True);p.add_argument('--port',default='COM17')
     p.add_argument('--execute-checked-axis',action='store_true')
-    p.add_argument('--head-closeup',action='store_true')
+    group=p.add_mutually_exclusive_group()
+    group.add_argument('--head-closeup',action='store_true')
+    group.add_argument('--supported-check',action='store_true')
     a=p.parse_args()
-    run(a.channel,a.output,a.execute_checked_axis,a.port,a.head_closeup)
+    run(a.channel,a.output,a.execute_checked_axis,a.port,a.head_closeup,a.supported_check)
