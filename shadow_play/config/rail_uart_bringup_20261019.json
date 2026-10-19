@@ -398,7 +398,7 @@
       "enabled_mask": 0,
       "armed": false,
       "faults": 0,
-      "sequence": 2739,
+      "sequence": 3420,
       "pending": false,
       "pulse_us": [
         1500,
@@ -414,7 +414,7 @@
       ],
       "position_feedback": null
     },
-    "source_record": "shadow_play/config/fixed_v20_a02_directions_result_20261019.json",
+    "source_record": "shadow_play/config/fixed_v20_a02_closeup_result_20261019.json",
     "register_writes": false,
     "rail_commands_sent": false,
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
@@ -816,6 +816,35 @@
     "result": "shadow_play/config/fixed_v20_a01_result_20261019.json",
     "rail_commands_sent": false,
     "register_writes": false,
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
+  },
+  "board_readback_before_a02_closeup": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 2739,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "source_record": "shadow_play/config/fixed_v20_a02_directions_result_20261019.json",
+    "register_writes": false,
+    "rail_commands_sent": false,
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
   }
 }
