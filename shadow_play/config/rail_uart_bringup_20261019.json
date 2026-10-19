@@ -426,8 +426,8 @@
     },
     "ui_frames": [
       {
-        "captured": 79616.839294233,
-        "age_ms": 1112.0,
+        "captured": 80407.910402916,
+        "age_ms": 1113.8,
         "shape": [
           600,
           1024,
@@ -435,8 +435,8 @@
         ]
       },
       {
-        "captured": 79618.076575246,
-        "age_ms": 33.4,
+        "captured": 80409.147782389,
+        "age_ms": 35.3,
         "shape": [
           600,
           1024,
@@ -444,8 +444,8 @@
         ]
       },
       {
-        "captured": 79618.243760077,
-        "age_ms": 24.5,
+        "captured": 80409.314994972,
+        "age_ms": 27.6,
         "shape": [
           600,
           1024,
@@ -456,7 +456,7 @@
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
     "register_writes": false,
     "motor_packets_sent": false,
-    "pc_log_written_utc": "2026-10-19T11:40:22.021746+00:00"
+    "pc_log_written_utc": "2026-10-19T11:53:33.160784+00:00"
   },
   "latest_camera_frames_before_load": [
     {
@@ -494,7 +494,7 @@
     }
   ],
   "camera_driver_screens_legible": false,
-  "waiting_for": "Close view of driver communication socket and wire endpoints, or measured TX/RX signal evidence; settings and implemented FPGA directions match the operator report",
+  "waiting_for": "User requested stop; isolated loopback not set up or executed; do not issue further queries automatically",
   "actual_settings_verification_basis": "Operator read both driver menus; not a validated protocol reply",
   "latest_validation": {
     "protocol_tests_passed": 6,
@@ -561,7 +561,7 @@
   "direction_swap_trial_record": "shadow_play/config/uart_pin_swap_trial_20261019.json",
   "direction_swap_trial_result": "Both version queries returned no bytes; original standard image restored with all PWM off",
   "current_display_service": "shadow-uart-restored-hdmi",
-  "current_actuator_supply_operator_report": "Off",
+  "current_actuator_supply_operator_report": "On; no subsequent actual power-off confirmation received",
   "latest_camera_frames_before_swap_trial": [
     {
       "source": "phone_mechanism",
@@ -596,5 +596,135 @@
         540
       ]
     }
-  ]
+  ],
+  "previous_board_readback_before_power_clarification": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "uart_status_samples": {
+      "person": [
+        4,
+        4
+      ],
+      "tiger": [
+        4,
+        4
+      ]
+    },
+    "ui_frames": [
+      {
+        "captured": 79616.839294233,
+        "age_ms": 1112.0,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 79618.076575246,
+        "age_ms": 33.4,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 79618.243760077,
+        "age_ms": 24.5,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      }
+    ],
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "register_writes": false,
+    "motor_packets_sent": false,
+    "pc_log_written_utc": "2026-10-19T11:40:22.021746+00:00"
+  },
+  "previous_actuator_supply_operator_report_before_power_clarification": "Off",
+  "operator_power_status_clarification": {
+    "operator_statement": "但是刚刚你没有叫我上电，现在我上电了",
+    "prior_trial_power_premise_uncertain_after_latest_clarification": true,
+    "negative_direction_conclusion_qualified": true,
+    "prior_power_reports_preserved_as_historical_sources": true,
+    "does_not_establish_prior_supply_was_definitely_off": true,
+    "recheck_record": "shadow_play/config/rail_power_recheck_20261019.json"
+  },
+  "power_recheck_record": "shadow_play/config/rail_power_recheck_20261019.json",
+  "fresh_standard_map_version_queries_after_power_report": [
+    {
+      "rail": "person",
+      "query_hex": "011f6b",
+      "result": {
+        "rail": "person",
+        "error": "Reply timeout; no automatic resend",
+        "reply_hex": "",
+        "diagnostics": {
+          "phase": "awaiting_reply",
+          "tx_bytes_queued": 3,
+          "uart_status_changes": [
+            4,
+            0,
+            4
+          ],
+          "wire_tx_verified": false
+        },
+        "motion_sent": false
+      },
+      "raw_log_sha256": "6652eeeb264b87a53bd739892d957c2f45e60cbb9e66ef4741bce5bb5e4ded1c"
+    },
+    {
+      "rail": "tiger",
+      "query_hex": "011f6b",
+      "result": {
+        "rail": "tiger",
+        "error": "Reply timeout; no automatic resend",
+        "reply_hex": "",
+        "diagnostics": {
+          "phase": "awaiting_reply",
+          "tx_bytes_queued": 3,
+          "uart_status_changes": [
+            4,
+            0,
+            4
+          ],
+          "wire_tx_verified": false
+        },
+        "motion_sent": false
+      },
+      "raw_log_sha256": "47d224222a1617529c19e8327edec4231515d54edf05c0ee8a36a45e198ab519"
+    }
+  ],
+  "latest_stop_request": {
+    "operator_answer": "暂时无法接回环，保持停止",
+    "honored": true,
+    "further_motor_queries_sent": false,
+    "physical_power_off_confirmed": false,
+    "motor_signals_disconnected_confirmed": false,
+    "f15_h13_loopback_link_confirmed": false
+  }
 }

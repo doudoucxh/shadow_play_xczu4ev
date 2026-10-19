@@ -55,6 +55,10 @@ class QueryPort:
                     uart_status_changes=self.status_changes,
                     wire_tx_verified=False)
 
+    def decode_reply(self, address, kind, raw, *, checksum_mode, firmware_kind):
+        return decode(address, kind, raw, checksum_mode=checksum_mode,
+                      firmware_kind=firmware_kind)
+
     def status(self):
         value = self.reg.read(8)
         if not self.status_changes or value != self.status_changes[-1]:
@@ -103,8 +107,8 @@ class QueryPort:
             elif last_byte_at is not None and self.clock() - last_byte_at >= 0.020:
                 if not status & 4:
                     raise TelemetryError('TX did not return idle')
-                result = decode(address, kind, bytes(self.received),
-                                checksum_mode=checksum_mode, firmware_kind=firmware_kind)
+                result = self.decode_reply(address, kind, bytes(self.received),
+                                           checksum_mode=checksum_mode, firmware_kind=firmware_kind)
                 result.update(freshness_verified=True,
                               freshness_basis='RX empty for 20ms, bytes received after this sole query',
                               query_hex=packet.hex(), reply_hex=self.received.hex(),

@@ -1,0 +1,179 @@
+{
+  "schema": "rail-power-recheck-v1",
+  "date": "2026-10-19",
+  "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+  "current_image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+  "pin_map": "standard",
+  "baud": 115200,
+  "serial_format": "8N1",
+  "operator_power_status_clarification": {
+    "operator_statement": "但是刚刚你没有叫我上电，现在我上电了",
+    "prior_trial_power_premise_uncertain_after_latest_clarification": true,
+    "negative_direction_conclusion_qualified": true,
+    "prior_power_reports_preserved_as_historical_sources": true,
+    "does_not_establish_prior_supply_was_definitely_off": true,
+    "recheck_record": "shadow_play/config/rail_power_recheck_20261019.json"
+  },
+  "fresh_queries_after_explicit_power_on_report": [
+    {
+      "rail": "person",
+      "query_hex": "011f6b",
+      "result": {
+        "rail": "person",
+        "error": "Reply timeout; no automatic resend",
+        "reply_hex": "",
+        "diagnostics": {
+          "phase": "awaiting_reply",
+          "tx_bytes_queued": 3,
+          "uart_status_changes": [
+            4,
+            0,
+            4
+          ],
+          "wire_tx_verified": false
+        },
+        "motion_sent": false
+      },
+      "raw_log_sha256": "6652eeeb264b87a53bd739892d957c2f45e60cbb9e66ef4741bce5bb5e4ded1c"
+    },
+    {
+      "rail": "tiger",
+      "query_hex": "011f6b",
+      "result": {
+        "rail": "tiger",
+        "error": "Reply timeout; no automatic resend",
+        "reply_hex": "",
+        "diagnostics": {
+          "phase": "awaiting_reply",
+          "tx_bytes_queued": 3,
+          "uart_status_changes": [
+            4,
+            0,
+            4
+          ],
+          "wire_tx_verified": false
+        },
+        "motion_sent": false
+      },
+      "raw_log_sha256": "47d224222a1617529c19e8327edec4231515d54edf05c0ee8a36a45e198ab519"
+    }
+  ],
+  "hardware_handshake_verified": false,
+  "wire_waveform_verified": false,
+  "latest_board_readback": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "uart_status_samples": {
+      "person": [
+        4,
+        4
+      ],
+      "tiger": [
+        4,
+        4
+      ]
+    },
+    "ui_frames": [
+      {
+        "captured": 80407.910402916,
+        "age_ms": 1113.8,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 80409.147782389,
+        "age_ms": 35.3,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 80409.314994972,
+        "age_ms": 27.6,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      }
+    ],
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "register_writes": false,
+    "motor_packets_sent": false,
+    "pc_log_written_utc": "2026-10-19T11:53:33.160784+00:00"
+  },
+  "latest_actuator_supply_operator_report": "On; no subsequent actual power-off confirmation received",
+  "stop_request": {
+    "operator_answer": "暂时无法接回环，保持停止",
+    "honored": true,
+    "further_motor_queries_sent": false,
+    "physical_power_off_confirmed": false,
+    "motor_signals_disconnected_confirmed": false,
+    "f15_h13_loopback_link_confirmed": false
+  },
+  "loopback": {
+    "source": "shadow_play/tools/uart_person_loopback_check.py",
+    "board_ram_directory": "/run/uart-person-loopback-20261019",
+    "files_verified": {
+      "zdt_uartlite_telemetry.py": "896e470852fae381f2c2595d36e6652fbcc674316a1a912db9993347abf692f1",
+      "uart_person_loopback_check.py": "00ba16204933b9d83504bc2b7b550fa6623a8f39c733ca82486c27e6cbf29fb7",
+      "zdt_readonly_protocol.py": "983e7dbfeba9ce33d56a27c0b3d1d6b7f279d37b1078553e0a2edf9a20ad4bf9"
+    },
+    "staging_log_sha256": "6880ff2f4e40141214858d20b5511e8ee39967b852b1da71c3e5b7bd53e29a8f",
+    "board_syntax_check_passed": true,
+    "offline_description_executed": true,
+    "actual_loopback_executed": false,
+    "local_loopback_verified": false,
+    "original_sd_bundle_modified": false,
+    "default_is_offline": true,
+    "expected_echo_hex": "011f6b",
+    "motor_handshake_verified": false,
+    "requires_new_actual_physical_setup_confirmation": true,
+    "once_marker": "/run/shadow-person-uart-loopback-20261019.used",
+    "failure_marker_retained": true,
+    "automatic_retry": false,
+    "fifo_reset_or_flush": false
+  },
+  "offline_tests": {
+    "total_passed": 19,
+    "uartlite_transport": 7,
+    "readonly_protocol": 6,
+    "swapped_candidate": 3,
+    "local_loopback": 3
+  },
+  "final_state_basis": "Last verified readback before user requested no further testing; not a new measurement after stop",
+  "register_writes_after_stop_request": false,
+  "new_fpga_load": false,
+  "actuator_enable_or_motion_sent": false,
+  "incident_locks_removed": false,
+  "persistent_motor_or_loopback_task_started": false,
+  "camera_used_in_this_recheck": false,
+  "physical_performance_ready": false,
+  "next_step": "Only resume when user requests it and actual setup is established; local loopback and motor handshake remain unverified"
+}
