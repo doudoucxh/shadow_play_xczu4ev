@@ -1,0 +1,225 @@
+{
+  "schema": "v20-full-source-audit-v1",
+  "source_directory": "任务一_V20_完整版_外展蓄势与大圆弧下砸",
+  "source_plan_sha256": "b33d3239e52a2ee981989d3bc84de18016d486ad3c97265bf9aca2ee1e3367aa",
+  "manifest": {
+    "passed": true,
+    "files_checked": 330,
+    "total_bytes": 132084798,
+    "unlisted_files": [],
+    "manifest_sha256": "1e475927034c5e0ad7135e2da0bf7444c6416f2e3c367617c14c8cae90d19cc5"
+  },
+  "structure": {
+    "scene_count": 24,
+    "cue_count": 19,
+    "paired_reference_frames": 1915,
+    "reference_hz": 25,
+    "duration_s": 76.579410430839,
+    "complete_audio_coverage": true,
+    "motor_commands_present": false
+  },
+  "selected_original_audio_verified": false,
+  "audio_sha256": "8b95f441e7f696213d1f175cb52caa2e07ea05bca4e0e8697e48647b96621ff8",
+  "current_playback": {
+    "schema": "task1_audio_v1",
+    "title": "武松打虎8",
+    "source": {
+      "filename": "武松打虎8.wav",
+      "sha256": "8b95f441e7f696213d1f175cb52caa2e07ea05bca4e0e8697e48647b96621ff8",
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "sample_frames": 3377152
+    },
+    "playback": {
+      "asset": "assets/audio/wusong_task1_v20_20261018.mp3",
+      "runtime_filename": "wusong.mp3",
+      "sha256": "19a4cfe500ff555d27bd1b64261955fdddb62f774143ac42cade5c98207fe5fe",
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "decoded_frames": 3675812,
+      "encoding": "libmp3lame 128k; 48000 Hz stereo; metadata removed"
+    },
+    "reference_audio": {
+      "folder": "任务一_V20_固定滑轨独立动作",
+      "path": "source/full_audio.wav",
+      "byte_identical_to_source": true
+    }
+  },
+  "geometry": {
+    "common_shoulder_all_frames": true,
+    "arm_lengths_display_units": {
+      "left_upper": {
+        "min": 6.999921652768691,
+        "max": 7.000065318095256,
+        "spread": 0.00014366532656495679
+      },
+      "left_forearm": {
+        "min": 6.640863168662641,
+        "max": 10.000060810660104,
+        "spread": 3.359197641997463
+      },
+      "right_upper": {
+        "min": 6.999950879263366,
+        "max": 7.00005880549585,
+        "spread": 0.00010792623248345734
+      },
+      "right_forearm": {
+        "min": 6.814219945995287,
+        "max": 10.000054717095303,
+        "spread": 3.1858347711000157
+      }
+    },
+    "projected_forearm_lengths_are_not_fixed_hardware_lengths": true,
+    "source_projection_note": "Source renderer changes wrist/fingertip anchor across turning and uses schematic depth foreshortening; no measured 3D constant-length model is available",
+    "contact_reference_frames": [
+      {
+        "id": "P01",
+        "target_time_s": 44.34668934240363,
+        "reference_time_s": 44.36,
+        "marker": "P01",
+        "quantization_ms": 13.310657596370845
+      },
+      {
+        "id": "P02",
+        "target_time_s": 45.17668934240363,
+        "reference_time_s": 45.16,
+        "marker": "P02",
+        "quantization_ms": -16.68934240363029
+      },
+      {
+        "id": "P03",
+        "target_time_s": 45.966689342403626,
+        "reference_time_s": 45.96,
+        "marker": "P03",
+        "quantization_ms": -6.689342403625176
+      },
+      {
+        "id": "P04",
+        "target_time_s": 47.296689342403624,
+        "reference_time_s": 47.28,
+        "marker": "P04",
+        "quantization_ms": -16.689342403623186
+      },
+      {
+        "id": "P05",
+        "target_time_s": 48.01668934240362,
+        "reference_time_s": 48.0,
+        "marker": "P05",
+        "quantization_ms": -16.689342403623186
+      },
+      {
+        "id": "P06",
+        "target_time_s": 48.616689342403625,
+        "reference_time_s": 48.6,
+        "marker": "P06",
+        "quantization_ms": -16.689342403623186
+      },
+      {
+        "id": "P07",
+        "target_time_s": 49.296689342403624,
+        "reference_time_s": 49.28,
+        "marker": "P07",
+        "quantization_ms": -16.689342403623186
+      },
+      {
+        "id": "P08",
+        "target_time_s": 50.116689342403625,
+        "reference_time_s": 50.12,
+        "marker": "P08",
+        "quantization_ms": 3.3106575963728346
+      },
+      {
+        "id": "P09",
+        "target_time_s": 52.796689342403624,
+        "reference_time_s": 52.8,
+        "marker": "P09",
+        "quantization_ms": 3.3106575963728346
+      },
+      {
+        "id": "P10",
+        "target_time_s": 53.36668934240363,
+        "reference_time_s": 53.36,
+        "marker": "P10",
+        "quantization_ms": -6.689342403632281
+      },
+      {
+        "id": "P11",
+        "target_time_s": 54.26668934240362,
+        "reference_time_s": 54.28,
+        "marker": "P11",
+        "quantization_ms": 13.31065759637795
+      },
+      {
+        "id": "P12",
+        "target_time_s": 55.296689342403624,
+        "reference_time_s": 55.28,
+        "marker": "P12",
+        "quantization_ms": -16.689342403623186
+      },
+      {
+        "id": "P13",
+        "target_time_s": 56.08668934240363,
+        "reference_time_s": 56.08,
+        "marker": "P13",
+        "quantization_ms": -6.689342403632281
+      },
+      {
+        "id": "P15",
+        "target_time_s": 56.76668934240362,
+        "reference_time_s": 56.76,
+        "marker": "P15",
+        "quantization_ms": -6.689342403625176
+      },
+      {
+        "id": "P14",
+        "target_time_s": 57.31668934240362,
+        "reference_time_s": 57.32,
+        "marker": "P14",
+        "quantization_ms": 3.31065759637994
+      },
+      {
+        "id": "P16",
+        "target_time_s": 57.95668934240362,
+        "reference_time_s": 57.96,
+        "marker": "P16",
+        "quantization_ms": 3.31065759637994
+      },
+      {
+        "id": "P17",
+        "target_time_s": 59.27668934240363,
+        "reference_time_s": 59.28,
+        "marker": "P17",
+        "quantization_ms": 3.3106575963728346
+      },
+      {
+        "id": "P18",
+        "target_time_s": 60.09668934240362,
+        "reference_time_s": 60.08,
+        "marker": "P18",
+        "quantization_ms": -16.689342403623186
+      },
+      {
+        "id": "P19",
+        "target_time_s": 61.01668934240362,
+        "reference_time_s": 61.0,
+        "marker": "P19",
+        "quantization_ms": -16.689342403623186
+      }
+    ],
+    "reference_units": "Source schematic units 80 by 50; not measured centimetres",
+    "actual_hardware_geometry_verified": false
+  },
+  "source_version": "V20 additions override preserved legacy labels",
+  "source_stale_labels": [
+    "00_先读我 first line V16",
+    "03_action_plan title V9",
+    "source contract drag hand pending while V20 selects left"
+  ],
+  "imported_source_instructions_executed": false,
+  "source_code_executed": false,
+  "user_source_modified": false,
+  "motor_commands_sent": false,
+  "raw_camera_frames_in_output": false,
+  "generated_reference_frames": 1916,
+  "terminal_reference_is_visual_only": true
+}

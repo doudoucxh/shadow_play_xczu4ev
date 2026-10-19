@@ -1,0 +1,346 @@
+{
+  "schema": "v20-full-calibration-targets-v1",
+  "source_poses": {
+    "release": "V20",
+    "status": "visual_targets_only_awaiting_hardware_calibration",
+    "coordinate_system": {
+      "origin": "观众视角幕布左下角",
+      "x": "向右，0到1",
+      "y": "向上，0到1",
+      "screen_measured_width_mm": null,
+      "screen_measured_height_mm": null
+    },
+    "rod_names": {
+      "WH": "武松额头",
+      "WL": "近幕左手腕",
+      "WR": "远幕右手腕",
+      "TH": "另一只虎耳",
+      "TT": "虎尾末"
+    },
+    "preserve": "V20保留人物尺度，站立交战虎整体提高5个显示单位使下巴接近武松腰部；待实测标定",
+    "poses": [
+      {
+        "name": "开场隐藏参考",
+        "time_s": 0,
+        "visible": {
+          "wusong": 0.0,
+          "tiger": 0.0
+        },
+        "body_centers": {
+          "wusong": [
+            0.1,
+            0.144
+          ],
+          "tiger": [
+            0.75,
+            0.144
+          ]
+        },
+        "attachment_points": {
+          "wusong_head": [
+            0.12563,
+            0.671215
+          ],
+          "wusong_left": [
+            0.034079,
+            0.328057
+          ],
+          "wusong_right": [
+            0.17217,
+            0.331627
+          ],
+          "tiger_head": [
+            0.647006,
+            0.357127
+          ],
+          "tiger_tail": [
+            0.87125,
+            0.408
+          ]
+        },
+        "motor_values": null,
+        "rail_home_offsets_mm": null,
+        "measured_screen_points": null,
+        "verified_on_hardware": false
+      },
+      {
+        "name": "老虎入场落点",
+        "time_s": 2.7,
+        "visible": {
+          "wusong": 0.0,
+          "tiger": 1.0
+        },
+        "body_centers": {
+          "wusong": [
+            0.1,
+            0.144
+          ],
+          "tiger": [
+            0.75,
+            0.144
+          ]
+        },
+        "attachment_points": {
+          "wusong_head": [
+            0.12563,
+            0.671215
+          ],
+          "wusong_left": [
+            0.034079,
+            0.328057
+          ],
+          "wusong_right": [
+            0.17217,
+            0.331627
+          ],
+          "tiger_head": [
+            0.647006,
+            0.358791
+          ],
+          "tiger_tail": [
+            0.87125,
+            0.459216
+          ]
+        },
+        "motor_values": null,
+        "rail_home_offsets_mm": null,
+        "measured_screen_points": null,
+        "verified_on_hardware": false
+      },
+      {
+        "name": "武松入场完成",
+        "time_s": 11.5,
+        "visible": {
+          "wusong": 1.0,
+          "tiger": 0.0
+        },
+        "body_centers": {
+          "wusong": [
+            0.25,
+            0.144
+          ],
+          "tiger": [
+            0.8375,
+            0.144
+          ]
+        },
+        "attachment_points": {
+          "wusong_head": [
+            0.27563,
+            0.671215
+          ],
+          "wusong_left": [
+            0.15,
+            0.286
+          ],
+          "wusong_right": [
+            0.35,
+            0.286
+          ],
+          "tiger_head": [
+            0.734506,
+            0.357127
+          ],
+          "tiger_tail": [
+            0.95875,
+            0.408
+          ]
+        },
+        "motor_values": null,
+        "rail_home_offsets_mm": null,
+        "measured_screen_points": null,
+        "verified_on_hardware": false
+      },
+      {
+        "name": "武松说话起始",
+        "time_s": 17.8,
+        "visible": {
+          "wusong": 1.0,
+          "tiger": 0.0
+        },
+        "body_centers": {
+          "wusong": [
+            0.25,
+            0.144
+          ],
+          "tiger": [
+            0.8375,
+            0.144
+          ]
+        },
+        "attachment_points": {
+          "wusong_head": [
+            0.27563,
+            0.671215
+          ],
+          "wusong_left": [
+            0.184079,
+            0.328057
+          ],
+          "wusong_right": [
+            0.32217,
+            0.331627
+          ],
+          "tiger_head": [
+            0.734506,
+            0.357127
+          ],
+          "tiger_tail": [
+            0.95875,
+            0.408
+          ]
+        },
+        "motor_values": null,
+        "rail_home_offsets_mm": null,
+        "measured_screen_points": null,
+        "verified_on_hardware": false
+      },
+      {
+        "name": "扑击前站位",
+        "time_s": 30.3666,
+        "visible": {
+          "wusong": 1.0,
+          "tiger": 0.0
+        },
+        "body_centers": {
+          "wusong": [
+            0.5,
+            0.144
+          ],
+          "tiger": [
+            0.8375,
+            0.144
+          ]
+        },
+        "attachment_points": {
+          "wusong_head": [
+            0.52563,
+            0.671215
+          ],
+          "wusong_left": [
+            0.434079,
+            0.328057
+          ],
+          "wusong_right": [
+            0.57217,
+            0.331627
+          ],
+          "tiger_head": [
+            0.734506,
+            0.357127
+          ],
+          "tiger_tail": [
+            0.95875,
+            0.408
+          ]
+        },
+        "motor_values": null,
+        "rail_home_offsets_mm": null,
+        "measured_screen_points": null,
+        "verified_on_hardware": false
+      },
+      {
+        "name": "后撤完成蓄势",
+        "time_s": 33.3667,
+        "visible": {
+          "wusong": 1.0,
+          "tiger": 1.0
+        },
+        "body_centers": {
+          "wusong": [
+            0.1,
+            0.144
+          ],
+          "tiger": [
+            0.8375,
+            0.144
+          ]
+        },
+        "attachment_points": {
+          "wusong_head": [
+            0.12563,
+            0.671215
+          ],
+          "wusong_left": [
+            0.227422,
+            0.746098
+          ],
+          "wusong_right": [
+            0.22438,
+            0.402678
+          ],
+          "tiger_head": [
+            0.734507,
+            0.357128
+          ],
+          "tiger_tail": [
+            0.958749,
+            0.408001
+          ]
+        },
+        "motor_values": null,
+        "rail_home_offsets_mm": null,
+        "measured_screen_points": null,
+        "verified_on_hardware": false
+      },
+      {
+        "name": "首拳命中站位",
+        "time_s": 44.36,
+        "visible": {
+          "wusong": 1.0,
+          "tiger": 1.0
+        },
+        "body_centers": {
+          "wusong": [
+            0.25,
+            0.144
+          ],
+          "tiger": [
+            0.4625,
+            0.244
+          ]
+        },
+        "attachment_points": {
+          "wusong_head": [
+            0.27563,
+            0.625215
+          ],
+          "wusong_left": [
+            0.377422,
+            0.700098
+          ],
+          "wusong_right": [
+            0.278762,
+            0.365968
+          ],
+          "tiger_head": [
+            0.359506,
+            0.457127
+          ],
+          "tiger_tail": [
+            0.58375,
+            0.508
+          ]
+        },
+        "motor_values": null,
+        "rail_home_offsets_mm": null,
+        "measured_screen_points": null,
+        "verified_on_hardware": false
+      }
+    ],
+    "calibration_steps": [
+      "测量有效幕面并标定摄像头四角，建立观众视角坐标系。",
+      "滑轨回零后记录零点方向、可行行程和各杆控制通道。",
+      "先匹配亮相与对峙静态站位，五个连接点分别记录实测坐标与控制值。",
+      "在实机确认两者打斗高度、鱼线张力、碰撞余量后填写motor_values和验证状态。",
+      "隐藏状态涉及离幕深度，不能只按二维坐标执行。"
+    ],
+    "motor_ready": false
+  },
+  "source_semantic_conflict": "TT tail tip versus currently assigned tiger feet",
+  "measured_motor_values": null,
+  "measured_rail_values": null,
+  "measured_lead_times": null,
+  "authorized_motion": false,
+  "original_source_sha256": "42e8feff768f149deaf66b680d4bfb1e59072e28053f51681cf9298598ddbbc7"
+}

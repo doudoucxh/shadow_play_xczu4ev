@@ -1,0 +1,134 @@
+{
+  "schema": "v20-full-readiness-v1",
+  "offline_preparation_complete": true,
+  "physical_performance_ready": false,
+  "automatic_replay_allowed": false,
+  "evidence_is_historical": true,
+  "last_recorded_sequence": 12665,
+  "last_recorded_boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+  "last_recorded_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 12665,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "clear_local_response_channels": [
+    3,
+    7,
+    9,
+    10
+  ],
+  "unresolved_response_channels": [
+    1,
+    2,
+    4,
+    5,
+    6,
+    8
+  ],
+  "operator_control_groups": {
+    "1/2": "Person left hand",
+    "3/4": "Person head",
+    "5/6": "Person right hand",
+    "7/8": "Tiger head",
+    "9/10": "Tiger legs/feet"
+  },
+  "source_TT_channel_assignment": null,
+  "rails": {
+    "rail1": {
+      "character": "武松",
+      "screw_model": "1605",
+      "nominal_travel_mm": 600,
+      "lead_mm_per_rev": null,
+      "lead_candidate_mm_per_rev": 5,
+      "firmware": null,
+      "transport": null,
+      "port_or_pins": null,
+      "motor_address": null,
+      "microsteps": null,
+      "endstop_configuration": null,
+      "hardware_verified": false
+    },
+    "rail2": {
+      "character": "老虎",
+      "screw_model": "1204",
+      "nominal_travel_mm": 500,
+      "lead_mm_per_rev": null,
+      "lead_candidate_mm_per_rev": 4,
+      "firmware": null,
+      "transport": null,
+      "port_or_pins": null,
+      "motor_address": null,
+      "microsteps": null,
+      "endstop_configuration": null,
+      "hardware_verified": false
+    }
+  },
+  "blockers": [
+    {
+      "id": "unconfirmed_servo_response",
+      "description": "6路舵盘实际响应未确认",
+      "channels": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "tiger_attachment_conflict",
+      "description": "完整版TT要求尾末控制点，用户当前9/10定义为虎脚；没有已核验的尾末通道",
+      "source_role": "tiger_tail_tip",
+      "user_current_role": "tiger_feet",
+      "channels": [
+        9,
+        10
+      ]
+    },
+    {
+      "id": "no_loaded_mapping",
+      "description": "缺五点实测坐标到十路PWM的映射及杆长、鱼线、层次和避让边界"
+    },
+    {
+      "id": "no_full_motor_route",
+      "description": "24场完整PWM路线、起势衔接和带杆连续路径尚未实测"
+    },
+    {
+      "id": "no_rail_driver",
+      "description": "两轨实际固件、地址、接线、限位、零点和已验证驱动仍缺失"
+    },
+    {
+      "id": "no_measured_timing",
+      "description": "出拳、受击、滑轨停止和音频命中的实测提前量与误差未标定"
+    },
+    {
+      "id": "no_current_dual_view_calibration",
+      "description": "前后台相机没有可用的幕面/杆端联合标定"
+    },
+    {
+      "id": "no_fresh_execution_binding",
+      "description": "完整路线没有绑定当前实际姿态、启动、序号和现场复核的单次执行许可"
+    }
+  ],
+  "physical_execution_entry_available": false,
+  "policy": "No hardware interface in this package; editing flags never creates execution permission"
+}

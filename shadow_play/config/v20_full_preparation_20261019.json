@@ -1,0 +1,236 @@
+{
+  "schema": "v20-full-preparation-verification-v1",
+  "date": "2026-10-19",
+  "user_absent_during_preparation": true,
+  "offline_preparation_complete": true,
+  "physical_performance_ready": false,
+  "original_folder_modified": false,
+  "source_files_checked": 330,
+  "source_total_bytes": 132084798,
+  "original_audio_duration_s": 76.579410430839,
+  "scenes": 24,
+  "impacts": 19,
+  "punches": 17,
+  "kicks": 2,
+  "reference_source_frames": 1915,
+  "compiled_visual_reference_frames": 1916,
+  "unit_tests": {
+    "passed": true,
+    "count": 17
+  },
+  "ui_checks": {
+    "passed": true,
+    "scenes": 24,
+    "cues": 19,
+    "all_cue_seeks_checked": true,
+    "original_audio_duration_s": 76.57941,
+    "full_soundtrack_rehearsal_silent": true,
+    "initially_paused": true,
+    "motor_interface_present": false,
+    "video_switch": true,
+    "half_speed": true,
+    "blocked_export": true,
+    "desktop_and_mobile": true,
+    "external_network_requests": 0,
+    "javascript_errors": 0
+  },
+  "source_movies_decoded": {
+    "passed": true,
+    "files": [
+      "video/audience.mp4",
+      "video/annotated.mp4"
+    ],
+    "video_rate_hz": 25,
+    "audio_rate_hz": 44100,
+    "video_duration_s": 76.56,
+    "container_duration_s": 76.579002
+  },
+  "board_audio_decode": {
+    "passed": true,
+    "output": "DECODE_OK frames=3675812 duration=76.579417 rate=48000 channels=2",
+    "audio_device_opened": false,
+    "audio_played": false
+  },
+  "board_environment": {
+    "audio_assets": [
+      {
+        "player": "/run/media/mmcblk0p2/piying/shadow-theatre-board-20261017-r4-runtime/shadow_play/hdmi_ui/runtime/audio/usb_audio_play",
+        "player_sha256": "8684834abfc45f2823c4f3992ccd15b8c5bf3150b2757d7000b7a462cd59866d",
+        "track": "/run/media/mmcblk0p2/piying/shadow-theatre-board-20261017-r4-runtime/shadow_play/hdmi_ui/runtime/audio/wusong.mp3",
+        "track_sha256": "19a4cfe500ff555d27bd1b64261955fdddb62f774143ac42cade5c98207fe5fe"
+      }
+    ],
+    "sound_devices": [
+      {
+        "path": "/proc/asound/card1/pcm0p/info",
+        "description": "card: 1\ndevice: 0\nsubdevice: 0\nstream: PLAYBACK\nid: USB Audio\nname: USB Audio\nsubname: subdevice #0\nclass: 0\nsubclass: 0\nsubdevices_count: 1\nsubdevices_avail: 1\n",
+        "usb_audio": true
+      }
+    ],
+    "boot_files": {
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1"
+    },
+    "audio_played": false
+  },
+  "board_environment_unchanged": true,
+  "generic_aplay_available": false,
+  "audio_diagnostic": "Generic aplay absent; checked installed custom player --check and /proc/asound without opening PCM",
+  "last_board_state": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 12665,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+  "image_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+  "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+  "board_stage": {
+    "installation": {
+      "installed": "/run/media/mmcblk0p2/piying/v20-full-preparation-20261019-r2",
+      "manifest_entries": 6,
+      "data_only": true,
+      "physical_performance_ready": false,
+      "service_started": false,
+      "motor_commands_sent": false
+    },
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 12665,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+    "manifest": {
+      "files": {
+        "calibration_targets.json": "f62d99072bc6addd56033e2335dce584fba60b22d36f4dcff35f68b41fc8c61c",
+        "readiness.json": "09fcbef4109b8d302aebfd28b723f89e25025a3b78680abb9127899df63742ea",
+        "reference_timeline.jsonl": "fad35655d27b3a6563275e5ab9ccb191cc8328afa512a4bd26ae2683ea3a3c5b",
+        "score.json": "f588addd1fa0040e3271c63a7fcf1f14a2adc68453031531a1727673f4f697e3",
+        "source_audit.json": "b90b5cf37c4e0b8868c0228505edd94a27fa026f307ab7d44c31241ab04883e4",
+        "stage_policy.json": "38457fa780a1037b8f46dbd20456945c076a92cf5235944deb1656e68b1044dc"
+      },
+      "release": "v20-full-preparation-20261019-r2",
+      "schema": "v20-full-data-stage-manifest-v1"
+    },
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "audio_played": false,
+    "FPGA_reloaded": false,
+    "boot_files_changed": false
+  },
+  "launcher_check_passed": true,
+  "software_package_files": {
+    "calibration_targets.json": "f62d99072bc6addd56033e2335dce584fba60b22d36f4dcff35f68b41fc8c61c",
+    "preview.html": "3ca522952ede445099f23b44996a7b9b38643a900d9e99a708052bee53fd0047",
+    "readiness.json": "09fcbef4109b8d302aebfd28b723f89e25025a3b78680abb9127899df63742ea",
+    "reference_timeline.jsonl": "fad35655d27b3a6563275e5ab9ccb191cc8328afa512a4bd26ae2683ea3a3c5b",
+    "score.json": "f588addd1fa0040e3271c63a7fcf1f14a2adc68453031531a1727673f4f697e3",
+    "source_audit.json": "b90b5cf37c4e0b8868c0228505edd94a27fa026f307ab7d44c31241ab04883e4"
+  },
+  "stage_archive_sha256": "91414853471891597ac2a7d8e6134e3df4eb5a76597aca953d82138d8b5fa51c",
+  "stage_installer_sha256": "ba5b0cc446e1d05214d9ffed1e626c618f9876c873967eb19b1e33b75638892f",
+  "screenshots": [
+    {
+      "path": ".review_work/v20-full-preparation-20261019/preview-desktop.png",
+      "sha256": "7eeb4c665ab7cca02ecfce964b541362d3f452ee52866587118dfe0d473e80d0"
+    },
+    {
+      "path": ".review_work/v20-full-preparation-20261019/preview-mobile.png",
+      "sha256": "de38d12a2176d38f4ca8a75ef91256252ff11080a6a2ae9732e7f19350399b1f"
+    }
+  ],
+  "canonical_output_line_endings": "LF",
+  "canonical_normalization_semantic_equality_passed": true,
+  "superseded_data_stage": "/run/media/mmcblk0p2/piying/v20-full-preparation-20261019",
+  "motor_commands_sent": false,
+  "physical_audio_played": false,
+  "FPGA_reloaded": false,
+  "boot_files_changed": false,
+  "autostart_changed": false,
+  "incident_locks_removed": false,
+  "remaining": [
+    {
+      "id": "unconfirmed_servo_response",
+      "description": "6路舵盘实际响应未确认",
+      "channels": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "tiger_attachment_conflict",
+      "description": "完整版TT要求尾末控制点，用户当前9/10定义为虎脚；没有已核验的尾末通道",
+      "source_role": "tiger_tail_tip",
+      "user_current_role": "tiger_feet",
+      "channels": [
+        9,
+        10
+      ]
+    },
+    {
+      "id": "no_loaded_mapping",
+      "description": "缺五点实测坐标到十路PWM的映射及杆长、鱼线、层次和避让边界"
+    },
+    {
+      "id": "no_full_motor_route",
+      "description": "24场完整PWM路线、起势衔接和带杆连续路径尚未实测"
+    },
+    {
+      "id": "no_rail_driver",
+      "description": "两轨实际固件、地址、接线、限位、零点和已验证驱动仍缺失"
+    },
+    {
+      "id": "no_measured_timing",
+      "description": "出拳、受击、滑轨停止和音频命中的实测提前量与误差未标定"
+    },
+    {
+      "id": "no_current_dual_view_calibration",
+      "description": "前后台相机没有可用的幕面/杆端联合标定"
+    },
+    {
+      "id": "no_fresh_execution_binding",
+      "description": "完整路线没有绑定当前实际姿态、启动、序号和现场复核的单次执行许可"
+    }
+  ],
+  "interpretation": "Complete offline software/data preparation; not a full physical performance acceptance or authorization"
+}
