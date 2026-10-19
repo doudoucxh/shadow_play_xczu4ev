@@ -15,6 +15,7 @@ from other_axes_check import (OtherAxesDevice,ORDER,BOOT,BOARD,FIRST_LOG,FIRST_S
 from other_axes_check import LARGER_SCHEMA,LARGER_ORDER,LARGER_BOARD,LARGER_LOG,LARGER_SHA,profile
 from other_axes_check import OPPOSITE_SCHEMA,OPPOSITE_ORDER,OPPOSITE_BOARD,OPPOSITE_LOG,OPPOSITE_SHA
 from other_axes_check import EXTENDED_SCHEMA,EXTENDED_ORDER,EXTENDED_BOARD,EXTENDED_LOG,EXTENDED_SHA
+from other_axes_check import RECHECK_SCHEMA,RECHECK_ORDER,RECHECK_BOARD,RECHECK_LOG,RECHECK_SHA
 
 
 class Tests(unittest.TestCase):
@@ -258,6 +259,56 @@ class Tests(unittest.TestCase):
     def test_previous_opposite_route_digests_stay_identical(self):
         record=json.loads((ROOT/'config/other_axes_direction_result_20261019.json').read_text(encoding='utf-8'))
         self.assertTrue(all(digest(route(c['channel'],True,True))==c['plan']['route_sha256'] for c in record['checks']))
+
+    def recheck_plan(self,channel):
+        index=RECHECK_ORDER.index(channel);p=self.plan(9)
+        p.update(schema=RECHECK_SCHEMA,operator_midpoint_reestablished=True,post_operator_test_recheck_requested=True,
+                 channel=channel,expected_sequence=8121+index*227,route_sha256=digest(route(channel,recheck=True)),
+                 prior_log_path=RECHECK_LOG if index==0 else RECHECK_BOARD+'/axis-'+str(RECHECK_ORDER[index-1])+'-'+'c'*32+'.board.jsonl',
+                 prior_log_sha256=RECHECK_SHA if index==0 else 'd'*64)
+        return p
+
+    def test_operator_recheck_all_ten_single_axis_routes(self):
+        for channel in RECHECK_ORDER:
+            self.p=self.recheck_plan(channel);self.reg=FakeRegisters();self.clock=Clock()
+            self.reg.values[0x20]=self.p['expected_sequence'];rows=[]
+            run(self.device(used_path=self.path/('recheck-'+str(channel))),rows.append,sleep=self.clock.sleep)
+            self.assertEqual(len(rows[:-1]),226)
+            self.assertEqual(rows[100]['state']['pulse_us'][channel-1],1460 if channel==10 else 1540)
+            self.assertEqual({r['state']['enabled_mask'] for r in rows[:-1]},{1<<(channel-1)})
+            self.assertTrue(all(r['state']['pulse_us'][:channel-1]+r['state']['pulse_us'][channel:]==[1500]*9 for r in rows[:-1]))
+            self.assertEqual(rows[-1]['state']['sequence'],self.p['expected_sequence']+227)
+            self.assertFalse(rows[-1]['state']['armed']);self.assertEqual(rows[-1]['state']['pulse_us'],MIDPOINT)
+
+    def test_recheck_requires_new_midpoint_request_and_source(self):
+        p=self.recheck_plan(8);validate_plan(p)
+        for key,value in [('operator_midpoint_reestablished',False),('post_operator_test_recheck_requested',False),
+                          ('expected_sequence',8120),('prior_log_path',EXTENDED_LOG),('prior_log_sha256',EXTENDED_SHA)]:
+            bad=dict(p);bad[key]=value
+            with self.assertRaises(ValueError):validate_plan(bad)
+        with self.assertRaises(ValueError):route(8)
+        self.assertEqual(self.reg.writes,[])
+
+    def test_new_operator_reference_is_not_an_old_route_or_bare_register_snapshot(self):
+        source=json.loads((ROOT/'config/operator_midpoint_reference_20261019.json').read_text(encoding='utf-8'))['reference']
+        raw=(json.dumps(source,sort_keys=True)+'\n').encode();p=self.recheck_plan(8)
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),RECHECK_SHA);validate_prior(p,raw)
+        source['operator_midpoint_reestablished']=False
+        raw=(json.dumps(source,sort_keys=True)+'\n').encode();p['prior_log_sha256']=hashlib.sha256(raw).hexdigest()
+        with self.assertRaises(ValueError):validate_prior(p,raw)
+
+    def test_second_recheck_requires_full_axis8_route(self):
+        self.p=self.recheck_plan(8);self.reg.values[0x20]=8121;rows=[]
+        run(self.device(),rows.append,sleep=self.clock.sleep);p=self.recheck_plan(7)
+        raw=('\n'.join(json.dumps(x) for x in rows)+'\n').encode();p['prior_log_sha256']=hashlib.sha256(raw).hexdigest()
+        validate_prior(p,raw)
+        rows[75]['state']['enabled_mask']=64
+        raw=('\n'.join(json.dumps(x) for x in rows)+'\n').encode();p['prior_log_sha256']=hashlib.sha256(raw).hexdigest()
+        with self.assertRaises(ValueError):validate_prior(p,raw)
+
+    def test_previous_56us_digests_stay_identical(self):
+        record=json.loads((ROOT/'config/other_axes_56us_result_20261019.json').read_text(encoding='utf-8'))
+        self.assertTrue(all(digest(route(c['channel'],extended=True))==c['plan']['route_sha256'] for c in record['checks']))
 
 
 if __name__=='__main__':unittest.main()
