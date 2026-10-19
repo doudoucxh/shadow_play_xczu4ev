@@ -1,0 +1,174 @@
+{
+  "schema": "attended-angle-deployment-v1",
+  "verified_utc": "2026-10-19T01:14:45.030053+00:00",
+  "user_request": "Make servo angle debugging available for direct onsite manual diagnosis",
+  "entrypoint": "舵机角度调试.cmd",
+  "previous_service": "unloaded-manual-v2",
+  "service": "attended-angle-v1",
+  "board_directory": "/run/media/mmcblk0p2/piying/attended-angle-20261019",
+  "default_port": "COM17",
+  "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+  "before": {
+    "identity": "SP10",
+    "period_us": 20000,
+    "clock_hz": 100000000,
+    "enabled_mask": 0,
+    "armed": false,
+    "faults": 0,
+    "sequence": 8119,
+    "pending": false,
+    "pulse_us": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "position_feedback": null
+  },
+  "readonly_status": {
+    "connected": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 8119,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null,
+      "service": "attended-angle-v1",
+      "center_hold_seconds": null,
+      "center_remaining_seconds": 0,
+      "manual_pulse_range_us": [
+        500,
+        2500
+      ],
+      "hold_mode": "until_stopped",
+      "same_channel_updates": true,
+      "manual_command_policy": "attended-single-axis",
+      "manual_diagnostics_available": true,
+      "incident_lock_retained": true,
+      "manual_channel_range": [
+        1,
+        10
+      ],
+      "manual_requires_observer": true
+    },
+    "stopped": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 8119,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null,
+      "service": "attended-angle-v1",
+      "center_hold_seconds": null,
+      "center_remaining_seconds": 0,
+      "manual_pulse_range_us": [
+        500,
+        2500
+      ],
+      "hold_mode": "until_stopped",
+      "same_channel_updates": true,
+      "manual_command_policy": "attended-single-axis",
+      "manual_diagnostics_available": true,
+      "incident_lock_retained": true,
+      "manual_channel_range": [
+        1,
+        10
+      ],
+      "manual_requires_observer": true
+    }
+  },
+  "manual_channel_range": [
+    1,
+    10
+  ],
+  "manual_pulse_range_us": [
+    500,
+    2500
+  ],
+  "nominal_angle_range": [
+    0,
+    270
+  ],
+  "hold_mode": "until_stopped",
+  "actual_position_feedback": null,
+  "permits_explicit_single_axis_targets_with_retained_incident_lock": true,
+  "requires_old_story_plan": false,
+  "requires_removing_linkages": false,
+  "requires_onsite_observation": true,
+  "requires_current_sequence": true,
+  "requires_stop_before_channel_change": true,
+  "requires_valid_pwm_image": true,
+  "general_choreography_unlocked": false,
+  "unconditional_fault_or_watchdog_bypass": false,
+  "readonly_operations": [
+    "hello",
+    "status",
+    "status",
+    "off",
+    "off"
+  ],
+  "motion_commands_sent": false,
+  "manifest": {
+    "release": "attended-angle-20261019",
+    "autostart": false,
+    "files": {
+      "integrations/calibration/attended_angle_console.py": "faed17408211ef04ba953408725d7523715f51529df44fef0997ed521c36ff12",
+      "integrations/calibration/attended_center_console.py": "8dfa09ed0f1958a480b87348ead0ddc8731eb3f0904df5ec1a18b40e6da8345a",
+      "integrations/calibration/manual_servo_console.py": "451b19da211897117e2bde3b59a4abde81b1f446445db384237dccdf0a90e03b",
+      "integrations/calibration/center_console.py": "f2fbecfd368a0997c7918a833f0e17c70eae31ded1f54859eab776fa506350eb",
+      "integrations/calibration/board_server.py": "36e39b269d7bdf36cb1ebb1ceb56c3c02d00255717ff91a277e4a9851cb03f63",
+      "integrations/calibration/tcp_bridge.py": "e5bd624fb1c2e3936c66af8b690ac6dd0f64839eb48d7ae277f41d7570edc24b",
+      "integrations/calibration/servo_pwm_device.py": "ee917182d4a7b38f97556fa5e663f2c5f1d787ebdb5337462b0fb8f9794fa408",
+      "integrations/calibration/mmio32.py": "53c37471f7156edff85664737c77446baf30e44efcb5421bbae07ccb8035298b",
+      "integrations/calibration/libservo_mmio32.so": "2f017fb4b6187609df80a860039d1bb958ca09d683b1ccb700d8e1c921c1e8c0",
+      "integrations/calibration/.motion-inhibit": "0efa62b34373b16760552669254f4e1f6c6a14579065412de50f0c8955330e7a"
+    }
+  },
+  "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+  "archive_sha256": "e8d91f842896d0bb9dd3241c1c9d22958f4546dff6abc09da81ffba379e35872",
+  "installer_sha256": "16755f2e19a7aedf3484517d511dc610554098cdda4d635f54279b47fa3f3c7e",
+  "incident_locks_removed": false,
+  "old_services_overwritten": false,
+  "fpga_reloaded": false,
+  "boot_files_changed": false,
+  "software_tests_passed": 20,
+  "gui_smoke_test_passed": true,
+  "physical_target_output_verified": false,
+  "serial_port_released_after_readonly_check": true
+}

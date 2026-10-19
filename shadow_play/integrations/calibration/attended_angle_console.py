@@ -33,6 +33,14 @@ class AttendedAngleController(ManualController):
     service_name = 'attended-angle-v1'
     motion_operations = ('move',)
 
+    def status(self):
+        state = super().status()
+        state.update(manual_command_policy='attended-single-axis',
+                     manual_diagnostics_available=self.device.lock_state() == self.device.lock_snapshot,
+                     incident_lock_retained=any(x is not None for x in self.device.lock_snapshot),
+                     manual_channel_range=[1,10], manual_requires_observer=True)
+        return state
+
     def decode_motion(self, operation, payload):
         require(set(payload) == {'channel','pulse_us','observer_confirmed','initial_jump_acknowledged','sequence'},
                 'Single target, observer, initial travel and current sequence required')

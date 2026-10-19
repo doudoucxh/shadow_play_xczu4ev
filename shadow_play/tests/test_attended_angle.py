@@ -68,4 +68,23 @@ class AngleTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):session.move(2,1600,True)
         session.stop.assert_called_once()
 
+    def test_manual_capability_reports_existing_lock_without_enabling_motion(self):
+        state=self.controller.status()
+        self.assertTrue(state['incident_lock_retained'])
+        self.assertTrue(state['manual_diagnostics_available'])
+        self.assertEqual(state['manual_command_policy'],'attended-single-axis')
+        self.assertEqual(state['manual_channel_range'],[1,10])
+        self.assertEqual(self.reg.writes,[])
+        self.lock.write_text('new stop')
+        self.assertFalse(self.controller.status()['manual_diagnostics_available'])
+
+    def test_host_requires_installed_manual_capability(self):
+        session=AttendedAngleSession.__new__(AttendedAngleSession)
+        state=self.controller.status()
+        self.assertTrue(session.valid_service(state))
+        for key,value in [('manual_command_policy','unloaded'),('manual_diagnostics_available',False),
+                          ('manual_channel_range',[1,6]),('service','unloaded-manual-v2')]:
+            changed=dict(state);changed[key]=value
+            self.assertFalse(session.valid_service(changed))
+
 if __name__=='__main__':unittest.main()

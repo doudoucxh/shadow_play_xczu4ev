@@ -5,11 +5,19 @@ from tkinter import ttk
 from servo_manual_gui import ManualApp, ManualWorker
 from servo_manual_session import ManualSession, validate_pulse
 from servo_center_session import all_off
+from servo_center_gui import PINS
 
 
 class AttendedAngleSession(ManualSession):
     service = 'attended-angle-v1'
     board_script = 'attended_angle_console.py'
+    board_dir = '/run/media/mmcblk0p2/piying/attended-angle-20261019'
+
+    def valid_service(self, state):
+        return (super().valid_service(state)
+                and state.get('manual_command_policy') == 'attended-single-axis'
+                and state.get('manual_diagnostics_available') is True
+                and state.get('manual_channel_range') == [1,10])
 
     def move(self, channel, pulse, observer_confirmed):
         if type(channel) is not int or not 1 <= channel <= 10 or observer_confirmed is not True:
@@ -42,10 +50,15 @@ class AttendedAngleApp(ManualApp):
 
     def __init__(self,root):
         super().__init__(root)
-        self.port.set('COM3')
+        self.port.set('COM17')
         for button in self.control_mode_buttons:button.pack_forget()
         self.confirm_box.configure(text='我在设备旁可立即断电，已检查本次目标及联动空间，并知晓初次转动可能较快。')
         self.center_button.configure(text='回中 135° / 1500 μs')
+
+    def selection_changed(self):
+        super().selection_changed()
+        channel = self.number.get()
+        self.selected.set(f'当前：{channel} 号 · 引脚 {PINS[channel-1]} · 实物杆件对应待现场核对')
 
     def build_extra_controls(self,body):
         super().build_extra_controls(body)
@@ -74,6 +87,8 @@ def main():
     root=tk.Tk();app=AttendedAngleApp(root)
     if args.smoke_test:
         assert not app.connected and app.commands.empty()
+        assert app.port.get() == 'COM17'
+        assert '实物杆件对应待现场核对' in app.selected.get()
         app.confirmed.set(True)
         for target in ('0','135','270','nan','271'):
             app.angle.set(target);app.send_target();assert app.commands.empty()
