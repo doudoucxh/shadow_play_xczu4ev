@@ -33,7 +33,7 @@
   "hardware_handshake_verified": false,
   "fpga_candidate_build": {
     "project": "shadow_play/hardware/rail_uart/create_project.tcl",
-    "status": "design_verified",
+    "status": "loaded_verified_outputs_off",
     "base_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
     "endpoints": {
       "person": {
@@ -49,7 +49,7 @@
     },
     "baud": 115200,
     "format": "8N1",
-    "loaded": false,
+    "loaded": true,
     "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
     "release_manifest": "shadow_play/hardware/rail_uart/release/servo10_dual_uart.manifest.json",
     "wns_ns": 0.826,
@@ -101,6 +101,298 @@
   "latest_camera_frames": [
     {
       "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-908387",
+      "age_ms": 30,
+      "captured_utc": "2026-10-19T10:54:15.941000+00:00",
+      "sha256": "e0336910c0cac98fd444d931b3a9a924eaca5dc900ce25c87c2182bc9ed94c85",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-908393",
+      "age_ms": 47,
+      "captured_utc": "2026-10-19T10:54:16.338000+00:00",
+      "sha256": "42d000e27e10dfed743baea99a01d096cc1e2ca1348b4e4a97114940f731e480",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-908399",
+      "age_ms": 0,
+      "captured_utc": "2026-10-19T10:54:16.737000+00:00",
+      "sha256": "ac9da7d2f605deb9509fe03996ecc38a3c8ad145f5b10e1e6d8523f5a6777b17",
+      "size": [
+        960,
+        540
+      ]
+    }
+  ],
+  "latest_camera_view_reviewed": true,
+  "all_actuator_power_off_operator_confirmed": true,
+  "physical_power_off_confirmation_needed_before_load": false,
+  "offline_test_groups": {
+    "protocol_and_query_and_load_gates": 15,
+    "file_receivers": 6
+  },
+  "rail_uart_packets_sent": true,
+  "console_transfer": {
+    "first_attempt_baud": 460800,
+    "first_attempt_result": "ACK 11 timeout; console restored",
+    "resumed_prefix_verified_bytes": 360448,
+    "final_baud": 115200,
+    "archive_sha256": "f3d79476996e70f58e23c09b72ca505e9539751e68dafcca8a06113b0142c515",
+    "archive_bytes": 3206807,
+    "status": "complete_hash_verified"
+  },
+  "board_data_stage": {
+    "stage": "/run/media/mmcblk0p2/piying/rail-uart-query-20261019",
+    "files": 12,
+    "archive_sha256": "f3d79476996e70f58e23c09b72ca505e9539751e68dafcca8a06113b0142c515",
+    "image_sha": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "native_RAM_test": true,
+    "hardware_access": false,
+    "services_changed": false,
+    "motion_sent": false
+  },
+  "board_offline_candidate_check_passed": true,
+  "board_load_result": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+    "image_sha": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "all_actuator_power_off_confirmed": true,
+    "incident_lock_unchanged": true,
+    "motor_packets_sent": false,
+    "original_hdmi_sink_stopped": true,
+    "candidate_hdmi_active": true,
+    "pc_log_written_utc": "2026-10-19T10:48:58.070906+00:00",
+    "boot_files_hashes_unchanged_verified": true
+  },
+  "postload_idle_result": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "uart_status_samples": {
+      "person": [
+        4,
+        4
+      ],
+      "tiger": [
+        4,
+        4
+      ]
+    },
+    "ui_frames": [
+      {
+        "captured": 76710.463323316,
+        "age_ms": 1114.7,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 76711.700722439,
+        "age_ms": 36.8,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 76711.867924251,
+        "age_ms": 28.0,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      }
+    ],
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "register_writes": false,
+    "motor_packets_sent": false
+  },
+  "power_after_load": {
+    "operator_reports_shared_actuator_supply": true,
+    "operator_reports_all_actuators_powered": true,
+    "operator_reports_no_spontaneous_motion_or_binding": true,
+    "operator_can_cut_power": true,
+    "pwm_outputs_enabled": false
+  },
+  "telemetry_attempts": [
+    {
+      "rail": "person",
+      "query": "version",
+      "candidate_address": 1,
+      "checksum_mode": "fixed_6b",
+      "query_hex": "011f6b",
+      "tx_registers_written": false,
+      "wire_tx_verified": false,
+      "result": {
+        "rail": "person",
+        "error": "UART parity/framing/overrun error: 0x44",
+        "reply_hex": "",
+        "motion_sent": false
+      },
+      "interpretation": "Rejected before TX; first UART status had framing-error bit 0x40",
+      "raw_log_sha256": "a5d252f61a806751df1968f3987f44964fbcbcc6b779e2a628e95311a3240d3a"
+    },
+    {
+      "rail": "person",
+      "query": "version",
+      "candidate_address": 1,
+      "checksum_mode": "fixed_6b",
+      "query_hex": "011f6b",
+      "tx_registers_written": true,
+      "wire_tx_verified": false,
+      "result": {
+        "rail": "person",
+        "error": "Reply timeout; no automatic resend",
+        "reply_hex": "",
+        "motion_sent": false
+      },
+      "interpretation": "After separate clean idle inspection; one version query, no reply bytes",
+      "raw_log_sha256": "ae5ff423d25099b377dfd1fc169b355f25b2be39dcb38b26ad52ec3125c16ead"
+    },
+    {
+      "rail": "tiger",
+      "query": "version",
+      "candidate_address": 1,
+      "checksum_mode": "fixed_6b",
+      "query_hex": "011f6b",
+      "tx_registers_written": true,
+      "wire_tx_verified": false,
+      "result": {
+        "rail": "tiger",
+        "error": "Reply timeout; no automatic resend",
+        "reply_hex": "",
+        "motion_sent": false
+      },
+      "interpretation": "Independent port; one version query, no reply bytes",
+      "raw_log_sha256": "74a69d3e5f5939532dc7b2043550c23cdf6812f70f67f7b5a16c65b4b5d28f0d"
+    }
+  ],
+  "rail_uart_packets_note": "One 3-byte read-only version request was queued in each UART TX FIFO; wire waveform not measured. No motion packets.",
+  "latest_board_readback": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "uart_status_samples": {
+      "person": [
+        4,
+        4
+      ],
+      "tiger": [
+        4,
+        4
+      ]
+    },
+    "ui_frames": [
+      {
+        "captured": 76854.071680378,
+        "age_ms": 1107.9,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 76855.30896628,
+        "age_ms": 29.5,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 76855.476179102,
+        "age_ms": 21.4,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      }
+    ],
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "register_writes": false,
+    "motor_packets_sent": false
+  },
+  "latest_camera_frames_before_load": [
+    {
+      "source": "phone_mechanism",
       "frame": "215fe2c22661410c98dda799b0e1974a-872688",
       "age_ms": 46,
       "captured_utc": "2026-10-19T10:14:36.003000+00:00",
@@ -133,33 +425,6 @@
       ]
     }
   ],
-  "latest_camera_view_reviewed": true,
-  "all_actuator_power_off_operator_confirmed": null,
-  "physical_power_off_confirmation_needed_before_load": true,
-  "offline_test_groups": {
-    "protocol_and_query_and_load_gates": 15,
-    "file_receivers": 6
-  },
-  "rail_uart_packets_sent": false,
-  "console_transfer": {
-    "first_attempt_baud": 460800,
-    "first_attempt_result": "ACK 11 timeout; console restored",
-    "resumed_prefix_verified_bytes": 360448,
-    "final_baud": 115200,
-    "archive_sha256": "f3d79476996e70f58e23c09b72ca505e9539751e68dafcca8a06113b0142c515",
-    "archive_bytes": 3206807,
-    "status": "complete_hash_verified"
-  },
-  "awaiting_before_first_load": "Physical servo and both rail power-off confirmation; Zynq remains powered",
-  "board_data_stage": {
-    "stage": "/run/media/mmcblk0p2/piying/rail-uart-query-20261019",
-    "files": 12,
-    "archive_sha256": "f3d79476996e70f58e23c09b72ca505e9539751e68dafcca8a06113b0142c515",
-    "image_sha": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
-    "native_RAM_test": true,
-    "hardware_access": false,
-    "services_changed": false,
-    "motion_sent": false
-  },
-  "board_offline_candidate_check_passed": true
+  "camera_driver_screens_legible": false,
+  "waiting_for": "Actual displayed P_Serial, UartBaud, ID_Addr and Checksum for each driver; both version queries timed out"
 }
