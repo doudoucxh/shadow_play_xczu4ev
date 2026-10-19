@@ -1,0 +1,222 @@
+{
+  "schema": "zdt-rail-connection-preflight-v1",
+  "date": "2026-10-19",
+  "operator_report": {
+    "returned": true,
+    "both_rail_motors_connected": true,
+    "motor_family": "张大头42步进电机",
+    "hardware_complete_claimed": true
+  },
+  "independently_verified_hardware_complete": false,
+  "current_board": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 12665,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+    "marker": {
+      "image_kind": "servo10_vision",
+      "design_checks": "SERVO_IMAGE_DESIGN_CHECKS_PASS",
+      "bus_skew_check": "SERVO_BUS_SKEW_CHECK_PASS",
+      "register_base": 2684551168,
+      "pins": [
+        "D14",
+        "D15",
+        "F13",
+        "G13",
+        "G14",
+        "G15",
+        "J14",
+        "E13",
+        "E14",
+        "E15"
+      ],
+      "sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+      "wns_ns": 1.033,
+      "whs_ns": 0.008,
+      "wpws_ns": 0.151,
+      "part": "xczu4ev-sfvc784-2-i",
+      "clock_hz": 100000000,
+      "period_us": 20000,
+      "channels": 10,
+      "reset_outputs": "disabled",
+      "video_mmcm": {
+        "DIVCLK_DIVIDE": 1,
+        "CLKOUT0_DIVIDE_F": 15,
+        "CLKOUT1_DIVIDE": 6,
+        "CLKFBOUT_MULT_F": 11.25,
+        "CLKOUT2_DIVIDE": 3
+      },
+      "built_at": "2026-10-10T15:32:16.354825+08:00",
+      "scope": "volatile runtime image; motors remain off",
+      "pin_revision": "servo4_G13_20261010",
+      "previous_sha256": "26b553c4705984a748a138f24fe735ab0ba5343621fabd73c966db27b8e81f81",
+      "change": "Only servo_pwm[3] package pin H13 -> G13; other top-level pins preserved",
+      "loaded_unix": 1679217118.4409173,
+      "boot_hashes": {
+        "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+        "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+        "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+        "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc"
+      },
+      "boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9"
+    },
+    "serial_devices": [
+      {
+        "name": "ttyPS0",
+        "sysfs": "/sys/devices/platform/axi/ff000000.serial/tty/ttyPS0",
+        "device_exists": true
+      }
+    ],
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
+  },
+  "windows_serial_devices": [
+    {
+      "port": "COM15",
+      "description": "蓝牙链接上的标准串行 (COM15)",
+      "vid": null,
+      "pid": null
+    },
+    {
+      "port": "COM7",
+      "description": "蓝牙链接上的标准串行 (COM7)",
+      "vid": null,
+      "pid": null
+    },
+    {
+      "port": "COM17",
+      "description": "USB-SERIAL CH340 (COM17)",
+      "vid": 6790,
+      "pid": 29987
+    },
+    {
+      "port": "COM8",
+      "description": "蓝牙链接上的标准串行 (COM8)",
+      "vid": null,
+      "pid": null
+    },
+    {
+      "port": "COM6",
+      "description": "蓝牙链接上的标准串行 (COM6)",
+      "vid": null,
+      "pid": null
+    },
+    {
+      "port": "COM16",
+      "description": "蓝牙链接上的标准串行 (COM16)",
+      "vid": null,
+      "pid": null
+    },
+    {
+      "port": "COM4",
+      "description": "蓝牙链接上的标准串行 (COM4)",
+      "vid": null,
+      "pid": null
+    }
+  ],
+  "camera_preflight": [
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-822522",
+      "age_ms": 0,
+      "captured_utc": "2026-10-19T09:18:51.617000+00:00",
+      "sha256": "e80398a55064caa5f9360a0df5e1ec3fd1efaf3a552fd7d1baf7d3fa85c653ee",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-822528",
+      "age_ms": 31,
+      "captured_utc": "2026-10-19T09:18:52.004000+00:00",
+      "sha256": "de38a99840744835effaf365aa3b122e150e3bda5031e926cffa80870dbd2b78",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-822533",
+      "age_ms": 47,
+      "captured_utc": "2026-10-19T09:18:52.353000+00:00",
+      "sha256": "29a0769ad3d3ac5aacb29c6af310b07a5a7a4e57a041afd46a08389981dcfea3",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "source": "phone_mechanism",
+      "frame": "215fe2c22661410c98dda799b0e1974a-822539",
+      "age_ms": 31,
+      "captured_utc": "2026-10-19T09:18:52.743000+00:00",
+      "sha256": "4c9dbe03289e46057289760abdc56c8bdc1ec7ff478b55a408006dc1db1573e0",
+      "size": [
+        960,
+        540
+      ]
+    }
+  ],
+  "camera_view_reviewed": true,
+  "independent_linux_rail_port_enumerated": false,
+  "physical_connection_mapping": null,
+  "actual_firmware": null,
+  "actual_communication_mode": null,
+  "actual_baud_rate": null,
+  "actual_motor_addresses": null,
+  "actual_midpoint_confirmation_pending": true,
+  "actual_rail_positions_unknown": true,
+  "rail_limits_verified": false,
+  "rail_homing_verified": false,
+  "protocol_preparation": {
+    "codec": "shadow_play/tools/zdt_readonly_protocol.py",
+    "telemetry_queries": [
+      "version",
+      "position",
+      "status"
+    ],
+    "transport_implemented": false,
+    "hardware_queries_sent": false,
+    "manual": "张大头/3. 说明书/ZDT_X42S第二代闭环步进电机用户手册V1.0.4_260401.pdf",
+    "manual_sha256": "e551ded54a09e02b501467d5a0b8f1d16effe9a154a04a9134e9a2d34548f0cf",
+    "relevant_pages": [
+      26,
+      40,
+      67,
+      72,
+      73,
+      74
+    ],
+    "offline_tests_passed": 6,
+    "statement": "Current X42S manual free-6B telemetry only; firmware must be explicit for angle conversion. No millimetres or rail zero inferred."
+  },
+  "motor_commands_sent": false,
+  "rail_motion_sent": false,
+  "servo_motion_sent": false,
+  "homing_or_position_reset_sent": false,
+  "incident_locks_removed": false,
+  "FPGA_reloaded": false,
+  "waiting_for": "Actual wiring/control interface, firmware mode, baud/address settings and post-install pose confirmation"
+}
