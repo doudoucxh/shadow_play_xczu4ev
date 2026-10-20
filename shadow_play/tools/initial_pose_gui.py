@@ -9,7 +9,7 @@ import time
 import tkinter as tk
 from tkinter import ttk,filedialog,messagebox
 
-from initial_pose_session import InitialPoseSession
+from initial_pose_session import InitialPoseSession,initial_pose_failure_message
 from initial_pose_model import (PINS,RODS,DEGREE_LIMITS,DEFAULT_ANGLES,
                                 angles_to_pulses,encode_profile,decode_profile)
 from servo_center_session import all_off
@@ -54,8 +54,8 @@ class Worker(threading.Thread):
                     state=self.session.stop();self.active=False;self.events.put(('stopped',state))
                 if self.session and time.monotonic()>=poll:
                     state=self.session.status();poll=time.monotonic()+.4
-                    if state.get('output_lost') or (self.active and (all_off(state) or state.get('enabled_mask')!=1023)):
-                        raise RuntimeError('保持输出已丢失或被停止；请检查机构后重新连接，不会自动重发。')
+                    if state.get('faults') or state.get('output_lost') or (self.active and (all_off(state) or state.get('enabled_mask')!=1023)):
+                        raise RuntimeError(initial_pose_failure_message(state))
                     self.events.put(('snapshot',state))
             except Exception as error:
                 try:self.release()

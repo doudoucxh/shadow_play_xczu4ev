@@ -1,0 +1,521 @@
+{
+  "schema": "initial-pose-watchdog-jitter-diagnosis-v1",
+  "date": "2026-10-20",
+  "recorded_utc": "2026-10-20T13:00:54.758419+00:00",
+  "user_reports": [
+    "回中程序提示保持输出已丢失或被停止",
+    "有一个舵机有抖动，不知道原因",
+    "已关闭，抖动停止",
+    "2号，就是设置运动角度的时候会抖",
+    "持续抖动或嗡嗡响",
+    "就是之前的，那个看门狗故障是什么原因"
+  ],
+  "current_readonly": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 2,
+      "sequence": 1,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1389,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "marker": {
+      "image_kind": "servo10_vision",
+      "design_checks": "SERVO_IMAGE_DESIGN_CHECKS_PASS",
+      "bus_skew_check": "SERVO_BUS_SKEW_CHECK_PASS",
+      "register_base": 2684551168,
+      "pins": [
+        "D14",
+        "D15",
+        "F13",
+        "G13",
+        "G14",
+        "G15",
+        "J14",
+        "E13",
+        "E14",
+        "E15"
+      ],
+      "sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+      "wns_ns": 1.033,
+      "whs_ns": 0.008,
+      "wpws_ns": 0.151,
+      "part": "xczu4ev-sfvc784-2-i",
+      "clock_hz": 100000000,
+      "period_us": 20000,
+      "channels": 10,
+      "reset_outputs": "disabled",
+      "video_mmcm": {
+        "DIVCLK_DIVIDE": 1,
+        "CLKOUT0_DIVIDE_F": 15,
+        "CLKOUT1_DIVIDE": 6,
+        "CLKFBOUT_MULT_F": 11.25,
+        "CLKOUT2_DIVIDE": 3
+      },
+      "built_at": "2026-10-10T15:32:16.354825+08:00",
+      "scope": "volatile runtime image; motors remain off",
+      "pin_revision": "servo4_G13_20261010",
+      "previous_sha256": "26b553c4705984a748a138f24fe735ab0ba5343621fabd73c966db27b8e81f81",
+      "change": "Only servo_pwm[3] package pin H13 -> G13; other top-level pins preserved",
+      "loaded_unix": 1679387253.760783,
+      "boot_hashes": {
+        "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+        "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+        "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+        "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc"
+      },
+      "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d"
+    },
+    "units": {
+      "shadow-uart-text-stream-20261020": "MainPID=0\nLoadState=not-found\nActiveState=inactive\nSubState=dead\n",
+      "shadow-theatre-ui-r4": "MainPID=789\nLoadState=loaded\nActiveState=active\nSubState=running\n",
+      "shadow-theatre-browser-r4": "MainPID=790\nLoadState=loaded\nActiveState=active\nSubState=running\n",
+      "shadow-theatre-hdmi-r4": "MainPID=792\nLoadState=loaded\nActiveState=active\nSubState=running\n"
+    },
+    "stream_status": null,
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "fault_reset": false,
+    "angles_sent": false
+  },
+  "actual_servo_angle_feedback": null,
+  "diagnostic_evidence": {
+    "prior_manual_initialize_request": {
+      "logged_at": "2026-10-20T12:49:56.147668+00:00",
+      "sent": {
+        "transport_id": "2ffba2b3d4864ef2ba030f7b3c516b7d",
+        "operation": "initialize",
+        "payload": {
+          "pulse_us": [
+            1500,
+            1389,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ],
+          "sequence": 0,
+          "observer_confirmed": true,
+          "initial_jump_acknowledged": true
+        }
+      }
+    },
+    "prior_initialize_acknowledgement": {
+      "logged_at": "2026-10-20T12:49:56.245670+00:00",
+      "received": {
+        "transport_id": "2ffba2b3d4864ef2ba030f7b3c516b7d",
+        "ok": true,
+        "result": {
+          "identity": "SP10",
+          "period_us": 20000,
+          "clock_hz": 100000000,
+          "enabled_mask": 1023,
+          "armed": true,
+          "faults": 0,
+          "sequence": 1,
+          "pending": false,
+          "pulse_us": [
+            1500,
+            1389,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ],
+          "position_feedback": null,
+          "service": "attended-initial-pose-v1",
+          "center_hold_seconds": null,
+          "center_remaining_seconds": 0,
+          "group_initialization": true,
+          "hold_mode": "until_stopped",
+          "initial_pose_limits_deg": [
+            [
+              10,
+              260
+            ],
+            [
+              95,
+              260
+            ],
+            [
+              10,
+              260
+            ],
+            [
+              50,
+              170
+            ],
+            [
+              70,
+              260
+            ],
+            [
+              50,
+              170
+            ],
+            [
+              50,
+              190
+            ],
+            [
+              100,
+              190
+            ],
+            [
+              70,
+              200
+            ],
+            [
+              50,
+              170
+            ]
+          ],
+          "output_lost": false
+        }
+      }
+    },
+    "last_confirmed_heartbeat": {
+      "logged_at": "2026-10-20T12:50:09.654938+00:00",
+      "received": {
+        "transport_id": "9649d5a7b6174fb6978ab901f553238d",
+        "ok": true,
+        "result": {
+          "identity": "SP10",
+          "period_us": 20000,
+          "clock_hz": 100000000,
+          "enabled_mask": 1023,
+          "armed": true,
+          "faults": 0,
+          "sequence": 1,
+          "pending": false,
+          "pulse_us": [
+            1500,
+            1389,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ],
+          "position_feedback": null,
+          "service": "attended-initial-pose-v1",
+          "center_hold_seconds": null,
+          "center_remaining_seconds": 0,
+          "group_initialization": true,
+          "hold_mode": "until_stopped",
+          "initial_pose_limits_deg": [
+            [
+              10,
+              260
+            ],
+            [
+              95,
+              260
+            ],
+            [
+              10,
+              260
+            ],
+            [
+              50,
+              170
+            ],
+            [
+              70,
+              260
+            ],
+            [
+              50,
+              170
+            ],
+            [
+              50,
+              190
+            ],
+            [
+              100,
+              190
+            ],
+            [
+              70,
+              200
+            ],
+            [
+              50,
+              170
+            ]
+          ],
+          "output_lost": false
+        }
+      }
+    },
+    "unacknowledged_heartbeat_requests": [
+      {
+        "logged_at": "2026-10-20T12:50:10.020500+00:00",
+        "sent": {
+          "transport_id": "0d422a8e8a554832a7c3b4da74fd53f0",
+          "operation": "heartbeat",
+          "payload": {}
+        }
+      }
+    ],
+    "first_observed_fault": {
+      "logged_at": "2026-10-20T12:50:33.365876+00:00",
+      "received": {
+        "transport_id": "2c2bc1ea27d34ee0a4fba259ad1400cf",
+        "ok": true,
+        "result": {
+          "identity": "SP10",
+          "period_us": 20000,
+          "clock_hz": 100000000,
+          "enabled_mask": 0,
+          "armed": false,
+          "faults": 2,
+          "sequence": 1,
+          "pending": false,
+          "pulse_us": [
+            1500,
+            1389,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ],
+          "position_feedback": null,
+          "service": "attended-initial-pose-v1",
+          "center_hold_seconds": null,
+          "center_remaining_seconds": 0,
+          "group_initialization": true,
+          "hold_mode": "until_stopped",
+          "initial_pose_limits_deg": [
+            [
+              10,
+              260
+            ],
+            [
+              95,
+              260
+            ],
+            [
+              10,
+              260
+            ],
+            [
+              50,
+              170
+            ],
+            [
+              70,
+              260
+            ],
+            [
+              50,
+              170
+            ],
+            [
+              50,
+              190
+            ],
+            [
+              100,
+              190
+            ],
+            [
+              70,
+              200
+            ],
+            [
+              50,
+              170
+            ]
+          ],
+          "output_lost": true
+        }
+      }
+    },
+    "watchdog_timeout_seconds": 2,
+    "meaning_of_fault2": "FPGA heartbeat watchdog timeout; not a servo internal fault code",
+    "specific_cause_of_heartbeat_loss": null
+  },
+  "continuous_text_not_current_cause": true,
+  "reason": "Different current boot and original non-UART image; text-stream unit not found and no stream status file. Manual initial-pose service had successfully adopted the target before watchdog fault.",
+  "reported_jitter": {
+    "servo_number": 2,
+    "operator_description": "2号，就是设置运动角度的时候会抖；持续抖动或嗡嗡响",
+    "during_angle_setting": true,
+    "persistent_jitter_or_buzzing_reported": true,
+    "visual_oscillation_and_audible_buzz_individually_verified": false,
+    "when_relative_to_pwm_stop": "During angle setting; whether it continued after PWM stop was not separately observed. Operator confirms actuator power off stopped it.",
+    "mechanical_binding_status": null,
+    "actuator_power_off_confirmation_after_report": true,
+    "jitter_stopped_after_actuator_power_off": true,
+    "zynq_and_com17_retained": true,
+    "servo_model": null,
+    "current_supply_voltage_v": null,
+    "supply_rated_current_a": null,
+    "historical_supply_reference": {
+      "voltage_v": 8,
+      "manual_voltage_range_v": [5, 8.4],
+      "source": "shadow_play/docs/servo_capture_20261008.md",
+      "not_a_current_measurement": true
+    },
+    "label_followup_answer": "就是之前的",
+    "exact_model_and_rated_current_still_unspecified": true,
+    "cause_confirmed": false
+  },
+  "response_to_jitter": "Operator confirms common actuator power off stopped the persistent symptom on servo 2 during angle setting; Zynq/COM17 retained. Followup refers to the previous equipment without specifying model/current, and asks why the watchdog triggered. Keep fault latch, no reset, no automatic recentering; mechanical clearance and physical cause remain unverified. Do not reenergize to reproduce.",
+  "watchdog_explanation": {
+    "mechanism": "FPGA requires periodic effective heartbeat refresh; about two seconds without refresh disables all PWM and latches fault bit 1 (0x02). Reconnect alone cannot clear it.",
+    "last_confirmed_heartbeat_local": "2026-10-20T20:50:09.654938+08:00",
+    "next_heartbeat_sent_without_logged_ack_local": "2026-10-20T20:50:10.020500+08:00",
+    "fault_first_observed_on_reconnect_local": "2026-10-20T20:50:33.365876+08:00",
+    "serial_gateway_behavior": "Heartbeat nominal wait 0.35 seconds; exchanges share a lock. On ACK timeout/error the link is marked failed and stops heartbeat, with no retry/rearm. No transport exception details were recorded for this incident.",
+    "heartbeat_interruption_root_cause_confirmed": false,
+    "jitter_caused_watchdog_confirmed": false,
+    "source_files": [
+      "shadow_play/hardware/servo_pwm/servo_pwm_axi.v",
+      "shadow_play/integrations/calibration/serial_gateway.py"
+    ]
+  },
+  "software_fix": {
+    "files": [
+      "shadow_play/tools/initial_pose_gui.py",
+      "shadow_play/tools/initial_pose_session.py"
+    ],
+    "behavior": "Show watchdog 0x02 explicitly, including on faulted OFF reconnect; explain reconnect cannot clear latch. Reject initialize without sending a reset or target.",
+    "offline_tests_passed": 14,
+    "board_motion_service_unchanged": true,
+    "new_fault_reset_button_added": false
+  },
+  "session_exit": {
+    "before": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 2,
+      "sequence": 1,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1389,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null,
+      "service": "attended-initial-pose-v1",
+      "center_hold_seconds": null,
+      "center_remaining_seconds": 0,
+      "group_initialization": true,
+      "hold_mode": "until_stopped",
+      "initial_pose_limits_deg": [
+        [
+          10,
+          260
+        ],
+        [
+          95,
+          260
+        ],
+        [
+          10,
+          260
+        ],
+        [
+          50,
+          170
+        ],
+        [
+          70,
+          260
+        ],
+        [
+          50,
+          170
+        ],
+        [
+          50,
+          190
+        ],
+        [
+          100,
+          190
+        ],
+        [
+          70,
+          200
+        ],
+        [
+          50,
+          170
+        ]
+      ],
+      "output_lost": false
+    },
+    "root": "root",
+    "angles_sent": false,
+    "fault_reset": false
+  },
+  "commands_sent": {
+    "angles": false,
+    "arm": false,
+    "clear_fault": false,
+    "fpga_reload": false,
+    "uart_text": false,
+    "exit_known_already_off_service": true
+  },
+  "persistent_fault_intentionally_retained": true,
+  "references": [
+    {
+      "topic": "Supply current and voltage sag can cause servo misbehavior",
+      "url": "https://learn.adafruit.com/adafruit-arduino-lesson-14-servo-motors/if-the-servo-misbehaves"
+    },
+    {
+      "topic": "Pulse-width jitter can cause output twitching",
+      "url": "https://www.pololu.com/blog/17/servo-control-interface-in-detail"
+    }
+  ],
+  "raw_log_hashes": {
+    "shadow_play/logs/servo_initial_pose/serial_20261020_204952_883337.jsonl": "f8d530e0021961085349b75f83458a04993f832f13f05b108d95a287ae53ead2",
+    "shadow_play/logs/servo_initial_pose/serial_20261020_205033_129116.jsonl": "48e7911c406211732c9e31a60b6f263a821537c5b65bdc4d14a5b5475f2d9ef6",
+    ".review_work/initial-pose-watchdog-20261020/inspection.log": "3cda8527edfbae5aa234f203389d0956d04dafc88e70b99df5b1273568dd8ae5",
+    ".review_work/initial-pose-watchdog-20261020/service-probe.log": "00aeb6b15172d9e75e4bcc143a89cfc14dfbac9fa6a62ab71b7a5033dee45875"
+  }
+}

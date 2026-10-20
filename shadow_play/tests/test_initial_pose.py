@@ -138,5 +138,23 @@ class InitialPoseTests(unittest.TestCase):
         session.initialize.assert_not_called();session.close.assert_called_once()
         self.assertTrue(any(event=='error' for event,value in events.queue))
 
+    def test_watchdog_fault_after_reconnect_is_reported_without_active_output(self):
+        commands,events=queue.Queue(),queue.Queue();worker=Worker(commands,events,threading.Event())
+        session=Mock();worker.session=session;worker.active=False
+        session.status.return_value=dict(armed=False,enabled_mask=0,pending=False,faults=2,output_lost=False)
+        commands.put((None,None));commands.put(('shutdown',None));worker.run()
+        session.initialize.assert_not_called();session.close.assert_called_once()
+        errors=[value for event,value in events.queue if event=='error']
+        self.assertTrue(any('看门狗' in value and '0x02' in value and '重新连接不能清除' in value for value in errors))
+
+    def test_host_latched_fault_does_not_send_reset_or_initialization(self):
+        session=InitialPoseSession.__new__(InitialPoseSession)
+        session.status=Mock(return_value=dict(sequence=1,armed=False,enabled_mask=0,pending=False,
+            faults=2,pulse_us=[1500,1389]+[1500]*8,output_lost=False))
+        session._request=Mock();session.stop=Mock()
+        with self.assertRaisesRegex(RuntimeError,'看门狗超时.*0x02'):
+            session.initialize([1500]*10,True)
+        session._request.assert_not_called();session.stop.assert_not_called()
+
 
 if __name__=='__main__':unittest.main()
