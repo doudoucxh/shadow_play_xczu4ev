@@ -398,7 +398,7 @@
       "enabled_mask": 0,
       "armed": false,
       "faults": 0,
-      "sequence": 3420,
+      "sequence": 0,
       "pending": false,
       "pulse_us": [
         1500,
@@ -414,9 +414,10 @@
       ],
       "position_feedback": null
     },
-    "source_record": "shadow_play/config/fixed_v20_a02_closeup_result_20261019.json",
+    "boot_id": "14ab00c9-6763-4112-8601-ac29c2b9e7e4",
+    "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "source_record": "shadow_play/config/uart_tx_text_test_20261020.json",
     "register_writes": false,
-    "rail_commands_sent": false,
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
   },
   "latest_camera_frames_before_load": [
@@ -521,8 +522,8 @@
   "camera_view_note": "Fresh whole-rig view, mechanism visible; terminal markings not legible; no actual position inferred",
   "direction_swap_trial_record": "shadow_play/config/uart_pin_swap_trial_20261019.json",
   "direction_swap_trial_result": "Both version queries returned no bytes; original standard image restored with all PWM off",
-  "current_display_service": "shadow-uart-restored-hdmi",
-  "current_actuator_supply_operator_report": "On; no subsequent actual power-off confirmation received",
+  "current_display_service": "shadow-uart-text-hdmi-20261020",
+  "current_actuator_supply_operator_report": "2026-10-20 explicitly confirmed common actuator supply off; Zynq on",
   "latest_camera_frames_before_swap_trial": [
     {
       "source": "phone_mechanism",
@@ -846,5 +847,35 @@
     "register_writes": false,
     "rail_commands_sent": false,
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
-  }
+  },
+  "board_readback_before_20261020_reboot_test": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 3420,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "source_record": "shadow_play/config/fixed_v20_a02_closeup_result_20261019.json",
+    "register_writes": false,
+    "rail_commands_sent": false,
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
+  },
+  "later_isolated_text_test_record": "shadow_play/config/uart_tx_text_test_20261020.json"
 }

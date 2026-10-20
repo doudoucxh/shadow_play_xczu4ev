@@ -1,0 +1,432 @@
+{
+  "schema": "isolated-dual-uart-text-test-v1",
+  "date": "2026-10-20",
+  "user_request": "Send simple data from both motor UARTs so the user can view it with a computer serial assistant",
+  "operator_confirmations": {
+    "ttl_voltage": "3.3V",
+    "motor_rx_disconnected": true,
+    "all_actuator_power_off": true,
+    "zynq_remains_powered": true,
+    "exact_usb_ttl_adapter_port_not_reported": true,
+    "receiver_content_not_yet_reported": true
+  },
+  "initial_readonly": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "14ab00c9-6763-4112-8601-ac29c2b9e7e4",
+    "marker": {
+      "image_kind": "servo10_vision",
+      "design_checks": "SERVO_IMAGE_DESIGN_CHECKS_PASS",
+      "bus_skew_check": "SERVO_BUS_SKEW_CHECK_PASS",
+      "register_base": 2684551168,
+      "pins": [
+        "D14",
+        "D15",
+        "F13",
+        "G13",
+        "G14",
+        "G15",
+        "J14",
+        "E13",
+        "E14",
+        "E15"
+      ],
+      "sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+      "wns_ns": 1.033,
+      "whs_ns": 0.008,
+      "wpws_ns": 0.151,
+      "part": "xczu4ev-sfvc784-2-i",
+      "clock_hz": 100000000,
+      "period_us": 20000,
+      "channels": 10,
+      "reset_outputs": "disabled",
+      "video_mmcm": {
+        "DIVCLK_DIVIDE": 1,
+        "CLKOUT0_DIVIDE_F": 15,
+        "CLKOUT1_DIVIDE": 6,
+        "CLKFBOUT_MULT_F": 11.25,
+        "CLKOUT2_DIVIDE": 3
+      },
+      "built_at": "2026-10-10T15:32:16.354825+08:00",
+      "scope": "volatile runtime image; motors remain off",
+      "pin_revision": "servo4_G13_20261010",
+      "previous_sha256": "26b553c4705984a748a138f24fe735ab0ba5343621fabd73c966db27b8e81f81",
+      "change": "Only servo_pwm[3] package pin H13 -> G13; other top-level pins preserved",
+      "loaded_unix": 1679357351.109203,
+      "boot_hashes": {
+        "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+        "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+        "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+        "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc"
+      },
+      "boot_id": "14ab00c9-6763-4112-8601-ac29c2b9e7e4"
+    },
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "register_writes": false
+  },
+  "observed_new_boot": true,
+  "first_password_setup_completed": true,
+  "credentials_saved": false,
+  "previous_boot_id": "8b5372c2-00de-459e-ad96-371ec5ea0ef9",
+  "previous_off3420_is_not_current": true,
+  "reason_for_reload": "New boot had restored the original non-UART image; previous dual-UART configuration was volatile.",
+  "reviewed_candidate": {
+    "files": 12,
+    "image_sha": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "manifest_sha256": "b060b295cf0792e4ea3d381b0e3996911d0d005deaea1e3d021a330b41e5382a",
+    "no_transmit": true
+  },
+  "load_result": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "14ab00c9-6763-4112-8601-ac29c2b9e7e4",
+    "image_sha": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "all_actuator_power_off_confirmed": true,
+    "incident_lock_unchanged": true,
+    "motor_packets_sent": false,
+    "original_hdmi_sink_stopped": true,
+    "candidate_hdmi_active": false
+  },
+  "request": {
+    "request_id": "1b94c426f1ba4c34ab40d0419e7d6240",
+    "created_utc": "2026-10-20T04:43:32.264003+00:00",
+    "boot_id": "14ab00c9-6763-4112-8601-ac29c2b9e7e4",
+    "expected_sequence": 0,
+    "motor_rx_disconnected_operator_confirmed": true,
+    "ttl_3v3_operator_confirmed": true,
+    "all_actuator_power_off_operator_confirmed": true,
+    "receiver_observed": false
+  },
+  "tool": "shadow_play/integrations/calibration/uart_tx_text_check.py",
+  "package": {
+    "sd_directory": "/run/media/mmcblk0p2/piying/uart-tx-text-20261020",
+    "archive_sha256": "9a2d36d328b8d7d42ed882dcf2ac7f527476ec894f759b27476453405ab56aab",
+    "archive_bytes": 7980,
+    "manifest_entries": 5,
+    "automatic_start": false
+  },
+  "serial_settings": {
+    "baud": 115200,
+    "data_bits": 8,
+    "parity": "none",
+    "stop_bits": 1,
+    "flow_control": "none",
+    "display": "ASCII/text"
+  },
+  "ports": {
+    "person": {
+      "tx_pin": "F15",
+      "rx_pin": "H13",
+      "base": 2684616704
+    },
+    "tiger": {
+      "tx_pin": "H14",
+      "rx_pin": "L13",
+      "base": 2684682240
+    }
+  },
+  "line_events": [
+    {
+      "port": "person",
+      "line_number": 1,
+      "text": "PERSON 12345\r\n",
+      "hex": "504552534f4e2031323334350d0a",
+      "bytes_queued": 14,
+      "status_before": 4,
+      "status_after": 4,
+      "rx_flags_before": 0,
+      "rx_flags_after": 0,
+      "tx_fifo_drained": true,
+      "wire_received_verified": false
+    },
+    {
+      "port": "tiger",
+      "line_number": 1,
+      "text": "TIGER 12345\r\n",
+      "hex": "54494745522031323334350d0a",
+      "bytes_queued": 13,
+      "status_before": 4,
+      "status_after": 4,
+      "rx_flags_before": 0,
+      "rx_flags_after": 0,
+      "tx_fifo_drained": true,
+      "wire_received_verified": false
+    },
+    {
+      "port": "person",
+      "line_number": 2,
+      "text": "PERSON 12345\r\n",
+      "hex": "504552534f4e2031323334350d0a",
+      "bytes_queued": 14,
+      "status_before": 4,
+      "status_after": 4,
+      "rx_flags_before": 0,
+      "rx_flags_after": 0,
+      "tx_fifo_drained": true,
+      "wire_received_verified": false
+    },
+    {
+      "port": "tiger",
+      "line_number": 2,
+      "text": "TIGER 12345\r\n",
+      "hex": "54494745522031323334350d0a",
+      "bytes_queued": 13,
+      "status_before": 4,
+      "status_after": 4,
+      "rx_flags_before": 0,
+      "rx_flags_after": 0,
+      "tx_fifo_drained": true,
+      "wire_received_verified": false
+    },
+    {
+      "port": "person",
+      "line_number": 3,
+      "text": "PERSON 12345\r\n",
+      "hex": "504552534f4e2031323334350d0a",
+      "bytes_queued": 14,
+      "status_before": 4,
+      "status_after": 4,
+      "rx_flags_before": 0,
+      "rx_flags_after": 0,
+      "tx_fifo_drained": true,
+      "wire_received_verified": false
+    },
+    {
+      "port": "tiger",
+      "line_number": 3,
+      "text": "TIGER 12345\r\n",
+      "hex": "54494745522031323334350d0a",
+      "bytes_queued": 13,
+      "status_before": 4,
+      "status_after": 4,
+      "rx_flags_before": 0,
+      "rx_flags_after": 0,
+      "tx_fifo_drained": true,
+      "wire_received_verified": false
+    },
+    {
+      "port": "person",
+      "line_number": 4,
+      "text": "PERSON 12345\r\n",
+      "hex": "504552534f4e2031323334350d0a",
+      "bytes_queued": 14,
+      "status_before": 4,
+      "status_after": 4,
+      "rx_flags_before": 0,
+      "rx_flags_after": 0,
+      "tx_fifo_drained": true,
+      "wire_received_verified": false
+    },
+    {
+      "port": "tiger",
+      "line_number": 4,
+      "text": "TIGER 12345\r\n",
+      "hex": "54494745522031323334350d0a",
+      "bytes_queued": 13,
+      "status_before": 4,
+      "status_after": 4,
+      "rx_flags_before": 0,
+      "rx_flags_after": 0,
+      "tx_fifo_drained": true,
+      "wire_received_verified": false
+    },
+    {
+      "port": "person",
+      "line_number": 5,
+      "text": "PERSON 12345\r\n",
+      "hex": "504552534f4e2031323334350d0a",
+      "bytes_queued": 14,
+      "status_before": 4,
+      "status_after": 4,
+      "rx_flags_before": 0,
+      "rx_flags_after": 0,
+      "tx_fifo_drained": true,
+      "wire_received_verified": false
+    },
+    {
+      "port": "tiger",
+      "line_number": 5,
+      "text": "TIGER 12345\r\n",
+      "hex": "54494745522031323334350d0a",
+      "bytes_queued": 13,
+      "status_before": 4,
+      "status_after": 4,
+      "rx_flags_before": 0,
+      "rx_flags_after": 0,
+      "tx_fifo_drained": true,
+      "wire_received_verified": false
+    }
+  ],
+  "transmit_final": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "pwm_unchanged": true,
+    "lines": {
+      "person": 5,
+      "tiger": 5
+    },
+    "motor_motion": false,
+    "wire_received_verified": false
+  },
+  "bytes_queued_total": 135,
+  "wire_received_verified": false,
+  "pc_observation_pending": true,
+  "motor_handshake_verified": false,
+  "uart_rx_fifo_read": false,
+  "uart_fifo_reset_written": false,
+  "motor_protocol_sent": false,
+  "motor_motion_sent": false,
+  "servo_motion_sent": false,
+  "after_verification": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "14ab00c9-6763-4112-8601-ac29c2b9e7e4",
+    "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "manifest_entries": 5,
+    "boot_hashes_unchanged": {
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc"
+    },
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "ui_frames": [
+      {
+        "captured": 872.661391341,
+        "age_ms": 1108.3,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 873.932311779,
+        "age_ms": 46.4,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 874.16637322,
+        "age_ms": 20.3,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      }
+    ],
+    "display_services_active": true,
+    "register_writes": false,
+    "no_additional_uart_bytes": true
+  },
+  "display_restore": {
+    "initial_candidate_service_active": false,
+    "reason": "Relative manifest path produced a relative sink path for systemd; no second FPGA load was used.",
+    "restored_unit": "shadow-uart-text-hdmi-20261020",
+    "services_active": true,
+    "new_ui_frames_verified": true,
+    "physical_display_reaccepted": false,
+    "canonical_loader_path_fix": "Resolve manifest to an absolute path before constructing the display sink command; original SD bundle preserved."
+  },
+  "offline_tests_passed": 10,
+  "incident_locks_removed": false,
+  "boot_files_modified": false,
+  "logs": {
+    "preflight-after-login.log": "a5670dabf73c52af8ec582f16f4d5bf5ec3bd6bf5cadbd8b630c3e6ddc5b42c8",
+    "candidate-check.log": "19d0317f9ed0aa82d985bb09872b242bd177e15210bb4964850c17d60dee3ac0",
+    "install.log": "a6f69be3ef9e43dd0a775a978790e6993d317a0e7011b78fb57d4e9f1ddce572",
+    "load.log": "c004b129a1bf6e5bc474ba39915e24c3f9868261103255beb050d51b1b73792d",
+    "transmit.log": "e43148caa6d1bc41d9bb8fbafd42268e965248e130db3c20c01635551d119b94",
+    "display-status.log": "4e7f580bf3daf65d92acc585ee92c7f67f4675ab1ad261dba9d55c77181c2a0f",
+    "display-restored.log": "920d132203a8413f18ddf8154cfac24217e52cf9125eba46a6fe4dacc3e5f1d8",
+    "final-verification.log": "f5020f5a209a544497c3ffd3aaf8ea67ba02cf3f6ad6316bd53f39db833a5d0d"
+  }
+}

@@ -121,7 +121,7 @@ def main():
         r.close()
     display_active = False
     if args.start_candidate_display:
-        sink = args.manifest.parent/'shadow_play/hdmi_ui/runtime/hdmi_sink.py'
+        sink = args.manifest.resolve().parent/'shadow_play/hdmi_ui/runtime/hdmi_sink.py'
         subprocess.run(['systemd-run', '--unit=shadow-rail-query-hdmi', '--property=Restart=no',
                         sys.executable, '-u', str(sink)], check=True, timeout=15)
         time.sleep(1)
