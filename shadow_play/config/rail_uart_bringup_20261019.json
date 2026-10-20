@@ -416,9 +416,9 @@
     },
     "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
     "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
-    "source_record": "shadow_play/config/uart_replug_result_20261020.json",
+    "source_record": "shadow_play/config/uart_tiger_retry_20261020.json",
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
-    "basis": "Independent read after user-authorized replug check: person fresh version reply, tiger timeout"
+    "basis": "Independent read after tiger-only version and different read-only status queries"
   },
   "latest_camera_frames_before_load": [
     {
@@ -974,7 +974,7 @@
     "basis": "Fresh independent read after finite servo 2 check and known OFF service exit"
   },
   "latest_uart_motor_recheck_record": "shadow_play/config/uart_replug_result_20261020.json",
-  "latest_uart_motor_recheck_result": "Initial precheck sent no bytes due to RX error flags; unsolicited person FE was preserved. After quiet receive each port sent its first version query: person fresh valid 011f00cb23146b, tiger timeout/zero bytes. No packet resend or motion.",
+  "latest_uart_motor_recheck_result": "Person version handshake from prior record remains valid; latest tiger-only version 011f6b and status 013a6b each timed out with zero received bytes. No person query repeated, no automatic packet resend or motion.",
   "board_readback_before_uart_swap_recheck_20261020": {
     "state": {
       "identity": "SP10",
@@ -1048,5 +1048,36 @@
     "reply_hex": "011f00cb23146b",
     "address": 1,
     "freshness_verified": true
-  }
+  },
+  "board_readback_before_tiger_retry_20261020": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "source_record": "shadow_play/config/uart_replug_result_20261020.json",
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "basis": "Independent read after user-authorized replug check: person fresh version reply, tiger timeout"
+  },
+  "latest_tiger_uart_retry_record": "shadow_play/config/uart_tiger_retry_20261020.json"
 }

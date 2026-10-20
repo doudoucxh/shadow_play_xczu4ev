@@ -1,0 +1,152 @@
+{
+  "schema": "tiger-readonly-retry-v1",
+  "date": "2026-10-20",
+  "user_request": "不应该啊，你再试试",
+  "rail": "tiger",
+  "tx_pin": "H14",
+  "rx_pin": "L13",
+  "pin_map": "standard",
+  "request": {
+    "request_id": "96f1fccdd8f9488e842eda97aa0ee016",
+    "user_request": "不应该啊，你再试试",
+    "rail": "tiger",
+    "pin_map": "standard",
+    "motor_power_latest_report": "ON",
+    "actual_query_limit": 1
+  },
+  "status_crosscheck_request": {
+    "request_id": "94c7d04341c54d5caade83d53a5761ba",
+    "query": "status",
+    "query_hex": "013a6b",
+    "address": 1,
+    "purpose": "One different read-only query to check whether version-specific compatibility explains no response",
+    "actual_query_limit": 1
+  },
+  "operator_power_context": "Reuse immediately preceding operator confirmation: actuator power ON, original pins and onsite presence; no new change reported",
+  "queries": [
+    {
+      "rail": "tiger",
+      "error": "Reply timeout; no automatic resend",
+      "reply_hex": "",
+      "diagnostics": {
+        "phase": "awaiting_reply",
+        "tx_bytes_queued": 3,
+        "uart_status_changes": [
+          4,
+          0,
+          4
+        ],
+        "wire_tx_verified": false
+      },
+      "motion_sent": false,
+      "query": "version",
+      "query_hex": "011f6b",
+      "returncode": 1
+    },
+    {
+      "rail": "tiger",
+      "error": "Reply timeout; no automatic resend",
+      "reply_hex": "",
+      "diagnostics": {
+        "phase": "awaiting_reply",
+        "tx_bytes_queued": 3,
+        "uart_status_changes": [
+          4,
+          0,
+          4
+        ],
+        "wire_tx_verified": false
+      },
+      "motion_sent": false,
+      "query": "status",
+      "query_hex": "013a6b",
+      "returncode": 1
+    }
+  ],
+  "final_readonly": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "image_sha": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "uart_status": {
+      "person": [
+        4,
+        4
+      ],
+      "tiger": [
+        4,
+        4
+      ]
+    },
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "boot_hashes": {
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc"
+    },
+    "units": {
+      "shadow-theatre-ui-r4": "active",
+      "shadow-theatre-browser-r4": "active",
+      "shadow-uart-restored-hdmi": "active",
+      "shadow-uart-text-stream-20261020": "inactive"
+    },
+    "no_extra_bytes": true
+  },
+  "person_previous_success": {
+    "record": "shadow_play/config/uart_replug_result_20261020.json",
+    "fresh_reply_hex": "011f00cb23146b",
+    "queried_again_this_round": false
+  },
+  "result": {
+    "tiger_version_handshake_verified": false,
+    "tiger_status_handshake_verified": false,
+    "actual_packets_sent": 2,
+    "total_tx_bytes_queued": 6,
+    "rx_bytes": 0,
+    "faulty_component_identified": false,
+    "waveform_verified": false,
+    "manual_cross_connection_performed": false
+  },
+  "scope": {
+    "automatic_resend": false,
+    "version_attempts": 1,
+    "status_attempts": 1,
+    "motor_enable": false,
+    "motor_move": false,
+    "pwm_enable": false,
+    "fifo_reset": false,
+    "fpga_reload": false,
+    "incident_lock_removed": false
+  },
+  "artifacts": {
+    ".review_work/uart-tiger-retry-20261020/request.json": "7e2f911a208191a4dd9dd338c195a7ee6cc9ecef7bc8b2a406e3d2ddb2582d3a",
+    ".review_work/uart-tiger-retry-20261020/query-once.sh": "e7f1b40af9a388861b6197cc8254b632f3b09da8cc43f6e4f2e0530e31552c2a",
+    ".review_work/uart-tiger-retry-20261020/query.log": "39ae8f2e354dddead266f980809bfdffce226461508d90708de1a1cf49fdd0c8",
+    ".review_work/uart-tiger-retry-20261020/status-request.json": "022dcd5a0207c557d820522411e1fc5789e645a2832bb581fedb76cd1ccd9d8e",
+    ".review_work/uart-tiger-retry-20261020/status-once.sh": "a26daa74f0451beaf4ab61b56d13af9d9d1831c5356d9f4eeaf2eb5f4872756f",
+    ".review_work/uart-tiger-retry-20261020/status.log": "5e4c3cbba894d44355c2a1eed84cb78bf729dc6e5378eaa913a8950fd572a44a",
+    ".review_work/uart-tiger-retry-20261020/final.log": "701d98b883eb32f9134d54326ed0c509874bae5e7e64852b08cb73f587b1ceb5"
+  }
+}
