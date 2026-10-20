@@ -1,0 +1,264 @@
+{
+  "schema": "uart-replug-readonly-recheck-v1",
+  "date": "2026-10-20",
+  "request": {
+    "request_id": "280fe0e04492491fa41540dc4d90371c",
+    "user_request": "再试一下，刚刚可能没插好",
+    "pin_map": "standard",
+    "power_on_confirmed": true,
+    "physical_wiring_unchanged": true,
+    "attempts_per_motor": 1
+  },
+  "first_actual_query_request": {
+    "request_id": "f765418e717947f6a11f9a71a3416384",
+    "original_authorization": "280fe0e04492491fa41540dc4d90371c",
+    "initial_precheck_transmitted_bytes_each": 0,
+    "unsolicited_bytes_preserved": true,
+    "new_quiet_reference": true,
+    "maximum_actual_queries_each": 1
+  },
+  "operator_confirmation": "User replied 好了 to original pins, actuator power on without abnormality and onsite presence",
+  "last_actual_actuator_supply_report": "ON",
+  "pin_map": "standard",
+  "preflight": {
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "image_sha": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "ports": {
+      "person": {
+        "base": 2684616704,
+        "tx_pin": "F15",
+        "rx_pin": "H13"
+      },
+      "tiger": {
+        "base": 2684682240,
+        "tx_pin": "H14",
+        "rx_pin": "L13"
+      }
+    }
+  },
+  "initial_precheck": [
+    {
+      "rail": "person",
+      "error": "UART parity/framing/overrun error: 0x45",
+      "reply_hex": "",
+      "diagnostics": {
+        "phase": "checking_idle",
+        "tx_bytes_queued": 0,
+        "uart_status_changes": [
+          69
+        ],
+        "wire_tx_verified": false
+      },
+      "motion_sent": false,
+      "returncode": 1
+    },
+    {
+      "rail": "tiger",
+      "error": "UART parity/framing/overrun error: 0x44",
+      "reply_hex": "",
+      "diagnostics": {
+        "phase": "checking_idle",
+        "tx_bytes_queued": 0,
+        "uart_status_changes": [
+          68
+        ],
+        "wire_tx_verified": false
+      },
+      "motion_sent": false,
+      "returncode": 1
+    }
+  ],
+  "unsolicited_capture": {
+    "rows": [
+      {
+        "rail": "person",
+        "statuses": [
+          5,
+          4
+        ],
+        "captured_unsolicited_hex": "fe",
+        "quiet_25ms": true,
+        "query_sent": false,
+        "not_a_fresh_reply": true
+      },
+      {
+        "rail": "tiger",
+        "statuses": [
+          4
+        ],
+        "captured_unsolicited_hex": "",
+        "quiet_25ms": true,
+        "query_sent": false,
+        "not_a_fresh_reply": true
+      }
+    ],
+    "pwm_unchanged": true,
+    "register_writes": false,
+    "fifo_reset": false
+  },
+  "actual_queries": [
+    {
+      "rail": "person",
+      "result": {
+        "address": 1,
+        "query": "version",
+        "freshness_verified": true,
+        "position_mm": null,
+        "rail_zero_verified": false,
+        "firmware_version_raw": 203,
+        "hardware_version_raw": 8980,
+        "hardware_series": 2,
+        "hardware_type": 3,
+        "hardware_revision": 20,
+        "firmware_kind": null,
+        "freshness_basis": "RX empty for 20ms, bytes received after this sole query",
+        "query_hex": "011f6b",
+        "reply_hex": "011f00cb23146b",
+        "elapsed_seconds": 0.021980680000524444
+      },
+      "diagnostics": {
+        "phase": "complete",
+        "tx_bytes_queued": 3,
+        "uart_status_changes": [
+          4,
+          0,
+          4,
+          5,
+          4,
+          5,
+          4
+        ],
+        "wire_tx_verified": false
+      },
+      "pwm_unchanged": true,
+      "motion_sent": false,
+      "returncode": 0
+    },
+    {
+      "rail": "tiger",
+      "error": "Reply timeout; no automatic resend",
+      "reply_hex": "",
+      "diagnostics": {
+        "phase": "awaiting_reply",
+        "tx_bytes_queued": 3,
+        "uart_status_changes": [
+          4,
+          0,
+          4
+        ],
+        "wire_tx_verified": false
+      },
+      "motion_sent": false,
+      "returncode": 1
+    }
+  ],
+  "final_readonly": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "image_sha": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "uart_status": {
+      "person": [
+        4,
+        4
+      ],
+      "tiger": [
+        4,
+        4
+      ]
+    },
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "boot_hashes": {
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc"
+    },
+    "units": {
+      "shadow-theatre-ui-r4": "active",
+      "shadow-theatre-browser-r4": "active",
+      "shadow-uart-restored-hdmi": "active",
+      "shadow-uart-text-stream-20261020": "inactive"
+    },
+    "no_extra_bytes": true
+  },
+  "conclusion": {
+    "person_readonly_version_handshake_verified": true,
+    "tiger_readonly_version_handshake_verified": false,
+    "dual_uart_both_verified": false,
+    "person_reply_hex": "011f00cb23146b",
+    "initial_fe_is_query_reply": false,
+    "firmware_kind_inferred_from_version": false,
+    "wiring_contact_cause_confirmed": false,
+    "physical_rail_motion_verified": false,
+    "rail_zero_verified": false
+  },
+  "scope": {
+    "actual_queries_per_port": 1,
+    "initial_precheck_transmitted_bytes_each": 0,
+    "adaptive_precheck_resolution": "Boundedly read and preserved unsolicited data, then established 25ms empty receive before the first actual request",
+    "packet_resend": false,
+    "fifo_reset": false,
+    "rx_bytes_were_preserved": true,
+    "motor_enable": false,
+    "motor_move": false,
+    "pwm_enable": false,
+    "fpga_reload": false,
+    "boot_file_edits": false,
+    "incident_lock_removed": false
+  },
+  "artifacts": {
+    ".review_work/uart-replug-recheck-20261020/preflight.log": "4fc71e8fcc7ba17e3d3e9429c99cda644868648327253d055c04975c0c5a9fa1",
+    ".review_work/uart-replug-recheck-20261020/query-once.sh": "87eb3625e400dcbf9f8a1cd78f4b2e659acd48937408db3c3603e0236234de75",
+    ".review_work/uart-replug-recheck-20261020/queries.log": "645567c76453e011ca1fbcad843d11b3e02a3d4efd47bf2601a62a5118dd2817",
+    ".review_work/uart-replug-recheck-20261020/capture-residual.sh": "9f7dab30b28e02565dd1adaa11a292ff18b57eb026d27e5b542160c6483e54b5",
+    ".review_work/uart-replug-recheck-20261020/residual.log": "e191534449dbb598dba564c3cf4b6cecb280a9b02ac2d4f98e2708a5bc381a83",
+    ".review_work/uart-replug-recheck-20261020/query-first-tx.sh": "16249429059234a44d27f077ad0bb35a41a07f829394d02b6695620cd7806a43",
+    ".review_work/uart-replug-recheck-20261020/first-tx.log": "ca8b48a076054c833c431332834ab19c89cd708470483ebd7882ffb7bbd705c1",
+    ".review_work/uart-replug-recheck-20261020/final.log": "874e2a24891b9007b8c3b526dd73d6a67c1d76f99aba227c4fe0e2b3be968a80"
+  }
+}

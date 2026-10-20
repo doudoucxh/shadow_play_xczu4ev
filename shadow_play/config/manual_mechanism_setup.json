@@ -25,8 +25,15 @@
       "motor_address_candidate": 1,
       "checksum_mode": "fixed_6b",
       "checksum_mode_candidate": "fixed_6b",
-      "settings_source": "Operator read both driver screens: UART, 115200, address 1, 0x6B; no validated protocol reply",
-      "serial_mode": "UART"
+      "settings_source": "Operator-read UART/115200/address1/0x6B; fresh address-1 version reply verified on 2026-10-20. Firmware kind remains operator-reported, not inferred from the version fields.",
+      "serial_mode": "UART",
+      "readonly_uart_version_evidence": {
+        "record": "shadow_play/config/uart_replug_result_20261020.json",
+        "verified": true,
+        "reply_hex": "011f00cb23146b",
+        "motion_verified": false,
+        "mechanical_zero_verified": false
+      }
     },
     "rail2": {
       "character": "老虎",
@@ -52,7 +59,14 @@
       "checksum_mode": "fixed_6b",
       "checksum_mode_candidate": "fixed_6b",
       "settings_source": "Operator read both driver screens: UART, 115200, address 1, 0x6B; no validated protocol reply",
-      "serial_mode": "UART"
+      "serial_mode": "UART",
+      "readonly_uart_version_evidence": {
+        "record": "shadow_play/config/uart_replug_result_20261020.json",
+        "verified": false,
+        "reply_hex": "",
+        "motion_verified": false,
+        "mechanical_zero_verified": false
+      }
     }
   },
   "operator_connection_report": {
@@ -68,9 +82,15 @@
     "interface_settings_received": true,
     "dual_pl_uart_image_loaded": true,
     "handshake_attempted": true,
-    "telemetry_result": "Version and status queries to each independent port returned no bytes; diagnostic status requests showed TX FIFO 0x04->0x00->0x04",
+    "telemetry_result": "Latest 2026-10-20 standard-pin check: person fresh version reply 011f00cb23146b, tiger timeout with no reply. No rail motion or mechanical zero verified.",
+    "telemetry_result_before_replug_20261020": "Version and status queries to each independent port returned no bytes; diagnostic status requests showed TX FIFO 0x04->0x00->0x04",
     "bringup_record": "shadow_play/config/rail_uart_bringup_20261019.json",
     "direction_swap_trial_completed": true,
-    "direction_swap_result": "No reply bytes on either port; original FPGA pin map restored"
+    "direction_swap_result": "No reply bytes on either port; original FPGA pin map restored",
+    "readonly_version_handshake_verified_by_port": {
+      "person": true,
+      "tiger": false
+    },
+    "latest_uart_evidence_record": "shadow_play/config/uart_replug_result_20261020.json"
   }
 }

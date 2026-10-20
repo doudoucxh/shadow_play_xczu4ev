@@ -416,9 +416,9 @@
     },
     "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
     "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
-    "source_record": "shadow_play/config/uart_pin_swap_recheck_20261020.json",
+    "source_record": "shadow_play/config/uart_replug_result_20261020.json",
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
-    "basis": "Independent read after power-off standard-image restoration"
+    "basis": "Independent read after user-authorized replug check: person fresh version reply, tiger timeout"
   },
   "latest_camera_frames_before_load": [
     {
@@ -523,7 +523,7 @@
   "direction_swap_trial_record": "shadow_play/config/uart_pin_swap_recheck_20261020.json",
   "direction_swap_trial_result": "New user-requested swapped trial: exactly one version query per motor, both zero-byte RX timeouts, TX FIFO drained; original standard image restored while actuators physically OFF. No motion or further packets.",
   "current_display_service": "shadow-uart-restored-hdmi",
-  "current_actuator_supply_operator_report": "2026-10-20 user confirms common actuator power OFF before swap load, ON without abnormality for queries, then OFF again before standard restore. Last actual supply report OFF; Zynq and COM17 retained.",
+  "current_actuator_supply_operator_report": "2026-10-20 user replied 好了 to original four pins, common actuator power ON without abnormality and onsite presence after replug; no later power-off report. PWM remains OFF0.",
   "latest_camera_frames_before_swap_trial": [
     {
       "source": "phone_mechanism",
@@ -973,8 +973,8 @@
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
     "basis": "Fresh independent read after finite servo 2 check and known OFF service exit"
   },
-  "latest_uart_motor_recheck_record": "shadow_play/config/rail_uart_recheck_20261020.json",
-  "latest_uart_motor_recheck_result": "Each motor version query queued 3 bytes, TX status 0x04->0x00->0x04, no RX bytes; no retry, motion, enable or FIFO reset. Wire-level signal/driver receipt unverified.",
+  "latest_uart_motor_recheck_record": "shadow_play/config/uart_replug_result_20261020.json",
+  "latest_uart_motor_recheck_result": "Initial precheck sent no bytes due to RX error flags; unsolicited person FE was preserved. After quiet receive each port sent its first version query: person fresh valid 011f00cb23146b, tiger timeout/zero bytes. No packet resend or motion.",
   "board_readback_before_uart_swap_recheck_20261020": {
     "state": {
       "identity": "SP10",
@@ -1006,5 +1006,47 @@
     "basis": "Independent post-query PWM/UART/boot-file read after user-confirmed power-up"
   },
   "previous_direction_swap_trial_record": "shadow_play/config/uart_pin_swap_trial_20261019.json",
-  "latest_uart_pin_swap_record": "shadow_play/config/uart_pin_swap_recheck_20261020.json"
+  "latest_uart_pin_swap_record": "shadow_play/config/uart_pin_swap_recheck_20261020.json",
+  "board_readback_before_replug_20261020": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "source_record": "shadow_play/config/uart_pin_swap_recheck_20261020.json",
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "basis": "Independent read after power-off standard-image restoration"
+  },
+  "previous_uart_motor_recheck_record": "shadow_play/config/rail_uart_recheck_20261020.json",
+  "readonly_version_handshake_verified_by_port": {
+    "person": true,
+    "tiger": false
+  },
+  "person_version_handshake_evidence": {
+    "record": "shadow_play/config/uart_replug_result_20261020.json",
+    "query_hex": "011f6b",
+    "reply_hex": "011f00cb23146b",
+    "address": 1,
+    "freshness_verified": true
+  }
 }
