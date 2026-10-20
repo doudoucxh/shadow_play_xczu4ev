@@ -385,7 +385,10 @@
     "supply_rated_current_a": null,
     "historical_supply_reference": {
       "voltage_v": 8,
-      "manual_voltage_range_v": [5, 8.4],
+      "manual_voltage_range_v": [
+        5,
+        8.4
+      ],
       "source": "shadow_play/docs/servo_capture_20261008.md",
       "not_a_current_measurement": true
     },
@@ -517,5 +520,14 @@
     "shadow_play/logs/servo_initial_pose/serial_20261020_205033_129116.jsonl": "48e7911c406211732c9e31a60b6f263a821537c5b65bdc4d14a5b5475f2d9ef6",
     ".review_work/initial-pose-watchdog-20261020/inspection.log": "3cda8527edfbae5aa234f203389d0956d04dafc88e70b99df5b1273568dd8ae5",
     ".review_work/initial-pose-watchdog-20261020/service-probe.log": "00aeb6b15172d9e75e4bcc143a89cfc14dfbac9fa6a62ab71b7a5033dee45875"
+  },
+  "later_rewire_recheck": {
+    "record": "shadow_play/config/servo2_rewire_recheck_20261020.json",
+    "current_fault_latch_cleared_with_all_outputs_disabled": true,
+    "latest_sequence": 82,
+    "latest_faults": 0,
+    "latest_enabled_mask": 0,
+    "operator_report": "没看清，但是没有抖动",
+    "physical_cause_not_confirmed": true
   }
 }

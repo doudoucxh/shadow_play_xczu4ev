@@ -397,12 +397,12 @@
       "clock_hz": 100000000,
       "enabled_mask": 0,
       "armed": false,
-      "faults": 2,
-      "sequence": 1,
+      "faults": 0,
+      "sequence": 82,
       "pending": false,
       "pulse_us": [
         1500,
-        1389,
+        1500,
         1500,
         1500,
         1500,
@@ -416,10 +416,9 @@
     },
     "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
     "image_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
-    "source_record": "shadow_play/config/initial_pose_watchdog_jitter_20261020.json",
-    "fault_reset": false,
-    "angles_sent": false,
-    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
+    "source_record": "shadow_play/config/servo2_rewire_recheck_20261020.json",
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "basis": "Fresh independent read after finite servo 2 check and known OFF service exit"
   },
   "latest_camera_frames_before_load": [
     {
@@ -524,7 +523,7 @@
   "direction_swap_trial_record": "shadow_play/config/uart_pin_swap_trial_20261019.json",
   "direction_swap_trial_result": "Both version queries returned no bytes; original standard image restored with all PWM off",
   "current_display_service": "shadow-theatre-hdmi-r4",
-  "current_actuator_supply_operator_report": "2026-10-20 operator confirms common actuator power OFF and jitter stopped; Zynq and COM17 retained. Servo 2 persistently jittered or buzzed during angle setting; mechanical binding and cause remain unverified.",
+  "current_actuator_supply_operator_report": "2026-10-20 user reports common actuator power ON after wiring stability adjustment; unchanged pins, physically recentered, no binding and onsite cutoff. After servo2 trial user reports no jitter, actual rotation not clearly seen; no later power-off report.",
   "latest_camera_frames_before_swap_trial": [
     {
       "source": "phone_mechanism",
@@ -911,6 +910,37 @@
     "source_record": "shadow_play/config/uart_tx_text_stream_20261020.json",
     "basis": "Fresh atomic status emitted by the running process while it holds the PWM lock",
     "register_writes_by_verifier": false,
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
+  },
+  "board_readback_before_servo2_recheck": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 2,
+      "sequence": 1,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1389,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "image_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+    "source_record": "shadow_play/config/initial_pose_watchdog_jitter_20261020.json",
+    "fault_reset": false,
+    "angles_sent": false,
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
   }
 }
