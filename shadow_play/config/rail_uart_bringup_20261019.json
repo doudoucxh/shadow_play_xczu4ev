@@ -416,8 +416,9 @@
     },
     "boot_id": "14ab00c9-6763-4112-8601-ac29c2b9e7e4",
     "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
-    "source_record": "shadow_play/config/uart_tx_text_test_20261020.json",
-    "register_writes": false,
+    "source_record": "shadow_play/config/uart_tx_text_stream_20261020.json",
+    "basis": "Fresh atomic status emitted by the running process while it holds the PWM lock",
+    "register_writes_by_verifier": false,
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
   },
   "latest_camera_frames_before_load": [
@@ -877,5 +878,6 @@
     "rail_commands_sent": false,
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
   },
-  "later_isolated_text_test_record": "shadow_play/config/uart_tx_text_test_20261020.json"
+  "later_isolated_text_test_record": "shadow_play/config/uart_tx_text_test_20261020.json",
+  "current_continuous_uart_text_record": "shadow_play/config/uart_tx_text_stream_20261020.json"
 }

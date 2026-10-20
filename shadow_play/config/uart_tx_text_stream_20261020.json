@@ -1,0 +1,194 @@
+{
+  "schema": "isolated-dual-uart-continuous-text-v1",
+  "date": "2026-10-20",
+  "recorded_utc": "2026-10-20T05:41:04.357985+00:00",
+  "user_request": "能不能让他一直发送",
+  "continuous_sending_explicitly_authorized": true,
+  "prior_isolation_3v3_and_actuator_power_off_confirmation_retained": true,
+  "request": {
+    "request_id": "6b047a5c8acf4d92b8bc645f84d50b62",
+    "created_utc": "2026-10-20T05:39:28.089661+00:00",
+    "boot_id": "14ab00c9-6763-4112-8601-ac29c2b9e7e4",
+    "expected_sequence": 0,
+    "user_explicitly_requests_continuous": true,
+    "prior_motor_rx_isolation_and_3v3_confirmation_retained": true,
+    "prior_actuator_power_off_confirmation_retained": true
+  },
+  "start": {
+    "request_id": "6b047a5c8acf4d92b8bc645f84d50b62",
+    "pid": 1634,
+    "boot_id": "14ab00c9-6763-4112-8601-ac29c2b9e7e4",
+    "updated_monotonic": 4127.196306699,
+    "active": true,
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "lines": {
+      "person": 2,
+      "tiger": 2
+    },
+    "error": null,
+    "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "interval_seconds": 1,
+    "wire_received_verified": false,
+    "motor_motion": false
+  },
+  "verification": {
+    "samples": [
+      {
+        "request_id": "6b047a5c8acf4d92b8bc645f84d50b62",
+        "pid": 1634,
+        "boot_id": "14ab00c9-6763-4112-8601-ac29c2b9e7e4",
+        "updated_monotonic": 4171.256180289,
+        "active": true,
+        "state": {
+          "identity": "SP10",
+          "period_us": 20000,
+          "clock_hz": 100000000,
+          "enabled_mask": 0,
+          "armed": false,
+          "faults": 0,
+          "sequence": 0,
+          "pending": false,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ],
+          "position_feedback": null
+        },
+        "lines": {
+          "person": 46,
+          "tiger": 46
+        },
+        "error": null,
+        "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+        "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+        "interval_seconds": 1,
+        "wire_received_verified": false,
+        "motor_motion": false,
+        "status_age_seconds": 0.25294872899939946
+      },
+      {
+        "request_id": "6b047a5c8acf4d92b8bc645f84d50b62",
+        "pid": 1634,
+        "boot_id": "14ab00c9-6763-4112-8601-ac29c2b9e7e4",
+        "updated_monotonic": 4172.2573293,
+        "active": true,
+        "state": {
+          "identity": "SP10",
+          "period_us": 20000,
+          "clock_hz": 100000000,
+          "enabled_mask": 0,
+          "armed": false,
+          "faults": 0,
+          "sequence": 0,
+          "pending": false,
+          "pulse_us": [
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500,
+            1500
+          ],
+          "position_feedback": null
+        },
+        "lines": {
+          "person": 47,
+          "tiger": 47
+        },
+        "error": null,
+        "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+        "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+        "interval_seconds": 1,
+        "wire_received_verified": false,
+        "motor_motion": false,
+        "status_age_seconds": 0.5538174780003828
+      }
+    ],
+    "service_properties": "Restart=no\nMainPID=1634\nActiveState=active\nSubState=running\n",
+    "manifest_entries": 5,
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "additional_uart_bytes_sent_by_verifier": false
+  },
+  "observed_running_at_record_time": true,
+  "no_automatic_restart": true,
+  "no_boot_autostart": true,
+  "unit": "shadow-uart-text-stream-20261020",
+  "status_file": "/run/uart-text-stream-20261020.json",
+  "ports": {
+    "person": {
+      "tx_pin": "F15",
+      "text": "PERSON 12345\r\n"
+    },
+    "tiger": {
+      "tx_pin": "H14",
+      "text": "TIGER 12345\r\n"
+    }
+  },
+  "interval_seconds": 1,
+  "serial_settings": {
+    "baud": 115200,
+    "data_bits": 8,
+    "parity": "none",
+    "stop_bits": 1,
+    "flow_control": "none"
+  },
+  "stop_entry": "停止双串口文本发送.cmd",
+  "stop_command": "systemctl stop shadow-uart-text-stream-20261020",
+  "stopped_by": "Explicit stop, signal, reboot, UART fault, PWM state change or image/incident-lock change",
+  "diagnostics_memory_max_entries_per_port": 32,
+  "console_progress_interval_rounds": 60,
+  "motor_motion_sent": false,
+  "pwm_control_register_writes": false,
+  "wire_received_verified": false,
+  "fpga_reloaded_this_turn": false,
+  "boot_files_modified": false,
+  "incident_lock_removed": false,
+  "offline_tests_passed": 9,
+  "package": {
+    "directory": "/run/media/mmcblk0p2/piying/uart-tx-stream-20261020",
+    "manifest_entries": 5,
+    "archive_sha256": "5f1962c49a2f205cbb8f5dbdc50af7a2bf9404554a4438bf931d62da02d1b291",
+    "archive_bytes": 8690
+  },
+  "logs": {
+    "preflight.log": "aa05c21d766df0b2a90cf405aa303699f1cc3384d963af425fddd0f64ba89baa",
+    "install.log": "bd7b6858da2f465ecd81122928bb8acc914392adb0ed8fa8f5d66846edc89515",
+    "start.log": "8fd169ce1397d065df16b665224a7f687c9af9be6984c79da26e05b809387620",
+    "verification.log": "c9cfc06e36cd0ef9b7c323be07cfabdc9c77c776ebd5b5a3bbb3cd66321f96ec"
+  }
+}

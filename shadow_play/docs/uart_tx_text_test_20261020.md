@@ -16,3 +16,11 @@
 原镜像恢复后的显示启动因相对manifest路径导致systemd从根目录寻找相对sink而失败。已使用绝对路径另建临时显示服务，无第二次FPGA重载；当前UI、browser及新sink active，连续新界面包可解码。源码把sink基准改为manifest.resolve，原SD发布包未覆盖；这不是实体屏重新验收。
 
 6项新文本程序检查及4项镜像候选检查通过；5项文本工具SD清单、最终只读状态、原事故锁、四启动文件摘要和连续UI包已核验。记录在`shadow_play/config/uart_tx_text_test_20261020.json`。没有常驻发送任务或自动定时重发，电脑接收结果仍待现场反馈。
+
+## 按用户要求持续发送
+
+用户随后明确要求“一直发送”。新独立SD `uart-tx-stream-20261020`运行临时unit `shadow-uart-text-stream-20261020`，两路每秒各发送同一行ASCII，无时间上限；明确停止、信号、重启或异常时退出。`Restart=no`，不增加开机自启。普通五行模式和原SD包保留；持续模式必须显式`--continuous`。
+
+程序持续持有PWM和UART排他锁，只读监测PWM OFF、镜像标记及事故锁；不驱动电机。状态原子覆盖`/run/uart-text-stream-20261020.json`，每路最多32项诊断，控制台每60轮报告，避免无限累积内存或逐秒日志。新鲜状态两次读取计数46→47，服务active/running、Restart=no，十路PWM关闭、OFF0、faults/pending=0。9项离线检查和5项SD清单通过，PC接收仍待用户观察。
+
+根目录`停止双串口文本发送.cmd`使用COM17执行`systemctl stop shadow-uart-text-stream-20261020`，发送SIGTERM并等待退出；也可以直接要求助手停止。接回电机RX或使用电机查询前先停止文本任务。当前后台持有PWM锁，其他调试工具不可抢占。结果见`shadow_play/config/uart_tx_text_stream_20261020.json`。

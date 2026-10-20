@@ -2,7 +2,7 @@ from pathlib import Path
 import sys,unittest
 from unittest.mock import patch
 sys.path[:0]=[str(Path(__file__).resolve().parents[1]/'integrations/calibration'),str(Path(__file__).resolve().parents[1]/'tools')]
-from uart_tx_text_check import TextPort,TEXT,COUNT,PORTS,validate_image,IMAGE_SHA,main
+from uart_tx_text_check import TextPort,TEXT,COUNT,PORTS,validate_image,IMAGE_SHA,main,run_continuous
 from zdt_uartlite_telemetry import PORTS as REVIEWED_PORTS
 
 
@@ -69,6 +69,43 @@ class Tests(unittest.TestCase):
         for name,value in [('sha256','old'),('boot_id','another')]:
             bad=dict(m);bad[name]=value
             with self.assertRaises(RuntimeError):validate_image(bad,'boot')
+
+    def test_repeat_exceeds_five_with_bounded_diagnostics_and_no_retry(self):
+        f=Fake();p=TextPort(f,'person',repeat=True,clock=f.clock,sleep=f.sleep)
+        for _ in range(40):p.send_line()
+        self.assertEqual(p.lines,40);self.assertEqual(len(p.diagnostics),32)
+        self.assertEqual(bytes(v for a,v in f.writes),TEXT['person']*40)
+        f.drain=False
+        with self.assertRaises(RuntimeError):p.send_line()
+        count=len(f.writes)
+        with self.assertRaises(RuntimeError):p.send_line()
+        self.assertEqual(len(f.writes),count)
+
+    def test_continuous_stop_cadence_and_state_change(self):
+        from unittest.mock import Mock
+        f=Fake()
+        class Stop:
+            stopped=False
+            def is_set(self):return self.stopped
+            def wait(self,t):f.sleep(t)
+        stop=Stop();starts=[];ports={'person':Mock(),'tiger':Mock()}
+        def report(active):
+            starts.append(f.clock())
+            if len(starts)==7:stop.stopped=True
+        run_continuous(ports,lambda:None,stop,report,clock=f.clock)
+        self.assertEqual(ports['person'].send_line.call_count,7)
+        self.assertTrue(all(b-a>=1-1e-8 for a,b in zip(starts,starts[1:])))
+        stop=Stop();ports={'person':Mock(),'tiger':Mock()}
+        def changed():raise RuntimeError('PWM changed')
+        with self.assertRaises(RuntimeError):run_continuous(ports,changed,stop,report,clock=f.clock)
+        ports['person'].send_line.assert_not_called()
+
+    def test_stop_between_ports_does_not_send_second_port(self):
+        from unittest.mock import Mock
+        stop=Mock();stop.is_set.side_effect=[False,False,True]
+        ports={'person':Mock(),'tiger':Mock()}
+        run_continuous(ports,lambda:None,stop,Mock())
+        ports['person'].send_line.assert_called_once();ports['tiger'].send_line.assert_not_called()
 
 
 if __name__=='__main__':unittest.main()
