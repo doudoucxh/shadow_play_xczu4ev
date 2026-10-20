@@ -1,0 +1,383 @@
+{
+  "schema": "uart-pin-swap-recheck-20261020-v1",
+  "date": "2026-10-20",
+  "user_request": "User reports signal wiring checked and explicitly requests swapping receive/transmit again",
+  "prior_standard_result": "shadow_play/config/rail_uart_recheck_20261020.json",
+  "operator_confirmations": {
+    "physical_wiring_unchanged": true,
+    "actuator_power_off_before_swap_load": true,
+    "actuator_power_on_after_swap_load": true,
+    "power_up_no_abnormality_reported": true,
+    "actuator_power_off_before_standard_restore": true,
+    "last_actual_supply_report": "OFF",
+    "zynq_com17_remain_powered": true
+  },
+  "earlier_trial_context": {
+    "record": "shadow_play/config/uart_pin_swap_trial_20261019.json",
+    "no_series_resistors_previously_reported": true,
+    "output_contention_risk_previously_discussed": true,
+    "user_explicitly_requests_new_limited_swap_trial": true,
+    "new_wire_waveform_measurement": false
+  },
+  "swapped_ports": {
+    "person": {
+      "tx_pin": "H13",
+      "rx_pin": "F15"
+    },
+    "tiger": {
+      "tx_pin": "L13",
+      "rx_pin": "H14"
+    }
+  },
+  "restored_ports": {
+    "person": {
+      "tx_pin": "F15",
+      "rx_pin": "H13"
+    },
+    "tiger": {
+      "tx_pin": "H14",
+      "rx_pin": "L13"
+    }
+  },
+  "preflight": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "image_sha": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "uart_status": {
+      "person": [
+        4,
+        4
+      ],
+      "tiger": [
+        4,
+        4
+      ]
+    },
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "boot_hashes": {
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc"
+    },
+    "units": {
+      "shadow-theatre-ui-r4": "active",
+      "shadow-theatre-browser-r4": "active",
+      "shadow-rail-query-hdmi": "active",
+      "shadow-uart-text-stream-20261020": "inactive"
+    },
+    "no_extra_bytes": true
+  },
+  "candidate": {
+    "image_sha": "2a6f3675d13254225e4d41abcbdb1d48f347a2bcdba5dbb233abfd155450958e",
+    "manifest_files": 15,
+    "manifest_sha256": "f42561a52c72ca0fe9dac3bfb15e9a8fc5a20ee36557b144bf91c429c4764a63",
+    "no_transmit": true
+  },
+  "load_result": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "image_sha": "2a6f3675d13254225e4d41abcbdb1d48f347a2bcdba5dbb233abfd155450958e",
+    "all_actuator_power_off_confirmed": true,
+    "incident_lock_unchanged": true,
+    "display_active": true,
+    "motor_packets_sent": false
+  },
+  "queries": [
+    {
+      "rail": "person",
+      "error": "Reply timeout; no automatic resend",
+      "reply_hex": "",
+      "diagnostics": {
+        "phase": "awaiting_reply",
+        "tx_bytes_queued": 3,
+        "uart_status_changes": [
+          4,
+          0,
+          4
+        ],
+        "wire_tx_verified": false
+      },
+      "motion_sent": false,
+      "query_hex": "011f6b",
+      "returncode": 1
+    },
+    {
+      "rail": "tiger",
+      "error": "Reply timeout; no automatic resend",
+      "reply_hex": "",
+      "diagnostics": {
+        "phase": "awaiting_reply",
+        "tx_bytes_queued": 3,
+        "uart_status_changes": [
+          4,
+          0,
+          4
+        ],
+        "wire_tx_verified": false
+      },
+      "motion_sent": false,
+      "query_hex": "011f6b",
+      "returncode": 1
+    }
+  ],
+  "postquery": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "image_sha": "2a6f3675d13254225e4d41abcbdb1d48f347a2bcdba5dbb233abfd155450958e",
+    "uart_status": {
+      "person": [
+        4,
+        4
+      ],
+      "tiger": [
+        4,
+        4
+      ]
+    },
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "boot_hashes": {
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc"
+    },
+    "units": {
+      "shadow-theatre-ui-r4": "active",
+      "shadow-theatre-browser-r4": "active",
+      "shadow-uart-swap-hdmi": "active",
+      "shadow-uart-text-stream-20261020": "inactive"
+    },
+    "no_extra_bytes": true
+  },
+  "restore_result": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "image_sha": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "incident_lock_unchanged": true,
+    "display_active": true,
+    "motor_packets_sent": false
+  },
+  "final_readonly": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "image_sha": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "uart_status": {
+      "person": [
+        4,
+        4
+      ],
+      "tiger": [
+        4,
+        4
+      ]
+    },
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "boot_hashes": {
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc"
+    },
+    "units": {
+      "shadow-theatre-ui-r4": "active",
+      "shadow-theatre-browser-r4": "active",
+      "shadow-uart-restored-hdmi": "active",
+      "shadow-uart-text-stream-20261020": "inactive"
+    },
+    "no_extra_bytes": true
+  },
+  "ui_frames": [
+    {
+      "captured": 3788.167537996,
+      "age_ms": 1130.1,
+      "shape": [
+        600,
+        1024,
+        3
+      ]
+    },
+    {
+      "captured": 3789.471658177,
+      "age_ms": 34.4,
+      "shape": [
+        600,
+        1024,
+        3
+      ]
+    },
+    {
+      "captured": 3789.672680587,
+      "age_ms": 42.3,
+      "shape": [
+        600,
+        1024,
+        3
+      ]
+    }
+  ],
+  "test_scope": {
+    "each_rail_requests": 1,
+    "address": 1,
+    "query": "version",
+    "query_hex": "011f6b",
+    "baud": 115200,
+    "format": "8N1",
+    "pin_map": "swapped",
+    "motor_enable": false,
+    "motor_move": false,
+    "homing": false,
+    "fifo_reset": false,
+    "automatic_retry": false,
+    "used_markers_retained": true,
+    "tx_drive_ma": 4,
+    "drive_setting_is_hard_current_limit": false
+  },
+  "conclusion": {
+    "swap_restored_communication": false,
+    "hardware_handshake_verified": false,
+    "received_bytes_each": 0,
+    "standard_and_swapped_both_no_reply": true,
+    "correct_wire_direction_established": false,
+    "faulty_component_identified": false,
+    "transmit_pin_waveform_verified": false,
+    "driver_received_query_verified": false
+  },
+  "verification": {
+    "candidate_manifest_files": 15,
+    "candidate_total_files_including_manifest": 16,
+    "swapped_candidate_and_restore_offline_tests": 5,
+    "all_pwm_off": true,
+    "boot_files_unchanged": true,
+    "incident_lock_retained": true,
+    "standard_image_restored": true,
+    "no_uart_packets_after_queries": true,
+    "display_services_active": true,
+    "new_ui_packets_decodable": true,
+    "physical_display_reacceptance": false
+  },
+  "artifacts": {
+    ".review_work/uart-pin-swap-recheck-20261020/preflight.log": "92cbe7b829ca6032e01081c0d177e15d02d2e1f300d2af5e8270e7dd21c74638",
+    ".review_work/uart-pin-swap-recheck-20261020/candidate-check.log": "162d92911b4e48cb287b4153352cb7719627dc26e4778714e1841a2344c5aa93",
+    ".review_work/uart-pin-swap-recheck-20261020/load-swapped.sh": "c5e65eae53c60c8695d30b85a2979adb79c896958835771254bf9c107676b6d0",
+    ".review_work/uart-pin-swap-recheck-20261020/load.log": "59d961e88e85d7d1203e1235669f3e85a47e1c4b8d1772cad417efd9cf220033",
+    ".review_work/uart-pin-swap-recheck-20261020/query-once.sh": "aa8eb6b3219d89bdb51ce12ecc57b7ee2346a1d7c1fd843439219f38f595348a",
+    ".review_work/uart-pin-swap-recheck-20261020/queries.log": "b27c16af2958e336f418c6eab39f14c1f39fe646740636dd2c859b89b84cdede",
+    ".review_work/uart-pin-swap-recheck-20261020/postquery.log": "15ad2e35914b69905f864070790a049f08974fc2ba1c3c4608063e8a4aa6dcc9",
+    ".review_work/uart-pin-swap-recheck-20261020/restore.sh": "6c172f8869ac00ac13eefee849e165efa4935a21060754a18f857bd75abbdd6a",
+    ".review_work/uart-pin-swap-recheck-20261020/restore.log": "5e3730dc0e00fd24cfbc3fc006a71bb1b5e12ef5932dec706f82c415160908f4",
+    ".review_work/uart-pin-swap-recheck-20261020/final.log": "bdf93a1dbcab23756d52d2bb4d1c8961db67d8cfdd5eaa70cb24337521aa82fd",
+    ".review_work/uart-pin-swap-recheck-20261020/display.log": "ba1e9e164490ad8134a2fef579a3cda2f55cff7ffe700297d018326bd8e194b5"
+  },
+  "restore_tool_sha256": "972f007c686e9efd2119dcc803c8306347d8c5ac77b53e793f5be91e4e21f880"
+}
