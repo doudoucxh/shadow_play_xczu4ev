@@ -1,0 +1,318 @@
+{
+  "schema": "dual-uart-motor-recheck-20261020-v1",
+  "date": "2026-10-20",
+  "operator_confirmations": {
+    "motor_signal_lines_reconnected": true,
+    "serial_assistant_not_current_target": true,
+    "pins_unchanged": true,
+    "wiring_stability_adjusted": true,
+    "initial_actuator_supply_on": true,
+    "all_actuator_power_off_before_fpga_load": true,
+    "zynq_and_com17_retained": true,
+    "actuator_power_on_after_load": true,
+    "no_abnormality_on_power_up": true,
+    "last_actual_supply_report": "ON",
+    "onsite_power_cutoff": true
+  },
+  "settings_source": "Earlier operator-read screens: Emm/TTL/UART/115200/address1/fixed0x6B; user confirms pins unchanged",
+  "preflight": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 82,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "marker": {
+      "image_kind": "servo10_vision",
+      "design_checks": "SERVO_IMAGE_DESIGN_CHECKS_PASS",
+      "bus_skew_check": "SERVO_BUS_SKEW_CHECK_PASS",
+      "register_base": 2684551168,
+      "pins": [
+        "D14",
+        "D15",
+        "F13",
+        "G13",
+        "G14",
+        "G15",
+        "J14",
+        "E13",
+        "E14",
+        "E15"
+      ],
+      "sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+      "wns_ns": 1.033,
+      "whs_ns": 0.008,
+      "wpws_ns": 0.151,
+      "part": "xczu4ev-sfvc784-2-i",
+      "clock_hz": 100000000,
+      "period_us": 20000,
+      "channels": 10,
+      "reset_outputs": "disabled",
+      "video_mmcm": {
+        "DIVCLK_DIVIDE": 1,
+        "CLKOUT0_DIVIDE_F": 15,
+        "CLKOUT1_DIVIDE": 6,
+        "CLKFBOUT_MULT_F": 11.25,
+        "CLKOUT2_DIVIDE": 3
+      },
+      "built_at": "2026-10-10T15:32:16.354825+08:00",
+      "scope": "volatile runtime image; motors remain off",
+      "pin_revision": "servo4_G13_20261010",
+      "previous_sha256": "26b553c4705984a748a138f24fe735ab0ba5343621fabd73c966db27b8e81f81",
+      "change": "Only servo_pwm[3] package pin H13 -> G13; other top-level pins preserved",
+      "loaded_unix": 1679387253.760783,
+      "boot_hashes": {
+        "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+        "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+        "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+        "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc"
+      },
+      "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d"
+    },
+    "units": {
+      "shadow-uart-text-stream-20261020": "MainPID=0\nLoadState=not-found\nActiveState=inactive\nSubState=dead\n",
+      "shadow-theatre-ui-r4": "MainPID=789\nLoadState=loaded\nActiveState=active\nSubState=running\n",
+      "shadow-theatre-browser-r4": "MainPID=790\nLoadState=loaded\nActiveState=active\nSubState=running\n",
+      "shadow-theatre-hdmi-r4": "MainPID=792\nLoadState=loaded\nActiveState=active\nSubState=running\n"
+    },
+    "stream_status": null,
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "fault_reset": false,
+    "angles_sent": false
+  },
+  "candidate": {
+    "files": 12,
+    "image_sha": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "manifest_sha256": "b060b295cf0792e4ea3d381b0e3996911d0d005deaea1e3d021a330b41e5382a",
+    "no_transmit": true
+  },
+  "load_result": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "image_sha": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "all_actuator_power_off_confirmed": true,
+    "incident_lock_unchanged": true,
+    "motor_packets_sent": false,
+    "original_hdmi_sink_stopped": true,
+    "candidate_hdmi_active": true
+  },
+  "queries": [
+    {
+      "rail": "person",
+      "error": "Reply timeout; no automatic resend",
+      "reply_hex": "",
+      "diagnostics": {
+        "phase": "awaiting_reply",
+        "tx_bytes_queued": 3,
+        "uart_status_changes": [
+          4,
+          0,
+          4
+        ],
+        "wire_tx_verified": false
+      },
+      "motion_sent": false,
+      "returncode": 1,
+      "query_hex": "011f6b"
+    },
+    {
+      "rail": "tiger",
+      "error": "Reply timeout; no automatic resend",
+      "reply_hex": "",
+      "diagnostics": {
+        "phase": "awaiting_reply",
+        "tx_bytes_queued": 3,
+        "uart_status_changes": [
+          4,
+          0,
+          4
+        ],
+        "wire_tx_verified": false
+      },
+      "motion_sent": false,
+      "returncode": 1,
+      "query_hex": "011f6b"
+    }
+  ],
+  "final_readonly": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "image_sha": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "uart_status": {
+      "person": [
+        4,
+        4
+      ],
+      "tiger": [
+        4,
+        4
+      ]
+    },
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "boot_hashes": {
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc"
+    },
+    "units": {
+      "shadow-theatre-ui-r4": "active",
+      "shadow-theatre-browser-r4": "active",
+      "shadow-rail-query-hdmi": "active",
+      "shadow-uart-text-stream-20261020": "inactive"
+    },
+    "no_extra_bytes": true
+  },
+  "query_scope": {
+    "address": 1,
+    "firmware_kind": "Emm",
+    "baud": 115200,
+    "format": "8N1",
+    "checksum": "0x6B",
+    "query": "version",
+    "query_hex": "011f6b",
+    "each_rail_request_count": 1,
+    "automatic_retry": false,
+    "swapped_pins": false,
+    "motor_enable": false,
+    "motor_move": false,
+    "homing": false,
+    "fifo_reset": false,
+    "pwm_enable": false,
+    "constant_text": false,
+    "query_attempt_consumed": true
+  },
+  "ports": {
+    "person": {
+      "tx": "F15",
+      "rx": "H13"
+    },
+    "tiger": {
+      "tx": "H14",
+      "rx": "L13"
+    }
+  },
+  "result": {
+    "hardware_handshake_verified": false,
+    "received_bytes_each": 0,
+    "transmit_fifo_drained_each": true,
+    "physical_tx_waveform_verified": false,
+    "driver_received_query_verified": false,
+    "faulty_component_identified": false,
+    "contact_issue_confirmed_or_excluded": false,
+    "protocol_link_passed": false
+  },
+  "display": {
+    "services": {
+      "shadow-theatre-ui-r4": "active",
+      "shadow-theatre-browser-r4": "active",
+      "shadow-rail-query-hdmi": "active",
+      "shadow-uart-text-stream-20261020": "inactive"
+    },
+    "new_decodable_ui_packets": [
+      {
+        "captured": 2421.104066076,
+        "age_ms": 1121.0,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 2422.408172786,
+        "age_ms": 25.5,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 2422.608777142,
+        "age_ms": 32.7,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      }
+    ],
+    "physical_hdmi_display_reacceptance": false
+  },
+  "offline_protocol_transport_tests_passed": 13,
+  "artifacts": {
+    ".review_work/rail-uart-recheck-20261020/preflight.log": "6c5faa0d47976e7c167a939e350c8eb3dd1654ce11b70642e2c4d6fecdf58b60",
+    ".review_work/rail-uart-recheck-20261020/candidate-check.log": "dd30c05752588961e2daf1ff0893ac47a69f710f298af1febdfefb4e775b1b32",
+    ".review_work/rail-uart-recheck-20261020/load-standard.sh": "20ed33c45fb0e6e41d3de15a720a7125ab75561c2453d8846af16385cabcea96",
+    ".review_work/rail-uart-recheck-20261020/load.log": "b55b6ec4ee4b22a40feab422a3a82fe03e43124bfccd2d39804ec59bfeb66c4b",
+    ".review_work/rail-uart-recheck-20261020/query-once.sh": "c69ac098c13950fdce4fe24b634604cfadea01a85533f6e4c5cf795ff45ea15b",
+    ".review_work/rail-uart-recheck-20261020/queries.log": "d08a58d3a865214b5801da796da20a2f7d4304c6c8dd467c9731bb29a2249c80",
+    ".review_work/rail-uart-recheck-20261020/verify-final.sh": "205f414d25e398c9fcb8d561654c3d575ce67e2ad2a31e461f586dded216936a",
+    ".review_work/rail-uart-recheck-20261020/final.log": "769ec0af7e9df70a4ce514896f3d227dc93ea35dc51217c82e057c54b2b27920",
+    ".review_work/rail-uart-recheck-20261020/display.log": "47ef8d235922b632cdeb316d9be0f12dbde1f5984383194577b01a9d18c4a7ff"
+  },
+  "telemetry_tool_sha256": "896e470852fae381f2c2595d36e6652fbcc674316a1a912db9993347abf692f1"
+}
