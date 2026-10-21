@@ -55,6 +55,19 @@ def completed_camera_reference(record):
     return dict(record['state'], boot_id=record['boot_id'])
 
 
+def _read_camera_file(path, *, binary=False, encoding='utf-8'):
+    """Allow a brief Windows file-replacement conflict, never cached data."""
+    deadline = time.monotonic() + .15
+    while True:
+        try:
+            return path.read_bytes() if binary else path.read_text(encoding=encoding)
+        except (PermissionError, FileNotFoundError):
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise
+            time.sleep(min(.01, remaining))
+
+
 class FreshCamera:
     def __init__(self, root, clock=time.time, monotonic=time.monotonic):
         self.root = Path(root).resolve()
@@ -67,11 +80,18 @@ class FreshCamera:
     def sample(self, destination=None):
         from PIL import Image
         with self.lock:
-            pointer = json.loads((self.root / 'current.json').read_text(encoding='utf-8-sig'))
+            pointer = json.loads(_read_camera_file(self.root / 'current.json', encoding='utf-8-sig'))
             session = Path(pointer['directory']).resolve()
             if session.parent != self.root:
                 raise RuntimeError('Unexpected camera session path')
-            state = json.loads((session / 'status.json').read_text(encoding='utf-8'))
+            state = json.loads(_read_camera_file(session / 'status.json'))
+            raw = _read_camera_file(session / 'latest.jpg', binary=True)
+            with Image.open(io.BytesIO(raw)) as im:
+                im.load()
+                if im.format != 'JPEG':
+                    raise RuntimeError('Camera JPEG decode failed')
+                size = list(im.size)
+            # Recheck age after any sharing-conflict wait and JPEG decode.
             age = self.clock() * 1000 - state['updated_unix_ms']
             frame = state['frames']
             if state['state'] != 'streaming' or not -1000 <= age <= 1500:
@@ -83,12 +103,6 @@ class FreshCamera:
                 self.last_advance = self.monotonic()
             elif self.monotonic() - self.last_advance > 1.5:
                 raise RuntimeError('Camera frame counter stalled')
-            raw = (session / 'latest.jpg').read_bytes()
-            with Image.open(io.BytesIO(raw)) as im:
-                im.load()
-                if im.format != 'JPEG':
-                    raise RuntimeError('Camera JPEG decode failed')
-                size = list(im.size)
             if destination is not None:
                 destination.write_bytes(raw)
             return dict(frame=frame, age_ms=age, updated_unix_ms=state['updated_unix_ms'],

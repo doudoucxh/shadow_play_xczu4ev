@@ -398,7 +398,7 @@
       "enabled_mask": 0,
       "armed": false,
       "faults": 0,
-      "sequence": 0,
+      "sequence": 210,
       "pending": false,
       "pulse_us": [
         1500,
@@ -414,11 +414,17 @@
       ],
       "position_feedback": null
     },
-    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
-    "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
-    "source_record": "shadow_play/config/uart_tiger_retry_20261020.json",
+    "boot_id": "476e53f0-261b-487b-94d7-4de957c4d758",
+    "image_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
-    "basis": "Independent read after tiger-only version and different read-only status queries"
+    "boot_hashes": {
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc"
+    },
+    "source_record": "shadow_play/config/servo_com19_actions_20261021.json",
+    "basis": "Independent native final read after COM19 boot476 servo observations, OFF210; original servo-only runtime"
   },
   "latest_camera_frames_before_load": [
     {
@@ -1080,7 +1086,7 @@
     "basis": "Independent read after user-authorized replug check: person fresh version reply, tiger timeout"
   },
   "latest_tiger_uart_retry_record": "shadow_play/config/uart_tiger_retry_20261020.json",
-  "latest_servo_motion_session_ack_record": "shadow_play/config/servo_actions_resume_20261020.json",
+  "latest_servo_motion_session_ack_record": "shadow_play/config/servo_com19_actions_20261021.json",
   "latest_servo_motion_session_ack": {
     "state": {
       "identity": "SP10",
@@ -1089,7 +1095,7 @@
       "enabled_mask": 0,
       "armed": false,
       "faults": 0,
-      "sequence": 243,
+      "sequence": 210,
       "pending": false,
       "pulse_us": [
         1500,
@@ -1105,9 +1111,43 @@
       ],
       "position_feedback": null
     },
-    "basis": "2026-10-20 final paired OFF acknowledgements; not an independent final or 2026-10-21 read",
-    "independent_final_read": false
+    "basis": "Paired ACKs and independent final native read on2026-10-21",
+    "independent_final_read": true
   },
-  "current_board_state_confirmed_on_20261021": false,
-  "current_board_state_unconfirmed_reason": "COM17 absent; CH340 COM19 identity not confirmed. Previous latest_board_readback is historical and predates servo motion through OFF243."
+  "current_board_state_confirmed_on_20261021": true,
+  "board_readback_before_boot476_servo_20261021": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 0,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "boot_id": "969cfeb5-5028-4ab4-8147-0a684193747d",
+    "image_sha256": "ea680d88d2d149157490ebbe27b253b3814d6d2df17aeebb477047bb4bc81e90",
+    "source_record": "shadow_play/config/uart_tiger_retry_20261020.json",
+    "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "basis": "Independent read after tiger-only version and different read-only status queries"
+  },
+  "runtime_dual_uart_image_loaded": false,
+  "runtime_uart_queries_allowed": false,
+  "current_runtime_image_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+  "current_runtime_boot_id": "476e53f0-261b-487b-94d7-4de957c4d758",
+  "runtime_note_20261021": "Board reboot restored original G13 servo10 image824779; no FPGA reload this turn. Historical person UART handshake969cfeb5 remains evidence only; no UART query on current servo-only image."
 }
