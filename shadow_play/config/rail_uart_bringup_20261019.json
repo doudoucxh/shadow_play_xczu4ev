@@ -1079,5 +1079,35 @@
     "incident_lock_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
     "basis": "Independent read after user-authorized replug check: person fresh version reply, tiger timeout"
   },
-  "latest_tiger_uart_retry_record": "shadow_play/config/uart_tiger_retry_20261020.json"
+  "latest_tiger_uart_retry_record": "shadow_play/config/uart_tiger_retry_20261020.json",
+  "latest_servo_motion_session_ack_record": "shadow_play/config/servo_actions_resume_20261020.json",
+  "latest_servo_motion_session_ack": {
+    "state": {
+      "identity": "SP10",
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "enabled_mask": 0,
+      "armed": false,
+      "faults": 0,
+      "sequence": 243,
+      "pending": false,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "basis": "2026-10-20 final paired OFF acknowledgements; not an independent final or 2026-10-21 read",
+    "independent_final_read": false
+  },
+  "current_board_state_confirmed_on_20261021": false,
+  "current_board_state_unconfirmed_reason": "COM17 absent; CH340 COM19 identity not confirmed. Previous latest_board_readback is historical and predates servo motion through OFF243."
 }
