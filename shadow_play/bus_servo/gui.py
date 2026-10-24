@@ -9,7 +9,8 @@ import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 
 from .device import SimulationDevice
-from .model import Profile, save_recording, validate_recording
+from .editing import PoseCaptureError
+from .model import MOTION_SCHEMA, Profile, save_recording, validate_recording
 from .session import TeachingSession
 from .transport import RemoteDevice
 
@@ -51,8 +52,9 @@ class Worker(threading.Thread):
                             break
                     if self.session:
                         self.shutting_down = shutdown
+                        was_recording = self.session.recording
                         stopped = self.session.stop()
-                        if self.session.record:
+                        if was_recording and self.session.record:
                             self.emit('record', (self.session.record, self.session.last_path))
                         self.emit('stopped', stopped)
                     if shutdown:
@@ -89,6 +91,13 @@ class Worker(threading.Thread):
                         s.start_recording(*value); self.emit('recording', value[2])
                     elif op == 'record_end':
                         path = s.finish_recording(); self.emit('record', (s.record, path)); self.emit('idle')
+                    elif op == 'capture_pose':
+                        try:
+                            self.emit('pose', s.capture_pose(value))
+                        except PoseCaptureError as exc:
+                            # A pose outside the configured envelope is rejected
+                            # without releasing unrelated, currently held axes.
+                            self.emit('capture_error', str(exc))
                     elif op == 'prepare':
                         seconds = s.prepare_first(*value)
                         self.emit('message', f'已发送到首帧指令，预计至少 {seconds:.1f} 秒；回放时会重新读位置。')
@@ -111,8 +120,9 @@ class Worker(threading.Thread):
                 recovery = None
                 try:
                     if self.session:
+                        was_recording = self.session.recording
                         self.session.stop(reason=str(exc))
-                        if self.session.record:
+                        if was_recording and self.session.record:
                             recovery = (self.session.record, self.session.last_path)
                 except Exception:
                     pass
@@ -137,8 +147,9 @@ class App:
         self.worker.start()
         self.connected = self.busy = self.recording = self.playing = self.closing = False
         self.record = None
+        self.editor = None
         self.live_samples = []
-        root.title('皮影 · 总线舵机示教工作台')
+        root.title('皮影 · 总线舵机示教工作台（分步/剪辑）')
         root.geometry('1180x850'); root.minsize(1030, 790)
         root.configure(bg='#eef2f5')
         root.option_add('*Font', ('Microsoft YaHei UI', 10))
@@ -212,6 +223,7 @@ class App:
         self.end_button=ttk.Button(row,text='② 结束录制',command=lambda:self.send('record_end'));self.end_button.pack(side='left',padx=3)
         self.load_button=ttk.Button(row,text='打开轨迹…',command=self.load);self.load_button.pack(side='right')
         self.save_button=ttk.Button(row,text='另存轨迹…',command=self.save);self.save_button.pack(side='right',padx=5)
+        self.editor_button=ttk.Button(row,text='分步录入 / 剪辑',command=lambda:self.action(self.open_editor));self.editor_button.pack(side='right',padx=5)
         row=ttk.Frame(body);row.pack(fill='x',pady=(0,8))
         self.prepare_button=ttk.Button(row,text='③ 缓慢到首帧',command=self.prepare);self.prepare_button.pack(side='left')
         ttk.Label(row,text='回放倍率').pack(side='left',padx=(12,5))
@@ -304,6 +316,8 @@ class App:
         def run():
             if Path(path).stat().st_size>64*1024*1024:raise ValueError('轨迹文件超过64MB。')
             record=json.loads(Path(path).read_text(encoding='utf-8-sig'))
+            if record.get('schema')=='shadow.bus-edit.v1':
+                raise ValueError('这是编辑工程，请在“分步录入 / 剪辑”窗口中选择“打开工程”。')
             validate_recording(record,self.profile)
             self.record=record;self.live_samples=[];self.select(record['selected']);self.describe_record(path);self.plot();self.update_controls()
         self.action(run)
@@ -316,8 +330,17 @@ class App:
     def describe_record(self,path):
         r=self.record; samples=r['samples'];seconds=samples[-1]['t']-samples[0]['t'] if len(samples)>1 else 0
         prefix='模拟' if r['source']=='simulation' else '实测'
-        self.take_info.set(f'{prefix} · {len(samples)} 帧 / {seconds:.1f}s / {r.get("measured_hz",0):.1f}Hz'+(' · 不完整' if not r['complete'] else ''))
+        if r.get('schema')==MOTION_SCHEMA:
+            prefix='编辑动作（'+('模拟素材' if r['source']=='simulation' else '实测素材')+'）'
+        rate='' if r.get('schema')==MOTION_SCHEMA else f' / {r.get("measured_hz",0):.1f}Hz'
+        self.take_info.set(f'{prefix} · {len(samples)} 帧 / {seconds:.1f}s'+rate+(' · 不完整' if not r['complete'] else ''))
         if path:self.status.set('轨迹已保存：'+str(path))
+
+    def open_editor(self):
+        if self.editor:
+            self.editor.window.lift(); return
+        from .editor_gui import EditorWindow
+        self.editor = EditorWindow(self, ROOT/'logs/bus_servo/edits')
 
     def configure(self):
         if self.connected:return
@@ -377,14 +400,16 @@ class App:
         state(self.move_button,self.connected and not self.busy and not self.playing and (not self.recording or self.record_mode.get()=='控制动作录制'))
         state(self.release_button,idle);state(self.record_button,idle)
         state(self.end_button,self.recording and not self.busy)
-        state(self.drag_button,self.connected and not self.busy and self.mode.get()=='离线模拟' and self.recording)
+        state(self.drag_button,self.connected and not self.busy and not self.playing and self.mode.get()=='离线模拟')
         for b in [self.prepare_button,self.play_button]:state(b,idle and self.record is not None and self.record.get('complete') is True)
         state(self.save_button,self.record is not None and not self.recording)
         state(self.load_button,not self.recording and not self.playing and not self.busy)
+        state(self.editor_button,not self.recording and not self.playing and not self.busy)
         # Controlled recording keeps its initial acquisition set. The operator
         # may independently select a smaller/different group to send targets to.
         can_select=not self.playing and not self.busy and (not self.recording or self.record_mode.get()=='控制动作录制')
         for b in self.checks+self.selection_buttons:state(b,can_select)
+        if self.editor: self.editor.sync_controls()
 
     def receive(self):
         try:
@@ -400,6 +425,12 @@ class App:
                 elif kind=='feedback':
                     for n,text in self.feedback.items():
                         text.set(f'{self.profile.axes[n].degrees(value[n]["p"]):.2f}°' if n in value else '未采样')
+                elif kind=='pose':
+                    if self.editor: self.editor.accept_pose(value)
+                elif kind=='capture_error':
+                    if self.editor:
+                        self.editor.cancel_capture(); self.editor.status.set('姿势未录入：'+value)
+                    self.status.set('姿势未录入：'+value)
                 elif kind=='recording':
                     self.recording=True
                     prefix='正在录制模拟反馈。' if self.mode.get()=='离线模拟' else '正在录制实际反馈。'
@@ -408,12 +439,15 @@ class App:
                     self.live_samples.append(value);self.take_info.set(f'录制中 · {len(self.live_samples)} 帧 / {value["t"]:.1f}s');self.plot()
                 elif kind=='record':self.record,path=value;self.describe_record(path);self.plot()
                 elif kind=='playing':self.playing=True;self.status.set('正在回放所选轴，Esc停止。')
-                elif kind=='idle':self.busy=self.recording=self.playing=False;self.plot()
+                elif kind=='idle':
+                    self.busy=self.recording=self.playing=False;self.plot()
+                    if self.editor: self.editor.cancel_capture()
                 elif kind=='command_done':self.busy=False
                 elif kind=='message':self.status.set(value)
                 elif kind=='stopped':self.status.set('已发出卸力请求；实物总线广播没有逐轴确认，不代表已切断电源。')
                 elif kind=='error':
                     self.connected=self.busy=self.recording=self.playing=False
+                    if self.editor: self.editor.cancel_capture()
                     for text in self.feedback.values():text.set('反馈失效')
                     self.status.set('已中止并断开：'+value+' 实物停止状态未获独立确认，请检查。')
                     self.plot()
@@ -423,6 +457,13 @@ class App:
 
     def close(self):
         if self.closing:return
+        if self.editor:
+            try:
+                self.editor.autosave()
+            except Exception as exc:
+                self.stop_flag.set()
+                messagebox.showerror('编辑草稿尚未保存', str(exc), parent=self.root)
+                return
         self.closing=True;self.status.set('正在停止并保存未完成记录…')
         self.commands.put(('shutdown',None));self.stop_flag.set()
 
@@ -433,6 +474,7 @@ def main():
     parser.add_argument('--smoke-test',action='store_true')
     args=parser.parse_args();root=tk.Tk();app=App(root,args.profile)
     if args.smoke_test:
+        app.open_editor()
         root.after(300,app.close)
     root.mainloop()
 

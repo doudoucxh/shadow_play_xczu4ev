@@ -9,6 +9,7 @@ from pathlib import Path
 from .protocol import integer
 
 SCHEMA = 'shadow.bus-teach.v1'
+MOTION_SCHEMA = 'shadow.bus-motion.v1'
 
 
 def finite(value, low, high, label):
@@ -102,16 +103,21 @@ def new_recording(profile, numbers, simulation, rate):
 
 
 def validate_recording(record, profile, live=False):
-    if not isinstance(record, dict) or record.get('schema') != SCHEMA:
+    if not isinstance(record, dict) or record.get('schema') not in (SCHEMA, MOTION_SCHEMA):
         raise ValueError('Not a bus-servo feedback recording')
     if record.get('profile_sha256') != profile.fingerprint:
         raise ValueError('Recording wiring/IDs/calibration differ from current profile')
-    if record.get('source') not in ('servo_feedback', 'simulation'):
+    planned = record['schema'] == MOTION_SCHEMA
+    sources = ('edited_feedback', 'simulation') if planned else ('servo_feedback', 'simulation')
+    if record.get('source') not in sources:
         raise ValueError('Unknown feedback source')
-    if live and record['source'] != 'servo_feedback':
+    if live and record['source'] == 'simulation':
         raise ValueError('Simulation recordings cannot drive hardware')
     if record.get('complete') is not True:
         raise ValueError('Recording is incomplete; inspect/re-record before playback')
+    if planned:
+        from .editing import verify_compiled
+        verify_compiled(record, profile)
     axes = profile.select(record['selected'])
     samples = record['samples']
     if not isinstance(samples, list) or not 2 <= len(samples) <= 100000:
@@ -124,11 +130,12 @@ def validate_recording(record, profile, live=False):
         prev = t
         if set(sample['positions']) != {str(a.number) for a in axes}:
             raise ValueError('Sample has missing or extra axes')
-        if set(sample['axis_t']) != set(sample['positions']):
+        if not planned and set(sample['axis_t']) != set(sample['positions']):
             raise ValueError('Missing per-axis acquisition timestamps')
         for axis in axes:
             axis.check_position(sample['positions'][str(axis.number)])
-            finite(sample['axis_t'][str(axis.number)], max(0, t - .5), t + .001, 'Acquisition time')
+            if not planned:
+                finite(sample['axis_t'][str(axis.number)], max(0, t - .5), t + .001, 'Acquisition time')
     if samples[0]['t'] > .5 or samples[-1]['t'] <= samples[0]['t']:
         raise ValueError('Invalid recording time origin')
     return record

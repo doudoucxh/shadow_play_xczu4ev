@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-24",
+  "base_commit": "315ca85",
+  "scope": "PC stepwise teaching and non-destructive trajectory editing",
+  "schemas": {
+    "project": "shadow.bus-edit.v1",
+    "captured_pose": "shadow.bus-pose.v1",
+    "planned_motion": "shadow.bus-motion.v1",
+    "original_recording": "shadow.bus-teach.v1"
+  },
+  "tests": {
+    "existing": 22,
+    "new": 19,
+    "total_passed": 41,
+    "python_3_10_syntax": "passed",
+    "gui_startup": "main and editor passed before final layout refinements",
+    "full_visual_review": "not completed; computer use stopped by user Escape"
+  },
+  "sources_sha256": {
+    "shadow_play/bus_servo/editing.py": "953af04a8f680f6f664af2a2d75968d0d80fa540e7ee7152330ca0fbf54924ec",
+    "shadow_play/bus_servo/editor_gui.py": "5c4aa475195268b467e22269f8d708f1a81a554786e9dd544e81e2759ba9bb51",
+    "shadow_play/bus_servo/gui.py": "eb6f083cd4a9fc43f29b519d224ef5e303f6b681fa189d0182575dc6e8495ec2",
+    "shadow_play/bus_servo/model.py": "741217a4d9c4f5056f38dd2e8a766a8e4579fdc743f31305bba7c2c200f7ca89",
+    "shadow_play/bus_servo/session.py": "2865fc93fa86f59c61841b50a6ad628baa620778f72dcdd562dd8dc20a2916aa",
+    "shadow_play/tests/test_bus_servo_editing.py": "c21b863d29edd1edc82b9e5e5f0f8e2f8003ab9c0d6da0615f23ef4622d05f05"
+  },
+  "simulation_example": {
+    "path": "shadow_play/examples/bus_servo_editing/simulation.project.json",
+    "sha256": "06f68b53bfaa998bdf27ddbcf073785a9836a670cb2453f4caf0183fbe074abe",
+    "segments": 4,
+    "planned_seconds": 10.0,
+    "live_playback_rejected": true
+  },
+  "hardware": {
+    "serial_ports_opened": [],
+    "physical_motion_commands_sent": 0,
+    "fpga_rebuilt": false,
+    "fpga_loaded": false,
+    "image_sha256_unchanged": "f1eb0f20063d57e9547f055ef15417fd621e2b6c8021f4b49c9355f3d7a30294",
+    "readiness_flags_changed": false,
+    "board_rpc_compatible": true
+  },
+  "retention": {
+    "source_recordings_overwritten": false,
+    "undo_steps": 30,
+    "drafts": "shadow_play/logs/bus_servo/edits/edit_*.project.json"
+  }
+}

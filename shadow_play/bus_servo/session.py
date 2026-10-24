@@ -41,6 +41,16 @@ class TeachingSession:
         targets = {str(a.number): a.position(angles[str(a.number)]) for a in axes}
         return self.move(targets, duration_ms)
 
+    def capture_pose(self, numbers):
+        if self.recording or self.playing:
+            raise RuntimeError('请先结束连续录制/回放，再逐步录入姿势。')
+        from .editing import PoseCaptureError, capture_pose
+        rows = self.read(numbers)
+        try:
+            return capture_pose(self.profile, numbers, rows, self.device.simulation)
+        except ValueError as exc:
+            raise PoseCaptureError(str(exc)) from exc
+
     def move(self, targets, duration_ms):
         from .protocol import integer
         integer(duration_ms, 20, 9999, 'Duration')
