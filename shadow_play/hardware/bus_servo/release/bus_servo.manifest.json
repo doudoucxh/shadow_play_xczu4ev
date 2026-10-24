@@ -1,0 +1,42 @@
+{
+  "schema": "shadow.bus-image.v1",
+  "identity": "BS10",
+  "checks": "passed",
+  "register_base": 2684747776,
+  "pins": {
+    "person": "E14",
+    "tiger": "E15"
+  },
+  "clock_hz": 100000000,
+  "baudrate": 115200,
+  "legacy_pwm_connected": false,
+  "physical_hardware_tested": false,
+  "sha256": "f1eb0f20063d57e9547f055ef15417fd621e2b6c8021f4b49c9355f3d7a30294",
+  "wns_ns": 0.819,
+  "whs_ns": 0.009,
+  "wpws_ns": 0.063,
+  "part": "xczu4ev-sfvc784-2-i",
+  "watchdog_seconds": 1,
+  "watchdog_action": "one broadcast PULK per bus; actual servo response unverified",
+  "preserved_io_count": 172,
+  "baseline_io_report_sha256": "bd8f9a720df317a6ba6eb4f66ed9d5275f91ac1e9caae81a7f905ebc04083645",
+  "reports": {
+    "timing.rpt": "1e6a50f20bf7b41cd9de48f14f10fde46242e808f4effc924a5cf03fcf8b3cdc",
+    "drc.rpt": "464dbe7c954acdb9667fb0add0ea51bc3bd04722c4b43eaf27927e6bf956f713",
+    "route.rpt": "4554be8390e068d699517745f95e70b5fc7cec43a30ba1d73444dfb509ed4268",
+    "bus_skew.rpt": "a23723db35a24e2fe4b70d548a15bac5570b3bd9735a98cfdaa7694f17bc1974",
+    "io.rpt": "7a4d807a912a396b9c72985a45f2f0f8f2080a8c5d9fadf8c243ec4d9128579e"
+  },
+  "sources": {
+    "shadow_play/hardware/bus_servo/baseline_rail_io.json": "9b75e07138a92e4ede319dff1d39dcf22300f48161c82aa7d3e1d4758c43bbd9",
+    "shadow_play/hardware/bus_servo/base_dual_rail_design.tcl": "0e5813898ec97f9951d7748bf9d99a260a915d3f3e83482016743773aa3417ba",
+    "shadow_play/hardware/bus_servo/build_project.tcl": "0b2bf61e9b45b28189c7fc5b3d95b522d0b64cd465e64b58065cddbd5d77142f",
+    "shadow_play/hardware/bus_servo/bus_servo_axi.v": "cf577510e885eba5b445366f3c6bf17ff3c931de50ff0dc988001c8a4071c19e",
+    "shadow_play/hardware/bus_servo/bus_servo_pins.xdc": "3fd34d53f10feb8b60bc1407e1e236bbfa0913a020d5fd2c043444a446d8f344",
+    "shadow_play/hardware/bus_servo/create_project.tcl": "0bbf74359a70e35c8e4933dd56c0202d199e0a5a8db0f62d4104b743dbb9ccb3",
+    "shadow_play/hardware/bus_servo/finish_project.tcl": "df7f612eb93b193c99e4b53489de9f0000a68de16939bb453796084340856adb",
+    "shadow_play/hardware/bus_servo/simulate.tcl": "258a752505db9b944546a4c488be7d9c7f132eb0f03369db3b35b5c8012804a5",
+    "shadow_play/hardware/bus_servo/single_wire_uart.v": "d679323701a570645bc4198b0bf189ec5df3479130ac0b78b68d177f9ace4508",
+    "shadow_play/hardware/bus_servo/tb_bus_servo_axi.v": "d8276df6281bc406097edd87862f3839bd3c12a68571702b912ff165fa6b85df"
+  }
+}

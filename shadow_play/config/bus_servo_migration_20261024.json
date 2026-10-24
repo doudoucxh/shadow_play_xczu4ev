@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-24",
+  "scope": "offline bus-servo migration and PC teaching application",
+  "user_report": {
+    "version": "15kg single-axis",
+    "installed": false,
+    "level_converter_available": false
+  },
+  "mapping": {
+    "person": {
+      "axes": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "pin": "E14",
+      "original_header": 9
+    },
+    "tiger": {
+      "axes": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "pin": "E15",
+      "original_header": 10
+    }
+  },
+  "candidate_model": "ZX15S / 270 degrees, pending physical label and feedback checks",
+  "image": {
+    "path": "shadow_play/hardware/bus_servo/release/bus_servo.bit.bin",
+    "sha256": "f1eb0f20063d57e9547f055ef15417fd621e2b6c8021f4b49c9355f3d7a30294",
+    "manifest_sha256": "e9217350726fc0b2c9531ba3254624f8f2f1cbd9bf973d616051d15268db82aa",
+    "bytes": 7797692
+  },
+  "validation": {
+    "python_tests_passed": 22,
+    "rtl_simulation": "passed",
+    "vivado_build": "passed",
+    "wns_ns": 0.819,
+    "whs_ns": 0.009,
+    "wpws_ns": 0.063,
+    "timing_failing_endpoints": 0,
+    "routable_nets": 194374,
+    "fully_routed_nets": 194374,
+    "routing_errors": 0,
+    "drc_errors": 0,
+    "drc_critical_warnings": 0,
+    "drc_report_warning_count": 586,
+    "preserved_io_count": 172,
+    "gui_startup_smoke": "passed before final layout edits",
+    "final_gui_visual_review": "not completed; user stopped computer-use automation"
+  },
+  "bundle": {
+    "directory": ".review_work/bus_servo_bundle_20261024",
+    "archive": ".review_work/bus_servo_bundle_20261024.tar.gz",
+    "archive_sha256": "2788a1ef24397e6400366ea9520d34f7cc84ca0125537c105982f773cc82f8cf",
+    "manifest_sha256": "0c5a6489fe4131170ca3c2821a8e8ab3c4c56abba9b4550f264c0d085f40f7fa",
+    "verified_files": 19,
+    "installed_on_board": false
+  },
+  "evidence": {
+    "build_log_sha256": "f30dba00e65360b2e28a70597e5716cedd3221fb881910af9970f4124063adf0",
+    "simulation_log_sha256": "4cbd94f709394e9a652677206de3c8b8315d9a0e79799f849713d9430514255b",
+    "reports": {
+      "timing.rpt": "1e6a50f20bf7b41cd9de48f14f10fde46242e808f4effc924a5cf03fcf8b3cdc",
+      "drc.rpt": "464dbe7c954acdb9667fb0add0ea51bc3bd04722c4b43eaf27927e6bf956f713",
+      "route.rpt": "4554be8390e068d699517745f95e70b5fc7cec43a30ba1d73444dfb509ed4268",
+      "bus_skew.rpt": "a23723db35a24e2fe4b70d548a15bac5570b3bd9735a98cfdaa7694f17bc1974",
+      "io.rpt": "7a4d807a912a396b9c72985a45f2f0f8f2080a8c5d9fadf8c243ec4d9128579e"
+    }
+  },
+  "vendor_sources": {
+    "gimbal_manual_pdf_sha256": "6dbad8f3daec20e9536ce501d3f633fc8d33bb9057b478a731ae8a988a110fef",
+    "Servo.C_protocol_pdf_sha256": "c57578dc1d0b91af0fab2945522c4a4c60b8db54cffe861af5cb3bf6fbf9672a"
+  },
+  "physical_operations": {
+    "serial_ports_opened": [],
+    "commands_sent": 0,
+    "fpga_loaded": false,
+    "boot_files_changed": false,
+    "incident_locks_removed": false,
+    "actual_axis_positions": "not observed",
+    "actuator_power": "not read this session"
+  },
+  "pending": [
+    "Verify both directions of 3.3V electrical compatibility",
+    "Assign and verify unique physical IDs before joining each bus",
+    "Verify actual model, span, feedback and mechanism limits",
+    "Commission the isolated candidate with current power-off and boot/OFF evidence",
+    "Record and replay the real first performance section; verify artistic result"
+  ]
+}

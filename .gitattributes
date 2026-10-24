@@ -3,6 +3,8 @@
 *.sh text eol=lf
 shadow_play/boot_ui/*.service text eol=lf
 *.tcl text eol=lf
+# Keep the frozen Vivado export exact, including its generated escaped spaces.
+shadow_play/hardware/bus_servo/base_dual_rail_design.tcl whitespace=-blank-at-eol,-blank-at-eof
 *.v text eol=lf
 *.xdc text eol=lf
 *.dts text eol=lf

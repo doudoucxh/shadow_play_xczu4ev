@@ -1,0 +1,916 @@
+{
+  "source": "verified dual-rail candidate 2026-10-19",
+  "report_sha256": "bd8f9a720df317a6ba6eb4f66ed9d5275f91ac1e9caae81a7f905ebc04083645",
+  "ports": {
+    "cam_rst_n": [
+      "A10",
+      "OUTPUT",
+      "LVCMOS33"
+    ],
+    "cam_data[4]": [
+      "A11",
+      "INPUT",
+      "LVCMOS33"
+    ],
+    "cam_data[6]": [
+      "A12",
+      "INPUT",
+      "LVCMOS33"
+    ],
+    "cam_data[7]": [
+      "A14",
+      "INPUT",
+      "LVCMOS33"
+    ],
+    "cam_pclk": [
+      "A15",
+      "INPUT",
+      "LVCMOS33"
+    ],
+    "DDR4_A8": [
+      "AA22",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_A7": [
+      "AA23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_A10": [
+      "AA25",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_A11": [
+      "AA26",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_A5": [
+      "AA27",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_A3": [
+      "AA28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_A9": [
+      "AB23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_A14": [
+      "AB24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_A12": [
+      "AB25",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_A13": [
+      "AB26",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_A2": [
+      "AB28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_A15": [
+      "AC24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ16": [
+      "AC26",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ28": [
+      "AC27",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ31": [
+      "AC28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ2": [
+      "AD20",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ0": [
+      "AD21",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ11": [
+      "AD22",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ19": [
+      "AD24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ18": [
+      "AD25",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ17": [
+      "AD26",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ29": [
+      "AD27",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ30": [
+      "AD28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ1": [
+      "AE20",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ10": [
+      "AE22",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DM1": [
+      "AE23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ14": [
+      "AE24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DM2": [
+      "AE25",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQS_P3": [
+      "AE27",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DM3": [
+      "AE28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ3": [
+      "AF20",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQS_P0": [
+      "AF21",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ8": [
+      "AF22",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQS_P1": [
+      "AF23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQS_P2": [
+      "AF25",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQS_N2": [
+      "AF26",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQS_N3": [
+      "AF27",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ26": [
+      "AF28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ7": [
+      "AG19",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DM0": [
+      "AG20",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQS_N0": [
+      "AG21",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQS_N1": [
+      "AG23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ15": [
+      "AG24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ23": [
+      "AG25",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ20": [
+      "AG26",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ27": [
+      "AG28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ6": [
+      "AH19",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ5": [
+      "AH20",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ4": [
+      "AH21",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ9": [
+      "AH22",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ12": [
+      "AH23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ13": [
+      "AH24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ21": [
+      "AH25",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ22": [
+      "AH26",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ24": [
+      "AH27",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ25": [
+      "AH28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "cam_data[0]": [
+      "B10",
+      "INPUT",
+      "LVCMOS33"
+    ],
+    "cam_data[1]": [
+      "B11",
+      "INPUT",
+      "LVCMOS33"
+    ],
+    "cam_flash[0]": [
+      "B14",
+      "OUTPUT",
+      "LVCMOS33"
+    ],
+    "cam_pwdn": [
+      "B15",
+      "OUTPUT",
+      "LVCMOS33"
+    ],
+    "cam_data[2]": [
+      "C11",
+      "INPUT",
+      "LVCMOS33"
+    ],
+    "cam_data[3]": [
+      "C12",
+      "INPUT",
+      "LVCMOS33"
+    ],
+    "tmds_clk_n": [
+      "D1",
+      "OUTPUT",
+      "LVDS"
+    ],
+    "cam_scl": [
+      "D10",
+      "BIDIR",
+      "LVCMOS33"
+    ],
+    "cam_vsync": [
+      "D11",
+      "INPUT",
+      "LVCMOS33"
+    ],
+    "cam_data[5]": [
+      "D12",
+      "INPUT",
+      "LVCMOS33"
+    ],
+    "servo_pwm[0]": [
+      "D14",
+      "OUTPUT",
+      "LVCMOS33"
+    ],
+    "servo_pwm[1]": [
+      "D15",
+      "OUTPUT",
+      "LVCMOS33"
+    ],
+    "tmds_clk_p": [
+      "E1",
+      "OUTPUT",
+      "LVDS"
+    ],
+    "tmds_data_n[1]": [
+      "E2",
+      "OUTPUT",
+      "LVDS"
+    ],
+    "cam_sda": [
+      "E10",
+      "BIDIR",
+      "LVCMOS33"
+    ],
+    "cam_href": [
+      "E12",
+      "INPUT",
+      "LVCMOS33"
+    ],
+    "servo_pwm[7]": [
+      "E13",
+      "OUTPUT",
+      "LVCMOS33"
+    ],
+    "servo_pwm[8]": [
+      "E14",
+      "OUTPUT",
+      "LVCMOS33"
+    ],
+    "servo_pwm[9]": [
+      "E15",
+      "OUTPUT",
+      "LVCMOS33"
+    ],
+    "tmds_data_n[0]": [
+      "F1",
+      "OUTPUT",
+      "LVDS"
+    ],
+    "tmds_data_p[1]": [
+      "F2",
+      "OUTPUT",
+      "LVDS"
+    ],
+    "tmds_data_n[2]": [
+      "F3",
+      "OUTPUT",
+      "LVDS"
+    ],
+    "servo_pwm[2]": [
+      "F13",
+      "OUTPUT",
+      "LVCMOS33"
+    ],
+    "person_uart_tx": [
+      "F15",
+      "OUTPUT",
+      "LVCMOS33"
+    ],
+    "tmds_data_p[0]": [
+      "G1",
+      "OUTPUT",
+      "LVDS"
+    ],
+    "tmds_data_p[2]": [
+      "G3",
+      "OUTPUT",
+      "LVDS"
+    ],
+    "servo_pwm[3]": [
+      "G13",
+      "OUTPUT",
+      "LVCMOS33"
+    ],
+    "servo_pwm[4]": [
+      "G14",
+      "OUTPUT",
+      "LVCMOS33"
+    ],
+    "servo_pwm[5]": [
+      "G15",
+      "OUTPUT",
+      "LVCMOS33"
+    ],
+    "DDR4_DQ61": [
+      "G25",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ60": [
+      "G26",
+      "PSS IO",
+      "DDR4"
+    ],
+    "person_uart_rx": [
+      "H13",
+      "INPUT",
+      "LVCMOS33"
+    ],
+    "tiger_uart_tx": [
+      "H14",
+      "OUTPUT",
+      "LVCMOS33"
+    ],
+    "SD1_SDIO1_DATA_OUT[1]": [
+      "H21",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "DDR4_DQ45": [
+      "H22",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DM5": [
+      "H23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ40": [
+      "H24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DM7": [
+      "H26",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ59": [
+      "H27",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ58": [
+      "H28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "servo_pwm[6]": [
+      "J14",
+      "OUTPUT",
+      "LVCMOS33"
+    ],
+    "SD1_SDIO1_DATA_OUT[2]": [
+      "J21",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "DDR4_DQ44": [
+      "J22",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ41": [
+      "J24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ63": [
+      "J25",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQS_P7": [
+      "J26",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQS_N7": [
+      "J27",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ56": [
+      "J28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "UART0_TXD": [
+      "K19",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "SD1_SDIO1_CD_N": [
+      "K20",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "DDR4_DQ46": [
+      "K22",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQS_N5": [
+      "K23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ43": [
+      "K24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ62": [
+      "K25",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ57": [
+      "K27",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ52": [
+      "K28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "tiger_uart_rx": [
+      "L13",
+      "INPUT",
+      "LVCMOS33"
+    ],
+    "UART0_RXD": [
+      "L18",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "SD1_SDIO1_DATA_OUT[0]": [
+      "L20",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "SD1_SDIO1_CLK_OUT": [
+      "L21",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "DDR4_DQ47": [
+      "L22",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQS_P5": [
+      "L23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ50": [
+      "L25",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ51": [
+      "L26",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DM6": [
+      "L27",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ53": [
+      "L28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "SD1_SDIO1_DATA_OUT[3]": [
+      "M18",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "SD1_SDIO1_CMD_OUT": [
+      "M19",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "PS_ERROR_STATUS": [
+      "M20",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "PS_DONE": [
+      "M21",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "DDR4_DQS_N4": [
+      "M23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ42": [
+      "M24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ48": [
+      "M25",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ49": [
+      "M26",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ54": [
+      "M28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "PS_PADI": [
+      "N17",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "PS_PADO": [
+      "N18",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "PS_SRST_B": [
+      "N19",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "PS_JTAG_TMS": [
+      "N21",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "DDR4_DQ35": [
+      "N22",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQS_P4": [
+      "N23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ39": [
+      "N24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQS_P6": [
+      "N26",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQS_N6": [
+      "N27",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ55": [
+      "N28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "PS_POR_B": [
+      "P16",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "PS_ERROR_OUT": [
+      "P17",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "PS_MODE0": [
+      "P19",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "PS_MODE1": [
+      "P20",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "PS_INIT_B": [
+      "P21",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "DDR4_DQ34": [
+      "P22",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ37": [
+      "P24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "PS_REF_CLK": [
+      "R16",
+      "PSS Clock",
+      "LVCMOS18"
+    ],
+    "PS_PROG_B": [
+      "R17",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "PS_JTAG_TDI": [
+      "R18",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "PS_JTAG_TCK": [
+      "R19",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "PS_MODE2": [
+      "R20",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "DDR4_DQ33": [
+      "R22",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DM4": [
+      "R23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ38": [
+      "R24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "PS_MODE3": [
+      "T20",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "PS_JTAG_TDO": [
+      "T21",
+      "PSS IO",
+      "LVCMOS33"
+    ],
+    "DDR4_DQ32": [
+      "T22",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_DQ36": [
+      "T23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_RAM_RST_N": [
+      "U23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_ZQ": [
+      "U24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_ALERT_N": [
+      "U25",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_ODT0": [
+      "U28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_BA0": [
+      "V23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_PARITY": [
+      "V24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_CKE0": [
+      "V28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_BA1": [
+      "W22",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_BG0": [
+      "W24",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_CK0": [
+      "W25",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_CK_N0": [
+      "W26",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_CS_N0": [
+      "W27",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_A0": [
+      "W28",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_A6": [
+      "Y22",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_ACT_N": [
+      "Y23",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_A4": [
+      "Y27",
+      "PSS IO",
+      "DDR4"
+    ],
+    "DDR4_A1": [
+      "Y28",
+      "PSS IO",
+      "DDR4"
+    ]
+  }
+}

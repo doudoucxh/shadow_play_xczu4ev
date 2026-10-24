@@ -1,0 +1,115 @@
+{
+  "schema": "shadow.bus-profile.v1",
+  "model": "ZX15S (15kg single-axis, user 2026-10-24; pending device readback)",
+  "baudrate": 115200,
+  "pins": {
+    "person": "E14",
+    "tiger": "E15"
+  },
+  "hardware_verified": false,
+  "electrical_3v3_verified": false,
+  "mechanical_limits_verified": false,
+  "notes": "Candidate 270-degree conversion. Configure one physical servo at a time before joining the bus. Limits below are software candidates, not measured safe mechanism limits. Old PWM poses are not migrated.",
+  "axes": [
+    {
+      "number": 1,
+      "bus": "person",
+      "id": 1,
+      "label": "武松左手 / 1",
+      "span_deg": 270,
+      "min_deg": 10,
+      "max_deg": 260,
+      "max_speed_deg_s": 30
+    },
+    {
+      "number": 2,
+      "bus": "person",
+      "id": 2,
+      "label": "武松左手 / 2",
+      "span_deg": 270,
+      "min_deg": 10,
+      "max_deg": 260,
+      "max_speed_deg_s": 30
+    },
+    {
+      "number": 3,
+      "bus": "person",
+      "id": 3,
+      "label": "武松头部 / 3",
+      "span_deg": 270,
+      "min_deg": 10,
+      "max_deg": 260,
+      "max_speed_deg_s": 30
+    },
+    {
+      "number": 4,
+      "bus": "person",
+      "id": 4,
+      "label": "武松头部 / 4",
+      "span_deg": 270,
+      "min_deg": 10,
+      "max_deg": 260,
+      "max_speed_deg_s": 30
+    },
+    {
+      "number": 5,
+      "bus": "person",
+      "id": 5,
+      "label": "武松右手 / 5",
+      "span_deg": 270,
+      "min_deg": 10,
+      "max_deg": 260,
+      "max_speed_deg_s": 30
+    },
+    {
+      "number": 6,
+      "bus": "person",
+      "id": 6,
+      "label": "武松右手 / 6",
+      "span_deg": 270,
+      "min_deg": 10,
+      "max_deg": 260,
+      "max_speed_deg_s": 30
+    },
+    {
+      "number": 7,
+      "bus": "tiger",
+      "id": 7,
+      "label": "老虎头 / 7",
+      "span_deg": 270,
+      "min_deg": 10,
+      "max_deg": 260,
+      "max_speed_deg_s": 30
+    },
+    {
+      "number": 8,
+      "bus": "tiger",
+      "id": 8,
+      "label": "老虎头 / 8",
+      "span_deg": 270,
+      "min_deg": 10,
+      "max_deg": 260,
+      "max_speed_deg_s": 30
+    },
+    {
+      "number": 9,
+      "bus": "tiger",
+      "id": 9,
+      "label": "老虎脚 / 9",
+      "span_deg": 270,
+      "min_deg": 10,
+      "max_deg": 260,
+      "max_speed_deg_s": 30
+    },
+    {
+      "number": 10,
+      "bus": "tiger",
+      "id": 10,
+      "label": "老虎脚 / 10",
+      "span_deg": 270,
+      "min_deg": 10,
+      "max_deg": 260,
+      "max_speed_deg_s": 30
+    }
+  ]
+}
