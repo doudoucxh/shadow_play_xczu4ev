@@ -7,6 +7,7 @@ import math
 from pathlib import Path
 
 from .protocol import integer
+from .layouts import get_layout
 
 SCHEMA = 'shadow.bus-teach.v1'
 MOTION_SCHEMA = 'shadow.bus-motion.v1'
@@ -50,12 +51,14 @@ class Profile:
         self.data = data
         if data.get('schema') != 'shadow.bus-profile.v1':
             raise ValueError('Wrong bus profile schema')
+        self.layout = get_layout(data.get('layout', 'dual'))
+        expected = dict(self.layout.axis_buses)
         self.axes = {}
         for row in data['axes']:
             n = integer(row['number'], 1, 10, 'Axis number')
-            bus = 'person' if n <= 6 else 'tiger'
+            bus = expected.get(n)
             if row['bus'] != bus or n in self.axes:
-                raise ValueError('Expected person 1–6 and tiger 7–10, once each')
+                raise ValueError('Axis / bus mapping does not match the selected wiring layout')
             ident = integer(row['id'], 0, 253, 'Bus ID')
             span = row['span_deg']
             if type(span) is not int or span not in (180, 270, 360):
@@ -66,14 +69,14 @@ class Profile:
                 raise ValueError('Angle range too narrow')
             speed = finite(row['max_speed_deg_s'], 1, 180, 'Maximum speed')
             self.axes[n] = Axis(n, bus, ident, str(row['label']), span, lo, hi, speed)
-        if set(self.axes) != set(range(1, 11)):
-            raise ValueError('Exactly ten axes required')
-        for bus in ('person', 'tiger'):
+        if set(self.axes) != set(expected):
+            raise ValueError('Profile must contain exactly the axes in its wiring layout')
+        for bus in self.layout.pins:
             ids = [a.ident for a in self.axes.values() if a.bus == bus]
             if len(set(ids)) != len(ids):
                 raise ValueError(f'Duplicate IDs on {bus}')
-        if data.get('pins') != {'person': 'E14', 'tiger': 'E15'}:
-            raise ValueError('Expected original servo 9 E14 / servo 10 E15')
+        if data.get('pins') != self.layout.pins:
+            raise ValueError('Package pins do not match the selected wiring layout')
         if data.get('baudrate') != 115200:
             raise ValueError('This FPGA build supports 115200 baud')
 
@@ -84,12 +87,18 @@ class Profile:
     @property
     def fingerprint(self):
         fields = {k: self.data[k] for k in ('axes', 'pins', 'baudrate')}
+        # Preserve the original dual-bus fingerprint and its saved recordings.
+        if self.layout.name != 'dual':
+            fields['layout'] = self.layout.name
         return hashlib.sha256(json.dumps(fields, sort_keys=True, ensure_ascii=True).encode()).hexdigest()
 
     def select(self, numbers):
         if not isinstance(numbers, list) or not numbers or len(numbers) != len(set(numbers)):
             raise ValueError('Select one or more distinct axes')
-        return [self.axes[integer(n, 1, 10, 'Axis')] for n in numbers]
+        checked = [integer(n, 1, 10, 'Axis') for n in numbers]
+        if any(n not in self.axes for n in checked):
+            raise ValueError('Selected axis is absent from this wiring layout')
+        return [self.axes[n] for n in checked]
 
 
 def new_recording(profile, numbers, simulation, rate):

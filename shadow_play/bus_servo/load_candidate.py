@@ -9,7 +9,7 @@ from pathlib import Path
 import subprocess
 import time
 
-from .device import BASE, IDENTITY
+from .layouts import BASE, manifest_layout
 
 
 def digest(path):
@@ -17,14 +17,12 @@ def digest(path):
 
 
 def verify(image, manifest):
-    if (manifest.get('identity') != 'BS10' or manifest.get('register_base') != BASE
-            or manifest.get('checks') != 'passed' or manifest.get('sha256') != digest(image)
-            or manifest.get('pins') != {'person': 'E14', 'tiger': 'E15'}
-            or manifest.get('clock_hz') != 100000000 or manifest.get('baudrate') != 115200
-            or manifest.get('legacy_pwm_connected') is not False
+    layout = manifest_layout(manifest)
+    if (manifest.get('sha256') != digest(image)
             or any(type(manifest.get(k)) not in (int,float) or not math.isfinite(manifest[k]) or manifest[k]<0
                    for k in ('wns_ns','whs_ns','wpws_ns'))):
         raise ValueError('Candidate checks/identity/image hash mismatch')
+    return layout
 
 
 def main():
@@ -38,7 +36,7 @@ def main():
     parser.add_argument('--expected-off-sequence',type=int)
     args=parser.parse_args()
     manifest=json.loads(args.manifest.read_text(encoding='utf-8'))
-    verify(args.image,manifest)
+    layout=verify(args.image,manifest)
     if not args.execute:
         print('BUS_CANDIDATE_OFFLINE_VALIDATED; hardware was not opened')
         return
@@ -67,8 +65,8 @@ def main():
         with mmap.mmap(-1,4096) as scratch:
             words=WordAccess(scratch)
             try:
-                words.write(0,IDENTITY)
-                if words.read(0)!=IDENTITY:raise RuntimeError('Native 32-bit access self-test failed')
+                words.write(0,layout.word)
+                if words.read(0)!=layout.word:raise RuntimeError('Native 32-bit access self-test failed')
             finally:words.close()
         fd=os.open('/dev/mem',os.O_RDWR|os.O_SYNC)
         try:
@@ -105,9 +103,11 @@ def main():
             with mmap.mmap(fd,4096,mmap.MAP_SHARED,mmap.PROT_READ|mmap.PROT_WRITE,offset=BASE) as memory:
                 words=WordAccess(memory)
                 try:
-                    if (words.read(0)!=IDENTITY or words.read(4)!=1 or words.read(8)!=0 or words.read(16)!=0
-                            or words.read(0x100)!=0 or words.read(0x200)!=0):
-                        raise RuntimeError('Unexpected BS10 reset state')
+                    if (words.read(0)!=layout.word or words.read(4)!=1 or words.read(8)!=0 or words.read(16)!=0
+                            or words.read(0x18)!=100000000 or words.read(0x1c)!=115200
+                            or any(words.read(offset)!=0 for offset in layout.offsets.values())
+                            or (layout.name=='tiger-four-port' and words.read(0x24)!=4)):
+                        raise RuntimeError('Unexpected bus candidate reset state')
                 finally:words.close()
         finally:os.close(fd)
         if digest(incident)!=incident_sha or any(digest(boot/name)!=sha for name,sha in boot_hashes.items()):

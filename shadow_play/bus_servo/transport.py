@@ -32,7 +32,9 @@ class RemoteDevice:
                     self.port.write(b'stty -echo\r')
                     time.sleep(.1)
                     self.port.read_all()
-                    self.port.write(b'cd /run/media/mmcblk0p2/piying/bus-servo-v1 && sh start_console.sh; stty echo\r')
+                    # Directory comes from the fixed layout registry, never user shell text.
+                    directory = profile.layout.board_directory
+                    self.port.write(f'cd /run/media/mmcblk0p2/piying/{directory} && sh start_console.sh; stty echo\r'.encode('ascii'))
                     break
                 if re.search(rb'(?:password|login)\s*:\s*$', observed, re.I):
                     raise RuntimeError('请先用串口工具登录板端 root，关闭串口工具后再连接。')

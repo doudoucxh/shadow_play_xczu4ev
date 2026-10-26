@@ -1,4 +1,4 @@
-"""Package a checked BS10 candidate plus the PC/board sources, never deploy."""
+"""Package a checked bus candidate plus the PC/board sources, never deploy."""
 import argparse
 import hashlib
 import json
@@ -7,6 +7,11 @@ import re
 import shutil
 import tarfile
 import xml.etree.ElementTree as ET
+import sys
+
+if __package__ in (None, ''):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from shadow_play.bus_servo.layouts import LAYOUTS, get_layout
 
 
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -22,10 +27,14 @@ def ports(path):
     return result
 
 
-def package(build,release,bundle,root):
-    log=(root/'.review_work/bus_servo_build.log').read_text()
-    sim=(root/'.review_work/bus_servo_sim.log').read_text()
-    if not re.search(r'^BUS_SERVO_CANDIDATE_PASS WNS=',log,re.M) or not re.search(r'^BUS_SERVO_RTL_PASS:',sim,re.M):
+def package(build,release,bundle,root,layout_name='dual'):
+    layout=get_layout(layout_name)
+    tiger=layout_name=='tiger-four-port'
+    stem='bus_servo_tiger' if tiger else 'bus_servo'
+    prefix='TIGER_FOUR' if tiger else 'BUS_SERVO'
+    log=(root/f'.review_work/{stem}_build.log').read_text()
+    sim=(root/f'.review_work/{stem}_sim.log').read_text()
+    if not re.search(rf'^{prefix}_CANDIDATE_PASS WNS=',log,re.M) or not re.search(rf'^{prefix}_RTL_PASS:',sim,re.M):
         raise ValueError('Build and behavioral simulation must both pass')
     lines=(build/'timing.rpt').read_text().splitlines()
     line=next(i for i,s in enumerate(lines) if 'WNS(ns)' in s and 'WPWS(ns)' in s)
@@ -37,21 +46,25 @@ def package(build,release,bundle,root):
     old={name:tuple(values) for name,values in baseline['ports'].items()}
     new=ports(build/'io.rpt')
     removed={f'servo_pwm[{i}]' for i in range(10)}
-    if set(old)-set(new)!=removed or set(new)-set(old)!={'person_servo_bus','tiger_servo_bus'}:
+    physical={name+'_servo_bus':pin for name,pin,_ in layout.buses}
+    if set(old)-set(new)!=removed or set(new)-set(old)!=set(physical):
         raise ValueError('Unexpected physical port additions/removals')
     if any(new[name]!=old[name] for name in set(old)&set(new)):
         raise ValueError('An unrelated camera/HDMI/rail/PS pin changed')
-    for name,pin in [('person_servo_bus','E14'),('tiger_servo_bus','E15')]:
+    for name,pin in physical.items():
         if new[name]!=(pin,'BIDIR','LVCMOS33'):raise ValueError('Wrong bus I/O direction or level')
     handoff=ET.parse(build/'bus_servo/bus_servo.gen/sources_1/bd/system/hw_handoff/system.hwh')
     ranges=[n for n in handoff.iter('MEMRANGE') if n.get('INSTANCE')=='bus_servo_0']
     if not ranges or not any(int(n.get('BASEVALUE','-1'),0)==0xA0060000 for n in ranges):
-        raise ValueError('BS10 address mismatch')
+        raise ValueError('Bus candidate address mismatch')
     image=build/'bus_servo.bit.bin'
     if not image.is_file():raise ValueError('Convert verified .bit with bootgen first')
-    inputs=[p for p in (root/'shadow_play/hardware/bus_servo').iterdir() if p.suffix in ('.v','.tcl','.xdc','.json')]
-    manifest={'schema':'shadow.bus-image.v1','identity':'BS10','checks':'passed','register_base':0xA0060000,
-              'pins':{'person':'E14','tiger':'E15'},'clock_hz':100000000,'baudrate':115200,
+    inputs=[p for p in (root/f'shadow_play/hardware/{stem}').iterdir() if p.suffix in ('.v','.tcl','.xdc','.json')]
+    if tiger:
+        inputs += [root/'shadow_play/hardware/bus_servo'/name for name in
+                   ('single_wire_uart.v','base_dual_rail_design.tcl','baseline_rail_io.json')]
+    manifest={'schema':'shadow.bus-image.v1','identity':layout.identity,'layout':layout.name,'checks':'passed','register_base':0xA0060000,
+              'pins':layout.pins,'clock_hz':100000000,'baudrate':115200,
               'legacy_pwm_connected':False,'physical_hardware_tested':False,'sha256':sha(image),
               'wns_ns':wns,'whs_ns':whs,'wpws_ns':wpws,'part':'xczu4ev-sfvc784-2-i',
               'watchdog_seconds':1,'watchdog_action':'one broadcast PULK per bus; actual servo response unverified',
@@ -65,10 +78,12 @@ def package(build,release,bundle,root):
     bundle.mkdir(parents=True,exist_ok=False)
     for p in release.iterdir():shutil.copy2(p,bundle/p.name)
     source_files=list((root/'shadow_play/bus_servo').glob('*.py'))
-    source_files += [root/'shadow_play/config/bus_servo.json', root/'shadow_play/integrations/calibration/mmio32.py',root/'shadow_play/integrations/calibration/libservo_mmio32.so']
+    profile_name='bus_servo_tiger_four.json' if tiger else 'bus_servo.json'
+    source_files += [root/'shadow_play/config'/profile_name, root/'shadow_play/integrations/calibration/mmio32.py',root/'shadow_play/integrations/calibration/libservo_mmio32.so']
     for p in source_files:
         dest=bundle/p.relative_to(root);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(p,dest)
-    shutil.copy2(root/'shadow_play/bus_servo/start_console.sh',bundle/'start_console.sh')
+    startup='start_tiger_console.sh' if tiger else 'start_console.sh'
+    shutil.copy2(root/'shadow_play/bus_servo'/startup,bundle/'start_console.sh')
     # Preserve the existing HDMI runtime's exact-image gate in an isolated copy.
     source=root/'shadow_play/integrations/follow/usb_hdmi.py'
     old_sha='824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f'
@@ -93,8 +108,9 @@ def main():
     parser.add_argument('--build',required=True,type=Path)
     parser.add_argument('--release',required=True,type=Path)
     parser.add_argument('--bundle',required=True,type=Path)
+    parser.add_argument('--layout',choices=list(LAYOUTS),default='dual')
     args=parser.parse_args()
-    print(json.dumps(package(args.build,args.release,args.bundle,Path(__file__).resolve().parents[2])))
+    print(json.dumps(package(args.build,args.release,args.bundle,Path(__file__).resolve().parents[2],args.layout)))
 
 
 if __name__=='__main__':main()

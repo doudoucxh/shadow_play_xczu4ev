@@ -54,7 +54,7 @@ class Controller:
             duration = integer(payload['duration_ms'], 20, 9999, 'Duration')
             for a in axes:
                 a.check_position(targets[str(a.number)])
-            # Complete validation for BOTH buses before any target is sent.
+            # Validate the whole selected group before sending any target.
             before = self.device.read([a.number for a in axes])
             for a in axes:
                 delta = abs(a.degrees(targets[str(a.number)]) - a.degrees(before[a.number]['p']))
@@ -122,7 +122,8 @@ def main():
         parser.error('--manifest required for hardware')
     if not args.simulate and profile.data.get('electrical_3v3_verified') is not True:
         parser.error('Verify bus electrical compatibility before transmitting even read-only queries')
-    device = SimulationDevice(profile) if args.simulate else BusDevice(profile, Mmio(args.manifest))
+    device = SimulationDevice(profile) if args.simulate else BusDevice(
+        profile, Mmio(args.manifest, expected_layout=profile.layout.name))
     controller = Controller(profile, device, args.allow_motion)
     fd = sys.stdin.fileno()
     previous = None

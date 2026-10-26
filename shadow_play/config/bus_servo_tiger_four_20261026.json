@@ -1,0 +1,130 @@
+{
+  "schema": "shadow.bus-tiger-four-change.v1",
+  "date": "2026-10-26",
+  "scope": "offline software and FPGA candidate; not installed or physically tested",
+  "user_confirmed_wiring": {
+    "signal_lines_independent": true,
+    "person_servos_disconnected": true,
+    "servo_ids": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "original_connectors": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "layout": "tiger-four-port",
+  "pins": {
+    "tiger7": "D14",
+    "tiger8": "D15",
+    "tiger9": "F13",
+    "tiger10": "G13"
+  },
+  "profile": "shadow_play/config/bus_servo_tiger_four.json",
+  "profile_sha256": "3a9d48249f6eaf041c16d5b9f6021863b116da9a5e6e8d523aaae6852efcd034",
+  "launcher": "老虎四舵机临时调试.cmd",
+  "software_checks": {
+    "unittest_passed": 54,
+    "existing_tests": 41,
+    "new_tests": 13,
+    "python_310_syntax_passed": true,
+    "gui_startup_smoke_passed": true,
+    "main_window_labels_visually_checked": true,
+    "computer_use_stopped_by_user_escape": true,
+    "further_ui_automation_performed": false,
+    "complete_gui_click_flow_verified": false,
+    "example_axes": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "example_duration_seconds": 5.5,
+    "example_points": 12,
+    "example_simulation_rejected_for_hardware": true
+  },
+  "fpga": {
+    "identity": "BT04",
+    "register_base": 2684747776,
+    "channel_count": 4,
+    "bus_windows": [
+      256,
+      512,
+      768,
+      1024
+    ],
+    "rtl_simulation_passed": true,
+    "simulation_includes_fourth_channel_fault_during_active_lease": true,
+    "full_build_passed": true,
+    "wns_ns": 0.498,
+    "whs_ns": 0.006,
+    "wpws_ns": 0.151,
+    "failing_timing_endpoints": 0,
+    "routable_nets": 200271,
+    "fully_routed_nets": 200271,
+    "routing_errors": 0,
+    "drc_errors": 0,
+    "drc_critical_warnings": 0,
+    "drc_warning_violations": 586,
+    "preserved_other_named_io": 172,
+    "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+    "manifest_sha256": "e79c11ee6a102c7dec60cb26e327098f3deebd78b8ce9f364e08e9883276c782",
+    "reports_sha256": {
+      "timing.rpt": "4278b52728b943ef0992af9c4fef1de3796d65404dd7fdd64d3bfa90505e9f1c",
+      "drc.rpt": "d5fc87c82b034d8bdb0f73af83478110a0cd6eb8ff34b4239b0323e7d182dc93",
+      "route.rpt": "1a51e59ea2b262693b51fbd9a3f57a6a93dd8a047dcb7201523694a53bbad576",
+      "bus_skew.rpt": "dba9a9a26f56432790a5b0853557755a6825f6b912a62b91a0a356e87a4f08cb",
+      "io.rpt": "59df1277ea32f4937944870a9bb7cbcba5876c4e1121b8a8ff89bc0a8a2b3e57"
+    },
+    "sources_sha256": {
+      "shadow_play/hardware/bus_servo_tiger/build_project.tcl": "82af8f0cf8c7cccede628ce45037e42b677993778f4bafc496548365d97fda43",
+      "shadow_play/hardware/bus_servo_tiger/bus_servo_tiger_axi.v": "24ec3fe12ad5afb8c00eb9be0e7434bad9775305bced72ec0de88aa9f0f7dbdd",
+      "shadow_play/hardware/bus_servo_tiger/bus_servo_tiger_pins.xdc": "079f3e2a093721e886cbab888a278dfd998882258cb03a22545ed59ebeebb9cb",
+      "shadow_play/hardware/bus_servo_tiger/create_project.tcl": "abb4cd0f2ceb8bc7d74ac53333d40da6a36b0c9c5e4b4fc724f3cf1279d39e69",
+      "shadow_play/hardware/bus_servo_tiger/finish_project.tcl": "3a59dc2a8dfdb778f7bc30d6e156c22aeb3e8006c9ca6cc551d8d0b4b86ef341",
+      "shadow_play/hardware/bus_servo_tiger/simulate.tcl": "ddcca9932fe3551fc29aa6cf1459310f009eba4a15a7d2a64a4ee8e52be0065d",
+      "shadow_play/hardware/bus_servo_tiger/tb_bus_servo_tiger_axi.v": "c956bc94f9e91a26d13dfa37473754527d90d091bb8c3cea8598ead95679d2cc",
+      "shadow_play/hardware/bus_servo/single_wire_uart.v": "d679323701a570645bc4198b0bf189ec5df3479130ac0b78b68d177f9ace4508",
+      "shadow_play/hardware/bus_servo/base_dual_rail_design.tcl": "0e5813898ec97f9951d7748bf9d99a260a915d3f3e83482016743773aa3417ba",
+      "shadow_play/hardware/bus_servo/baseline_rail_io.json": "9b75e07138a92e4ede319dff1d39dcf22300f48161c82aa7d3e1d4758c43bbd9"
+    }
+  },
+  "bundle": {
+    "directory": ".review_work/bus_servo_tiger_bundle_20261026",
+    "archive": ".review_work/bus_servo_tiger_bundle_20261026.tar.gz",
+    "archive_sha256": "200a31b5c28095721b6226d7a6586f8c5ec6a629f17261da4af5af27e268df73",
+    "manifest_sha256": "50c13d6fabe92a550f43385ef3690e30899a0c821a40f2034127eac8fabb3298",
+    "file_count_excluding_manifest": 22,
+    "all_file_archive_and_source_hashes_verified": true,
+    "planned_board_directory": "/run/media/mmcblk0p2/piying/bus-servo-tiger-four-v1",
+    "installed": false,
+    "automatic_start": false
+  },
+  "preserved_original_dual_image_sha256": "f1eb0f20063d57e9547f055ef15417fd621e2b6c8021f4b49c9355f3d7a30294",
+  "dual_and_tiger_offline_loader_validation_passed": true,
+  "hardware_actions": {
+    "physical_serial_ports_opened": 0,
+    "servo_or_rail_commands_sent": 0,
+    "fpga_programmed": false,
+    "boot_files_changed": false,
+    "incident_lock_changed": false,
+    "current_hardware_state_observed": false
+  },
+  "readiness": {
+    "hardware_verified": false,
+    "electrical_3v3_verified": false,
+    "mechanical_limits_verified": false
+  },
+  "limitations": [
+    "Actual bus signal voltage, servo reply and mounted travel remain unverified.",
+    "Historical OFF210 is not a current state reading.",
+    "USB servo debugging board is not the PS console transport used by this GUI.",
+    "RTL stop broadcasts are requests, not proof that a physical servo stopped."
+  ],
+  "documentation": "shadow_play/docs/bus_servo_tiger_four_20261026.md"
+}

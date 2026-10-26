@@ -9,24 +9,28 @@ import threading
 import time
 
 from . import protocol
+from .layouts import BASE, manifest_layout
 
-BASE = 0xA0060000
 IDENTITY = 0x42533130
 
 
 class Mmio:
-    def __init__(self, release_manifest, marker='/run/shadow-bus-servo-loaded.json'):
+    def __init__(self, release_manifest, marker='/run/shadow-bus-servo-loaded.json', expected_layout=None):
         # Check the boot-bound loaded-image evidence BEFORE touching an address
         # that does not exist in the old PWM image.
         import fcntl
         from ..integrations.calibration.mmio32 import WordAccess
         manifest = json.loads(Path(release_manifest).read_text())
         current = json.loads(Path(marker).read_text())
+        self.layout = manifest_layout(manifest)
+        if expected_layout is not None and self.layout.name != expected_layout:
+            raise RuntimeError('Profile requires a different FPGA wiring layout')
+        if manifest_layout(current).name != self.layout.name:
+            raise RuntimeError('Loaded FPGA marker has a different wiring layout')
         boot = Path('/proc/sys/kernel/random/boot_id').read_text().strip()
         if (current.get('boot_id') != boot or current.get('sha256') != manifest.get('sha256')
-                or manifest.get('identity') != 'BS10' or manifest.get('register_base') != BASE
-                or current.get('identity') != 'BS10' or manifest.get('checks') != 'passed'):
-            raise RuntimeError('Current boot has no verified BS10 candidate; do not use old UART/PWM addresses')
+                or current.get('identity') != self.layout.identity):
+            raise RuntimeError('Current boot has no matching bus candidate; do not use old UART/PWM addresses')
         self.lock = open('/run/shadow-pwm.lock', 'a')
         self.words = self.memory = self.fd = None
         try:
@@ -34,9 +38,11 @@ class Mmio:
             self.fd = os.open('/dev/mem', os.O_RDWR | os.O_SYNC)
             self.memory = mmap.mmap(self.fd, 4096, mmap.MAP_SHARED, mmap.PROT_READ | mmap.PROT_WRITE, offset=BASE)
             self.words = WordAccess(self.memory)
-            if (self.read(0) != IDENTITY or self.read(4) != 1 or self.read(0x18) != 100000000
+            if (self.read(0) != self.layout.word or self.read(4) != 1 or self.read(0x18) != 100000000
                     or self.read(0x1c) != 115200):
-                raise RuntimeError('BS10 identity/clock/baud mismatch')
+                raise RuntimeError('Bus identity/clock/baud mismatch')
+            if self.layout.name == 'tiger-four-port' and self.read(0x24) != 4:
+                raise RuntimeError('Expected four independent tiger UARTs')
             if self.read(8) or self.read(0x10):
                 raise RuntimeError('Bus has a latched fault or an existing lease; inspect before connecting')
         except BaseException:
@@ -108,17 +114,19 @@ class BusDevice:
     simulation = False
 
     def __init__(self, profile, registers):
+        if registers.layout.name != profile.layout.name:
+            raise ValueError('FPGA and profile wiring layouts differ')
         self.profile, self.reg = profile, registers
-        self.pool = ThreadPoolExecutor(max_workers=2)
+        self.pool = ThreadPoolExecutor(max_workers=len(profile.layout.buses))
         write_lock = threading.Lock()
         self.buses = {name: WireBus(registers, offset, write_lock)
-                      for name, offset in [('person', 0x100), ('tiger', 0x200)]}
+                      for name, offset in profile.layout.offsets.items()}
         self.claimed = False
         self.failed = False
         self.versions = {}
 
     def _parallel(self, axes, action):
-        groups = [[a for a in axes if a.bus == b] for b in ('person', 'tiger')]
+        groups = [[a for a in axes if a.bus == b] for b in self.buses]
         def run(group):
             return [(a.number, action(a, self.buses[a.bus])) for a in group]
         futures = [self.pool.submit(run, group) for group in groups if group]
@@ -144,7 +152,7 @@ class BusDevice:
                 raise ValueError(f'Axis {a.number}: servo mode does not match angle profile')
             return {'version': version, 'mode': mode}
         self.versions = self._parallel(list(self.profile.axes.values()), identify)
-        return self.read(list(range(1, 11)))
+        return self.read(self.profile.layout.numbers)
 
     def kick(self):
         if self.failed or self.reg.read(8):
@@ -195,7 +203,7 @@ class BusDevice:
         # feedback. Do not reset FIFOs or retry the broadcast.
         started = time.monotonic()
         budget = min(.8, max(.08, (max(a.ident for a in self.profile.axes.values()) + 1) * .0028 + .05))
-        raw = {'person': bytearray(), 'tiger': bytearray()}
+        raw = {name: bytearray() for name in self.buses}
         while time.monotonic() - started < budget:
             for name, bus in self.buses.items():
                 state = self.reg.read(bus.offset)

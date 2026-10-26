@@ -1,0 +1,108 @@
+{
+  "schema": "shadow.bus-edit.v1",
+  "created_utc": "2026-10-26T12:46:04.496906+00:00",
+  "profile_sha256": "3a9d48249f6eaf041c16d5b9f6021863b116da9a5e6e8d523aaae6852efcd034",
+  "selected": [
+    7,
+    8,
+    9,
+    10
+  ],
+  "sources": {
+    "e4ab5f1efad58fcbac65bd0f9cd99258d4d7af633be333732e9f1f4dfc17d496": {
+      "schema": "shadow.bus-pose.v1",
+      "profile_sha256": "3a9d48249f6eaf041c16d5b9f6021863b116da9a5e6e8d523aaae6852efcd034",
+      "source": "simulation",
+      "captured_utc": "2026-10-26T12:46:04.497021+00:00",
+      "selected": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "positions": {
+        "7": 1500,
+        "8": 1500,
+        "9": 1500,
+        "10": 1500
+      },
+      "acquired_at": {
+        "7": 39440.6054254,
+        "8": 39440.6054254,
+        "9": 39440.6054254,
+        "10": 39440.6054254
+      }
+    },
+    "80f8c52084a160de35603093e846d4e275f57cb106444bf40c08cf81bf93d817": {
+      "schema": "shadow.bus-pose.v1",
+      "profile_sha256": "3a9d48249f6eaf041c16d5b9f6021863b116da9a5e6e8d523aaae6852efcd034",
+      "source": "simulation",
+      "captured_utc": "2026-10-26T12:46:04.497132+00:00",
+      "selected": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "positions": {
+        "7": 1530,
+        "8": 1520,
+        "9": 1480,
+        "10": 1470
+      },
+      "acquired_at": {
+        "7": 39440.6055413,
+        "8": 39440.6055413,
+        "9": 39440.6055413,
+        "10": 39440.6055413
+      }
+    },
+    "1b07e5fcfafc0a1ffc4d7c351089c8ec7f22e56ea0d88be4010c866d7ea95b0b": {
+      "schema": "shadow.bus-pose.v1",
+      "profile_sha256": "3a9d48249f6eaf041c16d5b9f6021863b116da9a5e6e8d523aaae6852efcd034",
+      "source": "simulation",
+      "captured_utc": "2026-10-26T12:46:04.497242+00:00",
+      "selected": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "positions": {
+        "7": 1500,
+        "8": 1500,
+        "9": 1500,
+        "10": 1500
+      },
+      "acquired_at": {
+        "7": 39440.6056521,
+        "8": 39440.6056521,
+        "9": 39440.6056521,
+        "10": 39440.6056521
+      }
+    }
+  },
+  "segments": [
+    {
+      "kind": "pose",
+      "source_id": "e4ab5f1efad58fcbac65bd0f9cd99258d4d7af633be333732e9f1f4dfc17d496",
+      "name": "数值中位",
+      "transition_s": 2,
+      "hold_s": 0.5
+    },
+    {
+      "kind": "pose",
+      "source_id": "80f8c52084a160de35603093e846d4e275f57cb106444bf40c08cf81bf93d817",
+      "name": "模拟姿势一",
+      "transition_s": 2,
+      "hold_s": 0.5
+    },
+    {
+      "kind": "pose",
+      "source_id": "1b07e5fcfafc0a1ffc4d7c351089c8ec7f22e56ea0d88be4010c866d7ea95b0b",
+      "name": "模拟返回",
+      "transition_s": 2,
+      "hold_s": 0.5
+    }
+  ]
+}

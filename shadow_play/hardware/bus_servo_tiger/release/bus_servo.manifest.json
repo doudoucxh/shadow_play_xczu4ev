@@ -1,0 +1,45 @@
+{
+  "schema": "shadow.bus-image.v1",
+  "identity": "BT04",
+  "layout": "tiger-four-port",
+  "checks": "passed",
+  "register_base": 2684747776,
+  "pins": {
+    "tiger7": "D14",
+    "tiger8": "D15",
+    "tiger9": "F13",
+    "tiger10": "G13"
+  },
+  "clock_hz": 100000000,
+  "baudrate": 115200,
+  "legacy_pwm_connected": false,
+  "physical_hardware_tested": false,
+  "sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+  "wns_ns": 0.498,
+  "whs_ns": 0.006,
+  "wpws_ns": 0.151,
+  "part": "xczu4ev-sfvc784-2-i",
+  "watchdog_seconds": 1,
+  "watchdog_action": "one broadcast PULK per bus; actual servo response unverified",
+  "preserved_io_count": 172,
+  "baseline_io_report_sha256": "bd8f9a720df317a6ba6eb4f66ed9d5275f91ac1e9caae81a7f905ebc04083645",
+  "reports": {
+    "timing.rpt": "4278b52728b943ef0992af9c4fef1de3796d65404dd7fdd64d3bfa90505e9f1c",
+    "drc.rpt": "d5fc87c82b034d8bdb0f73af83478110a0cd6eb8ff34b4239b0323e7d182dc93",
+    "route.rpt": "1a51e59ea2b262693b51fbd9a3f57a6a93dd8a047dcb7201523694a53bbad576",
+    "bus_skew.rpt": "dba9a9a26f56432790a5b0853557755a6825f6b912a62b91a0a356e87a4f08cb",
+    "io.rpt": "59df1277ea32f4937944870a9bb7cbcba5876c4e1121b8a8ff89bc0a8a2b3e57"
+  },
+  "sources": {
+    "shadow_play/hardware/bus_servo_tiger/build_project.tcl": "82af8f0cf8c7cccede628ce45037e42b677993778f4bafc496548365d97fda43",
+    "shadow_play/hardware/bus_servo_tiger/bus_servo_tiger_axi.v": "24ec3fe12ad5afb8c00eb9be0e7434bad9775305bced72ec0de88aa9f0f7dbdd",
+    "shadow_play/hardware/bus_servo_tiger/bus_servo_tiger_pins.xdc": "079f3e2a093721e886cbab888a278dfd998882258cb03a22545ed59ebeebb9cb",
+    "shadow_play/hardware/bus_servo_tiger/create_project.tcl": "abb4cd0f2ceb8bc7d74ac53333d40da6a36b0c9c5e4b4fc724f3cf1279d39e69",
+    "shadow_play/hardware/bus_servo_tiger/finish_project.tcl": "3a59dc2a8dfdb778f7bc30d6e156c22aeb3e8006c9ca6cc551d8d0b4b86ef341",
+    "shadow_play/hardware/bus_servo_tiger/simulate.tcl": "ddcca9932fe3551fc29aa6cf1459310f009eba4a15a7d2a64a4ee8e52be0065d",
+    "shadow_play/hardware/bus_servo_tiger/tb_bus_servo_tiger_axi.v": "c956bc94f9e91a26d13dfa37473754527d90d091bb8c3cea8598ead95679d2cc",
+    "shadow_play/hardware/bus_servo/single_wire_uart.v": "d679323701a570645bc4198b0bf189ec5df3479130ac0b78b68d177f9ace4508",
+    "shadow_play/hardware/bus_servo/base_dual_rail_design.tcl": "0e5813898ec97f9951d7748bf9d99a260a915d3f3e83482016743773aa3417ba",
+    "shadow_play/hardware/bus_servo/baseline_rail_io.json": "9b75e07138a92e4ede319dff1d39dcf22300f48161c82aa7d3e1d4758c43bbd9"
+  }
+}

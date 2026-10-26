@@ -24,7 +24,7 @@ class Worker(threading.Thread):
         self.commands, self.events, self.stop_flag = commands, events, stop_flag
         self.session = None
         self.shutting_down = False
-        self.numbers = list(range(1,11))
+        self.numbers = []
 
     def emit(self, kind, value=None):
         self.events.put((kind, value))
@@ -73,6 +73,7 @@ class Worker(threading.Thread):
                     if self.session:
                         raise RuntimeError('请先断开现有连接。')
                     profile, simulation, port = value
+                    self.numbers = [n for n in self.numbers if n in profile.axes] or profile.layout.numbers
                     device = SimulationDevice(profile) if simulation else RemoteDevice(profile, port)
                     try:
                         self.session = TeachingSession(profile, device, ROOT/'logs/bus_servo/takes')
@@ -80,7 +81,11 @@ class Worker(threading.Thread):
                         device.close(); raise
                     self.emit('connected', simulation)
                 elif op == 'select':
-                    self.numbers = value or list(range(1,11))
+                    if self.session:
+                        self.numbers = value or self.session.profile.layout.numbers
+                        self.session.profile.select(self.numbers)
+                    else:
+                        self.numbers = value
                 elif op and self.session:
                     s = self.session
                     if op == 'angles':
@@ -149,7 +154,7 @@ class App:
         self.record = None
         self.editor = None
         self.live_samples = []
-        root.title('皮影 · 总线舵机示教工作台（分步/剪辑）')
+        root.title('皮影 · 总线舵机示教工作台（分步/剪辑）' + (' · 老虎临时四口' if self.profile.layout.name=='tiger-four-port' else ''))
         root.geometry('1180x850'); root.minsize(1030, 790)
         root.configure(bg='#eef2f5')
         root.option_add('*Font', ('Microsoft YaHei UI', 10))
@@ -162,7 +167,7 @@ class App:
         body = ttk.Frame(root, padding=18); body.pack(fill='both', expand=True)
         header = ttk.Frame(body); header.pack(fill='x')
         ttk.Label(header, text='皮影示教工作台', font=('Microsoft YaHei UI',22,'bold')).pack(side='left')
-        ttk.Label(header, text='人物 6 轴 / E14     老虎 4 轴 / E15', foreground='#59728a').pack(side='right', pady=10)
+        ttk.Label(header, text=self.profile.layout.title, foreground='#59728a').pack(side='right', pady=10)
         ttk.Label(body, text='先用手演一遍，记录舵机实际位置，再按时间重现动作。', foreground='#526b7c').pack(anchor='w', pady=(2,12))
         row = ttk.Frame(body); row.pack(fill='x', pady=(0,10))
         self.mode = tk.StringVar(value='离线模拟')
@@ -183,25 +188,28 @@ class App:
         self.attend_box.pack(anchor='w',pady=(0,8))
         row = ttk.Frame(body); row.pack(fill='x',pady=(0,4))
         self.selection_buttons=[]
-        for label,nums in [('全选',range(1,11)),('人物',range(1,7)),('老虎',range(7,11)),('清空',[])]:
+        groups=[('全选',self.profile.layout.numbers)]
+        if any(n<=6 for n in self.profile.axes):groups.append(('人物',[n for n in self.profile.axes if n<=6]))
+        groups += [('老虎',[n for n in self.profile.axes if n>=7]),('清空',[])]
+        for label,nums in groups:
             b=ttk.Button(row,text=label,command=lambda nums=list(nums):self.select(nums));b.pack(side='left',padx=(0,5));self.selection_buttons.append(b)
-        self.selection_text=tk.StringVar(value='已选 10 轴')
+        self.selection_text=tk.StringVar(value=f'已选 {len(self.profile.axes)} 轴')
         ttk.Label(row,textvariable=self.selection_text).pack(side='right')
         table=ttk.Frame(body);table.pack(fill='x',pady=4)
         for col,title in enumerate(['选择','编号 / 总线ID','控制部位','总线口','实际角度','目标角度','目标调整 / °','软件范围']):
             ttk.Label(table,text=title,font=('Microsoft YaHei UI',10,'bold')).grid(row=0,column=col,sticky='w',padx=6,pady=6)
         table.columnconfigure(6,weight=1)
         self.selected={};self.targets={};self.feedback={};self.checks=[]
-        for n,a in self.profile.axes.items():
+        for table_row,(n,a) in enumerate(self.profile.axes.items(),1):
             self.selected[n]=tk.BooleanVar(value=True)
             self.targets[n]=tk.DoubleVar(value=a.span/2)
             self.feedback[n]=tk.StringVar(value='—')
-            box=ttk.Checkbutton(table,variable=self.selected[n],command=self.selection_changed);box.grid(row=n,column=0);self.checks.append(box)
-            for col,text in [(1,f'{n:02d} / {a.ident:03d}'),(2,a.label),(3,'人物 · E14' if n<=6 else '老虎 · E15'),(7,f'{a.minimum:g}–{a.maximum:g}°')]:
-                ttk.Label(table,text=text).grid(row=n,column=col,sticky='w',padx=6,pady=1)
-            ttk.Label(table,textvariable=self.feedback[n],foreground=COLORS[n-1],width=11).grid(row=n,column=4,sticky='w',padx=6)
-            ttk.Spinbox(table,from_=a.minimum,to=a.maximum,increment=.5,textvariable=self.targets[n],width=8,font=('Segoe UI',9)).grid(row=n,column=5,padx=6)
-            ttk.Scale(table,from_=a.minimum,to=a.maximum,variable=self.targets[n]).grid(row=n,column=6,sticky='ew',padx=10)
+            box=ttk.Checkbutton(table,variable=self.selected[n],command=self.selection_changed);box.grid(row=table_row,column=0);self.checks.append(box)
+            for col,text in [(1,f'{n:02d} / {a.ident:03d}'),(2,a.label),(3,self.profile.layout.connector_label(a.bus)),(7,f'{a.minimum:g}–{a.maximum:g}°')]:
+                ttk.Label(table,text=text).grid(row=table_row,column=col,sticky='w',padx=6,pady=1)
+            ttk.Label(table,textvariable=self.feedback[n],foreground=COLORS[n-1],width=11).grid(row=table_row,column=4,sticky='w',padx=6)
+            ttk.Spinbox(table,from_=a.minimum,to=a.maximum,increment=.5,textvariable=self.targets[n],width=8,font=('Segoe UI',9)).grid(row=table_row,column=5,padx=6)
+            ttk.Scale(table,from_=a.minimum,to=a.maximum,variable=self.targets[n]).grid(row=table_row,column=6,sticky='ew',padx=10)
         row=ttk.Frame(body);row.pack(fill='x',pady=9)
         ttk.Label(row,text='到达时间 / ms').pack(side='left')
         self.duration=tk.StringVar(value='2000')
@@ -237,7 +245,7 @@ class App:
         footer=ttk.Frame(body);footer.pack(side='bottom',fill='x')
         self.status=tk.StringVar(value='未连接 · 默认离线模拟。实物待换装、回传电平确认、逐个编号和限位标定。')
         ttk.Label(footer,textvariable=self.status,wraplength=1100,foreground='#25566a').pack(anchor='w')
-        ttk.Label(footer,text='记录的是电机轴反馈；连杆间隙和皮影弹性仍会影响复刻。两总线并行，同一总线各轴依次发送，非硬件同时触发。',foreground='#627987',wraplength=1100).pack(anchor='w',pady=(5,0))
+        ttk.Label(footer,text=f'记录的是电机轴反馈；连杆间隙和皮影弹性仍会影响复刻。{len(self.profile.layout.buses)}条总线并行，同一总线各轴依次发送，非硬件同时触发。',foreground='#627987',wraplength=1100).pack(anchor='w',pady=(5,0))
         self.canvas.pack(fill='both',expand=True,pady=(3,8))
         root.bind('<Escape>',lambda e:self.stop());root.protocol('WM_DELETE_WINDOW',self.close)
         root.after(50,self.receive);self.update_controls()
@@ -351,7 +359,7 @@ class App:
         for c,title in enumerate(titles):ttk.Label(table,text=title).grid(row=0,column=c,padx=8,pady=5)
         values=[]
         for i,row in enumerate(self.profile.data['axes'],1):
-            ttk.Label(table,text=f'{i}号').grid(row=i,column=0);v={}
+            ttk.Label(table,text=f'{row["number"]}号').grid(row=i,column=0);v={}
             for c,key in enumerate(fields,1):
                 v[key]=tk.StringVar(value=str(row[key]));ttk.Entry(table,textvariable=v[key],width=12).grid(row=i,column=c,padx=8,pady=5)
             values.append(v)

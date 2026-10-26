@@ -13,7 +13,11 @@ if($LASTEXITCODE -ne 0){throw 'Python tkinter/pyserial unavailable'}
 $taskArgs=@('-m','shadow_play.bus_servo.gui')
 if($Profile){$taskArgs+=@('--profile',('"'+(Resolve-Path -LiteralPath $Profile).Path+'"'))}
 if($SmokeTest){
-    & $taskPython -m shadow_play.bus_servo.gui --smoke-test
+    if($Profile){
+        & $taskPython -m shadow_play.bus_servo.gui --smoke-test --profile (Resolve-Path -LiteralPath $Profile).Path
+    }else{
+        & $taskPython -m shadow_play.bus_servo.gui --smoke-test
+    }
     if($LASTEXITCODE -ne 0){throw 'Bus-servo GUI smoke test failed'}
 }else{
     Start-Process -FilePath $taskPythonW -ArgumentList $taskArgs -WorkingDirectory $taskRoot -WindowStyle Hidden
