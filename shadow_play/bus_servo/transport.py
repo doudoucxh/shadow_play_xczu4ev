@@ -42,7 +42,7 @@ class RemoteDevice:
                     raise RuntimeError('串口已有服务，请先在原窗口停止并退出。')
             else:
                 raise TimeoutError('没有识别到板端登录提示符；未发送启动或运动命令。')
-            ready = self._receive(time.monotonic() + 6)
+            ready = self._receive(time.monotonic() + 6, startup=True)
             if ready.get('ready') is not True or ready.get('service') != 'bus-teach-v1':
                 raise RuntimeError('板端总线服务未准备好。')
             self.started = True
@@ -50,15 +50,51 @@ class RemoteDevice:
             self.port.close()
             raise
 
-    def _receive(self, deadline):
+    def _startup_error(self, output):
+        # Startup failures are plain shell/argparse text in existing SD bundles.
+        # Recognize them without changing the bundle or sending another command.
+        lower = output.lower()
+        if b'verify bus electrical compatibility before transmitting' in lower:
+            return ('板端拒绝查询：尚未核实总线信号与3.3V FPGA的电气兼容性。'
+                    '加载FPGA不代表已完成验证；请先完成电气核实，勿直接修改就绪标记。')
+        for line in output.splitlines():
+            missing = any(s in line.lower() for s in (b'no such file', b"can't cd", b'cannot cd', b"can't open"))
+            if not missing:
+                continue
+            if b'/run/shadow-bus-servo-loaded.json' in line:
+                return '当前启动没有总线FPGA加载标记；若板子已重启，需按断电加载流程重新加载对应镜像。'
+            # Match the error line, not unrelated paths earlier in a traceback.
+            if self.profile.layout.board_directory.encode() in line or b'start_console.sh' in line:
+                if self.profile.layout.name == 'dual':
+                    return ('板端未安装当前十轴双总线程序。老虎ID7～10临时接原1～4口时，'
+                            '请关闭此窗口，打开“老虎四舵机临时调试.cmd”。')
+                return '板端缺少老虎四口程序或启动脚本，请检查SD卡安装目录 bus-servo-tiger-four-v1。'
+        if any(s in output for s in (b'different FPGA wiring layout', b'different wiring layout',
+                                     b'no matching bus candidate', b'Bus identity/clock/baud mismatch')):
+            return '当前FPGA镜像与上位机接线配置不匹配；请核对四口BT04或双总线BS10，不能使用旧PWM镜像。'
+        return None
+
+    def _receive(self, deadline, *, startup=False):
+        startup_output = b''
         while time.monotonic() < deadline:
-            self.buffer += self.port.read(4096)
-            if len(self.buffer) > 32768:
+            chunk = self.port.read(4096)
+            self.buffer += chunk
+            if startup:
+                startup_output += chunk
+            if max(len(self.buffer), len(startup_output)) > 32768:
                 raise RuntimeError('板端输出过长。')
+            if startup:
+                error = self._startup_error(startup_output)
+                if error:
+                    raise RuntimeError(error)
             while b'\n' in self.buffer:
                 line, self.buffer = self.buffer.split(b'\n', 1)
                 if line.startswith(PREFIX.encode()):
                     return json.loads(line[len(PREFIX):])
+            if startup and re.search(rb'shadowdpupetalinux:[^\r\n]*#\s*$', self.buffer):
+                raise RuntimeError('板端总线服务启动失败，已返回登录终端；未建立舵机连接。请检查板端程序和镜像配置。')
+        if startup:
+            raise TimeoutError('等待板端总线服务启动超时；未建立舵机连接，不自动重试。')
         raise TimeoutError('板端回执超时；不重发命令，FPGA租约将请求卸力。')
 
     def request(self, op, payload=None):

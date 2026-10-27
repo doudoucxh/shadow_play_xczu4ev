@@ -1,0 +1,82 @@
+{
+  "schema": "shadow.bus-connection-diagnosis.v1",
+  "date": "2026-10-27",
+  "user_report": "Opened 总线舵机示教上位机; connection has no apparent response. Exact error text and selected mode not supplied.",
+  "observed_gui": {
+    "pid": 64644,
+    "module": "shadow_play.bus_servo.gui",
+    "explicit_profile_argument": false,
+    "default_layout": "dual"
+  },
+  "board": {
+    "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+    "packages": {
+      "bus-servo-v1": {
+        "exists": false,
+        "launcher_exists": false,
+        "profile_exists": false,
+        "layout": null,
+        "readiness": {
+          "hardware_verified": null,
+          "electrical_3v3_verified": null,
+          "mechanical_limits_verified": null
+        }
+      },
+      "bus-servo-tiger-four-v1": {
+        "exists": true,
+        "launcher_exists": true,
+        "profile_exists": true,
+        "layout": "tiger-four-port",
+        "readiness": {
+          "hardware_verified": false,
+          "electrical_3v3_verified": false,
+          "mechanical_limits_verified": false
+        }
+      }
+    },
+    "shadow-bus-servo-loaded.json": {
+      "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+      "sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+      "layout": "tiger-four-port",
+      "identity": "BT04"
+    },
+    "shadow-pwm-loaded.json": null
+  },
+  "diagnosis": {
+    "old_entry_points_to_absent_dual_bundle": true,
+    "tiger_service_electrical_gate_still_blocks_queries": true,
+    "mode_selected_in_ui": null,
+    "user_error_text_observed": false
+  },
+  "scope": {
+    "serial_port": "COM19",
+    "serial_released": true,
+    "file_metadata_only": true,
+    "mmio_accessed": false,
+    "servo_service_started": false,
+    "servo_packets_sent": 0,
+    "rail_packets_sent": 0,
+    "fpga_reloaded": false,
+    "board_files_modified": false,
+    "readiness_changed": false,
+    "ui_automation_used": false
+  },
+  "fix": {
+    "pc_startup_errors_explained": true,
+    "connection_errors_shown_in_dialog": true,
+    "legacy_entry_and_profiles_preserved": true,
+    "requires_gui_restart": true,
+    "offline_tests_passed": 62,
+    "live_servo_connection_verified": false
+  },
+  "evidence": {
+    ".review_work/bus-servo-connection-20261027/status.sh": {
+      "sha256": "b62ac9d442166dc2a99c72bfd6beb6e7f0e4bbae706bb879d99d3b9cbd67e01d",
+      "bytes": 950
+    },
+    ".review_work/bus-servo-connection-20261027/status.log": {
+      "sha256": "8e3cef16fcb1ff7af34158e02e6195b02e61146bcb89684a56badd61594d261a",
+      "bytes": 913
+    }
+  }
+}

@@ -454,10 +454,16 @@ class App:
                 elif kind=='message':self.status.set(value)
                 elif kind=='stopped':self.status.set('已发出卸力请求；实物总线广播没有逐轴确认，不代表已切断电源。')
                 elif kind=='error':
+                    was_connected = self.connected
                     self.connected=self.busy=self.recording=self.playing=False
                     if self.editor: self.editor.cancel_capture()
                     for text in self.feedback.values():text.set('反馈失效')
-                    self.status.set('已中止并断开：'+value+' 实物停止状态未获独立确认，请检查。')
+                    if was_connected:
+                        self.status.set('已中止并断开：'+value+' 实物停止状态未获独立确认，请检查。')
+                    else:
+                        self.status.set('连接失败：'+value)
+                        if not self.closing:
+                            messagebox.showerror('连接未完成', value, parent=self.root)
                     self.plot()
                 self.update_controls()
         except queue.Empty:pass
