@@ -3,7 +3,8 @@ import json
 import re
 import time
 
-from .service import PREFIX
+from .service import PREFIX, BOARD_ONLY
+from .protocol import ServoUnavailable
 
 
 class RemoteDevice:
@@ -46,6 +47,8 @@ class RemoteDevice:
             if ready.get('ready') is not True or ready.get('service') != 'bus-teach-v1':
                 raise RuntimeError('板端总线服务未准备好。')
             self.started = True
+            self.capabilities = ready.get('capabilities', [])
+            self.motion_active = False
         except BaseException:
             self.port.close()
             raise
@@ -105,9 +108,15 @@ class RemoteDevice:
         try:
             self.port.write((json.dumps(request, separators=(',', ':'), allow_nan=False) + '\n').encode('ascii'))
             reply = self._receive(time.monotonic() + .9)
-            if reply.get('seq') != self.sequence or reply.get('ok') is not True:
+            if reply.get('seq') != self.sequence:
+                raise RuntimeError('回执序号不匹配；不重发。')
+            if reply.get('ok') is False and reply.get('servo_unavailable') is True and not self.motion_active:
+                raise ServoUnavailable(reply.get('error', '舵机反馈不可用，板子连接保留。'))
+            if reply.get('ok') is not True:
                 raise RuntimeError(reply.get('error', '回执序号不匹配；不重发。'))
             return reply['result']
+        except ServoUnavailable:
+            raise
         except BaseException:
             self.failed = True
             raise
@@ -117,6 +126,8 @@ class RemoteDevice:
         return {int(n): row for n, row in rows.items()}
 
     def connect(self):
+        if BOARD_ONLY not in self.capabilities:
+            raise RuntimeError('板端程序尚不支持断电连接，请先更新板端服务；未发送舵机查询。')
         result = self.request('hello')
         if (result.get('service') != 'bus-teach-v1' or result.get('profile') != self.profile.fingerprint
                 or result.get('simulation') is not False):
@@ -124,17 +135,29 @@ class RemoteDevice:
         self.motion_allowed = result.get('motion_allowed') is True
         return self._samples(result['positions'])
 
+    def board_status(self):
+        return self.request('status')
+
+    def probe(self, numbers):
+        return self._samples(self.request('probe', {'numbers': numbers}))
+
     def read(self, numbers):
         return self._samples(self.request('read', {'numbers': numbers}))
 
     def move(self, targets, milliseconds):
+        self.motion_active = True
         return self.request('move', {'targets': targets, 'duration_ms': milliseconds, 'attended': True})
 
     def release(self, numbers):
+        self.motion_active = True
         return self.request('release', {'numbers': numbers, 'attended': True})
 
     def stop(self):
-        return self.request('stop')
+        if not self.motion_active:
+            return {'state': 'no_motion_lease', 'physical_stop_verified': False}
+        result = self.request('stop')
+        self.motion_active = False
+        return result
 
     def close(self):
         try:

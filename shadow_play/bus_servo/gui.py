@@ -13,6 +13,7 @@ from .editing import PoseCaptureError
 from .model import MOTION_SCHEMA, Profile, save_recording, validate_recording
 from .session import TeachingSession
 from .transport import RemoteDevice
+from .protocol import ServoUnavailable
 
 ROOT = Path(__file__).resolve().parents[1]
 COLORS = ['#26a69a', '#5477d4', '#db9239', '#d85c74', '#8a69d2', '#639d49', '#d16635', '#4d9aba', '#b477b0', '#a19a35']
@@ -79,7 +80,8 @@ class Worker(threading.Thread):
                         self.session = TeachingSession(profile, device, ROOT/'logs/bus_servo/takes')
                     except BaseException:
                         device.close(); raise
-                    self.emit('connected', simulation)
+                    self.emit('connected', {'simulation': simulation,
+                                           'motion_allowed': simulation or device.motion_allowed})
                 elif op == 'select':
                     if self.session:
                         self.numbers = value or self.session.profile.layout.numbers
@@ -88,9 +90,14 @@ class Worker(threading.Thread):
                         self.numbers = value
                 elif op and self.session:
                     s = self.session
-                    if op == 'angles':
+                    if op == 'probe':
+                        rows = s.probe(value)
+                        self.emit('servos_ready', sorted(s.ready_axes))
+                        self.emit('feedback', rows)
+                    elif op == 'angles':
                         s.set_angles(*value); self.emit('message', '角度指令已发送，实际位置以反馈为准。')
                     elif op == 'release':
+                        s.require_feedback(value)
                         s.device.release(value); self.emit('message', '所选轴卸力完成；请扶稳机构后手动操作。')
                     elif op == 'record_start':
                         s.start_recording(*value); self.emit('recording', value[2])
@@ -121,6 +128,19 @@ class Worker(threading.Thread):
                             self.emit('sample', self.session.record['samples'][-1])
                     if finished:
                         self.emit('idle'); self.emit('message', '回放已结束，末帧位置反馈通过；保持状态，点停止可卸力。')
+            except ServoUnavailable as exc:
+                # A failed idle query keeps the PS link alive but invalidates all
+                # feedback and stops polling. Only an explicit probe can restart it.
+                if self.session:
+                    if self.session.recording:
+                        try:
+                            self.session.finish_recording(complete=False, reason=str(exc))
+                            self.emit('record', (self.session.record, self.session.last_path))
+                        except Exception as storage_error:
+                            self.emit('message', '中断记录保存失败：'+str(storage_error))
+                    self.session.ready_axes.clear()
+                    self.session.last_feedback.clear()
+                self.emit('servos_unavailable', str(exc))
             except Exception as exc:
                 recovery = None
                 try:
@@ -151,6 +171,8 @@ class App:
         self.worker = Worker(self.commands, self.events, self.stop_flag)
         self.worker.start()
         self.connected = self.busy = self.recording = self.playing = self.closing = False
+        self.ready_axes = set()
+        self.motion_allowed = False
         self.record = None
         self.editor = None
         self.live_samples = []
@@ -181,6 +203,8 @@ class App:
         ttk.Button(row,text='刷新',command=self.refresh_ports).pack(side='left',padx=5)
         self.connect_button = ttk.Button(row,text='连接',command=self.connect,style='Accent.TButton')
         self.connect_button.pack(side='left',padx=7)
+        self.probe_button = ttk.Button(row,text='检测所选舵机',command=lambda:self.action(lambda:self.send('probe',self.numbers())))
+        self.probe_button.pack(side='left',padx=3)
         self.configure_button = ttk.Button(row,text='ID / 角度与限位配置',command=self.configure)
         self.configure_button.pack(side='right')
         self.attended = tk.BooleanVar(value=False)
@@ -224,6 +248,7 @@ class App:
         self.record_mode=tk.StringVar(value='手动示教（卸力）')
         self.record_mode_box=ttk.Combobox(row,textvariable=self.record_mode,values=['手动示教（卸力）','控制动作录制'],state='readonly',width=19)
         self.record_mode_box.pack(side='left')
+        self.record_mode_box.bind('<<ComboboxSelected>>',lambda event:self.update_controls())
         ttk.Label(row,text='采样 Hz').pack(side='left',padx=(10,4))
         self.rate=tk.StringVar(value='10')
         self.rate_box=ttk.Combobox(row,textvariable=self.rate,values=['5','10','20'],width=4,state='readonly');self.rate_box.pack(side='left')
@@ -271,6 +296,10 @@ class App:
         nums=[n for n,v in self.selected.items() if v.get()]
         self.selection_text.set(f'已选 {len(nums)} 轴')
         self.commands.put(('select',nums));self.plot()
+        self.update_controls()
+
+    def feedback_ready(self, numbers):
+        return bool(numbers) and self.connected and set(numbers) <= self.ready_axes
 
     def check_operator(self):
         if self.mode.get()!='离线模拟' and not self.attended.get():
@@ -399,17 +428,21 @@ class App:
 
     def update_controls(self):
         idle=self.connected and not self.busy and not self.recording and not self.playing
+        ready=self.feedback_ready([n for n,v in self.selected.items() if v.get()])
+        motion=ready and self.motion_allowed
         def state(widget,enabled):widget.configure(state='normal' if enabled else 'disabled')
         state(self.connect_button,not self.busy and not self.recording and not self.playing)
-        self.connect_button.configure(text='断开' if self.connected else '连接')
+        self.connect_button.configure(text='断开' if self.connected else '连接板子 / 模拟')
+        state(self.probe_button,idle and self.mode.get()!='离线模拟')
         self.mode_box.configure(state='disabled' if self.connected or self.busy else 'readonly')
         for box in (self.record_mode_box,self.rate_box):box.configure(state='disabled' if self.recording or self.playing or self.busy else 'readonly')
         state(self.port_box,not self.connected and not self.busy);state(self.configure_button,not self.connected and not self.busy)
-        state(self.move_button,self.connected and not self.busy and not self.playing and (not self.recording or self.record_mode.get()=='控制动作录制'))
-        state(self.release_button,idle);state(self.record_button,idle)
+        state(self.move_button,motion and not self.busy and not self.playing and (not self.recording or self.record_mode.get()=='控制动作录制'))
+        state(self.release_button,idle and motion)
+        state(self.record_button,idle and ready and (self.record_mode.get()=='控制动作录制' or self.motion_allowed))
         state(self.end_button,self.recording and not self.busy)
         state(self.drag_button,self.connected and not self.busy and not self.playing and self.mode.get()=='离线模拟')
-        for b in [self.prepare_button,self.play_button]:state(b,idle and self.record is not None and self.record.get('complete') is True)
+        for b in [self.prepare_button,self.play_button]:state(b,idle and motion and self.record is not None and self.record.get('complete') is True)
         state(self.save_button,self.record is not None and not self.recording)
         state(self.load_button,not self.recording and not self.playing and not self.busy)
         state(self.editor_button,not self.recording and not self.playing and not self.busy)
@@ -426,13 +459,26 @@ class App:
                 if kind=='closed':self.root.destroy();return
                 if kind=='connected':
                     self.connected=True;self.busy=False
-                    self.status.set('离线模拟已连接；模拟数据不能用于实机回放。' if value else '实物只读连接完成，未发送角度。')
+                    self.motion_allowed=value['motion_allowed']
+                    self.ready_axes=set(self.profile.axes) if value['simulation'] else set()
+                    self.status.set('离线模拟已连接；模拟数据不能用于实机回放。' if value['simulation'] else
+                                    '板子已连接 · 舵机尚未检测（可保持断电）。供电后点“检测所选舵机”；连接不发送舵机指令。')
+                    for text in self.feedback.values():text.set('未检测')
+                elif kind=='servos_ready':
+                    self.ready_axes=set(value)
+                    self.status.set('板子已连接 · 舵机反馈通过：'+', '.join(map(str,value))+('。' if self.motion_allowed else '。当前为只读调试。'))
+                elif kind=='servos_unavailable':
+                    self.ready_axes.clear();self.busy=self.recording=self.playing=False
+                    for text in self.feedback.values():text.set('无有效反馈')
+                    if self.editor:self.editor.cancel_capture()
+                    self.status.set(value)
                 elif kind=='disconnected':
+                    self.ready_axes.clear();self.motion_allowed=False
                     self.connected=False;self.busy=False;self.status.set('已断开。')
                     for value in self.feedback.values():value.set('未连接')
                 elif kind=='feedback':
                     for n,text in self.feedback.items():
-                        text.set(f'{self.profile.axes[n].degrees(value[n]["p"]):.2f}°' if n in value else '未采样')
+                        text.set(f'{self.profile.axes[n].degrees(value[n]["p"]):.2f}°' if n in value else ('未采样' if n in self.ready_axes else '未检测'))
                 elif kind=='pose':
                     if self.editor: self.editor.accept_pose(value)
                 elif kind=='capture_error':
@@ -452,10 +498,13 @@ class App:
                     if self.editor: self.editor.cancel_capture()
                 elif kind=='command_done':self.busy=False
                 elif kind=='message':self.status.set(value)
-                elif kind=='stopped':self.status.set('已发出卸力请求；实物总线广播没有逐轴确认，不代表已切断电源。')
+                elif kind=='stopped':
+                    self.status.set('当前没有软件运动会话，未发送舵机命令；这不代表舵机已断电或实际静止。' if isinstance(value,dict) and value.get('state')=='no_motion_lease' else
+                                    '已发出卸力请求；实物总线广播没有逐轴确认，不代表已切断电源。')
                 elif kind=='error':
                     was_connected = self.connected
                     self.connected=self.busy=self.recording=self.playing=False
+                    self.ready_axes.clear();self.motion_allowed=False
                     if self.editor: self.editor.cancel_capture()
                     for text in self.feedback.values():text.set('反馈失效')
                     if was_connected:

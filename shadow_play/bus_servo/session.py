@@ -5,6 +5,7 @@ import time
 from datetime import datetime
 
 from .model import finite, new_recording, playback_plan, save_recording, validate_recording
+from .protocol import ServoUnavailable
 
 
 class TeachingSession:
@@ -23,14 +24,38 @@ class TeachingSession:
         self.next_poll = 0
         self.rate = 10
         self.device.connect()
+        self.ready_axes = set(profile.axes) if device.simulation else set()
+        self.next_board_poll = 0
 
-    def read(self, numbers):
-        rows = self.device.read(numbers)
+    def require_feedback(self, numbers):
+        self.profile.select(numbers)
+        if not set(numbers) <= self.ready_axes:
+            raise ServoUnavailable('板子已连接，所选舵机尚未检测；供电后点击“检测所选舵机”。')
+
+    def probe(self, numbers):
+        if self.recording or self.playing:
+            raise RuntimeError('请先结束录制或回放。')
+        self.profile.select(numbers)
+        self.ready_axes.clear()
+        self.last_feedback.clear()
+        rows = self.device.read(numbers) if self.device.simulation else self.device.probe(numbers)
+        self.validate_feedback(numbers, rows)
+        self.ready_axes = set(numbers)
+        self.last_feedback.update(rows)
+        self.next_poll = self.clock() + .15
+        return rows
+
+    def validate_feedback(self, numbers, rows):
         if set(rows) != set(numbers):
             raise ValueError('Feedback axis set mismatch')
         for n, row in rows.items():
             self.profile.axes[n].degrees(row['p'])
             finite(row['at'], 0, 1e12, 'Device acquisition timestamp')
+
+    def read(self, numbers):
+        self.require_feedback(numbers)
+        rows = self.device.read(numbers)
+        self.validate_feedback(numbers, rows)
         self.last_feedback.update(rows)
         return rows
 
@@ -67,6 +92,7 @@ class TeachingSession:
         if self.recording or self.playing:
             raise RuntimeError('请先结束当前录制或回放。')
         self.profile.select(numbers)
+        self.require_feedback(numbers)
         finite(rate, 5, 20, 'Rate')
         self.rate = rate
         self.record = new_recording(self.profile, numbers, self.device.simulation, rate)
@@ -138,6 +164,9 @@ class TeachingSession:
 
     def tick(self, idle_numbers):
         now = self.clock()
+        if not self.device.simulation and now >= self.next_board_poll:
+            self.device.board_status()
+            self.next_board_poll = now + .5
         finished = False
         if self.playing:
             elapsed = now - self.play_start
@@ -160,6 +189,10 @@ class TeachingSession:
         rows = None
         if now >= self.next_poll:
             numbers = self.record['selected'] if self.recording else (self.play_numbers if self.playing else idle_numbers)
+            if not self.recording and not self.playing:
+                numbers = [n for n in numbers if n in self.ready_axes]
+            if not numbers:
+                return None, finished
             rows = self.read(numbers)
             self.next_poll = now + (1/self.rate if self.recording else .15)
             if self.recording:

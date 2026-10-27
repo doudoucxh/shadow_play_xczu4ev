@@ -10,6 +10,10 @@ class ProtocolError(RuntimeError):
     pass
 
 
+class ServoUnavailable(RuntimeError):
+    """Servo feedback unavailable; the idle board connection can stay open."""
+
+
 def health_request(ident):
     integer(ident, 0, 253, 'Servo ID')
     fields = bytes([ident, 4, 2, 0x48, 1])

@@ -9,9 +9,10 @@ import time
 
 from .device import BusDevice, Mmio, SimulationDevice
 from .model import Profile
-from .protocol import integer
+from .protocol import integer, ServoUnavailable
 
 PREFIX = '@@BUS10@@'
+BOARD_ONLY = 'board-only-v1'
 
 
 class Controller:
@@ -20,6 +21,26 @@ class Controller:
         self.allow_motion = allow_motion
         self.last_sequence = 0
         self.closed = False
+        self.verified = set(profile.axes) if device.simulation else set()
+
+    def require_servos(self, numbers):
+        self.profile.select(numbers)
+        if not set(numbers) <= self.verified:
+            raise ServoUnavailable('板子已连接，所选舵机尚未检测；供电后点击“检测所选舵机”。')
+
+    def query(self, action):
+        was_claimed = getattr(self.device, 'claimed', False)
+        try:
+            return action()
+        except Exception as exc:
+            self.verified.clear()
+            # Active motion failures still terminate the session and request stop.
+            # Only idle feedback failure preserves the board link; no retry.
+            if self.device.simulation or was_claimed:
+                raise
+            self.device.failed = True
+            raise ServoUnavailable('舵机未取得有效反馈（可能未供电或未连接），板子连接保留。'
+                                   '检查供电、ID和接线后，断开重连再手动检测；未自动重试。详情：' + str(exc)) from exc
 
     def permitted(self, payload):
         if payload.get('attended') is not True:
@@ -41,16 +62,34 @@ class Controller:
         op, payload = request['op'], request['payload']
         if op == 'hello':
             return {'service': 'bus-teach-v1', 'profile': self.profile.fingerprint,
-                    'simulation': self.device.simulation, 'motion_allowed': self.allow_motion,
-                    'positions': self.device.connect()}
+                    'simulation': self.device.simulation,
+                    'motion_allowed': self.device.simulation or (self.allow_motion and all(self.profile.data.get(k) is True
+                        for k in ('hardware_verified', 'electrical_3v3_verified', 'mechanical_limits_verified'))),
+                    'capabilities': [BOARD_ONLY],
+                    'positions': self.device.connect() if self.device.simulation else {},
+                    'board': None if self.device.simulation else self.device.board_status()}
+        if op == 'status':
+            return {'board': None if self.device.simulation else self.device.board_status(),
+                    'verified': sorted(self.verified)}
+        if op == 'probe':
+            numbers = payload['numbers']
+            self.profile.select(numbers)
+            if getattr(self.device, 'claimed', False):
+                raise RuntimeError('请先停止当前运动会话，再检测舵机。')
+            self.verified.clear()
+            rows = self.query(lambda: self.device.read(numbers) if self.device.simulation else self.device.connect(numbers))
+            self.verified = set(numbers)
+            return rows
         if op == 'read':
-            return self.device.read(payload['numbers'])
+            self.require_servos(payload['numbers'])
+            return self.query(lambda: self.device.read(payload['numbers']))
         if op == 'move':
             self.permitted(payload)
             targets = payload['targets']
             if not isinstance(targets, dict) or not targets or any(str(int(n)) != n for n in targets):
                 raise ValueError('Canonical axis-number keys required')
             axes = self.profile.select([int(n) for n in targets])
+            self.require_servos([a.number for a in axes])
             duration = integer(payload['duration_ms'], 20, 9999, 'Duration')
             for a in axes:
                 a.check_position(targets[str(a.number)])
@@ -64,10 +103,12 @@ class Controller:
             return {'sent': True, 'physical_arrival_verified': False}
         if op == 'release':
             self.permitted(payload)
-            self.profile.select(payload['numbers'])
+            self.require_servos(payload['numbers'])
             self.device.release(payload['numbers'])
             return {'released': payload['numbers']}
         if op == 'stop':
+            if not self.device.simulation and not getattr(self.device, 'claimed', False):
+                return {'state': 'no_motion_lease', 'physical_stop_verified': False}
             return {'state': self.device.stop()}
         if op == 'quit':
             self.closed = True
@@ -76,7 +117,7 @@ class Controller:
 
 
 def serve(controller, fd, emit, clock=time.monotonic):
-    emit({'ready': True, 'service': 'bus-teach-v1'})
+    emit({'ready': True, 'service': 'bus-teach-v1', 'capabilities': [BOARD_ONLY]})
     buffer = b''
     last = clock()
     while not controller.closed:
@@ -102,6 +143,11 @@ def serve(controller, fd, emit, clock=time.monotonic):
                 last = clock()
                 emit({'seq': request['seq'], 'ok': True, 'result': result})
             except Exception as exc:
+                if isinstance(exc, ServoUnavailable) and not getattr(controller.device, 'claimed', False):
+                    last = clock()
+                    emit({'seq': request.get('seq'), 'ok': False, 'error': str(exc),
+                          'servo_unavailable': True})
+                    continue
                 # End a failed session. Do not consume a later queued movement.
                 if getattr(controller.device, 'claimed', False):
                     controller.device.stop()

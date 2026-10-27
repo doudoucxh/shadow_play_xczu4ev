@@ -151,8 +151,9 @@ class EditorWindow:
 
     def sync_controls(self):
         for b in self.edit_controls: b.configure(state='disabled' if self.pending else 'normal')
-        live = self.app.connected and not self.app.busy and not self.app.recording and not self.app.playing and not self.app.closing and not self.pending
+        live = self.app.feedback_ready(self.project.data['selected']) and not self.app.busy and not self.app.recording and not self.app.playing and not self.app.closing and not self.pending
         for b in (self.release_button,self.capture_button,self.replace_button): b.configure(state='normal' if live else 'disabled')
+        self.release_button.configure(state='normal' if live and self.app.motion_allowed else 'disabled')
         self.drag_button.configure(state='normal' if live and self.app.mode.get()=='离线模拟' else 'disabled')
         self.undo_button.configure(state='normal' if self.project.undo_stack and not self.pending else 'disabled')
         self.redo_button.configure(state='normal' if self.project.redo_stack and not self.pending else 'disabled')
@@ -160,6 +161,8 @@ class EditorWindow:
     def guard_device(self, motion=False):
         if not self.app.connected or self.app.busy or self.app.recording or self.app.playing or self.app.closing:
             raise RuntimeError('请先在主窗口连接，并结束连续录制/回放。')
+        if not self.app.feedback_ready(self.project.data['selected']):
+            raise RuntimeError('请先在主窗口检测本工程所选舵机；连接板子不代表已有位置反馈。')
         if motion: self.app.check_operator()
 
     def release(self):

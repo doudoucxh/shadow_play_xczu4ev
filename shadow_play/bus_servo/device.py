@@ -143,7 +143,15 @@ class BusDevice:
             raise errors[0]
         return results
 
-    def connect(self):
+    def board_status(self):
+        # Fixed, non-consuming register reads. Never kick a lease or touch RX/TX.
+        return {'identity': self.reg.read(0), 'faults': self.reg.read(8),
+                'lease': self.reg.read(0x10), 'servo_session_failed': self.failed,
+                'buses': {name: self.reg.read(bus.offset) for name, bus in self.buses.items()}}
+
+    def connect(self, numbers=None):
+        if self.failed:
+            raise RuntimeError('舵机检测已失败；检查供电和接线后断开重连，再手动检测。')
         def identify(a, bus):
             version = protocol.parse_reply(bus.exchange(protocol.command(a.ident, 'VER')), a.ident, 'version')
             mode = protocol.parse_reply(bus.exchange(protocol.command(a.ident, 'MOD')), a.ident, 'mode')
@@ -151,8 +159,9 @@ class BusDevice:
             if mode not in expected_modes:
                 raise ValueError(f'Axis {a.number}: servo mode does not match angle profile')
             return {'version': version, 'mode': mode}
-        self.versions = self._parallel(list(self.profile.axes.values()), identify)
-        return self.read(self.profile.layout.numbers)
+        numbers = self.profile.layout.numbers if numbers is None else numbers
+        self.versions = self._parallel(self.profile.select(numbers), identify)
+        return self.read(numbers)
 
     def kick(self):
         if self.failed or self.reg.read(8):

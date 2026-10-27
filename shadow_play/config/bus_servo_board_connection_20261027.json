@@ -1,0 +1,160 @@
+{
+  "schema": "shadow.bus-board-connection.v1",
+  "date": "2026-10-27",
+  "request": "舵机不上电时也能连接板子",
+  "last_reported_servo_power": "off",
+  "installed": {
+    "date": "2026-10-27",
+    "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+    "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+    "previous_manifest_sha256": "6cab36ed816c82e665613ab33dbe1e46778f40009ac246b2844a3b3182ffd933",
+    "manifest_sha256": "79a41ed3c94c114602cc63e0c0b914d6cf077812d6f09af0f3ed366acb8a0fcf",
+    "updated_files": {
+      "shadow_play/bus_servo/device.py": "3479acb03c4f849f8418cdeebd83b3f9f41b2c877ee7f1eec8b37bef2501effb",
+      "shadow_play/bus_servo/protocol.py": "acc87a0626b92259efd77652306c4a00ae3bce397e75029971ceafbd8ba63ca2",
+      "shadow_play/bus_servo/service.py": "37a265e8a18b4fd5dfd9b60fb35aab66814d9c3d791202cd1f683d172871e5eb",
+      "shadow_play/bus_servo/session.py": "a5a543d83d1fe69675375c20728e938aec7e97cf99dfdeb2a1155392c4aaa2ee",
+      "shadow_play/bus_servo/transport.py": "23e4c470f468fcc1940f2f76ad322ef66fa0dc42b77555152f2b51f191a17c73",
+      "shadow_play/bus_servo/gui.py": "435658a34ac91e9850353c93ffde961f283965c9943dabbcff03b146669c55a9",
+      "shadow_play/bus_servo/editor_gui.py": "ffc10b926877a043854c294d82ae818ba6f5ec2c5b437d1f60c9087ddf5ca2c3"
+    },
+    "files_verified": 22,
+    "backup": "/run/media/mmcblk0p2/piying/bus-servo-tiger-four-v1/backups/board-only-20261027",
+    "motion_allowed": false,
+    "servo_packets_sent": 0,
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8"
+    },
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
+  },
+  "live_pc_connection_test": {
+    "date": "2026-10-27",
+    "profile": "3a9d48249f6eaf041c16d5b9f6021863b116da9a5e6e8d523aaae6852efcd034",
+    "elapsed_s": 6.7299749000012525,
+    "rpc_operations": [
+      "hello",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "quit"
+    ],
+    "last_state": {
+      "board": {
+        "identity": 1112813620,
+        "faults": 0,
+        "lease": 0,
+        "servo_session_failed": false,
+        "buses": {
+          "tiger7": 0,
+          "tiger8": 0,
+          "tiger9": 0,
+          "tiger10": 0
+        }
+      },
+      "verified": []
+    },
+    "positions": {},
+    "port_released": true,
+    "servo_query_rpcs": 0,
+    "movement_rpcs": 0,
+    "simulation": false
+  },
+  "final_audit": {
+    "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+    "manifest_sha256": "79a41ed3c94c114602cc63e0c0b914d6cf077812d6f09af0f3ed366acb8a0fcf",
+    "files_verified": 22,
+    "state": {
+      "identity": "0x42543034",
+      "faults": 0,
+      "lease": 0,
+      "bus_states": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "boot_files_and_incident_unchanged": true,
+    "previous_query_canceled_marker_preserved": true
+  },
+  "validation": {
+    "offline_tests_passed": 83,
+    "tk_state_check_passed": true,
+    "gui_visual_click_review": false
+  },
+  "behavior": {
+    "connection_sends_servo_packets": false,
+    "explicit_selected_servo_probe": true,
+    "idle_probe_failure_keeps_board_link": true,
+    "failure_blocks_automatic_polling_and_requires_reconnect": true,
+    "unverified_axes_have_no_position_samples": true,
+    "movement_permissions_unchanged": true
+  },
+  "scope": {
+    "fpga_reloaded": false,
+    "startup_changed": false,
+    "physical_servo_response_verified": false,
+    "servo_queries_sent": 0,
+    "servo_motion_commands_sent": 0,
+    "servo_release_commands_sent": 0
+  },
+  "install_note": "First installer launch failed on import before any changes; set PYTHONPATH to bundle root, then installed successfully. Original error log retained.",
+  "evidence": {
+    ".review_work/bus-servo-board-only-20261027/audit.log": {
+      "sha256": "dfde19a8de6b060538e69a1726c8d5ef57fba3fb6b78ee669537a8d708b90772",
+      "bytes": 462
+    },
+    ".review_work/bus-servo-board-only-20261027/audit.sh": {
+      "sha256": "a450148eb5c095716713b769332cff90a4060c8d09479ec374cef8a5ddb39a09",
+      "bytes": 1511
+    },
+    ".review_work/bus-servo-board-only-20261027/check_gui.py": {
+      "sha256": "69dedcf8fee77e1f8534534bcb291198b3310794c4e53552c895f6db4cbef13d",
+      "bytes": 1684
+    },
+    ".review_work/bus-servo-board-only-20261027/check_live.py": {
+      "sha256": "49f12c81b1e69edba60bbb92e7a16d5bd6ab08c7aa32af71ef565816fb2830d8",
+      "bytes": 1384
+    },
+    ".review_work/bus-servo-board-only-20261027/install-result.log": {
+      "sha256": "9aa3abf41672e56243b7df89ffbd3c88fbed902975ceb421c34edd2469eb5c17",
+      "bytes": 1864
+    },
+    ".review_work/bus-servo-board-only-20261027/install.log": {
+      "sha256": "dd3eefc41024d71d201dd5820eef8560165c64c0ae10f3b346757df3a63380d0",
+      "bytes": 311
+    },
+    ".review_work/bus-servo-board-only-20261027/install.py": {
+      "sha256": "b1c0e09b04f8232cd998c6b971d9f06c591c2c5b2655e3e45e6448015d44fadc",
+      "bytes": 131482
+    },
+    ".review_work/bus-servo-board-only-20261027/install.sh": {
+      "sha256": "41f61b3095676cdec34bc757646e9bb97593d40717155c8e14fc6147b0de80a8",
+      "bytes": 136
+    },
+    ".review_work/bus-servo-board-only-20261027/live-result.json": {
+      "sha256": "665e61f2469afd90faadb166f616518889ac92c16950fe5e2de78c2cbcbe4aa5",
+      "bytes": 792
+    },
+    ".review_work/bus-servo-board-only-20261027/precheck.log": {
+      "sha256": "5cb416c3f1a985d52080942bf1d511c845bb930715b61108e9e6b1b626c1efcd",
+      "bytes": 565
+    },
+    ".review_work/bus-servo-board-only-20261027/precheck.sh": {
+      "sha256": "b284ef78a63ec846bb5c0a70f4f0e5d0498c911e7288e59f9fcb80199900ba93",
+      "bytes": 1179
+    }
+  }
+}
