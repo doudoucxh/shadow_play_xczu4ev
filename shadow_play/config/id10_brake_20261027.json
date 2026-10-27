@@ -1,0 +1,230 @@
+{
+  "schema": "shadow.id10-brake-result.v1",
+  "date": "2026-10-27",
+  "authorization": {
+    "user_explicitly_requested_repeated_brake_before_power_on": true,
+    "onsite_ready_and_power_off_confirmed_before_start": true,
+    "startup_motion_window_explained": true,
+    "id10_still_attached_to_rods": true
+  },
+  "prepared_binding": {
+    "schema": "shadow.id10-brake-binding.v1",
+    "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+    "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "package_sha256": "6cab36ed816c82e665613ab33dbe1e46778f40009ac246b2844a3b3182ffd933",
+    "canceled_query_sha256": "f95513fe4ab6bbf221a497c7725a07ba7ee697ddbe56f4efe14f6b995b83c8ec",
+    "program_sha256": "8e769b26c7210a2a041484bf7f5c5b448fcff74c1c8496dbd5b7769e62522e4c",
+    "user_request": "Repeated brake command started before manual servo power-on",
+    "window_s": 30,
+    "interval_s": 0.02,
+    "id": 10,
+    "pin": "G13",
+    "physical_stop_guaranteed": false,
+    "execution_started": false
+  },
+  "before": {
+    "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+    "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+    "state": {
+      "identity": "0x42543034",
+      "faults": 0,
+      "lease": 0,
+      "bus_states": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "files_verified": 22,
+    "canceled_query_marker_preserved": true
+  },
+  "start": {
+    "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+    "updated_monotonic": 5994.176930237,
+    "event": "transmitting",
+    "frames_queued": 1,
+    "remaining_s": 29.999146882000787,
+    "observed_monotonic": 5994.207460913,
+    "unit_state": "Restart=no\nActiveState=active\nSubState=running\n"
+  },
+  "end": {
+    "observed_monotonic": 6061.95413613,
+    "unit": "Restart=no\nExecMainStatus=0\nActiveState=inactive\nSubState=dead\n",
+    "status.json": {
+      "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+      "updated_monotonic": 6024.176266588,
+      "event": "finished",
+      "status": "window_expired",
+      "frames_queued": 1415,
+      "rx_hex": "",
+      "elapsed_s": 30.000184278999768,
+      "bus_states": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "physical_stop_verified": false,
+      "startup_motion_prevented": false
+    },
+    "result.json": {
+      "status": "window_expired",
+      "frames_queued": 1415,
+      "rx_hex": "",
+      "elapsed_s": 30.000184278999768,
+      "bus_states": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "physical_stop_verified": false,
+      "startup_motion_prevented": false,
+      "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+      "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+      "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+      "final_faults": 0,
+      "final_lease": 0
+    }
+  },
+  "independent_final_audit": {
+    "result": {
+      "status": "window_expired",
+      "frames_queued": 1415,
+      "rx_hex": "",
+      "elapsed_s": 30.000184278999768,
+      "bus_states": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "physical_stop_verified": false,
+      "startup_motion_prevented": false,
+      "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+      "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+      "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+      "final_faults": 0,
+      "final_lease": 0
+    },
+    "state": {
+      "identity": "0x42543034",
+      "faults": 0,
+      "lease": 0,
+      "bus_states": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "running_pids": [],
+    "frames_verified": 1415,
+    "min_queue_spacing_s": 0.020498185000178637,
+    "last_queue_elapsed_s": 29.98914326799968,
+    "files_verified": 22,
+    "run_file_hashes": {
+      "events.jsonl": "c527e7a3a165d298d8be1b54e17eda2bc210a5da7a614bba4de483b61c5b6e25",
+      "result.json": "2671c9764dd5fe341f208240ce0477d9a83f2be384966a630cb11ef884f3d3fb",
+      "binding.json": "81ea4940579dcb8ee86e88b132761161fc199e03e853cc9aa30f1bd32082fdaa",
+      "status.json": "61e81120f2a81e591cb95447c9defb40dec80c09506b00d45e4a21e0bc4c450d"
+    },
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8"
+    },
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "canceled_query_sha256": "f95513fe4ab6bbf221a497c7725a07ba7ee697ddbe56f4efe14f6b995b83c8ec"
+  },
+  "observation": {
+    "first_report": "仍转动，已立即断电",
+    "later_hypothesis": "我怀疑似乎是一上电就回中了，有可能是我这一个装反了导致会转",
+    "continuous_rotation_confirmed": false,
+    "centering_confirmed": false,
+    "reverse_installation_confirmed": false,
+    "power_on_time_independently_correlated_to_send_window": false,
+    "last_reported_actuator_power": "off",
+    "root_cause_determined": false
+  },
+  "scope": {
+    "brake_frames_queued": 1415,
+    "servo_reply_bytes": 0,
+    "angle_target_frames": 0,
+    "release_frames": 0,
+    "mode_or_calibration_writes": 0,
+    "servo_queries": 0,
+    "other_servo_tx_channels_used": false,
+    "lease_enabled": false,
+    "fpga_reloaded": false,
+    "package_files_changed": false,
+    "boot_files_changed": false,
+    "incident_lock_changed": false,
+    "old_canceled_query_marker_changed": false,
+    "constant_sender_still_running": false,
+    "com19_released": true,
+    "automatic_repeat_planned": false
+  },
+  "stop_request": "User reported power cut. Stop request found transient unit already unloaded after its 30-second expiry; it was not stopped early by this request.",
+  "validation": {
+    "offline_tests_passed": 71,
+    "board_default_offline_entry_passed": true,
+    "all_1415_frame_records_and_spacing_verified": true,
+    "physical_stop_verified": false
+  },
+  "board_evidence_directory": "/run/media/mmcblk0p2/piying/bus-servo-tiger-four-v1/id10-brake-20261027-v1",
+  "evidence": {
+    ".review_work/id10-brake-20261027/preflight.sh": {
+      "sha256": "b284ef78a63ec846bb5c0a70f4f0e5d0498c911e7288e59f9fcb80199900ba93",
+      "bytes": 1179
+    },
+    ".review_work/id10-brake-20261027/preflight.log": {
+      "sha256": "bd91979018d0efa1946218518b70653ca76126012fc1eb60ee548a5755e87185",
+      "bytes": 493
+    },
+    ".review_work/id10-brake-20261027/binding.json": {
+      "sha256": "433750db29839243ae7c3205c6aea3ef2277dc84a635ca4f1340c2f1f9e3d358",
+      "bytes": 762
+    },
+    ".review_work/id10-brake-20261027/dryrun.sh": {
+      "sha256": "6d7abedf774adf676b20b2b7de384b6b8653a5c65f31e48fd6fb3022c20355c1",
+      "bytes": 41
+    },
+    ".review_work/id10-brake-20261027/dryrun.log": {
+      "sha256": "1ffbdf5581c16d02fc1a7d95f183c5244f7fde51951a181b613953d95abd4055",
+      "bytes": 266
+    },
+    ".review_work/id10-brake-20261027/start.sh": {
+      "sha256": "89f34e07c8d2c31088c19624e094acf77f0b6d88cd63b39284ebabe54f9caf02",
+      "bytes": 988
+    },
+    ".review_work/id10-brake-20261027/start.log": {
+      "sha256": "0766790f6aec266fe8f76eee94f08db38024547e2bd7b73f0a4890b3340481d3",
+      "bytes": 479
+    },
+    ".review_work/id10-brake-20261027/status.sh": {
+      "sha256": "7e0bdcc79c28a15981d34b82b20918c66936ec2751218e55a28f3a3844d5d4c5",
+      "bytes": 520
+    },
+    ".review_work/id10-brake-20261027/stop-status.sh": {
+      "sha256": "c0d19ef5d2ad3c344af78687aa6e00a9eb91f7dbd731f0036be4377e1b0801a0",
+      "bytes": 570
+    },
+    ".review_work/id10-brake-20261027/stop-status.log": {
+      "sha256": "4d02ab4be943111d2ee689ff22601a7aa49e40a5caa7c81730bf18e846febf96",
+      "bytes": 1202
+    },
+    ".review_work/id10-brake-20261027/audit.sh": {
+      "sha256": "81a605b8785fd0682d76b9cd7119d3b4716ff7b2bc23bf606e3199d181fdfadd",
+      "bytes": 2131
+    },
+    ".review_work/id10-brake-20261027/audit.log": {
+      "sha256": "75f8ec1d0dec03242fd5b75d0fbe9a93c9e29ef2e8f3a71f9aabe8dd823e4900",
+      "bytes": 1701
+    }
+  }
+}
