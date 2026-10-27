@@ -1,0 +1,299 @@
+{
+  "schema": "shadow.bus-tiger-deployment.v1",
+  "host_date": "2026-10-27",
+  "board_clock_synchronized": false,
+  "layout": "tiger-four-port",
+  "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+  "transport": {
+    "ps_port": "COM19",
+    "baud": 115200,
+    "released_at_end": true
+  },
+  "authorization": {
+    "install_and_load_requested": true,
+    "actuator_power_off_confirmed_this_turn": true,
+    "zynq_and_usb_kept_powered": true
+  },
+  "last_reported_actuator_power": "off",
+  "person_servos_connected": false,
+  "mapping": [
+    {
+      "logical_axis": 7,
+      "servo_id": 7,
+      "original_port": 1,
+      "fpga_pin": "D14",
+      "signal_independent": true
+    },
+    {
+      "logical_axis": 8,
+      "servo_id": 8,
+      "original_port": 2,
+      "fpga_pin": "D15",
+      "signal_independent": true
+    },
+    {
+      "logical_axis": 9,
+      "servo_id": 9,
+      "original_port": 3,
+      "fpga_pin": "F13",
+      "signal_independent": true
+    },
+    {
+      "logical_axis": 10,
+      "servo_id": 10,
+      "original_port": 4,
+      "fpga_pin": "G13",
+      "signal_independent": true
+    }
+  ],
+  "installation": {
+    "directory": "/run/media/mmcblk0p2/piying/bus-servo-tiger-four-v1",
+    "receipt": {
+      "schema": "shadow.bus-install.v1",
+      "host_date": "2026-10-27",
+      "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+      "archive_sha256": "200a31b5c28095721b6226d7a6586f8c5ec6a629f17261da4af5af27e268df73",
+      "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+      "file_count": 22,
+      "installed": true,
+      "fpga_programmed_by_this_script": false,
+      "automatic_start": false
+    },
+    "archive_bytes": 3206220,
+    "manifest_sha256": "50c13d6fabe92a550f43385ef3690e30899a0c821a40f2034127eac8fabb3298",
+    "hardware_manifest_sha256": "e79c11ee6a102c7dec60cb26e327098f3deebd78b8ce9f364e08e9883276c782",
+    "verified_file_count": 22,
+    "automatic_start": false
+  },
+  "transfer": {
+    "first_baud": 921600,
+    "first_result": "ACK 19 timeout; no FPGA load during transfer failure",
+    "verified_partial_bytes": 622592,
+    "verified_partial_sha256": "63c25ced5a869fe10076ce1d67221dc572bd42b7cd849cb3523982c4bf64e163",
+    "resume_baud": 115200,
+    "whole_archive_sha256_matched": true
+  },
+  "before_load": {
+    "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+    "state": {
+      "enabled_mask": 0,
+      "faults": 0,
+      "armed": 0,
+      "sequence": 0,
+      "pending": 0,
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "image_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
+  },
+  "fpga_load": {
+    "completed": true,
+    "load_attempts": 1,
+    "loader_reported_ms": 158,
+    "volatile": true,
+    "persistent_boot_changed": false,
+    "reboot_behavior": "Existing startup restores original SP10 image; a new authorized load requires fresh state and actuator power-off confirmation.",
+    "marker": "/run/shadow-bus-servo-loaded.json",
+    "previous_marker_backup": "/run/shadow-pwm-before-bus-servo.json",
+    "consumed_attempt_marker": "/run/shadow-bus-servo-load-attempt.json",
+    "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d"
+  },
+  "independent_postload": {
+    "state": {
+      "identity": "0x42543034",
+      "version": 1,
+      "faults": 0,
+      "lease": 0,
+      "channels": 4,
+      "bus_states": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "bus_states_second_read": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+    "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8"
+    },
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "old_marker_backed_up": true,
+    "sd_files_verified": 22
+  },
+  "final": {
+    "host_date": "2026-10-27",
+    "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+    "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+    "state": {
+      "identity": "0x42543034",
+      "channels": 4,
+      "faults": 0,
+      "lease": 0,
+      "bus_states": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "units": {
+      "shadow-bus-tiger-hdmi-20261027": {
+        "Restart": "no",
+        "ActiveState": "active",
+        "SubState": "running"
+      },
+      "shadow-theatre-ui-r4": {
+        "Restart": "on-failure",
+        "ActiveState": "active",
+        "SubState": "running"
+      },
+      "shadow-theatre-browser-r4": {
+        "Restart": "on-failure",
+        "ActiveState": "active",
+        "SubState": "running"
+      },
+      "shadow-theatre-hdmi-r4": {
+        "Restart": "no",
+        "ActiveState": "inactive",
+        "SubState": "dead"
+      }
+    },
+    "fresh_ui_packets": [
+      {
+        "captured_monotonic": 2021.143003756,
+        "age_seconds": 1.0745941559998755,
+        "sha256": "d2efde1c8ca72dce3ffde778c0f5dac023dfa8a218378829b1b44e598ff0c725"
+      },
+      {
+        "captured_monotonic": 2022.447146587,
+        "age_seconds": 0.03398227000002407,
+        "sha256": "d2efde1c8ca72dce3ffde778c0f5dac023dfa8a218378829b1b44e598ff0c725"
+      },
+      {
+        "captured_monotonic": 2022.714660432,
+        "age_seconds": 0.03733042299995759,
+        "sha256": "d2efde1c8ca72dce3ffde778c0f5dac023dfa8a218378829b1b44e598ff0c725"
+      }
+    ],
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8"
+    },
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "readiness": {
+      "hardware_verified": false,
+      "electrical_3v3_verified": false,
+      "mechanical_limits_verified": false
+    },
+    "scope": "SD installed; volatile PL loaded; no servo packets; no boot change"
+  },
+  "scope": {
+    "servo_packets_sent": 0,
+    "rail_packets_sent": 0,
+    "servo_rpc_started": false,
+    "motion_commands_sent": 0,
+    "actual_servo_feedback": null,
+    "mechanical_motion_tested": false,
+    "physical_display_visually_verified": false,
+    "incident_lock_preserved": true,
+    "boot_file_hashes_unchanged": true,
+    "pc_application_changed_this_turn": false
+  },
+  "validation": {
+    "host_evidence_chain_verified": true,
+    "sd_hashes_and_python_syntax_checked": true,
+    "previous_54_python_tests": "Passed on 2026-10-26; no application or FPGA source change this turn; not rerun for documentation-only changes."
+  },
+  "evidence": {
+    ".review_work/bus-servo-tiger-deploy-20261027/metadata.sh": {
+      "sha256": "a35abd8f4368868ab33068fc952d43c73ab010d05155c66789ce274004a01c9e",
+      "bytes": 1734
+    },
+    ".review_work/bus-servo-tiger-deploy-20261027/metadata.log": {
+      "sha256": "ac8926b59d8b7d1fdd668bece80ae65f432647360a59d9736e4509261f3a4331",
+      "bytes": 4193
+    },
+    ".review_work/bus-servo-tiger-deploy-20261027/preflight-metadata.json": {
+      "sha256": "538357c1cbda0850db31cbf29cf2e64021fdb61468922404c3add9836f0c091e",
+      "bytes": 4479
+    },
+    ".review_work/bus-servo-tiger-deploy-20261027/transfer-status.sh": {
+      "sha256": "16a19fca3bfd63003bf44d6a4811e311d07b80858268a97a98ecfa5ec7e4781c",
+      "bytes": 375
+    },
+    ".review_work/bus-servo-tiger-deploy-20261027/transfer-status.log": {
+      "sha256": "774f2a127ec92053e75bd6c9ee8e876b269e5512a37d9180b4fa09566fd5d561",
+      "bytes": 417
+    },
+    ".review_work/bus-servo-tiger-deploy-20261027/install_bundle.py": {
+      "sha256": "9e5806675c0f649d19d5c241da6be7dd7e858ff04483d51710454e16458cf374",
+      "bytes": 3076
+    },
+    ".review_work/bus-servo-tiger-deploy-20261027/install.sh": {
+      "sha256": "bb4c427115634cd5f68514d47aca4f1418104263c25bdf8461a7a4aaa0952401",
+      "bytes": 45
+    },
+    ".review_work/bus-servo-tiger-deploy-20261027/install.log": {
+      "sha256": "b817e7fd56bde8d3315dd8c0c32b6987de55da76180ad124502ae897bebb22b3",
+      "bytes": 504
+    },
+    ".review_work/bus-servo-tiger-deploy-20261027/preload.sh": {
+      "sha256": "9175947227420d38c516d8030d322e923ac582b12a2ee1ecd39339fbee514397",
+      "bytes": 1815
+    },
+    ".review_work/bus-servo-tiger-deploy-20261027/preload.log": {
+      "sha256": "58eb05e6656b3896145f4406793267cef3a21e312a440231e72b48cdbcca8e04",
+      "bytes": 1002
+    },
+    ".review_work/bus-servo-tiger-deploy-20261027/load.sh": {
+      "sha256": "e40b439e21288fd0f4948a5cfe2245af5c002521aa161bce2b0389fa88f60b73",
+      "bytes": 641
+    },
+    ".review_work/bus-servo-tiger-deploy-20261027/load.log": {
+      "sha256": "6ffcd0b9952c3dd7c9b7530f545874a49dc1a6a70a45fa0a4149e930ecacc4aa",
+      "bytes": 338
+    },
+    ".review_work/bus-servo-tiger-deploy-20261027/postload.sh": {
+      "sha256": "c15899c5cbfe7421527ee3013315bfdb9dfe73e3fb69088983686fe2e473394e",
+      "bytes": 1887
+    },
+    ".review_work/bus-servo-tiger-deploy-20261027/postload.log": {
+      "sha256": "3069a71d085a4fda91d00654216250a475de6d8bdccbbdf6c42e50b6b60088ee",
+      "bytes": 950
+    },
+    ".review_work/bus-servo-tiger-deploy-20261027/final.sh": {
+      "sha256": "cc7db707c78bf1204efbcdbc327b27fab6d4f2ca91019119630480251ec51741",
+      "bytes": 2398
+    },
+    ".review_work/bus-servo-tiger-deploy-20261027/final.log": {
+      "sha256": "b2e2259135094505a25430db5dae7b37de7d1d8d3c6d6dd30073874092b815ed",
+      "bytes": 1887
+    }
+  }
+}

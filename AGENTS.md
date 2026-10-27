@@ -1,5 +1,14 @@
 # 项目协作与 Git 备份规则
 
+## 2026-10-27 老虎四口程序已安装并加载（当前BT04，执行器断电）
+
+- 用户要求烧入板子，并当次确认舵机/丝杆电源关闭、Zynq与USB保留。COM19完成授权登录，凭据未落盘。新启动 `b49f2c48-de77-4ee0-a870-7a40c14a5610`，加载前原824779…镜像新读SP10 OFF0、十路关闭、faults/pending/armed均0；OFF210属于历史。
+- 22项四口包已安装 `/run/media/mmcblk0p2/piying/bus-servo-tiger-four-v1`，全部摘要及Python语法通过。首次921600传包ACK19超时，核验622592字节前缀后115200续传，整包SHA `200a31b5c28095721b6226d7a6586f8c5ec6a629f17261da4af5af27e268df73`匹配；无运动重试。
+- 仅一次加载BT04镜像 `dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d` 成功。独立末态身份0x42543034、通道4、faults/lease=0、四路状态全0，无实际舵机反馈。ID7→原1/D14、8→原2/D15、9→原3/F13、10→原4/G13不变，四线独立，人物不接；本轮舵机/丝杆报文0、未启动舵机RPC。
+- 当前加载标记为 `/run/shadow-bus-servo-loaded.json`，旧PWM标记另存 `/run/shadow-pwm-before-bus-servo.json`；`/run/shadow-bus-servo-load-attempt.json`已消耗，不改写或删除后重跑。原事故锁与四启动文件摘要未变。**仅易失PL加载，重启仍恢复旧SP10；没有BT04开机自启。** 后续重载必须重新核对当前启动/原镜像/OFF及当次断电，不复用本次一次性脚本。
+- 原HDMI服务inactive；临时 `shadow-bus-tiger-hdmi-20261027` active/running、Restart=no，原UI/browser active/running；3个递增时间戳界面包可解码，不是实体屏视觉验收。COM19释放，无运动任务，执行器最后确认仍断电。板端时间未同步，记录使用电脑日期。
+- 电气/通信/机械三个就绪字段仍false，不能因加载成功宣称可直连3.3V FPGA或已验收实机。上位机/FPGA源码未改，沿用26日54项测试；本次新增部署与证据核验。详见 `shadow_play/docs/bus_servo_tiger_deployment_20261027.md` 与同名config；原日志和一次性脚本留忽略目录，只备份摘要。
+
 ## 2026-10-26 老虎7～10临时接原1～4口（离线完成，未部署）
 
 - 用户明确四根信号线相互独立：实物ID7→原1口D14、8→原2口D15、9→原3口F13、10→原4口G13；只接老虎，人物六台暂不连接。逻辑编号和ID保持7～10，不能将四根信号线并在一起。
