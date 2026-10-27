@@ -74,7 +74,7 @@ class TigerProfileTests(unittest.TestCase):
         self.assertEqual(p.layout.pins, dict(tiger7='D14',tiger8='D15',tiger9='F13',tiger10='G13'))
         self.assertEqual(p.layout.offsets, dict(tiger7=0x100,tiger8=0x200,tiger9=0x300,tiger10=0x400))
         self.assertEqual([a.ident for a in p.select([7,8,9,10])], [7,8,9,10])
-        self.assertFalse(any(p.data[k] for k in ('hardware_verified','electrical_3v3_verified','mechanical_limits_verified')))
+        self.assertFalse(any(p.data[k] for k in ('hardware_verified','mechanical_limits_verified')))
         with self.assertRaises(ValueError): p.select([1])
 
     def test_wrong_axis_bus_pin_or_layout_rejected(self):
@@ -174,10 +174,24 @@ class TigerRoutingTests(unittest.TestCase):
 
     def test_electrical_gate_still_precedes_hardware_access(self):
         from shadow_play.bus_servo import service
+        pending = Profile(copy.deepcopy(self.profile.data))
+        pending.data['electrical_3v3_verified'] = False
         with patch('sys.argv',['service','--profile',str(TIGER),'--manifest','absent.json']), \
+                patch.object(service.Profile,'load',return_value=pending), \
                 patch.object(service,'Mmio') as mmio,patch('sys.stderr'):
             with self.assertRaises(SystemExit): service.main()
         mmio.assert_not_called()
+
+    def test_electrical_confirmation_alone_keeps_motion_blocked(self):
+        c=Controller(self.profile,self.device,False)
+        self.assertTrue(self.profile.data['electrical_3v3_verified'])
+        self.assertEqual(self.profile.data['electrical_verification']['basis'],'user_report')
+        for seq,op,payload in ((1,'move',{'targets':{'7':1510},'duration_ms':1000,'attended':True}),
+                               (2,'release',{'numbers':[7],'attended':True})):
+            with self.assertRaises(RuntimeError):
+                c.execute({'seq':seq,'op':op,'payload':payload})
+        self.assertEqual(self.reg.writes,[])
+        self.assertFalse(any(b.requests for b in self.device.buses.values()))
 
 
 class TigerTeachingTests(unittest.TestCase):

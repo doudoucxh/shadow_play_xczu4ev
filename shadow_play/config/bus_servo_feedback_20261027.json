@@ -1,0 +1,154 @@
+{
+  "schema": "shadow.bus-feedback-commissioning.v1",
+  "date": "2026-10-27",
+  "user_confirmation": {
+    "electrical_compatibility_test_completed": true,
+    "basis": "user_report",
+    "measurement_values_supplied": false
+  },
+  "precheck": {
+    "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+    "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+    "state": {
+      "identity": "0x42543034",
+      "channels": 4,
+      "faults": 0,
+      "lease": 0,
+      "bus_states": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "files_verified": 22,
+    "manifest_sha256": "50c13d6fabe92a550f43385ef3690e30899a0c821a40f2034127eac8fabb3298",
+    "profile_sha256": "24dbe51ca8bfee6586a3f6a9945a190558c2dece76f6e7af6bb048d351bb3e9f",
+    "launcher_sha256": "3a02867a3d6ab7b01e73d33dc675b33e2b19d21c6288ce7bad0a07f629ad6eb2",
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8"
+    }
+  },
+  "installed_configuration": {
+    "date": "2026-10-27",
+    "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+    "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+    "previous_manifest_sha256": "50c13d6fabe92a550f43385ef3690e30899a0c821a40f2034127eac8fabb3298",
+    "manifest_sha256": "6cab36ed816c82e665613ab33dbe1e46778f40009ac246b2844a3b3182ffd933",
+    "profile_sha256": "c749f2d76f44dd42c2deb95b23268b580d6b7a494edf02c00e1299190f9e3593",
+    "launcher_sha256": "850c2bbf510ae3992b39108231111f83f55decccf900fc74a2c38ae0922995c6",
+    "profile_fingerprint": "3a9d48249f6eaf041c16d5b9f6021863b116da9a5e6e8d523aaae6852efcd034",
+    "readiness": {
+      "electrical_3v3_verified": true,
+      "hardware_verified": false,
+      "mechanical_limits_verified": false
+    },
+    "backup": "/run/media/mmcblk0p2/piying/bus-servo-tiger-four-v1/backups/electrical-20261027",
+    "files_verified": 22,
+    "motion_allowed": false,
+    "servo_packets_sent": 0,
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8"
+    },
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
+  },
+  "feedback_status": "canceled_before_query_after_powerup_rotation",
+  "feedback_result": null,
+  "last_reported_servo_power": "off",
+  "queries_sent_this_turn": 0,
+  "motion_commands_sent_this_turn": 0,
+  "release_commands_sent_this_turn": 0,
+  "validation": {
+    "offline_tests_passed": 63,
+    "profile_fingerprint_unchanged": true,
+    "sd_file_hashes_verified": 22
+  },
+  "scope": {
+    "fpga_reloaded": false,
+    "boot_files_changed": false,
+    "incident_lock_changed": false,
+    "physical_motion_verified": false,
+    "mechanical_limits_verified": false,
+    "post_incident_mmio_accessed": false,
+    "previous_idle_state_is_before_powerup_event": true,
+    "physical_feedback_trial_executed": false
+  },
+  "evidence": {
+    ".review_work/bus-servo-electrical-20261027/precheck.sh": {
+      "sha256": "588856ff75e13229073eeaee2789d3666e968688ea5c48cfa6241986a76afee0",
+      "bytes": 1452
+    },
+    ".review_work/bus-servo-electrical-20261027/precheck.log": {
+      "sha256": "59ed44309f5c693d9b482fa0f1775d8137d8ae15039ca15572f147702b2bb162",
+      "bytes": 1068
+    },
+    ".review_work/bus-servo-electrical-20261027/install_electrical.py": {
+      "sha256": "e0d83808bbb381cb932e161175adf0f28a694c286005f04b4c107da8a1be3f02",
+      "bytes": 9715
+    },
+    ".review_work/bus-servo-electrical-20261027/install.sh": {
+      "sha256": "037cd6c551294b1b992042f514030b09a8ce2024dcfe10d1a1ba1407172f9f1c",
+      "bytes": 127
+    },
+    ".review_work/bus-servo-electrical-20261027/install.log": {
+      "sha256": "13c0e18cee6e4d9d090cff1e9875e33c5e0f76e2fc58177af4a63aa1099ec2b8",
+      "bytes": 1501
+    },
+    ".review_work/bus-servo-electrical-20261027/read_once.py": {
+      "sha256": "8a8597fcae35e01f59bf1e648ce0a457a3e2b0f0b47ad312b13527b2aa084c0d",
+      "bytes": 5958
+    },
+    ".review_work/bus-servo-electrical-20261027/read-prepared.sh": {
+      "sha256": "4f87ddcccf99939a480c226c7487ca280789194fef76869fcdf3842623117db5",
+      "bytes": 144
+    },
+    ".review_work/bus-servo-electrical-20261027/read.sh": {
+      "sha256": "fee9e0a49501fa0018415de9161d8ed052a96feaeaa942e21121ac2110eb077f",
+      "bytes": 148
+    },
+    ".review_work/bus-servo-electrical-20261027/cancel.sh": {
+      "sha256": "01e8fb268c0590d0cc217c9591127301c1b3ec9efeda02e4d8b5c02d4ed91b39",
+      "bytes": 1218
+    },
+    ".review_work/bus-servo-electrical-20261027/cancel.log": {
+      "sha256": "e75711849c2537001cec87aacbed0757c17a7b155bc47aff51e40434c9b02d74",
+      "bytes": 843
+    },
+    ".review_work/bus-servo-electrical-20261027/update-payload-hashes.json": {
+      "sha256": "495752fa74b34b61ee240f0d91a59d04e60d966a87a2cee5a11195b28105538d",
+      "bytes": 303
+    }
+  },
+  "cancellation": {
+    "status": "canceled_before_query",
+    "boot_id": "b49f2c48-de77-4ee0-a870-7a40c14a5610",
+    "date": "2026-10-27",
+    "reason": "User reported ID10 unsolicited rotation on power-up, possibly continuous; quickly cut power and confirmed power is now OFF.",
+    "servo_queries_sent": 0,
+    "motion_commands_sent": 0,
+    "release_commands_sent": 0,
+    "last_reported_actuator_power": "off",
+    "no_automatic_retry": true,
+    "manifest_sha256": "6cab36ed816c82e665613ab33dbe1e46778f40009ac246b2844a3b3182ffd933",
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "attempt_marker_sha256": "f95513fe4ab6bbf221a497c7725a07ba7ee697ddbe56f4efe14f6b995b83c8ec"
+  },
+  "powerup_observation": {
+    "source": "user_report",
+    "servo_id": 10,
+    "original_port": 4,
+    "fpga_pin": "G13",
+    "description": "好像是持续转动，我断电比较快",
+    "continuous_rotation_confirmed": false,
+    "electrical_cause_determined": false,
+    "mode_readback_obtained": false,
+    "power_off_confirmed_after_event": true
+  }
+}

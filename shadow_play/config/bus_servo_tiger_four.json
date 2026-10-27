@@ -9,9 +9,16 @@
     "tiger10": "G13"
   },
   "hardware_verified": false,
-  "electrical_3v3_verified": false,
+  "electrical_3v3_verified": true,
   "mechanical_limits_verified": false,
-  "notes": "Temporary tiger only: ID 7/8/9/10 separately on original connectors 1/2/3/4. Four independent signal wires, no person servos. BT04 FPGA candidate required. No hardware/electrical/mechanical verification yet.",
+  "electrical_verification": {
+    "date": "2026-10-27",
+    "basis": "user_report",
+    "statement": "用户确认已完成总线信号与3.3V FPGA的电气兼容性测试，并要求开始连接检查。",
+    "measurements_supplied": false,
+    "scope": "tiger-four-port: ID7/D14, ID8/D15, ID9/F13, ID10/G13; four independent signal wires"
+  },
+  "notes": "Temporary tiger only: ID 7/8/9/10 separately on original connectors 1/2/3/4. Four independent signal wires, no person servos. BT04 FPGA candidate required. Electrical compatibility confirmed by the user on 2026-10-27; hardware response and mechanical verification remain pending.",
   "axes": [
     {
       "number": 7,
