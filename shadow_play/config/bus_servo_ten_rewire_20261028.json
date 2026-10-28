@@ -1,0 +1,328 @@
+{
+  "schema": "shadow.bus-rewire-diagnostic.v1",
+  "date": "2026-10-28",
+  "user_report": {
+    "cable_changed": true,
+    "high_level_now_observed": true,
+    "specific_changed_cable": "not specified",
+    "host_disconnected": true,
+    "all_ten_signals_reconnected": true,
+    "servo_supply_on": true,
+    "board_ground_connected_to_supply_negative": true
+  },
+  "image_sha256": "16bca5bece6ad846897b10b6dd0d040abf963027b584e405ac4290f766ff68ea",
+  "manifest_sha256": "7f95682722fe2c211556fed933c6ed4a28b82e85a6b42f367c001c6433799342",
+  "result": {
+    "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+    "before": {
+      "identity": "0x42503130",
+      "channels": 10,
+      "faults": 0,
+      "lease": 0,
+      "buses": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0
+      }
+    },
+    "axes": [
+      {
+        "axis": 1,
+        "id": 1,
+        "bus": "servo1",
+        "queries": [
+          {
+            "id": 1,
+            "offset": 256,
+            "step": "version",
+            "tx_hex": "233030315056455221",
+            "rx_hex": "",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 43300.990860621,
+            "error": "TimeoutError: Servo reply timeout; command is not retried",
+            "after_status": 0,
+            "finished_monotonic": 43301.1148272
+          }
+        ],
+        "passed": false
+      },
+      {
+        "axis": 2,
+        "id": 2,
+        "bus": "servo2",
+        "queries": [
+          {
+            "id": 2,
+            "offset": 512,
+            "step": "version",
+            "tx_hex": "233030325056455221",
+            "rx_hex": "",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 43301.118130773,
+            "error": "TimeoutError: Servo reply timeout; command is not retried",
+            "after_status": 0,
+            "finished_monotonic": 43301.241463237
+          }
+        ],
+        "passed": false
+      },
+      {
+        "axis": 3,
+        "id": 3,
+        "bus": "servo3",
+        "queries": [
+          {
+            "id": 3,
+            "offset": 768,
+            "step": "version",
+            "tx_hex": "233030335056455221",
+            "rx_hex": "",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 43301.244958121,
+            "error": "TimeoutError: Servo reply timeout; command is not retried",
+            "after_status": 0,
+            "finished_monotonic": 43301.36881214
+          }
+        ],
+        "passed": false
+      },
+      {
+        "axis": 4,
+        "id": 4,
+        "bus": "servo4",
+        "queries": [
+          {
+            "id": 4,
+            "offset": 1024,
+            "step": "version",
+            "tx_hex": "233030345056455221",
+            "rx_hex": "",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 43301.372764889,
+            "error": "TimeoutError: Servo reply timeout; command is not retried",
+            "after_status": 0,
+            "finished_monotonic": 43301.497197014
+          }
+        ],
+        "passed": false
+      },
+      {
+        "axis": 5,
+        "id": 5,
+        "bus": "servo5",
+        "queries": [
+          {
+            "id": 5,
+            "offset": 1280,
+            "step": "version",
+            "tx_hex": "233030355056455221",
+            "rx_hex": "",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 43301.500925901,
+            "error": "TimeoutError: Servo reply timeout; command is not retried",
+            "after_status": 0,
+            "finished_monotonic": 43301.62577806
+          }
+        ],
+        "passed": false
+      },
+      {
+        "axis": 6,
+        "id": 6,
+        "bus": "servo6",
+        "queries": [
+          {
+            "id": 6,
+            "offset": 1536,
+            "step": "version",
+            "tx_hex": "233030365056455221",
+            "rx_hex": "",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 43301.629082563,
+            "error": "TimeoutError: Servo reply timeout; command is not retried",
+            "after_status": 0,
+            "finished_monotonic": 43301.753411486
+          }
+        ],
+        "passed": false
+      },
+      {
+        "axis": 7,
+        "id": 7,
+        "bus": "servo7",
+        "queries": [
+          {
+            "id": 7,
+            "offset": 1792,
+            "step": "version",
+            "tx_hex": "233030375056455221",
+            "rx_hex": "",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 43301.756641018,
+            "error": "TimeoutError: Servo reply timeout; command is not retried",
+            "after_status": 0,
+            "finished_monotonic": 43301.880353465
+          }
+        ],
+        "passed": false
+      },
+      {
+        "axis": 8,
+        "id": 8,
+        "bus": "servo8",
+        "queries": [
+          {
+            "id": 8,
+            "offset": 2048,
+            "step": "version",
+            "tx_hex": "233030385056455221",
+            "rx_hex": "",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 43301.883593498,
+            "error": "TimeoutError: Servo reply timeout; command is not retried",
+            "after_status": 0,
+            "finished_monotonic": 43302.006899981
+          }
+        ],
+        "passed": false
+      },
+      {
+        "axis": 9,
+        "id": 9,
+        "bus": "servo9",
+        "queries": [
+          {
+            "id": 9,
+            "offset": 2304,
+            "step": "version",
+            "tx_hex": "233030395056455221",
+            "rx_hex": "",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 43302.011650708,
+            "error": "TimeoutError: Servo reply timeout; command is not retried",
+            "after_status": 0,
+            "finished_monotonic": 43302.135435426
+          }
+        ],
+        "passed": false
+      },
+      {
+        "axis": 10,
+        "id": 10,
+        "bus": "servo10",
+        "queries": [
+          {
+            "id": 10,
+            "offset": 2560,
+            "step": "version",
+            "tx_hex": "233031305056455221",
+            "rx_hex": "",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 43302.139268624,
+            "error": "TimeoutError: Servo reply timeout; command is not retried",
+            "after_status": 0,
+            "finished_monotonic": 43302.264241744
+          }
+        ],
+        "passed": false
+      }
+    ],
+    "after": {
+      "identity": "0x42503130",
+      "channels": 10,
+      "faults": 0,
+      "lease": 0,
+      "buses": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0
+      }
+    },
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8"
+    },
+    "aborted": false,
+    "motion_commands": 0,
+    "release_commands": 0,
+    "configuration_writes": 0,
+    "retries": 0
+  },
+  "actual_query_count": 10,
+  "subsequent_mode_health_position_queries": 0,
+  "independent_final": {
+    "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+    "state": {
+      "identity": "0x42503130",
+      "channels": 10,
+      "faults": 0,
+      "lease": 0,
+      "buses": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0
+      }
+    },
+    "files_verified": 24,
+    "marker_sha256": "03f24395a72b9ed77ca666afeb618e35b095b7bbc9bdca2c93d4575d29be1d47"
+  },
+  "prior_normal_mapping_version_pass_ports": [
+    2,
+    3,
+    6,
+    7,
+    10
+  ],
+  "current_version_pass_ports": [],
+  "root_cause": "unresolved; static high level does not prove serial data exchange",
+  "adapter_probe": {
+    "prepared": true,
+    "executed": false,
+    "target_id": 2,
+    "packet": "#002PVER!",
+    "requires_signal_disconnected_from_fpga": true,
+    "offline_tests_passed": 6
+  },
+  "production_fpga_or_pc_gui_or_sd_package_changed": false,
+  "com17_released": true,
+  "evidence_sha256": {
+    "rewire-preflight.log": "167f40efc79311a4e2117b07af15208175064d494189bfba0f1da87c684e373b",
+    "rewire_once.py": "dedebd7cc959a8b59e99c20b4660c8496f49a7ce6c84eb983ba940210a999549",
+    "rewire.sh": "ca7409c3904df9069223ccffb9ffe3813c30110eaf660258d797aa616ec72ee7",
+    "rewire.log": "d963fd33be0a4e66204b76bc5a130282dbde34fa894b6ba311b491bb0250b5e4",
+    "rewire-final-inspect.log": "1816cfd9cbb9694cd2299eebcd837af895b9eca13996370219e7b709bda0ffc8"
+  }
+}
