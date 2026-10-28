@@ -106,7 +106,7 @@ def main():
                     if (words.read(0)!=layout.word or words.read(4)!=1 or words.read(8)!=0 or words.read(16)!=0
                             or words.read(0x18)!=100000000 or words.read(0x1c)!=115200
                             or any(words.read(offset)!=0 for offset in layout.offsets.values())
-                            or (layout.name=='tiger-four-port' and words.read(0x24)!=4)):
+                            or (layout.name!='dual' and words.read(0x24)!=len(layout.buses))):
                         raise RuntimeError('Unexpected bus candidate reset state')
                 finally:words.close()
         finally:os.close(fd)

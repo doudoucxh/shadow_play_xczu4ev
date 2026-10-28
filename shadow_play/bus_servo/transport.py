@@ -71,10 +71,12 @@ class RemoteDevice:
                 if self.profile.layout.name == 'dual':
                     return ('板端未安装当前十轴双总线程序。老虎ID7～10临时接原1～4口时，'
                             '请关闭此窗口，打开“老虎四舵机临时调试.cmd”。')
+                if self.profile.layout.name == 'ten-port':
+                    return '板端缺少十舵机独立十口程序，请检查SD卡安装目录 bus-servo-ten-port-v1。'
                 return '板端缺少老虎四口程序或启动脚本，请检查SD卡安装目录 bus-servo-tiger-four-v1。'
         if any(s in output for s in (b'different FPGA wiring layout', b'different wiring layout',
                                      b'no matching bus candidate', b'Bus identity/clock/baud mismatch')):
-            return '当前FPGA镜像与上位机接线配置不匹配；请核对四口BT04或双总线BS10，不能使用旧PWM镜像。'
+            return '当前FPGA镜像与上位机接线配置不匹配；请核对独立十口BP10、四口BT04或双总线BS10。'
         return None
 
     def _receive(self, deadline, *, startup=False):

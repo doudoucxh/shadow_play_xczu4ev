@@ -178,7 +178,8 @@ class App:
         self.record = None
         self.editor = None
         self.live_samples = []
-        root.title('皮影 · 总线舵机示教工作台（分步/剪辑）' + (' · 老虎临时四口' if self.profile.layout.name=='tiger-four-port' else ''))
+        suffix={'tiger-four-port':' · 老虎临时四口','ten-port':' · 十舵机独立十口'}.get(self.profile.layout.name,'')
+        root.title('皮影 · 总线舵机示教工作台（分步/剪辑）' + suffix)
         root.geometry('1180x850'); root.minsize(1030, 790)
         root.configure(bg='#eef2f5')
         root.option_add('*Font', ('Microsoft YaHei UI', 10))
@@ -198,7 +199,7 @@ class App:
         self.mode_box = ttk.Combobox(row, textvariable=self.mode, values=['离线模拟','实物 / PS串口'], state='readonly', width=18)
         self.mode_box.pack(side='left')
         ttk.Label(row,text='PS串口').pack(side='left',padx=(16,5))
-        self.port = tk.StringVar(value='COM19')
+        self.port = tk.StringVar(value='COM17' if self.profile.layout.name=='ten-port' else 'COM19')
         self.port_box = ttk.Combobox(row, textvariable=self.port, width=12)
         self.port_box.pack(side='left')
         self.refresh_ports()

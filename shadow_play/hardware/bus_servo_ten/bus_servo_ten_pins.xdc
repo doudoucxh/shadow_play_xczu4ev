@@ -1,0 +1,11 @@
+# Ten independent signal wires; only power and ground are shared.
+set_property -dict {PACKAGE_PIN D14 IOSTANDARD LVCMOS33 DRIVE 4 SLEW SLOW PULLUP true} [get_ports servo1_servo_bus]
+set_property -dict {PACKAGE_PIN D15 IOSTANDARD LVCMOS33 DRIVE 4 SLEW SLOW PULLUP true} [get_ports servo2_servo_bus]
+set_property -dict {PACKAGE_PIN F13 IOSTANDARD LVCMOS33 DRIVE 4 SLEW SLOW PULLUP true} [get_ports servo3_servo_bus]
+set_property -dict {PACKAGE_PIN G13 IOSTANDARD LVCMOS33 DRIVE 4 SLEW SLOW PULLUP true} [get_ports servo4_servo_bus]
+set_property -dict {PACKAGE_PIN G14 IOSTANDARD LVCMOS33 DRIVE 4 SLEW SLOW PULLUP true} [get_ports servo5_servo_bus]
+set_property -dict {PACKAGE_PIN G15 IOSTANDARD LVCMOS33 DRIVE 4 SLEW SLOW PULLUP true} [get_ports servo6_servo_bus]
+set_property -dict {PACKAGE_PIN J14 IOSTANDARD LVCMOS33 DRIVE 4 SLEW SLOW PULLUP true} [get_ports servo7_servo_bus]
+set_property -dict {PACKAGE_PIN E13 IOSTANDARD LVCMOS33 DRIVE 4 SLEW SLOW PULLUP true} [get_ports servo8_servo_bus]
+set_property -dict {PACKAGE_PIN E14 IOSTANDARD LVCMOS33 DRIVE 4 SLEW SLOW PULLUP true} [get_ports servo9_servo_bus]
+set_property -dict {PACKAGE_PIN E15 IOSTANDARD LVCMOS33 DRIVE 4 SLEW SLOW PULLUP true} [get_ports servo10_servo_bus]

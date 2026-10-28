@@ -1,0 +1,51 @@
+{
+  "schema": "shadow.bus-image.v1",
+  "identity": "BP10",
+  "layout": "ten-port",
+  "checks": "passed",
+  "register_base": 2684747776,
+  "pins": {
+    "servo1": "D14",
+    "servo2": "D15",
+    "servo3": "F13",
+    "servo4": "G13",
+    "servo5": "G14",
+    "servo6": "G15",
+    "servo7": "J14",
+    "servo8": "E13",
+    "servo9": "E14",
+    "servo10": "E15"
+  },
+  "clock_hz": 100000000,
+  "baudrate": 115200,
+  "legacy_pwm_connected": false,
+  "physical_hardware_tested": false,
+  "sha256": "16bca5bece6ad846897b10b6dd0d040abf963027b584e405ac4290f766ff68ea",
+  "wns_ns": 0.87,
+  "whs_ns": 0.009,
+  "wpws_ns": 0.195,
+  "part": "xczu4ev-sfvc784-2-i",
+  "watchdog_seconds": 1,
+  "watchdog_action": "one broadcast PULK per bus; actual servo response unverified",
+  "preserved_io_count": 172,
+  "baseline_io_report_sha256": "bd8f9a720df317a6ba6eb4f66ed9d5275f91ac1e9caae81a7f905ebc04083645",
+  "reports": {
+    "timing.rpt": "220fbab5d14236cd121aa80d2fef736fb07b16df191216740da438a61ca00a9b",
+    "drc.rpt": "24c55434c15403616aed3532e02a8f2fef874ffadd14dfd1f8cb53b35eb5ef07",
+    "route.rpt": "b26d6e82164267ee1273322b337b52ed7894bb5469c5f5e40b59fc26f009a879",
+    "bus_skew.rpt": "4c8d3654f3d562f7e4ab7b20536984dae358c437dd243acfa1225866a7c01c22",
+    "io.rpt": "f1eeb99e0707fa130beb38d16e5aa1d7968b5dff013a0dcdc7e2f5942b475632"
+  },
+  "sources": {
+    "shadow_play/hardware/bus_servo_ten/build_project.tcl": "77ad74f2bee54fe998b873210d474bb87d3c19a798b40cd835c6f230f08d5150",
+    "shadow_play/hardware/bus_servo_ten/bus_servo_ten_axi.v": "00cd8eadb0abd2dbea91797d0e44ef1cb79d882fa1b35b077aa5bd053c7e6b1a",
+    "shadow_play/hardware/bus_servo_ten/bus_servo_ten_pins.xdc": "c3bbee7366cc7e117fc94083826b409c91a70f3d8cadae7ca09ff08ebf51bc2f",
+    "shadow_play/hardware/bus_servo_ten/create_project.tcl": "004d605a4ec6c0ee3ef48a5ea9ecfb70e72e6b490845bc95fe8be9634058f6a6",
+    "shadow_play/hardware/bus_servo_ten/finish_project.tcl": "12f777243c902e027038e33defdde98ffc60b7a86462830721af80685bf12834",
+    "shadow_play/hardware/bus_servo_ten/simulate.tcl": "ee496ca501bb22f2373b636139fa7c9e4698755d7ee81798472fb81ebbe896ac",
+    "shadow_play/hardware/bus_servo_ten/tb_bus_servo_ten_axi.v": "7a7f2c3cd72966527d73db2bc2fd9607f820213e96ca142a949c0c5b3d7270a3",
+    "shadow_play/hardware/bus_servo/single_wire_uart.v": "d679323701a570645bc4198b0bf189ec5df3479130ac0b78b68d177f9ace4508",
+    "shadow_play/hardware/bus_servo/base_dual_rail_design.tcl": "0e5813898ec97f9951d7748bf9d99a260a915d3f3e83482016743773aa3417ba",
+    "shadow_play/hardware/bus_servo/baseline_rail_io.json": "9b75e07138a92e4ede319dff1d39dcf22300f48161c82aa7d3e1d4758c43bbd9"
+  }
+}

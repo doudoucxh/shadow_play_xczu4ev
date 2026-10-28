@@ -30,8 +30,9 @@ def ports(path):
 def package(build,release,bundle,root,layout_name='dual'):
     layout=get_layout(layout_name)
     tiger=layout_name=='tiger-four-port'
-    stem='bus_servo_tiger' if tiger else 'bus_servo'
-    prefix='TIGER_FOUR' if tiger else 'BUS_SERVO'
+    ten=layout_name=='ten-port'
+    stem='bus_servo_ten' if ten else ('bus_servo_tiger' if tiger else 'bus_servo')
+    prefix='TEN_PORT' if ten else ('TIGER_FOUR' if tiger else 'BUS_SERVO')
     log=(root/f'.review_work/{stem}_build.log').read_text()
     sim=(root/f'.review_work/{stem}_sim.log').read_text()
     if not re.search(rf'^{prefix}_CANDIDATE_PASS WNS=',log,re.M) or not re.search(rf'^{prefix}_RTL_PASS:',sim,re.M):
@@ -60,7 +61,7 @@ def package(build,release,bundle,root,layout_name='dual'):
     image=build/'bus_servo.bit.bin'
     if not image.is_file():raise ValueError('Convert verified .bit with bootgen first')
     inputs=[p for p in (root/f'shadow_play/hardware/{stem}').iterdir() if p.suffix in ('.v','.tcl','.xdc','.json')]
-    if tiger:
+    if tiger or ten:
         inputs += [root/'shadow_play/hardware/bus_servo'/name for name in
                    ('single_wire_uart.v','base_dual_rail_design.tcl','baseline_rail_io.json')]
     manifest={'schema':'shadow.bus-image.v1','identity':layout.identity,'layout':layout.name,'checks':'passed','register_base':0xA0060000,
@@ -78,11 +79,11 @@ def package(build,release,bundle,root,layout_name='dual'):
     bundle.mkdir(parents=True,exist_ok=False)
     for p in release.iterdir():shutil.copy2(p,bundle/p.name)
     source_files=list((root/'shadow_play/bus_servo').glob('*.py'))
-    profile_name='bus_servo_tiger_four.json' if tiger else 'bus_servo.json'
+    profile_name='bus_servo_ten_port.json' if ten else ('bus_servo_tiger_four.json' if tiger else 'bus_servo.json')
     source_files += [root/'shadow_play/config'/profile_name, root/'shadow_play/integrations/calibration/mmio32.py',root/'shadow_play/integrations/calibration/libservo_mmio32.so']
     for p in source_files:
         dest=bundle/p.relative_to(root);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(p,dest)
-    startup='start_tiger_console.sh' if tiger else 'start_console.sh'
+    startup='start_ten_console.sh' if ten else ('start_tiger_console.sh' if tiger else 'start_console.sh')
     shutil.copy2(root/'shadow_play/bus_servo'/startup,bundle/'start_console.sh')
     # Preserve the existing HDMI runtime's exact-image gate in an isolated copy.
     source=root/'shadow_play/integrations/follow/usb_hdmi.py'

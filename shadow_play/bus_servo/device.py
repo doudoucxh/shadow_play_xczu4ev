@@ -41,8 +41,8 @@ class Mmio:
             if (self.read(0) != self.layout.word or self.read(4) != 1 or self.read(0x18) != 100000000
                     or self.read(0x1c) != 115200):
                 raise RuntimeError('Bus identity/clock/baud mismatch')
-            if self.layout.name == 'tiger-four-port' and self.read(0x24) != 4:
-                raise RuntimeError('Expected four independent tiger UARTs')
+            if self.layout.name != 'dual' and self.read(0x24) != len(self.layout.buses):
+                raise RuntimeError('Independent UART count does not match the selected layout')
             if self.read(8) or self.read(0x10):
                 raise RuntimeError('Bus has a latched fault or an existing lease; inspect before connecting')
         except BaseException:

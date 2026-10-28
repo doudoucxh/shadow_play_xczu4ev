@@ -43,6 +43,11 @@ LAYOUTS = {
                     ('tiger9', 'F13', 3), ('tiger10', 'G13', 4)),
                    tuple((n, f'tiger{n}') for n in range(7, 11)),
                    'bus-servo-tiger-four-v1', '老虎临时四口：7→原1口  8→原2口  9→原3口  10→原4口'),
+    'ten-port': Layout('ten-port', 'BP10',
+                   tuple((f'servo{n}', pin, n) for n, pin in enumerate(
+                       ('D14','D15','F13','G13','G14','G15','J14','E13','E14','E15'), 1)),
+                   tuple((n, f'servo{n}') for n in range(1, 11)),
+                   'bus-servo-ten-port-v1', '十路独立信号：人物1～6→原1～6口 · 老虎7～10→原7～10口'),
 }
 
 
