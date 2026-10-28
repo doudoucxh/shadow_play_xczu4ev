@@ -3,7 +3,7 @@ import json
 import re
 import time
 
-from .service import PREFIX, BOARD_ONLY
+from .service import PREFIX, BOARD_ONLY, SELECTED_RELEASE
 from .protocol import ServoUnavailable
 
 
@@ -133,6 +133,7 @@ class RemoteDevice:
                 or result.get('simulation') is not False):
             raise RuntimeError('板端与电脑端的ID/角度/限位配置不同。')
         self.motion_allowed = result.get('motion_allowed') is True
+        self.release_allowed = SELECTED_RELEASE in self.capabilities and result.get('release_allowed') is True
         return self._samples(result['positions'])
 
     def board_status(self):
@@ -149,7 +150,8 @@ class RemoteDevice:
         return self.request('move', {'targets': targets, 'duration_ms': milliseconds, 'attended': True})
 
     def release(self, numbers):
-        self.motion_active = True
+        if not self.release_allowed:
+            raise RuntimeError('板端尚未开放独立卸力，请更新板端服务并重新连接。')
         return self.request('release', {'numbers': numbers, 'attended': True})
 
     def stop(self):

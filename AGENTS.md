@@ -1,5 +1,13 @@
 # 项目协作与 Git 备份规则
 
+## 2026-10-28 独立所选轴卸力已部署（未替用户执行实物卸力）
+
+- 用户截图已有四轴反馈、现场确认勾选，但“所选轴卸力”灰色，点击旧红色“停止并卸力”提示未发送。根因是主动卸力与设角共用motion权限，空闲stop又刻意不广播。现新增 `selected-release-v1` / `--allow-release`，四口入口仅开放独立卸力，设角/回放仍按原hardware/mechanical/allow-motion检查；未改就绪标记。
+- 主动卸力需电气确认、当前会话已检测所选ID、全组选中轴的新鲜反馈与现场确认；逐轴发一次带ID的PULK并核对带ID的POK，不是物理扭矩验收。不为卸力新建运动租约，因此卸力后的空闲停止、退出、掉线不广播波及未选轴；已有运动租约仍保留原停止逻辑。失败锁存、不自动重发。手动录制及分步编辑卸力已接此权限，红色按钮改为“停止当前动作 / Esc”，空闲停止明确引导“所选轴卸力”。
+- 93项离线测试（新增10）及隐藏Tk按钮/状态检查通过；首轮默认Windows临时目录权限失败，改项目临时目录后全部通过。用户确认断开关闭旧窗口后，经COM17更新5项Python与四口启动脚本，旧文件在SD `backups/selected-release-20261028`。22项清单通过，新MANIFEST SHA `42a8edfe70756d20653ac7883ce80fc7db31e7ff98b375475fb4dd47a722a148`，此前79a41e…是历史版本。
+- 真实PC hello+12次status+quit约6.713秒，release_allowed=true、motion_allowed=false、位置为空；本轮没有probe/read/release/move/stop RPC或舵机报文，没有重载FPGA。独立最终同启动7f2fcdc4…/BT04 dbe937…、四路状态0、faults/lease=0，无舵机服务残留、COM17释放；原事故锁、四启动文件、profile、加载与旧查询标记均未变。
+- 执行器最后用户报告仍上电、ID10已脱杆；本轮实际PULK应答和松力尚未验证，不把离线模拟或权限握手当成实物卸力通过。新版窗口仍默认离线，用户需选实物/COM17、检测、扶稳并确认后手动点击卸力。记录 `shadow_play/config/bus_servo_release_20261028.json`，原证据 `.review_work/bus-servo-release-20261028/`，反馈文档有最新说明。
+
 ## 2026-10-28 重启后已恢复BT04，老虎四台反馈及上位机检测路径通过
 
 - 用户要求重载并排查有供电无反馈，当次确认执行器断电、Zynq/USB保留；新启动 `7f2fcdc4-ecde-48aa-806a-e4db130ea2a3`，PS端口现为 **COM17**（原COM19不存在）。加载前实读原824779…/SP10、OFF0、十路关闭，faults/armed/pending均0。22项SD包摘要通过，仅一次加载原BT04 `dbe937…`；无开机文件修改，重启仍恢复SP10。

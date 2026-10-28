@@ -81,7 +81,8 @@ class Worker(threading.Thread):
                     except BaseException:
                         device.close(); raise
                     self.emit('connected', {'simulation': simulation,
-                                           'motion_allowed': simulation or device.motion_allowed})
+                                           'motion_allowed': simulation or device.motion_allowed,
+                                           'release_allowed': simulation or getattr(device, 'release_allowed', False)})
                 elif op == 'select':
                     if self.session:
                         self.numbers = value or self.session.profile.layout.numbers
@@ -98,7 +99,7 @@ class Worker(threading.Thread):
                         s.set_angles(*value); self.emit('message', '角度指令已发送，实际位置以反馈为准。')
                     elif op == 'release':
                         s.require_feedback(value)
-                        s.device.release(value); self.emit('message', '所选轴卸力完成；请扶稳机构后手动操作。')
+                        s.device.release(value); self.emit('message', '所选轴已回复卸力命令；请扶稳机构，确认松力后手动操作。')
                     elif op == 'record_start':
                         s.start_recording(*value); self.emit('recording', value[2])
                     elif op == 'record_end':
@@ -173,6 +174,7 @@ class App:
         self.connected = self.busy = self.recording = self.playing = self.closing = False
         self.ready_axes = set()
         self.motion_allowed = False
+        self.release_allowed = False
         self.record = None
         self.editor = None
         self.live_samples = []
@@ -241,7 +243,7 @@ class App:
         self.move_button=ttk.Button(row,text='设置所选角度',command=self.set_angles);self.move_button.pack(side='left',padx=4)
         self.release_button=ttk.Button(row,text='所选轴卸力',command=self.release);self.release_button.pack(side='left',padx=4)
         self.drag_button=ttk.Button(row,text='模拟手动拖到目标',command=self.drag);self.drag_button.pack(side='left',padx=4)
-        self.stop_button=tk.Button(row,text='停止并卸力 / Esc',bg='#b84443',fg='white',relief='flat',command=self.stop,padx=16,pady=8)
+        self.stop_button=tk.Button(row,text='停止当前动作 / Esc',bg='#b84443',fg='white',relief='flat',command=self.stop,padx=16,pady=8)
         self.stop_button.pack(side='right')
         ttk.Separator(body).pack(fill='x',pady=5)
         row=ttk.Frame(body);row.pack(fill='x',pady=7)
@@ -345,7 +347,7 @@ class App:
 
     def stop(self):
         if self.connected:
-            self.stop_flag.set();self.status.set('正在请求卸力；实物异常时请现场断电。')
+            self.stop_flag.set();self.status.set('正在停止当前动作或录制…')
 
     def load(self):
         path=filedialog.askopenfilename(parent=self.root,title='打开示教轨迹',filetypes=[('示教轨迹','*.json')])
@@ -438,8 +440,8 @@ class App:
         for box in (self.record_mode_box,self.rate_box):box.configure(state='disabled' if self.recording or self.playing or self.busy else 'readonly')
         state(self.port_box,not self.connected and not self.busy);state(self.configure_button,not self.connected and not self.busy)
         state(self.move_button,motion and not self.busy and not self.playing and (not self.recording or self.record_mode.get()=='控制动作录制'))
-        state(self.release_button,idle and motion)
-        state(self.record_button,idle and ready and (self.record_mode.get()=='控制动作录制' or self.motion_allowed))
+        state(self.release_button,idle and ready and self.release_allowed)
+        state(self.record_button,idle and ready and (self.record_mode.get()=='控制动作录制' or self.release_allowed))
         state(self.end_button,self.recording and not self.busy)
         state(self.drag_button,self.connected and not self.busy and not self.playing and self.mode.get()=='离线模拟')
         for b in [self.prepare_button,self.play_button]:state(b,idle and motion and self.record is not None and self.record.get('complete') is True)
@@ -460,20 +462,22 @@ class App:
                 if kind=='connected':
                     self.connected=True;self.busy=False
                     self.motion_allowed=value['motion_allowed']
+                    self.release_allowed=value['release_allowed']
                     self.ready_axes=set(self.profile.axes) if value['simulation'] else set()
                     self.status.set('离线模拟已连接；模拟数据不能用于实机回放。' if value['simulation'] else
                                     '板子已连接 · 舵机尚未检测（可保持断电）。供电后点“检测所选舵机”；连接不发送舵机指令。')
                     for text in self.feedback.values():text.set('未检测')
                 elif kind=='servos_ready':
                     self.ready_axes=set(value)
-                    self.status.set('板子已连接 · 舵机反馈通过：'+', '.join(map(str,value))+('。' if self.motion_allowed else '。当前为只读调试。'))
+                    access = '。' if self.motion_allowed else ('。可卸力、手动录制；设角与回放尚未开放。' if self.release_allowed else '。当前为只读调试。')
+                    self.status.set('板子已连接 · 舵机反馈通过：'+', '.join(map(str,value))+access)
                 elif kind=='servos_unavailable':
                     self.ready_axes.clear();self.busy=self.recording=self.playing=False
                     for text in self.feedback.values():text.set('无有效反馈')
                     if self.editor:self.editor.cancel_capture()
                     self.status.set(value)
                 elif kind=='disconnected':
-                    self.ready_axes.clear();self.motion_allowed=False
+                    self.ready_axes.clear();self.motion_allowed=self.release_allowed=False
                     self.connected=False;self.busy=False;self.status.set('已断开。')
                     for value in self.feedback.values():value.set('未连接')
                 elif kind=='feedback':
@@ -488,7 +492,7 @@ class App:
                 elif kind=='recording':
                     self.recording=True
                     prefix='正在录制模拟反馈。' if self.mode.get()=='离线模拟' else '正在录制实际反馈。'
-                    self.status.set(prefix+('所选轴已卸力，可手动表演。' if value else '录制轴已固定；可重新勾选控制轴并设置角度。'))
+                    self.status.set(prefix+('所选轴已回复卸力命令，扶稳机构后手动表演。' if value else '录制轴已固定；可重新勾选控制轴并设置角度。'))
                 elif kind=='sample':
                     self.live_samples.append(value);self.take_info.set(f'录制中 · {len(self.live_samples)} 帧 / {value["t"]:.1f}s');self.plot()
                 elif kind=='record':self.record,path=value;self.describe_record(path);self.plot()
@@ -499,12 +503,12 @@ class App:
                 elif kind=='command_done':self.busy=False
                 elif kind=='message':self.status.set(value)
                 elif kind=='stopped':
-                    self.status.set('当前没有软件运动会话，未发送舵机命令；这不代表舵机已断电或实际静止。' if isinstance(value,dict) and value.get('state')=='no_motion_lease' else
+                    self.status.set('当前动作/录制已停止；需要松开舵机时，请点击“所选轴卸力”。本次停止没有发送卸力命令。' if isinstance(value,dict) and value.get('state')=='no_motion_lease' else
                                     '已发出卸力请求；实物总线广播没有逐轴确认，不代表已切断电源。')
                 elif kind=='error':
                     was_connected = self.connected
                     self.connected=self.busy=self.recording=self.playing=False
-                    self.ready_axes.clear();self.motion_allowed=False
+                    self.ready_axes.clear();self.motion_allowed=self.release_allowed=False
                     if self.editor: self.editor.cancel_capture()
                     for text in self.feedback.values():text.set('反馈失效')
                     if was_connected:

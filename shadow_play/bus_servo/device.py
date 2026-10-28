@@ -192,7 +192,10 @@ class BusDevice:
 
     def release(self, numbers):
         axes = self.profile.select(numbers)
-        self._lease()
+        # Torque-off is a one-shot addressed operation. Do not arm a movement
+        # lease whose expiry could broadcast release to unselected axes.
+        # If movement already owns a lease, retain its existing stop behavior.
+        self.kick()
         def release_axis(a, bus):
             return protocol.parse_reply(bus.exchange(protocol.command(a.ident, 'ULK')), a.ident, 'ok')
         self._parallel(axes, release_axis)

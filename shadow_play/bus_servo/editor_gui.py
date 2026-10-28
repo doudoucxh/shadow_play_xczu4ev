@@ -153,7 +153,7 @@ class EditorWindow:
         for b in self.edit_controls: b.configure(state='disabled' if self.pending else 'normal')
         live = self.app.feedback_ready(self.project.data['selected']) and not self.app.busy and not self.app.recording and not self.app.playing and not self.app.closing and not self.pending
         for b in (self.release_button,self.capture_button,self.replace_button): b.configure(state='normal' if live else 'disabled')
-        self.release_button.configure(state='normal' if live and self.app.motion_allowed else 'disabled')
+        self.release_button.configure(state='normal' if live and self.app.release_allowed else 'disabled')
         self.drag_button.configure(state='normal' if live and self.app.mode.get()=='离线模拟' else 'disabled')
         self.undo_button.configure(state='normal' if self.project.undo_stack and not self.pending else 'disabled')
         self.redo_button.configure(state='normal' if self.project.redo_stack and not self.pending else 'disabled')

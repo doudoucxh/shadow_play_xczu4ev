@@ -3,5 +3,5 @@
 set -eu
 cd "$(dirname "$0")"
 export PYTHONPATH="$PWD${PYTHONPATH:+:$PYTHONPATH}"
-# Initial commissioning reads feedback only; movement requires a separate release.
-exec python3 -u -m shadow_play.bus_servo.service --profile shadow_play/config/bus_servo_tiger_four.json --manifest bus_servo.manifest.json
+# Explicit selected-axis torque-off and teaching; angle commands remain gated.
+exec python3 -u -m shadow_play.bus_servo.service --profile shadow_play/config/bus_servo_tiger_four.json --manifest bus_servo.manifest.json --allow-release

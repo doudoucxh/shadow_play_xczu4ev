@@ -13,12 +13,14 @@ from .protocol import integer, ServoUnavailable
 
 PREFIX = '@@BUS10@@'
 BOARD_ONLY = 'board-only-v1'
+SELECTED_RELEASE = 'selected-release-v1'
 
 
 class Controller:
-    def __init__(self, profile, device, allow_motion=False):
+    def __init__(self, profile, device, allow_motion=False, allow_release=False):
         self.profile, self.device = profile, device
         self.allow_motion = allow_motion
+        self.allow_release = allow_release
         self.last_sequence = 0
         self.closed = False
         self.verified = set(profile.axes) if device.simulation else set()
@@ -42,9 +44,18 @@ class Controller:
             raise ServoUnavailable('舵机未取得有效反馈（可能未供电或未连接），板子连接保留。'
                                    '检查供电、ID和接线后，断开重连再手动检测；未自动重试。详情：' + str(exc)) from exc
 
-    def permitted(self, payload):
+    def release_allowed(self):
+        return self.device.simulation or (self.profile.data.get('electrical_3v3_verified') is True
+            and (self.allow_release or (self.allow_motion and all(self.profile.data.get(k) is True
+                for k in ('hardware_verified', 'mechanical_limits_verified')))))
+
+    def permitted(self, payload, *, release=False):
         if payload.get('attended') is not True:
             raise ValueError('Onsite operator acknowledgement required')
+        if release:
+            if not self.release_allowed():
+                raise RuntimeError('板端尚未开放所选轴卸力；请更新卸力服务配置。')
+            return
         if not self.device.simulation:
             for key in ('hardware_verified', 'electrical_3v3_verified', 'mechanical_limits_verified'):
                 if self.profile.data.get(key) is not True:
@@ -65,7 +76,8 @@ class Controller:
                     'simulation': self.device.simulation,
                     'motion_allowed': self.device.simulation or (self.allow_motion and all(self.profile.data.get(k) is True
                         for k in ('hardware_verified', 'electrical_3v3_verified', 'mechanical_limits_verified'))),
-                    'capabilities': [BOARD_ONLY],
+                    'release_allowed': self.release_allowed(),
+                    'capabilities': [BOARD_ONLY, SELECTED_RELEASE],
                     'positions': self.device.connect() if self.device.simulation else {},
                     'board': None if self.device.simulation else self.device.board_status()}
         if op == 'status':
@@ -102,10 +114,12 @@ class Controller:
             self.device.move(targets, duration)
             return {'sent': True, 'physical_arrival_verified': False}
         if op == 'release':
-            self.permitted(payload)
+            self.permitted(payload, release=True)
             self.require_servos(payload['numbers'])
+            # Validate fresh feedback for the entire group before any torque-off.
+            self.query(lambda: self.device.read(payload['numbers']))
             self.device.release(payload['numbers'])
-            return {'released': payload['numbers']}
+            return {'release_acknowledged': payload['numbers'], 'physical_release_verified': False}
         if op == 'stop':
             if not self.device.simulation and not getattr(self.device, 'claimed', False):
                 return {'state': 'no_motion_lease', 'physical_stop_verified': False}
@@ -117,7 +131,7 @@ class Controller:
 
 
 def serve(controller, fd, emit, clock=time.monotonic):
-    emit({'ready': True, 'service': 'bus-teach-v1', 'capabilities': [BOARD_ONLY]})
+    emit({'ready': True, 'service': 'bus-teach-v1', 'capabilities': [BOARD_ONLY, SELECTED_RELEASE]})
     buffer = b''
     last = clock()
     while not controller.closed:
@@ -162,6 +176,7 @@ def main():
     parser.add_argument('--manifest', type=Path)
     parser.add_argument('--simulate', action='store_true')
     parser.add_argument('--allow-motion', action='store_true')
+    parser.add_argument('--allow-release', action='store_true', help='Allow explicit selected-axis torque release without enabling angle commands')
     args = parser.parse_args()
     profile = Profile.load(args.profile)
     if not args.simulate and not args.manifest:
@@ -170,7 +185,7 @@ def main():
         parser.error('Verify bus electrical compatibility before transmitting even read-only queries')
     device = SimulationDevice(profile) if args.simulate else BusDevice(
         profile, Mmio(args.manifest, expected_layout=profile.layout.name))
-    controller = Controller(profile, device, args.allow_motion)
+    controller = Controller(profile, device, args.allow_motion, args.allow_release)
     fd = sys.stdin.fileno()
     previous = None
     try:

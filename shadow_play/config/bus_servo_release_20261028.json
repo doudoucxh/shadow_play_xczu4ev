@@ -1,0 +1,172 @@
+{
+  "schema": "shadow.bus-selected-release.v1",
+  "date": "2026-10-28",
+  "request": "用户想卸力，截图提示没有软件运动会话且未发送命令",
+  "cause": "主动卸力与设角共用motion_allowed权限；空闲stop刻意不发送广播卸力，但旧按钮名称暗示总会卸力",
+  "behavior": {
+    "capability": "selected-release-v1",
+    "separate_board_option": "--allow-release",
+    "selected_release_requires": [
+      "electrical_3v3_verified",
+      "selected IDs explicitly detected",
+      "fresh feedback for entire selected group before release",
+      "attended confirmation"
+    ],
+    "command": "addressed #<ID>PULK!, once per selected axis",
+    "ack": "addressed #<ID>POK! required; not physical torque measurement",
+    "new_lease_for_release": false,
+    "broadcast_for_release_only_stop_or_close": false,
+    "retry": false,
+    "hand_teaching_recording_enabled": true,
+    "step_editor_release_enabled": true,
+    "angle_and_playback_permissions_unchanged": true,
+    "idle_stop_label": "停止当前动作 / Esc"
+  },
+  "deployment": {
+    "date": "2026-10-28",
+    "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+    "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+    "previous_manifest_sha256": "79a41ed3c94c114602cc63e0c0b914d6cf077812d6f09af0f3ed366acb8a0fcf",
+    "manifest_sha256": "42a8edfe70756d20653ac7883ce80fc7db31e7ff98b375475fb4dd47a722a148",
+    "updated_files": {
+      "shadow_play/bus_servo/device.py": "feeb74c45915504d903be83af1234988fc688e2c2abf3a0e938fb595aa53b486",
+      "shadow_play/bus_servo/service.py": "923eb834df5229b972ce681818b71a1c0af69757dd1029cd778c91f5769217d3",
+      "shadow_play/bus_servo/transport.py": "5bb6ad9a516e7479b0db5e407e0df55d8b6eee67dab19f950f3f4729b62763db",
+      "shadow_play/bus_servo/gui.py": "bc4e494b7265a8d97170f69a39a111270ada99688efd6c49923acf2151df0b78",
+      "shadow_play/bus_servo/editor_gui.py": "2724629795c8f30b4b9bd8cfc7e7de0f359ff21aa22e418acdfb67fdba4fbe23",
+      "start_console.sh": "70ef64e6fdd60ce37f5c40f07d2d33da619718a4576a16d1ee8ceb2b99f2038b"
+    },
+    "files_verified": 22,
+    "backup": "/run/media/mmcblk0p2/piying/bus-servo-tiger-four-v1/backups/selected-release-20261028",
+    "motion_allowed": false,
+    "release_allowed": true,
+    "servo_packets_sent": 0,
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8"
+    },
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "preserved": {
+      "FEEDBACK_ATTEMPT_20261027.jsonl": "f95513fe4ab6bbf221a497c7725a07ba7ee697ddbe56f4efe14f6b995b83c8ec",
+      "FEEDBACK_ATTEMPT_20261028.jsonl": "cfe7e95a9fcb5b6205b56eab50678fd7bf538cb6f21ee7d1f1bf7e904aa6286a",
+      "FEEDBACK_RESULT_20261028.json": "8c5cfc19c0b70c307a7b6ce2c9b948daa4be5bb47763a3fb655c29f57343cd5d",
+      "/run/shadow-bus-servo-loaded.json": "b3e3bc8dd0f2a05736dc84bf6bcc79e616675b611ccc0ad6f0236f9bca1f22fc",
+      "/run/shadow-bus-servo-load-attempt.json": "4d1df8627c34027a487e223aa829ab9f09c4842f9177ab188e3e4015b7f44881",
+      "shadow_play/config/bus_servo_tiger_four.json": "c749f2d76f44dd42c2deb95b23268b580d6b7a494edf02c00e1299190f9e3593"
+    }
+  },
+  "live_board_only_handshake": {
+    "date": "2026-10-28",
+    "profile": "3a9d48249f6eaf041c16d5b9f6021863b116da9a5e6e8d523aaae6852efcd034",
+    "elapsed_s": 6.713344499999948,
+    "rpc_operations": [
+      "hello",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "quit"
+    ],
+    "last_state": {
+      "board": {
+        "identity": 1112813620,
+        "faults": 0,
+        "lease": 0,
+        "servo_session_failed": false,
+        "buses": {
+          "tiger7": 0,
+          "tiger8": 0,
+          "tiger9": 0,
+          "tiger10": 0
+        }
+      },
+      "verified": []
+    },
+    "positions": {},
+    "port_released": true,
+    "servo_query_rpcs": 0,
+    "movement_rpcs": 0,
+    "simulation": false,
+    "motion_allowed": false,
+    "release_allowed": true
+  },
+  "final_audit": {
+    "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+    "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+    "manifest_sha256": "42a8edfe70756d20653ac7883ce80fc7db31e7ff98b375475fb4dd47a722a148",
+    "files_verified": 22,
+    "state": {
+      "identity": "0x42543034",
+      "channels": 4,
+      "faults": 0,
+      "lease": 0,
+      "bus_states": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8"
+    },
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "marker_hashes": {
+      "/run/shadow-bus-servo-loaded.json": "b3e3bc8dd0f2a05736dc84bf6bcc79e616675b611ccc0ad6f0236f9bca1f22fc",
+      "/run/shadow-bus-servo-load-attempt.json": "4d1df8627c34027a487e223aa829ab9f09c4842f9177ab188e3e4015b7f44881",
+      "/run/shadow-pwm-before-bus-servo.json": "bbad106bbc39ed160e1ed9a51602a63d1e4b1ec3f3131af7f755cb4293cb3b7d",
+      "FEEDBACK_ATTEMPT_20261027.jsonl": "f95513fe4ab6bbf221a497c7725a07ba7ee697ddbe56f4efe14f6b995b83c8ec",
+      "FEEDBACK_ATTEMPT_20261028.jsonl": "cfe7e95a9fcb5b6205b56eab50678fd7bf538cb6f21ee7d1f1bf7e904aa6286a",
+      "FEEDBACK_RESULT_20261028.json": "8c5cfc19c0b70c307a7b6ce2c9b948daa4be5bb47763a3fb655c29f57343cd5d",
+      "DEPLOYMENT_20261028.json": "990723f0c5c2acaa7f1153c023bf986668eeaa499b5de39c6ff2fbfae5afbdbe"
+    },
+    "servo_processes": []
+  },
+  "validation": {
+    "offline_tests_passed": 93,
+    "new_tests": 10,
+    "first_test_run": "Default Windows sandbox temp directory denied file access; rerun using project temp directory passed",
+    "hidden_tk_state_check": "passed; release/hand recording and editor release enabled after feedback while angle/playback disabled"
+  },
+  "scope": {
+    "fpga_reload": false,
+    "profile_flags_changed": false,
+    "boot_files_changed": false,
+    "servo_queries_sent": 0,
+    "servo_release_commands_sent": 0,
+    "motion_commands_sent": 0,
+    "fault_clear": false,
+    "physical_release_verified": false
+  },
+  "last_reported_actuator_power": "on",
+  "id10_linkage_detached_per_user": true,
+  "operator_steps": [
+    "新版老虎四舵机临时调试窗口选择实物 / PS串口及COM17",
+    "连接板子、选择需要卸力的ID并检测",
+    "扶稳所选机构并勾选现场确认，点击所选轴卸力；等待应答后确认实际松力",
+    "手动示教（卸力）开始录制也调用所选轴卸力；停止当前动作不再暗示空闲时会卸力"
+  ],
+  "evidence_directory": ".review_work/bus-servo-release-20261028",
+  "evidence_sha256": {
+    "preinstall.log": "8dc611d036c075880728aa016ce493acc5919ea77d4ae0175e31a7d16009d2c7",
+    "install.py": "a718f9b81667dbee1f2f28e1daf2fa69754d1dc69894b6da658e69c0ee6f90a8",
+    "install.log": "30872827a907381aca6b9b7f3b634fd152f8bd10afa2d8962e17164e8cd6fdc3",
+    "check_gui.py": "b2ce07b71b4ee10e9d65e582648b9f03972eceae5e2ae4fb92538d0f2a8338fe",
+    "check_live.py": "e1e8961181ae4eaf5d3649f6265c6ff441c6ae92939dbb8e91a2158b53e02bf4",
+    "live-result.json": "5eeb07e577d62ff1767d378658d13fb8aadea4419cb7c4d589dcef54fdb3edb9",
+    "audit.log": "cc9602ec7d83f05891fc34240a828ad41da65c2e65872d5cf5471114979f70c7"
+  }
+}
