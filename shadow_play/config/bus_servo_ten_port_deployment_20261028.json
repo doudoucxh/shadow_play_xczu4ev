@@ -1,0 +1,375 @@
+{
+  "schema": "shadow.bus-ten-port-deployment.v1",
+  "date": "2026-10-28",
+  "wiring_user_confirmation": "每台信号线独立，只有电源和地共用；此前十个信号口共接的答复被用户撤回",
+  "mapping": [
+    {
+      "id": 1,
+      "original_connector": 1,
+      "pin": "D14",
+      "group": "person"
+    },
+    {
+      "id": 2,
+      "original_connector": 2,
+      "pin": "D15",
+      "group": "person"
+    },
+    {
+      "id": 3,
+      "original_connector": 3,
+      "pin": "F13",
+      "group": "person"
+    },
+    {
+      "id": 4,
+      "original_connector": 4,
+      "pin": "G13",
+      "group": "person"
+    },
+    {
+      "id": 5,
+      "original_connector": 5,
+      "pin": "G14",
+      "group": "person"
+    },
+    {
+      "id": 6,
+      "original_connector": 6,
+      "pin": "G15",
+      "group": "person"
+    },
+    {
+      "id": 7,
+      "original_connector": 7,
+      "pin": "J14",
+      "group": "tiger"
+    },
+    {
+      "id": 8,
+      "original_connector": 8,
+      "pin": "E13",
+      "group": "tiger"
+    },
+    {
+      "id": 9,
+      "original_connector": 9,
+      "pin": "E14",
+      "group": "tiger"
+    },
+    {
+      "id": 10,
+      "original_connector": 10,
+      "pin": "E15",
+      "group": "tiger"
+    }
+  ],
+  "profile_fingerprint": "a224248b678b1ef790b61b9bdef15ee636fc80f462647cf2cff2363d734925a0",
+  "launcher": "十舵机独立十口调试.cmd",
+  "port": "COM17",
+  "power_confirmation": {
+    "date": "2026-10-28",
+    "servo_power_off": true,
+    "servo_source": "用户本次修改请求：舵机我已经断电了",
+    "rail_power_off": true,
+    "rail_source": "用户补充：丝杆也已断电或未接电",
+    "board_usb_remain_powered": true,
+    "scope": "Only BP10 volatile FPGA switch and board-only connection check; no actuator commands"
+  },
+  "build": {
+    "identity": "BP10",
+    "image_sha256": "16bca5bece6ad846897b10b6dd0d040abf963027b584e405ac4290f766ff68ea",
+    "source_sha256": {
+      "shadow_play/hardware/bus_servo_ten/build_project.tcl": "77ad74f2bee54fe998b873210d474bb87d3c19a798b40cd835c6f230f08d5150",
+      "shadow_play/hardware/bus_servo_ten/bus_servo_ten_axi.v": "00cd8eadb0abd2dbea91797d0e44ef1cb79d882fa1b35b077aa5bd053c7e6b1a",
+      "shadow_play/hardware/bus_servo_ten/bus_servo_ten_pins.xdc": "c3bbee7366cc7e117fc94083826b409c91a70f3d8cadae7ca09ff08ebf51bc2f",
+      "shadow_play/hardware/bus_servo_ten/create_project.tcl": "004d605a4ec6c0ee3ef48a5ea9ecfb70e72e6b490845bc95fe8be9634058f6a6",
+      "shadow_play/hardware/bus_servo_ten/finish_project.tcl": "12f777243c902e027038e33defdde98ffc60b7a86462830721af80685bf12834",
+      "shadow_play/hardware/bus_servo_ten/simulate.tcl": "ee496ca501bb22f2373b636139fa7c9e4698755d7ee81798472fb81ebbe896ac",
+      "shadow_play/hardware/bus_servo_ten/tb_bus_servo_ten_axi.v": "7a7f2c3cd72966527d73db2bc2fd9607f820213e96ca142a949c0c5b3d7270a3",
+      "shadow_play/hardware/bus_servo/single_wire_uart.v": "d679323701a570645bc4198b0bf189ec5df3479130ac0b78b68d177f9ace4508",
+      "shadow_play/hardware/bus_servo/base_dual_rail_design.tcl": "0e5813898ec97f9951d7748bf9d99a260a915d3f3e83482016743773aa3417ba",
+      "shadow_play/hardware/bus_servo/baseline_rail_io.json": "9b75e07138a92e4ede319dff1d39dcf22300f48161c82aa7d3e1d4758c43bbd9"
+    },
+    "report_sha256": {
+      "timing.rpt": "220fbab5d14236cd121aa80d2fef736fb07b16df191216740da438a61ca00a9b",
+      "drc.rpt": "24c55434c15403616aed3532e02a8f2fef874ffadd14dfd1f8cb53b35eb5ef07",
+      "route.rpt": "b26d6e82164267ee1273322b337b52ed7894bb5469c5f5e40b59fc26f009a879",
+      "bus_skew.rpt": "4c8d3654f3d562f7e4ab7b20536984dae358c437dd243acfa1225866a7c01c22",
+      "io.rpt": "f1eeb99e0707fa130beb38d16e5aa1d7968b5dff013a0dcdc7e2f5942b475632"
+    },
+    "wns_ns": 0.87,
+    "whs_ns": 0.009,
+    "wpws_ns": 0.195,
+    "routable_nets": 217662,
+    "fully_routed_nets": 217662,
+    "routing_errors": 0,
+    "drc_error_or_critical_warning": 0,
+    "drc_warning_violations": 586,
+    "preserved_other_io": 172,
+    "rtl_result": "TEN_PORT_RTL_PASS"
+  },
+  "installation": {
+    "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+    "source_manifest_sha256": "42a8edfe70756d20653ac7883ce80fc7db31e7ff98b375475fb4dd47a722a148",
+    "source_image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+    "source_marker_sha256": "b3e3bc8dd0f2a05736dc84bf6bcc79e616675b611ccc0ad6f0236f9bca1f22fc",
+    "archive_sha256": "2d9067a4ea104857f1eb851055cbaaa094a302b6cc96388407b0c34cfb937cb8",
+    "manifest_sha256": "7f95682722fe2c211556fed933c6ed4a28b82e85a6b42f367c001c6433799342",
+    "image_sha256": "16bca5bece6ad846897b10b6dd0d040abf963027b584e405ac4290f766ff68ea",
+    "files": {
+      "bus_servo.bit.bin": "16bca5bece6ad846897b10b6dd0d040abf963027b584e405ac4290f766ff68ea",
+      "bus_servo.manifest.json": "44e035f72689aa8cdc9b7324fe30ec9bef96890ee9aff20d6e7aaee30c6d64e2",
+      "start_console.sh": "749e7b795d237cd3da65a2074b1273f76248b7772f3f07a03dfa6680c16332ca",
+      "shadow_play/bus_servo/brake_probe.py": "8e769b26c7210a2a041484bf7f5c5b448fcff74c1c8496dbd5b7769e62522e4c",
+      "shadow_play/bus_servo/device.py": "0ca7ab7caf70f52b013f83334b1b1ca8df1a231d50e8f398a4018d43549a5028",
+      "shadow_play/bus_servo/editing.py": "953af04a8f680f6f664af2a2d75968d0d80fa540e7ee7152330ca0fbf54924ec",
+      "shadow_play/bus_servo/editor_gui.py": "2724629795c8f30b4b9bd8cfc7e7de0f359ff21aa22e418acdfb67fdba4fbe23",
+      "shadow_play/bus_servo/gui.py": "aeb57175b6de7f3c74467b5f129188092f5e03f0c2a7c2929732a9dd6f862e1f",
+      "shadow_play/bus_servo/layouts.py": "0cce86e0fd061374d3979bb379cedf64dab044adcf25c6cfde8e823fc584f29b",
+      "shadow_play/bus_servo/load_candidate.py": "c3b57919e181cc870f8b668ae3b83e128ab968545c8b2fa2de74679e493ab349",
+      "shadow_play/bus_servo/model.py": "34fd9ce8ab56af1b74a3e4e9915dc27e11c6c35034f2864787776a24c5533113",
+      "shadow_play/bus_servo/protocol.py": "acc87a0626b92259efd77652306c4a00ae3bce397e75029971ceafbd8ba63ca2",
+      "shadow_play/bus_servo/provision.py": "b0e9d292503ea189ee0d6c0d7fb6042096b91ba818fa1eebf9a2cd0f5e2cefcb",
+      "shadow_play/bus_servo/service.py": "923eb834df5229b972ce681818b71a1c0af69757dd1029cd778c91f5769217d3",
+      "shadow_play/bus_servo/session.py": "a5a543d83d1fe69675375c20728e938aec7e97cf99dfdeb2a1155392c4aaa2ee",
+      "shadow_play/bus_servo/switch_candidate.py": "9352e1cce46dc60d3f4e074fc3d098786e217eb1a2b64cc6ad572f76216047e3",
+      "shadow_play/bus_servo/transport.py": "afa5deb95a675bb178130e9b88bf4fb9f223fa1cc0d9e6ad1c0455f64aeea746",
+      "shadow_play/bus_servo/__init__.py": "927d5b72f7461922ee8d96c73d3e0df545c90afb2348ca6ddef0e2b313256b63",
+      "shadow_play/config/bus_servo_ten_port.json": "15762c0a149b7af3084600f4ad639653a73e2b99ab6dae8e1a0587dff776ba79",
+      "shadow_play/integrations/calibration/libservo_mmio32.so": "2f017fb4b6187609df80a860039d1bb958ca09d683b1ccb700d8e1c921c1e8c0",
+      "shadow_play/integrations/calibration/mmio32.py": "53c37471f7156edff85664737c77446baf30e44efcb5421bbae07ccb8035298b",
+      "shadow_play/integrations/follow/usb_hdmi.py": "ba0bd7751eb599dd84271d12aa007c4a50e4486caa39bb0b0c9a51911a645ece",
+      "shadow_play/hdmi_ui/runtime/browser_display.py": "abd964a0c18eab3b0228c1ab9504b35dc03f8e1d628d3f20570f35a6ad3339b9",
+      "shadow_play/hdmi_ui/runtime/hdmi_sink.py": "5876f8138630482b03ae1180d9a21c2365c30b85e2c69a33cec63428881a4eb4"
+    },
+    "archive_bytes": 3504928,
+    "directory": "/run/media/mmcblk0p2/piying/bus-servo-ten-port-v1",
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8"
+    },
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "scope": "data install only; no MMIO or servo packets"
+  },
+  "loaded_reset_state": {
+    "identity": 1112551728,
+    "version": 1,
+    "faults": 0,
+    "lease": 0,
+    "clock_hz": 100000000,
+    "baudrate": 115200,
+    "buses": {
+      "servo1": 0,
+      "servo2": 0,
+      "servo3": 0,
+      "servo4": 0,
+      "servo5": 0,
+      "servo6": 0,
+      "servo7": 0,
+      "servo8": 0,
+      "servo9": 0,
+      "servo10": 0
+    },
+    "channels": 10
+  },
+  "board_only_connection": {
+    "date": "2026-10-28",
+    "profile": "a224248b678b1ef790b61b9bdef15ee636fc80f462647cf2cff2363d734925a0",
+    "elapsed_s": 6.822799199999281,
+    "rpc_operations": [
+      "hello",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "quit"
+    ],
+    "last_state": {
+      "board": {
+        "identity": 1112551728,
+        "faults": 0,
+        "lease": 0,
+        "servo_session_failed": false,
+        "buses": {
+          "servo1": 0,
+          "servo2": 0,
+          "servo3": 0,
+          "servo4": 0,
+          "servo5": 0,
+          "servo6": 0,
+          "servo7": 0,
+          "servo8": 0,
+          "servo9": 0,
+          "servo10": 0
+        }
+      },
+      "verified": []
+    },
+    "positions": {},
+    "port_released": true,
+    "servo_query_rpcs": 0,
+    "movement_rpcs": 0,
+    "simulation": false,
+    "motion_allowed": false,
+    "release_allowed": true
+  },
+  "final_audit": {
+    "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+    "image_sha256": "16bca5bece6ad846897b10b6dd0d040abf963027b584e405ac4290f766ff68ea",
+    "manifest_sha256": "7f95682722fe2c211556fed933c6ed4a28b82e85a6b42f367c001c6433799342",
+    "files_verified": 24,
+    "state": {
+      "identity": "0x42503130",
+      "channels": 10,
+      "faults": 0,
+      "lease": 0,
+      "buses": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8"
+    },
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "history_hashes": {
+      "/run/shadow-bus-servo-load-attempt.json": "4d1df8627c34027a487e223aa829ab9f09c4842f9177ab188e3e4015b7f44881",
+      "/run/shadow-pwm-before-bus-servo.json": "bbad106bbc39ed160e1ed9a51602a63d1e4b1ec3f3131af7f755cb4293cb3b7d",
+      "/run/media/mmcblk0p2/piying/bus-servo-tiger-four-v1/FEEDBACK_ATTEMPT_20261027.jsonl": "f95513fe4ab6bbf221a497c7725a07ba7ee697ddbe56f4efe14f6b995b83c8ec",
+      "/run/media/mmcblk0p2/piying/bus-servo-tiger-four-v1/FEEDBACK_ATTEMPT_20261028.jsonl": "cfe7e95a9fcb5b6205b56eab50678fd7bf538cb6f21ee7d1f1bf7e904aa6286a",
+      "/run/media/mmcblk0p2/piying/bus-servo-tiger-four-v1/FEEDBACK_RESULT_20261028.json": "8c5cfc19c0b70c307a7b6ce2c9b948daa4be5bb47763a3fb655c29f57343cd5d",
+      "/run/shadow-bus-servo-before-BP10.json": "b3e3bc8dd0f2a05736dc84bf6bcc79e616675b611ccc0ad6f0236f9bca1f22fc"
+    },
+    "marker_sha256": "03f24395a72b9ed77ca666afeb618e35b095b7bbc9bdca2c93d4575d29be1d47",
+    "switch_attempt_sha256": "a83852983484413563d8072011b881d94fd87c8c761f1044c212b5a4ffe1cd08",
+    "servo_processes": [],
+    "units": {
+      "shadow-bus-ten-hdmi-20261028": {
+        "Restart": "no",
+        "ActiveState": "active",
+        "SubState": "running"
+      },
+      "shadow-theatre-ui-r4": {
+        "Restart": "on-failure",
+        "ActiveState": "active",
+        "SubState": "running"
+      },
+      "shadow-theatre-browser-r4": {
+        "Restart": "on-failure",
+        "ActiveState": "active",
+        "SubState": "running"
+      },
+      "shadow-theatre-hdmi-r4": {
+        "Restart": "no",
+        "ActiveState": "inactive",
+        "SubState": "dead"
+      },
+      "shadow-bus-tiger-hdmi-20261028": {
+        "Restart": "no",
+        "ActiveState": "inactive",
+        "SubState": "dead"
+      }
+    },
+    "fresh_ui_packets": [
+      {
+        "captured_monotonic": 16260.849911299,
+        "age_seconds": 1.0656894660005491,
+        "sha256": "d2efde1c8ca72dce3ffde778c0f5dac023dfa8a218378829b1b44e598ff0c725"
+      },
+      {
+        "captured_monotonic": 16262.154024759,
+        "age_seconds": 0.02359967600023083,
+        "sha256": "d2efde1c8ca72dce3ffde778c0f5dac023dfa8a218378829b1b44e598ff0c725"
+      },
+      {
+        "captured_monotonic": 16262.421527054,
+        "age_seconds": 0.01802510999914375,
+        "sha256": "d2efde1c8ca72dce3ffde778c0f5dac023dfa8a218378829b1b44e598ff0c725"
+      }
+    ]
+  },
+  "validation": {
+    "offline_tests_passed": 103,
+    "hidden_tk_state_check": "passed",
+    "ten_axis_simulated_editing_example": "3 poses / 5.5 seconds; validated; prohibited for physical playback"
+  },
+  "scope": {
+    "fpga_loads": 1,
+    "volatile_only": true,
+    "boot_files_changed": false,
+    "old_four_port_package_changed": false,
+    "historical_markers_deleted": false,
+    "servo_queries_sent": 0,
+    "servo_release_commands_sent": 0,
+    "motion_commands_sent": 0,
+    "rail_commands_sent": 0,
+    "fault_clear": false,
+    "new_wiring_installed_confirmed": false,
+    "new_wiring_feedback_verified": false,
+    "physical_release_verified": false,
+    "movement_permission_enabled": false
+  },
+  "readiness": {
+    "electrical_3v3_verified": true,
+    "electrical_evidence": "Inherited prior user report for same Servo.C interface; no new port measurement or person-six handshake",
+    "hardware_verified": false,
+    "mechanical_limits_verified": false
+  },
+  "last_reported_actuator_power": "off",
+  "id10_linkage_detached_per_prior_user_report": true,
+  "operator_steps": [
+    "断电接线：ID1～6接原1～6口，ID7～10改接原7～10口；十根信号线互不短接",
+    "打开十舵机独立十口调试.cmd，选择实物 / PS串口、COM17，舵机断电也可连接板子",
+    "接线及供电准备完成后，只选择实际接好的轴并检测；不会自动查询未选轴",
+    "需要卸力时扶稳机构、勾选现场确认、点击所选轴卸力；可继续手动录制和分步剪辑",
+    "实物设角和回放仍需原机械及硬件验证；旧四口素材不自动迁移",
+    "板子重启会恢复原SP10，须按当次状态重新加载，不能重跑已消耗的本次切换脚本"
+  ],
+  "evidence_directory": ".review_work/bus-servo-ten-port-20261028",
+  "evidence_sha256": {
+    "preflight.log": "82c4317f2f04ee96e522ba856d225d17d4a9523e9d6b857cbcce2f5a0a0dde47",
+    "plan.json": "b4ea7e7daffeccfef9a344369eeea85083f894e351b064850dd91c90478a1c4b",
+    "install.py": "8f1300979e31accc8a3255ae0bd56ea71a4c77c07810747ff5497e9addfad03b",
+    "install.log": "02ee416260ac7caf81351231538b60dc1f427864a5b3372e9fce40f015fbc26f",
+    "validate.log": "4fac104556f64a577711e5935e513760bab921882404f7051bfbb510449b290d",
+    "power-confirmation.json": "27950d2f7d411a23ff08762923f5a12d18c45240caa4afec25e368aae80f4b74",
+    "preload.log": "8fae97db22770d4fbe7536e44c5b56a24dfc63659937a4ac4f8be206cf91d73b",
+    "switch.log": "3679eadcd58670ae1d32c4aceac7c4676cd5337a5b7aa3f26fc05d46f6fdbacc",
+    "display.log": "a53a3a9319013423aeed4cfb8d5633c241f48a83369f4827583a78ce087ce01c",
+    "check_live.py": "b258725632f82ffaad0175a7ca19d54a1ee9d0cdecb8ad1ae4ddb9d2f9bff1a6",
+    "live-result.json": "4e2a281f4c0f3c608ecb4222bc7c273a76f0286a3cdb3f0811479d8c306b892f",
+    "audit.py": "b27ae2f4942888eb2a962f6ca4a4761d61d5bc932e701177120eb6de1e796dd5",
+    "audit.log": "0562beee4e931a20edc929dfa7f555a43203eab7ec8035bbfdbfe20c3933c58d"
+  },
+  "desktop_gui": {
+    "opened": true,
+    "pid": 43912,
+    "title": "皮影 · 总线舵机示教工作台（分步/剪辑） · 十舵机独立十口",
+    "responding": true,
+    "default_mode": "offline simulation",
+    "old_tiger_windows_preserved": true,
+    "physical_visual_inspection": false
+  }
+}
