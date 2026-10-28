@@ -69,3 +69,17 @@ bus_states = [0, 0, 0, 0]
 3. 当前实物连接仍受电气检查阻止，需完成电平兼容核实，不能直接把标记改为true。连接按钮本身不会发送角度，也不应该以舵机是否转动来判断连接成功。
 
 新增8项连接诊断回归测试，与原54项共62项通过；均为离线测试，没有打开实物舵机服务验证。板端包、加载镜像、配置、事故锁及启动文件未修改，无MMIO访问、舵机/丝杆报文或窗口自动操作。COM19已释放。诊断记录见 [bus_servo_connection_20261027.json](../config/bus_servo_connection_20261027.json)。
+
+## 2026-10-28：重启后恢复原BT04并取得四轴反馈
+
+用户要求恢复上次镜像，明确当次舵机及丝杆执行器断电，Zynq/USB仍供电。新识别PS端口为COM17，原COM19不存在；登录后核对新启动 `7f2fcdc4-ecde-48aa-806a-e4db130ea2a3`，确已恢复原824779…/SP10。加载前两次读取一致：OFF0、十路关闭、faults/armed/pending均0，指令1500μs不是实际轴角。
+
+SD上22项文件及当前MANIFEST摘要 `79a41ed3c94c114602cc63e0c0b914d6cf077812d6f09af0f3ed366acb8a0fcf` 全部通过。停止原HDMI使用者后，以本次启动、旧镜像摘要和OFF0绑定执行一次现有加载器，成功恢复 `dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d`，加载耗时159ms。独立读回身份BT04、4通道、faults/lease=0、四路状态0。
+
+新 `/run/shadow-bus-servo-load-attempt.json` 已消耗，当前加载标记为 `/run/shadow-bus-servo-loaded.json`，原PWM标记另存 `/run/shadow-pwm-before-bus-servo.json`。未修改启动文件或开机流程；此次仍为易失PL加载，重启还会恢复SP10。原事故锁与四个启动文件摘要保持不变。
+
+临时 `shadow-bus-tiger-hdmi-20261028` active/running、Restart=no，原UI/browser active/running；3个递增时间戳界面包可解码为1024×600，没有再次目视验收实体屏幕。断电时PC连接验证hello+12次status+quit完成，持续约6.646秒，未发舵机查询，位置为空。
+
+随后用户确认ID10已脱开杆件并开启四台舵机电源。新独立诊断16次只读查询全部有效，四台版本SERVO.C(7.3)、MOD1，位置接近候选中位；随后现有PC→RPC的一次四轴probe也全部通过。具体回包及ID10结论范围见[反馈文档最新节](bus_servo_feedback_20261027.md)。没有运动、卸力、刹车、改模式或丝杆报文，未放宽运动权限及机械验证条件；昨天无反馈原因尚未定位。
+
+独立末态仍同启动/BT04、faults/lease=0、四路状态0，无舵机服务残留，COM17已释放。22项包、原事故锁、四启动文件以及旧查询取消标记均未变。**最后用户报告执行器为已上电**，不可沿用加载前断电状态。板端保留 `DEPLOYMENT_20261028.json` 及新的查询尝试/结果文件；本机摘要 [bus_servo_reload_20261028.json](../config/bus_servo_reload_20261028.json)，原日志在 `.review_work/bus-servo-reload-20261028/`。本轮产品源码和镜像均沿用已验证版本，仅新增部署/诊断证据，不重复声称进行了新的离线源码测试。

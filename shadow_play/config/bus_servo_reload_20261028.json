@@ -1,0 +1,510 @@
+{
+  "schema": "shadow.bus-reload-feedback.v1",
+  "date": "2026-10-28",
+  "request": "重启后恢复上次BT04镜像，排查老虎四台舵机有供电但无反馈",
+  "port": "COM17",
+  "previous_port": "COM19",
+  "simulation": false,
+  "user_confirmations": {
+    "before_load": "执行器电源关闭，板子与USB仍供电",
+    "before_query": "已上电，可进行只读查询",
+    "id10_linkage_detached": true
+  },
+  "last_reported_actuator_power": "on",
+  "wiring": {
+    "7": {
+      "original_port": 1,
+      "pin": "D14"
+    },
+    "8": {
+      "original_port": 2,
+      "pin": "D15"
+    },
+    "9": {
+      "original_port": 3,
+      "pin": "F13"
+    },
+    "10": {
+      "original_port": 4,
+      "pin": "G13"
+    }
+  },
+  "signals_independent": true,
+  "human_servos_connected": false,
+  "before_load": {
+    "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+    "state": {
+      "enabled_mask": 0,
+      "faults": 0,
+      "armed": 0,
+      "sequence": 0,
+      "pending": 0,
+      "period_us": 20000,
+      "clock_hz": 100000000,
+      "pulse_us": [
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500,
+        1500
+      ],
+      "position_feedback": null
+    },
+    "image_sha256": "824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3"
+  },
+  "deployment": {
+    "host_date": "2026-10-28",
+    "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+    "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+    "state": {
+      "identity": "0x42543034",
+      "channels": 4,
+      "faults": 0,
+      "lease": 0,
+      "bus_states": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "units": {
+      "shadow-bus-tiger-hdmi-20261028": {
+        "Restart": "no",
+        "ActiveState": "active",
+        "SubState": "running"
+      },
+      "shadow-theatre-ui-r4": {
+        "Restart": "on-failure",
+        "ActiveState": "active",
+        "SubState": "running"
+      },
+      "shadow-theatre-browser-r4": {
+        "Restart": "on-failure",
+        "ActiveState": "active",
+        "SubState": "running"
+      },
+      "shadow-theatre-hdmi-r4": {
+        "Restart": "no",
+        "ActiveState": "inactive",
+        "SubState": "dead"
+      }
+    },
+    "fresh_ui_packets": [
+      {
+        "captured_monotonic": 968.19643156,
+        "age_seconds": 1.069785797999998,
+        "sha256": "d2efde1c8ca72dce3ffde778c0f5dac023dfa8a218378829b1b44e598ff0c725"
+      },
+      {
+        "captured_monotonic": 969.500553181,
+        "age_seconds": 0.028883239000037975,
+        "sha256": "d2efde1c8ca72dce3ffde778c0f5dac023dfa8a218378829b1b44e598ff0c725"
+      },
+      {
+        "captured_monotonic": 969.768067806,
+        "age_seconds": 0.024962290000075882,
+        "sha256": "d2efde1c8ca72dce3ffde778c0f5dac023dfa8a218378829b1b44e598ff0c725"
+      }
+    ],
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8"
+    },
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "readiness": {
+      "hardware_verified": false,
+      "electrical_3v3_verified": true,
+      "mechanical_limits_verified": false
+    },
+    "scope": "Existing SD bundle verified; volatile BT04 reloaded; no servo packets; no boot change"
+  },
+  "load_count": 1,
+  "volatile_only": true,
+  "reboot_restores": "SP10 824779d32865ad5d3f70664fa185b353d23cd5d56502cf88bfbd8aa1e7e2ee3f",
+  "board_only_connection": {
+    "date": "2026-10-28",
+    "profile": "3a9d48249f6eaf041c16d5b9f6021863b116da9a5e6e8d523aaae6852efcd034",
+    "elapsed_s": 6.646072600000025,
+    "rpc_operations": [
+      "hello",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "quit"
+    ],
+    "last_state": {
+      "board": {
+        "identity": 1112813620,
+        "faults": 0,
+        "lease": 0,
+        "servo_session_failed": false,
+        "buses": {
+          "tiger7": 0,
+          "tiger8": 0,
+          "tiger9": 0,
+          "tiger10": 0
+        }
+      },
+      "verified": []
+    },
+    "positions": {},
+    "port_released": true,
+    "servo_query_rpcs": 0,
+    "movement_rpcs": 0,
+    "simulation": false
+  },
+  "direct_feedback": {
+    "complete": true,
+    "query_count": 16,
+    "retry_count": 0,
+    "axes": {
+      "7": {
+        "id": 7,
+        "bus": "tiger7",
+        "complete": true,
+        "version": "SERVO.C(7.3)",
+        "mode": 1,
+        "health": 7,
+        "position": 1502,
+        "candidate_degrees": 135.27
+      },
+      "8": {
+        "id": 8,
+        "bus": "tiger8",
+        "complete": true,
+        "version": "SERVO.C(7.3)",
+        "mode": 1,
+        "health": 7,
+        "position": 1499,
+        "candidate_degrees": 134.865
+      },
+      "9": {
+        "id": 9,
+        "bus": "tiger9",
+        "complete": true,
+        "version": "SERVO.C(7.3)",
+        "mode": 1,
+        "health": 7,
+        "position": 1500,
+        "candidate_degrees": 135.0
+      },
+      "10": {
+        "id": 10,
+        "bus": "tiger10",
+        "complete": true,
+        "version": "SERVO.C(7.3)",
+        "mode": 1,
+        "health": 8,
+        "position": 1497,
+        "candidate_degrees": 134.595
+      }
+    },
+    "before": {
+      "identity": "0x42543034",
+      "faults": 0,
+      "lease": 0,
+      "bus_states": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "after": {
+      "identity": "0x42543034",
+      "faults": 0,
+      "lease": 0,
+      "bus_states": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "raw_frames_independently_decoded": 16
+  },
+  "pc_rpc_probe": {
+    "date": "2026-10-28",
+    "profile": "3a9d48249f6eaf041c16d5b9f6021863b116da9a5e6e8d523aaae6852efcd034",
+    "elapsed_s": 0.9757528999998613,
+    "rpc_operations": [
+      {
+        "op": "hello",
+        "payload": null,
+        "started": 2531.6796004,
+        "result": {
+          "service": "bus-teach-v1",
+          "profile": "3a9d48249f6eaf041c16d5b9f6021863b116da9a5e6e8d523aaae6852efcd034",
+          "simulation": false,
+          "motion_allowed": false,
+          "capabilities": [
+            "board-only-v1"
+          ],
+          "positions": {},
+          "board": {
+            "identity": 1112813620,
+            "faults": 0,
+            "lease": 0,
+            "servo_session_failed": false,
+            "buses": {
+              "tiger7": 0,
+              "tiger8": 0,
+              "tiger9": 0,
+              "tiger10": 0
+            }
+          }
+        },
+        "completed": 2531.7419671
+      },
+      {
+        "op": "status",
+        "payload": null,
+        "started": 2531.7420689,
+        "result": {
+          "board": {
+            "identity": 1112813620,
+            "faults": 0,
+            "lease": 0,
+            "servo_session_failed": false,
+            "buses": {
+              "tiger7": 0,
+              "tiger8": 0,
+              "tiger9": 0,
+              "tiger10": 0
+            }
+          },
+          "verified": []
+        },
+        "completed": 2531.7887044
+      },
+      {
+        "op": "probe",
+        "payload": {
+          "numbers": [
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        "started": 2531.7887239,
+        "result": {
+          "7": {
+            "p": 1501,
+            "at": 1449.365692147
+          },
+          "8": {
+            "p": 1499,
+            "at": 1449.367256723
+          },
+          "9": {
+            "p": 1500,
+            "at": 1449.370435345
+          },
+          "10": {
+            "p": 1497,
+            "at": 1449.36698372
+          }
+        },
+        "completed": 2531.8813012
+      },
+      {
+        "op": "status",
+        "payload": null,
+        "started": 2531.8813244,
+        "result": {
+          "board": {
+            "identity": 1112813620,
+            "faults": 0,
+            "lease": 0,
+            "servo_session_failed": false,
+            "buses": {
+              "tiger7": 0,
+              "tiger8": 0,
+              "tiger9": 0,
+              "tiger10": 0
+            }
+          },
+          "verified": [
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        "completed": 2531.9270573
+      },
+      {
+        "op": "quit",
+        "payload": null,
+        "started": 2531.9270802,
+        "result": {
+          "closing": true
+        },
+        "completed": 2531.9733695
+      }
+    ],
+    "states": [
+      {
+        "board": {
+          "identity": 1112813620,
+          "faults": 0,
+          "lease": 0,
+          "servo_session_failed": false,
+          "buses": {
+            "tiger7": 0,
+            "tiger8": 0,
+            "tiger9": 0,
+            "tiger10": 0
+          }
+        },
+        "verified": []
+      },
+      {
+        "board": {
+          "identity": 1112813620,
+          "faults": 0,
+          "lease": 0,
+          "servo_session_failed": false,
+          "buses": {
+            "tiger7": 0,
+            "tiger8": 0,
+            "tiger9": 0,
+            "tiger10": 0
+          }
+        },
+        "verified": [
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    ],
+    "positions": {
+      "7": {
+        "p": 1501,
+        "at": 1449.365692147
+      },
+      "8": {
+        "p": 1499,
+        "at": 1449.367256723
+      },
+      "9": {
+        "p": 1500,
+        "at": 1449.370435345
+      },
+      "10": {
+        "p": 1497,
+        "at": 1449.36698372
+      }
+    },
+    "port_released": true,
+    "error": null,
+    "simulation": false,
+    "movement_rpcs": 0
+  },
+  "manual_interpretation": {
+    "source": "2.简易二维云台(总线)/6.拓展资料/协议说明与产品使用说明书(Servo.C).pdf",
+    "mode_page": 2,
+    "status_page": 17,
+    "mode_1": "位置舵机模式，候选270度；不是手册所列电机连续旋转模式",
+    "run_state_7_and_8": "执行或维持一次位置控制过程；不是保护故障码，也不能凭此断言轴正转动或已静止",
+    "position_units": "PRAD原始位置；候选270度换算并非机械标定"
+  },
+  "id10_findings": {
+    "mode": 1,
+    "initial_position": 1497,
+    "pc_rpc_position": 1497,
+    "reported_power_up_motion": true,
+    "power_up_trajectory_observed": false,
+    "startup_configuration_read": false,
+    "cause_confirmed": false
+  },
+  "scope": {
+    "angle_commands": 0,
+    "release_commands": 0,
+    "brake_commands": 0,
+    "mode_configuration_writes": 0,
+    "rail_commands": 0,
+    "fault_clears": 0,
+    "boot_files_changed": false,
+    "product_source_changed": false,
+    "motion_permission_changed": false
+  },
+  "conclusion": "四个物理接口和现有电脑RemoteDevice/RPC检测路径均已取得有效反馈；昨天失败原因未定位，ID10上电行为及机械行程未验收",
+  "final_audit": {
+    "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+    "image_sha256": "dbe937d9f01d65b60e9394c25f298369418f6f31a45f8bc027415d3a95ecbe3d",
+    "manifest_sha256": "79a41ed3c94c114602cc63e0c0b914d6cf077812d6f09af0f3ed366acb8a0fcf",
+    "files_verified": 22,
+    "state": {
+      "identity": "0x42543034",
+      "channels": 4,
+      "faults": 0,
+      "lease": 0,
+      "bus_states": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8"
+    },
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "marker_hashes": {
+      "/run/shadow-bus-servo-loaded.json": "b3e3bc8dd0f2a05736dc84bf6bcc79e616675b611ccc0ad6f0236f9bca1f22fc",
+      "/run/shadow-bus-servo-load-attempt.json": "4d1df8627c34027a487e223aa829ab9f09c4842f9177ab188e3e4015b7f44881",
+      "/run/shadow-pwm-before-bus-servo.json": "bbad106bbc39ed160e1ed9a51602a63d1e4b1ec3f3131af7f755cb4293cb3b7d",
+      "FEEDBACK_ATTEMPT_20261027.jsonl": "f95513fe4ab6bbf221a497c7725a07ba7ee697ddbe56f4efe14f6b995b83c8ec",
+      "FEEDBACK_ATTEMPT_20261028.jsonl": "cfe7e95a9fcb5b6205b56eab50678fd7bf538cb6f21ee7d1f1bf7e904aa6286a",
+      "FEEDBACK_RESULT_20261028.json": "8c5cfc19c0b70c307a7b6ce2c9b948daa4be5bb47763a3fb655c29f57343cd5d",
+      "DEPLOYMENT_20261028.json": "990723f0c5c2acaa7f1153c023bf986668eeaa499b5de39c6ff2fbfae5afbdbe"
+    },
+    "servo_processes": []
+  },
+  "evidence_directory": ".review_work/bus-servo-reload-20261028",
+  "evidence_sha256": {
+    "metadata.json": "8e2697e61dbf0e3fb7d4133369c2f8934bf0582162ce8bde551d6b809887a453",
+    "preload-confirmed.log": "fefe95b354c6472c65e86386a8597a37021e31fcf1befa5b05bcd2e4e2f3ed69",
+    "load.log": "a68a40fa6e6b77cdb9bd0ee764e6561e59b6ef59c22de68a98085ae362e1b296",
+    "postload.log": "69b11b8a88542f38634ba6de3659c9a0228b91be90326c7cd50e296f5ab1571b",
+    "final.log": "57d575b162ed3e6f377417cfa6cb53348a201ccfb61984f6685935f4cf7afb22",
+    "live-result.json": "c71a298aa04d42a8b6e96a4decbabbca0bfa0048d09e10a0f50f0223606e085e",
+    "feedback_once.py": "3fb6965a7527ff3fe22b9bd153caa932bb44c26c8581a42f6f7e0fef3bb156c0",
+    "feedback.log": "bf4960cd51007cbafe0f0fc59b051e200dc5be4c131ef7774b2c3b5ca17a9d5d",
+    "feedback-result.json": "5de4f6d7b45eead6c4d2e9e5b58f9b845806b9244b7b188ce38f41022f24c2d5",
+    "check_rpc_probe.py": "48200a783514f56a86a54bb3629a94d6a1b4c482c92283fd8de4f6eb40d4e952",
+    "rpc-probe-result.json": "349e79ac620251a8af488141bf0d006b4660221ec2f750685d634a3969de79aa",
+    "audit_after_feedback.log": "1b300ce02921290c30785345a194349337fae8fb6ec9bc8f5e7828c78826d35b"
+  },
+  "operator_steps": [
+    "打开老虎四舵机临时调试.cmd（新版有检测所选舵机按钮）",
+    "选择实物 / PS串口，将默认COM19改为当前COM17",
+    "连接板子后选ID7～10，点击检测所选舵机；连接本身不查舵机",
+    "当前运动权限仍关闭；不以通信成功替代机械限位验证"
+  ]
+}
