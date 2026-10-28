@@ -1,0 +1,705 @@
+{
+  "schema": "shadow.bus-diagnostic.v1",
+  "date": "2026-10-28",
+  "layout": "ten-port",
+  "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+  "image_sha256": "16bca5bece6ad846897b10b6dd0d040abf963027b584e405ac4290f766ff68ea",
+  "manifest_sha256": "7f95682722fe2c211556fed933c6ed4a28b82e85a6b42f367c001c6433799342",
+  "normal_mapping_version_pass_ports": [
+    2,
+    3,
+    6,
+    7,
+    10
+  ],
+  "normal_mapping_zero_rx_ports": [
+    1,
+    4,
+    5,
+    8,
+    9
+  ],
+  "version": {
+    "date": "2026-10-28",
+    "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+    "image_sha256": "16bca5bece6ad846897b10b6dd0d040abf963027b584e405ac4290f766ff68ea",
+    "before": {
+      "identity": "0x42503130",
+      "channels": 10,
+      "faults": 0,
+      "lease": 0,
+      "buses": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0
+      }
+    },
+    "queries": [
+      {
+        "axis": 1,
+        "id": 1,
+        "bus": "servo1",
+        "offset": 256,
+        "tx_hex": "233030315056455221",
+        "rx_hex": "",
+        "queued": true,
+        "staged_bytes": 9,
+        "started_monotonic": 23213.431713235,
+        "error": "TimeoutError: Servo reply timeout; command is not retried",
+        "finished_monotonic": 23213.556049268,
+        "after_status": 0
+      },
+      {
+        "axis": 2,
+        "id": 2,
+        "bus": "servo2",
+        "offset": 512,
+        "tx_hex": "233030325056455221",
+        "rx_hex": "2330303250534552564f2e4328372e332921",
+        "queued": true,
+        "staged_bytes": 9,
+        "started_monotonic": 23213.560170349,
+        "version": "SERVO.C(7.3)",
+        "finished_monotonic": 23213.571005018,
+        "after_status": 0
+      },
+      {
+        "axis": 3,
+        "id": 3,
+        "bus": "servo3",
+        "offset": 768,
+        "tx_hex": "233030335056455221",
+        "rx_hex": "2330303350534552564f2e4328372e332921",
+        "queued": true,
+        "staged_bytes": 9,
+        "started_monotonic": 23213.574771045,
+        "version": "SERVO.C(7.3)",
+        "finished_monotonic": 23213.582811906,
+        "after_status": 0
+      },
+      {
+        "axis": 4,
+        "id": 4,
+        "bus": "servo4",
+        "offset": 1024,
+        "tx_hex": "233030345056455221",
+        "rx_hex": "",
+        "queued": true,
+        "staged_bytes": 9,
+        "started_monotonic": 23213.585964877,
+        "error": "TimeoutError: Servo reply timeout; command is not retried",
+        "finished_monotonic": 23213.70920572,
+        "after_status": 0
+      },
+      {
+        "axis": 5,
+        "id": 5,
+        "bus": "servo5",
+        "offset": 1280,
+        "tx_hex": "233030355056455221",
+        "rx_hex": "",
+        "queued": true,
+        "staged_bytes": 9,
+        "started_monotonic": 23213.712548893,
+        "error": "TimeoutError: Servo reply timeout; command is not retried",
+        "finished_monotonic": 23213.835867616,
+        "after_status": 0
+      },
+      {
+        "axis": 6,
+        "id": 6,
+        "bus": "servo6",
+        "offset": 1536,
+        "tx_hex": "233030365056455221",
+        "rx_hex": "2330303650534552564f2e4328372e332921",
+        "queued": true,
+        "staged_bytes": 9,
+        "started_monotonic": 23213.840181119,
+        "version": "SERVO.C(7.3)",
+        "finished_monotonic": 23213.849013178,
+        "after_status": 0
+      },
+      {
+        "axis": 7,
+        "id": 7,
+        "bus": "servo7",
+        "offset": 1792,
+        "tx_hex": "233030375056455221",
+        "rx_hex": "2330303750534552564f2e4328372e332921",
+        "queued": true,
+        "staged_bytes": 9,
+        "started_monotonic": 23213.851896597,
+        "version": "SERVO.C(7.3)",
+        "finished_monotonic": 23213.860106239,
+        "after_status": 0
+      },
+      {
+        "axis": 8,
+        "id": 8,
+        "bus": "servo8",
+        "offset": 2048,
+        "tx_hex": "233030385056455221",
+        "rx_hex": "",
+        "queued": true,
+        "staged_bytes": 9,
+        "started_monotonic": 23213.864405972,
+        "error": "TimeoutError: Servo reply timeout; command is not retried",
+        "finished_monotonic": 23213.988429132,
+        "after_status": 0
+      },
+      {
+        "axis": 9,
+        "id": 9,
+        "bus": "servo9",
+        "offset": 2304,
+        "tx_hex": "233030395056455221",
+        "rx_hex": "",
+        "queued": true,
+        "staged_bytes": 9,
+        "started_monotonic": 23213.992643604,
+        "error": "TimeoutError: Servo reply timeout; command is not retried",
+        "finished_monotonic": 23214.116870616,
+        "after_status": 0
+      },
+      {
+        "axis": 10,
+        "id": 10,
+        "bus": "servo10",
+        "offset": 2560,
+        "tx_hex": "233031305056455221",
+        "rx_hex": "2330313050534552564f2e4328372e332921",
+        "queued": true,
+        "staged_bytes": 9,
+        "started_monotonic": 23214.120144489,
+        "version": "SERVO.C(7.3)",
+        "finished_monotonic": 23214.128995177,
+        "after_status": 0
+      }
+    ],
+    "after": {
+      "identity": "0x42503130",
+      "channels": 10,
+      "faults": 0,
+      "lease": 0,
+      "buses": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0
+      }
+    },
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8"
+    },
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "motion_commands": 0,
+    "release_commands": 0,
+    "retries": 0
+  },
+  "cross_port1_id2_port2_id1": {
+    "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+    "mapping_during_test": {
+      "port1": 2,
+      "port2": 1
+    },
+    "queries": [
+      {
+        "port": 1,
+        "id": 2,
+        "offset": 256,
+        "tx_hex": "233030325056455221",
+        "rx_hex": "",
+        "queued": true,
+        "staged_bytes": 9,
+        "started_monotonic": 23730.140147658,
+        "error": "TimeoutError: Servo reply timeout; command is not retried",
+        "after_status": 0,
+        "finished_monotonic": 23730.263921216
+      },
+      {
+        "port": 2,
+        "id": 1,
+        "offset": 512,
+        "tx_hex": "233030315056455221",
+        "rx_hex": "2330303150534552564f2e4328372e332921",
+        "queued": true,
+        "staged_bytes": 9,
+        "started_monotonic": 23730.267398851,
+        "version": "SERVO.C(7.3)",
+        "after_status": 0,
+        "finished_monotonic": 23730.278238079
+      }
+    ],
+    "before": {
+      "identity": "0x42503130",
+      "channels": 10,
+      "faults": 0,
+      "lease": 0,
+      "buses": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0
+      }
+    },
+    "after": {
+      "identity": "0x42503130",
+      "channels": 10,
+      "faults": 0,
+      "lease": 0,
+      "buses": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0
+      }
+    },
+    "motion_commands": 0,
+    "release_commands": 0,
+    "id_assignments": 0,
+    "retries": 0,
+    "standard_wiring_restored": false
+  },
+  "transmit_channel_check": {
+    "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+    "mapping_during_test": {
+      "port1": 2,
+      "port2": 1
+    },
+    "queries": [
+      {
+        "port": 1,
+        "id": 2,
+        "offset": 256,
+        "tx_hex": "23303032504d4f4421",
+        "rx_hex": "",
+        "queued": true,
+        "staged_bytes": 9,
+        "started_monotonic": 23989.949782534,
+        "all_port_status_after_go": [
+          {
+            "1": 1,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          },
+          {
+            "1": 1,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          },
+          {
+            "1": 1,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          },
+          {
+            "1": 1,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          },
+          {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        ],
+        "error": "TimeoutError: Servo reply timeout; command is not retried",
+        "after_status": 0,
+        "finished_monotonic": 23990.075189848
+      },
+      {
+        "port": 2,
+        "id": 1,
+        "offset": 512,
+        "tx_hex": "23303031504d4f4421",
+        "rx_hex": "23303031504d4f443121",
+        "queued": true,
+        "staged_bytes": 9,
+        "started_monotonic": 23990.078558131,
+        "all_port_status_after_go": [
+          {
+            "1": 0,
+            "2": 1,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          },
+          {
+            "1": 0,
+            "2": 1,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          },
+          {
+            "1": 0,
+            "2": 1,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          },
+          {
+            "1": 0,
+            "2": 1,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          },
+          {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        ],
+        "mode": 1,
+        "after_status": 0,
+        "finished_monotonic": 23990.08741014
+      }
+    ],
+    "before": {
+      "identity": "0x42503130",
+      "channels": 10,
+      "faults": 0,
+      "lease": 0,
+      "buses": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0
+      }
+    },
+    "after": {
+      "identity": "0x42503130",
+      "channels": 10,
+      "faults": 0,
+      "lease": 0,
+      "buses": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0
+      }
+    },
+    "motion_commands": 0,
+    "release_commands": 0,
+    "id_assignments": 0,
+    "retries": 0,
+    "standard_wiring_restored": false
+  },
+  "id_read_query": {
+    "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+    "before": {
+      "identity": "0x42503130",
+      "faults": 0,
+      "lease": 0,
+      "buses": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0
+      }
+    },
+    "queries": [
+      {
+        "port": 1,
+        "expected_id": 1,
+        "tx_hex": "2332353550494421",
+        "queued": true,
+        "rx_hex": "",
+        "listen_seconds": 2.0,
+        "elapsed_seconds": 2.0004004729998996,
+        "after_status": 0,
+        "error": "No received bytes within bounded ID query window"
+      },
+      {
+        "port": 4,
+        "expected_id": 4,
+        "tx_hex": "2332353550494421",
+        "queued": true,
+        "rx_hex": "",
+        "listen_seconds": 2.0,
+        "elapsed_seconds": 2.000467434001621,
+        "after_status": 0,
+        "error": "No received bytes within bounded ID query window"
+      },
+      {
+        "port": 5,
+        "expected_id": 5,
+        "tx_hex": "2332353550494421",
+        "queued": true,
+        "rx_hex": "",
+        "listen_seconds": 2.0,
+        "elapsed_seconds": 2.0001695009996183,
+        "after_status": 0,
+        "error": "No received bytes within bounded ID query window"
+      },
+      {
+        "port": 8,
+        "expected_id": 8,
+        "tx_hex": "2332353550494421",
+        "queued": true,
+        "rx_hex": "",
+        "listen_seconds": 2.0,
+        "elapsed_seconds": 2.0004488039994612,
+        "after_status": 0,
+        "error": "No received bytes within bounded ID query window"
+      },
+      {
+        "port": 9,
+        "expected_id": 9,
+        "tx_hex": "2332353550494421",
+        "queued": true,
+        "rx_hex": "",
+        "listen_seconds": 2.0,
+        "elapsed_seconds": 2.0001747799979057,
+        "after_status": 0,
+        "error": "No received bytes within bounded ID query window"
+      }
+    ],
+    "after": {
+      "identity": "0x42503130",
+      "faults": 0,
+      "lease": 0,
+      "buses": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0
+      }
+    },
+    "id_assignments": 0,
+    "motion_commands": 0,
+    "release_commands": 0,
+    "retries": 0
+  },
+  "queries_sent": 19,
+  "motion_commands": 0,
+  "release_commands": 0,
+  "configuration_writes": 0,
+  "retries": 0,
+  "final_registers_and_package": {
+    "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+    "state": {
+      "identity": "0x42503130",
+      "channels": 10,
+      "faults": 0,
+      "lease": 0,
+      "buses": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0
+      }
+    },
+    "files_verified": 24,
+    "marker_sha256": "03f24395a72b9ed77ca666afeb618e35b095b7bbc9bdca2c93d4575d29be1d47"
+  },
+  "final_preserved_files": {
+    "boot_id": "7f2fcdc4-ecde-48aa-806a-e4db130ea2a3",
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8"
+    },
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "evidence": {
+      "VERSION_ATTEMPT_20261028.jsonl": "7169e61cc074e6de931ffe5063aec00086301bff1d2be26ae6041eaa244e7f13",
+      "ROUTE_1_2_RESULT_20261028.json": "d9f7d3d3cac98656031ac4f5cfb249aef8867e6daf067ed02e3a80664d84f8b1",
+      "CROSS_1_2_ATTEMPT_20261028.jsonl": "d5603ec5438dc24736f2d4ae73959e3ed9895166906ad99454b595b2c017d6a5",
+      "INSTALL_20261028.json": "a5e18e36d42202140e735fa265da1fe945d727cad8c03f67816391aafde06586",
+      "CROSS_1_2_RESULT_20261028.json": "ead547db4bac25cfd9ac9945f3c8d0f59e28e08fdf7e21645e485c65307cbba4",
+      "VERSION_RESULT_20261028.json": "18fd69bf8d55df1a2074a839eff817817295fbac7b513eec67bb9cad46f79840",
+      "ROUTE_1_2_ATTEMPT_20261028.jsonl": "69f6acc4fc3dde56e1307629de4bf9df58ad1ecd80ed382e276f2186f93e2778",
+      "ID_READ_RESULT_20261028.json": "8bf32b398671bdcb5e282d7dc5920df4381286137ef5d1855495ee9380a2dbac",
+      "ID_READ_ATTEMPT_20261028.jsonl": "3349ec7f48bbd70237c98c3607ae6d4b3c982c92a20873bcd0e919b63751282c"
+    }
+  },
+  "physical_wiring_restored_user_confirmed": true,
+  "final_physical_mapping": "ID1..10 -> original port1..10, independent signals",
+  "latest_power_user_report": "ON, supersedes temporary power-off report after wiring restoration",
+  "led_user_report": "Nonresponding servos LEDs unlit; responding servos flash intermittently; ID1 appeared continuously lit after swap (uncertain observation).",
+  "led_manual": "Servo.C provided PDF page16: LED=1 ordinary status is 30ms pulse each3s; LED=0 may disable it; received-command blink is not full communications acceptance.",
+  "voltage_user_report": {
+    "port1_signal_to_board_ground_V": 3.3,
+    "port2_signal_to_board_ground_V": 0,
+    "measurement_points_independently_verified": false
+  },
+  "next_step": "Confirm physical connector and meter ground points from a clear photograph; port2 0V report does not align with the absence of framing errors. Do not infer failed hardware or rewrite IDs.",
+  "implementation_netlist_simulation": "INCONCLUSIVE: cut hierarchy loses external constant and inversion logic; initial response check failed, subsequent tests stalled. No full-design simulation pass obtained.",
+  "interpretation": "Port1 failure persisted with ID2; ID1 answered version and mode on port2. Failure follows board-port path in this pair. Electrical waveform and fault component not established.",
+  "actual_position_feedback_obtained": false,
+  "fpga_reloaded": false,
+  "boot_files_modified": false,
+  "incident_lock_preserved": true,
+  "hardware_or_mechanical_readiness_changed": false,
+  "com17_released": true,
+  "running_servo_service_observed": false,
+  "evidence_sha256": {
+    "cross.log": "0b6c0243f20020ff42a6098fd75a5fbd20f1a852017cb1f9ca92b8d5c643fb8b",
+    "cross.sh": "1e6bdf81956deb159d2cc8fabbaa6b7d0bb90e72fcdf113039e715b991625490",
+    "cross_body.py": "41d7e4dc1634ed690fb7b054c685f70bd72c0e762d758b2341df0458b16af71f",
+    "cross_once.py": "0207e7e7d339e45c9dccd070f220e5c129f94a39109f4daa397eb5cc802034bb",
+    "final-files.log": "765ee216c8c06060fcdd80a850ee5b9e31f09e86487094702680f674c6478e94",
+    "final-files.sh": "7ef03a64bab0daf6e369d1e5ee70b8cbc253be1b90016d84ffe410e438bdcb55",
+    "final-inspect.log": "808aacfe2bd653bcd4929bb381f0ff56fdb27d9149f7fabb3f1b15727983d8db",
+    "id_read.log": "3f9617b7b86bc4b24863192f80cc3b6266ff9af2b07d0bc5e19506f57214f275",
+    "id_read.sh": "de0f4a659aa94dfffb10d2de65e68a89e9845e399c394971baa3de1ebe1e3bb6",
+    "id_read_body.py": "de58022357513bb28015eb44cf6a78cceba9dbb8d7276dd362dd4d451f1f364c",
+    "id_read_once.py": "0226a3f59cfa7815abd8e9db8967cb69ad4a6117d0298da5eecaa9c1737088c9",
+    "inspect.log": "afb150867906a4df4f904420da27ebdeda766db16e61aecc8fbca6fab5923576",
+    "inspect.sh": "bd4dcb2ffad0beb67320570ee5a4d8096605c1b2f19c8016e6e091ab6fb2327b",
+    "inspect_boundary.log": "c3053bd0bf49b7421d8d8d959101b002227d9b62163083536ba134ecbc1b66cc",
+    "inspect_boundary.tcl": "6fd1b58dbdcb7045a32e2233f86b667aa79651237719baf053c6b50210bcb259",
+    "inspect_netlist.log": "096971456bf9a0734bbabfe4e9f948d797ca905634259bafa584c7e3001be412",
+    "inspect_netlist.tcl": "d1a3c389fe7d1e600c8314c473f620baa50426a2589f29c8c0b9207b71401863",
+    "packets_netlist.log": "5792830fd20d691e3ba2ed7fbef1cc809a82b578d75489e212280c698253cbd8",
+    "packets_netlist_2.log": "a46ccf3d4fba2e69e9d5347e3147d1b1ce51ea6c545f9542a65ba540dc61448c",
+    "packets_netlist_3.log": "276672eee86a2f6fcc5ff94c54a7a536429e16494fa1367581de6aa81bedba7f",
+    "packets_rtl.log": "e283532a0b323a2025515de1a64bcfd00e96a8ab0492175ec5281526a5d8b913",
+    "packets_rtl_3.log": "68e1e730d139006b03738851355ebb1b6109f8c447f95c02a83ff7e31501fa05",
+    "packets_rtl_checked.log": "1cecd658388bdbf04a42aaade8a96811765225c18a8b2b228998c685122dc798",
+    "packets_rtl_final.log": "e44f92e5f274b33e0b0661ba142a22c782d6f73aee5eb20a79a09c2c98c37e65",
+    "prepare.py": "356553dfbeedb536824116e42e0ac3ebc352bab060b7259f39f3b077142719b4",
+    "prepare_cross.py": "cd24e0581d96960703b472ad744035119eae9bfafe608987094116abda664d03",
+    "prepare_id_read.py": "30629480b12fa3c0636f59176f287cc8edda9872838aa58d97a2e71c3b39b9cb",
+    "prepare_route.py": "cbcc24f3283641380b1bf540f36115a4ec179e0be256fb785053f02771e7a5b4",
+    "query.sh": "5af528ba3764ec0fd0b81dbbe7bbb7e8cf31e6f8cf971cf33627f1d6afbe1ab1",
+    "read_led.py": "42f11e8ae0a12c93252cfbd80296ef29b3ae0d9ef85a886903c8530b2d3149a5",
+    "read_manual.py": "727c2283d33acc846f8e28ded51c47962013f21a46fc166f277812455237d4e0",
+    "route.log": "f67c5ff4e10ae4499b4620c641565c122fdb507927fff838b55397042406d48f",
+    "route.sh": "e0c348def40d737a547136efd23b5579bef573b29667c6eb7b681c33e09284b1",
+    "route_once.py": "9e65294fd97507ad35a7af5bbeb262e38d98338265b05e77309c8a3c3c8f5a45",
+    "version.log": "399c9d53fd1631d29ed29c16621a49809fe3e273e4814f84b63761a28b24d921",
+    "version_once.py": "e261adc05bb9abd61915f85da1a3235a2e5ba59c0020985cb10a7b4a3fbcf266",
+    "voltage-inspect.log": "f3111caaa9dc83fb4560a3cde4697a106abc195cac1545f8d3e0b3335f99669c"
+  },
+  "packets_rtl_checked.log": {
+    "passed": true,
+    "completed": true
+  },
+  "packets_netlist_3.log": {
+    "passed": false,
+    "completed": true
+  }
+}
