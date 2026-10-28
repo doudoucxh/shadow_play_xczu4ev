@@ -178,7 +178,7 @@ class App:
         self.record = None
         self.editor = None
         self.live_samples = []
-        suffix={'tiger-four-port':' · 老虎临时四口','ten-port':' · 十舵机独立十口'}.get(self.profile.layout.name,'')
+        suffix={'dual':' · 人物 / 老虎双总线','tiger-four-port':' · 老虎临时四口','ten-port':' · 十舵机独立十口'}[self.profile.layout.name]
         root.title('皮影 · 总线舵机示教工作台（分步/剪辑）' + suffix)
         root.geometry('1180x850'); root.minsize(1030, 790)
         root.configure(bg='#eef2f5')
@@ -192,6 +192,7 @@ class App:
         body = ttk.Frame(root, padding=18); body.pack(fill='both', expand=True)
         header = ttk.Frame(body); header.pack(fill='x')
         ttk.Label(header, text='皮影示教工作台', font=('Microsoft YaHei UI',22,'bold')).pack(side='left')
+        ttk.Button(header, text='使用说明', command=lambda:self.action(self.open_guide)).pack(side='right', padx=(14,0))
         ttk.Label(header, text=self.profile.layout.title, foreground='#59728a').pack(side='right', pady=10)
         ttk.Label(body, text='先用手演一遍，记录舵机实际位置，再按时间重现动作。', foreground='#526b7c').pack(anchor='w', pady=(2,12))
         row = ttk.Frame(body); row.pack(fill='x', pady=(0,10))
@@ -199,7 +200,7 @@ class App:
         self.mode_box = ttk.Combobox(row, textvariable=self.mode, values=['离线模拟','实物 / PS串口'], state='readonly', width=18)
         self.mode_box.pack(side='left')
         ttk.Label(row,text='PS串口').pack(side='left',padx=(16,5))
-        self.port = tk.StringVar(value='COM17' if self.profile.layout.name=='ten-port' else 'COM19')
+        self.port = tk.StringVar(value='COM17' if self.profile.layout.name in ('dual','ten-port') else 'COM19')
         self.port_box = ttk.Combobox(row, textvariable=self.port, width=12)
         self.port_box.pack(side='left')
         self.refresh_ports()
@@ -271,12 +272,20 @@ class App:
         self.canvas=tk.Canvas(body,height=160,bg='#ffffff',highlightthickness=1,highlightbackground='#dce4eb')
         self.canvas.bind('<Configure>',lambda e:self.plot())
         footer=ttk.Frame(body);footer.pack(side='bottom',fill='x')
-        self.status=tk.StringVar(value='未连接 · 默认离线模拟。实物待换装、回传电平确认、逐个编号和限位标定。')
+        self.status=tk.StringVar(value='未连接 · 默认离线模拟。实物请核对对应镜像、接线与就绪状态；操作流程见右上角“使用说明”。')
         ttk.Label(footer,textvariable=self.status,wraplength=1100,foreground='#25566a').pack(anchor='w')
         ttk.Label(footer,text=f'记录的是电机轴反馈；连杆间隙和皮影弹性仍会影响复刻。{len(self.profile.layout.buses)}条总线并行，同一总线各轴依次发送，非硬件同时触发。',foreground='#627987',wraplength=1100).pack(anchor='w',pady=(5,0))
         self.canvas.pack(fill='both',expand=True,pady=(3,8))
         root.bind('<Escape>',lambda e:self.stop());root.protocol('WM_DELETE_WINDOW',self.close)
         root.after(50,self.receive);self.update_controls()
+
+    def open_guide(self):
+        import webbrowser
+        path = ROOT/'docs/bus_servo_user_guide.html'
+        if not path.is_file():
+            raise FileNotFoundError('使用说明文件缺失：'+str(path))
+        if not webbrowser.open(path.resolve().as_uri()):
+            raise RuntimeError('未能打开浏览器，请手动打开说明文件：'+str(path))
 
     def refresh_ports(self):
         try:

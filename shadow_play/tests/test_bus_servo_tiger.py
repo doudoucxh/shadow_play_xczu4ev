@@ -203,10 +203,13 @@ class TigerTeachingTests(unittest.TestCase):
     def tearDown(self): self.session.close();self.tmp.cleanup()
 
     def test_continuous_recording_keeps_logical_7_to_10(self):
-        s=self.session;s.start_recording([7,8,9,10],20)
-        s.tick([7,8,9,10]);time.sleep(.055)
-        self.device.drag({'7':1510,'8':1490,'9':1502,'10':1498})
-        s.tick([7,8,9,10]);s.finish_recording()
+        # Test acquisition identity without depending on a 5 ms OS scheduling margin.
+        now=[10.0];s=self.session;s.clock=lambda:now[0]
+        with patch('shadow_play.bus_servo.device.time.monotonic',lambda:now[0]):
+            s.start_recording([7,8,9,10],20)
+            s.tick([7,8,9,10]);now[0]+=.06
+            self.device.drag({'7':1510,'8':1490,'9':1502,'10':1498})
+            s.tick([7,8,9,10]);s.finish_recording()
         validate_recording(s.record,self.profile)
         self.assertEqual(s.record['selected'],[7,8,9,10])
         self.assertEqual(set(s.record['samples'][-1]['positions']),{'7','8','9','10'})

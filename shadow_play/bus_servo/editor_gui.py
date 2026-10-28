@@ -59,7 +59,7 @@ class EditorWindow:
         button(row, '检查并预览', self.check_preview)
         button(row, '应用到主窗口', self.apply_motion)
         button(row, '另存回放轨迹…', lambda: self.save(True))
-        tk.Button(row, text='停止全部 / Esc', bg='#b84443', fg='white', relief='flat', command=app.stop, padx=15, pady=4).pack(side='right')
+        tk.Button(row, text='停止当前动作 / Esc', bg='#b84443', fg='white', relief='flat', command=app.stop, padx=15, pady=4).pack(side='right')
         self.status = tk.StringVar(value='编辑副本；原始录制不覆盖。修改会自动保存到本地草稿。')
         ttk.Label(footer, textvariable=self.status, foreground='#25566a', wraplength=1090).pack(fill='x', pady=(3,0))
         table = ttk.Frame(body); table.pack(fill='both', expand=True, pady=5)
@@ -292,7 +292,7 @@ class EditorWindow:
 
     def close(self):
         if self.pending:
-            self.status.set('等待这次姿势反馈后再关闭；Esc仍可停止全部。'); return
+            self.status.set('等待这次姿势反馈后再关闭；Esc仍可停止当前动作。'); return
         try:
             self.autosave()
         except Exception as exc:

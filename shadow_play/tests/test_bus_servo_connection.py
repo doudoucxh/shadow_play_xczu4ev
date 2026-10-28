@@ -40,11 +40,13 @@ class StartupTests(unittest.TestCase):
         self.assertEqual(len(self.port.writes), 3)  # prompt, echo setting, single launch
         self.assertFalse(any(b'"op"' in w for w in self.port.writes))
 
-    def test_missing_dual_bundle_explains_correct_launcher(self):
-        with self.assertRaisesRegex(RuntimeError, '十舵机独立十口调试') as error:
+    def test_missing_dual_bundle_explains_required_deployment(self):
+        with self.assertRaisesRegex(RuntimeError, '缺少双总线程序') as error:
             self.connect_with([b"-sh: cd: /run/media/mmcblk0p2/piying/bus-servo-v1: No such file or directory\r\n"], 'dual')
-        self.assertIn('原1～10口', str(error.exception))
-        self.assertIn('只有老虎ID7～10临时接原1～4口', str(error.exception))
+        self.assertIn('人物ID1～6共接原9口', str(error.exception))
+        self.assertIn('老虎ID7～10共接原10口', str(error.exception))
+        self.assertIn('BS10', str(error.exception))
+        self.assertIn('修改电脑入口不会更新板子', str(error.exception))
         self.assert_startup_only()
 
     def test_electrical_rejection_across_serial_chunks(self):
