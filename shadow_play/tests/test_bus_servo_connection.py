@@ -41,8 +41,10 @@ class StartupTests(unittest.TestCase):
         self.assertFalse(any(b'"op"' in w for w in self.port.writes))
 
     def test_missing_dual_bundle_explains_correct_launcher(self):
-        with self.assertRaisesRegex(RuntimeError, '老虎四舵机临时调试'):
+        with self.assertRaisesRegex(RuntimeError, '十舵机独立十口调试') as error:
             self.connect_with([b"-sh: cd: /run/media/mmcblk0p2/piying/bus-servo-v1: No such file or directory\r\n"], 'dual')
+        self.assertIn('原1～10口', str(error.exception))
+        self.assertIn('只有老虎ID7～10临时接原1～4口', str(error.exception))
         self.assert_startup_only()
 
     def test_electrical_rejection_across_serial_chunks(self):

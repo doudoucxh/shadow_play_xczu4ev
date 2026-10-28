@@ -1,5 +1,12 @@
 # 项目协作与 Git 备份规则
 
+## 2026-10-28 常用总线示教入口已指向十口（纠正旧双总线报错）
+
+- 用户截图提示“未安装十轴双总线程序”并错误引导旧四口。常用`总线舵机示教上位机.cmd`此前没有显式profile，仍用GUI默认dual；现明确指向`bus_servo_ten_port.json`，与`十舵机独立十口调试.cmd`一致。原dual配置保留在明确命名的`双总线舵机示教上位机.cmd`，未修改旧素材或自动映射接线。
+- 旧dual缺包提示现在先说明十台独立接原1～10口应使用十口窗口，四口仅适用于旧临时虎接法。8项启动诊断回归通过，未放宽任何实物权限。此次仅电脑端入口/提示变化，不需重装SD或重载FPGA；SD包仍为原24项7f9568…。
+- 正确十口配置真实COM17 hello+12次status+quit约6.816秒通过，当前状态BP10/十路全0、faults/lease0、位置/verified为空、release_allowed=true、motion_allowed=false，COM17释放。没有舵机probe/read/release/move报文、重载、故障清除或新换线/上电确认，不将板端连接成功当成十台实物反馈通过。
+- 修正后的常用cmd已打开新十口窗口（进程39636，标题含“十舵机独立十口”，有句柄且Responding=true，默认离线），原进程52236保留。原截图不代表当前窗口仍是dual；首次进程检查实际只发现一个ten-port窗口。证据`.review_work/bus-servo-launcher-20261028/`，记录`shadow_play/config/bus_servo_launcher_fix_20261028.json`。
+
 ## 2026-10-28 BP10十口已加载，断电连接验证通过
 
 - 用户补充确认“丝杆也已断电或未接电”，舵机已在本次请求中报断电。重新核对当前启动7f2fcdc4…/BT04 dbe937…、旧包42a8ed…、源标记b3e3bc…及四路空闲后，停止临时四口HDMI，仅一次加载BP10镜像 `16bca5bece6ad846897b10b6dd0d040abf963027b584e405ac4290f766ff68ea`。加载回执及独立最终均身份0x42503130、通道10、faults/lease0、十路状态全0。

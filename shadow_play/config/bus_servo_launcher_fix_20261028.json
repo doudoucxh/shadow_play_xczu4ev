@@ -1,0 +1,86 @@
+{
+  "schema": "shadow.bus-launcher-fix.v1",
+  "date": "2026-10-28",
+  "reported_issue": "截图中旧双总线配置缺失报错仍推荐老虎四口；用户需要使用十台舵机",
+  "cause": "常用总线舵机示教上位机.cmd没有显式profile，沿用GUI的dual默认值，目标bus-servo-v1；当前接线及板端部署为ten-port/bus-servo-ten-port-v1",
+  "changes": {
+    "总线舵机示教上位机.cmd": "显式使用bus_servo_ten_port.json，与十舵机独立十口调试.cmd一致",
+    "双总线舵机示教上位机.cmd": "保留原dual配置的明确入口，不自动变更接线",
+    "startup_error": "优先说明十台独立信号接原1～10口时使用十口窗口；四口仅适用于旧临时接法"
+  },
+  "validation": {
+    "startup_diagnostic_tests_passed": 8,
+    "live_board_connection": {
+      "date": "2026-10-28",
+      "profile": "a224248b678b1ef790b61b9bdef15ee636fc80f462647cf2cff2363d734925a0",
+      "elapsed_s": 6.816494499998953,
+      "rpc_operations": [
+        "hello",
+        "status",
+        "status",
+        "status",
+        "status",
+        "status",
+        "status",
+        "status",
+        "status",
+        "status",
+        "status",
+        "status",
+        "status",
+        "quit"
+      ],
+      "last_state": {
+        "board": {
+          "identity": 1112551728,
+          "faults": 0,
+          "lease": 0,
+          "servo_session_failed": false,
+          "buses": {
+            "servo1": 0,
+            "servo2": 0,
+            "servo3": 0,
+            "servo4": 0,
+            "servo5": 0,
+            "servo6": 0,
+            "servo7": 0,
+            "servo8": 0,
+            "servo9": 0,
+            "servo10": 0
+          }
+        },
+        "verified": []
+      },
+      "positions": {},
+      "port_released": true,
+      "servo_query_rpcs": 0,
+      "movement_rpcs": 0,
+      "simulation": false,
+      "motion_allowed": false,
+      "release_allowed": true
+    },
+    "launched_via_generic_cmd": true,
+    "new_gui_pid": 39636,
+    "title": "皮影 · 总线舵机示教工作台（分步/剪辑） · 十舵机独立十口",
+    "responding": true,
+    "default_mode": "offline simulation",
+    "earlier_gui_pid_preserved": 52236
+  },
+  "scope": {
+    "pc_only_changes": true,
+    "sd_package_updated": false,
+    "fpga_loaded": false,
+    "boot_files_changed": false,
+    "servo_queries_sent": 0,
+    "servo_release_commands_sent": 0,
+    "motion_commands_sent": 0,
+    "motion_readiness_changed": false,
+    "new_wiring_or_power_report_received": false,
+    "actual_ten_servo_feedback_verified": false
+  },
+  "evidence_directory": ".review_work/bus-servo-launcher-20261028",
+  "evidence_sha256": {
+    "check_live.py": "f1b6a38afb49ae530f44cd38ee578ec999ad6d9682b528eadcb754938886bc90",
+    "live-result.json": "d8decc4020845455d14d8fb5b738d96b78783071e402cd5457cea7dc6cec5649"
+  }
+}

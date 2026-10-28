@@ -69,8 +69,10 @@ class RemoteDevice:
             # Match the error line, not unrelated paths earlier in a traceback.
             if self.profile.layout.board_directory.encode() in line or b'start_console.sh' in line:
                 if self.profile.layout.name == 'dual':
-                    return ('板端未安装当前十轴双总线程序。老虎ID7～10临时接原1～4口时，'
-                            '请关闭此窗口，打开“老虎四舵机临时调试.cmd”。')
+                    return ('当前窗口使用旧双总线配置，板端未安装该版本。'
+                            '十台舵机各自独立接原1～10口时，请保存素材并关闭此窗口，'
+                            '打开“十舵机独立十口调试.cmd”。'
+                            '只有老虎ID7～10临时接原1～4口时才使用“老虎四舵机临时调试.cmd”。')
                 if self.profile.layout.name == 'ten-port':
                     return '板端缺少十舵机独立十口程序，请检查SD卡安装目录 bus-servo-ten-port-v1。'
                 return '板端缺少老虎四口程序或启动脚本，请检查SD卡安装目录 bus-servo-tiger-four-v1。'
