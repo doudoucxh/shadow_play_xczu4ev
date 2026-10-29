@@ -98,7 +98,7 @@ def render_pdf(data, font_dir):
         c.drawString(44,A4[1]-29,data['title']+' / 操作手册')
         c.drawRightString(A4[0]-44,A4[1]-29,data['date'])
         c.setStrokeColor(line);c.line(44,39,A4[0]-44,39)
-        c.drawString(44,25,'人物1至6 → 原9口  |  老虎7至10 → 原10口  |  BS10自启动，联调待完成')
+        c.drawString(44,25,'人物1至6 → 原9口  |  老虎7至10 → 原10口  |  BS10自启动，实物回放已开放')
         c.drawRightString(A4[0]-44,25,f'{doc.page} / {len(data["pages"])}')
         if doc.page<=len(data['pages']):
             page=data['pages'][doc.page-1];c.bookmarkPage(page['id']);c.addOutlineEntry(page['title'],page['id'],level=0)

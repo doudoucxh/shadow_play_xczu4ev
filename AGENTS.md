@@ -1,5 +1,13 @@
 # 项目协作与 Git 备份规则
 
+## 2026-10-29 用户确认实物与录制正常，双总线设角/回放已开放
+
+- 用户明确“已经验证没有问题了，记录功能也是正常的”，要求开放实物回放，并确认已保存素材、断开上位机。按此新报告将当前双总线hardware/mechanical字段设true，保留电气true；来源user_report，没有新增测量限位数值。不再以此前未验收历史记录要求用户重复确认。
+- 电脑与SD独立控制入口`bus-servo-dual-console-v1`三项同步，启动显式`--allow-release --allow-motion`。新manifest SHA5816bc14…、profile SHAc04f5061…，旧三项在`backups/motion-enable-20261029`。接线、ID、10～260°/30°每秒限值及素材指纹6aac006e…保持，旧素材兼容。打包工具默认仍不加运动参数，需显式选择并有确认记录。
+- 原25项启动包f5e1d0a9…、冷启动文件、FPGA、加载/尝试标记及旧PWM事故锁保持不变，文件校验通过；没有重载或重启。当前同启动f589ca82…/BS10，双路状态0、faults/lease0。配置持久保存在SD，自启动仍待命、不自动查询或运动。
+- 真实COM17 hello+12次status+quit6.641秒通过，motion_allowed=true、release_allowed=true，位置/verified为空；COM17释放。本轮舵机查询/运动/卸力报文均0，没有替用户回放。执行器最后用户报告仍上电，本轮纯配置更新未要求断电。
+- 122项离线测试与隐藏Tk权限/反馈/完整素材按钮检查通过，没有原生窗口点击。用户需重开常用双总线入口，连接/检测，加载实际轨迹，缓慢到首帧后手动回放。现有现场确认、有效反馈、限位/限速与首帧检查保留。手册HTML/PDF同步更新；记录`shadow_play/config/bus_servo_dual_motion_enable_20261029.json`与同名docs，原证据`.review_work/bus-servo-dual-motion-20261029/`。
+
 ## 2026-10-29 双总线十台反馈通过，用户上位机已恢复
 
 - 用户说明官方USB串口转接板可正常读取，确认上位机已断开、舵机外接电源开启。新读仍同启动f589ca82…/BS10，原9口person、原10口tiger状态0，faults/lease0，配置ID1～10及电气确认正确。

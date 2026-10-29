@@ -6,7 +6,7 @@
     "person": "E14",
     "tiger": "E15"
   },
-  "hardware_verified": false,
+  "hardware_verified": true,
   "electrical_3v3_verified": true,
   "electrical_verification": {
     "source": "user_report",
@@ -15,8 +15,17 @@
     "statement": "用户针对当前双总线兼容性提示明确确认：我已经完成了。",
     "measured_values": null
   },
-  "mechanical_limits_verified": false,
-  "notes": "Candidate 270-degree conversion. Configure one physical servo at a time before joining the bus. Limits below are software candidates, not measured safe mechanism limits. Old PWM poses are not migrated.",
+  "mechanical_limits_verified": true,
+  "motion_verification": {
+    "source": "user_report",
+    "date": "2026-10-29",
+    "layout": "dual",
+    "statement": "用户确认实物已经验证没有问题，记录功能正常，并明确要求开放实物回放。",
+    "feedback_evidence": "bus_servo_dual_feedback_20261029.json",
+    "measured_limits_supplied": false,
+    "scope": "沿用当前双总线接线、ID、角度范围和限速；本次只开放权限，不自动执行动作。"
+  },
+  "notes": "270-degree conversion retained. User confirmed hardware/mechanical validation and recording on 2026-10-29 and requested physical playback. Existing software limits and speed limits are unchanged; no new measured limit values were supplied. Old PWM poses are not migrated.",
   "axes": [
     {
       "number": 1,
