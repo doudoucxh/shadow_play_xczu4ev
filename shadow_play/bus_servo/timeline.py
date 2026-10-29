@@ -24,7 +24,7 @@ class PlaybackTimeline:
         self.segments = record.get('segments_summary', [])
         self.ends = [segment['end_s'] for segment in self.segments]
 
-    def snapshot(self, elapsed=0, state='ready'):
+    def snapshot(self, elapsed=0, state='ready', wall_elapsed=None):
         elapsed = min(self.duration, max(0, elapsed))
         source = min(self.source_duration, elapsed * self.speed)
         if self.playback_times:
@@ -36,11 +36,14 @@ class PlaybackTimeline:
             elapsed, source = self.duration, self.source_duration
         elif state == 'playing' and elapsed >= self.duration:
             state = 'checking'
+        wall_elapsed = elapsed if wall_elapsed is None else max(elapsed,wall_elapsed)
+        communication_delay = wall_elapsed-elapsed
         segment = ''
         if self.segments:
             index = min(bisect_right(self.ends, source), len(self.segments) - 1)
             segment = f'第 {index + 1}/{len(self.segments)} 段 · {self.segments[index]["name"]}'
-        return dict(state=state, elapsed_s=elapsed, duration_s=self.duration,
+        return dict(state=state, elapsed_s=wall_elapsed, duration_s=self.duration+communication_delay,
                     source_s=source, source_duration_s=self.source_duration,
                     speed=self.speed, fraction=elapsed/self.duration if self.duration else 0,
-                    segment=segment, retimed_intervals=self.retimed_intervals)
+                    segment=segment, retimed_intervals=self.retimed_intervals,
+                    communication_delay_s=communication_delay)

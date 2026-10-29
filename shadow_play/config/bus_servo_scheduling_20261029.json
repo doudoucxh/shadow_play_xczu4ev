@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-29",
+  "take": "take_20261029_152759_149401.json",
+  "take_sha256": "51f976f47987912a8eccee879385f8864aeca1353ebfc5b9c2352b7493f51f2b",
+  "before": [
+    {
+      "jitter": false,
+      "finished": false,
+      "error": "回放调度落后，已中止；不会追赶式连发。请降低速度。",
+      "commands": 2,
+      "planned_commands": 106,
+      "elapsed_s": 0.870000000000001,
+      "nominal_s": 33.724000000000004,
+      "max_rpc_s": 0.16500000000000092,
+      "error_category": "old_scheduler_late_abort"
+    },
+    {
+      "jitter": true,
+      "finished": false,
+      "error": "回放调度落后，已中止；不会追赶式连发。请降低速度。",
+      "commands": 1,
+      "planned_commands": 106,
+      "elapsed_s": 0.6449999999999978,
+      "nominal_s": 33.724000000000004,
+      "max_rpc_s": 0.34999999999999964,
+      "error_category": "old_scheduler_late_abort"
+    }
+  ],
+  "after": [
+    {
+      "jitter": false,
+      "finished": true,
+      "error": null,
+      "commands": 106,
+      "planned_commands": 106,
+      "elapsed_s": 55.06999999999896,
+      "nominal_s": 33.724000000000004,
+      "max_rpc_s": 0.16500000000000625
+    },
+    {
+      "jitter": true,
+      "finished": true,
+      "error": null,
+      "commands": 106,
+      "planned_commands": 106,
+      "elapsed_s": 60.45000000000005,
+      "nominal_s": 33.724000000000004,
+      "max_rpc_s": 0.3500000000000014
+    }
+  ],
+  "physical_commands": 0,
+  "offline_tests": 142,
+  "verification": "offline delayed RPC simulation; no physical playback",
+  "stall_limit_s": 1,
+  "limits_or_profile_changed": false,
+  "board_updated": false,
+  "ui_check": "transparent independent Tk window, no user-window interaction",
+  "guide": "bus_servo_user_guide.html / output/pdf/bus_servo_user_guide.pdf"
+}

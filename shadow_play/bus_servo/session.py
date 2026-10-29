@@ -7,6 +7,8 @@ from datetime import datetime
 from .model import finite, new_recording, playback_plan, save_recording, validate_recording
 from .protocol import ServoUnavailable
 
+PLAYBACK_STALL_S = 1.0  # Same bound as the FPGA motion lease; never resume a long stall.
+
 
 class PlaybackRejected(ValueError):
     """Playback was not started; the device connection is still usable."""
@@ -30,6 +32,7 @@ class TeachingSession:
         self.device.connect()
         self.ready_axes = set(profile.axes) if device.simulation else set()
         self.next_board_poll = 0
+        self.cancel_requested = lambda: False
 
     def require_feedback(self, numbers):
         self.profile.select(numbers)
@@ -167,24 +170,34 @@ class TeachingSession:
         self.plan, self.play_numbers, self.index = plan, numbers[:], 0
         self.play_start = self.clock()
         self.play_end = plan[-1][0] + plan[-1][2]/1000
+        self.play_due = self.play_start
+        self.last_play_tick = self.play_start
+        self.segment_started = self.play_start
         self.playing = True
 
-    def tick(self, idle_numbers):
+    def playback_elapsed(self):
+        """Progress within accepted commands; never advance into an unsent one."""
+        if not self.index:return 0.0
+        due, _, duration = self.plan[self.index-1]
+        return due + min(duration/1000,max(0,self.clock()-self.segment_started))
+
+    def _tick_playback(self):
         now = self.clock()
-        if not self.device.simulation and now >= self.next_board_poll:
-            self.device.board_status()
-            self.next_board_poll = now + .5
-        finished = False
-        if self.playing:
-            elapsed = now - self.play_start
+        if self.cancel_requested():return None, False
+        if now-self.last_play_tick > PLAYBACK_STALL_S:
+            raise TimeoutError('电脑回放线程停顿超过1秒，已中止；请检查电脑或串口后重新开始。')
+        rows, finished = None, False
+        # One blocking RPC per tick gives Stop a chance between requests.
+        # move() acknowledges after board-side validation and all selected
+        # targets have been sent. Give the last axis its full arrival time.
+        if now + 1e-9 >= self.play_due:
             if self.index < len(self.plan):
-                due, targets, duration = self.plan[self.index]
-                if elapsed >= due:
-                    if elapsed - due > min(.15, duration / 2000):
-                        raise TimeoutError('回放调度落后，已中止；不会追赶式连发。请降低速度。')
-                    self.device.move(targets, duration)
-                    self.index += 1
-            elif elapsed >= self.play_end:
+                _, targets, duration = self.plan[self.index]
+                self.device.move(targets, duration)
+                self.segment_started = self.clock()
+                self.play_due = self.segment_started + duration/1000
+                self.index += 1
+            else:
                 rows = self.read(self.play_numbers)
                 final = self.plan[-1][1]
                 for n in self.play_numbers:
@@ -193,6 +206,25 @@ class TeachingSession:
                         raise RuntimeError(f'{n}号未到末帧，回放到位验收未通过。')
                 self.playing = False
                 finished = True
+                self.next_poll = self.clock() + .15
+        elif now >= self.next_poll:
+            rows = self.read(self.play_numbers)
+            self.next_poll = self.clock() + .15
+        elif not self.device.simulation and now >= self.next_board_poll:
+            self.device.board_status()
+            self.next_board_poll = self.clock() + .5
+        if self.clock()-now > PLAYBACK_STALL_S:
+            raise TimeoutError('回放通信停顿超过1秒，已中止；请检查电脑或串口后重新开始。')
+        self.last_play_tick = self.clock()
+        return rows, finished
+
+    def tick(self, idle_numbers):
+        if self.playing:return self._tick_playback()
+        now = self.clock()
+        if not self.device.simulation and now >= self.next_board_poll:
+            self.device.board_status()
+            self.next_board_poll = now + .5
+        finished = False
         rows = None
         if now >= self.next_poll:
             numbers = self.record['selected'] if self.recording else (self.play_numbers if self.playing else idle_numbers)

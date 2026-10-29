@@ -81,6 +81,7 @@ class Worker(threading.Thread):
                     device = SimulationDevice(profile) if simulation else RemoteDevice(profile, port)
                     try:
                         self.session = TeachingSession(profile, device, ROOT/'logs/bus_servo/takes')
+                        self.session.cancel_requested = self.stop_flag.is_set
                     except BaseException:
                         device.close(); raise
                     self.emit('connected', {'simulation': simulation,
@@ -140,7 +141,8 @@ class Worker(threading.Thread):
                         now = self.session.clock()
                         if finished or now >= self.next_progress:
                             self.emit('playback_progress', self.playback_timeline.snapshot(
-                                now-self.session.play_start, 'completed' if finished else 'playing'))
+                                self.session.playback_elapsed(), 'completed' if finished else 'playing',
+                                wall_elapsed=now-self.session.play_start))
                             self.next_progress = now + .05
                     if rows:
                         self.emit('feedback', rows)
@@ -498,11 +500,14 @@ class App:
             labels={'ready':'待回放','playing':'回放中','checking':'核对末帧',
                     'completed':'已完成','stopped':'已停止','failed':'已中止','disconnected':'已断开'}
             p=progress
-            self.timeline_text.set(f'{labels[p["state"]]}  {format_time(p["elapsed_s"])} / {format_time(p["duration_s"])}'
-                                   f'  ·  {p["fraction"]*100:.0f}%  ·  剩余 {format_time(p["duration_s"]-p["elapsed_s"])}')
+            estimate='' if p['state']=='completed' else '预计 '
+            self.timeline_text.set(f'{labels[p["state"]]}  {format_time(p["elapsed_s"])} / {estimate}{format_time(p["duration_s"])}'
+                                   f'  ·  {p["fraction"]*100:.0f}%  ·  预计剩余 {format_time(p["duration_s"]-p["elapsed_s"])}')
             adjusted='（快段已放慢）' if p.get('retimed_intervals') else ''
             self.timeline_source.set(f'{p["speed"]:g}×{adjusted}  ·  轨迹 {format_time(p["source_s"])} / {format_time(p["source_duration_s"])}')
             segment=p['segment']
+            delay=p.get('communication_delay_s',0)
+            if delay>=.05:segment+=(('  ·  ' if segment else '')+f'通信顺延 {delay:.1f} 秒')
             if len(segment)>70:segment=segment[:67]+'…'
             self.timeline_segment.set(segment)
             if segment:self.segment_label.grid(row=2,column=0,columnspan=2,sticky='w')
@@ -632,8 +637,8 @@ class App:
                 elif kind=='prepared':self.reset_timeline()
                 elif kind=='playing':
                     self.playing=True;self.show_progress(value)
-                    adjusted=f'其中 {value["retimed_intervals"]} 段已自动放慢，总用时 {value["duration_s"]:.1f} 秒；' if value.get('retimed_intervals') else ''
-                    self.status.set('正在回放所选轴，小于等于0.5°的微小抖动已忽略；'+adjusted+'Esc停止。')
+                    adjusted=f'其中 {value["retimed_intervals"]} 段已自动放慢；' if value.get('retimed_intervals') else ''
+                    self.status.set('正在回放所选轴，小于等于0.5°的微小抖动已忽略；'+adjusted+'播放时间随通信耗时顺延，Esc停止。')
                 elif kind=='playback_rejected':
                     self.status.set('回放未开始：'+value+' 板子连接保留。')
                 elif kind=='playback_progress':self.show_progress(value)

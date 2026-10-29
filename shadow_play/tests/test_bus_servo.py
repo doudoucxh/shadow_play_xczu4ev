@@ -223,8 +223,12 @@ class SessionTests(unittest.TestCase):
         t=[0.0];s=self.session;s.clock=lambda:t[0]
         s.start_playback(recording(self.profile),[1],.5)
         t[0]=.3
-        with self.assertRaises(TimeoutError):s.tick([1])
-        self.assertEqual(self.device.motions,{})
+        with patch.object(self.device,'move') as move:
+            s.tick([1]);s.tick([1])
+            self.assertEqual(move.call_count,1)
+            self.assertAlmostEqual(s.play_due,.5)
+            t[0]=.5;s.tick([1])
+            self.assertEqual(move.call_count,2)
 
     def test_complete_playback_and_unselected_axis_unchanged(self):
         r=recording(self.profile)
