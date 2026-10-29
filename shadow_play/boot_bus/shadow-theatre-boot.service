@@ -1,0 +1,15 @@
+[Unit]
+Description=Idle BS10 dual servo bus and theatre homepage
+After=local-fs.target systemd-udev-trigger.service
+Before=multi-user.target
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 -u /usr/local/lib/shadow-theatre-bootstrap.py
+RemainAfterExit=yes
+TimeoutStartSec=260
+TimeoutStopSec=10
+Restart=no
+StandardOutput=journal+console
+StandardError=journal+console
+[Install]
+WantedBy=multi-user.target

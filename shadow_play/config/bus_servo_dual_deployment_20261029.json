@@ -1,0 +1,162 @@
+{
+  "schema": "shadow.bus-deployment.v1",
+  "date": "2026-10-29",
+  "layout": "dual",
+  "authorization": {
+    "deploy": true,
+    "automatic_start": true,
+    "servo_power_off": true,
+    "rail_power_off": true
+  },
+  "before_boot_id": "07016d40-7954-4d85-9ea6-38743c2d9fff",
+  "before_identity": "SP10",
+  "sd_directory": "/run/media/mmcblk0p2/piying/bus-servo-v1",
+  "package_manifest_sha256": "f5e1d0a9fe66eeb0d9cfa837e4dc049d0728c34de2cfd305615cc93fd5e57434",
+  "installation": {
+    "original": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "9d69a9577cad6d2ce87591bd4d125fe90c543dce3ca05ecc248056ccaa6e6ba8",
+      "image-ui-20261018.ub": "df660e3aa4d3262cbe61db2236910392b92dd554fa60e2672c2cdf8335cd0b9b"
+    },
+    "candidate": "image-bus-20261029.ub",
+    "candidate_sha256": "bfa925cb2175d40e448f7d971922acb43ad55cf9acf3102ba44c36cb8ad22fcb",
+    "kernel_sha256": "29bbb9db5228855b3657f63cae0d17a641b4963c9f9f5c1e8f6b6119986813fa",
+    "fdt_sha256": "f380f2125ed3fd8ab2416ca0f22844074c32bb6532dd2d1b42406c1a49ec6e8b",
+    "launcher_sha256": "55b2c4b2ed2133be3c81a911c473459b8c17ba93424e722f979f80ee3247ba09",
+    "overlay_sha256": "9d9de8e6cafe9676997827e4ce44ddba56fc783cad698ca1e6628fd8035c5fe6",
+    "new_uenv_sha256": "5bbdd36113c2cdb785b75b799a83815fc82dfa3f7ea5315ea67c505373871988",
+    "installed": true,
+    "automatic_start": true,
+    "servo_packets_on_boot": 0,
+    "motion_enabled": false,
+    "archived_inactive_backup": {
+      "source": "/run/media/mmcblk0p1/image.ub.previous-20260922_205145",
+      "backup": "/run/media/mmcblk0p2/piying/boot-bus-20261029/image.ub.previous-20260922_205145",
+      "sha256": "a3d935db943f9db98ed0b105c0dc52dda04e2e924a27b5849e08e6cad021811e"
+    }
+  },
+  "independent_final_verification": {
+    "boot_id": "f589ca82-29b6-48a1-90f8-60fb6193101f",
+    "fpga_state": "operating",
+    "registers": {
+      "0x0": 1112748336,
+      "0x4": 1,
+      "0x8": 0,
+      "0x10": 0,
+      "0x18": 100000000,
+      "0x1c": 115200,
+      "0x100": 0,
+      "0x200": 0
+    },
+    "boot_result": {
+      "result": "BS10_IDLE_HOME_READY",
+      "boot_id": "f589ca82-29b6-48a1-90f8-60fb6193101f",
+      "image_sha256": "f1eb0f20063d57e9547f055ef15417fd621e2b6c8021f4b49c9355f3d7a30294",
+      "servo_packets_sent": 0,
+      "motion_enabled": false,
+      "automatic_start": true
+    },
+    "units": {
+      "shadow-theatre-boot": [
+        "Restart=no",
+        "Result=success",
+        "ActiveState=active",
+        "SubState=exited"
+      ],
+      "shadow-theatre-ui-r4": [
+        "Restart=on-failure",
+        "Result=success",
+        "ActiveState=active",
+        "SubState=running"
+      ],
+      "shadow-theatre-browser-r4": [
+        "Restart=on-failure",
+        "Result=success",
+        "ActiveState=active",
+        "SubState=running"
+      ],
+      "shadow-theatre-hdmi-r4": [
+        "Restart=no",
+        "Result=success",
+        "ActiveState=active",
+        "SubState=running"
+      ]
+    },
+    "frames": [
+      {
+        "captured": 202.33868431,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 204.077799721,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      },
+      {
+        "captured": 204.779923922,
+        "shape": [
+          600,
+          1024,
+          3
+        ]
+      }
+    ],
+    "package_files_verified": 25,
+    "old_packages": {
+      "bus-servo-ten-port-v1": {
+        "manifest_sha256": "7f95682722fe2c211556fed933c6ed4a28b82e85a6b42f367c001c6433799342",
+        "files_verified": 24
+      },
+      "bus-servo-tiger-four-v1": {
+        "manifest_sha256": "42a8edfe70756d20653ac7883ce80fc7db31e7ff98b375475fb4dd47a722a148",
+        "files_verified": 22
+      }
+    },
+    "boot_hashes": {
+      "BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "uEnv.txt": "5bbdd36113c2cdb785b75b799a83815fc82dfa3f7ea5315ea67c505373871988",
+      "image-ui-20261018.ub": "df660e3aa4d3262cbe61db2236910392b92dd554fa60e2672c2cdf8335cd0b9b",
+      "image-bus-20261029.ub": "bfa925cb2175d40e448f7d971922acb43ad55cf9acf3102ba44c36cb8ad22fcb"
+    },
+    "incident_sha256": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+    "readiness": {
+      "electrical_3v3_verified": false,
+      "hardware_verified": false,
+      "mechanical_limits_verified": false
+    },
+    "load_marker_sha256": "ee2524e823d8462d74236accec384f5541bcbecda6864dd5189921a7f759070f"
+  },
+  "verification": {
+    "offline_startup_tests": 11,
+    "reboot_verified": true,
+    "physical_power_cycle_tested": false,
+    "native_display_visually_checked": false,
+    "servo_feedback_tested": false,
+    "servo_packets_sent": 0
+  },
+  "port_released": "COM17",
+  "actuator_power_last_user_report": "off",
+  "scope": "Idle FPGA and existing HDMI startup. PC console service remains on demand. No readiness flags changed.",
+  "evidence": {
+    "boot-install-result.log": "636e2e69c80efd92b5350c5e0787186cbb42712faa9f72bae352796aaffbdb5e",
+    "boot-progress.log": "764c5f1f759eaae6f79920c638ea6304613628488c74bc75e049e08afdfd3ac2",
+    "boot-read.log": "3cf567189d99f855a4fafd000b0571ccd970b148ef6e5fd5f9ec96460433e7b3",
+    "console.log": "51c3bcfc7acbb66b05f399c3e2e1749f5aeb522c055d301d0545c7211d766c0f",
+    "final-check.log": "d8470d43fca36c2e4955c5819d983cae4b5e7c45d8daf08e09692f89c155d606",
+    "install-boot-start.log": "9cad3bf85901a81d7a84a067f171445657275443e210595d8e3579971332046b",
+    "install-package.log": "b98399fb161fd40650f078ad7869f05c3b3e0793ef291039a8be370eb5247b2f",
+    "metadata.log": "307c9048fb348a643d2017de08f8635c365bf24705326447863768407f023743",
+    "reboot-console.log": "b169e130e25d4510b19129be4ef0ec145409821484334b04bdcae0df5727d8ee"
+  }
+}
