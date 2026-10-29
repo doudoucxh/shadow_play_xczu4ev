@@ -3,8 +3,8 @@ import json
 import re
 import time
 
-from .service import PREFIX, BOARD_ONLY, SELECTED_RELEASE
-from .protocol import ServoUnavailable
+from .service import PREFIX, BOARD_ONLY, SELECTED_RELEASE, ADAPTIVE_PLAYBACK
+from .protocol import ServoUnavailable, integer
 
 
 class RemoteDevice:
@@ -140,6 +140,8 @@ class RemoteDevice:
                 or result.get('simulation') is not False):
             raise RuntimeError('板端与电脑端的ID/角度/限位配置不同。')
         self.motion_allowed = result.get('motion_allowed') is True
+        self.adaptive_playback = (ADAPTIVE_PLAYBACK in self.capabilities and
+                                 ADAPTIVE_PLAYBACK in result.get('capabilities', []))
         self.release_allowed = SELECTED_RELEASE in self.capabilities and result.get('release_allowed') is True
         return self._samples(result['positions'])
 
@@ -155,6 +157,17 @@ class RemoteDevice:
     def move(self, targets, milliseconds):
         self.motion_active = True
         return self.request('move', {'targets': targets, 'duration_ms': milliseconds, 'attended': True})
+
+    def playback_move(self, targets, milliseconds):
+        if not self.adaptive_playback:
+            raise RuntimeError('板端需要更新回放时长适配服务；未发送回放目标。')
+        self.motion_active = True
+        result = self.request('move', {'targets': targets, 'duration_ms': milliseconds,
+                                     'adaptive_duration': True, 'attended': True})
+        integer(result.get('duration_ms'), milliseconds, 9999, 'Acknowledged duration')
+        if result.get('sent') is not True or result.get('requested_duration_ms') != milliseconds:
+            raise RuntimeError('板端回放时长回执不匹配；不重发。')
+        return result
 
     def release(self, numbers):
         if not self.release_allowed:

@@ -15,7 +15,7 @@ BASE_DIRECTORY = '/run/media/mmcblk0p2/piying/bus-servo-v1'
 CONSOLE_DIRECTORY = '/run/media/mmcblk0p2/piying/bus-servo-dual-console-v1'
 
 
-def build(profile_path, destination, *, allow_motion=False):
+def build(profile_path, destination, *, allow_motion=False, service_overlay=False):
     raw = Path(profile_path).read_bytes()
     profile = Profile(json.loads(raw.decode('utf-8-sig')))
     if profile.layout.name != 'dual' or profile.data.get('electrical_3v3_verified') is not True:
@@ -34,6 +34,17 @@ def build(profile_path, destination, *, allow_motion=False):
         raise ValueError('Movement requires completed checks and the explicit user confirmation')
     permission = ' --allow-motion' if allow_motion else ''
     sha = hashlib.sha256(raw).hexdigest()
+    files = {'bus_servo.json': raw}
+    overlay_check = ''
+    entry = '-m shadow_play.bus_servo.service'
+    if service_overlay:
+        files['service.py'] = (Path(__file__).resolve().parents[1]/'bus_servo/service.py').read_bytes()
+        service_sha = hashlib.sha256(files['service.py']).hexdigest()
+        overlay_check = f"if digest(profile.parent/'service.py') != {service_sha!r}:\n    raise RuntimeError('Console service checksum mismatch')\n"
+        # Use the verified base package for dependencies and only replace this
+        # module. The boot snapshot and its pinned manifest remain immutable.
+        entry = ('-c "import runpy; runpy.run_path(\'' + CONSOLE_DIRECTORY +
+                 '/service.py\', run_name=\'shadow_play.bus_servo.service\')[\'main\']()"')
     script = f'''#!/bin/sh
 set -eu
 cd {BASE_DIRECTORY}
@@ -47,24 +58,27 @@ if digest(root/'MANIFEST.json') != {BASE_MANIFEST_SHA!r}:
     raise RuntimeError('Dual boot package manifest changed')
 if digest(profile) != {sha!r}:
     raise RuntimeError('Confirmed console profile checksum mismatch')
+{overlay_check}\
 for name, expected in json.loads((root/'MANIFEST.json').read_text())['files'].items():
     path = (root/name).resolve()
     if not path.is_relative_to(root.resolve()) or digest(path) != expected:
         raise RuntimeError('Dual runtime file mismatch: '+name)
 VERIFY
 export PYTHONPATH="$PWD"
-exec python3 -u -m shadow_play.bus_servo.service --profile {CONSOLE_DIRECTORY}/bus_servo.json --manifest bus_servo.manifest.json --allow-release{permission}
+exec python3 -u {entry} --profile {CONSOLE_DIRECTORY}/bus_servo.json --manifest bus_servo.manifest.json --allow-release{permission}
 '''.encode('utf-8')
     destination = Path(destination)
     destination.mkdir(parents=True, exist_ok=False)
-    (destination/'bus_servo.json').write_bytes(raw)
-    (destination/'start_console.sh').write_bytes(script)
+    files['start_console.sh'] = script
+    for name, content in files.items():
+        (destination/name).write_bytes(content)
     manifest = dict(schema='shadow.bus-console.v1', base_directory=BASE_DIRECTORY,
                     base_manifest_sha256=BASE_MANIFEST_SHA, profile_sha256=profile.fingerprint,
                     electrical_confirmation=confirmation,
                     motion_confirmation=motion_confirmation if allow_motion else None,
                     allow_release=True, allow_motion=allow_motion,
-                    files={'bus_servo.json': sha, 'start_console.sh': hashlib.sha256(script).hexdigest()})
+                    service_overlay=bool(service_overlay),
+                    files={name: hashlib.sha256(content).hexdigest() for name, content in files.items()})
     (destination/'MANIFEST.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     return manifest
 
@@ -74,8 +88,9 @@ def main():
     parser.add_argument('--profile',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--allow-motion',action='store_true',help='Enable manual angle/playback commands only with the recorded user confirmation')
+    parser.add_argument('--service-overlay',action='store_true',help='Install the current service module while preserving the immutable boot package')
     args=parser.parse_args()
-    print(json.dumps(build(args.profile,args.output,allow_motion=args.allow_motion),ensure_ascii=False))
+    print(json.dumps(build(args.profile,args.output,allow_motion=args.allow_motion,service_overlay=args.service_overlay),ensure_ascii=False))
 
 
 if __name__=='__main__':

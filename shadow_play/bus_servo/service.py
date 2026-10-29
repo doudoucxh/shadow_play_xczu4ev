@@ -1,6 +1,7 @@
 """Typed board protocol. No arbitrary command, pin, address, or shell RPC."""
 import argparse
 import json
+import math
 import os
 from pathlib import Path
 import select
@@ -14,6 +15,7 @@ from .protocol import integer, ServoUnavailable
 PREFIX = '@@BUS10@@'
 BOARD_ONLY = 'board-only-v1'
 SELECTED_RELEASE = 'selected-release-v1'
+ADAPTIVE_PLAYBACK = 'adaptive-playback-v1'
 
 
 class Controller:
@@ -77,7 +79,7 @@ class Controller:
                     'motion_allowed': self.device.simulation or (self.allow_motion and all(self.profile.data.get(k) is True
                         for k in ('hardware_verified', 'electrical_3v3_verified', 'mechanical_limits_verified'))),
                     'release_allowed': self.release_allowed(),
-                    'capabilities': [BOARD_ONLY, SELECTED_RELEASE],
+                    'capabilities': [BOARD_ONLY, SELECTED_RELEASE, ADAPTIVE_PLAYBACK],
                     'positions': self.device.connect() if self.device.simulation else {},
                     'board': None if self.device.simulation else self.device.board_status()}
         if op == 'status':
@@ -103,16 +105,27 @@ class Controller:
             axes = self.profile.select([int(n) for n in targets])
             self.require_servos([a.number for a in axes])
             duration = integer(payload['duration_ms'], 20, 9999, 'Duration')
+            adaptive = payload.get('adaptive_duration', False)
+            if type(adaptive) is not bool:
+                raise ValueError('Adaptive duration must be boolean')
+            requested_duration = duration
             for a in axes:
                 a.check_position(targets[str(a.number)])
             # Validate the whole selected group before sending any target.
             before = self.device.read([a.number for a in axes])
             for a in axes:
                 delta = abs(a.degrees(targets[str(a.number)]) - a.degrees(before[a.number]['p']))
+                if adaptive:
+                    # Recorded targets are not measured arrival positions. Use
+                    # fresh feedback to give the entire group enough time.
+                    duration = max(duration, math.ceil(delta / a.max_speed * 1000 - 1e-8))
+                    if duration > 9999:
+                        raise ValueError(f'{a.number}号从实际位置到目标需要超过9999ms，请分步接近目标。')
                 if delta > a.max_speed * duration / 1000 + .2:
                     raise ValueError(f'Axis {a.number}: increase move duration or reduce target distance')
             self.device.move(targets, duration)
-            return {'sent': True, 'physical_arrival_verified': False}
+            return {'sent': True, 'physical_arrival_verified': False,
+                    'duration_ms': duration, 'requested_duration_ms': requested_duration}
         if op == 'release':
             self.permitted(payload, release=True)
             self.require_servos(payload['numbers'])
@@ -131,7 +144,7 @@ class Controller:
 
 
 def serve(controller, fd, emit, clock=time.monotonic):
-    emit({'ready': True, 'service': 'bus-teach-v1', 'capabilities': [BOARD_ONLY, SELECTED_RELEASE]})
+    emit({'ready': True, 'service': 'bus-teach-v1', 'capabilities': [BOARD_ONLY, SELECTED_RELEASE, ADAPTIVE_PLAYBACK]})
     buffer = b''
     last = clock()
     while not controller.closed:

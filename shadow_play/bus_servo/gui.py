@@ -507,7 +507,7 @@ class App:
             self.timeline_source.set(f'{p["speed"]:g}×{adjusted}  ·  轨迹 {format_time(p["source_s"])} / {format_time(p["source_duration_s"])}')
             segment=p['segment']
             delay=p.get('communication_delay_s',0)
-            if delay>=.05:segment+=(('  ·  ' if segment else '')+f'通信顺延 {delay:.1f} 秒')
+            if delay>=.05:segment+=(('  ·  ' if segment else '')+f'通信 / 到达顺延 {delay:.1f} 秒')
             if len(segment)>70:segment=segment[:67]+'…'
             self.timeline_segment.set(segment)
             if segment:self.segment_label.grid(row=2,column=0,columnspan=2,sticky='w')

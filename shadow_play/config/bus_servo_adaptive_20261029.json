@@ -1,0 +1,145 @@
+{
+  "date": "2026-10-29",
+  "issue": "Board fixed-duration validation aborted replay on measured following error",
+  "scope": "PC and persistent console service overlay; no FPGA reload",
+  "reproduction": {
+    "take": "take_20261029_152759_149401.json",
+    "sha256": "51f976f47987912a8eccee879385f8864aeca1353ebfc5b9c2352b7493f51f2b",
+    "before": [
+      {
+        "lag_counts": 2,
+        "error": "Axis 7: increase move duration or reduce target distance",
+        "finished": false,
+        "commands": 56,
+        "source_s": 8.493273448999389,
+        "elapsed_s": 22.880000000000138,
+        "nominal_s": 19.867,
+        "adjusted_commands": 0,
+        "max_added_ms": 0
+      }
+    ],
+    "after": [
+      {
+        "lag_counts": 2,
+        "error": null,
+        "finished": true,
+        "commands": 106,
+        "source_s": 16.09653636799976,
+        "elapsed_s": 46.749999999999645,
+        "nominal_s": 19.867,
+        "adjusted_commands": 15,
+        "max_added_ms": 9
+      },
+      {
+        "lag_counts": 6,
+        "error": null,
+        "finished": true,
+        "commands": 106,
+        "source_s": 16.09653636799976,
+        "elapsed_s": 47.44999999999965,
+        "nominal_s": 19.867,
+        "adjusted_commands": 16,
+        "max_added_ms": 27
+      }
+    ],
+    "physical_commands": 0
+  },
+  "deployment": {
+    "boot_id": "f589ca82-29b6-48a1-90f8-60fb6193101f",
+    "manifest_sha256": "c8ca41f271800c0910c3fd6933fe6b9e336a404343632ddc3c604a2c2cdc8ea8",
+    "files": {
+      "bus_servo.json": "c04f50616a6f31698bd085c07e2a7cca3d7997dcca4ee4f5182c8a00b4de2c3e",
+      "service.py": "46a1090487eff637dfba6c867481892c56b2139102825f8208a33acd09ef1717",
+      "start_console.sh": "42c611454457cfec4c2b342e461824abe9700f95daeba734e74ac7858c7902df"
+    },
+    "backup": "/run/media/mmcblk0p2/piying/bus-servo-dual-console-v1/backups/adaptive-playback-20261029",
+    "previous_files": {
+      "bus_servo.json": "c04f50616a6f31698bd085c07e2a7cca3d7997dcca4ee4f5182c8a00b4de2c3e",
+      "start_console.sh": "41ef9fc455b76bce7b738027eea2de0e1318858cadc1307f08512de491e87e1d",
+      "MANIFEST.json": "5816bc14b794c59317a040ecf295cd7e07ba3781bd1343b1e819ab0a3589150e"
+    },
+    "protected_hashes": {
+      "/run/media/mmcblk0p1/BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "/run/media/mmcblk0p1/image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "/run/media/mmcblk0p1/boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "/run/media/mmcblk0p1/uEnv.txt": "5bbdd36113c2cdb785b75b799a83815fc82dfa3f7ea5315ea67c505373871988",
+      "/run/media/mmcblk0p1/image-bus-20261029.ub": "bfa925cb2175d40e448f7d971922acb43ad55cf9acf3102ba44c36cb8ad22fcb",
+      "/run/media/mmcblk0p2/piying/boot-bus-20261029/launch.py": "55b2c4b2ed2133be3c81a911c473459b8c17ba93424e722f979f80ee3247ba09",
+      "/run/shadow-pwm-motion-inhibit": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+      "/run/shadow-bus-servo-loaded.json": "ee2524e823d8462d74236accec384f5541bcbecda6864dd5189921a7f759070f",
+      "/run/shadow-bus-servo-load-attempt.json": "798d22bb352857b31e1b3207f9acff4e50592e01fcd328d623bd57795e1a97c8",
+      "/run/media/mmcblk0p2/piying/bus-servo-dual-console-v1/FEEDBACK_A_RESULT_20261029.json": "3adc586ce47c32fc005979c30b06ebfa08fa4183e2c60e5d919c6684e3b98029",
+      "/run/media/mmcblk0p2/piying/bus-servo-dual-console-v1/FEEDBACK_A_ATTEMPT_20261029.jsonl": "14cf904a6fd56c354ebecf61d4be40b48faff5f8cc2ad5c9c13143a10b9ab0ec"
+    },
+    "state": {
+      "0": 1112748336,
+      "8": 0,
+      "16": 0,
+      "256": 0,
+      "512": 0
+    },
+    "servo_packets_sent": 0,
+    "fpga_reloaded": false
+  },
+  "handshake": {
+    "date": "2026-10-29",
+    "profile": "6aac006e4aac1a8247430e447db8d356269435cb5feaee02893e633e4682ed1e",
+    "elapsed_s": 6.688000000001921,
+    "rpc_operations": [
+      "hello",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "status",
+      "quit"
+    ],
+    "last_state": {
+      "board": {
+        "identity": 1112748336,
+        "faults": 0,
+        "lease": 0,
+        "servo_session_failed": false,
+        "buses": {
+          "person": 0,
+          "tiger": 0
+        }
+      },
+      "verified": []
+    },
+    "positions": {},
+    "port_released": true,
+    "servo_query_rpcs": 0,
+    "movement_rpcs": 0,
+    "simulation": false,
+    "motion_allowed": true,
+    "release_allowed": true,
+    "adaptive_playback": true,
+    "capabilities": [
+      "board-only-v1",
+      "selected-release-v1",
+      "adaptive-playback-v1"
+    ]
+  },
+  "offline_tests": 152,
+  "ui_check": "Independent transparent Tk window, no user-window control",
+  "manual": "HTML/PDF 10 pages; changed pages 7/9 rendered and inspected",
+  "additional_final_check": "COM17 open denied after successful installation checks and handshake; no retry or takeover",
+  "physical_playback_tested": false,
+  "servo_commands_sent": 0,
+  "source_profile_unchanged": true,
+  "evidence_directory": "D:\\Desktop\\piying\\.review_work\\bus-servo-adaptive-20261029",
+  "source_sha256": {
+    "shadow_play\\bus_servo\\service.py": "46a1090487eff637dfba6c867481892c56b2139102825f8208a33acd09ef1717",
+    "shadow_play\\bus_servo\\session.py": "b7ed008564b9bca40c6cd0e57942b57197025f584c883a1df74c9dec3a1139d5",
+    "shadow_play\\bus_servo\\transport.py": "1dbdc9435040f08eab02a718fcb31bc62acef466428e7c54c22d051d2e90cec3",
+    "shadow_play\\tools\\prepare_bus_console.py": "0164288783b3d295664f715dc0c65ecdde0a8bd22a0e4a6bf0c4fd0ff0a2c2bd"
+  }
+}

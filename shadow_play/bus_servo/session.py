@@ -157,6 +157,8 @@ class TeachingSession:
     def start_playback(self, record, numbers, speed=.5):
         if self.recording or self.playing:
             raise RuntimeError('请先结束录制/回放。')
+        if getattr(self.device, 'adaptive_playback', True) is not True:
+            raise PlaybackRejected('板端需要更新回放时长适配服务，请更新后重连；尚未发送回放目标。')
         try:
             validate_recording(record, self.profile, live=not self.device.simulation)
             plan = playback_plan(record, self.profile, numbers, speed)
@@ -173,13 +175,15 @@ class TeachingSession:
         self.play_due = self.play_start
         self.last_play_tick = self.play_start
         self.segment_started = self.play_start
+        self.segment_duration_ms = 0
         self.playing = True
 
     def playback_elapsed(self):
         """Progress within accepted commands; never advance into an unsent one."""
         if not self.index:return 0.0
         due, _, duration = self.plan[self.index-1]
-        return due + min(duration/1000,max(0,self.clock()-self.segment_started))
+        fraction = min(1, max(0, self.clock()-self.segment_started) / (self.segment_duration_ms/1000))
+        return due + duration/1000 * fraction
 
     def _tick_playback(self):
         now = self.clock()
@@ -193,9 +197,14 @@ class TeachingSession:
         if now + 1e-9 >= self.play_due:
             if self.index < len(self.plan):
                 _, targets, duration = self.plan[self.index]
-                self.device.move(targets, duration)
+                move = getattr(self.device, 'playback_move', self.device.move)
+                result = move(targets, duration)
+                from .protocol import integer
+                self.segment_duration_ms = integer(
+                    result['duration_ms'] if isinstance(result, dict) else duration,
+                    duration, 9999, 'Acknowledged duration')
                 self.segment_started = self.clock()
-                self.play_due = self.segment_started + duration/1000
+                self.play_due = self.segment_started + self.segment_duration_ms/1000
                 self.index += 1
             else:
                 rows = self.read(self.play_numbers)
