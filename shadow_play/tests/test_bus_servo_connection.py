@@ -41,8 +41,8 @@ class StartupTests(unittest.TestCase):
         self.assertFalse(any(b'"op"' in w for w in self.port.writes))
 
     def test_missing_dual_bundle_explains_required_deployment(self):
-        with self.assertRaisesRegex(RuntimeError, '缺少双总线程序') as error:
-            self.connect_with([b"-sh: cd: /run/media/mmcblk0p2/piying/bus-servo-v1: No such file or directory\r\n"], 'dual')
+        with self.assertRaisesRegex(RuntimeError, '缺少双总线控制入口') as error:
+            self.connect_with([b"-sh: cd: /run/media/mmcblk0p2/piying/bus-servo-dual-console-v1: No such file or directory\r\n"], 'dual')
         self.assertIn('人物ID1～6共接原9口', str(error.exception))
         self.assertIn('老虎ID7～10共接原10口', str(error.exception))
         self.assertIn('BS10', str(error.exception))
@@ -53,6 +53,12 @@ class StartupTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, '电气兼容性'):
             self.connect_with([b'usage: service.py ...\r\nservice.py: error: Verify bus electrical ',
                                b'compatibility before transmitting even read-only queries\r\n'])
+        self.assert_startup_only()
+
+    def test_confirmed_dual_profile_reports_sync_instead_of_retest(self):
+        with self.assertRaisesRegex(RuntimeError, '板端配置尚未同步') as error:
+            self.connect_with([b'error: Verify bus electrical compatibility before transmitting even read-only queries\n'], 'dual')
+        self.assertIn('无需重复', str(error.exception))
         self.assert_startup_only()
 
     def test_missing_tiger_launcher_is_not_reported_as_dual(self):

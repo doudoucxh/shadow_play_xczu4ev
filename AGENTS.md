@@ -1,5 +1,13 @@
 # 项目协作与 Git 备份规则
 
+## 2026-10-29 当前双总线电气确认已同步，真实板端连接通过
+
+- 用户针对当前双总线兼容性弹窗明确“我已经完成了”。按本次用户报告将当前profile的electrical_3v3_verified设true并记录source/date/layout，未提供测量值；不要求重复测试。hardware/mechanical仍false，运动权限不变，不能继续用下节历史三false否认本次确认。
+- 旧25项启动包及其profile是不可变启动验收快照，保持f5e1d0a9…摘要。新SD控制入口`piying/bus-servo-dual-console-v1`仅三项（profile/start_console/MANIFEST），复用原服务且启动先校验全部基础包和新配置；电脑dual布局指向新入口。新manifest SHA ae0be2c7…、profile SHA09776c66…，素材指纹6aac006e…保持。原自启FIT/uEnv/加载器/FPGA/事故锁/加载及尝试标记未改，无重载或重启。
+- 真实PC COM17 hello+12次status+quit6.657秒通过，BS10双路状态0、faults/lease0、位置/verified空、release_allowed=true、motion_allowed=false；未发probe/read/release/move或舵机/丝杆报文。仍同启动f589ca82…，COM17释放；本轮供电未重新确认且不需因纯配置更新要求断电。
+- 若电气拒绝且电脑已有确认，错误文案现明确“板端配置尚未同步、无需重复测试”。旧GUI进程34336未强制关闭，须用户保存并重开常用入口加载新代码；不会热更新。未做原生窗口点击验收。
+- 120项离线测试通过。原电气门测试显式使用false测试夹具；原双轴连续录制55ms墙钟等待抖动，改模拟时钟，不改生产逻辑。手册已更新电气确认和连接状态，仍区分实际舵机反馈/卸力/机械运动尚未验收。记录`shadow_play/config/bus_servo_dual_electrical_20261029.json`与同名docs；原证据`.review_work/bus-servo-dual-electrical-20261029/`。
+
 ## 2026-10-29 双总线已安装SD并验证开机自启动（当前BS10）
 
 - 用户新授权部署并要求“把这次这个程序改成开机自启动”，当次明确舵机与丝杆均断电。COM17新读启动07016d40…、旧SP10加载标记；此前BP10是历史。双总线25项包已安装`piying/bus-servo-v1`，MANIFEST SHA f5e1d0a9…逐项通过；复用BS10镜像f1eb0f…，人物1～6共接原9/E14、老虎7～10共接原10/E15。

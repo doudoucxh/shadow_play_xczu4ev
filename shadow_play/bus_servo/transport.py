@@ -58,8 +58,11 @@ class RemoteDevice:
         # Recognize them without changing the bundle or sending another command.
         lower = output.lower()
         if b'verify bus electrical compatibility before transmitting' in lower:
-            return ('板端拒绝查询：尚未核实总线信号与3.3V FPGA的电气兼容性。'
-                    '加载FPGA不代表已完成验证；请先完成电气核实，勿直接修改就绪标记。')
+            if self.profile.data.get('electrical_3v3_verified') is True:
+                return ('电脑已记录电气兼容性确认，但板端配置尚未同步。'
+                        '请更新板端配置并重新打开上位机；无需重复已经完成的测试。')
+            return ('板端配置尚未记录总线信号与3.3V FPGA的电气兼容性确认。'
+                    '若已完成测试，请同步确认记录；加载FPGA本身不代表完成电气测试。')
         for line in output.splitlines():
             missing = any(s in line.lower() for s in (b'no such file', b"can't cd", b'cannot cd', b"can't open"))
             if not missing:
@@ -69,7 +72,7 @@ class RemoteDevice:
             # Match the error line, not unrelated paths earlier in a traceback.
             if self.profile.layout.board_directory.encode() in line or b'start_console.sh' in line:
                 if self.profile.layout.name == 'dual':
-                    return ('板端缺少双总线程序或启动脚本（bus-servo-v1）。'
+                    return ('板端缺少双总线控制入口或启动脚本（bus-servo-dual-console-v1）。'
                             '本窗口用于人物ID1～6共接原9口、老虎ID7～10共接原10口；'
                             '实物连接前需部署配套程序及BS10镜像，修改电脑入口不会更新板子。'
                             '若实际仍是十台信号各自独立接原1～10口，才使用“十舵机独立十口调试.cmd”。')

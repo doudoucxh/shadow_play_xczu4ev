@@ -37,7 +37,7 @@ class Layout:
 LAYOUTS = {
     'dual': Layout('dual', 'BS10', (('person', 'E14', 9), ('tiger', 'E15', 10)),
                    tuple((n, 'person' if n <= 6 else 'tiger') for n in range(1, 11)),
-                   'bus-servo-v1', '人物6轴 / 原9口   老虎4轴 / 原10口'),
+                   'bus-servo-dual-console-v1', '人物6轴 / 原9口   老虎4轴 / 原10口'),
     'tiger-four-port': Layout('tiger-four-port', 'BT04',
                    (('tiger7', 'D14', 1), ('tiger8', 'D15', 2),
                     ('tiger9', 'F13', 3), ('tiger10', 'G13', 4)),

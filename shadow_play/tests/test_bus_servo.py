@@ -128,7 +128,9 @@ class ControllerTests(unittest.TestCase):
 
     def test_electrical_gate_precedes_hardware_access(self):
         from shadow_play.bus_servo import service
+        unconfirmed=Profile(dict(Profile.load(PROFILE).data,electrical_3v3_verified=False))
         with patch('sys.argv',['service','--profile',str(PROFILE),'--manifest','absent.json']), \
+                patch.object(service.Profile,'load',return_value=unconfirmed), \
                 patch.object(service,'Mmio') as mmio, patch('sys.stderr'):
             with self.assertRaises(SystemExit):service.main()
         mmio.assert_not_called()
@@ -177,11 +179,13 @@ class SessionTests(unittest.TestCase):
     def tearDown(self):self.session.close();self.tmp.cleanup()
 
     def test_hand_record_actual_feedback_and_reload(self):
-        s=self.session;s.start_recording([1,7],20)
-        self.assertEqual(self.device.released,{1,7})
-        s.tick([1,7]);time.sleep(.055)
-        self.device.drag({'1':1510,'7':1490});s.tick([1,7])
-        p=s.finish_recording();r=json.loads(p.read_text(encoding='utf-8'))
+        now=[10.0];s=self.session;s.clock=lambda:now[0]
+        with patch('shadow_play.bus_servo.device.time.monotonic',side_effect=lambda:now[0]):
+            s.start_recording([1,7],20)
+            self.assertEqual(self.device.released,{1,7})
+            s.tick([1,7]);now[0]+=.1
+            self.device.drag({'1':1510,'7':1490});s.tick([1,7])
+            p=s.finish_recording();r=json.loads(p.read_text(encoding='utf-8'))
         self.assertEqual(r['samples'][-1]['positions'],{'1':1510,'7':1490})
         validate_recording(r,self.profile)
         self.assertTrue(p.with_suffix('.jsonl').exists())

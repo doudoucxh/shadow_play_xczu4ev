@@ -7,7 +7,14 @@
     "tiger": "E15"
   },
   "hardware_verified": false,
-  "electrical_3v3_verified": false,
+  "electrical_3v3_verified": true,
+  "electrical_verification": {
+    "source": "user_report",
+    "date": "2026-10-29",
+    "layout": "dual",
+    "statement": "用户针对当前双总线兼容性提示明确确认：我已经完成了。",
+    "measured_values": null
+  },
   "mechanical_limits_verified": false,
   "notes": "Candidate 270-degree conversion. Configure one physical servo at a time before joining the bus. Limits below are software candidates, not measured safe mechanism limits. Old PWM poses are not migrated.",
   "axes": [
