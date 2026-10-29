@@ -15,7 +15,9 @@ BASE_DIRECTORY = '/run/media/mmcblk0p2/piying/bus-servo-v1'
 CONSOLE_DIRECTORY = '/run/media/mmcblk0p2/piying/bus-servo-dual-console-v1'
 
 
-def build(profile_path, destination, *, allow_motion=False, service_overlay=False):
+def build(profile_path, destination, *, allow_motion=False, service_overlay=False, protocol_overlay=False):
+    if protocol_overlay and not service_overlay:
+        raise ValueError('Protocol overlay requires the explicit service overlay')
     raw = Path(profile_path).read_bytes()
     profile = Profile(json.loads(raw.decode('utf-8-sig')))
     if profile.layout.name != 'dual' or profile.data.get('electrical_3v3_verified') is not True:
@@ -45,6 +47,17 @@ def build(profile_path, destination, *, allow_motion=False, service_overlay=Fals
         # module. The boot snapshot and its pinned manifest remain immutable.
         entry = ('-c "import runpy; runpy.run_path(\'' + CONSOLE_DIRECTORY +
                  '/service.py\', run_name=\'shadow_play.bus_servo.service\')[\'main\']()"')
+        if protocol_overlay:
+            files['protocol.py'] = (Path(__file__).resolve().parents[1]/'bus_servo/protocol.py').read_bytes()
+            protocol_sha = hashlib.sha256(files['protocol.py']).hexdigest()
+            overlay_check += f"if digest(profile.parent/'protocol.py') != {protocol_sha!r}:\n    raise RuntimeError('Console protocol checksum mismatch')\n"
+            # Register the exact verified protocol before service/device/model
+            # imports. Keep all other dependencies in the immutable base package.
+            bootstrap = ("import importlib.util, sys; spec = importlib.util.spec_from_file_location("
+                         "'shadow_play.bus_servo.protocol', '" + CONSOLE_DIRECTORY + "/protocol.py'); "
+                         "protocol = importlib.util.module_from_spec(spec); spec.loader.exec_module(protocol); "
+                         "sys.modules[spec.name] = protocol; ")
+            entry = entry.replace('-c "', '-c "' + bootstrap, 1)
     script = f'''#!/bin/sh
 set -eu
 cd {BASE_DIRECTORY}
@@ -78,6 +91,7 @@ exec python3 -u {entry} --profile {CONSOLE_DIRECTORY}/bus_servo.json --manifest 
                     motion_confirmation=motion_confirmation if allow_motion else None,
                     allow_release=True, allow_motion=allow_motion,
                     service_overlay=bool(service_overlay),
+                    protocol_overlay=bool(protocol_overlay),
                     files={name: hashlib.sha256(content).hexdigest() for name, content in files.items()})
     (destination/'MANIFEST.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     return manifest
@@ -89,8 +103,9 @@ def main():
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--allow-motion',action='store_true',help='Enable manual angle/playback commands only with the recorded user confirmation')
     parser.add_argument('--service-overlay',action='store_true',help='Install the current service module while preserving the immutable boot package')
+    parser.add_argument('--protocol-overlay',action='store_true',help='Use the verified current protocol with --service-overlay')
     args=parser.parse_args()
-    print(json.dumps(build(args.profile,args.output,allow_motion=args.allow_motion,service_overlay=args.service_overlay),ensure_ascii=False))
+    print(json.dumps(build(args.profile,args.output,allow_motion=args.allow_motion,service_overlay=args.service_overlay,protocol_overlay=args.protocol_overlay),ensure_ascii=False))
 
 
 if __name__=='__main__':

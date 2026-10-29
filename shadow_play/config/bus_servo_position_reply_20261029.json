@@ -1,0 +1,163 @@
+{
+  "schema": "shadow.bus-feedback-fix.v1",
+  "date": "2026-10-29",
+  "layout": "dual",
+  "user_report": {
+    "host_disconnected": true,
+    "external_power_on": true,
+    "manual_axis_unspecified": true,
+    "symptom": "Manual movement after torque release led to invalid feedback; reconnect did not help."
+  },
+  "diagnosis": {
+    "all_ten_servos_replied": true,
+    "read_transactions": 40,
+    "id10_raw_ascii": "#010P832!",
+    "id10_raw_hex": "233031305038333221",
+    "old_error": "Expected actual PRAD position, not echo/target/ACK",
+    "cause": "Position parser required exactly four decimal digits; Servo.C(7.3) returned an unpadded three-digit position.",
+    "id10_position": 832,
+    "id10_degrees": 44.82,
+    "all_health_states": 0,
+    "all_modes": 1,
+    "before": {
+      "identity": "0x42533130",
+      "faults": 0,
+      "lease": 0,
+      "person": 0,
+      "tiger": 0
+    },
+    "after": {
+      "identity": "0x42533130",
+      "faults": 0,
+      "lease": 0,
+      "person": 0,
+      "tiger": 0
+    },
+    "historical_failures_all_explained": false
+  },
+  "fix": {
+    "accept_position_digits": [
+      3,
+      4
+    ],
+    "position_range": [
+      500,
+      2500
+    ],
+    "id_frame_checksum_mode_limits_checks_retained": true,
+    "automatic_retry_added": false,
+    "profile_or_permissions_changed": false,
+    "base_boot_package_changed": false,
+    "software_only": true
+  },
+  "deployment": {
+    "boot_id": "f589ca82-29b6-48a1-90f8-60fb6193101f",
+    "manifest_sha256": "bc209b8e0dfd95e45739f367eea16224bd77073649304a905a234460d97e6355",
+    "files": {
+      "bus_servo.json": "c04f50616a6f31698bd085c07e2a7cca3d7997dcca4ee4f5182c8a00b4de2c3e",
+      "service.py": "46a1090487eff637dfba6c867481892c56b2139102825f8208a33acd09ef1717",
+      "protocol.py": "a8b14147290b33a953eebc303a05af7e3498f6e277649799aed6b6280b33ab79",
+      "start_console.sh": "a5652cdf52fc6d1df764d83ed314e047119e367c2921c6072508f985b9ed4e8e"
+    },
+    "backup": "/run/media/mmcblk0p2/piying/bus-servo-dual-console-v1/backups/position-reply-20261029",
+    "previous_files": {
+      "bus_servo.json": "c04f50616a6f31698bd085c07e2a7cca3d7997dcca4ee4f5182c8a00b4de2c3e",
+      "service.py": "46a1090487eff637dfba6c867481892c56b2139102825f8208a33acd09ef1717",
+      "start_console.sh": "42c611454457cfec4c2b342e461824abe9700f95daeba734e74ac7858c7902df",
+      "MANIFEST.json": "c8ca41f271800c0910c3fd6933fe6b9e336a404343632ddc3c604a2c2cdc8ea8"
+    },
+    "protected_hashes": {
+      "/run/media/mmcblk0p1/BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "/run/media/mmcblk0p1/image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "/run/media/mmcblk0p1/boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "/run/media/mmcblk0p1/uEnv.txt": "5bbdd36113c2cdb785b75b799a83815fc82dfa3f7ea5315ea67c505373871988",
+      "/run/media/mmcblk0p1/image-bus-20261029.ub": "bfa925cb2175d40e448f7d971922acb43ad55cf9acf3102ba44c36cb8ad22fcb",
+      "/run/media/mmcblk0p2/piying/boot-bus-20261029/launch.py": "55b2c4b2ed2133be3c81a911c473459b8c17ba93424e722f979f80ee3247ba09",
+      "/run/shadow-pwm-motion-inhibit": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+      "/run/shadow-bus-servo-loaded.json": "ee2524e823d8462d74236accec384f5541bcbecda6864dd5189921a7f759070f",
+      "/run/shadow-bus-servo-load-attempt.json": "798d22bb352857b31e1b3207f9acff4e50592e01fcd328d623bd57795e1a97c8",
+      "/run/media/mmcblk0p2/piying/bus-servo-dual-console-v1/FEEDBACK_A_RESULT_20261029.json": "3adc586ce47c32fc005979c30b06ebfa08fa4183e2c60e5d919c6684e3b98029",
+      "/run/media/mmcblk0p2/piying/bus-servo-dual-console-v1/FEEDBACK_LOSS_B_RESULT_20261029.json": "faddbd0f817c17a1e88511570d77b303b50ca3d6f4aa1d4af1459aa866370a90",
+      "/run/media/mmcblk0p2/piying/bus-servo-dual-console-v1/FEEDBACK_A_ATTEMPT_20261029.jsonl": "14cf904a6fd56c354ebecf61d4be40b48faff5f8cc2ad5c9c13143a10b9ab0ec",
+      "/run/media/mmcblk0p2/piying/bus-servo-dual-console-v1/FEEDBACK_LOSS_B_ATTEMPT_20261029.jsonl": "ed71529c81696dfcc039be9a7ea2afd3f577fae23700cbb7c1efe80db451284d"
+    },
+    "state": {
+      "0": 1112748336,
+      "8": 0,
+      "16": 0,
+      "256": 0,
+      "512": 0
+    },
+    "servo_packets_sent": 0,
+    "fpga_reloaded": false
+  },
+  "verification": {
+    "offline_tests_passed": 172,
+    "all_valid_padded_unpadded_positions_tested": [
+      500,
+      2500
+    ],
+    "diagnostic_reply_redecode_passed": 40,
+    "gui_worker_frames": 8,
+    "gui_worker_elapsed_seconds": 2.625,
+    "gui_worker_error": null,
+    "id10_positions": [
+      832,
+      832,
+      832,
+      832,
+      832,
+      832,
+      832,
+      832
+    ],
+    "servo_read_transactions_total": 220,
+    "motion_or_release_commands": 0,
+    "configuration_writes": 0,
+    "fault_clears": 0,
+    "fpga_reloads": 0,
+    "serial_released": true,
+    "final": {
+      "boot": "f589ca82-29b6-48a1-90f8-60fb6193101f",
+      "marker_sha": "ee2524e823d8462d74236accec384f5541bcbecda6864dd5189921a7f759070f",
+      "console_sha": "bc209b8e0dfd95e45739f367eea16224bd77073649304a905a234460d97e6355",
+      "state": {
+        "0": 1112748336,
+        "4": 1,
+        "8": 0,
+        "16": 0,
+        "24": 100000000,
+        "28": 115200,
+        "256": 0,
+        "512": 0
+      },
+      "buses": {
+        "person": {
+          "raw": 0,
+          "busy": false,
+          "rx_count": 0,
+          "errors": 0
+        },
+        "tiger": {
+          "raw": 0,
+          "busy": false,
+          "rx_count": 0,
+          "errors": 0
+        }
+      },
+      "servo_packets": 0
+    }
+  },
+  "evidence_directory": ".review_work/bus-servo-feedback-loss-20261029",
+  "evidence_sha256": {
+    "preflight.log": "e248cfeb2c564c1e142b59ac22a0c51f89da0e335637782164bfcfc8b329a9c4",
+    "feedback_once.py": "296a58f447e1540480901298056e2b072b81d5daf2ee0a2c5dca74523ecea02d",
+    "query.log": "edf233028530a011da4d87db67efcaf57d90dc198bc7ee386a188ab40af1a7d7",
+    "install.py": "310b94aab4fdf7e3f94d2beae786c4235fa8d0476bb6d51cc22f7a6dc613fc28",
+    "install.log": "0837a28a34dd004b09aa69152d16a6a25a252e112cff083069507d539187ecd1",
+    "check_worker.py": "0b8f04da447ab4703f940085398b0c93d5f5802cd5d0e95493faf9b03373bf2a",
+    "worker-result.json": "3f23b38ebcb088dd3f9fb5e29acdb204696abee0f7e28023603ff34447b5107d",
+    "final.log": "aa15bc9ef54a8936a324229c71b6e323584bc8367749304b9c13be14c9f071ee"
+  },
+  "next_use": "Reconnect COM17 and manually detect selected servos; no FPGA reload or power cycle required for this parser fix."
+}

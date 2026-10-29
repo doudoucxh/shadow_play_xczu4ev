@@ -63,7 +63,9 @@ def parse_reply(data, ident, kind):
     if body.startswith('ERR:'):
         raise ProtocolError(f'Servo {ident} returned {body}')
     if kind == 'position':
-        if not re.fullmatch(r'\d{4}', body):
+        # Servo.C 7.3 returns e.g. #010P832! below 1000, without zero
+        # padding. Accept both wire forms; the numeric range still applies.
+        if not re.fullmatch(r'[0-9]{3,4}', body):
             raise ProtocolError('Expected actual PRAD position, not echo/target/ACK')
         return integer(int(body), 500, 2500, 'Feedback position')
     if kind == 'mode':
