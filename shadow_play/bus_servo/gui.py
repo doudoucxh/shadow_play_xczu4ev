@@ -14,6 +14,7 @@ from .model import MOTION_SCHEMA, Profile, save_recording, validate_recording
 from .session import TeachingSession
 from .transport import RemoteDevice
 from .protocol import ServoUnavailable
+from .timeline import PlaybackTimeline, format_time
 
 ROOT = Path(__file__).resolve().parents[1]
 COLORS = ['#26a69a', '#5477d4', '#db9239', '#d85c74', '#8a69d2', '#639d49', '#d16635', '#4d9aba', '#b477b0', '#a19a35']
@@ -26,6 +27,8 @@ class Worker(threading.Thread):
         self.session = None
         self.shutting_down = False
         self.numbers = []
+        self.playback_timeline = None
+        self.next_progress = 0
 
     def emit(self, kind, value=None):
         self.events.put((kind, value))
@@ -113,9 +116,13 @@ class Worker(threading.Thread):
                             self.emit('capture_error', str(exc))
                     elif op == 'prepare':
                         seconds = s.prepare_first(*value)
+                        self.emit('prepared')
                         self.emit('message', f'已发送到首帧指令，预计至少 {seconds:.1f} 秒；回放时会重新读位置。')
                     elif op == 'play':
-                        s.start_playback(*value); self.emit('playing')
+                        s.start_playback(*value)
+                        self.playback_timeline = PlaybackTimeline(value[0], value[2], s.play_end)
+                        self.next_progress = s.play_start
+                        self.emit('playing', self.playback_timeline.snapshot(state='playing'))
                     elif op == 'drag':
                         if not s.device.simulation:
                             raise RuntimeError('模拟拖动仅用于离线模式。')
@@ -123,6 +130,14 @@ class Worker(threading.Thread):
                     self.emit('command_done')
                 if self.session:
                     rows, finished = self.session.tick(self.numbers)
+                    # Publish only after a successful scheduler/feedback tick.
+                    # A blocked or failed request must not animate to completion.
+                    if self.playback_timeline and (self.session.playing or finished):
+                        now = self.session.clock()
+                        if finished or now >= self.next_progress:
+                            self.emit('playback_progress', self.playback_timeline.snapshot(
+                                now-self.session.play_start, 'completed' if finished else 'playing'))
+                            self.next_progress = now + .05
                     if rows:
                         self.emit('feedback', rows)
                         if self.session.recording:
@@ -178,6 +193,8 @@ class App:
         self.record = None
         self.editor = None
         self.live_samples = []
+        self.playback_progress = None
+        self.plot_bounds = None
         suffix={'dual':' · 人物 / 老虎双总线','tiger-four-port':' · 老虎临时四口','ten-port':' · 十舵机独立十口'}[self.profile.layout.name]
         root.title('皮影 · 总线舵机示教工作台（分步/剪辑）' + suffix)
         root.geometry('1180x850'); root.minsize(1030, 790)
@@ -189,6 +206,8 @@ class App:
         style.configure('TLabel', background='#eef2f5', foreground='#203246',font=('Microsoft YaHei UI',9))
         style.configure('TButton', padding=(10,4))
         style.configure('Accent.TButton', background='#216c79', foreground='white')
+        style.configure('Playback.Horizontal.TProgressbar',background='#216c79',troughcolor='#dce6eb',
+                        bordercolor='#dce6eb',lightcolor='#216c79',darkcolor='#216c79')
         body = ttk.Frame(root, padding=18); body.pack(fill='both', expand=True)
         header = ttk.Frame(body); header.pack(fill='x')
         ttk.Label(header, text='皮影示教工作台', font=('Microsoft YaHei UI',22,'bold')).pack(side='left')
@@ -223,7 +242,16 @@ class App:
             b=ttk.Button(row,text=label,command=lambda nums=list(nums):self.select(nums));b.pack(side='left',padx=(0,5));self.selection_buttons.append(b)
         self.selection_text=tk.StringVar(value=f'已选 {len(self.profile.axes)} 轴')
         ttk.Label(row,textvariable=self.selection_text).pack(side='right')
-        table=ttk.Frame(body);table.pack(fill='x',pady=4)
+        axis_area=ttk.Frame(body);axis_area.pack(fill='x',pady=4)
+        self.axes_canvas=tk.Canvas(axis_area,height=250,bg='#eef2f5',highlightthickness=0)
+        axis_scroll=ttk.Scrollbar(axis_area,orient='vertical',command=self.axes_canvas.yview)
+        axis_scroll.pack(side='right',fill='y')
+        self.axes_canvas.pack(side='left',fill='x',expand=True)
+        self.axes_canvas.configure(yscrollcommand=axis_scroll.set)
+        table=ttk.Frame(self.axes_canvas);self.axes_table=table
+        table_window=self.axes_canvas.create_window(0,0,window=table,anchor='nw')
+        table.bind('<Configure>',lambda event:self.axes_canvas.configure(scrollregion=self.axes_canvas.bbox('all')))
+        self.axes_canvas.bind('<Configure>',lambda event:self.axes_canvas.itemconfigure(table_window,width=event.width))
         for col,title in enumerate(['选择','编号 / 总线ID','控制部位','总线口','实际角度','目标角度','目标调整 / °','软件范围']):
             ttk.Label(table,text=title,font=('Microsoft YaHei UI',10,'bold')).grid(row=0,column=col,sticky='w',padx=6,pady=6)
         table.columnconfigure(6,weight=1)
@@ -265,19 +293,39 @@ class App:
         self.prepare_button=ttk.Button(row,text='③ 缓慢到首帧',command=self.prepare);self.prepare_button.pack(side='left')
         ttk.Label(row,text='回放倍率').pack(side='left',padx=(12,5))
         self.speed=tk.StringVar(value='0.5')
-        ttk.Combobox(row,textvariable=self.speed,values=['0.25','0.5','0.75','1.0','1.5','2.0'],width=5,state='readonly').pack(side='left')
+        self.speed_box=ttk.Combobox(row,textvariable=self.speed,values=['0.25','0.5','0.75','1.0','1.5','2.0'],width=5,state='readonly')
+        self.speed_box.pack(side='left')
+        self.speed_box.bind('<<ComboboxSelected>>',lambda event:self.reset_timeline())
         self.play_button=ttk.Button(row,text='④ 回放所选轴',command=self.play,style='Accent.TButton');self.play_button.pack(side='left',padx=8)
         self.take_info=tk.StringVar(value='尚无轨迹 · 录制会自动保存在 shadow_play/logs/bus_servo/takes')
         ttk.Label(row,textvariable=self.take_info,foreground='#536d7d').pack(side='right')
+        timeline=ttk.Frame(body);timeline.pack(fill='x',pady=(0,5))
+        timeline.columnconfigure(0,weight=1)
+        self.timeline_text=tk.StringVar(value='回放进度 · 尚无轨迹')
+        self.timeline_source=tk.StringVar(value='')
+        self.timeline_segment=tk.StringVar(value='')
+        ttk.Label(timeline,textvariable=self.timeline_text,font=('Microsoft YaHei UI',10,'bold')).grid(row=0,column=0,sticky='w')
+        ttk.Label(timeline,textvariable=self.timeline_source,foreground='#526b7c').grid(row=0,column=1,sticky='e',padx=(10,0))
+        self.progress_bar=ttk.Progressbar(timeline,mode='determinate',maximum=100,style='Playback.Horizontal.TProgressbar')
+        self.progress_bar.grid(row=1,column=0,columnspan=2,sticky='ew',pady=(5,3))
+        self.segment_label=ttk.Label(timeline,textvariable=self.timeline_segment,foreground='#526b7c')
         self.canvas=tk.Canvas(body,height=160,bg='#ffffff',highlightthickness=1,highlightbackground='#dce4eb')
-        self.canvas.bind('<Configure>',lambda e:self.plot())
+        self.canvas.bind('<Configure>',lambda e:(self.plot(),self.root.after_idle(self.resize_axis_table)))
         footer=ttk.Frame(body);footer.pack(side='bottom',fill='x')
         self.status=tk.StringVar(value='未连接 · 默认离线模拟。实物请核对对应镜像、接线与就绪状态；操作流程见右上角“使用说明”。')
         ttk.Label(footer,textvariable=self.status,wraplength=1100,foreground='#25566a').pack(anchor='w')
         ttk.Label(footer,text=f'记录的是电机轴反馈；连杆间隙和皮影弹性仍会影响复刻。{len(self.profile.layout.buses)}条总线并行，同一总线各轴依次发送，非硬件同时触发。',foreground='#627987',wraplength=1100).pack(anchor='w',pady=(5,0))
         self.canvas.pack(fill='both',expand=True,pady=(3,8))
         root.bind('<Escape>',lambda e:self.stop());root.protocol('WM_DELETE_WINDOW',self.close)
+        root.bind('<Configure>',lambda event:root.after_idle(self.resize_axis_table) if event.widget is root else None)
         root.after(50,self.receive);self.update_controls()
+
+    def resize_axis_table(self):
+        # Preserve a readable chart on shorter screens; all axes remain accessible.
+        available=self.axes_canvas.winfo_height()+self.canvas.winfo_height()-150
+        height=max(100,min(self.axes_table.winfo_reqheight(),available))
+        if abs(self.axes_canvas.winfo_height()-height)>2:
+            self.axes_canvas.configure(height=height)
 
     def open_guide(self):
         import webbrowser
@@ -345,7 +393,7 @@ class App:
     def start_record(self):
         def run():
             self.check_operator();nums=self.numbers()
-            self.live_samples=[];self.record=None;self.plot()
+            self.live_samples=[];self.record=None;self.reset_timeline();self.plot()
             self.send('record_start',(nums,int(self.rate.get()),self.record_mode.get().startswith('手动')))
         self.action(run)
 
@@ -383,6 +431,7 @@ class App:
             prefix='编辑动作（'+('模拟素材' if r['source']=='simulation' else '实测素材')+'）'
         rate='' if r.get('schema')==MOTION_SCHEMA else f' / {r.get("measured_hz",0):.1f}Hz'
         self.take_info.set(f'{prefix} · {len(samples)} 帧 / {seconds:.1f}s'+rate+(' · 不完整' if not r['complete'] else ''))
+        self.reset_timeline()
         if path:self.status.set('轨迹已保存：'+str(path))
 
     def open_editor(self):
@@ -419,8 +468,56 @@ class App:
             self.action(run)
         ttk.Button(win,text='另存配置…',command=save_profile).pack(pady=5)
 
+    def reset_timeline(self):
+        if self.playing:return
+        self.show_progress(PlaybackTimeline(self.record,float(self.speed.get())).snapshot() if self.record else None)
+
+    def show_progress(self, progress):
+        self.playback_progress = progress
+        if progress is None:
+            self.timeline_text.set('回放进度 · 尚无轨迹')
+            self.timeline_source.set('')
+            self.timeline_segment.set('')
+            self.segment_label.grid_remove()
+            self.progress_bar['value']=0
+        else:
+            labels={'ready':'待回放','playing':'回放中','checking':'核对末帧',
+                    'completed':'已完成','stopped':'已停止','failed':'已中止','disconnected':'已断开'}
+            p=progress
+            self.timeline_text.set(f'{labels[p["state"]]}  {format_time(p["elapsed_s"])} / {format_time(p["duration_s"])}'
+                                   f'  ·  {p["fraction"]*100:.0f}%  ·  剩余 {format_time(p["duration_s"]-p["elapsed_s"])}')
+            self.timeline_source.set(f'{p["speed"]:g}×  ·  轨迹 {format_time(p["source_s"])} / {format_time(p["source_duration_s"])}')
+            segment=p['segment']
+            if len(segment)>70:segment=segment[:67]+'…'
+            self.timeline_segment.set(segment)
+            if segment:self.segment_label.grid(row=2,column=0,columnspan=2,sticky='w')
+            else:self.segment_label.grid_remove()
+            self.progress_bar['value']=p['fraction']*100
+        self.draw_playhead()
+
+    def finish_timeline(self, state):
+        if self.playback_progress and self.playback_progress['state'] in ('playing','checking'):
+            self.show_progress(dict(self.playback_progress,state=state))
+
+    def draw_playhead(self):
+        c=self.canvas;c.delete('playhead')
+        if not self.plot_bounds or not self.playback_progress or self.recording:return
+        left,right,top,bottom,duration=self.plot_bounds
+        seconds=min(duration,self.playback_progress['source_s'])
+        x=left+(right-left)*seconds/duration
+        c.create_line(x,top,x,bottom,fill='#c44343',width=2,tags='playhead')
+        c.create_polygon(x-5,top,x+5,top,x,top+7,fill='#c44343',outline='',tags='playhead')
+        label=c.create_text(min(right-30,max(left+30,x)),top+17,text=format_time(seconds),
+                            fill='#a52c2c',font=('Segoe UI',9,'bold'),tags='playhead')
+        bounds=c.bbox(label)
+        if bounds:
+            box=c.create_rectangle(bounds[0]-3,bounds[1]-1,bounds[2]+3,bounds[3]+1,
+                                   fill='white',outline='',tags='playhead')
+            c.tag_lower(box,label)
+
     def plot(self):
         c=self.canvas;c.delete('all');w=max(c.winfo_width(),300);h=max(c.winfo_height(),60)
+        self.plot_bounds=None
         left,right,top,bottom=50,w-22,16,h-28
         span=max(a.span for a in self.profile.axes.values())
         for deg in range(0,span+1,90):
@@ -428,15 +525,23 @@ class App:
         samples=self.live_samples if self.recording else (self.record['samples'] if self.record else [])
         if not samples:
             c.create_text(w/2,h/2,text='运动轨迹将在这里显示  ·  横轴时间 / 纵轴角度',fill='#8b99a8',font=('Microsoft YaHei UI',11));return
-        end=max(samples[-1]['t'],1)
+        origin=samples[0]['t'];end=max(samples[-1]['t']-origin,.001)
+        self.plot_bounds=(left,right,top,bottom,end)
+        for step in range(5):
+            seconds=end*step/4;x=left+(right-left)*step/4
+            c.create_line(x,top,x,bottom,fill='#edf1f5')
+            c.create_text(x,bottom+16,text=format_time(seconds),fill='#76899a',
+                          anchor='w' if step==0 else ('e' if step==4 else 'center'))
         for n,v in self.selected.items():
             if not v.get():continue
             key=str(n);points=[]
-            for sample in samples[::max(1,len(samples)//1200)]:
+            drawn=samples[::max(1,len(samples)//1200)]
+            if drawn[-1] is not samples[-1]:drawn=drawn+[samples[-1]]
+            for sample in drawn:
                 if key in sample['positions']:
-                    points.extend([left+(right-left)*sample['t']/end,bottom-(bottom-top)*self.profile.axes[n].degrees(sample['positions'][key])/span])
+                    points.extend([left+(right-left)*(sample['t']-origin)/end,bottom-(bottom-top)*self.profile.axes[n].degrees(sample['positions'][key])/span])
             if len(points)>=4:c.create_line(*points,fill=COLORS[n-1],width=2)
-        c.create_text(left,bottom+16,text='0s',fill='#76899a');c.create_text(right,bottom+16,text=f'{end:.1f}s',fill='#76899a',anchor='e')
+        self.draw_playhead()
 
     def update_controls(self):
         idle=self.connected and not self.busy and not self.recording and not self.playing
@@ -448,6 +553,7 @@ class App:
         state(self.probe_button,idle and self.mode.get()!='离线模拟')
         self.mode_box.configure(state='disabled' if self.connected or self.busy else 'readonly')
         for box in (self.record_mode_box,self.rate_box):box.configure(state='disabled' if self.recording or self.playing or self.busy else 'readonly')
+        self.speed_box.configure(state='disabled' if self.playing or self.busy else 'readonly')
         state(self.port_box,not self.connected and not self.busy);state(self.configure_button,not self.connected and not self.busy)
         state(self.move_button,motion and not self.busy and not self.playing and (not self.recording or self.record_mode.get()=='控制动作录制'))
         state(self.release_button,idle and ready and self.release_allowed)
@@ -482,11 +588,13 @@ class App:
                     access = '。' if self.motion_allowed else ('。可卸力、手动录制；设角与回放尚未开放。' if self.release_allowed else '。当前为只读调试。')
                     self.status.set('板子已连接 · 舵机反馈通过：'+', '.join(map(str,value))+access)
                 elif kind=='servos_unavailable':
+                    self.finish_timeline('failed')
                     self.ready_axes.clear();self.busy=self.recording=self.playing=False
                     for text in self.feedback.values():text.set('无有效反馈')
                     if self.editor:self.editor.cancel_capture()
                     self.status.set(value)
                 elif kind=='disconnected':
+                    self.finish_timeline('disconnected')
                     self.ready_axes.clear();self.motion_allowed=self.release_allowed=False
                     self.connected=False;self.busy=False;self.status.set('已断开。')
                     for value in self.feedback.values():value.set('未连接')
@@ -506,16 +614,21 @@ class App:
                 elif kind=='sample':
                     self.live_samples.append(value);self.take_info.set(f'录制中 · {len(self.live_samples)} 帧 / {value["t"]:.1f}s');self.plot()
                 elif kind=='record':self.record,path=value;self.describe_record(path);self.plot()
-                elif kind=='playing':self.playing=True;self.status.set('正在回放所选轴，Esc停止。')
+                elif kind=='prepared':self.reset_timeline()
+                elif kind=='playing':
+                    self.playing=True;self.show_progress(value);self.status.set('正在回放所选轴，Esc停止。')
+                elif kind=='playback_progress':self.show_progress(value)
                 elif kind=='idle':
                     self.busy=self.recording=self.playing=False;self.plot()
                     if self.editor: self.editor.cancel_capture()
                 elif kind=='command_done':self.busy=False
                 elif kind=='message':self.status.set(value)
                 elif kind=='stopped':
+                    self.finish_timeline('stopped')
                     self.status.set('当前动作/录制已停止；需要松开舵机时，请点击“所选轴卸力”。本次停止没有发送卸力命令。' if isinstance(value,dict) and value.get('state')=='no_motion_lease' else
                                     '已发出卸力请求；实物总线广播没有逐轴确认，不代表已切断电源。')
                 elif kind=='error':
+                    self.finish_timeline('failed')
                     was_connected = self.connected
                     self.connected=self.busy=self.recording=self.playing=False
                     self.ready_axes.clear();self.motion_allowed=self.release_allowed=False
