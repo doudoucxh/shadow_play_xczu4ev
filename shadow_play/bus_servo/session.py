@@ -93,6 +93,8 @@ class TeachingSession:
             delta = abs(a.degrees(p) - a.degrees(before[a.number]['p']))
             if delta > a.max_speed * duration_ms / 1000 + .2:
                 raise ValueError(f'{a.number}号速度过快，请增加到达时间。')
+        if self.cancel_requested():
+            raise ValueError('已停止，未发送新的角度目标。')
         self.device.move(targets, duration_ms)
 
     def start_recording(self, numbers, rate=10, teaching=True):
