@@ -17,6 +17,7 @@ from .protocol import ServoUnavailable
 from .timeline import PlaybackTimeline, format_time
 
 ROOT = Path(__file__).resolve().parents[1]
+UI_VERSION = '2026.10.29-r3'
 COLORS = ['#26a69a', '#5477d4', '#db9239', '#d85c74', '#8a69d2', '#639d49', '#d16635', '#4d9aba', '#b477b0', '#a19a35']
 
 
@@ -232,7 +233,7 @@ class App:
         self.playback_progress = None
         self.plot_bounds = None
         suffix={'dual':' · 人物 / 老虎双总线','tiger-four-port':' · 老虎临时四口','ten-port':' · 十舵机独立十口'}[self.profile.layout.name]
-        root.title('皮影 · 总线舵机示教工作台（分步/剪辑）' + suffix)
+        root.title('皮影 · 总线舵机示教工作台（分步/剪辑）' + suffix + ' · v' + UI_VERSION)
         root.geometry('1180x850'); root.minsize(1030, 790)
         root.configure(bg='#eef2f5')
         root.option_add('*Font', ('Microsoft YaHei UI', 10))

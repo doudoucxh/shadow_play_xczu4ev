@@ -1,5 +1,11 @@
 # 项目协作与 Git 备份规则
 
+## 2026-10-29 打开文件仍报 edit_project：当前运行旧窗口已确认，新窗口已打开
+
+- 用户明确本次在“打开轨迹文件”时报`'edit_project'`。只读进程核对发现仍运行PID41068，启动于19:57:53，命令为当前仓库双总线GUI；早于22:17恢复功能与22:28分步编辑修复。19:47旧model将无av_project的motion全部交给editing.verify_compiled，后者索引edit_project，与新recovery文件不兼容。上一轮修复了真实存在的分步编辑遗漏，但没有核对用户仍在使用旧主窗，不能把该修复当成这次弹窗已经解决。
+- GUI标题新增`v2026.10.29-r3`便于区分窗口。193项离线测试通过。独立启动新进程39064（22:43:45），直接载入原已检查片段，556帧、1倍计划63.861秒、SHA a7602e50…不变，启动回执connected=false/device_session=false。独立进程查询确认标题含新版本、有窗口句柄且Responding=true；未进行原生点击或视觉验收。
+- 旧PID41068仍保留，未强制关闭或抢占COM17；用户在旧窗保存、断开后再用带版本的新窗连接。新窗口默认离线，不自动查询/运动/卸力；本轮未打开串口、改板端/SD/FPGA/自启或原素材。启动脚本及回执在`.review_work/bus-servo-active-window-20261029/`，结构化记录`shadow_play/config/bus_servo_active_window_20261029.json`。
+
 ## 2026-10-29 已检查片段导入分步编辑报 edit_project：兼容遗漏已修复
 
 - 用户在上节之后截图`'edit_project'`。用相同556帧已检查片段在`EditProject.add_recording`复现`KeyError`：旧分步编辑器把所有motion当成带edit_project的合成工程，遗漏新recovery来源；上一轮主窗和联合剪辑测试未覆盖此入口。文件直接校验及555段回放计划原本通过，不把此异常归因于舵机或素材损坏。

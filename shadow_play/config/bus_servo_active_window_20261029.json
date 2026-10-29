@@ -1,0 +1,49 @@
+{
+  "schema": "shadow.bus-active-window.v1",
+  "date": "2026-10-29",
+  "user_trigger": "打开轨迹文件",
+  "diagnosis": {
+    "old_pid": 41068,
+    "old_started_local": "2026-10-29T19:57:53+08:00",
+    "old_entry": "shadow_play.bus_servo.gui --profile D:/Desktop/piying/shadow_play/config/bus_servo.json",
+    "old_loaded_model_predates_recovery": true,
+    "recovery_commit": "b72c52b",
+    "step_editor_fix_commit": "bcc69ac",
+    "previous_editor_fix_did_not_verify_active_main_window": true
+  },
+  "current_window": {
+    "pid": 39064,
+    "version": "2026.10.29-r3",
+    "title": "皮影 · 总线舵机示教工作台（分步/剪辑） · 人物 / 老虎双总线 · v2026.10.29-r3",
+    "trajectory": "D:\\Desktop\\piying\\shadow_play\\logs\\bus_servo\\recovered\\第一部分_214528_已检查片段.motion.json",
+    "trajectory_sha256": "a7602e50ebf8ef01b4e4948f726f5c34717fecda7b2ed1359390e44fbd5d982f",
+    "frames": 556,
+    "plan_s": 63.861,
+    "connected": false,
+    "device_session": false,
+    "source_modules": {
+      "gui.py": "D:\\Desktop\\piying\\shadow_play\\bus_servo\\gui.py",
+      "model.py": "D:\\Desktop\\piying\\shadow_play\\bus_servo\\model.py",
+      "editing.py": "D:\\Desktop\\piying\\shadow_play\\bus_servo\\editing.py",
+      "recovery.py": "D:\\Desktop\\piying\\shadow_play\\bus_servo\\recovery.py"
+    },
+    "started_local": "2026-10-29T22:43:45+08:00",
+    "responding": true,
+    "window_handle_present": true
+  },
+  "checks": {
+    "offline_tests_passed": 193,
+    "startup_trajectory_validation_passed": true,
+    "native_window_click_or_visual_check": false
+  },
+  "operations": {
+    "old_window_closed": false,
+    "old_connection_status_unknown": true,
+    "serial_opened": false,
+    "servo_commands": 0,
+    "board_sd_fpga_autostart_modified": false,
+    "source_trajectory_modified": false
+  },
+  "user_next_step": "Use the window titled v2026.10.29-r3; save/disconnect the old window before connecting the new one.",
+  "evidence_dir": ".review_work/bus-servo-active-window-20261029"
+}
