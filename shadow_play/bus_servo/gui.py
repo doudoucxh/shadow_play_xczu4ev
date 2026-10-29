@@ -29,21 +29,39 @@ class Worker(threading.Thread):
         self.numbers = []
         self.playback_timeline = None
         self.next_progress = 0
+        self.audio_player = None
+        self.audio_index = 0
 
     def emit(self, kind, value=None):
         self.events.put((kind, value))
 
     def release(self):
+        self.stop_audio()
         if self.session:
             try:
                 self.session.close()
             finally:
                 self.session = None
 
+    def stop_audio(self):
+        if self.audio_player:
+            # Never delay the actuator stop while an audio driver is closing.
+            self.audio_player.close(wait=False); self.audio_player = None
+
+    def sync_audio(self):
+        if not self.audio_player:return
+        if self.audio_player.error:raise RuntimeError('电脑音频播放失败：'+str(self.audio_player.error))
+        s=self.session
+        if s.index and s.index!=self.audio_index:
+            self.audio_index=s.index
+            self.audio_player.segment(s.plan.source_times[s.index-1],s.plan.source_times[s.index],
+                                      s.segment_started,s.segment_duration_ms/1000)
+
     def run(self):
         while True:
             try:
                 if self.stop_flag.is_set():
+                    self.stop_audio()
                     self.stop_flag.clear()
                     # Throw away queued targets before processing an emergency
                     # request. Shutdown is retained so closing still completes.
@@ -121,8 +139,14 @@ class Worker(threading.Thread):
                         self.emit('message', f'已发送到首帧指令，预计至少 {seconds:.1f} 秒；回放时会重新读位置。')
                     elif op == 'play':
                         try:
-                            s.start_playback(*value)
+                            self.stop_audio();self.audio_index=0
+                            if len(value)>3 and value[3] is not None:
+                                from .audio import AudioPlayer
+                                try:self.audio_player=AudioPlayer(value[3])
+                                except Exception as exc:raise PlaybackRejected('电脑音频尚未就绪：'+str(exc)) from exc
+                            s.start_playback(*value[:3])
                         except PlaybackRejected as exc:
+                            self.stop_audio()
                             self.emit('playback_rejected', str(exc))
                         else:
                             self.playback_timeline = PlaybackTimeline(value[0], value[2], s.play_end, s.plan)
@@ -134,7 +158,10 @@ class Worker(threading.Thread):
                         s.device.drag(value)
                     self.emit('command_done')
                 if self.session:
+                    if self.audio_player and self.audio_player.error:
+                        raise RuntimeError('电脑音频播放失败：'+str(self.audio_player.error))
                     rows, finished = self.session.tick(self.numbers)
+                    self.sync_audio()
                     # Publish only after a successful scheduler/feedback tick.
                     # A blocked or failed request must not animate to completion.
                     if self.playback_timeline and (self.session.playing or finished):
@@ -149,6 +176,7 @@ class Worker(threading.Thread):
                         if self.session.recording:
                             self.emit('sample', self.session.record['samples'][-1])
                     if finished:
+                        self.stop_audio()
                         self.emit('idle'); self.emit('message', '回放已结束，末帧位置反馈通过；保持状态，点停止可卸力。')
             except ServoUnavailable as exc:
                 # A failed idle query keeps the PS link alive but invalidates all
@@ -164,6 +192,7 @@ class Worker(threading.Thread):
                     self.session.last_feedback.clear()
                 self.emit('servos_unavailable', str(exc))
             except Exception as exc:
+                self.stop_audio()
                 recovery = None
                 try:
                     if self.session:
@@ -198,6 +227,7 @@ class App:
         self.release_allowed = False
         self.record = None
         self.editor = None
+        self.av_editor = None
         self.live_samples = []
         self.playback_progress = None
         self.plot_bounds = None
@@ -218,6 +248,8 @@ class App:
         header = ttk.Frame(body); header.pack(fill='x')
         ttk.Label(header, text='皮影示教工作台', font=('Microsoft YaHei UI',22,'bold')).pack(side='left')
         ttk.Button(header, text='使用说明', command=lambda:self.action(self.open_guide)).pack(side='right', padx=(14,0))
+        self.av_button=ttk.Button(header,text='音频 / 轨迹剪辑',command=lambda:self.action(self.open_av_editor))
+        self.av_button.pack(side='right',padx=(10,0))
         ttk.Label(header, text=self.profile.layout.title, foreground='#59728a').pack(side='right', pady=10)
         ttk.Label(body, text='先用手演一遍，记录舵机实际位置，再按时间重现动作。', foreground='#526b7c').pack(anchor='w', pady=(2,12))
         row = ttk.Frame(body); row.pack(fill='x', pady=(0,10))
@@ -333,12 +365,13 @@ class App:
         if abs(self.axes_canvas.winfo_height()-height)>2:
             self.axes_canvas.configure(height=height)
 
-    def open_guide(self):
+    def open_guide(self, section=None):
         import webbrowser
         path = ROOT/'docs/bus_servo_user_guide.html'
         if not path.is_file():
             raise FileNotFoundError('使用说明文件缺失：'+str(path))
-        if not webbrowser.open(path.resolve().as_uri()):
+        url=path.resolve().as_uri()+('#'+section if section else '')
+        if not webbrowser.open(url):
             raise RuntimeError('未能打开浏览器，请手动打开说明文件：'+str(path))
 
     def refresh_ports(self):
@@ -408,9 +441,19 @@ class App:
         self.action(lambda:(self.check_operator(),self.send('prepare',(self.record,self.numbers()))))
 
     def play(self):
-        self.action(lambda:(self.check_operator(),self.send('play',(self.record,self.numbers(),float(self.speed.get())))))
+        def start():
+            self.check_operator()
+            if self.av_editor:self.av_editor.stop_preview()
+            track=None
+            if self.record and 'av_project' in self.record:
+                from .audio import AudioTrack
+                candidate=AudioTrack(self.record['av_project'])
+                track=candidate if candidate.clips else None
+            self.send('play',(self.record,self.numbers(),float(self.speed.get()),track))
+        self.action(start)
 
     def stop(self):
+        if self.av_editor:self.av_editor.stop_preview()
         if self.connected:
             self.stop_flag.set();self.status.set('正在停止当前动作或录制…')
 
@@ -420,6 +463,11 @@ class App:
         def run():
             if Path(path).stat().st_size>64*1024*1024:raise ValueError('轨迹文件超过64MB。')
             record=json.loads(Path(path).read_text(encoding='utf-8-sig'))
+            if record.get('schema')=='shadow.bus-av-project.v1':
+                raise ValueError('这是联合编辑工程，请在“音频 / 轨迹剪辑”中打开。')
+            if 'av_project' in record:
+                from .av_editing import load_file
+                record=load_file(path,self.profile)
             if record.get('schema')=='shadow.bus-edit.v1':
                 raise ValueError('这是编辑工程，请在“分步录入 / 剪辑”窗口中选择“打开工程”。')
             validate_recording(record,self.profile)
@@ -429,7 +477,11 @@ class App:
     def save(self):
         if not self.record:return
         path=filedialog.asksaveasfilename(parent=self.root,title='另存轨迹（保留每次原始录制）',defaultextension='.json',initialfile='第一部分_'+datetime.now().strftime('%H%M%S')+'.json',filetypes=[('示教轨迹','*.json')])
-        if path:self.action(lambda:save_recording(path,self.record))
+        if path:
+            if 'av_project' in self.record:
+                from .av_editing import save_bundle
+                self.action(lambda:save_bundle(path,self.record))
+            else:self.action(lambda:save_recording(path,self.record))
 
     def describe_record(self,path):
         r=self.record; samples=r['samples'];seconds=samples[-1]['t']-samples[0]['t'] if len(samples)>1 else 0
@@ -438,6 +490,7 @@ class App:
             prefix='编辑动作（'+('模拟素材' if r['source']=='simulation' else '实测素材')+'）'
         rate='' if r.get('schema')==MOTION_SCHEMA else f' / {r.get("measured_hz",0):.1f}Hz'
         self.take_info.set(f'{prefix} · {len(samples)} 帧 / {seconds:.1f}s'+rate+(' · 不完整' if not r['complete'] else ''))
+        if 'av_project' in r:self.take_info.set(self.take_info.get()+' · 电脑音频联动')
         self.reset_timeline()
         if path:self.status.set('轨迹已保存：'+str(path))
 
@@ -446,6 +499,11 @@ class App:
             self.editor.window.lift(); return
         from .editor_gui import EditorWindow
         self.editor = EditorWindow(self, ROOT/'logs/bus_servo/edits')
+
+    def open_av_editor(self):
+        if self.av_editor:self.av_editor.window.lift();return
+        from .av_gui import AVWindow
+        self.av_editor=AVWindow(self,ROOT/'logs/bus_servo/av_edits')
 
     def configure(self):
         if self.connected:return
@@ -584,6 +642,7 @@ class App:
         state(self.save_button,self.record is not None and not self.recording)
         state(self.load_button,not self.recording and not self.playing and not self.busy)
         state(self.editor_button,not self.recording and not self.playing and not self.busy)
+        state(self.av_button,not self.recording and not self.playing and not self.busy)
         # Controlled recording keeps its initial acquisition set. The operator
         # may independently select a smaller/different group to send targets to.
         can_select=not self.playing and not self.busy and (not self.recording or self.record_mode.get()=='控制动作录制')
@@ -671,6 +730,13 @@ class App:
 
     def close(self):
         if self.closing:return
+        if self.av_editor:
+            if self.av_editor.busy:
+                self.stop_flag.set();self.status.set('音频文件正在处理，完成后请再关闭。');return
+            self.av_editor.stop_preview()
+            try:self.av_editor.autosave()
+            except Exception as exc:
+                self.stop_flag.set();messagebox.showerror('联合编辑草稿尚未保存',str(exc),parent=self.root);return
         if self.editor:
             try:
                 self.editor.autosave()
@@ -686,7 +752,9 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--profile',type=Path,default=ROOT/'config/bus_servo.json')
     parser.add_argument('--smoke-test',action='store_true')
+    parser.add_argument('--av-editor',action='store_true')
     args=parser.parse_args();root=tk.Tk();app=App(root,args.profile)
+    if args.av_editor:app.open_av_editor()
     if args.smoke_test:
         app.open_editor()
         root.after(300,app.close)

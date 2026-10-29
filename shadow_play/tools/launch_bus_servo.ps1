@@ -1,4 +1,4 @@
-param([switch]$SmokeTest, [string]$Profile)
+param([switch]$SmokeTest, [string]$Profile, [switch]$AudioEditor)
 $ErrorActionPreference='Stop'
 $taskRoot=Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $taskPython=Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
@@ -11,13 +11,13 @@ if(Test-Path -LiteralPath (Join-Path $taskTcl 'init.tcl')){$env:TCL_LIBRARY=$tas
 & $taskPython -c 'import tkinter, serial'
 if($LASTEXITCODE -ne 0){throw 'Python tkinter/pyserial unavailable'}
 $taskArgs=@('-m','shadow_play.bus_servo.gui')
+if($AudioEditor){$taskArgs+='--av-editor'}
 if($Profile){$taskArgs+=@('--profile',('"'+(Resolve-Path -LiteralPath $Profile).Path+'"'))}
 if($SmokeTest){
-    if($Profile){
-        & $taskPython -m shadow_play.bus_servo.gui --smoke-test --profile (Resolve-Path -LiteralPath $Profile).Path
-    }else{
-        & $taskPython -m shadow_play.bus_servo.gui --smoke-test
-    }
+    $taskSmokeArgs=@('--smoke-test')
+    if($Profile){$taskSmokeArgs+=@('--profile',(Resolve-Path -LiteralPath $Profile).Path)}
+    if($AudioEditor){$taskSmokeArgs+='--av-editor'}
+    & $taskPython -m shadow_play.bus_servo.gui @taskSmokeArgs
     if($LASTEXITCODE -ne 0){throw 'Bus-servo GUI smoke test failed'}
 }else{
     Start-Process -FilePath $taskPythonW -ArgumentList $taskArgs -WorkingDirectory $taskRoot -WindowStyle Hidden

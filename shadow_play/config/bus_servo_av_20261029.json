@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-29",
+  "request": "音频与轨迹共同剪辑；电脑出声跟随轨迹回放",
+  "scope": "PC only",
+  "features": [
+    "audio waveform and motion curves on shared timeline",
+    "drag and exact offsets",
+    "trim, split, joint ripple delete and keep range",
+    "per clip speed and audio gain",
+    "undo redo and draft",
+    "portable project and replay with audio assets",
+    "offline preview and WAV export",
+    "host playback synchronized to acknowledged segment duration"
+  ],
+  "schema": "shadow.bus-av-project.v1",
+  "offline_tests": 168,
+  "ui": {
+    "passed": true,
+    "clips": 2,
+    "minimum_canvas": [
+      992,
+      262
+    ],
+    "hardware_commands": 0,
+    "audible_playback": false
+  },
+  "audio_device": {
+    "windows_pcm_open_write_drain_close": true,
+    "silent_buffers": 19,
+    "pcm_buffer_ms": 20,
+    "maximum_queued_buffers": 3,
+    "mp3_decode_duration_s": 16.0,
+    "audible_audio": false,
+    "servo_packets": 0
+  },
+  "joint_latency_simulation": {
+    "take": "take_20261029_152759_149401.json",
+    "sha256": "51f976f47987912a8eccee879385f8864aeca1353ebfc5b9c2352b7493f51f2b",
+    "before": [
+      {
+        "lag_counts": 2,
+        "error": "Axis 7: increase move duration or reduce target distance",
+        "finished": false,
+        "commands": 56,
+        "source_s": 8.493273448999389,
+        "elapsed_s": 22.880000000000138,
+        "nominal_s": 19.867,
+        "adjusted_commands": 0,
+        "max_added_ms": 0
+      }
+    ],
+    "after": [
+      {
+        "lag_counts": 2,
+        "error": null,
+        "finished": true,
+        "commands": 106,
+        "source_s": 16.09653636799976,
+        "elapsed_s": 46.749999999999645,
+        "nominal_s": 19.867,
+        "adjusted_commands": 15,
+        "max_added_ms": 9
+      },
+      {
+        "lag_counts": 6,
+        "error": null,
+        "finished": true,
+        "commands": 106,
+        "source_s": 16.09653636799976,
+        "elapsed_s": 47.44999999999965,
+        "nominal_s": 19.867,
+        "adjusted_commands": 16,
+        "max_added_ms": 27
+      }
+    ],
+    "physical_commands": 0
+  },
+  "manual": {
+    "pages": 12,
+    "changed_chapters": [
+      11,
+      12
+    ],
+    "rendered_and_inspected": true
+  },
+  "dependencies": {
+    "numpy": "available in bundled Python",
+    "ffmpeg": "available on this PC",
+    "audio_backend": "Windows waveOut"
+  },
+  "limitations": [
+    "rate-following also changes pitch",
+    "audio pauses while awaiting next motion segment",
+    "short device buffering; not hardware/sample-clock synchronization",
+    "no audible listening or physical synchronized playback verification"
+  ],
+  "launched": {
+    "pid": 45976,
+    "responding": true,
+    "arguments": "--av-editor --profile shadow_play/config/bus_servo.json",
+    "default_mode": "offline simulation",
+    "auto_connect": false,
+    "auto_play": false,
+    "old_window_pid": 7268
+  },
+  "hardware": {
+    "serial_opened": false,
+    "servo_commands": 0,
+    "fpga_reloaded": false,
+    "sd_changed": false
+  },
+  "source_sha256": {
+    "av_editing.py": "087f556001ad18d86865fcf5c68f0891e7e0b6996df293fa2c005c9432c18fe3",
+    "audio.py": "3ce181a5f6ce1e4299ec0c096cd60b72fdb8e4f714b884bd16a6da9d0cdb98d3",
+    "av_gui.py": "b3e02bb69d9ba48e46a54b4f3eec39d058d0bc4a70e13ba1211b2ea4aceddda5",
+    "gui.py": "7216f9449a6438532ebbcd46261437696e5e9d8baa759f4232e5e2f81ab85d7f",
+    "model.py": "fab716f3a71ec3171eb3282e15f29748de9168a4ec31f274698ae16111d3e3f1",
+    "editing.py": "42f7517f1d2da87f66c0f41b62d5f4e0c534607dc35fdf927d2577c67b632352",
+    "editor_gui.py": "e8482ab224263c295e44e560d9585c170c3a986e519a7efd0a49585e7bcde1ea"
+  },
+  "evidence_directory": "D:\\Desktop\\piying\\.review_work\\bus-servo-av-20261029"
+}

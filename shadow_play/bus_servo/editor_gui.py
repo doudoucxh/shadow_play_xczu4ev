@@ -59,6 +59,7 @@ class EditorWindow:
         button(row, '检查并预览', self.check_preview)
         button(row, '应用到主窗口', self.apply_motion)
         button(row, '另存回放轨迹…', lambda: self.save(True))
+        button(row, '转到音频联合剪辑', self.open_audio_editor)
         tk.Button(row, text='停止当前动作 / Esc', bg='#b84443', fg='white', relief='flat', command=app.stop, padx=15, pady=4).pack(side='right')
         self.status = tk.StringVar(value='编辑副本；原始录制不覆盖。修改会自动保存到本地草稿。')
         ttk.Label(footer, textvariable=self.status, foreground='#25566a', wraplength=1090).pack(fill='x', pady=(3,0))
@@ -269,6 +270,11 @@ class EditorWindow:
         name = '第一部分.motion.json' if motion else '第一部分.project.json'
         path = filedialog.asksaveasfilename(parent=self.window,title='另存副本（不覆盖原文件）',defaultextension='.json',initialfile=name,filetypes=[('JSON','*.json')])
         if path: save_recording(path,data); self.status.set('已保存：'+path)
+
+    def open_audio_editor(self):
+        if self.app.av_editor:
+            raise ValueError('已有联合剪辑窗口，请先保存并关闭它，再转入本次动作。')
+        self.apply_motion();self.app.open_av_editor()
 
     def plot(self):
         c = self.canvas; c.delete('all'); w=max(300,c.winfo_width()); h=max(80,c.winfo_height())

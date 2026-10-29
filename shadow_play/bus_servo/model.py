@@ -126,7 +126,10 @@ def validate_recording(record, profile, live=False):
     if record.get('complete') is not True:
         raise ValueError('Recording is incomplete; inspect/re-record before playback')
     if planned:
-        from .editing import verify_compiled
+        if 'av_project' in record:
+            from .av_editing import verify_compiled
+        else:
+            from .editing import verify_compiled
         verify_compiled(record, profile)
     axes = profile.select(record['selected'])
     samples = record['samples']

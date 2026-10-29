@@ -132,6 +132,8 @@ class EditProject:
 
     def add_recording(self, record, name='录制片段'):
         validate_recording(record, self.profile)
+        if 'av_project' in record:
+            raise ValueError('音频联合轨迹请在“音频 / 轨迹剪辑”中打开，避免丢失音频编辑。')
         if not set(self.data['selected']) <= set(record['selected']):
             raise ValueError('导入轨迹没有选择本工程的全部轴，不能启用其隐藏素材中的其他轴。')
         record = copy.deepcopy(record)
