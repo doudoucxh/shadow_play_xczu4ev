@@ -1,0 +1,824 @@
+{
+  "date": "2026-10-29",
+  "layout": "dual",
+  "boot_id": "f589ca82-29b6-48a1-90f8-60fb6193101f",
+  "user_report_before": {
+    "previous_success": "official USB serial adapter",
+    "host_disconnected": true,
+    "servo_external_power_on": true
+  },
+  "low_level": {
+    "boot_id": "f589ca82-29b6-48a1-90f8-60fb6193101f",
+    "before": {
+      "identity": "0x42533130",
+      "faults": 0,
+      "lease": 0,
+      "person": 0,
+      "tiger": 0
+    },
+    "axes": [
+      {
+        "axis": 1,
+        "id": 1,
+        "bus": "person",
+        "queries": [
+          {
+            "id": 1,
+            "offset": 256,
+            "kind": "version",
+            "tx_hex": "233030315056455221",
+            "rx_hex": "2330303150534552564f2e4328372e332921",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3193.847646821,
+            "decoded": "SERVO.C(7.3)",
+            "finished_monotonic": 3193.859316428,
+            "after_status": 0
+          },
+          {
+            "id": 1,
+            "offset": 256,
+            "kind": "mode",
+            "tx_hex": "23303031504d4f4421",
+            "rx_hex": "23303031504d4f443121",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3193.863068025,
+            "decoded": 1,
+            "finished_monotonic": 3193.872356778,
+            "after_status": 0
+          },
+          {
+            "id": 1,
+            "offset": 256,
+            "kind": "health",
+            "tx_hex": "ffff0104024801af",
+            "rx_hex": "ffff01030007f4",
+            "staged_bytes": 8,
+            "queued": true,
+            "started_monotonic": 3193.875400609,
+            "decoded": 7,
+            "finished_monotonic": 3193.881700312,
+            "after_status": 0
+          },
+          {
+            "id": 1,
+            "offset": 256,
+            "kind": "position",
+            "tx_hex": "233030315052414421",
+            "rx_hex": "23303031503135303021",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3193.885594471,
+            "decoded": 1500,
+            "finished_monotonic": 3193.896314058,
+            "after_status": 0
+          }
+        ],
+        "version": "SERVO.C(7.3)",
+        "mode": 1,
+        "health": 7,
+        "position": 1500,
+        "degrees": 135.0,
+        "passed": true
+      },
+      {
+        "axis": 2,
+        "id": 2,
+        "bus": "person",
+        "queries": [
+          {
+            "id": 2,
+            "offset": 256,
+            "kind": "version",
+            "tx_hex": "233030325056455221",
+            "rx_hex": "2330303250534552564f2e4328372e332921",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3193.900285408,
+            "decoded": "SERVO.C(7.3)",
+            "finished_monotonic": 3193.909354678,
+            "after_status": 0
+          },
+          {
+            "id": 2,
+            "offset": 256,
+            "kind": "mode",
+            "tx_hex": "23303032504d4f4421",
+            "rx_hex": "23303032504d4f443121",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3193.912588981,
+            "decoded": 1,
+            "finished_monotonic": 3193.922195437,
+            "after_status": 0
+          },
+          {
+            "id": 2,
+            "offset": 256,
+            "kind": "health",
+            "tx_hex": "ffff0204024801ae",
+            "rx_hex": "ffff02030007f3",
+            "staged_bytes": 8,
+            "queued": true,
+            "started_monotonic": 3193.926876563,
+            "decoded": 7,
+            "finished_monotonic": 3193.934063675,
+            "after_status": 0
+          },
+          {
+            "id": 2,
+            "offset": 256,
+            "kind": "position",
+            "tx_hex": "233030325052414421",
+            "rx_hex": "23303032503135303021",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3193.937316908,
+            "decoded": 1500,
+            "finished_monotonic": 3193.945645981,
+            "after_status": 0
+          }
+        ],
+        "version": "SERVO.C(7.3)",
+        "mode": 1,
+        "health": 7,
+        "position": 1500,
+        "degrees": 135.0,
+        "passed": true
+      },
+      {
+        "axis": 3,
+        "id": 3,
+        "bus": "person",
+        "queries": [
+          {
+            "id": 3,
+            "offset": 256,
+            "kind": "version",
+            "tx_hex": "233030335056455221",
+            "rx_hex": "2330303350534552564f2e4328372e332921",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3193.949442609,
+            "decoded": "SERVO.C(7.3)",
+            "finished_monotonic": 3193.95954374,
+            "after_status": 0
+          },
+          {
+            "id": 3,
+            "offset": 256,
+            "kind": "mode",
+            "tx_hex": "23303033504d4f4421",
+            "rx_hex": "23303033504d4f443121",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3193.965329538,
+            "decoded": 1,
+            "finished_monotonic": 3193.97454788,
+            "after_status": 0
+          },
+          {
+            "id": 3,
+            "offset": 256,
+            "kind": "health",
+            "tx_hex": "ffff0304024801ad",
+            "rx_hex": "ffff03030008f1",
+            "staged_bytes": 8,
+            "queued": true,
+            "started_monotonic": 3193.97755094,
+            "decoded": 8,
+            "finished_monotonic": 3193.984109066,
+            "after_status": 0
+          },
+          {
+            "id": 3,
+            "offset": 256,
+            "kind": "position",
+            "tx_hex": "233030335052414421",
+            "rx_hex": "23303033503134393621",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3193.988065385,
+            "decoded": 1496,
+            "finished_monotonic": 3193.997320058,
+            "after_status": 0
+          }
+        ],
+        "version": "SERVO.C(7.3)",
+        "mode": 1,
+        "health": 8,
+        "position": 1496,
+        "degrees": 134.46,
+        "passed": true
+      },
+      {
+        "axis": 4,
+        "id": 4,
+        "bus": "person",
+        "queries": [
+          {
+            "id": 4,
+            "offset": 256,
+            "kind": "version",
+            "tx_hex": "233030345056455221",
+            "rx_hex": "2330303450534552564f2e4328372e332921",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.000756772,
+            "decoded": "SERVO.C(7.3)",
+            "finished_monotonic": 3194.009748522,
+            "after_status": 0
+          },
+          {
+            "id": 4,
+            "offset": 256,
+            "kind": "mode",
+            "tx_hex": "23303034504d4f4421",
+            "rx_hex": "23303034504d4f443121",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.012932214,
+            "decoded": 1,
+            "finished_monotonic": 3194.022768532,
+            "after_status": 0
+          },
+          {
+            "id": 4,
+            "offset": 256,
+            "kind": "health",
+            "tx_hex": "ffff0404024801ac",
+            "rx_hex": "ffff04030007f1",
+            "staged_bytes": 8,
+            "queued": true,
+            "started_monotonic": 3194.026936384,
+            "decoded": 7,
+            "finished_monotonic": 3194.03357194,
+            "after_status": 0
+          },
+          {
+            "id": 4,
+            "offset": 256,
+            "kind": "position",
+            "tx_hex": "233030345052414421",
+            "rx_hex": "23303034503135303021",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.036724642,
+            "decoded": 1500,
+            "finished_monotonic": 3194.045300438,
+            "after_status": 0
+          }
+        ],
+        "version": "SERVO.C(7.3)",
+        "mode": 1,
+        "health": 7,
+        "position": 1500,
+        "degrees": 135.0,
+        "passed": true
+      },
+      {
+        "axis": 5,
+        "id": 5,
+        "bus": "person",
+        "queries": [
+          {
+            "id": 5,
+            "offset": 256,
+            "kind": "version",
+            "tx_hex": "233030355056455221",
+            "rx_hex": "2330303550534552564f2e4328372e332921",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.048942744,
+            "decoded": "SERVO.C(7.3)",
+            "finished_monotonic": 3194.058867323,
+            "after_status": 0
+          },
+          {
+            "id": 5,
+            "offset": 256,
+            "kind": "mode",
+            "tx_hex": "23303035504d4f4421",
+            "rx_hex": "23303035504d4f443121",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.062754402,
+            "decoded": 1,
+            "finished_monotonic": 3194.071770752,
+            "after_status": 0
+          },
+          {
+            "id": 5,
+            "offset": 256,
+            "kind": "health",
+            "tx_hex": "ffff0504024801ab",
+            "rx_hex": "ffff05030007f0",
+            "staged_bytes": 8,
+            "queued": true,
+            "started_monotonic": 3194.074748762,
+            "decoded": 7,
+            "finished_monotonic": 3194.080691252,
+            "after_status": 0
+          },
+          {
+            "id": 5,
+            "offset": 256,
+            "kind": "position",
+            "tx_hex": "233030355052414421",
+            "rx_hex": "23303035503134393921",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.085293388,
+            "decoded": 1499,
+            "finished_monotonic": 3194.09450984,
+            "after_status": 0
+          }
+        ],
+        "version": "SERVO.C(7.3)",
+        "mode": 1,
+        "health": 7,
+        "position": 1499,
+        "degrees": 134.865,
+        "passed": true
+      },
+      {
+        "axis": 6,
+        "id": 6,
+        "bus": "person",
+        "queries": [
+          {
+            "id": 6,
+            "offset": 256,
+            "kind": "version",
+            "tx_hex": "233030365056455221",
+            "rx_hex": "2330303650534552564f2e4328372e332921",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.097995455,
+            "decoded": "SERVO.C(7.3)",
+            "finished_monotonic": 3194.107265277,
+            "after_status": 0
+          },
+          {
+            "id": 6,
+            "offset": 256,
+            "kind": "mode",
+            "tx_hex": "23303036504d4f4421",
+            "rx_hex": "23303036504d4f443121",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.110286758,
+            "decoded": 1,
+            "finished_monotonic": 3194.118273107,
+            "after_status": 0
+          },
+          {
+            "id": 6,
+            "offset": 256,
+            "kind": "health",
+            "tx_hex": "ffff0604024801aa",
+            "rx_hex": "ffff06030007ef",
+            "staged_bytes": 8,
+            "queued": true,
+            "started_monotonic": 3194.122250757,
+            "decoded": 7,
+            "finished_monotonic": 3194.129764182,
+            "after_status": 0
+          },
+          {
+            "id": 6,
+            "offset": 256,
+            "kind": "position",
+            "tx_hex": "233030365052414421",
+            "rx_hex": "23303036503135303021",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.133166906,
+            "decoded": 1500,
+            "finished_monotonic": 3194.163617961,
+            "after_status": 0
+          }
+        ],
+        "version": "SERVO.C(7.3)",
+        "mode": 1,
+        "health": 7,
+        "position": 1500,
+        "degrees": 135.0,
+        "passed": true
+      },
+      {
+        "axis": 7,
+        "id": 7,
+        "bus": "tiger",
+        "queries": [
+          {
+            "id": 7,
+            "offset": 512,
+            "kind": "version",
+            "tx_hex": "233030375056455221",
+            "rx_hex": "2330303750534552564f2e4328372e332921",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.167269657,
+            "decoded": "SERVO.C(7.3)",
+            "finished_monotonic": 3194.176114076,
+            "after_status": 0
+          },
+          {
+            "id": 7,
+            "offset": 512,
+            "kind": "mode",
+            "tx_hex": "23303037504d4f4421",
+            "rx_hex": "23303037504d4f443121",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.179146206,
+            "decoded": 1,
+            "finished_monotonic": 3194.188103096,
+            "after_status": 0
+          },
+          {
+            "id": 7,
+            "offset": 512,
+            "kind": "health",
+            "tx_hex": "ffff0704024801a9",
+            "rx_hex": "ffff07030008ed",
+            "staged_bytes": 8,
+            "queued": true,
+            "started_monotonic": 3194.191940704,
+            "decoded": 8,
+            "finished_monotonic": 3194.199420349,
+            "after_status": 0
+          },
+          {
+            "id": 7,
+            "offset": 512,
+            "kind": "position",
+            "tx_hex": "233030375052414421",
+            "rx_hex": "23303037503135303321",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.202771382,
+            "decoded": 1503,
+            "finished_monotonic": 3194.211264827,
+            "after_status": 0
+          }
+        ],
+        "version": "SERVO.C(7.3)",
+        "mode": 1,
+        "health": 8,
+        "position": 1503,
+        "degrees": 135.405,
+        "passed": true
+      },
+      {
+        "axis": 8,
+        "id": 8,
+        "bus": "tiger",
+        "queries": [
+          {
+            "id": 8,
+            "offset": 512,
+            "kind": "version",
+            "tx_hex": "233030385056455221",
+            "rx_hex": "2330303850534552564f2e4328372e332921",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.215472819,
+            "decoded": "SERVO.C(7.3)",
+            "finished_monotonic": 3194.225468079,
+            "after_status": 0
+          },
+          {
+            "id": 8,
+            "offset": 512,
+            "kind": "mode",
+            "tx_hex": "23303038504d4f4421",
+            "rx_hex": "23303038504d4f443121",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.22956414,
+            "decoded": 1,
+            "finished_monotonic": 3194.238220937,
+            "after_status": 0
+          },
+          {
+            "id": 8,
+            "offset": 512,
+            "kind": "health",
+            "tx_hex": "ffff0804024801a8",
+            "rx_hex": "ffff08030007ed",
+            "staged_bytes": 8,
+            "queued": true,
+            "started_monotonic": 3194.241278207,
+            "decoded": 7,
+            "finished_monotonic": 3194.247252857,
+            "after_status": 0
+          },
+          {
+            "id": 8,
+            "offset": 512,
+            "kind": "position",
+            "tx_hex": "233030385052414421",
+            "rx_hex": "23303038503134393921",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.251006285,
+            "decoded": 1499,
+            "finished_monotonic": 3194.261100276,
+            "after_status": 0
+          }
+        ],
+        "version": "SERVO.C(7.3)",
+        "mode": 1,
+        "health": 7,
+        "position": 1499,
+        "degrees": 134.865,
+        "passed": true
+      },
+      {
+        "axis": 9,
+        "id": 9,
+        "bus": "tiger",
+        "queries": [
+          {
+            "id": 9,
+            "offset": 512,
+            "kind": "version",
+            "tx_hex": "233030395056455221",
+            "rx_hex": "2330303950534552564f2e4328372e332921",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.264834083,
+            "decoded": "SERVO.C(7.3)",
+            "finished_monotonic": 3194.273998635,
+            "after_status": 0
+          },
+          {
+            "id": 9,
+            "offset": 512,
+            "kind": "mode",
+            "tx_hex": "23303039504d4f4421",
+            "rx_hex": "23303039504d4f443121",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.277007155,
+            "decoded": 1,
+            "finished_monotonic": 3194.286036765,
+            "after_status": 0
+          },
+          {
+            "id": 9,
+            "offset": 512,
+            "kind": "health",
+            "tx_hex": "ffff0904024801a7",
+            "rx_hex": "ffff09030007ec",
+            "staged_bytes": 8,
+            "queued": true,
+            "started_monotonic": 3194.289826163,
+            "decoded": 7,
+            "finished_monotonic": 3194.297072945,
+            "after_status": 0
+          },
+          {
+            "id": 9,
+            "offset": 512,
+            "kind": "position",
+            "tx_hex": "233030395052414421",
+            "rx_hex": "23303039503135303021",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.30053699,
+            "decoded": 1500,
+            "finished_monotonic": 3194.308451219,
+            "after_status": 0
+          }
+        ],
+        "version": "SERVO.C(7.3)",
+        "mode": 1,
+        "health": 7,
+        "position": 1500,
+        "degrees": 135.0,
+        "passed": true
+      },
+      {
+        "axis": 10,
+        "id": 10,
+        "bus": "tiger",
+        "queries": [
+          {
+            "id": 10,
+            "offset": 512,
+            "kind": "version",
+            "tx_hex": "233031305056455221",
+            "rx_hex": "2330313050534552564f2e4328372e332921",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.31151011,
+            "decoded": "SERVO.C(7.3)",
+            "finished_monotonic": 3194.320424579,
+            "after_status": 0
+          },
+          {
+            "id": 10,
+            "offset": 512,
+            "kind": "mode",
+            "tx_hex": "23303130504d4f4421",
+            "rx_hex": "23303130504d4f443121",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.32453819,
+            "decoded": 1,
+            "finished_monotonic": 3194.335196397,
+            "after_status": 0
+          },
+          {
+            "id": 10,
+            "offset": 512,
+            "kind": "health",
+            "tx_hex": "ffff0a04024801a6",
+            "rx_hex": "ffff0a030008ea",
+            "staged_bytes": 8,
+            "queued": true,
+            "started_monotonic": 3194.338370398,
+            "decoded": 8,
+            "finished_monotonic": 3194.34453459,
+            "after_status": 0
+          },
+          {
+            "id": 10,
+            "offset": 512,
+            "kind": "position",
+            "tx_hex": "233031305052414421",
+            "rx_hex": "23303130503134393521",
+            "staged_bytes": 9,
+            "queued": true,
+            "started_monotonic": 3194.347857843,
+            "decoded": 1495,
+            "finished_monotonic": 3194.356820043,
+            "after_status": 0
+          }
+        ],
+        "version": "SERVO.C(7.3)",
+        "mode": 1,
+        "health": 8,
+        "position": 1495,
+        "degrees": 134.325,
+        "passed": true
+      }
+    ],
+    "after": {
+      "identity": "0x42533130",
+      "faults": 0,
+      "lease": 0,
+      "person": 0,
+      "tiger": 0
+    },
+    "aborted": false,
+    "protected_hashes": {
+      "/run/shadow-pwm-motion-inhibit": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+      "/run/shadow-bus-servo-loaded.json": "ee2524e823d8462d74236accec384f5541bcbecda6864dd5189921a7f759070f",
+      "/run/shadow-bus-servo-load-attempt.json": "798d22bb352857b31e1b3207f9acff4e50592e01fcd328d623bd57795e1a97c8",
+      "/run/media/mmcblk0p1/BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "/run/media/mmcblk0p1/image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "/run/media/mmcblk0p1/boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "/run/media/mmcblk0p1/uEnv.txt": "5bbdd36113c2cdb785b75b799a83815fc82dfa3f7ea5315ea67c505373871988"
+    },
+    "motion_commands": 0,
+    "release_commands": 0,
+    "configuration_writes": 0,
+    "retries": 0
+  },
+  "gui_worker": {
+    "elapsed_s": 2.610000000000582,
+    "feedback_frames": 8,
+    "error": null,
+    "worker_exited": true,
+    "operations": [
+      "hello",
+      "status",
+      "probe",
+      "read",
+      "status",
+      "read",
+      "read",
+      "read",
+      "status",
+      "read",
+      "read",
+      "read",
+      "quit"
+    ],
+    "first_feedback": {
+      "1": {
+        "p": 1500,
+        "at": 3391.102129622
+      },
+      "2": {
+        "p": 1500,
+        "at": 3391.110070971
+      },
+      "3": {
+        "p": 1496,
+        "at": 3391.118099921
+      },
+      "4": {
+        "p": 1500,
+        "at": 3391.126367884
+      },
+      "5": {
+        "p": 1499,
+        "at": 3391.133893759
+      },
+      "6": {
+        "p": 1500,
+        "at": 3391.141075471
+      },
+      "7": {
+        "p": 1503,
+        "at": 3391.102637227
+      },
+      "8": {
+        "p": 1499,
+        "at": 3391.110663537
+      },
+      "9": {
+        "p": 1500,
+        "at": 3391.119573656
+      },
+      "10": {
+        "p": 1495,
+        "at": 3391.127632877
+      }
+    },
+    "last_feedback": {
+      "1": {
+        "p": 1500,
+        "at": 3392.406511885
+      },
+      "2": {
+        "p": 1500,
+        "at": 3392.414273503
+      },
+      "3": {
+        "p": 1496,
+        "at": 3392.422140781
+      },
+      "4": {
+        "p": 1500,
+        "at": 3392.430628796
+      },
+      "5": {
+        "p": 1499,
+        "at": 3392.438880049
+      },
+      "6": {
+        "p": 1500,
+        "at": 3392.446879869
+      },
+      "7": {
+        "p": 1503,
+        "at": 3392.407690267
+      },
+      "8": {
+        "p": 1499,
+        "at": 3392.415880169
+      },
+      "9": {
+        "p": 1500,
+        "at": 3392.424438024
+      },
+      "10": {
+        "p": 1495,
+        "at": 3392.432787498
+      }
+    },
+    "servo_query_transactions": 180
+  },
+  "operator_result": "用户重连COM17、全选并重新检测后，确认十台都显示实际角度了",
+  "first_failure_cause": "not reproduced; failure-latched session is cleared by explicit reconnect and probe",
+  "no_hardware_change": true,
+  "no_firmware_change": true,
+  "no_production_code_change": true,
+  "actual_motion_or_release_tested": false,
+  "automatic_retries": 0,
+  "total_read_query_transactions": 220,
+  "port": "COM17",
+  "agent_released_port": true,
+  "user_gui_connected_after_diagnostic": true,
+  "evidence": {
+    "check_guard.py": "fc11a914e411b92ff4aa50b25afadd0ab0047dbd6a2cc354095793ea399e92e2",
+    "check_worker.py": "fbdd24aabc9851340becf129ef1d2934cb1a520618e68145c061771c33b4d436",
+    "feedback.log": "690d02a5d605e723b8aa3d903f44e6bc16cbdbd6b3045163f8535ccc14ff3136",
+    "feedback_once.py": "85c54c59f0de4a25452a27ab5c142a146621c00933fd2c18f5e5dbf26ff7731d",
+    "preflight.log": "06998b991cef928da640bade13440cd99707f19921d37db99ca5ec9a1e2eb635",
+    "summarize.py": "3c3e3cf3657acebc0aed9b91dc17eb8bcfd79fc1e07e2355700bea699e8532d3",
+    "worker-attempt.json": "6361778db8e0216980d45a151fbf0a8fdff0424f6c8ffa604307789dea56cdc1",
+    "worker-result.json": "ded8caab3fca80a527ec86770082f8ca286f9fbf4f0de850738e0ebfe1d237a0"
+  },
+  "readiness_fields_unchanged": {
+    "hardware_verified": false,
+    "mechanical_limits_verified": false
+  }
+}

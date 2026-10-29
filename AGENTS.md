@@ -1,5 +1,14 @@
 # 项目协作与 Git 备份规则
 
+## 2026-10-29 双总线十台反馈通过，用户上位机已恢复
+
+- 用户说明官方USB串口转接板可正常读取，确认上位机已断开、舵机外接电源开启。新读仍同启动f589ca82…/BS10，原9口person、原10口tiger状态0，faults/lease0，配置ID1～10及电气确认正确。
+- 一次性逐台VER/MOD/health/RAD共40条全部回包，原始TX/RX独立重解码通过；十台SERVO.C(7.3)、MOD1，PRAD依次1500/1500/1496/1500/1499/1500/1503/1499/1500/1495，按候选270°换算约134.325～135.405°。状态7/8不当作保护故障或已卸力的证明。
+- 再走真实GUI Worker→Session→RemoteDevice→RPC，一次probe加7次read、8帧完整反馈、2.610秒通过，共180条只读舵机查询；收到servos_ready，无error/unavailable。合计220条读取事务，无运动/卸力/改ID/租约/停止广播/故障清除/自动重试。低层发送保护40种计划离线检查通过。
+- 助手释放COM17后，用户重新连接、全选并检测，明确“十台都显示实际角度了”。最初失败未复现、具体触发原因未确定；旧会话失败状态需显式重连检测，不把当前通过说成已证明旧故障根因。生产源码、配置、FPGA、SD启动文件未改。
+- 原25项包及新控制入口校验通过，加载/尝试标记、事故锁、四启动文件摘要不变；板端新`bus-servo-dual-console-v1/FEEDBACK_A_ATTEMPT_20261029.jsonl`已消耗保留。当前用户GUI已重新占用COM17，勿再抢占；执行器最后确认上电。hardware/mechanical字段不变，通信通过不等于机械/运动验收。
+- 记录`shadow_play/config/bus_servo_dual_feedback_20261029.json`与同名docs；证据`.review_work/bus-servo-dual-feedback-20261029/`。不再沿用十口RX0或双总线未取得反馈作为当前结论；没有原生窗口自动操作，界面验收来自用户报告。
+
 ## 2026-10-29 当前双总线电气确认已同步，真实板端连接通过
 
 - 用户针对当前双总线兼容性弹窗明确“我已经完成了”。按本次用户报告将当前profile的electrical_3v3_verified设true并记录source/date/layout，未提供测量值；不要求重复测试。hardware/mechanical仍false，运动权限不变，不能继续用下节历史三false否认本次确认。
