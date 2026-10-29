@@ -64,6 +64,8 @@ def validate_project(data, profile):
     if data.get('schema') != PROJECT_SCHEMA or data.get('profile_sha256') != profile.fingerprint:
         raise ValueError('编辑工程与当前轴配置不匹配。')
     profile.select(data['selected'])
+    if type(data.get('playback_speed_limit_enabled',True)) is not bool:
+        raise ValueError('Playback speed limit setting must be boolean')
     sources, segments = data['sources'], data['segments']
     if not isinstance(sources, dict) or not isinstance(segments, list) or len(sources) > 1000 or len(segments) > 1000:
         raise ValueError('单个工程最多1000个原始素材/片段。')
@@ -106,7 +108,8 @@ class EditProject:
         self.profile = profile
         self.data = copy.deepcopy(data) if data is not None else {
             'schema': PROJECT_SCHEMA, 'created_utc': utc(), 'profile_sha256': profile.fingerprint,
-            'selected': list(numbers or []), 'sources': {}, 'segments': []}
+            'selected': list(numbers or []), 'sources': {}, 'segments': [],
+            'playback_speed_limit_enabled': profile.data.get('playback_speed_limit_enabled',True)}
         validate_project(self.data, profile)
         self.undo_stack, self.redo_stack = [], []
 
@@ -236,10 +239,12 @@ def compile_project(data, profile):
     if not data['segments']:
         raise ValueError('请先录入姿势或导入轨迹。')
     axes = profile.select(data['selected']); samples = []; clock_ms = 0; summaries = []
+    # Old saved projects retain their original compilation/verification rules.
+    speed_limited = data.get('playback_speed_limit_enabled',True)
     def append(target, seconds, kind, extend=False):
         nonlocal clock_ms
         before = samples[-1]['positions']
-        required = max(abs(a.degrees(target[str(a.number)])-a.degrees(before[str(a.number)]))/a.max_speed for a in axes)
+        required = max(abs(a.degrees(target[str(a.number)])-a.degrees(before[str(a.number)]))/a.max_speed for a in axes) if speed_limited else 0
         total = max(seconds, required) if extend else seconds
         if total <= 1e-9 and target == before:
             return 0
@@ -249,7 +254,7 @@ def compile_project(data, profile):
         for step in range(1, count+1):
             p = {k: round(v+(target[k]-v)*step/count) for k, v in before.items()}
             prev = samples[-1]['positions']
-            minimum = max(abs(a.degrees(p[str(a.number)])-a.degrees(prev[str(a.number)]))/a.max_speed for a in axes)
+            minimum = max(abs(a.degrees(p[str(a.number)])-a.degrees(prev[str(a.number)]))/a.max_speed for a in axes) if speed_limited else 0
             dt = max(.02, total/count)
             if extend: dt = max(dt, minimum)
             ms = max(20, math.ceil(dt*1000-1e-8))

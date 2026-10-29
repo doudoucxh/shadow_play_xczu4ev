@@ -62,7 +62,9 @@ class ProtocolTests(unittest.TestCase):
 
 
 class ModelTests(unittest.TestCase):
-    def setUp(self):self.profile=Profile.load(PROFILE)
+    def setUp(self):
+        self.profile=Profile.load(PROFILE)
+        self.profile.data['playback_speed_limit_enabled']=True
 
     def test_mapping_roundtrip_and_duplicate_id(self):
         self.assertEqual(self.profile.axes[6].bus,'person')

@@ -159,6 +159,11 @@ class TeachingSession:
             raise RuntimeError('请先结束录制/回放。')
         if getattr(self.device, 'adaptive_playback', True) is not True:
             raise PlaybackRejected('板端需要更新回放时长适配服务，请更新后重连；尚未发送回放目标。')
+        self.continuous_playback = (not self.device.simulation and
+                                   self.profile.data.get('playback_speed_limit_enabled', True) is False)
+        if self.continuous_playback and (getattr(self.device,'continuous_playback',False) is not True or
+                                         getattr(self.device,'playback_speed_limit_enabled',True) is not False):
+            raise PlaybackRejected('板端尚未更新连续回放和取消回放限速设置，请更新并重开上位机；未发送目标。')
         try:
             validate_recording(record, self.profile, live=not self.device.simulation)
             plan = playback_plan(record, self.profile, numbers, speed)
@@ -177,6 +182,8 @@ class TeachingSession:
         self.segment_started = self.play_start
         self.segment_duration_ms = 0
         self.playing = True
+        if self.continuous_playback:
+            self.next_poll = self.clock()+.3
 
     def playback_elapsed(self):
         """Progress within accepted commands; never advance into an unsent one."""
@@ -194,18 +201,29 @@ class TeachingSession:
         # One blocking RPC per tick gives Stop a chance between requests.
         # move() acknowledges after board-side validation and all selected
         # targets have been sent. Give the last axis its full arrival time.
-        if now + 1e-9 >= self.play_due:
+        # In continuous mode a single successor is submitted early. The board
+        # reads feedback while the current segment runs and gates its send.
+        lead = .22 if self.continuous_playback and self.index < len(self.plan) else 0
+        if now + lead + 1e-9 >= self.play_due:
             if self.index < len(self.plan):
                 _, targets, duration = self.plan[self.index]
-                move = getattr(self.device, 'playback_move', self.device.move)
-                result = move(targets, duration)
+                if self.continuous_playback:
+                    result = self.device.playback_step(targets,duration,first=self.index==0)
+                    rows = result['positions']
+                    self.validate_feedback(self.play_numbers,rows)
+                    self.last_feedback.update(rows)
+                else:
+                    move = getattr(self.device, 'playback_move', self.device.move)
+                    result = move(targets, duration)
                 from .protocol import integer
                 self.segment_duration_ms = integer(
                     result['duration_ms'] if isinstance(result, dict) else duration,
                     duration, 9999, 'Acknowledged duration')
-                self.segment_started = self.clock()
+                self.segment_started = self.clock()-(result['dispatch_age_s'] if self.continuous_playback else 0)
                 self.play_due = self.segment_started + self.segment_duration_ms/1000
                 self.index += 1
+                if self.continuous_playback:
+                    self.next_poll = self.clock()+.3
             else:
                 rows = self.read(self.play_numbers)
                 final = self.plan[-1][1]
@@ -216,10 +234,10 @@ class TeachingSession:
                 self.playing = False
                 finished = True
                 self.next_poll = self.clock() + .15
-        elif now >= self.next_poll:
+        elif now >= self.next_poll and (not self.continuous_playback or self.play_due-now > .4):
             rows = self.read(self.play_numbers)
             self.next_poll = self.clock() + .15
-        elif not self.device.simulation and now >= self.next_board_poll:
+        elif not self.device.simulation and not self.continuous_playback and now >= self.next_board_poll:
             self.device.board_status()
             self.next_board_poll = self.clock() + .5
         if self.clock()-now > PLAYBACK_STALL_S:

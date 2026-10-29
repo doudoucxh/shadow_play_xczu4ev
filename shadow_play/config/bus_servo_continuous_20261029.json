@@ -1,0 +1,168 @@
+{
+  "schema": "shadow.bus-continuous-playback.v1",
+  "date": "2026-10-29",
+  "request": {
+    "source_file": "D:\\Desktop\\第一部分_190653.json",
+    "user_speed_instruction": "现在就不要限制速度了，这个硬件已经没问题了",
+    "host_stop_save_disconnect_close_confirmed": true
+  },
+  "diagnosis": {
+    "frames": 107,
+    "requested_sample_hz": 20,
+    "measured_sample_hz": 6.6119254179255,
+    "source_duration_s": 16.03163878900159,
+    "old_30deg_limit_plan_s": 25.18,
+    "old_retimed_segments": 45,
+    "peak_measured_axis_speed_deg_s": 166.64034883645763,
+    "gap_cause": "Old scheduler read feedback after arrival and added request/ACK time to every segment."
+  },
+  "changes": {
+    "playback_speed_limit_enabled": false,
+    "manual_angles_and_slow_first_frame_checks_retained": true,
+    "angle_limits_retained": [
+      10,
+      260
+    ],
+    "profile_fingerprint_unchanged": true,
+    "continuous_capability": "continuous-playback-v1",
+    "one_inflight_successor": true,
+    "pc_submit_lead_s": 0.22,
+    "board_max_wait_s": 0.35,
+    "pre_dispatch_timeout_s": 0.65,
+    "feedback_max_age_s": 0.5,
+    "timestamp_source": "board start-to-start cadence; UART axes still sequential",
+    "no_auto_retry_or_full_trajectory_autorun": true,
+    "new_edit_projects_use_current_policy_old_projects_retain_compilation": true
+  },
+  "offline_simulation": {
+    "source_sha256": "2554f0c2fbaad8a7697226119f9c665df4b6803e30e38eb1190efcef6cc5f4d1",
+    "source_duration_s": 16.03163878900159,
+    "plan_duration_s": 16.032,
+    "simulated_elapsed_s": 16.22600000000002,
+    "commands": 106,
+    "max_gap_s": 1.6653345369377348e-15,
+    "read_latency_s": 0.045,
+    "host_request_latency_s": 0.017,
+    "host_ack_latency_s": 0.035,
+    "tx_latency_s": 0.01,
+    "physical_replay": false,
+    "old_limited_plan_s": 25.18
+  },
+  "deployment": {
+    "boot_id": "f589ca82-29b6-48a1-90f8-60fb6193101f",
+    "manifest_sha256": "1aedda0ea288e0fdb2e6a700136c618f054f87c81351d642417f4f9eed905966",
+    "files": {
+      "bus_servo.json": "1d571d453409f43f26ba2712fffc67df5d5cde33d4a2914913ca8f8a39b28008",
+      "service.py": "804654dff384995ed1c93d31831a3e3d822a5997d9642c14043b6624832eff23",
+      "protocol.py": "a8b14147290b33a953eebc303a05af7e3498f6e277649799aed6b6280b33ab79",
+      "start_console.sh": "bf329e4926fed217b488aaa8f683237e2b80a8c91dc31910e6d28c3e291a34f2"
+    },
+    "backup": "/run/media/mmcblk0p2/piying/bus-servo-dual-console-v1/backups/continuous-playback-20261029",
+    "previous_files": {
+      "bus_servo.json": "c04f50616a6f31698bd085c07e2a7cca3d7997dcca4ee4f5182c8a00b4de2c3e",
+      "service.py": "46a1090487eff637dfba6c867481892c56b2139102825f8208a33acd09ef1717",
+      "protocol.py": "a8b14147290b33a953eebc303a05af7e3498f6e277649799aed6b6280b33ab79",
+      "start_console.sh": "a5652cdf52fc6d1df764d83ed314e047119e367c2921c6072508f985b9ed4e8e",
+      "MANIFEST.json": "bc209b8e0dfd95e45739f367eea16224bd77073649304a905a234460d97e6355"
+    },
+    "protected_hashes": {
+      "/run/media/mmcblk0p1/BOOT.BIN": "32dd1cd32f9675a4c9acaafe330f8e7a7853f1766637a117cf2b57bd536fe55f",
+      "/run/media/mmcblk0p1/image.ub": "0405950d4896f2b9f549ba03664d9fc746ff1c1150ae8aca608cc950c6727dcc",
+      "/run/media/mmcblk0p1/boot.scr": "9ada4d88212468c12d2710b0fae35df42c4c72134bafa82b2ae5aca82570a7f1",
+      "/run/media/mmcblk0p1/uEnv.txt": "5bbdd36113c2cdb785b75b799a83815fc82dfa3f7ea5315ea67c505373871988",
+      "/run/media/mmcblk0p1/image-bus-20261029.ub": "bfa925cb2175d40e448f7d971922acb43ad55cf9acf3102ba44c36cb8ad22fcb",
+      "/run/media/mmcblk0p2/piying/boot-bus-20261029/launch.py": "55b2c4b2ed2133be3c81a911c473459b8c17ba93424e722f979f80ee3247ba09",
+      "/run/shadow-pwm-motion-inhibit": "643e58a534c97f5e3b799285fa78afef9d820b93274795de7d79db55ccc12bd3",
+      "/run/shadow-bus-servo-loaded.json": "ee2524e823d8462d74236accec384f5541bcbecda6864dd5189921a7f759070f",
+      "/run/shadow-bus-servo-load-attempt.json": "798d22bb352857b31e1b3207f9acff4e50592e01fcd328d623bd57795e1a97c8",
+      "/run/media/mmcblk0p2/piying/bus-servo-dual-console-v1/FEEDBACK_A_RESULT_20261029.json": "3adc586ce47c32fc005979c30b06ebfa08fa4183e2c60e5d919c6684e3b98029",
+      "/run/media/mmcblk0p2/piying/bus-servo-dual-console-v1/FEEDBACK_LOSS_B_RESULT_20261029.json": "faddbd0f817c17a1e88511570d77b303b50ca3d6f4aa1d4af1459aa866370a90",
+      "/run/media/mmcblk0p2/piying/bus-servo-dual-console-v1/FEEDBACK_A_ATTEMPT_20261029.jsonl": "14cf904a6fd56c354ebecf61d4be40b48faff5f8cc2ad5c9c13143a10b9ab0ec",
+      "/run/media/mmcblk0p2/piying/bus-servo-dual-console-v1/FEEDBACK_LOSS_B_ATTEMPT_20261029.jsonl": "ed71529c81696dfcc039be9a7ea2afd3f577fae23700cbb7c1efe80db451284d"
+    },
+    "state": {
+      "0": 1112748336,
+      "8": 0,
+      "16": 0,
+      "256": 0,
+      "512": 0
+    },
+    "servo_packets_sent": 0,
+    "fpga_reloaded": false
+  },
+  "verification": {
+    "offline_tests_passed": 181,
+    "real_gui_feedback_frames": 8,
+    "real_gui_test_elapsed_s": 2.3910000000032596,
+    "read_rpc_seconds": {
+      "min": 0.0779999999977008,
+      "median": 0.09399999999732245,
+      "max": 0.09400000000096043
+    },
+    "real_replay_executed": false,
+    "servo_read_transactions": 180,
+    "motion_release_or_play_step_requests": 0,
+    "fpga_reload": false,
+    "serial_released": true,
+    "final": {
+      "boot": "f589ca82-29b6-48a1-90f8-60fb6193101f",
+      "marker_sha": "ee2524e823d8462d74236accec384f5541bcbecda6864dd5189921a7f759070f",
+      "console_sha": "1aedda0ea288e0fdb2e6a700136c618f054f87c81351d642417f4f9eed905966",
+      "state": {
+        "0": 1112748336,
+        "4": 1,
+        "8": 0,
+        "16": 0,
+        "24": 100000000,
+        "28": 115200,
+        "256": 0,
+        "512": 0
+      },
+      "buses": {
+        "person": {
+          "raw": 0,
+          "busy": false,
+          "rx_count": 0,
+          "errors": 0
+        },
+        "tiger": {
+          "raw": 0,
+          "busy": false,
+          "rx_count": 0,
+          "errors": 0
+        }
+      },
+      "servo_packets": 0
+    },
+    "gui": {
+      "pid": 7208,
+      "responding": true,
+      "default_offline": true,
+      "no_automatic_connect_or_play": true
+    },
+    "guide_pages": 12,
+    "rendered_review_pages": [
+      4,
+      5,
+      6,
+      7,
+      9,
+      10,
+      11
+    ]
+  },
+  "evidence_directory": ".review_work/bus-servo-continuous-20261029",
+  "evidence_sha256": {
+    "preflight.log": "4bc936d9167e76a3c8664926ae3c1ef8b6fb0d7447d9b90b8dd53268654b72c5",
+    "record-simulation.json": "6b18fce046f8629c7914dfe540a3afc73e4b6fd48e31c196ceab0accee35c76e",
+    "install.py": "632ef954f70ef72ef64a023a3b1bea5e2d42d82090f0f67ea3bfa0ac50cf17f2",
+    "install.log": "0b8b5b3af6a3baf231eceb7a33deb0d8a0291e1854547799ae886fc4061ebbfd",
+    "worker-result.json": "8947d122cd601cd6d982b81f2617e6e17b02d6a9b4dc08a2406893d547265405",
+    "final.log": "b1c2ec123c1051cf973a05e4502e2de02d5d46bff1e646debf0cb78ce53319a6"
+  },
+  "limitations": [
+    "Actual physical replay duration and motion smoothness remain to be observed by the user.",
+    "The supplied recording contains about 6.6 measured frames per second, not the requested 20.",
+    "20..9999ms command duration bounds and firmware/mechanical tracking capability still apply; no claim of hardware-synchronous multi-axis start."
+  ]
+}

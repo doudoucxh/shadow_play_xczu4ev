@@ -17,7 +17,9 @@ PROFILE = Path(__file__).resolve().parents[1]/'config/bus_servo.json'
 
 
 class PlaybackNoiseTests(unittest.TestCase):
-    def setUp(self):self.profile=Profile.load(PROFILE)
+    def setUp(self):
+        self.profile=Profile.load(PROFILE)
+        self.profile.data['playback_speed_limit_enabled']=True
 
     def record(self, positions, interval=.02):
         record=new_recording(self.profile,[1,7],True,20)

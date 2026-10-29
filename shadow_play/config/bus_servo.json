@@ -127,5 +127,12 @@
       "max_deg": 260,
       "max_speed_deg_s": 30
     }
-  ]
+  ],
+  "playback_speed_limit_enabled": false,
+  "playback_speed_verification": {
+    "source": "user_report",
+    "date": "2026-10-29",
+    "statement": "现在就不要限制速度了，这个硬件已经没问题了",
+    "scope": "Replay recorded timing without the former 30 deg/s software cap; keep separate slow first-frame preparation and angle bounds."
+  }
 }

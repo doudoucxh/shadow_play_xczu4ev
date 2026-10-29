@@ -80,6 +80,8 @@ class Profile:
             raise ValueError('Package pins do not match the selected wiring layout')
         if data.get('baudrate') != 115200:
             raise ValueError('This FPGA build supports 115200 baud')
+        if type(data.get('playback_speed_limit_enabled', True)) is not bool:
+            raise ValueError('Playback speed limit setting must be boolean')
 
     @classmethod
     def load(cls, path):
@@ -179,6 +181,7 @@ def playback_plan(record, profile, numbers, speed):
     speed = finite(speed, .1, 2, 'Playback speed')
     samples = record['samples']
     plan = PlaybackPlan()
+    plan.speed_limited = profile.data.get('playback_speed_limit_enabled', True)
     held = {str(a.number): samples[0]['positions'][str(a.number)] for a in axes}
     elapsed_ms = 0
     for previous, current in zip(samples, samples[1:]):
@@ -198,11 +201,14 @@ def playback_plan(record, profile, numbers, speed):
                 target = held[key]
                 change = 0
             targets[key] = target
-            required = max(required, change/a.max_speed)
-        duration_ms = max(20, round(dt*1000), math.ceil(required*1000-1e-8))
+            if plan.speed_limited:
+                required = max(required, change/a.max_speed)
+        requested_ms = (round((current['t']-samples[0]['t'])/speed*1000) -
+                        round((previous['t']-samples[0]['t'])/speed*1000)) if not plan.speed_limited else round(dt*1000)
+        duration_ms = max(20, requested_ms, math.ceil(required*1000-1e-8))
         if duration_ms > 9999:
             raise ValueError('该段位移在当前限速下需要超过9.999秒，请在编辑器增加中间姿势。')
-        plan.retimed_intervals += duration_ms > round(dt*1000)
+        plan.retimed_intervals += duration_ms > requested_ms
         plan.append((elapsed_ms/1000, targets, duration_ms))
         elapsed_ms += duration_ms
         plan.playback_times.append(elapsed_ms/1000)

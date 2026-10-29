@@ -561,7 +561,7 @@ class App:
             estimate='' if p['state']=='completed' else '预计 '
             self.timeline_text.set(f'{labels[p["state"]]}  {format_time(p["elapsed_s"])} / {estimate}{format_time(p["duration_s"])}'
                                    f'  ·  {p["fraction"]*100:.0f}%  ·  预计剩余 {format_time(p["duration_s"]-p["elapsed_s"])}')
-            adjusted='（快段已放慢）' if p.get('retimed_intervals') else ''
+            adjusted=('（快段已放慢）' if p.get('retimed_intervals') else '') if p.get('speed_limited',True) else '（按录制时间）'
             self.timeline_source.set(f'{p["speed"]:g}×{adjusted}  ·  轨迹 {format_time(p["source_s"])} / {format_time(p["source_duration_s"])}')
             segment=p['segment']
             delay=p.get('communication_delay_s',0)
@@ -697,7 +697,8 @@ class App:
                 elif kind=='playing':
                     self.playing=True;self.show_progress(value)
                     adjusted=f'其中 {value["retimed_intervals"]} 段已自动放慢；' if value.get('retimed_intervals') else ''
-                    self.status.set('正在回放所选轴，小于等于0.5°的微小抖动已忽略；'+adjusted+'播放时间随通信耗时顺延，Esc停止。')
+                    timing='按录制时间连续回放，30°/秒回放限制已取消；' if not value.get('speed_limited',True) else '播放时间随通信耗时顺延；'
+                    self.status.set('正在回放所选轴，小于等于0.5°的微小抖动已忽略；'+adjusted+timing+'Esc停止。')
                 elif kind=='playback_rejected':
                     self.status.set('回放未开始：'+value+' 板子连接保留。')
                 elif kind=='playback_progress':self.show_progress(value)

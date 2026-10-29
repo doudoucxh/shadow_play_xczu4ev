@@ -39,6 +39,7 @@ class DelayedDevice:
 class SchedulingTests(unittest.TestCase):
     def setUp(self):
         self.profile=Profile.load(PROFILE);self.now=[10.0]
+        self.profile.data['playback_speed_limit_enabled']=True  # Legacy ACK scheduler fixture.
         self.time_patch=patch('shadow_play.bus_servo.device.time.monotonic',side_effect=lambda:self.now[0])
         self.time_patch.start()
         self.device=DelayedDevice(self.profile,self.now)

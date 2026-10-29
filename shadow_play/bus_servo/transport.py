@@ -3,7 +3,7 @@ import json
 import re
 import time
 
-from .service import PREFIX, BOARD_ONLY, SELECTED_RELEASE, ADAPTIVE_PLAYBACK
+from .service import PREFIX, BOARD_ONLY, SELECTED_RELEASE, ADAPTIVE_PLAYBACK, CONTINUOUS_PLAYBACK
 from .protocol import ServoUnavailable, integer
 
 
@@ -87,7 +87,10 @@ class RemoteDevice:
     def _receive(self, deadline, *, startup=False):
         startup_output = b''
         while time.monotonic() < deadline:
-            chunk = self.port.read(4096)
+            # Return complete replies promptly; read(4096) waits for its 20ms
+            # timeout on every short response even when the full ACK is ready.
+            waiting = getattr(self.port, 'in_waiting', 0)
+            chunk = self.port.read(min(4096, max(1, waiting)))
             self.buffer += chunk
             if startup:
                 startup_output += chunk
@@ -143,6 +146,10 @@ class RemoteDevice:
         self.adaptive_playback = (ADAPTIVE_PLAYBACK in self.capabilities and
                                  ADAPTIVE_PLAYBACK in result.get('capabilities', []))
         self.release_allowed = SELECTED_RELEASE in self.capabilities and result.get('release_allowed') is True
+        self.continuous_playback = (CONTINUOUS_PLAYBACK in self.capabilities and
+                                    CONTINUOUS_PLAYBACK in result.get('capabilities', []))
+        self.playback_speed_limit_enabled = result.get('playback_speed_limit_enabled', True)
+        self.playback_chain = 0
         return self._samples(result['positions'])
 
     def board_status(self):
@@ -167,6 +174,25 @@ class RemoteDevice:
         integer(result.get('duration_ms'), milliseconds, 9999, 'Acknowledged duration')
         if result.get('sent') is not True or result.get('requested_duration_ms') != milliseconds:
             raise RuntimeError('板端回放时长回执不匹配；不重发。')
+        return result
+
+    def playback_step(self, targets, milliseconds, *, first=False):
+        if not self.continuous_playback or self.playback_speed_limit_enabled is not False:
+            raise RuntimeError('板端需要更新连续回放及录制速度设置；未发送目标。')
+        self.motion_active = True
+        result = self.request('play_step', dict(targets=targets,duration_ms=milliseconds,
+                              previous=0 if first else self.playback_chain,attended=True))
+        if (result.get('sent') is not True or result.get('chain') != self.sequence
+                or result.get('duration_ms') != milliseconds or result.get('requested_duration_ms') != milliseconds):
+            raise RuntimeError('连续回放回执不匹配；不重发。')
+        from .model import finite
+        finite(result['dispatch_age_s'],0,.65,'Dispatch age')
+        rows = result['feedback']
+        if (not isinstance(rows,list) or any(not isinstance(row,list) or len(row)!=3 for row in rows)
+                or len(rows)!=len(targets) or {row[0] for row in rows}!={int(n) for n in targets}):
+            raise ValueError('Playback feedback axis set mismatch')
+        result['positions'] = {n:dict(p=p,at=at) for n,p,at in rows}
+        self.playback_chain = result['chain']
         return result
 
     def release(self, numbers):

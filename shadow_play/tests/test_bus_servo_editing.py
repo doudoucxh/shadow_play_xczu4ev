@@ -29,6 +29,7 @@ def take(profile, simulated=True, numbers=None):
 class EditingTests(unittest.TestCase):
     def setUp(self):
         self.profile = Profile.load(PROFILE)
+        self.profile.data['playback_speed_limit_enabled'] = True  # Legacy editor behavior.
         self.project = EditProject(self.profile, [1, 7])
 
     def pose(self, p, simulated=True):

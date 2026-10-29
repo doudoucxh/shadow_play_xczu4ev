@@ -19,6 +19,7 @@ class PlaybackTimeline:
         self.playback_times = getattr(plan, 'playback_times', None)
         self.source_times = getattr(plan, 'source_times', None)
         self.retimed_intervals = getattr(plan, 'retimed_intervals', 0)
+        self.speed_limited = getattr(plan,'speed_limited',True)
         if self.playback_times:
             self.duration = self.playback_times[-1]
         self.segments = record.get('segments_summary', [])
@@ -46,4 +47,5 @@ class PlaybackTimeline:
                     source_s=source, source_duration_s=self.source_duration,
                     speed=self.speed, fraction=elapsed/self.duration if self.duration else 0,
                     segment=segment, retimed_intervals=self.retimed_intervals,
+                    speed_limited=self.speed_limited,
                     communication_delay_s=communication_delay)
