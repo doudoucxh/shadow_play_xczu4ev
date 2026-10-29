@@ -60,6 +60,13 @@ def duration(record):
     return record['samples'][-1]['t'] - record['samples'][0]['t']
 
 
+def _is_clip_source(source):
+    # Reviewed segments retain their interrupted source and must still pass
+    # validate_recording; they are not ordinary edit projects to expand.
+    return source.get('schema') == SCHEMA or (
+        source.get('schema') == MOTION_SCHEMA and 'recovery' in source)
+
+
 def validate_project(data, profile):
     if data.get('schema') != PROJECT_SCHEMA or data.get('profile_sha256') != profile.fingerprint:
         raise ValueError('编辑工程与当前轴配置不匹配。')
@@ -74,10 +81,10 @@ def validate_project(data, profile):
             raise ValueError('原始素材摘要改变，不能伪装为未修改的反馈。')
         if source.get('schema') == POSE_SCHEMA:
             validate_pose(source, profile)
-        elif source.get('schema') == SCHEMA:
+        elif _is_clip_source(source):
             validate_recording(source, profile)
         else:
-            raise ValueError('素材必须是原始反馈或姿势；合成轨迹需展开其编辑工程。')
+            raise ValueError('素材必须是原始反馈、已检查片段或姿势；合成轨迹需展开其编辑工程。')
         if not set(data['selected']) <= set(source['selected']):
             raise ValueError('素材缺少本工程的部分轴，不能用默认角度补齐。')
     for s in segments:
@@ -92,7 +99,7 @@ def validate_project(data, profile):
                 raise ValueError('姿势片段的来源类型错误。')
             finite(s['hold_s'], 0, 120, '停留时间')
         else:
-            if source['schema'] != SCHEMA:
+            if not _is_clip_source(source):
                 raise ValueError('录制片段的来源类型错误。')
             start = finite(s['start_s'], 0, duration(source), '入点')
             end = finite(s['end_s'], start, duration(source), '出点')
@@ -141,7 +148,7 @@ class EditProject:
             raise ValueError('导入轨迹没有选择本工程的全部轴，不能启用其隐藏素材中的其他轴。')
         record = copy.deepcopy(record)
         def change(d):
-            if record['schema'] == MOTION_SCHEMA:
+            if record['schema'] == MOTION_SCHEMA and 'edit_project' in record:
                 p = record['edit_project']
                 d['sources'].update(p['sources'])
                 incoming = copy.deepcopy(p['segments'])

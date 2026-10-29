@@ -8,6 +8,7 @@ import unittest
 from shadow_play.bus_servo.model import Profile, validate_recording, playback_plan, save_recording
 from shadow_play.bus_servo.recovery import recover_file, digest
 from shadow_play.bus_servo.av_editing import AVProject, compile_motion
+from shadow_play.bus_servo.editing import EditProject, compile_project
 from shadow_play.tests.test_bus_servo import recording
 
 PROFILE=Path(__file__).resolve().parents[1]/'config/bus_servo.json'
@@ -87,6 +88,60 @@ class RecoveryTests(unittest.TestCase):
         combined=compile_motion(project.data,self.profile)
         validate_recording(combined,self.profile,live=True)
         self.assertEqual(combined['source'],'edited_feedback')
+
+    def test_checked_segment_imports_into_step_editor_without_edit_project(self):
+        self.write();out=recover_file(self.path,self.profile);before=copy.deepcopy(out)
+        project=EditProject(self.profile,[1,7]);project.add_recording(out)
+        segment=project.data['segments'][0]
+        self.assertEqual(segment['kind'],'clip')
+        self.assertEqual(project.data['sources'][segment['source_id']],out)
+        self.assertFalse(out['recovery']['source_record']['complete'])
+        self.assertEqual(out,before)
+        compiled=compile_project(project.data,self.profile)
+        validate_recording(compiled,self.profile,live=True)
+        self.assertEqual([r['positions'] for r in compiled['samples']],
+                         [r['positions'] for r in out['samples']])
+
+    def test_recovered_step_clip_split_trim_save_reload_and_reimport(self):
+        self.write();out=recover_file(self.path,self.profile)
+        project=EditProject(self.profile,[1,7]);project.add_recording(out)
+        end=out['samples'][-1]['t'];project.split(0,end/2)
+        project.update(0,start_s=.05);project.update(1,end_s=end-.05)
+        after=copy.deepcopy(project.data);project.undo();project.redo()
+        self.assertEqual(project.data,after)
+        path=Path(self.temp.name)/'reviewed-edit.project.json';save_recording(path,project.data)
+        restored=EditProject(self.profile,data=json.loads(path.read_text(encoding='utf-8')))
+        compiled=compile_project(restored.data,self.profile)
+        path=Path(self.temp.name)/'reviewed-edit.motion.json';save_recording(path,compiled)
+        loaded=json.loads(path.read_text(encoding='utf-8'));validate_recording(loaded,self.profile,live=True)
+        again=EditProject(self.profile,[1,7]);again.add_recording(loaded)
+        self.assertEqual(len(again.data['segments']),2)
+        validate_recording(compile_project(again.data,self.profile),self.profile,live=True)
+        embedded=next(iter(again.data['sources'].values()))
+        self.assertEqual(embedded['recovery']['source_record'],self.source)
+
+    def test_step_editor_rejects_changed_recovery_and_missing_axes_atomically(self):
+        self.write();out=recover_file(self.path,self.profile)
+        project=EditProject(self.profile,[1,7]);before=copy.deepcopy(project.data)
+        bad=copy.deepcopy(out);bad['samples'][1]['positions']['7']+=1
+        with self.assertRaises(ValueError):project.add_recording(bad)
+        self.assertEqual(project.data,before)
+        with self.assertRaises(ValueError):EditProject(self.profile,[1,2,7]).add_recording(out)
+        project.add_recording(out);bad=copy.deepcopy(project.data)
+        source=next(iter(bad['sources'].values()));source['recovery']['source_record']['complete']=True
+        with self.assertRaises(ValueError):EditProject(self.profile,data=bad)
+
+    def test_simulated_recovery_stays_simulated_after_step_editing(self):
+        self.source['source']='simulation';self.write();out=recover_file(self.path,self.profile)
+        project=EditProject(self.profile,[1,7]);project.add_recording(out)
+        compiled=compile_project(project.data,self.profile)
+        self.assertEqual(compiled['source'],'simulation')
+        with self.assertRaisesRegex(ValueError,'Simulation'):validate_recording(compiled,self.profile,live=True)
+
+    def test_missing_motion_provenance_has_readable_error(self):
+        self.write();out=recover_file(self.path,self.profile);del out['recovery']
+        with self.assertRaisesRegex(ValueError,'缺少来源记录或编辑工程'):
+            validate_recording(out,self.profile)
 
 
 if __name__=='__main__':unittest.main()

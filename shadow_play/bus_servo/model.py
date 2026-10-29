@@ -158,8 +158,10 @@ def _validate_recording(record, profile, live=False, *, operator_stopped=False):
             from .recovery import verify_compiled
         elif 'av_project' in record:
             from .av_editing import verify_compiled
-        else:
+        elif 'edit_project' in record:
             from .editing import verify_compiled
+        else:
+            raise ValueError('回放轨迹缺少来源记录或编辑工程，无法检查；请从原始素材重新导出。')
         verify_compiled(record, profile)
     axes = profile.select(record['selected'])
     samples = record['samples']

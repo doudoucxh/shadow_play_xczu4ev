@@ -1,0 +1,51 @@
+{
+  "schema": "shadow.bus-recovery-editor-fix.v1",
+  "date": "2026-10-29",
+  "diagnosis": {
+    "screenshot_error": "'edit_project'",
+    "reproduced_at": "EditProject.add_recording",
+    "cause": "All motion records were assumed to contain edit_project; reviewed recovery segments have a different provenance.",
+    "previous_tests_missed_step_editor_path": true
+  },
+  "changes": [
+    "Keep validated recovered segments as immutable clip sources in step editor",
+    "Preserve recovery source and hashes across split/trim/save/reload",
+    "Report missing motion provenance in Chinese rather than KeyError"
+  ],
+  "checks": {
+    "offline_tests_passed": 193,
+    "new_regression_tests": 5,
+    "hidden_gui_load_open_editor_import_split_trim_undo_redo_save_reload_apply": true,
+    "real_serial_opened": false,
+    "real_hardware_commands": 0,
+    "source_hashes_unchanged": {
+      "D:\\Desktop\\第一部分_214528.json": "d2d68bb6f6a13afefcbf9e58e6eabab459c1606cf0b8f5639bffc1e04b8b35a9",
+      "D:\\Desktop\\piying\\shadow_play\\logs\\bus_servo\\recovered\\第一部分_214528_已检查片段.motion.json": "a7602e50ebf8ef01b4e4948f726f5c34717fecda7b2ed1359390e44fbd5d982f"
+    },
+    "offline_playback": [
+      {
+        "kind": "recovered",
+        "commands": 555,
+        "plan_s": 63.861,
+        "simulated_elapsed_s": 66.90400000000028,
+        "all_targets_in_order": true
+      },
+      {
+        "kind": "edited",
+        "commands": 548,
+        "plan_s": 63.088,
+        "simulated_elapsed_s": 66.14900000000031,
+        "all_targets_in_order": true
+      }
+    ]
+  },
+  "deployment": {
+    "pc_restart_required": true,
+    "board_update_required": false,
+    "serial_opened": false,
+    "hardware_commands_sent": 0,
+    "user_windows_operated": false,
+    "sd_fpga_autostart_changed": false
+  },
+  "evidence_dir": ".review_work/bus-servo-recovery-editor-20261029"
+}
