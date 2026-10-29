@@ -10,8 +10,8 @@ from tkinter import ttk, messagebox, filedialog
 
 from .device import SimulationDevice
 from .editing import PoseCaptureError
-from .model import MOTION_SCHEMA, Profile, save_recording, validate_recording
-from .session import TeachingSession
+from .model import MOTION_SCHEMA, Profile, playback_plan, save_recording, validate_recording
+from .session import PlaybackRejected, TeachingSession
 from .transport import RemoteDevice
 from .protocol import ServoUnavailable
 from .timeline import PlaybackTimeline, format_time
@@ -119,10 +119,14 @@ class Worker(threading.Thread):
                         self.emit('prepared')
                         self.emit('message', f'已发送到首帧指令，预计至少 {seconds:.1f} 秒；回放时会重新读位置。')
                     elif op == 'play':
-                        s.start_playback(*value)
-                        self.playback_timeline = PlaybackTimeline(value[0], value[2], s.play_end)
-                        self.next_progress = s.play_start
-                        self.emit('playing', self.playback_timeline.snapshot(state='playing'))
+                        try:
+                            s.start_playback(*value)
+                        except PlaybackRejected as exc:
+                            self.emit('playback_rejected', str(exc))
+                        else:
+                            self.playback_timeline = PlaybackTimeline(value[0], value[2], s.play_end, s.plan)
+                            self.next_progress = s.play_start
+                            self.emit('playing', self.playback_timeline.snapshot(state='playing'))
                     elif op == 'drag':
                         if not s.device.simulation:
                             raise RuntimeError('模拟拖动仅用于离线模式。')
@@ -356,6 +360,7 @@ class App:
         nums=[n for n,v in self.selected.items() if v.get()]
         self.selection_text.set(f'已选 {len(nums)} 轴')
         self.commands.put(('select',nums));self.plot()
+        if not self.playing:self.reset_timeline()
         self.update_controls()
 
     def feedback_ready(self, numbers):
@@ -470,7 +475,16 @@ class App:
 
     def reset_timeline(self):
         if self.playing:return
-        self.show_progress(PlaybackTimeline(self.record,float(self.speed.get())).snapshot() if self.record else None)
+        if not self.record:
+            self.show_progress(None);return
+        plan=None
+        try:
+            plan=playback_plan(self.record,self.profile,self.numbers(),float(self.speed.get()))
+        except ValueError:
+            # Invalid/incomplete material remains visible for inspection.
+            # Only an explicit play request reports a validation error.
+            pass
+        self.show_progress(PlaybackTimeline(self.record,float(self.speed.get()),plan=plan).snapshot())
 
     def show_progress(self, progress):
         self.playback_progress = progress
@@ -486,7 +500,8 @@ class App:
             p=progress
             self.timeline_text.set(f'{labels[p["state"]]}  {format_time(p["elapsed_s"])} / {format_time(p["duration_s"])}'
                                    f'  ·  {p["fraction"]*100:.0f}%  ·  剩余 {format_time(p["duration_s"]-p["elapsed_s"])}')
-            self.timeline_source.set(f'{p["speed"]:g}×  ·  轨迹 {format_time(p["source_s"])} / {format_time(p["source_duration_s"])}')
+            adjusted='（快段已放慢）' if p.get('retimed_intervals') else ''
+            self.timeline_source.set(f'{p["speed"]:g}×{adjusted}  ·  轨迹 {format_time(p["source_s"])} / {format_time(p["source_duration_s"])}')
             segment=p['segment']
             if len(segment)>70:segment=segment[:67]+'…'
             self.timeline_segment.set(segment)
@@ -616,7 +631,11 @@ class App:
                 elif kind=='record':self.record,path=value;self.describe_record(path);self.plot()
                 elif kind=='prepared':self.reset_timeline()
                 elif kind=='playing':
-                    self.playing=True;self.show_progress(value);self.status.set('正在回放所选轴，Esc停止。')
+                    self.playing=True;self.show_progress(value)
+                    adjusted=f'其中 {value["retimed_intervals"]} 段已自动放慢，总用时 {value["duration_s"]:.1f} 秒；' if value.get('retimed_intervals') else ''
+                    self.status.set('正在回放所选轴，小于等于0.5°的微小抖动已忽略；'+adjusted+'Esc停止。')
+                elif kind=='playback_rejected':
+                    self.status.set('回放未开始：'+value+' 板子连接保留。')
                 elif kind=='playback_progress':self.show_progress(value)
                 elif kind=='idle':
                     self.busy=self.recording=self.playing=False;self.plot()

@@ -91,7 +91,9 @@ class ModelTests(unittest.TestCase):
         self.assertEqual(set(plan[0][1]),{'1'});self.assertEqual(plan[0][2],200)
         with self.assertRaises(ValueError):playback_plan(r,self.profile,[2],.5)
         r['samples'][1]['positions']['1']=2000
-        with self.assertRaises(ValueError):playback_plan(r,self.profile,[1],1)
+        adjusted=playback_plan(r,self.profile,[1],1)
+        self.assertGreaterEqual(adjusted[0][2],2250)
+        self.assertGreater(adjusted.retimed_intervals,0)
         with tempfile.TemporaryDirectory() as tmp:
             p=Path(tmp)/'take.json';save_recording(p,r)
             with self.assertRaises(FileExistsError):save_recording(p,r)

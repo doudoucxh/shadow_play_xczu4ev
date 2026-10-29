@@ -8,6 +8,10 @@ from .model import finite, new_recording, playback_plan, save_recording, validat
 from .protocol import ServoUnavailable
 
 
+class PlaybackRejected(ValueError):
+    """Playback was not started; the device connection is still usable."""
+
+
 class TeachingSession:
     def __init__(self, profile, device, directory, clock=time.monotonic):
         self.profile, self.device, self.clock = profile, device, clock
@@ -150,13 +154,16 @@ class TeachingSession:
     def start_playback(self, record, numbers, speed=.5):
         if self.recording or self.playing:
             raise RuntimeError('请先结束录制/回放。')
-        validate_recording(record, self.profile, live=not self.device.simulation)
-        plan = playback_plan(record, self.profile, numbers, speed)
+        try:
+            validate_recording(record, self.profile, live=not self.device.simulation)
+            plan = playback_plan(record, self.profile, numbers, speed)
+        except ValueError as exc:
+            raise PlaybackRejected(str(exc)) from exc
         before = self.read(numbers)
         for n in numbers:
             a = self.profile.axes[n]
             if abs(a.degrees(before[n]['p'])-a.degrees(record['samples'][0]['positions'][str(n)])) > 1.5:
-                raise ValueError(f'{n}号与首帧相差超过1.5°，请先执行“缓慢到首帧”并等待到位。')
+                raise PlaybackRejected(f'{n}号与首帧相差超过1.5°，请先执行“缓慢到首帧”并等待到位。')
         self.plan, self.play_numbers, self.index = plan, numbers[:], 0
         self.play_start = self.clock()
         self.play_end = plan[-1][0] + plan[-1][2]/1000

@@ -11,6 +11,7 @@ from .layouts import get_layout
 
 SCHEMA = 'shadow.bus-teach.v1'
 MOTION_SCHEMA = 'shadow.bus-motion.v1'
+PLAYBACK_DEADBAND_DEG = .5
 
 
 def finite(value, low, high, label):
@@ -157,6 +158,16 @@ def save_recording(path, record):
         stream.write('\n')
 
 
+class PlaybackPlan(list):
+    """Command schedule plus a map back to the unchanged recording time axis."""
+    def __init__(self):
+        super().__init__()
+        self.playback_times = [0.0]
+        self.source_times = [0.0]
+        self.filtered_samples = 0
+        self.retimed_intervals = 0
+
+
 def playback_plan(record, profile, numbers, speed):
     validate_recording(record, profile)
     axes = profile.select(numbers)
@@ -164,15 +175,34 @@ def playback_plan(record, profile, numbers, speed):
         raise ValueError('Selected axis was not recorded')
     speed = finite(speed, .1, 2, 'Playback speed')
     samples = record['samples']
-    plan = []
+    plan = PlaybackPlan()
+    held = {str(a.number): samples[0]['positions'][str(a.number)] for a in axes}
+    elapsed_ms = 0
     for previous, current in zip(samples, samples[1:]):
         dt = (current['t'] - previous['t']) / speed
-        if not .02 <= dt <= 9.999:
-            raise ValueError('Sample interval cannot be replayed at this speed')
-        targets = {str(a.number): current['positions'][str(a.number)] for a in axes}
+        if dt > 9.999:
+            raise ValueError('该倍率下相邻帧间隔超过9.999秒，请检查素材时间或提高倍率。')
+        targets = {}
+        required = 0
         for a in axes:
-            change = abs(a.degrees(targets[str(a.number)]) - a.degrees(previous['positions'][str(a.number)]))
-            if change / dt > a.max_speed + .01:
-                raise ValueError(f'Axis {a.number}: recording exceeds speed limit; reduce playback speed')
-        plan.append(((previous['t'] - samples[0]['t']) / speed, targets, round(dt * 1000)))
+            key = str(a.number)
+            target = current['positions'][key]
+            change = abs(a.degrees(target) - a.degrees(held[key]))
+            # Anchor to the last retained target, not the previous raw sample:
+            # slow intentional movement must eventually cross the deadband.
+            if change <= PLAYBACK_DEADBAND_DEG + 1e-9:
+                plan.filtered_samples += target != held[key]
+                target = held[key]
+                change = 0
+            targets[key] = target
+            required = max(required, change/a.max_speed)
+        duration_ms = max(20, round(dt*1000), math.ceil(required*1000-1e-8))
+        if duration_ms > 9999:
+            raise ValueError('该段位移在当前限速下需要超过9.999秒，请在编辑器增加中间姿势。')
+        plan.retimed_intervals += duration_ms > round(dt*1000)
+        plan.append((elapsed_ms/1000, targets, duration_ms))
+        elapsed_ms += duration_ms
+        plan.playback_times.append(elapsed_ms/1000)
+        plan.source_times.append(current['t'] - samples[0]['t'])
+        held = targets
     return plan
