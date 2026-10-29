@@ -461,6 +461,7 @@ class App:
         path=filedialog.askopenfilename(parent=self.root,title='打开示教轨迹',filetypes=[('示教轨迹','*.json')])
         if not path:return
         def run():
+            loaded_path=path
             if Path(path).stat().st_size>64*1024*1024:raise ValueError('轨迹文件超过64MB。')
             record=json.loads(Path(path).read_text(encoding='utf-8-sig'))
             if record.get('schema')=='shadow.bus-av-project.v1':
@@ -470,8 +471,22 @@ class App:
                 record=load_file(path,self.profile)
             if record.get('schema')=='shadow.bus-edit.v1':
                 raise ValueError('这是编辑工程，请在“分步录入 / 剪辑”窗口中选择“打开工程”。')
+            if record.get('complete') is False and record.get('end_reason')=='operator_stopped':
+                from .recovery import recover_file
+                recovered=recover_file(path,self.profile)
+                seconds=recovered['samples'][-1]['t']
+                if not messagebox.askyesno('录制被操作员停止',
+                    f'这份录制通过停止、Esc或关闭窗口中止，并非正常结束录制。\n\n'
+                    f'已检查保留的 {len(recovered["samples"])} 帧 / {seconds:.2f} 秒，{len(recovered["selected"])}轴数据、角度和时间戳均通过检查。\n'
+                    '是否把已保留部分另存为“已检查片段”？不会补造后续动作，也不会修改原文件或驱动舵机。',parent=self.root):return
+                output=filedialog.asksaveasfilename(parent=self.root,title='另存已检查片段（原始中止记录保留）',
+                    initialdir=str(Path(path).parent),initialfile=Path(path).stem+'_已检查片段.motion.json',
+                    defaultextension='.json',filetypes=[('回放片段','*.json')])
+                if not output:return
+                save_recording(output,recovered)
+                record=recovered;loaded_path=output
             validate_recording(record,self.profile)
-            self.record=record;self.live_samples=[];self.select(record['selected']);self.describe_record(path);self.plot();self.update_controls()
+            self.record=record;self.live_samples=[];self.select(record['selected']);self.describe_record(loaded_path);self.plot();self.update_controls()
         self.action(run)
 
     def save(self):
@@ -488,11 +503,13 @@ class App:
         prefix='模拟' if r['source']=='simulation' else '实测'
         if r.get('schema')==MOTION_SCHEMA:
             prefix='编辑动作（'+('模拟素材' if r['source']=='simulation' else '实测素材')+'）'
+        if 'recovery' in r:
+            prefix='已检查的中止片段（'+('模拟' if r['source']=='simulation' else '实测')+'）'
         rate='' if r.get('schema')==MOTION_SCHEMA else f' / {r.get("measured_hz",0):.1f}Hz'
         self.take_info.set(f'{prefix} · {len(samples)} 帧 / {seconds:.1f}s'+rate+(' · 不完整' if not r['complete'] else ''))
         if 'av_project' in r:self.take_info.set(self.take_info.get()+' · 电脑音频联动')
         self.reset_timeline()
-        if path:self.status.set('轨迹已保存：'+str(path))
+        if path:self.status.set('轨迹文件：'+str(path))
 
     def open_editor(self):
         if self.editor:

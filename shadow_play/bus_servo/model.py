@@ -115,6 +115,25 @@ def new_recording(profile, numbers, simulation, rate):
 
 
 def validate_recording(record, profile, live=False):
+    return _validate_recording(record, profile, live)
+
+
+def inspect_operator_stopped(record, profile):
+    """Inspect retained raw frames without changing the interrupted source."""
+    if (not isinstance(record,dict) or record.get('schema') != SCHEMA or
+            record.get('complete') is not False or record.get('end_reason') != 'operator_stopped'):
+        raise ValueError('仅支持检查操作员停止的原始录制；故障或断连中断不能自动恢复。')
+    _validate_recording(record,profile,False,operator_stopped=True)
+    samples=record['samples']
+    for before,after in zip(samples,samples[1:]):
+        if after['t']-before['t'] > .5:
+            raise ValueError('中止片段存在超过0.5秒的采样空档，不能作为连续片段恢复。')
+        if any(after['axis_t'][n] <= before['axis_t'][n] for n in before['axis_t']):
+            raise ValueError('中止片段的单轴采样时间未递增，不能恢复。')
+    return record
+
+
+def _validate_recording(record, profile, live=False, *, operator_stopped=False):
     if not isinstance(record, dict) or record.get('schema') not in (SCHEMA, MOTION_SCHEMA):
         raise ValueError('Not a bus-servo feedback recording')
     if record.get('profile_sha256') != profile.fingerprint:
@@ -125,10 +144,19 @@ def validate_recording(record, profile, live=False):
         raise ValueError('Unknown feedback source')
     if live and record['source'] == 'simulation':
         raise ValueError('Simulation recordings cannot drive hardware')
-    if record.get('complete') is not True:
-        raise ValueError('Recording is incomplete; inspect/re-record before playback')
+    if record.get('complete') is not True and not operator_stopped:
+        reason=record.get('end_reason','unknown')
+        if reason=='operator_stopped':
+            raise ValueError('这份录制通过“停止 / Esc / 关闭窗口”中止，未按“② 结束录制”正常结束。'
+                             '请在主窗口重新打开文件，检查并另存已保留片段；原文件不能直接回放。')
+        raise ValueError('录制未完整结束，不能直接回放。中断原因：'+str(reason)+
+                         '。请保留原文件；排查后用“② 结束录制”正常保存。')
     if planned:
-        if 'av_project' in record:
+        if 'recovery' in record:
+            if 'av_project' in record or 'edit_project' in record:
+                raise ValueError('Ambiguous recovered/editing sources')
+            from .recovery import verify_compiled
+        elif 'av_project' in record:
             from .av_editing import verify_compiled
         else:
             from .editing import verify_compiled

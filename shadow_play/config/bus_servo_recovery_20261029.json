@@ -1,0 +1,58 @@
+{
+  "schema": "shadow.bus-recording-recovery.v1",
+  "date": "2026-10-29",
+  "source": {
+    "path": "D:\\Desktop\\第一部分_214528.json",
+    "sha256": "d2d68bb6f6a13afefcbf9e58e6eabab459c1606cf0b8f5639bffc1e04b8b35a9",
+    "complete": false,
+    "end_reason": "operator_stopped",
+    "frames": 556,
+    "selected": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "duration_s": 63.861229145000834,
+    "measured_hz": 8.690719039244273,
+    "max_frame_gap_s": 0.1458196380008303,
+    "unchanged": true
+  },
+  "diagnosis": "operator_stopped path, not normal finish; exact stop/Esc/window-close trigger is not recorded",
+  "derived_segment": {
+    "path": "D:\\Desktop\\piying\\shadow_play\\logs\\bus_servo\\recovered\\第一部分_214528_已检查片段.motion.json",
+    "sha256": "a7602e50ebf8ef01b4e4948f726f5c34717fecda7b2ed1359390e44fbd5d982f",
+    "schema": "shadow.bus-motion.v1",
+    "frames": 556,
+    "duration_s": 63.861229145000834,
+    "embedded_original_complete": false,
+    "no_synthetic_or_extended_motion": true
+  },
+  "checks": {
+    "offline_bus_tests_passed": 188,
+    "new_recovery_tests": 7,
+    "hidden_tk_load_inspect_save": true,
+    "hidden_tk_connected": false,
+    "source_profile_axes_angles_times": true,
+    "pdf_pages": 12,
+    "pdf_pages_visually_reviewed": [
+      8,
+      9
+    ]
+  },
+  "deployment": {
+    "pc_restart_required": true,
+    "board_update_required": false,
+    "serial_opened": false,
+    "hardware_commands_sent": 0,
+    "sd_fpga_autostart_modified": false,
+    "user_gui_operated": false
+  },
+  "evidence_dir": ".review_work/bus-servo-recovery-20261029"
+}
